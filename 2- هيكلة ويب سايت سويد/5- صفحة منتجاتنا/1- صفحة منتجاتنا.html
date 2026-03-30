@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منتجاتنا - سويد | متجر شامل لكل احتياجاتك التسويقية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E3256B;
+            --primary-purple: #2D2947;
+            --sunset-orange: #FF6B35;
+            --dark-silver: #6d6e70;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --gradient-primary: linear-gradient(135deg, #2D2947 0%, #E3256B 100%);
+            --gradient-secondary: linear-gradient(135deg, #E3256B 0%, #FF6B35 100%);
+            --gradient-warm: linear-gradient(135deg, #FF6B35 0%, #E3256B 50%, #2D2947 100%);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-purple);
+            overflow-x: hidden;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.7rem 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .top-bar-item i {
+            color: var(--primary-pink);
+            font-size: 1rem;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-purple);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo-text {
+            color: var(--primary-pink);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-pink);
+        }
+
+        .nav-menu a.active {
+            color: var(--primary-pink);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-pink);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-btn, .catalog-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--primary-purple);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .search-btn:hover, .catalog-btn:hover {
+            color: var(--primary-pink);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: var(--gradient-warm);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s 0.2s backwards;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .hero-feature {
+            animation: fadeInUp 0.8s 0.4s backwards;
+        }
+
+        .hero-feature i {
+            font-size: 2rem;
+            color: var(--sunset-orange);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== CATEGORY TABS ===== */
+        .category-tabs {
+            background: var(--white);
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: -2rem auto 3rem;
+            max-width: 1200px;
+            border-radius: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: var(--light-bg);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-purple);
+            white-space: nowrap;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i {
+            font-size: 1.2rem;
+        }
+
+        .tab-btn:hover {
+            background: var(--primary-pink);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-color: var(--primary-pink);
+        }
+
+        /* ===== PRODUCTS SECTION ===== */
+        .products-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--dark-silver);
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-secondary);
+            color: var(--white);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.3rem 1rem;
+            background: var(--gradient-secondary);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .product-badge.hot {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF4500 100%);
+            animation: pulse 2s infinite;
+        }
+
+        .product-badge.new {
+            background: linear-gradient(135deg, #00D4FF 0%, #0099FF 100%);
+        }
+
+        .product-badge.sale {
+            background: linear-gradient(135deg, #FF1744 0%, #F50057 100%);
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 1.5rem;
+        }
+
+        .product-icon i {
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .product-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .product-card p {
+            color: var(--dark-silver);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features li {
+            padding: 0.5rem 0;
+            color: var(--dark-silver);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-features li i {
+            color: var(--primary-pink);
+            font-size: 0.8rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-pink);
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: var(--dark-silver);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--dark-silver);
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        .product-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .product-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(227, 37, 107, 0.3);
+        }
+
+        /* ===== HELP SECTION ===== */
+        .help-section {
+            background: var(--gradient-warm);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--white);
+            margin: 4rem 0;
+        }
+
+        .help-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .help-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .help-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .help-btn {
+            padding: 1.2rem 3rem;
+            background: var(--white);
+            color: var(--primary-pink);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .help-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+
+        .help-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* ===== FILTER SECTION ===== */
+        .filter-section {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-purple);
+            cursor: pointer;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-pink);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-pink);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--sunset-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ===== WHATSAPP BUTTON ===== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .tabs-container {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="top-bar-content">
+        <div class="top-bar-item">
+            <i class="fas fa-phone"></i>
+            <span>+20 123 456 7890</span>
+        </div>
+        <div class="top-bar-item">
+            <i class="fas fa-envelope"></i>
+            <span>info@sweed.com</span>
+        </div>
+        <div class="top-bar-item">
+            <i class="fas fa-clock"></i>
+            <span>السبت - الخميس: 9 صباحاً - 6 مساءً</span>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <nav class="nav-container">
+        <a href="#" class="logo">
+            <span class="logo-text">S</span>WEED
+        </a>
+        
+        <ul class="nav-menu">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#">من نحن</a></li>
+            <li><a href="#">خدماتنا</a></li>
+            <li><a href="#">الباقات والعروض</a></li>
+            <li><a href="#" class="active">منتجاتنا</a></li>
+            <li><a href="#">أعمالنا</a></li>
+            <li><a href="#">اتصل بنا</a></li>
+        </ul>
+
+        <div class="header-actions">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+            <button class="catalog-btn"><i class="fas fa-download"></i> الكتالوج</button>
+        </div>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>منتجاتنا المتميزة</h1>
+        <p>اكتشف مجموعة شاملة من المنتجات والحلول التسويقية المصممة خصيصاً لنجاح أعمالك</p>
+        
+        <div class="hero-features">
+            <div class="hero-feature">
+                <i class="fas fa-star"></i>
+                <p>أعلى جودة</p>
+            </div>
+            <div class="hero-feature">
+                <i class="fas fa-shipping-fast"></i>
+                <p>توصيل سريع</p>
+            </div>
+            <div class="hero-feature">
+                <i class="fas fa-shield-alt"></i>
+                <p>ضمان شامل</p>
+            </div>
+            <div class="hero-feature">
+                <i class="fas fa-tags"></i>
+                <p>أسعار تنافسية</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORY TABS -->
+<div class="category-tabs">
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="showCategory('all')">
+            <i class="fas fa-th"></i>
+            <span>جميع المنتجات</span>
+        </button>
+        <button class="tab-btn" onclick="showCategory('printing')">
+            <i class="fas fa-print"></i>
+            <span>المطبوعات الدعائية</span>
+        </button>
+        <button class="tab-btn" onclick="showCategory('packages')">
+            <i class="fas fa-box"></i>
+            <span>الباقات التسويقية</span>
+        </button>
+        <button class="tab-btn" onclick="showCategory('digital')">
+            <i class="fas fa-laptop-code"></i>
+            <span>المنتجات الرقمية</span>
+        </button>
+        <button class="tab-btn" onclick="showCategory('design')">
+            <i class="fas fa-palette"></i>
+            <span>خدمات التصميم</span>
+        </button>
+        <button class="tab-btn" onclick="showCategory('advertising')">
+            <i class="fas fa-bullhorn"></i>
+            <span>الدعاية والإعلان</span>
+        </button>
+        <button class="tab-btn" onclick="showCategory('gifts')">
+            <i class="fas fa-gift"></i>
+            <span>الهدايا الدعائية</span>
+        </button>
+    </div>
+</div>
+
+<!-- ALL PRODUCTS SECTION -->
+<section class="products-section">
+    <div class="section-header">
+        <span class="section-badge"><i class="fas fa-fire"></i> المنتجات الأكثر طلباً</span>
+        <h2>منتجاتنا الأكثر مبيعاً</h2>
+        <p>اختيارات عملائنا المفضلة مع أفضل العروض</p>
+    </div>
+
+    <div class="products-grid" id="hot-products">
+        <!-- Product 1: Business Cards -->
+        <div class="product-card">
+            <span class="product-badge hot">الأكثر طلباً</span>
+            <div class="product-icon">
+                <i class="fas fa-id-card"></i>
+            </div>
+            <h3>الكروت الشخصية الفاخرة</h3>
+            <p>كروت أعمال احترافية بتشطيبات متنوعة وجودة عالية تترك انطباعاً مميزاً</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تصميم احترافي مجاني</li>
+                <li><i class="fas fa-check-circle"></i> خامات فاخرة متعددة</li>
+                <li><i class="fas fa-check-circle"></i> طباعة عالية الدقة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">1 - 15</span>
+                    <span class="price-unit">جنيه/قطعة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Product 2: Brochures -->
+        <div class="product-card">
+            <span class="product-badge sale">عرض خاص</span>
+            <div class="product-icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <h3>البروشورات والكتالوجات</h3>
+            <p>كتالوجات ملونة عالية الجودة بالمنتجات والخدمات، مواد تسويقية راقية ومؤثرة</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تصميم جرافيك مميز</li>
+                <li><i class="fas fa-check-circle"></i> طباعة ملونة فاخرة</li>
+                <li><i class="fas fa-check-circle"></i> ورق مصقول عالي الجودة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="old-price">15 جنيه</span>
+                    <span class="price">2 - 10</span>
+                    <span class="price-unit">جنيه/قطعة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Product 3: Roll-Up -->
+        <div class="product-card">
+            <span class="product-badge hot">الأكثر طلباً</span>
+            <div class="product-icon">
+                <i class="fas fa-rectangle-ad"></i>
+            </div>
+            <h3>البانرات والرول آب</h3>
+            <p>ستاندات معارض احترافية قابلة للطي بتصميم أنيق وجودة طباعة ممتازة</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> سهل الحمل والنقل</li>
+                <li><i class="fas fa-check-circle"></i> مقاوم للماء والخدوش</li>
+                <li><i class="fas fa-check-circle"></i> قاعدة ثابتة ومتينة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">150 - 500</span>
+                    <span class="price-unit">جنيه/قطعة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Product 4: Posters -->
+        <div class="product-card">
+            <span class="product-badge new">جديد</span>
+            <div class="product-icon">
+                <i class="fas fa-image"></i>
+            </div>
+            <h3>البوسترات والملصقات</h3>
+            <p>ملصقات إعلانية بأحجام مختلفة ودقة عالية، تأثير بصري قوي وانتشار واسع</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> جميع المقاسات متاحة</li>
+                <li><i class="fas fa-check-circle"></i> ورق لامع أو مطفي</li>
+                <li><i class="fas fa-check-circle"></i> ألوان زاهية ثابتة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">15 - 200</span>
+                    <span class="price-unit">جنيه/قطعة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Product 5: LED Signage -->
+        <div class="product-card">
+            <span class="product-badge hot">الأكثر طلباً</span>
+            <div class="product-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>الحروف المضيئة LED</h3>
+            <p>حروف وشعارات مضيئة بتقنية LED عالية الكفاءة، تصميم عصري وجذاب للواجهات</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> توفير في الطاقة</li>
+                <li><i class="fas fa-check-circle"></i> إضاءة قوية ومتساوية</li>
+                <li><i class="fas fa-check-circle"></i> ضمان 3 سنوات</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">500 - 5,000</span>
+                    <span class="price-unit">جنيه/حرف</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Product 6: Gifts -->
+        <div class="product-card">
+            <span class="product-badge sale">عرض خاص</span>
+            <div class="product-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <h3>الهدايا الدعائية المخصصة</h3>
+            <p>هدايا ترويجية متنوعة بشعار شركتك، تزيد من انتشار علامتك التجارية</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تخصيص كامل بشعارك</li>
+                <li><i class="fas fa-check-circle"></i> جودة عالية ومتينة</li>
+                <li><i class="fas fa-check-circle"></i> أسعار الجملة متاحة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="old-price">100 جنيه</span>
+                    <span class="price">5 - 50</span>
+                    <span class="price-unit">جنيه/قطعة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- HELP SECTION -->
+<section class="help-section">
+    <div class="help-content">
+        <h2>محتاج مساعدة في الاختيار؟</h2>
+        <p>فريقنا المتخصص جاهز لمساعدتك في اختيار المنتجات المناسبة لاحتياجاتك وميزانيتك</p>
+        <button class="help-btn">
+            <i class="fas fa-headset"></i>
+            <span>اطلب استشارة مجانية الآن</span>
+        </button>
+    </div>
+</section>
+
+<!-- PRINTING PRODUCTS TAB -->
+<section class="products-section" id="printing-tab">
+    <div class="section-header">
+        <span class="section-badge"><i class="fas fa-print"></i> المطبوعات الدعائية</span>
+        <h2>مطبوعات احترافية عالية الجودة</h2>
+        <p>جميع أنواع المطبوعات الدعائية بأفضل الخامات والأسعار</p>
+    </div>
+
+    <div class="filter-section">
+        <div class="filter-row">
+            <div class="filter-group">
+                <label>نوع المنتج</label>
+                <select>
+                    <option>جميع المطبوعات</option>
+                    <option>الكروت الشخصية</option>
+                    <option>البروشورات</option>
+                    <option>الفلايرز</option>
+                    <option>البوسترات</option>
+                    <option>الكتيبات</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>نطاق السعر</label>
+                <select>
+                    <option>جميع الأسعار</option>
+                    <option>أقل من 10 جنيه</option>
+                    <option>10 - 50 جنيه</option>
+                    <option>50 - 200 جنيه</option>
+                    <option>أكثر من 200 جنيه</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>وقت التسليم</label>
+                <select>
+                    <option>جميع المواعيد</option>
+                    <option>1-3 أيام</option>
+                    <option>3-7 أيام</option>
+                    <option>7-14 يوم</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="products-grid">
+        <!-- Flyers -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <h3>الفلايرز والمنشورات</h3>
+            <p>مطبوعات ترويجية سريعة وفعالة، منشورات جذابة للتوزيع السريع بتكلفة منخفضة</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تصميم مجاني للكميات الكبيرة</li>
+                <li><i class="fas fa-check-circle"></i> جميع المقاسات متاحة</li>
+                <li><i class="fas fa-check-circle"></i> طباعة وجه واحد أو وجهين</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">0.5 - 5</span>
+                    <span class="price-unit">جنيه/قطعة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Letterheads -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fas fa-file-contract"></i>
+            </div>
+            <h3>الأوراق الرسمية</h3>
+            <p>قرطاسية رسمية بهوية الشركة المتميزة، مراسلات احترافية تعكس القوة</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> ورق فاخر بأحجام مختلفة</li>
+                <li><i class="fas fa-check-circle"></i> طباعة بالألوان أو أحادية</li>
+                <li><i class="fas fa-check-circle"></i> تطبيق الهوية البصرية</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">2 - 10</span>
+                    <span class="price-unit">جنيه/ورقة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Stickers -->
+        <div class="product-card">
+            <span class="product-badge new">جديد</span>
+            <div class="product-icon">
+                <i class="fas fa-sticky-note"></i>
+            </div>
+            <h3>الستيكرز واللصقات</h3>
+            <p>ملصقات صغيرة ترويجية بأشكال وأحجام متنوعة، انتشار واسع بتكلفة قليلة جداً</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> مقاوم للماء والخدش</li>
+                <li><i class="fas fa-check-circle"></i> لاصق قوي ودائم</li>
+                <li><i class="fas fa-check-circle"></i> أشكال مخصصة متاحة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">0.2 - 5</span>
+                    <span class="price-unit">جنيه/قطعة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Booklets -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h3>الكتيبات التعليمية</h3>
+            <p>كتب ودلائل إرشادية منظمة ومفيدة، مطبوعات تعليمية بتجليد متين</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تجليد حلزوني أو تدبيس</li>
+                <li><i class="fas fa-check-circle"></i> ورق 80 أو 100 جرام</li>
+                <li><i class="fas fa-check-circle"></i> طباعة داخلية ملونة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">5 - 50</span>
+                    <span class="price-unit">جنيه/كتيب</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Banners -->
+        <div class="product-card">
+            <span class="product-badge sale">عرض 20%</span>
+            <div class="product-icon">
+                <i class="fas fa-flag"></i>
+            </div>
+            <h3>البنرات المطبوعة</h3>
+            <p>بنرات كبيرة للواجهات والشوارع، مواد عالية الجودة مقاومة للعوامل الجوية</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> فلكس عالي الجودة</li>
+                <li><i class="fas fa-check-circle"></i> طباعة ديجيتال عالية الدقة</li>
+                <li><i class="fas fa-check-circle"></i> حلقات معدنية للتثبيت</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="old-price">150 جنيه</span>
+                    <span class="price">50 - 300</span>
+                    <span class="price-unit">جنيه/متر</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Exhibition Stands -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fas fa-store"></i>
+            </div>
+            <h3>ستاندات المعارض</h3>
+            <p>ستاندات عرض احترافية للمعارض والمؤتمرات، سهلة الحمل والتركيب</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> خفيف الوزن وسهل النقل</li>
+                <li><i class="fas fa-check-circle"></i> تركيب سريع بدون أدوات</li>
+                <li><i class="fas fa-check-circle"></i> حقيبة حمل مجانية</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">200 - 800</span>
+                    <span class="price-unit">جنيه/ستاند</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- MARKETING PACKAGES TAB -->
+<section class="products-section" id="packages-tab" style="display: none;">
+    <div class="section-header">
+        <span class="section-badge"><i class="fas fa-box"></i> الباقات التسويقية</span>
+        <h2>باقات تسويقية متكاملة</h2>
+        <p>خطط شاملة لتسويق أعمالك بكفاءة واحترافية</p>
+    </div>
+
+    <div class="products-grid">
+        <!-- SEO Package -->
+        <div class="product-card">
+            <span class="product-badge hot">الأكثر طلباً</span>
+            <div class="product-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3>باقة SEO الشاملة</h3>
+            <p>تحسين ترتيب موقعك في محركات البحث وزيادة الزيارات العضوية</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تحليل وبحث الكلمات المفتاحية</li>
+                <li><i class="fas fa-check-circle"></i> تحسين محتوى الموقع</li>
+                <li><i class="fas fa-check-circle"></i> بناء روابط خلفية عالية الجودة</li>
+                <li><i class="fas fa-check-circle"></i> تقارير شهرية مفصلة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">3,000 - 15,000</span>
+                    <span class="price-unit">جنيه/شهرياً</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Social Media Package -->
+        <div class="product-card">
+            <span class="product-badge sale">عرض 30%</span>
+            <div class="product-icon">
+                <i class="fas fa-hashtag"></i>
+            </div>
+            <h3>باقة إدارة السوشيال ميديا</h3>
+            <p>إدارة احترافية لحساباتك على منصات التواصل الاجتماعي</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> إدارة 4 منصات رئيسية</li>
+                <li><i class="fas fa-check-circle"></i> 20 منشور شهرياً</li>
+                <li><i class="fas fa-check-circle"></i> تصميم محتوى احترافي</li>
+                <li><i class="fas fa-check-circle"></i> رد على التعليقات والرسائل</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="old-price">8,000 جنيه</span>
+                    <span class="price">2,500 - 10,000</span>
+                    <span class="price-unit">جنيه/شهرياً</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Google Ads Package -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fab fa-google"></i>
+            </div>
+            <h3>باقة Google Ads</h3>
+            <p>حملات إعلانية مستهدفة على جوجل لجذب عملاء محتملين بسرعة</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> إعداد الحملات الإعلانية</li>
+                <li><i class="fas fa-check-circle"></i> استهداف دقيق للجمهور</li>
+                <li><i class="fas fa-check-circle"></i> متابعة وتحسين يومي</li>
+                <li><i class="fas fa-check-circle"></i> تقارير أسبوعية</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">3,000 - 20,000</span>
+                    <span class="price-unit">جنيه/شهرياً</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Integrated Marketing -->
+        <div class="product-card">
+            <span class="product-badge hot">الباقة الأشمل</span>
+            <div class="product-icon">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <h3>باقة التسويق المتكامل</h3>
+            <p>حل تسويقي شامل يجمع جميع القنوات لنتائج استثنائية</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> SEO + سوشيال ميديا</li>
+                <li><i class="fas fa-check-circle"></i> حملات إعلانية مدفوعة</li>
+                <li><i class="fas fa-check-circle"></i> تسويق بالمحتوى</li>
+                <li><i class="fas fa-check-circle"></i> إيميل ماركتنج</li>
+                <li><i class="fas fa-check-circle"></i> مدير حساب مخصص</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">15,000 - 50,000</span>
+                    <span class="price-unit">جنيه/شهرياً</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Content Marketing -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fas fa-pen-fancy"></i>
+            </div>
+            <h3>باقة تسويق المحتوى</h3>
+            <p>محتوى إبداعي عالي الجودة يجذب ويحتفظ بجمهورك المستهدف</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> 8 مقالات شهرياً</li>
+                <li><i class="fas fa-check-circle"></i> 4 إنفوجرافيك</li>
+                <li><i class="fas fa-check-circle"></i> 2 فيديو قصير</li>
+                <li><i class="fas fa-check-circle"></i> توزيع على منصات متعددة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">5,000 - 15,000</span>
+                    <span class="price-unit">جنيه/شهرياً</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Email Marketing -->
+        <div class="product-card">
+            <span class="product-badge new">جديد</span>
+            <div class="product-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <h3>باقة الإيميل ماركتنج</h3>
+            <p>حملات بريد إلكتروني مستهدفة لزيادة المبيعات والولاء</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تصميم قوالب احترافية</li>
+                <li><i class="fas fa-check-circle"></i> 4 حملات شهرياً</li>
+                <li><i class="fas fa-check-circle"></i> تقسيم القوائم البريدية</li>
+                <li><i class="fas fa-check-circle"></i> تحليل معدلات الفتح والتحويل</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">2,000 - 8,000</span>
+                    <span class="price-unit">جنيه/شهرياً</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- DIGITAL PRODUCTS TAB -->
+<section class="products-section" id="digital-tab" style="display: none;">
+    <div class="section-header">
+        <span class="section-badge"><i class="fas fa-laptop-code"></i> المنتجات الرقمية</span>
+        <h2>حلول رقمية جاهزة للاستخدام</h2>
+        <p>قوالب واشتراكات وأدوات تساعدك على بدء مشروعك بسرعة</p>
+    </div>
+
+    <div class="products-grid">
+        <!-- WordPress Templates -->
+        <div class="product-card">
+            <span class="product-badge sale">خصم 40%</span>
+            <div class="product-icon">
+                <i class="fab fa-wordpress"></i>
+            </div>
+            <h3>قوالب ووردبريس احترافية</h3>
+            <p>قوالب جاهزة للتركيب بتصميم عصري وسريع الاستجابة</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> متوافق مع جميع الشاشات</li>
+                <li><i class="fas fa-check-circle"></i> سريع التحميل ومحسن SEO</li>
+                <li><i class="fas fa-check-circle"></i> دعم فني مدى الحياة</li>
+                <li><i class="fas fa-check-circle"></i> تحديثات مجانية</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="old-price">3,000 جنيه</span>
+                    <span class="price">1,500 - 5,000</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اشترِ الآن</span>
+            </button>
+        </div>
+
+        <!-- Design Templates -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fab fa-adobe"></i>
+            </div>
+            <h3>قوالب التصميم PSD</h3>
+            <p>ملفات فوتوشوب قابلة للتعديل لجميع احتياجاتك التصميمية</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> طبقات منظمة وسهلة التعديل</li>
+                <li><i class="fas fa-check-circle"></i> دقة عالية 300 DPI</li>
+                <li><i class="fas fa-check-circle"></i> ألوان CMYK للطباعة</li>
+                <li><i class="fas fa-check-circle"></i> خطوط مجانية مرفقة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">300 - 2,000</span>
+                    <span class="price-unit">جنيه/قالب</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اشترِ الآن</span>
+            </button>
+        </div>
+
+        <!-- Brand Identity Kit -->
+        <div class="product-card">
+            <span class="product-badge hot">الأكثر طلباً</span>
+            <div class="product-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+            <h3>ملفات الهوية البصرية الجاهزة</h3>
+            <p>باقة كاملة من ملفات الهوية البصرية القابلة للتخصيص</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> شعار بصيغ متعددة</li>
+                <li><i class="fas fa-check-circle"></i> دليل الهوية البصرية</li>
+                <li><i class="fas fa-check-circle"></i> قوالب وسائل التواصل</li>
+                <li><i class="fas fa-check-circle"></i> قوالب القرطاسية</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">2,000 - 8,000</span>
+                    <span class="price-unit">جنيه/باقة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اشترِ الآن</span>
+            </button>
+        </div>
+
+        <!-- Analytics Tools -->
+        <div class="product-card">
+            <span class="product-badge new">جديد</span>
+            <div class="product-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>أدوات التحليل والإحصاءات</h3>
+            <p>اشتراكات في أفضل أدوات التحليل والمراقبة لموقعك</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> Google Analytics Pro</li>
+                <li><i class="fas fa-check-circle"></i> أدوات SEO متقدمة</li>
+                <li><i class="fas fa-check-circle"></i> مراقبة وسائل التواصل</li>
+                <li><i class="fas fa-check-circle"></i> تقارير مخصصة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">1,000 - 5,000</span>
+                    <span class="price-unit">جنيه/شهرياً</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اشترك الآن</span>
+            </button>
+        </div>
+
+        <!-- Social Media Pack -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fas fa-images"></i>
+            </div>
+            <h3>باقة قوالب السوشيال ميديا</h3>
+            <p>مجموعة شاملة من قوالب التصميم لجميع المنصات الاجتماعية</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> 100+ قالب جاهز</li>
+                <li><i class="fas fa-check-circle"></i> جميع المقاسات القياسية</li>
+                <li><i class="fas fa-check-circle"></i> ملفات Canva قابلة للتعديل</li>
+                <li><i class="fas fa-check-circle"></i> تحديثات شهرية</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">800 - 3,000</span>
+                    <span class="price-unit">جنيه/باقة</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اشترِ الآن</span>
+            </button>
+        </div>
+
+        <!-- E-commerce Platform -->
+        <div class="product-card">
+            <div class="product-icon">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <h3>منصة متجر إلكتروني جاهزة</h3>
+            <p>حل متكامل لإطلاق متجرك الإلكتروني بسرعة واحترافية</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> لوحة تحكم عربية</li>
+                <li><i class="fas fa-check-circle"></i> بوابات دفع متعددة</li>
+                <li><i class="fas fa-check-circle"></i> ربط مع شركات الشحن</li>
+                <li><i class="fas fa-check-circle"></i> تطبيق جوال مجاني</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">5,000 - 20,000</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اشترِ الآن</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- SPECIAL OFFERS SECTION -->
+<section class="products-section">
+    <div class="section-header">
+        <span class="section-badge"><i class="fas fa-fire"></i> عروض محدودة</span>
+        <h2>عروض خاصة لفترة محدودة</h2>
+        <p>اغتنم الفرصة واحصل على خصومات تصل إلى 50%</p>
+    </div>
+
+    <div class="products-grid">
+        <!-- Bundle Offer 1 -->
+        <div class="product-card">
+            <span class="product-badge sale">خصم 50%</span>
+            <div class="product-icon">
+                <i class="fas fa-box-open"></i>
+            </div>
+            <h3>باقة المشروع الناشئ الكاملة</h3>
+            <p>كل ما تحتاجه لبدء مشروعك: هوية + موقع + تسويق</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تصميم هوية بصرية كاملة</li>
+                <li><i class="fas fa-check-circle"></i> موقع إلكتروني احترافي</li>
+                <li><i class="fas fa-check-circle"></i> 500 كارت شخصي</li>
+                <li><i class="fas fa-check-circle"></i> 100 بروشور</li>
+                <li><i class="fas fa-check-circle"></i> إدارة سوشيال ميديا لشهر</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="old-price">40,000 جنيه</span>
+                    <span class="price">19,999</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>احجز الآن</span>
+            </button>
+        </div>
+
+        <!-- Bundle Offer 2 -->
+        <div class="product-card">
+            <span class="product-badge sale">خصم 40%</span>
+            <div class="product-icon">
+                <i class="fas fa-bullhorn"></i>
+            </div>
+            <h3>باقة الدعاية الشاملة</h3>
+            <p>حملة دعائية متكاملة لزيادة انتشار علامتك التجارية</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> لوحة إعلانية خارجية</li>
+                <li><i class="fas fa-check-circle"></i> 1000 فلاير</li>
+                <li><i class="fas fa-check-circle"></i> 100 بوستر</li>
+                <li><i class="fas fa-check-circle"></i> 500 ستيكر</li>
+                <li><i class="fas fa-check-circle"></i> رول آب احترافي</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="old-price">15,000 جنيه</span>
+                    <span class="price">8,999</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>احجز الآن</span>
+            </button>
+        </div>
+
+        <!-- Bundle Offer 3 -->
+        <div class="product-card">
+            <span class="product-badge hot">الأكثر مبيعاً</span>
+            <div class="product-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <h3>باقة Premium الحصرية</h3>
+            <p>الباقة الأشمل لتسويق وتطوير أعمالك بشكل متكامل</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> كل محتويات باقة المشروع الناشئ</li>
+                <li><i class="fas fa-check-circle"></i> حروف مضيئة LED للواجهة</li>
+                <li><i class="fas fa-check-circle"></i> تصوير احترافي للمنتجات</li>
+                <li><i class="fas fa-check-circle"></i> فيديو تعريفي احترافي</li>
+                <li><i class="fas fa-check-circle"></i> 3 أشهر إدارة سوشيال ميديا</li>
+                <li><i class="fas fa-check-circle"></i> حملة Google Ads لشهر</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="old-price">80,000 جنيه</span>
+                    <span class="price">49,999</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>احجز الآن</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS BY INDUSTRY SECTION -->
+<section class="products-section">
+    <div class="section-header">
+        <span class="section-badge"><i class="fas fa-industry"></i> منتجات حسب المجال</span>
+        <h2>حلول مخصصة لكل صناعة</h2>
+        <p>منتجات وخدمات مصممة خصيصاً لتلبية احتياجات مجالك</p>
+    </div>
+
+    <div class="filter-section">
+        <div class="filter-row">
+            <div class="filter-group">
+                <label>اختر مجال عملك</label>
+                <select id="industry-select" onchange="filterByIndustry(this.value)">
+                    <option value="all">جميع المجالات</option>
+                    <option value="restaurant">المطاعم والمقاهي</option>
+                    <option value="medical">الطب والرعاية الصحية</option>
+                    <option value="education">التعليم والتدريب</option>
+                    <option value="realestate">العقارات</option>
+                    <option value="retail">التجزئة والمحلات</option>
+                    <option value="services">الخدمات والصيانة</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="products-grid" id="industry-products">
+        <!-- Restaurant Package -->
+        <div class="product-card industry-card" data-industry="restaurant">
+            <div class="product-icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h3>باقة المطاعم والمقاهي</h3>
+            <p>كل ما يحتاجه مطعمك من مطبوعات وتسويق للنجاح</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> تصميم قائمة طعام احترافية</li>
+                <li><i class="fas fa-check-circle"></i> بروشورات ومنيو فاخر</li>
+                <li><i class="fas fa-check-circle"></i> لوحة إضاءة خارجية</li>
+                <li><i class="fas fa-check-circle"></i> تصوير أطباق احترافي</li>
+                <li><i class="fas fa-check-circle"></i> إدارة سوشيال ميديا مخصصة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">12,000 - 35,000</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Medical Package -->
+        <div class="product-card industry-card" data-industry="medical">
+            <div class="product-icon">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <h3>باقة العيادات والمراكز الطبية</h3>
+            <p>حلول تسويقية ومطبوعات مخصصة للقطاع الطبي</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> هوية بصرية طبية احترافية</li>
+                <li><i class="fas fa-check-circle"></i> بروشورات تعريفية بالخدمات</li>
+                <li><i class="fas fa-check-circle"></i> لافتات داخلية إرشادية</li>
+                <li><i class="fas fa-check-circle"></i> نظام حجز إلكتروني</li>
+                <li><i class="fas fa-check-circle"></i> تسويق رقمي متخصص</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">15,000 - 40,000</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Education Package -->
+        <div class="product-card industry-card" data-industry="education">
+            <div class="product-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>باقة المراكز التعليمية</h3>
+            <p>مواد تسويقية وتعليمية للمدارس ومراكز التدريب</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> بروشورات البرامج التعليمية</li>
+                <li><i class="fas fa-check-circle"></i> شهادات تقدير مطبوعة</li>
+                <li><i class="fas fa-check-circle"></i> لافتات تعليمية داخلية</li>
+                <li><i class="fas fa-check-circle"></i> موقع إلكتروني تعليمي</li>
+                <li><i class="fas fa-check-circle"></i> حملات تسويقية موسمية</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">10,000 - 30,000</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Real Estate Package -->
+        <div class="product-card industry-card" data-industry="realestate">
+            <div class="product-icon">
+                <i class="fas fa-building"></i>
+            </div>
+            <h3>باقة شركات العقارات</h3>
+            <p>مواد تسويقية عقارية احترافية وفعالة</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> بروشورات المشاريع الفاخرة</li>
+                <li><i class="fas fa-check-circle"></i> لوحات إعلانية خارجية كبيرة</li>
+                <li><i class="fas fa-check-circle"></i> موقع عقاري متكامل</li>
+                <li><i class="fas fa-check-circle"></i> جولات افتراضية 360</li>
+                <li><i class="fas fa-check-circle"></i> حملات إعلانية مستهدفة</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">20,000 - 60,000</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Retail Package -->
+        <div class="product-card industry-card" data-industry="retail">
+            <div class="product-icon">
+                <i class="fas fa-store"></i>
+            </div>
+            <h3>باقة محلات التجزئة</h3>
+            <p>حلول متكاملة لتسويق محلك وزيادة المبيعات</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> لافتات الواجهة المضيئة</li>
+                <li><i class="fas fa-check-circle"></i> ستيكرات الأسعار والعروض</li>
+                <li><i class="fas fa-check-circle"></i> أكياس تسوق مخصصة</li>
+                <li><i class="fas fa-check-circle"></i> برنامج ولاء للعملاء</li>
+                <li><i class="fas fa-check-circle"></i> حملات سوشيال ميديا</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">8,000 - 25,000</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+
+        <!-- Services Package -->
+        <div class="product-card industry-card" data-industry="services">
+            <div class="product-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h3>باقة شركات الخدمات</h3>
+            <p>مواد تسويقية لشركات الخدمات والصيانة</p>
+            <ul class="product-features">
+                <li><i class="fas fa-check-circle"></i> بروشورات خدمات تفصيلية</li>
+                <li><i class="fas fa-check-circle"></i> كروت عمل لفريق العمل</li>
+                <li><i class="fas fa-check-circle"></i> لافتات السيارات</li>
+                <li><i class="fas fa-check-circle"></i> زي موحد مطبوع</li>
+                <li><i class="fas fa-check-circle"></i> نظام حجز أونلاين</li>
+            </ul>
+            <div class="product-price">
+                <div>
+                    <span class="price">10,000 - 30,000</span>
+                    <span class="price-unit">جنيه</span>
+                </div>
+            </div>
+            <button class="product-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span>اطلب الآن</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>سويد</h3>
+            <p>شريكك الاستراتيجي للنجاح في التسويق والإعلان</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>روابط سريعة</h3>
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">من نحن</a></li>
+                <li><a href="#">خدماتنا</a></li>
+                <li><a href="#">الباقات والعروض</a></li>
+                <li><a href="#">منتجاتنا</a></li>
+                <li><a href="#">أعمالنا</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>خدماتنا</h3>
+            <ul>
+                <li><a href="#">الاستشارات التسويقية</a></li>
+                <li><a href="#">بناء العلامة التجارية</a></li>
+                <li><a href="#">التسويق الرقمي</a></li>
+                <li><a href="#">البرمجة والتطوير</a></li>
+                <li><a href="#">الدعاية والإعلان</a></li>
+                <li><a href="#">إنتاج المحتوى</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>تواصل معنا</h3>
+            <ul>
+                <li><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</li>
+                <li><i class="fas fa-phone"></i> +20 123 456 7890</li>
+                <li><i class="fas fa-envelope"></i> info@sweed.com</li>
+                <li><i class="fas fa-clock"></i> السبت - الخميس: 9 ص - 6 م</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2024 سويد. جميع الحقوق محفوظة.</p>
+    </div>
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/201234567890" class="whatsapp-btn" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// Tab switching functionality
+function showCategory(category) {
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    event.target.closest('.tab-btn').classList.add('active');
+    
+    // Show all products for 'all' category
+    if (category === 'all') {
+        window.scrollTo({
+            top: document.querySelector('#hot-products').offsetTop - 100,
+            behavior: 'smooth'
+        });
+    }
+    
+    // For specific categories, scroll to the appropriate section
+    const sections = {
+        'printing': 'printing-tab',
+        'packages': 'packages-tab',
+        'digital': 'digital-tab'
+    };
+    
+    if (sections[category]) {
+        const section = document.getElementById(sections[category]);
+        if (section) {
+            window.scrollTo({
+                top: section.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    }
+}
+
+// Industry filter functionality
+function filterByIndustry(industry) {
+    const cards = document.querySelectorAll('.industry-card');
+    
+    cards.forEach(card => {
+        if (industry === 'all' || card.dataset.industry === industry) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeInUp 0.5s';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Smooth scroll for all links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Add to cart animation
+document.querySelectorAll('.product-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        this.innerHTML = '<i class="fas fa-check"></i> تم الإضافة';
+        this.style.background = 'linear-gradient(135deg, #00C853 0%, #00E676 100%)';
+        
+        setTimeout(() => {
+            this.innerHTML = '<i class="fas fa-shopping-cart"></i> اطلب الآن';
+            this.style.background = 'var(--gradient-primary)';
+        }, 2000);
+    });
+});
+
+// Header hide on scroll
+let lastScroll = 0;
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        header.style.transform = 'translateY(-100%)';
+    } else {
+        header.style.transform = 'translateY(0)';
+    }
+    
+    lastScroll = currentScroll;
+});
+</script>
+
+</body>
+</html>

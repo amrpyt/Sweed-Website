@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا | سويد - شريكك الاستراتيجي للنجاح</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E3256B;
+            --primary-purple: #2D2947;
+            --sunset-orange: #FF6B35;
+            --dark-silver: #6d6e70;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --success-green: #28a745;
+            --error-red: #dc3545;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-purple);
+            overflow-x: hidden;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.6rem 0;
+            font-size: 0.85rem;
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .top-bar-item i {
+            color: var(--primary-pink);
+            font-size: 0.9rem;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-decoration: none;
+        }
+
+        .logo-main {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-purple);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .logo-s {
+            color: var(--primary-pink);
+        }
+
+        .logo-subtitle {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--dark-silver);
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-pink);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .btn-search {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-search:hover {
+            background: var(--primary-pink);
+        }
+
+        .btn-download {
+            background: var(--primary-pink);
+            color: var(--white);
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background: var(--sunset-orange);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .contact-hero {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .contact-hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .contact-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .contact-hero h1 i {
+            font-size: 2.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--sunset-orange);
+        }
+
+        .hero-stat h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-stat p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* ===== MAIN CONTACT SECTION ===== */
+        .main-contact-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+        }
+
+        /* ===== CONTACT INFO CARD ===== */
+        .contact-info-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            height: fit-content;
+        }
+
+        .contact-info-card h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-info-card h2 i {
+            color: var(--primary-pink);
+        }
+
+        .contact-method {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(227, 37, 107, 0.15);
+            border-color: var(--primary-pink);
+        }
+
+        .contact-method-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--sunset-orange) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
+        }
+
+        .contact-method-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+        }
+
+        .contact-method-content {
+            padding-right: 4rem;
+        }
+
+        .contact-method-content p {
+            font-size: 0.95rem;
+            color: var(--dark-silver);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-method-content a {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-method-content a:hover {
+            color: var(--sunset-orange);
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--sunset-orange) 100%);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-btn:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(227, 37, 107, 0.3);
+        }
+
+        .working-hours {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .working-hours h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .working-hours-list {
+            list-style: none;
+        }
+
+        .working-hours-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .working-hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 600;
+        }
+
+        .time {
+            opacity: 0.9;
+        }
+
+        /* ===== CONTACT FORM CARD ===== */
+        .contact-form-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .contact-form-card h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-form-card h2 i {
+            color: var(--primary-pink);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group label .required {
+            color: var(--primary-pink);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(227, 37, 107, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .form-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-pink);
+            cursor: pointer;
+        }
+
+        .form-checkbox label {
+            font-size: 0.9rem;
+            color: var(--dark-silver);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--sunset-orange) 100%);
+            color: var(--white);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(227, 37, 107, 0.3);
+        }
+
+        .submit-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* ===== MAP & SOCIAL SECTION ===== */
+        .map-social-section {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .map-social-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .social-connect {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #ffffff 100%);
+            border-radius: 20px;
+        }
+
+        .social-connect h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .social-connect p {
+            font-size: 1.1rem;
+            color: var(--dark-silver);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-purple);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .social-link.facebook:hover {
+            background: #1877f2;
+            color: var(--white);
+        }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            color: var(--white);
+        }
+
+        .social-link.linkedin:hover {
+            background: #0077b5;
+            color: var(--white);
+        }
+
+        .social-link.twitter:hover {
+            background: #1da1f2;
+            color: var(--white);
+        }
+
+        .social-link.youtube:hover {
+            background: #ff0000;
+            color: var(--white);
+        }
+
+        .social-link.whatsapp:hover {
+            background: #25d366;
+            color: var(--white);
+        }
+
+        /* ===== QUICK FAQ SECTION ===== */
+        .quick-faq-section {
+            padding: 60px 0;
+            background: var(--light-bg);
+        }
+
+        .quick-faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .quick-faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .quick-faq-header h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .quick-faq-header p {
+            font-size: 1.1rem;
+            color: var(--dark-silver);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(227, 37, 107, 0.15);
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .faq-question i {
+            color: var(--primary-pink);
+            margin-top: 0.2rem;
+        }
+
+        .faq-answer {
+            font-size: 0.95rem;
+            color: var(--dark-silver);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            border: none;
+        }
+
+        .btn-cta-primary {
+            background: var(--white);
+            color: var(--primary-pink);
+        }
+
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-cta-secondary:hover {
+            background: var(--white);
+            color: var(--primary-pink);
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            color: var(--primary-pink);
+        }
+
+        .footer-section p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-pink);
+            opacity: 1;
+        }
+
+        .footer-section .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-section .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section .social-links a:hover {
+            background: var(--primary-pink);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-right: 2rem;
+            padding-left: 2rem;
+        }
+
+        /* ===== WHATSAPP FLOAT BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            left: 30px;
+            background: #25d366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+        }
+
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #25d366;
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            80%, 100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* ===== SUCCESS MESSAGE ===== */
+        .success-message {
+            display: none;
+            background: var(--success-green);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            animation: slideDown 0.5s ease;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-hero p {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn-cta {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                <div class="top-bar-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+201068274662</span>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>mohamedsweed2050@gmail.com</span>
+                </div>
+            </div>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                <div class="top-bar-item">
+                    <i class="fas fa-clock"></i>
+                    <span>السبت - الخميس: 9 صباحاً - 6 مساءً</span>
+                </div>
+                <div class="top-bar-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>القاهرة، مصر</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-main">
+                    <span class="logo-s">S</span>WEED
+                </div>
+                <div class="logo-subtitle">YOUR STRATEGIC PARTNER</div>
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="services.html">خدماتنا</a></li>
+                <li><a href="#portfolio">أعمالنا</a></li>
+                <li><a href="#blog">المدونة</a></li>
+                <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                <li><a href="contact.html" class="active">اتصل بنا</a></li>
+            </ul>
+
+            <div class="nav-buttons">
+                <button class="btn-search">
+                    <i class="fas fa-search"></i>
+                    <span>بحث</span>
+                </button>
+                <button class="btn-download">
+                    <i class="fas fa-download"></i>
+                    <span>تحميل البروفايل</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>
+                <i class="fas fa-headset"></i>
+                تواصل معنا
+            </h1>
+            <p>نحن هنا لنستمع إليك ونساعدك في تحقيق أهدافك. تواصل معنا بأي طريقة تناسبك وسيقوم فريقنا بالرد عليك في أسرع وقت ممكن</p>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <i class="fas fa-clock"></i>
+                    <h3>أقل من ساعة</h3>
+                    <p>متوسط وقت الاستجابة</p>
+                </div>
+                <div class="hero-stat">
+                    <i class="fas fa-user-check"></i>
+                    <h3>24/7</h3>
+                    <p>دعم فني متواصل</p>
+                </div>
+                <div class="hero-stat">
+                    <i class="fas fa-smile"></i>
+                    <h3>98%</h3>
+                    <p>نسبة رضا العملاء</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTACT SECTION -->
+    <section class="main-contact-section">
+        <div class="contact-container">
+            <!-- CONTACT INFO CARD -->
+            <div class="contact-info-card">
+                <h2>
+                    <i class="fas fa-address-card"></i>
+                    معلومات التواصل
+                </h2>
+
+                <!-- Phone Contact -->
+                <div class="contact-method">
+                    <div class="contact-method-header">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-method-title">اتصل بنا مباشرة</div>
+                    </div>
+                    <div class="contact-method-content">
+                        <p><strong>الخط الساخن:</strong> <a href="tel:+201068274662">+201068274662</a></p>
+                        <p><strong>خدمة العملاء:</strong> <a href="tel:+201229699564">+201229699564</a></p>
+                        <p>متاح من السبت إلى الخميس، من 9 صباحاً حتى 6 مساءً</p>
+                        <button class="contact-btn" onclick="window.location.href='tel:+201068274662'">
+                            <i class="fas fa-phone"></i>
+                            اتصل الآن
+                        </button>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Contact -->
+                <div class="contact-method">
+                    <div class="contact-method-header">
+                        <div class="contact-method-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-method-title">واتساب</div>
+                    </div>
+                    <div class="contact-method-content">
+                        <p><strong>رقم واتساب:</strong> +201068274662</p>
+                        <p>تواصل معنا عبر واتساب للحصول على رد سريع وفوري</p>
+                        <p>متاح 24/7 للرسائل والاستفسارات</p>
+                        <button class="contact-btn" onclick="window.open('https://wa.me/201068274662', '_blank')">
+                            <i class="fab fa-whatsapp"></i>
+                            راسلنا على واتساب
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Email Contact -->
+                <div class="contact-method">
+                    <div class="contact-method-header">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-method-title">البريد الإلكتروني</div>
+                    </div>
+                    <div class="contact-method-content">
+                        <p><strong>الإيميل الرسمي:</strong></p>
+                        <p><a href="mailto:mohamedsweed2050@gmail.com">mohamedsweed2050@gmail.com</a></p>
+                        <p>سنرد على رسائلك خلال 24 ساعة في أيام العمل</p>
+                        <button class="contact-btn" onclick="window.location.href='mailto:mohamedsweed2050@gmail.com'">
+                            <i class="fas fa-envelope"></i>
+                            أرسل إيميل
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Location Contact -->
+                <div class="contact-method">
+                    <div class="contact-method-header">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-method-title">موقعنا</div>
+                    </div>
+                    <div class="contact-method-content">
+                        <p><strong>العنوان:</strong> القاهرة، مصر</p>
+                        <p>نخدم عملاء في جميع أنحاء مصر والوطن العربي</p>
+                        <p>إمكانية الزيارة بموعد مسبق</p>
+                    </div>
+                </div>
+
+                <!-- Working Hours -->
+                <div class="working-hours">
+                    <h3>
+                        <i class="fas fa-business-time"></i>
+                        ساعات العمل
+                    </h3>
+                    <ul class="working-hours-list">
+                        <li>
+                            <span class="day">السبت - الأربعاء</span>
+                            <span class="time">9:00 ص - 6:00 م</span>
+                        </li>
+                        <li>
+                            <span class="day">الخميس</span>
+                            <span class="time">9:00 ص - 3:00 م</span>
+                        </li>
+                        <li>
+                            <span class="day">الجمعة</span>
+                            <span class="time">مغلق</span>
+                        </li>
+                        <li>
+                            <span class="day">واتساب</span>
+                            <span class="time">24/7</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CONTACT FORM CARD -->
+            <div class="contact-form-card">
+                <h2>
+                    <i class="fas fa-paper-plane"></i>
+                    أرسل لنا رسالة
+                </h2>
+
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    تم إرسال رسالتك بنجاح! سنتواصل معك قريباً
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>الاسم الكامل <span class="required">*</span></label>
+                            <input type="text" class="form-input" placeholder="أدخل اسمك الكامل" required>
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف <span class="required">*</span></label>
+                            <input type="tel" class="form-input" placeholder="01xxxxxxxxx" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>البريد الإلكتروني <span class="required">*</span></label>
+                            <input type="email" class="form-input" placeholder="example@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>الشركة أو المؤسسة</label>
+                            <input type="text" class="form-input" placeholder="اسم شركتك (اختياري)">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>نوع الخدمة المطلوبة <span class="required">*</span></label>
+                        <select class="form-select" required>
+                            <option value="">اختر الخدمة</option>
+                            <option value="consulting">استشارات إدارية وتطوير أعمال</option>
+                            <option value="branding">بناء العلامة التجارية</option>
+                            <option value="marketing">التسويق الرقمي</option>
+                            <option value="development">البرمجة والتطوير</option>
+                            <option value="advertising">الدعاية والإعلان</option>
+                            <option value="content">إنتاج المحتوى</option>
+                            <option value="other">خدمة أخرى</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ميزانية المشروع التقريبية</label>
+                        <select class="form-select">
+                            <option value="">اختر الميزانية</option>
+                            <option value="less-10k">أقل من 10,000 جنيه</option>
+                            <option value="10k-25k">10,000 - 25,000 جنيه</option>
+                            <option value="25k-50k">25,000 - 50,000 جنيه</option>
+                            <option value="50k-100k">50,000 - 100,000 جنيه</option>
+                            <option value="more-100k">أكثر من 100,000 جنيه</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>الموعد المفضل للتواصل</label>
+                        <select class="form-select">
+                            <option value="">اختر الموعد</option>
+                            <option value="morning">صباحاً (9 ص - 12 م)</option>
+                            <option value="afternoon">ظهراً (12 م - 3 م)</option>
+                            <option value="evening">مساءً (3 م - 6 م)</option>
+                            <option value="anytime">أي وقت</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>رسالتك <span class="required">*</span></label>
+                        <textarea class="form-textarea" placeholder="أخبرنا بالتفصيل عن مشروعك أو استفسارك..." required></textarea>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="privacy" required>
+                        <label for="privacy">أوافق على سياسة الخصوصية وأن يتم التواصل معي من قبل فريق سويد</label>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="newsletter">
+                        <label for="newsletter">أرغب في الاشتراك في النشرة الإخبارية والحصول على عروض حصرية</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        إرسال الرسالة
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP & SOCIAL SECTION -->
+    <section class="map-social-section">
+        <div class="map-social-container">
+            <!-- Google Map -->
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d442394.17490338134!2d30.807929949999998!3d30.0444196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Egypt!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <!-- Social Connect -->
+            <div class="social-connect">
+                <h2>تابعنا على وسائل التواصل الاجتماعي</h2>
+                <p>كن على اطلاع دائم بأحدث أخبارنا وعروضنا الحصرية ونصائحنا المفيدة</p>
+                <div class="social-links">
+                    <a href="#" class="social-link facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link linkedin" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link twitter" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link youtube" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://wa.me/201068274662" class="social-link whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK FAQ SECTION -->
+    <section class="quick-faq-section">
+        <div class="quick-faq-container">
+            <div class="quick-faq-header">
+                <h2>أسئلة شائعة حول التواصل</h2>
+                <p>إجابات سريعة لأكثر الأسئلة شيوعاً</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        ما هو وقت الاستجابة المتوقع؟
+                    </div>
+                    <div class="faq-answer">
+                        نحرص على الرد على جميع الاستفسارات خلال ساعة واحدة في أوقات العمل الرسمية. للرسائل المستلمة خارج أوقات العمل، سيتم الرد عليها في أول يوم عمل تالٍ.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        هل الاستشارة الأولية مجانية؟
+                    </div>
+                    <div class="faq-answer">
+                        نعم، نقدم استشارة أولية مجانية لمدة 30 دقيقة لفهم احتياجاتك وتقديم تصور أولي للحل المناسب لك.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        هل تقدمون خدماتكم خارج القاهرة؟
+                    </div>
+                    <div class="faq-answer">
+                        نعم، نخدم عملاء في جميع أنحاء مصر والوطن العربي. نعمل عن بُعد بكفاءة عالية، ويمكننا ترتيب زيارات ميدانية عند الحاجة.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        كيف يمكنني حجز موعد للاجتماع؟
+                    </div>
+                    <div class="faq-answer">
+                        يمكنك حجز موعد عبر الاتصال بنا مباشرة، أو إرسال رسالة واتساب، أو ملء نموذج التواصل أعلاه مع تحديد الموعد المفضل لك.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>لا تتردد في التواصل معنا</h2>
+            <p>فريقنا جاهز للإجابة على جميع استفساراتك ومساعدتك في تحقيق أهدافك</p>
+            <div class="cta-buttons">
+                <button class="btn-cta btn-cta-primary" onclick="window.location.href='tel:+201068274662'">
+                    <i class="fas fa-phone"></i>
+                    اتصل الآن
+                </button>
+                <button class="btn-cta btn-cta-secondary" onclick="window.open('https://wa.me/201068274662', '_blank')">
+                    <i class="fab fa-whatsapp"></i>
+                    واتساب
+                </button>
+                <button class="btn-cta btn-cta-secondary" onclick="window.location.href='mailto:mohamedsweed2050@gmail.com'">
+                    <i class="fas fa-envelope"></i>
+                    إيميل
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>عن سويد</h4>
+                <p>شركة استشارات إدارية وتسويقية ودعائية بخبرة تزيد عن 15 عاماً في السوق المصري والعربي</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>روابط سريعة</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">خدماتنا</a></li>
+                    <li><a href="#portfolio">أعمالنا</a></li>
+                    <li><a href="#blog">المدونة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>خدماتنا</h4>
+                <ul class="footer-links">
+                    <li><a href="#">الاستشارات وتطوير الأعمال</a></li>
+                    <li><a href="#">بناء العلامة التجارية</a></li>
+                    <li><a href="#">التسويق الرقمي</a></li>
+                    <li><a href="#">البرمجة والتطوير</a></li>
+                    <li><a href="#">الدعاية والإعلان</a></li>
+                    <li><a href="#">إنتاج المحتوى</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>تواصل معنا</h4>
+                <p><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</p>
+                <p><i class="fas fa-phone"></i> +201068274662</p>
+                <p><i class="fas fa-phone"></i> +201229699564</p>
+                <p><i class="fas fa-envelope"></i> mohamedsweed2050@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 SWEED. جميع الحقوق محفوظة | تصميم وتطوير بواسطة فريق سويد</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT BUTTON -->
+    <a href="https://wa.me/201068274662" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Header hide/show on scroll
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // Reset form
+            this.reset();
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe contact methods and FAQ items
+        document.querySelectorAll('.contact-method, .faq-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2619 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة الشائعة - سويد | كل ما تحتاج معرفته</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E3256B;
+            --primary-purple: #2D2947;
+            --sunset-orange: #FF6B35;
+            --dark-silver: #6d6e70;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --gradient-primary: linear-gradient(135deg, #2D2947 0%, #E3256B 100%);
+            --gradient-secondary: linear-gradient(135deg, #E3256B 0%, #FF6B35 100%);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+            color: var(--primary-purple);
+            overflow-x: hidden;
+            background: var(--light-bg);
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.7rem 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .top-bar-item i {
+            color: var(--primary-pink);
+            font-size: 1rem;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-purple);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo-text {
+            color: var(--primary-pink);
+        }
+
+        .logo-subtitle {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--dark-silver);
+            margin-top: -5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-pink);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-search {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-search:hover {
+            background: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        .btn-download {
+            background: var(--primary-pink);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background: var(--sunset-orange);
+            transform: translateY(-2px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            background: var(--gradient-primary);
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            color: var(--white);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== SEARCH BOX ===== */
+        .search-container {
+            max-width: 700px;
+            margin: -2rem auto 3rem;
+            position: relative;
+            z-index: 100;
+        }
+
+        .search-box {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+            font-family: 'Cairo', sans-serif;
+            padding: 0.5rem 1rem;
+            color: var(--primary-purple);
+        }
+
+        .search-box button {
+            background: var(--gradient-secondary);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-box button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(227, 37, 107, 0.4);
+        }
+
+        /* ===== STATS SECTION ===== */
+        .stats-section {
+            background: var(--white);
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-item:nth-child(1) {
+            background: linear-gradient(135deg, #E3256B10 0%, #E3256B30 100%);
+        }
+
+        .stat-item:nth-child(1) i {
+            color: var(--primary-pink);
+        }
+
+        .stat-item:nth-child(2) {
+            background: linear-gradient(135deg, #2D294710 0%, #2D294730 100%);
+        }
+
+        .stat-item:nth-child(2) i {
+            color: var(--primary-purple);
+        }
+
+        .stat-item:nth-child(3) {
+            background: linear-gradient(135deg, #FF6B3510 0%, #FF6B3530 100%);
+        }
+
+        .stat-item:nth-child(3) i {
+            color: var(--sunset-orange);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: var(--primary-purple);
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: var(--dark-silver);
+            font-weight: 600;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+
+        .sidebar-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-purple);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-section h3 i {
+            color: var(--primary-pink);
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            margin-bottom: 1rem;
+        }
+
+        .category-list a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .category-list a:hover,
+        .category-list a.active {
+            background: var(--gradient-secondary);
+            color: var(--white);
+            transform: translateX(-5px);
+        }
+
+        .category-list a i {
+            font-size: 1.2rem;
+        }
+
+        /* ===== FAQ CONTENT ===== */
+        .faq-content {
+            min-height: 600px;
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-secondary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .category-info h2 {
+            font-size: 2rem;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-info p {
+            color: var(--dark-silver);
+            font-size: 1.1rem;
+        }
+
+        /* ===== FAQ ITEMS ===== */
+        .faq-item {
+            background: var(--white);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary-purple);
+        }
+
+        .faq-question:hover {
+            background: var(--light-bg);
+            color: var(--primary-pink);
+        }
+
+        .faq-question i {
+            font-size: 1.2rem;
+            color: var(--primary-pink);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question {
+            background: var(--gradient-primary);
+            color: var(--white);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--white);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 2rem;
+            background: var(--light-bg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            padding: 2rem;
+        }
+
+        .faq-answer p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+            color: var(--dark-silver);
+        }
+
+        .faq-answer strong {
+            color: var(--primary-pink);
+        }
+
+        /* ===== HIGHLIGHT BOX ===== */
+        .highlight-box {
+            background: linear-gradient(135deg, #E3256B10 0%, #FF6B3520 100%);
+            border-right: 5px solid var(--primary-pink);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box i {
+            color: var(--primary-pink);
+            font-size: 1.5rem;
+            margin-left: 1rem;
+        }
+
+        .highlight-box p {
+            font-size: 1.1rem;
+            color: var(--primary-purple);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* ===== CONTACT CTA ===== */
+        .contact-cta {
+            background: var(--gradient-primary);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 4rem 0;
+            color: var(--white);
+        }
+
+        .contact-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-contact {
+            background: var(--white);
+            color: var(--primary-purple);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-contact.whatsapp {
+            background: #25D366;
+            color: var(--white);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-section p i {
+            color: var(--primary-pink);
+            margin-left: 0.5rem;
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-pink);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .category-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+                border-radius: 20px;
+                padding: 1.5rem;
+            }
+
+            .search-box input {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .search-box button {
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .category-info h2 {
+                font-size: 1.5rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .btn-contact {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        /* ===== NO RESULTS ===== */
+        .no-results {
+            background: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+
+        .no-results i {
+            font-size: 5rem;
+            color: var(--dark-silver);
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .no-results h3 {
+            font-size: 1.8rem;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .no-results p {
+            font-size: 1.1rem;
+            color: var(--dark-silver);
+        }
+
+        /* ===== WHATSAPP BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25D366;
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-item">
+                <i class="fas fa-phone"></i>
+                <span>+20 106 827 4662</span>
+            </div>
+            <div class="top-bar-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@sweid.com</span>
+            </div>
+            <div class="top-bar-item">
+                <i class="fas fa-clock"></i>
+                <span>السبت - الخميس: 9:00 ص - 6:00 م</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                SWEED
+                <span class="logo-text"></span>
+                <span class="logo-subtitle">التسويق والإعلان</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="services.html">خدماتنا</a></li>
+                <li><a href="portfolio.html">أعمالنا</a></li>
+                <li><a href="blog.html">المدونة</a></li>
+                <li><a href="faq.html" style="color: var(--primary-pink);">الأسئلة الشائعة</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+
+            <div class="nav-buttons">
+                <button class="btn-search">
+                    <i class="fas fa-search"></i>
+                    بحث
+                </button>
+                <button class="btn-download">
+                    <i class="fas fa-download"></i>
+                    البروفايل
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-icon">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <h1>الأسئلة الشائعة</h1>
+            <p>كل ما تحتاج معرفته عن خدماتنا وأنظمة العمل في سويد</p>
+        </div>
+    </section>
+
+    <!-- SEARCH BOX -->
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fas fa-search" style="color: var(--primary-pink); font-size: 1.5rem;"></i>
+            <input type="text" id="searchInput" placeholder="ابحث عن سؤالك هنا..." onkeyup="searchFAQ()">
+            <button onclick="searchFAQ()">
+                <i class="fas fa-search"></i>
+                بحث
+            </button>
+        </div>
+    </div>
+
+    <!-- STATS SECTION -->
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <i class="fas fa-question-circle"></i>
+                <h3>150+</h3>
+                <p>سؤال وإجابة شاملة</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-headset"></i>
+                <h3>24/7</h3>
+                <p>دعم فني متواصل</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                <h3>خلال ساعة</h3>
+                <p>وقت الاستجابة</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>
+                    <i class="fas fa-list"></i>
+                    الأقسام
+                </h3>
+                <ul class="category-list">
+                    <li><a href="#general" class="active" onclick="filterCategory('general')">
+                        <i class="fas fa-info-circle"></i>
+                        أسئلة عامة
+                    </a></li>
+                    <li><a href="#services" onclick="filterCategory('services')">
+                        <i class="fas fa-briefcase"></i>
+                        الخدمات والباقات
+                    </a></li>
+                    <li><a href="#contract" onclick="filterCategory('contract')">
+                        <i class="fas fa-file-contract"></i>
+                        التعاقد والدفع
+                    </a></li>
+                    <li><a href="#refund" onclick="filterCategory('refund')">
+                        <i class="fas fa-undo"></i>
+                        الاسترجاع والاستبدال
+                    </a></li>
+                    <li><a href="#delivery" onclick="filterCategory('delivery')">
+                        <i class="fas fa-shipping-fast"></i>
+                        التسليم والاستلام
+                    </a></li>
+                    <li><a href="#support" onclick="filterCategory('support')">
+                        <i class="fas fa-headset"></i>
+                        الدعم والضمانات
+                    </a></li>
+                    <li><a href="#security" onclick="filterCategory('security')">
+                        <i class="fas fa-shield-alt"></i>
+                        الأمان والخصوصية
+                    </a></li>
+                    <li><a href="#communication" onclick="filterCategory('communication')">
+                        <i class="fas fa-comments"></i>
+                        التواصل والمراسلات
+                    </a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- FAQ CONTENT -->
+        <div class="faq-content">
+            <!-- GENERAL QUESTIONS -->
+            <div class="faq-category" id="general" data-category="general">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>أسئلة عامة</h2>
+                        <p>معلومات أساسية عن شركة سويد وطبيعة عملنا</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>من هي شركة سويد وما هي طبيعة عملها</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>سويد هي شركة رائدة في مجال الاستشارات الإدارية والتسويقية والدعائية في السوق المصري والعربي. نتمتع بخبرة تزيد عن 15 عاماً في تقديم حلول متكاملة لعملائنا.</p>
+                        <p>نعمل في المجالات التالية:</p>
+                        <ul>
+                            <li>الاستشارات الإدارية وتطوير الأعمال</li>
+                            <li>التسويق الرقمي والإلكتروني</li>
+                            <li>بناء وتطوير العلامات التجارية</li>
+                            <li>التصميم الجرافيكي والإعلاني</li>
+                            <li>إدارة وسائل التواصل الاجتماعي</li>
+                            <li>تطوير المواقع والتطبيقات</li>
+                            <li>إنتاج المحتوى المرئي والمكتوب</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما الذي يميز سويد عن الشركات الأخرى</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نتميز في سويد بعدة عوامل تجعلنا الخيار الأمثل لعملائنا:</p>
+                        <ul>
+                            <li><strong>خبرة واسعة:</strong> أكثر من 15 عاماً في السوق المصري والعربي</li>
+                            <li><strong>فريق متخصص:</strong> نخبة من الخبراء في كافة المجالات</li>
+                            <li><strong>حلول متكاملة:</strong> نقدم كل ما تحتاجه تحت سقف واحد</li>
+                            <li><strong>جودة عالية:</strong> نلتزم بأعلى معايير الجودة في العمل</li>
+                            <li><strong>أسعار تنافسية:</strong> باقات متنوعة تناسب جميع الميزانيات</li>
+                            <li><strong>دعم مستمر:</strong> متابعة دائمة حتى بعد التسليم</li>
+                            <li><strong>نتائج مضمونة:</strong> نركز على تحقيق أهدافك التسويقية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل تعملون مع الشركات الصغيرة والمتوسطة أم الكبيرة فقط</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعمل مع جميع أنواع وأحجام الشركات والمشاريع:</p>
+                        <ul>
+                            <li>الشركات الكبرى والمؤسسات</li>
+                            <li>الشركات المتوسطة والصغيرة</li>
+                            <li>رواد الأعمال والمشاريع الناشئة</li>
+                            <li>المحلات التجارية والأنشطة المحلية</li>
+                            <li>المشاريع الفردية والشخصية</li>
+                        </ul>
+                        <p>لدينا باقات وحلول مخصصة تناسب كل حجم عمل وميزانية.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>في أي المدن والدول تعملون</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>مقرنا الرئيسي في مدينة السادات، المنوفية، مصر. لكننا نقدم خدماتنا في:</p>
+                        <ul>
+                            <li><strong>مصر:</strong> جميع المحافظات والمدن المصرية</li>
+                            <li><strong>الدول العربية:</strong> السعودية، الإمارات، الكويت، قطر، البحرين، عمان، الأردن، لبنان</li>
+                            <li><strong>العمل عن بعد:</strong> نستطيع خدمة عملاء من أي مكان في العالم</li>
+                        </ul>
+                        <p>معظم خدماتنا يمكن تقديمها بالكامل عن بعد بفضل التقنيات الحديثة.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كم عدد العملاء والمشاريع التي نفذتموها</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>على مدار 15 عاماً من العمل، نفخر بإنجازاتنا:</p>
+                        <ul>
+                            <li>أكثر من 500 عميل راضٍ عن خدماتنا</li>
+                            <li>أكثر من 2000 مشروع منفذ بنجاح</li>
+                            <li>أكثر من 100 علامة تجارية ساعدنا في بنائها وتطويرها</li>
+                            <li>نسبة رضا العملاء تتجاوز 95%</li>
+                            <li>معدل عودة العملاء للتعاقد مرة أخرى 85%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل يمكنني الحصول على استشارة مجانية قبل البدء</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم بالتأكيد!</strong> نقدم استشارة مجانية أولية لكل عميل جديد.</p>
+                        <p>تشمل الاستشارة المجانية:</p>
+                        <ul>
+                            <li>تحليل أولي لمشروعك أو نشاطك التجاري</li>
+                            <li>فهم أهدافك التسويقية والتجارية</li>
+                            <li>تقديم توصيات أولية ونصائح احترافية</li>
+                            <li>شرح الخدمات المناسبة لاحتياجاتك</li>
+                            <li>عرض تقديري للتكاليف والمدة الزمنية</li>
+                        </ul>
+                        <p>للحجز: تواصل معنا عبر الهاتف أو الواتساب أو البريد الإلكتروني</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي ساعات العمل وأوقات التواصل معكم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعمل وفق الجدول التالي:</p>
+                        <ul>
+                            <li><strong>أيام العمل:</strong> من السبت إلى الخميس</li>
+                            <li><strong>ساعات العمل:</strong> من 9:00 صباحاً حتى 6:00 مساءً</li>
+                            <li><strong>الجمعة:</strong> إجازة رسمية</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>للحالات الطارئة: يمكنك التواصل معنا عبر الواتساب في أي وقت وسنرد عليك في أقرب فرصة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICES & PACKAGES -->
+            <div class="faq-category" id="services" data-category="services">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>الخدمات والباقات</h2>
+                        <p>كل ما تريد معرفته عن خدماتنا وأسعارنا وباقاتنا</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي الخدمات الرئيسية التي تقدمونها</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نقدم مجموعة شاملة من الخدمات المتكاملة:</p>
+                        <p><strong>1. الاستشارات الإدارية:</strong></p>
+                        <ul>
+                            <li>دراسات الجدوى الاقتصادية</li>
+                            <li>التخطيط الاستراتيجي للأعمال</li>
+                            <li>تطوير نماذج الأعمال</li>
+                            <li>تحسين العمليات التشغيلية</li>
+                        </ul>
+                        <p><strong>2. التسويق الرقمي:</strong></p>
+                        <ul>
+                            <li>إدارة حملات إعلانية على جوجل وفيسبوك</li>
+                            <li>تحسين محركات البحث SEO</li>
+                            <li>التسويق عبر البريد الإلكتروني</li>
+                            <li>استراتيجيات التسويق بالمحتوى</li>
+                        </ul>
+                        <p><strong>3. بناء العلامات التجارية:</strong></p>
+                        <ul>
+                            <li>تصميم الهوية البصرية الكاملة</li>
+                            <li>تطوير استراتيجية العلامة التجارية</li>
+                            <li>تصميم اللوجو والشعارات</li>
+                            <li>دليل الهوية Brand Guidelines</li>
+                        </ul>
+                        <p><strong>4. التصميم والإنتاج:</strong></p>
+                        <ul>
+                            <li>التصميم الجرافيكي</li>
+                            <li>تصميم المطبوعات</li>
+                            <li>إنتاج الفيديوهات الإعلانية</li>
+                            <li>التصوير الفوتوغرافي الاحترافي</li>
+                        </ul>
+                        <p><strong>5. التطوير التقني:</strong></p>
+                        <ul>
+                            <li>تطوير المواقع الإلكترونية</li>
+                            <li>تطوير التطبيقات</li>
+                            <li>المتاجر الإلكترونية</li>
+                            <li>أنظمة إدارة المحتوى</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي باقات الأسعار المتوفرة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لدينا ثلاث باقات رئيسية تناسب مختلف الاحتياجات والميزانيات:</p>
+                        <p><strong>1. الباقة الأساسية - 15,000 جنيه:</strong></p>
+                        <ul>
+                            <li>هوية بصرية أساسية لوجو + 3 تصاميم</li>
+                            <li>موقع إلكتروني من 5 صفحات</li>
+                            <li>إدارة صفحة سوشيال ميديا واحدة شهر واحد</li>
+                            <li>3 تصاميم منشورات شهرياً</li>
+                            <li>استشارة تسويقية واحدة</li>
+                        </ul>
+                        <p><strong>2. الباقة المتقدمة - 35,000 جنيه:</strong></p>
+                        <ul>
+                            <li>هوية بصرية متكاملة</li>
+                            <li>موقع إلكتروني احترافي حتى 10 صفحات</li>
+                            <li>إدارة 2 صفحات سوشيال ميديا لمدة 3 أشهر</li>
+                            <li>10 تصاميم منشورات شهرياً</li>
+                            <li>حملة إعلانية مدفوعة</li>
+                            <li>3 فيديوهات ترويجية</li>
+                            <li>دراسة جدوى أولية</li>
+                        </ul>
+                        <p><strong>3. الباقة المتكاملة - 75,000 جنيه:</strong></p>
+                        <ul>
+                            <li>هوية بصرية شاملة مع دليل استخدام</li>
+                            <li>موقع إلكتروني متقدم غير محدود الصفحات</li>
+                            <li>تطبيق موبايل أساسي</li>
+                            <li>إدارة كاملة لجميع منصات السوشيال ميديا 6 أشهر</li>
+                            <li>20 تصميم منشورات + 20 استوري شهرياً</li>
+                            <li>حملات إعلانية مدفوعة متعددة</li>
+                            <li>10 فيديوهات ترويجية احترافية</li>
+                            <li>تصوير فوتوغرافي احترافي</li>
+                            <li>استشارات إدارية شاملة</li>
+                            <li>دراسة جدوى تفصيلية</li>
+                            <li>تقارير أداء شهرية</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>يمكننا تصميم باقة خاصة تناسب احتياجاتك وميزانيتك بالضبط</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل يمكن طلب خدمات محددة فقط دون الباقات الجاهزة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم بالتأكيد!</strong> يمكنك طلب أي خدمة بشكل منفصل حسب احتياجك.</p>
+                        <p>أمثلة على الخدمات المنفصلة:</p>
+                        <ul>
+                            <li>تصميم لوجو فقط: ابتداءً من 2,500 جنيه</li>
+                            <li>إدارة سوشيال ميديا: ابتداءً من 3,000 جنيه شهرياً</li>
+                            <li>تطوير موقع إلكتروني: ابتداءً من 8,000 جنيه</li>
+                            <li>فيديو ترويجي: ابتداءً من 5,000 جنيه</li>
+                            <li>حملة إعلانية: ابتداءً من 4,000 جنيه + ميزانية الإعلان</li>
+                            <li>استشارة إدارية: 1,500 جنيه للجلسة</li>
+                        </ul>
+                        <p>تواصل معنا لمعرفة السعر الدقيق للخدمة التي تحتاجها.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كم يستغرق تنفيذ المشروع عادة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>المدة الزمنية تعتمد على نوع وحجم المشروع:</p>
+                        <ul>
+                            <li><strong>تصميم لوجو:</strong> 3-5 أيام عمل</li>
+                            <li><strong>هوية بصرية كاملة:</strong> 7-14 يوم</li>
+                            <li><strong>موقع إلكتروني بسيط:</strong> 14-21 يوم</li>
+                            <li><strong>موقع إلكتروني متقدم:</strong> 30-45 يوم</li>
+                            <li><strong>تطبيق موبايل:</strong> 45-90 يوم</li>
+                            <li><strong>حملة إعلانية:</strong> التحضير 3-5 أيام ثم التشغيل المستمر</li>
+                            <li><strong>فيديو ترويجي:</strong> 7-14 يوم</li>
+                            <li><strong>دراسة جدوى:</strong> 7-21 يوم</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>في حالة الحاجة للتسليم السريع، نوفر خدمة التنفيذ العاجل بتكلفة إضافية</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل تقدمون خصومات للمشاريع الكبيرة أو العقود طويلة الأجل</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم!</strong> نقدم خصومات وعروض خاصة في الحالات التالية:</p>
+                        <ul>
+                            <li><strong>العقود السنوية:</strong> خصم 15-20%</li>
+                            <li><strong>المشاريع الكبيرة:</strong> خصم يصل إلى 25%</li>
+                            <li><strong>العملاء الدائمون:</strong> خصم 10% على كل مشروع جديد</li>
+                            <li><strong>التعاقد على أكثر من خدمة:</strong> خصم 10-15%</li>
+                            <li><strong>الدفع المقدم بالكامل:</strong> خصم 5%</li>
+                            <li><strong>عروض موسمية:</strong> خصومات تصل إلى 30% في مناسبات محددة</li>
+                        </ul>
+                        <p>تواصل معنا لمعرفة العروض المتاحة حالياً.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل أسعاركم شاملة لكل شيء أم هناك تكاليف إضافية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>أسعار باقاتنا شاملة لكل الخدمات المذكورة، لكن هناك بعض التكاليف الإضافية المحتملة:</p>
+                        <p><strong>تكاليف إضافية محتملة:</strong></p>
+                        <ul>
+                            <li><strong>الاستضافة والدومين:</strong> للمواقع الإلكترونية (ابتداءً من 1,000 جنيه سنوياً)</li>
+                            <li><strong>ميزانية الإعلانات:</strong> في حملات الإعلانات المدفوعة (تحددها أنت)</li>
+                            <li><strong>رسوم المنصات:</strong> نشر التطبيقات على المتاجر 300 ريال سنوياً</li>
+                            <li><strong>شراء صور جاهزة:</strong> إذا طلبت استخدام صور احترافية من بنوك الصور</li>
+                            <li><strong>التعديلات الإضافية:</strong> التعديلات الكبيرة بعد اعتماد التصميم النهائي</li>
+                        </ul>
+                        <p>نوضح لك جميع التكاليف المحتملة بشفافية كاملة قبل التوقيع على العقد.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTRACT & PAYMENT -->
+            <div class="faq-category" id="contract" data-category="contract">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>نظام التعاقد والدفع</h2>
+                        <p>كل ما يتعلق بالعقود وطرق الدفع والضمانات</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف تتم عملية التعاقد معكم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>عملية التعاقد بسيطة وواضحة وتتم في 5 خطوات:</p>
+                        <p><strong>الخطوة 1: الاستشارة الأولية</strong></p>
+                        <ul>
+                            <li>تواصل معنا عبر الهاتف أو الواتساب أو البريد</li>
+                            <li>نحدد موعد استشارة مجانية مجانية</li>
+                            <li>نستمع لاحتياجاتك وأهدافك</li>
+                        </ul>
+                        <p><strong>الخطوة 2: تحديد الخدمات والتكلفة</strong></p>
+                        <ul>
+                            <li>نقترح الحلول والخدمات المناسبة</li>
+                            <li>نقدم عرض سعر تفصيلي</li>
+                            <li>نتفق على الجدول الزمني</li>
+                        </ul>
+                        <p><strong>الخطوة 3: إعداد العقد</strong></p>
+                        <ul>
+                            <li>نرسل لك عقد مفصل يشمل كل التفاصيل</li>
+                            <li>الخدمات المتفق عليها</li>
+                            <li>المدة الزمنية</li>
+                            <li>التكلفة ونظام الدفع</li>
+                            <li>الحقوق والواجبات</li>
+                            <li>شروط الضمان والدعم</li>
+                        </ul>
+                        <p><strong>الخطوة 4: التوقيع والدفعة الأولى</strong></p>
+                        <ul>
+                            <li>توقيع العقد من الطرفين</li>
+                            <li>دفع الدفعة الأولى 50%</li>
+                            <li>يمكن التوقيع إلكترونياً</li>
+                        </ul>
+                        <p><strong>الخطوة 5: البدء في التنفيذ</strong></p>
+                        <ul>
+                            <li>نبدأ العمل فوراً بعد استلام الدفعة</li>
+                            <li>نرسل لك تحديثات دورية</li>
+                            <li>تواصل مستمر طوال فترة التنفيذ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي طرق الدفع المتاحة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نوفر طرق دفع متعددة ومرنة لراحتك:</p>
+                        <p><strong>1. التحويل البنكي:</strong></p>
+                        <ul>
+                            <li>على الحسابات البنكية للشركة</li>
+                            <li>متاح في جميع البنوك المصرية</li>
+                            <li>نرسل لك بيانات الحساب بعد التعاقد</li>
+                        </ul>
+                        <p><strong>2. الدفع الإلكتروني:</strong></p>
+                        <ul>
+                            <li>فوري، فودافون كاش، أورانج كاش، إيتصالات كاش</li>
+                            <li>البطاقات الائتمانية Visa & Mastercard</li>
+                            <li>محافظ إلكترونية مختلفة</li>
+                        </ul>
+                        <p><strong>3. الدفع النقدي:</strong></p>
+                        <ul>
+                            <li>في مقر الشركة بالسادات</li>
+                            <li>عند الاجتماعات المباشرة</li>
+                        </ul>
+                        <p><strong>4. الدفع الدولي:</strong></p>
+                        <ul>
+                            <li>PayPal</li>
+                            <li>Western Union</li>
+                            <li>تحويل بنكي دولي</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>جميع المعاملات المالية موثقة بإيصالات رسمية</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هو نظام الدفع والأقساط</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لدينا نظام دفع مرن يناسب الجميع:</p>
+                        <p><strong>نظام الدفع القياسي:</strong></p>
+                        <ul>
+                            <li><strong>الدفعة الأولى:</strong> 50% عند التوقيع على العقد</li>
+                            <li><strong>الدفعة الثانية:</strong> 30% عند تسليم النسخة الأولية</li>
+                            <li><strong>الدفعة النهائية:</strong> 20% عند التسليم النهائي والاعتماد</li>
+                        </ul>
+                        <p><strong>أنظمة دفع بديلة:</strong></p>
+                        <ul>
+                            <li><strong>الدفع الكامل مقدماً:</strong> خصم 5%</li>
+                            <li><strong>التقسيط لثلاثة أقساط متساوية:</strong> بدون فوائد</li>
+                            <li><strong>التقسيط لستة أقساط:</strong> فائدة 5% فقط</li>
+                            <li><strong>العقود السنوية:</strong> دفعات شهرية</li>
+                        </ul>
+                        <p><strong>للمشاريع الكبيرة جداً:</strong></p>
+                        <ul>
+                            <li>يمكن تقسيم المشروع لمراحل</li>
+                            <li>دفعة منفصلة لكل مرحلة</li>
+                            <li>مرونة كاملة في الترتيبات المالية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل هناك رسوم إضافية على التعديلات</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لدينا سياسة واضحة للتعديلات:</p>
+                        <p><strong>تعديلات مجانية ضمن العقد:</strong></p>
+                        <ul>
+                            <li><strong>تصميم الهوية:</strong> حتى 3 جولات تعديلات مجانية</li>
+                            <li><strong>المواقع الإلكترونية:</strong> حتى 4 جولات تعديلات</li>
+                            <li><strong>الفيديوهات:</strong> حتى 2 جولة تعديلات</li>
+                            <li><strong>التصاميم الجرافيكية:</strong> حتى 2 جولة تعديلات</li>
+                        </ul>
+                        <p><strong>تعديلات إضافية:</strong></p>
+                        <ul>
+                            <li>التعديلات البسيطة: 500-1,000 جنيه</li>
+                            <li>التعديلات الكبيرة: 1,500-3,000 جنيه</li>
+                            <li>إعادة التصميم الكامل: حسب حجم العمل</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>نوضح عدد التعديلات المجانية في العقد قبل التوقيع</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ماذا يحدث في حالة عدم الالتزام بالمواعيد</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نلتزم بالمواعيد المتفق عليها، وفي حالة التأخير:</p>
+                        <p><strong>من جانب الشركة:</strong></p>
+                        <ul>
+                            <li>خصم 2% من قيمة العقد عن كل أسبوع تأخير</li>
+                            <li>إذا تجاوز التأخير شهر: لك الحق في إلغاء العقد واسترداد أموالك كاملة</li>
+                            <li>نبلغك مسبقاً بأي تأخير محتمل مع شرح الأسباب</li>
+                        </ul>
+                        <p><strong>من جانب العميل:</strong></p>
+                        <ul>
+                            <li>تأخير تقديم المحتوى أو الموافقات: يتم تمديد المدة المتفق عليها</li>
+                            <li>تأخير الدفعات: يتم إيقاف العمل مؤقتاً حتى سداد المستحقات</li>
+                            <li>التأخير أكثر من 30 يوم: الحق في فسخ العقد مع الاحتفاظ بالمبالغ المدفوعة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل يمكن إلغاء العقد بعد التوقيع</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكن إلغاء العقد ولكن حسب مرحلة المشروع:</p>
+                        <p><strong>1. قبل البدء في التنفيذ:</strong></p>
+                        <ul>
+                            <li>إلغاء مجاني 100%</li>
+                            <li>استرداد كامل المبلغ المدفوع</li>
+                            <li>خلال 48 ساعة من التوقيع</li>
+                        </ul>
+                        <p><strong>2. بعد البدء وقبل 25% إنجاز:</strong></p>
+                        <ul>
+                            <li>استرداد 80% من المبلغ</li>
+                            <li>خصم 20% مقابل الأعمال المنجزة</li>
+                        </ul>
+                        <p><strong>3. بعد إنجاز 25-50%:</strong></p>
+                        <ul>
+                            <li>استرداد 50% من المبلغ</li>
+                            <li>خصم 50% مقابل الأعمال المنجزة</li>
+                        </ul>
+                        <p><strong>4. بعد إنجاز أكثر من 50%:</strong></p>
+                        <ul>
+                            <li>لا يمكن استرداد المبلغ</li>
+                            <li>يتم تسليم الأعمال المنجزة</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>في حالة الإلغاء بسبب خطأ من الشركة: استرداد كامل المبلغ 100%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل لديكم فاتورة ضريبية رسمية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم بالتأكيد!</strong></p>
+                        <p>نحن شركة مسجلة رسمياً ونصدر:</p>
+                        <ul>
+                            <li>فواتير ضريبية رسمية لجميع المعاملات</li>
+                            <li>إيصالات سداد موثقة</li>
+                            <li>عقود موثقة قانونياً</li>
+                            <li>شهادات إتمام المشروع</li>
+                        </ul>
+                        <p>جميع الأوراق صالحة للأغراض المحاسبية والضريبية.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REFUND & EXCHANGE -->
+            <div class="faq-category" id="refund" data-category="refund">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>سياسة الاسترجاع والاستبدال</h2>
+                        <p>كل ما يتعلق باسترداد الأموال وإعادة التنفيذ</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي سياسة استرداد الأموال</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لدينا سياسة واضحة وعادلة لاسترداد الأموال:</p>
+                        <p><strong>يحق لك استرداد أموالك في الحالات التالية:</strong></p>
+                        <ul>
+                            <li><strong>عدم البدء في العمل:</strong> استرداد كامل 100%</li>
+                            <li><strong>عدم الالتزام بالمواعيد المتفق عليها:</strong> استرداد حسب نسبة الإنجاز</li>
+                            <li><strong>عدم مطابقة المواصفات المتفق عليها:</strong> إعادة تنفيذ أو استرداد</li>
+                            <li><strong>خطأ فني من الشركة:</strong> استرداد كامل أو إعادة تنفيذ مجانية</li>
+                            <li><strong>عدم رضاك عن النتيجة النهائية:</strong> بعد استنفاد جميع التعديلات المجانية</li>
+                        </ul>
+                        <p><strong>لا يحق لك استرداد الأموال في:</strong></p>
+                        <ul>
+                            <li>بعد اعتمادك النهائي للعمل</li>
+                            <li>بعد تسليم الملفات النهائية</li>
+                            <li>التغيير في متطلباتك بعد البدء</li>
+                            <li>عدم تقديمك للمحتوى المطلوب في الوقت المحدد</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>نفضل دائماً إيجاد حل يرضي الطرفين قبل اللجوء لاسترداد الأموال</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كم يستغرق استرداد الأموال</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نلتزم بإعادة أموالك في أسرع وقت:</p>
+                        <ul>
+                            <li><strong>التحويل البنكي:</strong> 3-5 أيام عمل</li>
+                            <li><strong>المحافظ الإلكترونية:</strong> 1-2 يوم عمل</li>
+                            <li><strong>النقدي:</strong> فوراً عند الطلب</li>
+                            <li><strong>البطاقات الائتمانية:</strong> 7-14 يوم عمل حسب سياسة البنك</li>
+                        </ul>
+                        <p>نرسل لك إيصال رسمي فور إتمام الاسترداد.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ماذا لو لم أكن راضياً عن النتيجة النهائية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>رضاك هو هدفنا الأول، لذلك:</p>
+                        <p><strong>الخطوة 1:</strong></p>
+                        <ul>
+                            <li>نستمع لملاحظاتك بعناية</li>
+                            <li>نحدد نقاط عدم الرضا بالضبط</li>
+                        </ul>
+                        <p><strong>الخطوة 2:</strong></p>
+                        <ul>
+                            <li>نقترح التعديلات اللازمة</li>
+                            <li>نعيد التنفيذ مجاناً إذا كان الخطأ منا</li>
+                        </ul>
+                        <p><strong>الخطوة 3:</strong></p>
+                        <ul>
+                            <li>إذا استمر عدم الرضا بعد كل التعديلات</li>
+                            <li>نناقش خيارات الاسترداد أو التعويض</li>
+                        </ul>
+                        <p><strong>الخطوة 4:</strong></p>
+                        <ul>
+                            <li>في حالات نادرة جداً قد نلجأ لطرف ثالث محايد للتحكيم</li>
+                            <li>نلتزم بقرار التحكيم</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل يمكن إعادة التنفيذ بدلاً من الاسترداد</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم بالتأكيد!</strong> نفضل دائماً إعادة التنفيذ.</p>
+                        <p>خيارات إعادة التنفيذ:</p>
+                        <ul>
+                            <li><strong>التعديل على النسخة الحالية:</strong> مجاناً ضمن العدد المتفق عليه</li>
+                            <li><strong>إعادة التصميم من الصفر:</strong> إذا كان الخطأ من جانبنا</li>
+                            <li><strong>تغيير المنفذ:</strong> تعيين مصمم أو مطور آخر من فريقنا</li>
+                            <li><strong>تمديد فترة التعديلات:</strong> إعطاؤك المزيد من الفرص للتعديل</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي ضمانات الجودة التي تقدمونها</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نقدم ضمانات شاملة على جميع أعمالنا:</p>
+                        <p><strong>ضمان التصميم:</strong></p>
+                        <ul>
+                            <li>التزام كامل بالمواصفات المتفق عليها</li>
+                            <li>جودة احترافية عالية</li>
+                            <li>ملفات بصيغ متعددة قابلة للاستخدام</li>
+                        </ul>
+                        <p><strong>ضمان التطوير:</strong></p>
+                        <ul>
+                            <li>المواقع والتطبيقات خالية من الأخطاء البرمجية</li>
+                            <li>متوافقة مع جميع الأجهزة والمتصفحات</li>
+                            <li>سريعة الأداء ومحسنة لمحركات البحث</li>
+                        </ul>
+                        <p><strong>ضمان ما بعد التسليم:</strong></p>
+                        <ul>
+                            <li>دعم فني مجاني لمدة شهر</li>
+                            <li>إصلاح الأخطاء التقنية مجاناً لمدة 3 أشهر</li>
+                            <li>استشارات مجانية لمدة شهرين</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DELIVERY & RECEIPT -->
+            <div class="faq-category" id="delivery" data-category="delivery">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>التسليم والاستلام</h2>
+                        <p>كيفية تسليم الأعمال وطرق الاستلام والملفات المسلمة</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف يتم تسليم الأعمال المنجزة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نوفر طرق تسليم متعددة حسب نوع المشروع:</p>
+                        <p><strong>1. التسليم الإلكتروني:</strong></p>
+                        <ul>
+                            <li><strong>البريد الإلكتروني:</strong> للملفات الصغيرة أقل من 25 ميجا</li>
+                            <li><strong>روابط التحميل السحابية:</strong> Google Drive, Dropbox, WeTransfer</li>
+                            <li><strong>خوادم FTP:</strong> للملفات الكبيرة جداً</li>
+                            <li><strong>منصات العمل:</strong> Trello, Asana, Google Drive مباشرة</li>
+                        </ul>
+                        <p><strong>2. التسليم الفعلي:</strong></p>
+                        <ul>
+                            <li><strong>USB/هارد ديسك:</strong> نسلمه لك في المكتب أو نرسله بالبريد</li>
+                            <li><strong>أقراص DVD:</strong> للملفات الكبيرة</li>
+                            <li><strong>المطبوعات:</strong> التصاميم المطبوعة تسلم يداً بيد</li>
+                        </ul>
+                        <p><strong>3. الاستضافة والنشر المباشر:</strong></p>
+                        <ul>
+                            <li>المواقع: نرفعها على الاستضافة مباشرة</li>
+                            <li>التطبيقات: ننشرها على المتاجر</li>
+                            <li>السوشيال ميديا: ننشر المحتوى مباشرة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي صيغ الملفات التي أستلمها</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نسلمك ملفات بصيغ متعددة قابلة للاستخدام:</p>
+                        <p><strong>ملفات التصميم الجرافيكي:</strong></p>
+                        <ul>
+                            <li><strong>الملفات المفتوحة:</strong> AI, PSD, EPS للتعديل المستقبلي</li>
+                            <li><strong>الصور عالية الدقة:</strong> PNG بخلفية شفافة, JPG, PDF</li>
+                            <li><strong>صور الويب:</strong> PNG مضغوطة للاستخدام الإلكتروني</li>
+                            <li><strong>SVG:</strong> للاستخدام على الويب والطباعة</li>
+                        </ul>
+                        <p><strong>المواقع الإلكترونية:</strong></p>
+                        <ul>
+                            <li>كود HTML, CSS, JavaScript</li>
+                            <li>قاعدة البيانات SQL</li>
+                            <li>ملفات الوسائط والصور</li>
+                            <li>ملف README للتعليمات</li>
+                        </ul>
+                        <p><strong>الفيديوهات:</strong></p>
+                        <ul>
+                            <li>MP4 بجودة عالية 1080p أو 4K</li>
+                            <li>MOV للاستخدام الاحترافي</li>
+                            <li>WebM للويب</li>
+                            <li>ملف المونتاج الأصلي إذا طلبته</li>
+                        </ul>
+                        <p><strong>المستندات:</strong></p>
+                        <ul>
+                            <li>PDF للطباعة وللعرض</li>
+                            <li>DOCX, PPTX قابلة للتعديل</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل أستلم الملفات المصدرية القابلة للتعديل</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، نسلمك الملفات المصدرية في معظم الباقات:</p>
+                        <p><strong>مشمول في الباقات الأساسية:</strong></p>
+                        <ul>
+                            <li>ملفات التصميم الأساسية AI, PSD</li>
+                            <li>ملفات الفيديو النهائية فقط</li>
+                        </ul>
+                        <p><strong>مشمول في الباقات المتقدمة والمتكاملة:</strong></p>
+                        <ul>
+                            <li>جميع الملفات المصدرية بلا استثناء</li>
+                            <li>ملفات المونتاج الأصلية للفيديو</li>
+                            <li>أكواد المصدر للمواقع والتطبيقات</li>
+                            <li>قواعد البيانات</li>
+                            <li>جميع الأصول Assets</li>
+                        </ul>
+                        <p><strong>إذا لم تكن مشمولة:</strong></p>
+                        <ul>
+                            <li>يمكنك شراؤها بتكلفة إضافية 30% من قيمة المشروع</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>نوصي دائماً بالحصول على الملفات المصدرية للاستقلالية الكاملة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف يتم التسليم المرحلي للمشروع</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نتبع نظام تسليم مرحلي شفاف:</p>
+                        <p><strong>المرحلة 1: النماذج الأولية 30%</strong></p>
+                        <ul>
+                            <li>تسليم المفاهيم والأفكار الأولية</li>
+                            <li>نماذج أولية Mockups أو Wireframes</li>
+                            <li>عرض تقديمي للتوجه العام</li>
+                            <li>استلام ملاحظاتك وموافقتك</li>
+                        </ul>
+                        <p><strong>المرحلة 2: النسخة شبه النهائية 60%</strong></p>
+                        <ul>
+                            <li>تسليم نسخة كاملة بالمحتوى</li>
+                            <li>جاهزة للمراجعة والتعديلات</li>
+                            <li>استلام جولة التعديلات الرئيسية</li>
+                        </ul>
+                        <p><strong>المرحلة 3: التسليم النهائي 100%</strong></p>
+                        <ul>
+                            <li>تسليم النسخة النهائية المعتمدة</li>
+                            <li>جميع الملفات بالصيغ المطلوبة</li>
+                            <li>الملفات المصدرية إذا كانت مشمولة</li>
+                            <li>دليل الاستخدام إذا لزم الأمر</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ماذا لو فقدت الملفات المسلمة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا تقلق، نحتفظ بنسخة احتياطية من جميع مشاريعنا:</p>
+                        <ul>
+                            <li><strong>الاحتفاظ بالملفات:</strong> نحتفظ بنسخة لمدة سنة واحدة بعد التسليم</li>
+                            <li><strong>إعادة الإرسال:</strong> مجاناً خلال أول 6 أشهر</li>
+                            <li><strong>بعد 6 أشهر:</strong> رسوم رمزية 500 جنيه لإعادة الإرسال</li>
+                            <li><strong>بعد سنة:</strong> إذا توفرت النسخة، رسوم 1,000 جنيه</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>ننصحك بالاحتفاظ بنسخة احتياطية على أكثر من وسيلة تخزين</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل تقدمون تدريباً على استخدام العمل المسلم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم!</strong> نوفر تدريباً شاملاً حسب حاجتك:</p>
+                        <p><strong>مشمول مجاناً:</strong></p>
+                        <ul>
+                            <li>دليل استخدام مكتوب بالعربية</li>
+                            <li>فيديوهات تعليمية مسجلة</li>
+                            <li>جلسة تعريفية أونلاين مدة ساعة</li>
+                        </ul>
+                        <p><strong>خدمات تدريب إضافية:</strong></p>
+                        <ul>
+                            <li><strong>ورشة تدريبية حضورية:</strong> نصف يوم 3,000 جنيه</li>
+                            <li><strong>تدريب مكثف:</strong> يوم كامل 5,000 جنيه</li>
+                            <li><strong>تدريب فريقك:</strong> حسب الحجم والمدة</li>
+                            <li><strong>دعم عن بعد:</strong> جلسات استشارية شهرية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUPPORT & WARRANTIES -->
+            <div class="faq-category" id="support" data-category="support">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>الدعم الفني والضمانات</h2>
+                        <p>خدمات الدعم المستمر وفترات الضمان وأنواع الصيانة</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي فترة الدعم الفني المجاني</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نقدم دعماً فنياً مجانياً بعد التسليم:</p>
+                        <p><strong>الباقة الأساسية:</strong></p>
+                        <ul>
+                            <li>شهر واحد دعم فني مجاني</li>
+                            <li>إصلاح الأخطاء التقنية فقط</li>
+                            <li>الرد على الاستفسارات خلال 48 ساعة</li>
+                        </ul>
+                        <p><strong>الباقة المتقدمة:</strong></p>
+                        <ul>
+                            <li>3 أشهر دعم فني مجاني</li>
+                            <li>إصلاح الأخطاء + تحديثات بسيطة</li>
+                            <li>الرد خلال 24 ساعة</li>
+                            <li>استشارات مجانية</li>
+                        </ul>
+                        <p><strong>الباقة المتكاملة:</strong></p>
+                        <ul>
+                            <li>6 أشهر دعم فني شامل</li>
+                            <li>إصلاح + تحديثات + تحسينات</li>
+                            <li>الرد خلال 12 ساعة</li>
+                            <li>خط دعم مباشر واتساب</li>
+                            <li>متابعة دورية للأداء</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ماذا يشمل الدعم الفني بعد التسليم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>الدعم الفني المجاني يشمل:</p>
+                        <p><strong>1. إصلاح الأخطاء Technical Bugs:</strong></p>
+                        <ul>
+                            <li>الأخطاء البرمجية في المواقع والتطبيقات</li>
+                            <li>مشاكل التوافق مع الأجهزة</li>
+                            <li>مشاكل الأداء والسرعة</li>
+                            <li>الروابط المعطلة</li>
+                        </ul>
+                        <p><strong>2. الدعم الفني:</strong></p>
+                        <ul>
+                            <li>الرد على الاستفسارات الفنية</li>
+                            <li>شرح كيفية الاستخدام</li>
+                            <li>حل المشاكل التقنية</li>
+                            <li>النصائح والإرشادات</li>
+                        </ul>
+                        <p><strong>3. التحديثات الأمنية:</strong></p>
+                        <ul>
+                            <li>تحديثات الأمان الضرورية</li>
+                            <li>إصلاح الثغرات الأمنية</li>
+                            <li>حماية من الاختراقات</li>
+                        </ul>
+                        <p><strong>لا يشمل الدعم المجاني:</strong></p>
+                        <ul>
+                            <li>إضافة ميزات جديدة</li>
+                            <li>تغيير التصميم أو المحتوى</li>
+                            <li>إعادة البرمجة</li>
+                            <li>التعديلات الكبيرة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف يمكنني التواصل مع الدعم الفني</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نوفر قنوات متعددة للوصول إلينا:</p>
+                        <p><strong>1. الواتساب:</strong></p>
+                        <ul>
+                            <li>الطريقة الأسرع للرد</li>
+                            <li>+20 106 827 4662</li>
+                            <li>متاح من 9 ص - 6 م</li>
+                        </ul>
+                        <p><strong>2. البريد الإلكتروني:</strong></p>
+                        <ul>
+                            <li>support@sweid.com</li>
+                            <li>للمشاكل التفصيلية</li>
+                            <li>الرد خلال 24 ساعة</li>
+                        </ul>
+                        <p><strong>3. الهاتف المباشر:</strong></p>
+                        <ul>
+                            <li>+20 106 827 4662</li>
+                            <li>للحالات العاجلة</li>
+                            <li>أوقات العمل الرسمية</li>
+                        </ul>
+                        <p><strong>4. نظام التذاكر:</strong></p>
+                        <ul>
+                            <li>عبر الموقع الإلكتروني</li>
+                            <li>متابعة دقيقة للحالة</li>
+                            <li>سجل كامل للمحادثات</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل تقدمون عقود صيانة وتطوير مستمر</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم!</strong> نوفر عقود صيانة سنوية شاملة:</p>
+                        <p><strong>عقد الصيانة الأساسي - 6,000 جنيه/سنة:</strong></p>
+                        <ul>
+                            <li>دعم فني غير محدود</li>
+                            <li>إصلاح الأخطاء</li>
+                            <li>تحديثات أمنية</li>
+                            <li>نسخ احتياطية شهرية</li>
+                            <li>تقرير أداء ربع سنوي</li>
+                        </ul>
+                        <p><strong>عقد الصيانة المتقدم - 12,000 جنيه/سنة:</strong></p>
+                        <ul>
+                            <li>كل ما في الأساسي +</li>
+                            <li>تحديثات محتوى شهرية</li>
+                            <li>تحسينات SEO</li>
+                            <li>تحليلات ونصائح</li>
+                            <li>أولوية في الرد</li>
+                            <li>ساعتين تطوير شهرياً</li>
+                        </ul>
+                        <p><strong>عقد الصيانة الشامل - 24,000 جنيه/سنة:</strong></p>
+                        <ul>
+                            <li>كل ما في المتقدم +</li>
+                            <li>تطوير ميزات جديدة</li>
+                            <li>تحديثات تصميم</li>
+                            <li>إدارة استضافة كاملة</li>
+                            <li>استشارات إستراتيجية</li>
+                            <li>5 ساعات تطوير شهرياً</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ماذا يحدث بعد انتهاء فترة الدعم المجاني</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لديك عدة خيارات بعد انتهاء الفترة المجانية:</p>
+                        <p><strong>الخيار 1: الاشتراك في عقد صيانة</strong></p>
+                        <ul>
+                            <li>دعم مستمر بسعر مخفض</li>
+                            <li>راحة بال كاملة</li>
+                        </ul>
+                        <p><strong>الخيار 2: الدفع عند الطلب</strong></p>
+                        <ul>
+                            <li>رسوم ساعة: 300 جنيه</li>
+                            <li>حد أدنى ساعتين</li>
+                            <li>تقدير مسبق للتكلفة</li>
+                        </ul>
+                        <p><strong>الخيار 3: عدم الحاجة للدعم</strong></p>
+                        <ul>
+                            <li>يمكنك إدارة كل شيء بنفسك</li>
+                            <li>نبقى متاحين عند الحاجة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل تضمنون عدم توقف الموقع أو التطبيق</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نلتزم بأعلى معايير الاستقرار:</p>
+                        <p><strong>ضمانات الأداء:</strong></p>
+                        <ul>
+                            <li><strong>Uptime:</strong> نضمن 99.5% وقت تشغيل سنوياً</li>
+                            <li><strong>سرعة التحميل:</strong> أقل من 3 ثواني</li>
+                            <li><strong>الاستجابة:</strong> حل المشاكل الحرجة خلال 4 ساعات</li>
+                        </ul>
+                        <p><strong>في حالة توقف الخدمة:</strong></p>
+                        <ul>
+                            <li>نعمل فوراً على استعادة الخدمة</li>
+                            <li>تعويض عن فترة التوقف إذا تجاوزت 24 ساعة</li>
+                            <li>تقرير كامل عن السبب والحل</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>للحصول على ضمان 99.9% uptime، ننصح بالاشتراك في عقد صيانة شامل</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECURITY & PRIVACY -->
+            <div class="faq-category" id="security" data-category="security">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>الأمان والخصوصية</h2>
+                        <p>حماية بياناتك وملكيتك الفكرية وسرية معلوماتك</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف تحمون بيانات عملائكم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>أمن بياناتك أولوية قصوى لدينا:</p>
+                        <p><strong>1. حماية البيانات:</strong></p>
+                        <ul>
+                            <li>تشفير SSL/TLS لجميع المعاملات</li>
+                            <li>خوادم آمنة محمية بجدران نارية</li>
+                            <li>نسخ احتياطية يومية مشفرة</li>
+                            <li>وصول محدود للموظفين المصرح لهم فقط</li>
+                        </ul>
+                        <p><strong>2. سرية المعلومات:</strong></p>
+                        <ul>
+                            <li>عقد سرية NDA مع جميع أعضاء الفريق</li>
+                            <li>لا نشارك بياناتك مع أي طرف ثالث</li>
+                            <li>حذف البيانات الحساسة بعد انتهاء المشروع</li>
+                        </ul>
+                        <p><strong>3. أمان التطبيقات والمواقع:</strong></p>
+                        <ul>
+                            <li>اختبار اختراق للكشف عن الثغرات</li>
+                            <li>تحديثات أمنية منتظمة</li>
+                            <li>مراقبة مستمرة لأي نشاط مشبوه</li>
+                            <li>حماية من هجمات DDoS</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>من يملك حقوق الملكية الفكرية للأعمال المنجزة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>سياستنا واضحة ومنصفة بشأن الملكية الفكرية:</p>
+                        <p><strong>ما تملكه أنت 100%:</strong></p>
+                        <ul>
+                            <li>التصاميم النهائية المسلمة لك</li>
+                            <li>الشعار والهوية البصرية الخاصة بك</li>
+                            <li>المحتوى الذي زودتنا به</li>
+                            <li>الموقع أو التطبيق بعد التسليم والدفع الكامل</li>
+                        </ul>
+                        <p><strong>ما نملكه نحن:</strong></p>
+                        <ul>
+                            <li>الأفكار والمفاهيم التي لم تستخدم</li>
+                            <li>الأدوات والأطر البرمجية التي طورناها سابقاً</li>
+                            <li>المكتبات والكود المشترك الذي نستخدمه في مشاريع متعددة</li>
+                        </ul>
+                        <p><strong>شروط الاستخدام:</strong></p>
+                        <ul>
+                            <li>يمكننا عرض المشروع في معرض أعمالنا Portfolio</li>
+                            <li>لا يمكننا بيع أو إعادة استخدام تصميمك لعميل آخر</li>
+                            <li>يمكنك استخدام العمل بحرية لأي غرض تجاري</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>إذا كنت تريد سرية كاملة وعدم عرض مشروعك، يمكننا إضافة بند خاص في العقد</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل توقعون اتفاقية سرية NDA</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم بالتأكيد!</strong> نوقع اتفاقيات السرية عند الطلب.</p>
+                        <p>اتفاقية السرية تشمل:</p>
+                        <ul>
+                            <li>عدم الكشف عن تفاصيل مشروعك</li>
+                            <li>عدم مشاركة أي معلومات حساسة</li>
+                            <li>عدم استخدام أفكارك لمشاريع أخرى</li>
+                            <li>عدم عرض المشروع في معرض أعمالنا</li>
+                            <li>التزام جميع أعضاء الفريق بالسرية</li>
+                        </ul>
+                        <p>نوفر:</p>
+                        <ul>
+                            <li><strong>NDA قياسي:</strong> اتفاقية السرية العامة لدينا</li>
+                            <li><strong>NDA خاص:</strong> يمكنك إرسال اتفاقيتك الخاصة للمراجعة والتوقيع</li>
+                            <li><strong>NDA ثنائي:</strong> التزام متبادل بالسرية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف تتعاملون مع معلوماتي الشخصية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نلتزم بحماية خصوصيتك وفقاً لأعلى المعايير:</p>
+                        <p><strong>المعلومات التي نجمعها:</strong></p>
+                        <ul>
+                            <li>الاسم والبريد الإلكتروني ورقم الهاتف</li>
+                            <li>معلومات الشركة أو النشاط التجاري</li>
+                            <li>تفاصيل المشروع الضرورية للتنفيذ</li>
+                        </ul>
+                        <p><strong>كيف نستخدم المعلومات:</strong></p>
+                        <ul>
+                            <li>التواصل معك بخصوص المشروع</li>
+                            <li>تنفيذ الخدمات المتفق عليها</li>
+                            <li>إرسال الفواتير والإيصالات</li>
+                            <li>تحسين خدماتنا</li>
+                        </ul>
+                        <p><strong>ما لا نفعله أبداً:</strong></p>
+                        <ul>
+                            <li>بيع معلوماتك لأطراف ثالثة</li>
+                            <li>إرسال رسائل تسويقية بدون إذنك</li>
+                            <li>مشاركة معلوماتك مع منافسيك</li>
+                            <li>استخدام بياناتك لأي غرض غير متفق عليه</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ماذا لو احتاج الوصول لحسابات سوشيال ميديا أو استضافة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نتبع بروتوكولات أمان صارمة عند الحاجة للوصول:</p>
+                        <p><strong>1. الوصول الآمن:</strong></p>
+                        <ul>
+                            <li>نفضل إضافتنا كمدراء بدلاً من مشاركة كلمات المرور</li>
+                            <li>إذا لزم الأمر، نستخدم مدير كلمات مرور آمن</li>
+                            <li>نطلب تغيير كلمة المرور بعد انتهاء العمل</li>
+                        </ul>
+                        <p><strong>2. مستويات الصلاحيات:</strong></p>
+                        <ul>
+                            <li>نطلب فقط الصلاحيات الضرورية للعمل</li>
+                            <li>صلاحيات محدودة للموظفين</li>
+                            <li>مراقبة جميع الأنشطة</li>
+                        </ul>
+                        <p><strong>3. بعد انتهاء المشروع:</strong></p>
+                        <ul>
+                            <li>نزيل وصولنا فوراً</li>
+                            <li>ننصحك بتغيير كلمات المرور</li>
+                            <li>نحذف أي معلومات وصول محفوظة</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>نوصي دائماً بتفعيل المصادقة الثنائية Two-Factor Authentication</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMMUNICATION -->
+            <div class="faq-category" id="communication" data-category="communication">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>التواصل والمراسلات</h2>
+                        <p>طرق التواصل معنا وأوقات الرد وإدارة المشروع</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ما هي أفضل طريقة للتواصل معكم</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نوفر قنوات متعددة للتواصل حسب احتياجك:</p>
+                        <p><strong>للاستفسارات السريعة:</strong></p>
+                        <ul>
+                            <li><strong>واتساب:</strong> +20 106 827 4662 الأسرع والأكثر فعالية</li>
+                            <li>رد فوري خلال ساعات العمل</li>
+                        </ul>
+                        <p><strong>للاستفسارات التفصيلية:</strong></p>
+                        <ul>
+                            <li><strong>بريد إلكتروني:</strong> info@sweid.com</li>
+                            <li>للمشاريع والعروض التفصيلية</li>
+                            <li>رد خلال 24 ساعة</li>
+                        </ul>
+                        <p><strong>للمكالمات الهاتفية:</strong></p>
+                        <ul>
+                            <li><strong>هاتف:</strong> +20 106 827 4662 أو +20 122 969 9564</li>
+                            <li>للاستشارات المباشرة</li>
+                            <li>من السبت للخميس 9 ص - 6 م</li>
+                        </ul>
+                        <p><strong>لمتابعة المشاريع:</strong></p>
+                        <ul>
+                            <li>منصات إدارة المشاريع Trello, Asana</li>
+                            <li>Google Drive للملفات المشتركة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كم يستغرق الرد على الاستفسارات</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نلتزم بأوقات رد سريعة:</p>
+                        <p><strong>الاستفسارات العامة:</strong></p>
+                        <ul>
+                            <li><strong>واتساب:</strong> رد فوري خلال ساعات العمل، خلال ساعة</li>
+                            <li><strong>بريد إلكتروني:</strong> خلال 24 ساعة</li>
+                            <li><strong>هاتف:</strong> رد مباشر أثناء ساعات العمل</li>
+                        </ul>
+                        <p><strong>للعملاء الحاليين:</strong></p>
+                        <ul>
+                            <li>أولوية في الرد</li>
+                            <li>رد خلال 2-4 ساعات</li>
+                            <li>مدير مشروع مخصص</li>
+                        </ul>
+                        <p><strong>الحالات الطارئة:</strong></p>
+                        <ul>
+                            <li>رد خلال ساعة واحدة</li>
+                            <li>حتى خارج ساعات العمل</li>
+                            <li>خط ساخن مباشر</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف تتم إدارة المشروع والتواصل خلال التنفيذ</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نتبع منهجية منظمة لإدارة المشاريع:</p>
+                        <p><strong>1. تعيين مدير مشروع:</strong></p>
+                        <ul>
+                            <li>نقطة اتصال واحدة مخصصة لك</li>
+                            <li>يتابع تقدم العمل</li>
+                            <li>يجيب على استفساراتك</li>
+                            <li>ينسق بين أعضاء الفريق</li>
+                        </ul>
+                        <p><strong>2. اجتماعات دورية:</strong></p>
+                        <ul>
+                            <li>اجتماع أسبوعي لمراجعة التقدم</li>
+                            <li>عبر Zoom أو Google Meet</li>
+                            <li>مدة 30-60 دقيقة</li>
+                        </ul>
+                        <p><strong>3. تحديثات مستمرة:</strong></p>
+                        <ul>
+                            <li>تقارير تقدم أسبوعية</li>
+                            <li>إشعارات فورية عند إكمال مراحل</li>
+                            <li>شفافية كاملة في سير العمل</li>
+                        </ul>
+                        <p><strong>4. أدوات التواصل:</strong></p>
+                        <ul>
+                            <li>WhatsApp للمتابعة اليومية</li>
+                            <li>Email للوثائق الرسمية</li>
+                            <li>Trello/Asana لتتبع المهام</li>
+                            <li>Google Drive لمشاركة الملفات</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>هل يمكن زيارة مقركم أو عقد اجتماعات مباشرة</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>نعم بكل تأكيد!</strong> نرحب بزيارتك:</p>
+                        <p><strong>زيارة المقر:</strong></p>
+                        <ul>
+                            <li><strong>العنوان:</strong> مدينة السادات، المنوفية، مصر</li>
+                            <li><strong>المواعيد:</strong> السبت - الخميس: 9:00 ص - 6:00 م</li>
+                            <li><strong>يفضل الحجز المسبق:</strong> لضمان تواجد الفريق المختص</li>
+                        </ul>
+                        <p><strong>الاجتماعات المباشرة:</strong></p>
+                        <ul>
+                            <li>في مقرنا بمدينة السادات</li>
+                            <li>في مقر عملك إذا كنت في نفس المنطقة</li>
+                            <li>في مكان محايد يناسب الطرفين</li>
+                        </ul>
+                        <p><strong>الاجتماعات عن بعد:</strong></p>
+                        <ul>
+                            <li>Zoom, Google Meet, Microsoft Teams</li>
+                            <li>مكالمات فيديو WhatsApp</li>
+                            <li>فعالة جداً وتوفر الوقت والجهد</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>كيف أتابع تقدم مشروعي</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نوفر شفافية كاملة في متابعة المشروع:</p>
+                        <p><strong>1. لوحة تحكم المشروع:</strong></p>
+                        <ul>
+                            <li>وصول إلى لوحة Trello أو Asana</li>
+                            <li>رؤية جميع المهام وحالتها</li>
+                            <li>تتبع التقدم في الوقت الفعلي</li>
+                        </ul>
+                        <p><strong>2. تقارير منتظمة:</strong></p>
+                        <ul>
+                            <li>تقرير أسبوعي بالتقدم المحرز</li>
+                            <li>نسبة الإنجاز بالأرقام</li>
+                            <li>المهام القادمة</li>
+                            <li>أي عوائق أو تحديات</li>
+                        </ul>
+                        <p><strong>3. معاينات مرحلية:</strong></p>
+                        <ul>
+                            <li>نرسل لك معاينات دورية للعمل</li>
+                            <li>تستطيع التعليق والموافقة</li>
+                            <li>تعديلات فورية حسب ملاحظاتك</li>
+                        </ul>
+                        <p><strong>4. تواصل مفتوح:</strong></p>
+                        <ul>
+                            <li>يمكنك السؤال في أي وقت</li>
+                            <li>نرد بسرعة ووضوح</li>
+                            <li>لا توجد أسئلة "غبية"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>ماذا لو احتجت للتواصل خارج ساعات العمل</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نتفهم أن الحاجة قد تكون عاجلة أحياناً:</p>
+                        <p><strong>للحالات العاجلة فقط:</strong></p>
+                        <ul>
+                            <li>واتساب: +20 106 827 4662</li>
+                            <li>نرد خلال ساعة إلى ساعتين</li>
+                            <li>حتى في الليل أو أيام الجمعة</li>
+                        </ul>
+                        <p><strong>للاستفسارات العادية:</strong></p>
+                        <ul>
+                            <li>أرسل رسالة واتساب أو إيميل</li>
+                            <li>سنرد في بداية يوم العمل التالي</li>
+                        </ul>
+                        <p><strong>ما يعتبر حالة عاجلة:</strong></p>
+                        <ul>
+                            <li>الموقع متوقف تماماً</li>
+                            <li>مشكلة أمنية خطيرة</li>
+                            <li>خطأ يؤثر على عملك مباشرة</li>
+                        </ul>
+                        <p><strong>ما لا يعتبر حالة عاجلة:</strong></p>
+                        <ul>
+                            <li>استفسارات عامة</li>
+                            <li>طلبات تعديل عادية</li>
+                            <li>تحديثات روتينية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT CTA -->
+            <div class="contact-cta">
+                <h3>لم تجد إجابة لسؤالك؟</h3>
+                <p>فريقنا جاهز للرد على جميع استفساراتك وتقديم المساعدة</p>
+                <div class="contact-buttons">
+                    <a href="tel:+201068274662" class="btn-contact">
+                        <i class="fas fa-phone"></i>
+                        اتصل بنا الآن
+                    </a>
+                    <a href="https://wa.me/201068274662" class="btn-contact whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        واتساب
+                    </a>
+                    <a href="mailto:info@sweid.com" class="btn-contact">
+                        <i class="fas fa-envelope"></i>
+                        أرسل بريد إلكتروني
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>سويد - التسويق والإعلان</h3>
+                <p>شريكك الاستراتيجي للنجاح في التسويق والدعاية والإدارة. نقدم حلول متكاملة بخبرة تزيد عن 15 عاماً في السوق المصري والعربي.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>خدماتنا</h3>
+                <ul class="footer-links">
+                    <li><a href="#">الاستشارات وتطوير الأعمال</a></li>
+                    <li><a href="#">بناء العلامة التجارية</a></li>
+                    <li><a href="#">التسويق الرقمي</a></li>
+                    <li><a href="#">البرمجة والتطوير</a></li>
+                    <li><a href="#">دعاية وإعلان</a></li>
+                    <li><a href="#">إنتاج المحتوى</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">من نحن</a></li>
+                    <li><a href="#">أعمالنا</a></li>
+                    <li><a href="#">الباقات والأسعار</a></li>
+                    <li><a href="#">المقالات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>تواصل معنا</h3>
+                <p><i class="fas fa-map-marker-alt"></i> مدينة السادات، المنوفية، مصر</p>
+                <p><i class="fas fa-envelope"></i> info@sweid.com</p>
+                <p><i class="fas fa-phone"></i> +20 106 827 4662</p>
+                <p><i class="fas fa-phone"></i> +20 122 969 9564</p>
+                <p><i class="fas fa-clock"></i> السبت - الخميس: 9:00 ص - 6:00 م</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 سويد - جميع الحقوق محفوظة | تصميم وتطوير بواسطة سويد</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT BUTTON -->
+    <a href="https://wa.me/201068274662" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Search FAQ
+        function searchFAQ() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqCategories = document.querySelectorAll('.faq-category');
+            let hasResults = false;
+
+            if (searchTerm === '') {
+                // Show all items if search is empty
+                faqItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+                faqCategories.forEach(cat => {
+                    cat.style.display = 'block';
+                });
+                document.querySelector('.no-results')?.remove();
+                return;
+            }
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    item.parentElement.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide empty categories
+            faqCategories.forEach(cat => {
+                const visibleItems = cat.querySelectorAll('.faq-item[style="display: block"]');
+                if (visibleItems.length === 0) {
+                    cat.style.display = 'none';
+                }
+            });
+
+            // Show no results message
+            const existingNoResults = document.querySelector('.no-results');
+            if (existingNoResults) {
+                existingNoResults.remove();
+            }
+
+            if (!hasResults) {
+                const noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.innerHTML = `
+                    <i class="fas fa-search"></i>
+                    <h3>لم نجد نتائج مطابقة</h3>
+                    <p>جرب البحث بكلمات مختلفة أو تصفح الأقسام المختلفة</p>
+                `;
+                document.querySelector('.faq-content').appendChild(noResults);
+            }
+        }
+
+        // Filter by category
+        function filterCategory(category) {
+            const categories = document.querySelectorAll('.faq-category');
+            const links = document.querySelectorAll('.category-list a');
+            
+            // Update active link
+            links.forEach(link => link.classList.remove('active'));
+            event.target.closest('a').classList.add('active');
+            
+            // Show only selected category
+            categories.forEach(cat => {
+                if (cat.id === category) {
+                    cat.style.display = 'block';
+                } else {
+                    cat.style.display = 'none';
+                }
+            });
+            
+            // Clear search
+            document.getElementById('searchInput').value = '';
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Allow Enter key to search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchFAQ();
+            }
+        });
+    </script>
+</body>
+</html>

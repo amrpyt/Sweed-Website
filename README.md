@@ -1,20 +1,34 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# SWEED Website
 
-# Run and deploy your AI Studio app
+Static SWEED marketing website organized with a production-style project layout.
 
-This contains everything you need to run your app locally.
+## Directory Map
 
-View your app in AI Studio: https://ai.studio/apps/1d839172-fc7e-4046-a60d-29225ad20fd6
+```text
+site/          Deployable website source
+site/pages/    Internal static pages
+public/        Public assets copied into the build
+references/    Original design files, brand assets, and source material
+.archive/      Retired experiments and previous page versions
+.planning/     GSD project planning artifacts
+.codex/        Codex/GSD workflow tooling
+v2/            Preserved Git worktree
+v3/            Preserved Git worktree with local changes
+dist/          Generated production output
+```
 
-## Run Locally
+## Commands
 
-**Prerequisites:**  Node.js
+```bash
+pnpm install
+pnpm run dev
+pnpm run build
+pnpm run lint
+```
 
+## Site Source
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The homepage lives at `site/index.html`.
+Internal pages live at `site/pages/*.html`.
+
+Original HTML/design references are kept in `references/` so the deployable website stays clean.

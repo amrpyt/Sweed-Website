@@ -62,7 +62,7 @@ None yet.
 
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
-| 260424-183210 | Clean up repo directory, keep important website files, preserve v2 worktree | 2026-04-24 | pending | [260424-183210-clean-up-repo-directory](./quick/260424-183210-clean-up-repo-directory/) |
+| 260424-183210 | Clean up repo directory, keep important website files, preserve v2 worktree | 2026-04-24 | efd8642 | [260424-183210-clean-up-repo-directory](./quick/260424-183210-clean-up-repo-directory/) |
 
 ## Deferred Items
 

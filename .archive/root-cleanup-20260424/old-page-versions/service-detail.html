@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التأسيس الشامل للمنصات الرقمية | سويد - شريكك الاستراتيجي للنجاح</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E3256B;
+            --primary-purple: #2D2947;
+            --sunset-orange: #FF6B35;
+            --dark-silver: #6d6e70;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-purple);
+            overflow-x: hidden;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.6rem 0;
+            font-size: 0.85rem;
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .top-bar-item i {
+            color: var(--primary-pink);
+            font-size: 0.9rem;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-decoration: none;
+        }
+
+        .logo-main {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-purple);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .logo-s {
+            color: var(--primary-pink);
+        }
+
+        .logo-subtitle {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--dark-silver);
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-pink);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .btn-search {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-search:hover {
+            background: var(--primary-pink);
+        }
+
+        .btn-download {
+            background: var(--primary-pink);
+            color: var(--white);
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background: var(--sunset-orange);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .service-hero {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .service-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon-large {
+            width: 120px;
+            height: 120px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3.5rem;
+            animation: fadeInScale 0.8s ease;
+        }
+
+        .service-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .service-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .service-hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            font-size: 0.9rem;
+            color: var(--dark-silver);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-pink);
+        }
+
+        .breadcrumb i {
+            margin: 0 0.5rem;
+            font-size: 0.7rem;
+        }
+
+        /* ===== SERVICE INTRO ===== */
+        .service-intro {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .intro-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            border-right: 5px solid var(--primary-pink);
+        }
+
+        .intro-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--dark-silver);
+            margin-bottom: 1rem;
+        }
+
+        .intro-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .highlight-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .highlight-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--sunset-orange));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .highlight-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-item p {
+            font-size: 0.9rem;
+            color: var(--dark-silver);
+        }
+
+        /* ===== SECONDARY SERVICES ===== */
+        .secondary-services {
+            max-width: 1400px;
+            margin: 5rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--dark-silver);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .secondary-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .secondary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--sunset-orange));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .secondary-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(227, 37, 107, 0.2);
+            border-color: var(--primary-pink);
+        }
+
+        .secondary-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--sunset-orange));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--white);
+            transition: all 0.4s ease;
+        }
+
+        .secondary-card:hover .card-icon {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .secondary-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--dark-silver);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-benefit {
+            background: linear-gradient(135deg, rgba(227, 37, 107, 0.1), rgba(255, 107, 53, 0.1));
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-benefit strong {
+            color: var(--primary-pink);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-benefit p {
+            font-size: 0.9rem;
+            color: var(--primary-purple);
+            margin: 0;
+        }
+
+        .card-benefit ul {
+            margin: 0.5rem 0 0 1.5rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .card-benefit li {
+            font-size: 0.85rem;
+            color: var(--primary-purple);
+            margin-bottom: 0.3rem;
+            position: relative;
+            padding-right: 1.2rem;
+        }
+
+        .card-benefit li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--primary-pink);
+            font-weight: 700;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 12px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            color: var(--primary-pink);
+        }
+
+        .meta-item strong {
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-pink), var(--sunset-orange));
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(227, 37, 107, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-purple);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid var(--primary-purple);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-purple);
+            color: var(--white);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--white);
+            margin: 5rem 0 0 0;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            background: var(--white);
+            color: var(--primary-purple);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-cta-outline {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: 2px solid var(--white);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-cta-outline:hover {
+            background: var(--white);
+            color: var(--primary-purple);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            opacity: 1;
+            color: var(--primary-pink);
+            padding-right: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--primary-pink);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ===== WHATSAPP BUTTON ===== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(37, 211, 102, 0.7);
+            }
+            100% {
+                box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .service-hero h1 {
+                font-size: 2rem;
+            }
+
+            .service-hero p {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-item">
+                <i class="fas fa-phone"></i>
+                <span>+20 106 827 4662</span>
+            </div>
+            <div class="top-bar-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@sweid.com</span>
+            </div>
+            <div class="top-bar-item">
+                <i class="fas fa-clock"></i>
+                <span>السبت - الخميس: 9:00 ص - 6:00 م</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-main"><span class="logo-s">س</span>ـويـــد</div>
+                <div class="logo-subtitle">التسويق والإعلان</div>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="services.html" class="active">خدماتنا</a></li>
+                <li><a href="products.html">منتجاتنا</a></li>
+                <li><a href="#offers">العروض</a></li>
+                <li><a href="portfolio.html">أعمالنا</a></li>
+                <li><a href="blog.html">المقالات</a></li>
+                <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <button class="btn-search">
+                    <i class="fas fa-search"></i>
+                    بحث
+                </button>
+                <button class="btn-download">
+                    <i class="fas fa-download"></i>
+                    تحميل الكتالوج
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="service-hero">
+        <div class="service-hero-content">
+            <div class="service-icon-large">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <h1>التأسيس الشامل للمنصات الرقمية</h1>
+            <p>بناء حضور رقمي قوي وآمن على جميع المنصات مع ربط متكامل وتأمين شامل لبداية احترافية لمشروعك الرقمي</p>
+            
+            <div class="service-hero-tags">
+                <span class="tag"><i class="fas fa-check-circle"></i> 7 مراحل تأسيس</span>
+                <span class="tag"><i class="fas fa-shield-alt"></i> تأمين كامل</span>
+                <span class="tag"><i class="fas fa-network-wired"></i> ربط متكامل</span>
+                <span class="tag"><i class="fas fa-users-cog"></i> تدريب شامل</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="index.html">الرئيسية</a>
+        <i class="fas fa-chevron-left"></i>
+        <a href="services.html">الخدمات</a>
+        <i class="fas fa-chevron-left"></i>
+        <a href="#">التسويق الرقمي</a>
+        <i class="fas fa-chevron-left"></i>
+        <span>التأسيس الشامل للمنصات الرقمية</span>
+    </div>
+
+    <!-- SERVICE INTRO -->
+    <section class="service-intro">
+        <div class="intro-content">
+            <h2>لماذا تحتاج التأسيس الشامل للمنصات الرقمية؟</h2>
+            <p>التأسيس الصحيح للمنصات الرقمية هو حجر الأساس لنجاح أي مشروع على الإنترنت. نحن نقدم خدمة متكاملة تشمل إنشاء وربط وتأمين جميع حساباتك على المنصات الرقمية المختلفة، مع ضمان التكامل التام بينها وحمايتها من أي اختراق أو مشاكل تقنية.</p>
+            <p>خدمتنا تغطي كل شيء من إنشاء الإيميلات الاحترافية، الحصول على أرقام مخصصة، تأسيس حسابات البيزنس، ربط البيكسل والأدوات، تصميم الهوية البصرية، تأمين الحسابات، وصولاً إلى تدريب فريقك على الاستخدام الأمثل.</p>
+            
+            <div class="intro-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h4>تأسيس شامل</h4>
+                    <p>7 منصات رئيسية مع ربط كامل</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h4>حماية متقدمة</h4>
+                    <p>تأمين ثنائي ونسخ احتياطية</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h4>تكامل كامل</h4>
+                    <p>ربط البيكسل والأدوات والموقع</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>تدريب عملي</h4>
+                    <p>تدريب الفريق ودعم مستمر</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECONDARY SERVICES -->
+    <section class="secondary-services">
+        <div class="section-header">
+            <h2>مراحل التأسيس الشامل</h2>
+            <p>7 مراحل احترافية لتأسيس حضورك الرقمي بشكل كامل ومتكامل</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- المرحلة 1 -->
+            <div class="secondary-card">
+                <div class="card-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3>المرحلة الأولى: التخطيط والإعداد</h3>
+                <p class="card-desc">نبدأ بتحليل احتياجات مشروعك وتحديد المنصات المناسبة مع إعداد الهوية الرقمية الكاملة</p>
+                
+                <div class="card-benefit">
+                    <strong><i class="fas fa-star"></i> الخدمات الثانوية:</strong>
+                    <ul>
+                        <li>تحليل احتياجات المشروع والمنصات المطلوبة</li>
+                        <li>تحديد المنصات المناسبة حسب طبيعة العمل</li>
+                        <li>وضع خطة التأسيس الشاملة</li>
+                        <li>إنشاء إيميلات احترافية للمشروع</li>
+                        <li>الحصول على أرقام تليفونات مخصصة</li>
+                        <li>إعداد كلمات سر قوية ونظام إدارة آمن</li>
+                    </ul>
+                </div>
+
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>المدة:</strong> 2-3 أيام
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <strong>6</strong> خدمات
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-phone-alt"></i>
+                        اطلب الخدمة
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        التفاصيل
+                    </button>
+                </div>
+            </div>
+
+            <!-- المرحلة 2 -->
+            <div class="secondary-card">
+                <div class="card-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>المرحلة الثانية: إنشاء الحسابات</h3>
+                <p class="card-desc">إنشاء حسابات البيزنس على جميع المنصات الرئيسية مع التحقق والشارات الزرقاء</p>
+                
+                <div class="card-benefit">
+                    <strong><i class="fas fa-star"></i> الخدمات الثانوية:</strong>
+                    <ul>
+                        <li>فيسبوك Business Manager</li>
+                        <li>انستجرام Business Account</li>
+                        <li>تيك توك Business Account</li>
+                        <li>يوتيوب Brand Account</li>
+                        <li>تويتر Business</li>
+                        <li>لينكد إن Company Page</li>
+                        <li>واتساب Business</li>
+                        <li>التحقق من الهوية على جميع المنصات</li>
+                        <li>طلب الشارة الزرقاء حيثما أمكن</li>
+                    </ul>
+                </div>
+
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>المدة:</strong> 3-5 أيام
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <strong>9</strong> خدمات
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-phone-alt"></i>
+                        اطلب الخدمة
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        التفاصيل
+                    </button>
+                </div>
+            </div>
+
+            <!-- المرحلة 3 -->
+            <div class="secondary-card">
+                <div class="card-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h3>المرحلة الثالثة: الربط والتكامل</h3>
+                <p class="card-desc">ربط شامل لجميع المنصات مع البيكسل والأدوات والموقع وواتساب تحت إدارة موحدة</p>
+                
+                <div class="card-benefit">
+                    <strong><i class="fas fa-star"></i> الخدمات الثانوية:</strong>
+                    <ul>
+                        <li>تنصيب Facebook Pixel</li>
+                        <li>تنصيب TikTok Pixel</li>
+                        <li>إعداد Google Analytics</li>
+                        <li>ربط أدوات التتبع الأخرى</li>
+                        <li>ربط جميع الحسابات بالموقع</li>
+                        <li>إضافة أزرار المشاركة والمتابعة</li>
+                        <li>إعداد روابط التوجيه</li>
+                        <li>ربط واتساب بفيسبوك وانستجرام</li>
+                        <li>إعداد Click-to-WhatsApp</li>
+                        <li>تفعيل الرسائل المباشرة</li>
+                        <li>إضافة أرقام التواصل على جميع المنصات</li>
+                        <li>ربط الإيميلات الرسمية</li>
+                        <li>تفعيل خيارات الاتصال</li>
+                        <li>ربط جميع الحسابات بـ Business Suite</li>
+                        <li>إعداد أدوات الإدارة الموحدة</li>
+                        <li>تنظيم الأصول الرقمية</li>
+                    </ul>
+                </div>
+
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>المدة:</strong> 4-6 أيام
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <strong>16</strong> خدمة
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-phone-alt"></i>
+                        اطلب الخدمة
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        التفاصيل
+                    </button>
+                </div>
+            </div>
+
+            <!-- المرحلة 4 -->
+            <div class="secondary-card">
+                <div class="card-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>المرحلة الرابعة: الهوية البصرية</h3>
+                <p class="card-desc">إعداد المحتوى التعريفي وتصميم الأغلفة والصور الشخصية لجميع المنصات</p>
+                
+                <div class="card-benefit">
+                    <strong><i class="fas fa-star"></i> الخدمات الثانوية:</strong>
+                    <ul>
+                        <li>كتابة Bio احترافي مخصص لكل منصة</li>
+                        <li>إضافة الوصف التفصيلي للشركة</li>
+                        <li>تحديد الفئة والتصنيف المناسب</li>
+                        <li>تصميم غلاف بالمقاسات الصحيحة لكل منصة</li>
+                        <li>تصميم صورة بروفايل موحدة</li>
+                        <li>مراعاة الهوية البصرية للعلامة التجارية</li>
+                        <li>تحميل الأغلفة والصور الشخصية</li>
+                        <li>إضافة الصور والألبومات التعريفية</li>
+                        <li>رفع الفيديو التعريفي حيثما أمكن</li>
+                    </ul>
+                </div>
+
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>المدة:</strong> 3-4 أيام
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <strong>9</strong> خدمات
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-phone-alt"></i>
+                        اطلب الخدمة
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        التفاصيل
+                    </button>
+                </div>
+            </div>
+
+            <!-- المرحلة 5 -->
+            <div class="secondary-card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>المرحلة الخامسة: التأمين والحماية</h3>
+                <p class="card-desc">تأمين شامل لجميع الحسابات والإيميلات مع إعداد الصلاحيات والنسخ الاحتياطية</p>
+                
+                <div class="card-benefit">
+                    <strong><i class="fas fa-star"></i> الخدمات الثانوية:</strong>
+                    <ul>
+                        <li>تفعيل المصادقة الثنائية (2FA)</li>
+                        <li>إعداد أسئلة الأمان</li>
+                        <li>حماية الإيميلات بكلمات سر قوية</li>
+                        <li>تفعيل تنبيهات الدخول غير المصرح</li>
+                        <li>تحديد الأدمن والمديرين</li>
+                        <li>توزيع الصلاحيات حسب المهام</li>
+                        <li>إعداد نظام الوصول الآمن</li>
+                        <li>حفظ جميع بيانات الدخول بشكل آمن</li>
+                        <li>إعداد ملف توثيق شامل</li>
+                        <li>إنشاء دليل إدارة الحسابات</li>
+                    </ul>
+                </div>
+
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>المدة:</strong> 2-3 أيام
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <strong>10</strong> خدمات
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-phone-alt"></i>
+                        اطلب الخدمة
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        التفاصيل
+                    </button>
+                </div>
+            </div>
+
+            <!-- المرحلة 6 -->
+            <div class="secondary-card">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>المرحلة السادسة: التهيئة والاختبار</h3>
+                <p class="card-desc">تهيئة المنصات لمحركات البحث واختبار شامل لجميع الروابط والإعدادات</p>
+                
+                <div class="card-benefit">
+                    <strong><i class="fas fa-star"></i> الخدمات الثانوية:</strong>
+                    <ul>
+                        <li>تحسين الحسابات للظهور في جوجل</li>
+                        <li>إضافة الكلمات المفتاحية المناسبة</li>
+                        <li>ربط الحسابات بـ Google My Business</li>
+                        <li>تحديد من يمكنه التواصل</li>
+                        <li>إعداد فلاتر الرسائل</li>
+                        <li>تفعيل الردود التلقائية الأولية</li>
+                        <li>اختبار جميع الروابط بين المنصات</li>
+                        <li>التأكد من عمل البيكسل</li>
+                        <li>فحص الاتصال بواتساب والموقع</li>
+                        <li>إنشاء الحسابات الإعلانية</li>
+                        <li>إضافة طرق الدفع</li>
+                        <li>تحديد الميزانيات المبدئية</li>
+                    </ul>
+                </div>
+
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>المدة:</strong> 2-3 أيام
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <strong>12</strong> خدمة
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-phone-alt"></i>
+                        اطلب الخدمة
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        التفاصيل
+                    </button>
+                </div>
+            </div>
+
+            <!-- المرحلة 7 -->
+            <div class="secondary-card">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>المرحلة السابعة: التسليم والتدريب</h3>
+                <p class="card-desc">إعداد تقرير شامل وتدريب الفريق مع دعم فني لضمان البداية الناجحة</p>
+                
+                <div class="card-benefit">
+                    <strong><i class="fas fa-star"></i> الخدمات الثانوية:</strong>
+                    <ul>
+                        <li>توثيق جميع الحسابات المنشأة</li>
+                        <li>قائمة بجميع الروابط والاتصالات</li>
+                        <li>دليل استخدام مبسط</li>
+                        <li>شرح كيفية الدخول والاستخدام</li>
+                        <li>توضيح الصلاحيات والأدوار</li>
+                        <li>تسليم دليل الإدارة</li>
+                        <li>دعم فني لمدة أسبوع بعد التسليم</li>
+                        <li>حل أي مشاكل تقنية</li>
+                        <li>ضمان عمل جميع الأنظمة بشكل سليم</li>
+                    </ul>
+                </div>
+
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <strong>المدة:</strong> 2-3 أيام + أسبوع دعم
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <strong>9</strong> خدمات
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-phone-alt"></i>
+                        اطلب الخدمة
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        التفاصيل
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>ابدأ مشروعك الرقمي بقوة!</h2>
+            <p>دعنا نساعدك في بناء حضور رقمي قوي ومتكامل على جميع المنصات بشكل احترافي وآمن</p>
+            
+            <div class="cta-buttons">
+                <button class="btn-cta">
+                    <i class="fas fa-phone-alt"></i>
+                    احجز استشارة مجانية
+                </button>
+                <button class="btn-cta-outline">
+                    <i class="fab fa-whatsapp"></i>
+                    تواصل عبر واتساب
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>سويد - التسويق والإعلان</h3>
+                <p>شريكك الاستراتيجي للنجاح في التسويق والدعاية والإدارة. نقدم حلول متكاملة بخبرة تزيد عن 15 عاماً في السوق المصري والعربي.</p>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>خدماتنا</h3>
+                <ul>
+                    <li><a href="#">الاستشارات وتطوير الأعمال</a></li>
+                    <li><a href="#">بناء العلامة التجارية</a></li>
+                    <li><a href="#">التسويق الرقمي</a></li>
+                    <li><a href="#">البرمجة والتطوير</a></li>
+                    <li><a href="#">دعاية وإعلان</a></li>
+                    <li><a href="#">إنتاج المحتوى</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="portfolio.html">أعمالنا</a></li>
+                    <li><a href="offers.html">الباقات والأسعار</a></li>
+                    <li><a href="blog.html">المقالات</a></li>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>تواصل معنا</h3>
+                <p><i class="fas fa-map-marker-alt"></i> مدينة السادات، المنوفية، مصر</p>
+                <p><i class="fas fa-envelope"></i> info@sweid.com</p>
+                <p><i class="fas fa-envelope"></i> support@sweid.com</p>
+                <p><i class="fas fa-phone"></i> +20 106 827 4662</p>
+                <p><i class="fas fa-phone"></i> +20 122 969 9564</p>
+                <p><i class="fas fa-clock"></i> السبت - الخميس: 9:00 ص - 6:00 م</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 سويد - جميع الحقوق محفوظة | تصميم وتطوير بواسطة سويد</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/201068274662" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Header hide on scroll
+        let lastScroll = 0;
+        const header = document.querySelector('.header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('hidden');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

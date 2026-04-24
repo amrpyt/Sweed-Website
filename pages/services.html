@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدماتنا | سويد - شريكك الاستراتيجي للنجاح</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #E3256B;
+            --primary-purple: #2D2947;
+            --sunset-orange: #FF6B35;
+            --dark-silver: #6d6e70;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-purple);
+            overflow-x: hidden;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.6rem 0;
+            font-size: 0.85rem;
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .top-bar-item i {
+            color: var(--primary-pink);
+            font-size: 0.9rem;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-decoration: none;
+        }
+
+        .logo-main {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-purple);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .logo-s {
+            color: var(--primary-pink);
+        }
+
+        .logo-subtitle {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--dark-silver);
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-pink);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .btn-search {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-search:hover {
+            background: var(--primary-pink);
+        }
+
+        .btn-download {
+            background: var(--primary-pink);
+            color: var(--white);
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background: var(--sunset-orange);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .services-hero {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .services-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .services-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .services-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            display: block;
+            color: var(--white);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            font-size: 0.9rem;
+            color: var(--dark-silver);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-pink);
+        }
+
+        .breadcrumb i {
+            margin: 0 0.5rem;
+            font-size: 0.7rem;
+        }
+
+        /* ===== SERVICES GRID ===== */
+        .services-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--sunset-orange));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(227, 37, 107, 0.2);
+            border-color: var(--primary-pink);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--sunset-orange));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--white);
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+        }
+
+        .service-card .service-desc {
+            font-size: 0.95rem;
+            color: var(--dark-silver);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: var(--primary-purple);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-features li:hover {
+            padding-right: 0.5rem;
+            color: var(--primary-pink);
+        }
+
+        .service-features li i {
+            color: var(--primary-pink);
+            font-size: 0.8rem;
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f5f5f5;
+        }
+
+        .service-count {
+            font-size: 0.85rem;
+            color: var(--dark-silver);
+            font-weight: 600;
+        }
+
+        .service-count span {
+            color: var(--primary-pink);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .btn-service {
+            background: var(--primary-pink);
+            color: var(--white);
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-service:hover {
+            background: var(--primary-purple);
+            transform: translateX(-5px);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            padding: 4rem 2rem;
+            margin: 5rem 0;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-cta-primary {
+            background: var(--white);
+            color: var(--primary-purple);
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-pink);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-pink);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ===== WHATSAPP BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 25px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .services-hero h1 {
+                font-size: 2rem;
+            }
+
+            .services-hero p {
+                font-size: 1rem;
+            }
+
+            .services-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .nav-menu,
+            .nav-buttons {
+                display: none;
+            }
+
+            .cta-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-item">
+                <i class="fas fa-phone"></i>
+                <span>+201068274662</span>
+            </div>
+            <div class="top-bar-item">
+                <i class="fas fa-envelope"></i>
+                <span>mohamedsweed2050@gmail.com</span>
+            </div>
+            <div class="top-bar-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>القاهرة، مصر</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-main">
+                    <span class="logo-s">S</span>WEED
+                </div>
+                <div class="logo-subtitle">MARKETING & ADVERTISING</div>
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="services.html" class="active">خدماتنا</a></li>
+                <li><a href="portfolio.html">أعمالنا</a></li>
+                <li><a href="blog.html">المدونة</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+
+            <div class="nav-buttons">
+                <button class="btn-search">
+                    <i class="fas fa-search"></i>
+                    بحث
+                </button>
+                <button class="btn-download">
+                    <i class="fas fa-download"></i>
+                    البروفايل
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="services-hero">
+        <div class="services-hero-content">
+            <h1>خدماتنا المتكاملة</h1>
+            <p>حلول شاملة لتطوير أعمالك ونموها بخبرة تزيد عن 15 عاماً</p>
+            
+            <div class="services-stats">
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">خدمات رئيسية</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">76+</span>
+                    <span class="stat-label">خدمة فرعية</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">478+</span>
+                    <span class="stat-label">عميل راضٍ</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">638+</span>
+                    <span class="stat-label">مشروع ناجح</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="../index.html">الرئيسية</a>
+        <i class="fas fa-chevron-left"></i>
+        <span>خدماتنا</span>
+    </div>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section">
+        <div class="services-grid">
+            <!-- Service 1: الاستشارات -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>الاستشارات وتطوير الأعمال</h3>
+                <p class="service-desc">نبني معك خارطة طريق مدروسة ومحسوبة تأخذ مشروعك من نقطة الصفر إلى قمة النجاح بخبرة 15 سنة في السوق المصري والعربي</p>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check-circle"></i> الاستشارات الإدارية</li>
+                    <li><i class="fas fa-check-circle"></i> الاستشارات التسويقية</li>
+                    <li><i class="fas fa-check-circle"></i> دراسات الجدوى</li>
+                    <li><i class="fas fa-check-circle"></i> الخطط الاستراتيجية</li>
+                    <li><i class="fas fa-check-circle"></i> تحليل السوق والمنافسين</li>
+                    <li><i class="fas fa-check-circle"></i> تأسيس الشركات والكيانات القانونية</li>
+                </ul>
+
+                <div class="service-card-footer">
+                    <div class="service-count">
+                        <span>9</span> خدمات فرعية
+                    </div>
+                    <button class="btn-service">
+                        استكشف الخدمة
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Service 2: البراند -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>بناء العلامة التجارية والبراند</h3>
+                <p class="service-desc">نصنع هويتك البصرية ونميزك عن المنافسين بتصاميم احترافية تترك انطباعاً قوياً ودائماً في أذهان عملائك</p>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check-circle"></i> استراتيجية العلامة التجارية</li>
+                    <li><i class="fas fa-check-circle"></i> تصميم الهوية البصرية</li>
+                    <li><i class="fas fa-check-circle"></i> دليل الهوية البصرية</li>
+                    <li><i class="fas fa-check-circle"></i> تصميم القرطاسية والمطبوعات</li>
+                    <li><i class="fas fa-check-circle"></i> تصميمات السوشيال ميديا</li>
+                    <li><i class="fas fa-check-circle"></i> تصميم المنتجات والتغليف</li>
+                </ul>
+
+                <div class="service-card-footer">
+                    <div class="service-count">
+                        <span>19</span> خدمة فرعية
+                    </div>
+                    <button class="btn-service">
+                        استكشف الخدمة
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Service 3: التسويق الرقمي -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3>خدمات التسويق الرقمي</h3>
+                <p class="service-desc">نبني لك إمبراطورية رقمية شاملة على كل المنصات بخطة محكمة وأهداف واضحة وقياس دقيق للنتائج</p>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check-circle"></i> إدارة وسائل التواصل الاجتماعي</li>
+                    <li><i class="fas fa-check-circle"></i> الإعلانات المدفوعة (Facebook & Google)</li>
+                    <li><i class="fas fa-check-circle"></i> تحسين محركات البحث SEO</li>
+                    <li><i class="fas fa-check-circle"></i> التسويق بالمحتوى</li>
+                    <li><i class="fas fa-check-circle"></i> التسويق بالبريد الإلكتروني</li>
+                    <li><i class="fas fa-check-circle"></i> تحليل البيانات وقياس الأداء</li>
+                </ul>
+
+                <div class="service-card-footer">
+                    <div class="service-count">
+                        <span>19</span> خدمة فرعية
+                    </div>
+                    <button class="btn-service">
+                        استكشف الخدمة
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Service 4: البرمجة -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>خدمة البرمجة والتطوير</h3>
+                <p class="service-desc">حيث تلتقي التقنية بالإبداع لتحقيق أحلامك الرقمية بأنظمة متطورة وتطبيقات قوية تخدم أعمالك</p>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check-circle"></i> تأسيس مواقع الويب</li>
+                    <li><i class="fas fa-check-circle"></i> تأسيس تطبيقات الويب</li>
+                    <li><i class="fas fa-check-circle"></i> نظام CRM Next</li>
+                    <li><i class="fas fa-check-circle"></i> نظام ERP Next</li>
+                    <li><i class="fas fa-check-circle"></i> تطبيقات الجوال (iOS & Android)</li>
+                    <li><i class="fas fa-check-circle"></i> أنظمة التجارة الإلكترونية</li>
+                </ul>
+
+                <div class="service-card-footer">
+                    <div class="service-count">
+                        <span>6</span> خدمات فرعية
+                    </div>
+                    <button class="btn-service">
+                        استكشف الخدمة
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Service 5: الدعاية -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-ad"></i>
+                </div>
+                <h3>دعاية وإعلان متكاملة</h3>
+                <p class="service-desc">حيث تجتمع الخبرة مع الإبداع لتحقيق أقصى انتشار لعلامتك التجارية في الشارع وعقول الجمهور</p>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check-circle"></i> الإعلانات الخارجية (أوت دور)</li>
+                    <li><i class="fas fa-check-circle"></i> تصنيع اللافتات والحروف المضيئة</li>
+                    <li><i class="fas fa-check-circle"></i> الكلادينج وتغليف المباني</li>
+                    <li><i class="fas fa-check-circle"></i> الطباعة والمطبوعات الإعلانية</li>
+                    <li><i class="fas fa-check-circle"></i> حفر الليزر والتقطيع</li>
+                    <li><i class="fas fa-check-circle"></i> الهدايا الدعائية</li>
+                </ul>
+
+                <div class="service-card-footer">
+                    <div class="service-count">
+                        <span>9</span> خدمات فرعية
+                    </div>
+                    <button class="btn-service">
+                        استكشف الخدمة
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Service 6: المحتوى -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>إنتاج المحتوى والميديا</h3>
+                <p class="service-desc">نصنع محتوى بصري ومكتوب يلهم جمهورك ويحكي قصة علامتك التجارية بطريقة احترافية ومؤثرة</p>
+                
+                <ul class="service-features">
+                    <li><i class="fas fa-check-circle"></i> إنتاج المحتوى المرئي (فيديو)</li>
+                    <li><i class="fas fa-check-circle"></i> المونتاج والتحرير المتقدم</li>
+                    <li><i class="fas fa-check-circle"></i> التصوير الفوتوغرافي الاحترافي</li>
+                    <li><i class="fas fa-check-circle"></i> إنتاج الرسوم المتحركة والموشن جرافيك</li>
+                    <li><i class="fas fa-check-circle"></i> إدارة منصات السوشيال ميديا</li>
+                    <li><i class="fas fa-check-circle"></i> كتابة المحتوى والكوبي رايتنج</li>
+                </ul>
+
+                <div class="service-card-footer">
+                    <div class="service-count">
+                        <span>14</span> خدمة فرعية
+                    </div>
+                    <button class="btn-service">
+                        استكشف الخدمة
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>جاهز لبدء مشروعك؟</h2>
+            <p>احجز استشارة مجانية الآن ودعنا نساعدك في تحقيق أهدافك</p>
+            <div class="cta-buttons">
+                <button class="btn-cta btn-cta-primary">
+                    <i class="fas fa-calendar-check"></i>
+                    احجز استشارة مجانية
+                </button>
+                <button class="btn-cta btn-cta-secondary">
+                    <i class="fab fa-whatsapp"></i>
+                    تواصل واتساب
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>عن سويد</h4>
+                <p>شركة استشارات إدارية وتسويقية ودعائية بخبرة تزيد عن 15 عاماً في السوق المصري والعربي</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>روابط سريعة</h4>
+                <ul class="footer-links">
+                    <li><a href="../index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">خدماتنا</a></li>
+                    <li><a href="portfolio.html">أعمالنا</a></li>
+                    <li><a href="blog.html">المدونة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>خدماتنا</h4>
+                <ul class="footer-links">
+                    <li><a href="#">الاستشارات وتطوير الأعمال</a></li>
+                    <li><a href="#">بناء العلامة التجارية</a></li>
+                    <li><a href="#">التسويق الرقمي</a></li>
+                    <li><a href="#">البرمجة والتطوير</a></li>
+                    <li><a href="#">الدعاية والإعلان</a></li>
+                    <li><a href="#">إنتاج المحتوى</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>تواصل معنا</h4>
+                <p><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</p>
+                <p><i class="fas fa-phone"></i> +201068274662</p>
+                <p><i class="fas fa-phone"></i> +201229699564</p>
+                <p><i class="fas fa-envelope"></i> mohamedsweed2050@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 SWEED. جميع الحقوق محفوظة | تصميم وتطوير بواسطة فريق سويد</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT BUTTON -->
+    <a href="https://wa.me/201068274662" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Header hide/show on scroll
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Service card click handlers
+        document.querySelectorAll('.btn-service').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('سيتم الانتقال إلى صفحة الخدمة التفصيلية قريباً');
+            });
+        });
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

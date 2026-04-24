@@ -22,5 +22,12 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    ".archive",
+    "v2",
+    "v3"
+  ]
 }

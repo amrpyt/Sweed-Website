@@ -1,0 +1,10 @@
+{
+  "permission": {
+    "read": {
+      "/media/amr/02D804FAD804EE2B/Busniss/SWEED-Website/.opencode/get-shit-done/*": "allow"
+    },
+    "external_directory": {
+      "/media/amr/02D804FAD804EE2B/Busniss/SWEED-Website/.opencode/get-shit-done/*": "allow"
+    }
+  }
+}

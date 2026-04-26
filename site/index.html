@@ -217,6 +217,62 @@
             box-shadow: 0 6px 20px rgba(227, 37, 107, 0.4);
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: 2px solid var(--primary-pink);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 3px;
+            background: var(--primary-pink);
+            border-radius: 2px;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
         /* ===== SECTION 1: HERO ===== */
         .hero-section {
             position: relative;
@@ -2066,6 +2122,10 @@
         }
 
         @media (max-width: 768px) {
+            .top-bar {
+                display: none;
+            }
+
             .section-title {
                 font-size: 2rem;
             }
@@ -2079,8 +2139,80 @@
                 gap: 1rem;
             }
 
+            .nav-container {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 16px;
+                height: 79px;
+            }
+
+            .hamburger {
+                display: flex;
+                position: fixed;
+                top: 16px;
+                left: 16px;
+                z-index: 1001;
+            }
+
+            .logo {
+                padding-right: 8px;
+            }
+
             .nav-menu {
                 display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 70px 20px 30px;
+                gap: 0;
+                z-index: 1000;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-menu.active {
+                display: flex;
+                transform: translateX(0);
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 15px 10px;
+                font-size: 1.1rem;
+                color: var(--primary-purple);
+                text-align: right;
+                width: 100%;
+            }
+
+            .nav-menu a::after {
+                display: none;
+            }
+
+            .nav-menu a:hover {
+                background: rgba(227, 37, 107, 0.05);
+                color: var(--primary-pink);
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-overlay.active {
+                display: block;
             }
 
             .cta-content h2 {
@@ -2170,13 +2302,19 @@
     <!-- HEADER -->
     <header class="header" id="mainHeader">
         <nav class="nav-container">
+            <button class="hamburger" aria-label="فتح القائمة" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <div class="logo-container">
                 <div class="logo-text">
                     <div class="logo-main">SWEED</div>
                     <div class="logo-subtitle">التسويق والإعلان</div>
                 </div>
             </div>
-            
+
             <ul class="nav-menu">
                 <li><a href="index.html">الرئيسية</a></li>
                 <li><a href="pages/about.html">من نحن</a></li>
@@ -2196,6 +2334,8 @@
             </div>
         </nav>
     </header>
+
+    <div class="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
 
     <!-- SECTION 1: HERO -->
     <section class="hero-section" id="home">
@@ -3359,6 +3499,32 @@
         function closePopup() {
             document.getElementById('welcomePopup').classList.remove('active');
         }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Close mobile menu when clicking nav links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+                const overlay = document.querySelector('.mobile-menu-overlay');
+
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
 
         // Show popup after 30 seconds
         window.addEventListener('load', function() {

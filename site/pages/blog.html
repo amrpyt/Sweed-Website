@@ -167,6 +167,62 @@
             transform: translateY(-2px);
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: 2px solid var(--primary-pink);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 3px;
+            background: var(--primary-pink);
+            border-radius: 2px;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
         /* ===== HERO SECTION ===== */
         .blog-hero {
             background: var(--gradient-primary);
@@ -973,6 +1029,10 @@
         }
 
         @media (max-width: 768px) {
+            .top-bar {
+                display: none;
+            }
+
             .blog-hero h1 {
                 font-size: 2.5rem;
             }
@@ -1003,6 +1063,82 @@
 
             .newsletter-form {
                 flex-direction: column;
+            }
+
+            .nav-container {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 16px;
+                height: 79px;
+            }
+
+            .hamburger {
+                display: flex;
+                position: fixed;
+                top: 16px;
+                left: 16px;
+                z-index: 1001;
+            }
+
+            .logo {
+                padding-right: 8px;
+            }
+
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 70px 20px 30px;
+                gap: 0;
+                z-index: 1000;
+                overflow-y: auto;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-menu.active {
+                display: flex;
+                transform: translateX(0);
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 15px 10px;
+                font-size: 1.1rem;
+                color: var(--primary-purple);
+                text-align: right;
+                width: 100%;
+            }
+
+            .nav-menu a::after {
+                display: none;
+            }
+
+            .nav-menu a:hover {
+                background: rgba(227, 37, 107, 0.05);
+                color: var(--primary-pink);
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-overlay.active {
+                display: block;
             }
         }
 
@@ -1047,6 +1183,11 @@
     <!-- HEADER -->
     <header class="header">
         <nav class="nav-container">
+            <button class="hamburger" aria-label="فتح القائمة" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <a href="#" class="logo">
                 S<span class="logo-text">W</span>EED
                 <span class="logo-subtitle">MARKETING & ADVERTISING</span>
@@ -1073,6 +1214,8 @@
             </div>
         </nav>
     </header>
+
+    <div class="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
 
     <!-- HERO SECTION -->
     <section class="blog-hero">
@@ -1798,6 +1941,32 @@
                 document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Close mobile menu when clicking nav links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+                const overlay = document.querySelector('.mobile-menu-overlay');
+
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
     </script>

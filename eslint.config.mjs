@@ -1,0 +1,25 @@
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTypeScript from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTypeScript,
+  globalIgnores([
+    ".next/**",
+    "dist/**",
+    "node_modules/**",
+    ".agents/**",
+    ".archive/**",
+    ".claude/**",
+    ".codex/**",
+    ".opencode/**",
+    ".planning/**",
+    "openspec/**",
+    "site/**",
+    "v2/**",
+    "v3/**",
+  ]),
+]);
+
+export default eslintConfig;

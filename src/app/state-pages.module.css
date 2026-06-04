@@ -1,0 +1,74 @@
+.statePage {
+  display: grid;
+  width: var(--container);
+  min-height: 68dvh;
+  margin-inline: auto;
+  align-content: center;
+  justify-items: start;
+  gap: 16px;
+  padding-block: 64px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-accent);
+  font-weight: 900;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1.05;
+}
+
+.description {
+  max-width: 620px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.digest {
+  margin: 0;
+  color: var(--color-muted);
+  direction: ltr;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.skeletonBlock,
+.skeletonLine,
+.skeletonLineShort {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--color-soft), var(--color-panel), var(--color-soft));
+  background-size: 200% 100%;
+  animation: shimmer 1200ms ease-in-out infinite;
+}
+
+.skeletonBlock {
+  width: min(680px, 100%);
+  height: 220px;
+}
+
+.skeletonLine {
+  width: min(560px, 80vw);
+  height: 24px;
+}
+
+.skeletonLineShort {
+  width: min(360px, 64vw);
+  height: 24px;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+

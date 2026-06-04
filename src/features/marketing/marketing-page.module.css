@@ -1,0 +1,209 @@
+.page {
+  background:
+    radial-gradient(circle at 14% 8%, rgb(15 118 110 / 10%), transparent 28rem),
+    linear-gradient(180deg, var(--color-surface), #ffffff 42%, var(--color-surface));
+}
+
+.hero {
+  display: grid;
+  width: var(--container);
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: clamp(28px, 6vw, 72px);
+  align-items: center;
+  padding-block: clamp(56px, 9vw, 120px);
+}
+
+.heroText {
+  display: grid;
+  gap: 20px;
+  justify-items: start;
+}
+
+.heroTitle {
+  max-width: 820px;
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(2.5rem, 7vw, 5.8rem);
+  line-height: 1.02;
+}
+
+.heroDescription {
+  max-width: 680px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.85;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.heroPanel {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-panel) 92%, transparent);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(20px, 4vw, 32px);
+}
+
+.metric {
+  display: grid;
+  gap: 6px;
+  border-block-end: 1px solid var(--color-line);
+  padding-block-end: 16px;
+}
+
+.metric:last-child {
+  border-block-end: 0;
+  padding-block-end: 0;
+}
+
+.metricValue {
+  color: var(--color-ink);
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.metricLabel {
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-block-start: 28px;
+}
+
+.twoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-block-start: 28px;
+}
+
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+}
+
+.card h2,
+.card h3 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 1.35rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  border-block-start: 1px solid var(--color-line);
+  color: var(--color-muted);
+  line-height: 1.7;
+  padding-block-start: 10px;
+}
+
+.ctaBand {
+  display: grid;
+  gap: 18px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-ink);
+  color: white;
+  margin-block: clamp(40px, 8vw, 88px);
+  padding: clamp(28px, 6vw, 56px);
+}
+
+.ctaBand h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.08;
+}
+
+.ctaBand p {
+  max-width: 720px;
+  margin: 0;
+  color: rgb(255 255 255 / 72%);
+  line-height: 1.8;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+  margin-block-start: 28px;
+}
+
+.demoShell {
+  display: grid;
+  gap: 14px;
+  border: 1px dashed var(--color-accent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-soft) 70%, white);
+  margin-block-start: 28px;
+  padding: 24px;
+}
+
+.demoSteps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demoSteps li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.demoDot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+@media (width < 900px) {
+  .hero,
+  .grid,
+  .twoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-block-start: 40px;
+  }
+}
+

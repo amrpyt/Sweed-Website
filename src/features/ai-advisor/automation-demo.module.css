@@ -1,0 +1,141 @@
+.demo {
+  display: grid;
+  width: min(1180px, calc(100% - 32px));
+  margin: 64px auto;
+  grid-template-columns: minmax(0, 0.85fr) minmax(300px, 1.15fr);
+  gap: 24px;
+  align-items: start;
+  border: 1px solid rgba(233, 30, 99, 0.14);
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fff 0%, #fff6f9 100%);
+  box-shadow: 0 18px 50px rgba(48, 35, 80, 0.1);
+  direction: rtl;
+  font-family: "Cairo", Arial, sans-serif;
+  padding: clamp(22px, 5vw, 42px);
+}
+
+.copy,
+.workspace,
+.promptBox,
+.result {
+  display: grid;
+  gap: 12px;
+}
+
+.copy p,
+.copy h2,
+.copy span,
+.promptBox p,
+.result p,
+.error {
+  margin: 0;
+}
+
+.copy p,
+.promptBox span,
+.result span {
+  color: #c2185b;
+  font-weight: 900;
+}
+
+.copy h2 {
+  color: #2f2948;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.12;
+}
+
+.copy span,
+.promptBox p,
+.result p {
+  color: #5f5a72;
+  line-height: 1.8;
+}
+
+.workspace {
+  border: 1px solid rgba(233, 30, 99, 0.12);
+  border-radius: 18px;
+  background: #fff;
+  padding: 18px;
+}
+
+.controls,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.scenario,
+.activeScenario,
+.actions button,
+.result a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.scenario {
+  border: 1px solid rgba(233, 30, 99, 0.16);
+  background: #fff;
+  color: #4b1845;
+}
+
+.activeScenario,
+.actions button:first-child,
+.result a {
+  border: 0;
+  background: linear-gradient(135deg, #4b1845, #e91e63);
+  color: #fff;
+}
+
+.actions button:last-child {
+  border: 1px solid rgba(233, 30, 99, 0.16);
+  background: #fff;
+  color: #4b1845;
+}
+
+.actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.promptBox,
+.result {
+  border: 1px solid rgba(233, 30, 99, 0.12);
+  border-radius: 16px;
+  background: #fff9fb;
+  padding: 14px;
+}
+
+.error {
+  border: 1px solid rgba(233, 30, 99, 0.18);
+  border-radius: 14px;
+  background: #fff3f7;
+  color: #4b1845;
+  padding: 12px;
+}
+
+.spin {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (width < 900px) {
+  .demo {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -8,6 +8,8 @@
 .planning
 .tmp
 .vscode
+.artifacts
+.codex-dev.*
 dist
 node_modules
 test-results

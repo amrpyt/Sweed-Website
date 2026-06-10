@@ -1,0 +1,85 @@
+.formLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.formCard,
+.infoPanel {
+  border-radius: 24px;
+  background: var(--sweed-white, #ffffff);
+  padding: 1.5rem;
+  box-shadow: 0 18px 45px rgba(38, 27, 62, 0.08);
+  border: 1px solid rgba(38, 27, 62, 0.08);
+}
+
+.formHeader h2,
+.infoPanel h2 {
+  margin: 0;
+  color: var(--sweed-primary-purple, #261b3e);
+  font-size: 1.5rem;
+}
+
+.formHeader p,
+.infoPanel p {
+  margin: 0.85rem 0 0;
+  color: var(--sweed-dark-silver, #6d6e70);
+  line-height: 1.8;
+}
+
+.formFields {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.selectField {
+  display: grid;
+  gap: 8px;
+}
+
+.selectLabel {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.selectInput {
+  width: 100%;
+  min-height: 140px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+  color: var(--color-text);
+  padding: 12px 14px;
+}
+
+.selectInput:focus {
+  border-color: var(--color-accent);
+  outline: 3px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+.selectHelper {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.formActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.infoList {
+  margin: 1rem 0 0;
+  padding: 0 1.1rem 0 0;
+  color: var(--sweed-dark-silver, #6d6e70);
+  line-height: 1.9;
+}
+
+@media (max-width: 900px) {
+  .formLayout {
+    grid-template-columns: 1fr;
+  }
+}

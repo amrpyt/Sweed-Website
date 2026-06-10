@@ -56,7 +56,7 @@ export function LegacyFooter() {
 
 const legacyFooterCss = `
   .sweed-common-footer {
-    background: var(--primary-purple, #2D2947) !important;
+    background: var(--primary-purple, #261b3e) !important;
     color: var(--white, #ffffff) !important;
     padding: 4rem 0 1.5rem !important;
     margin: 0 !important;

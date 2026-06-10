@@ -1,0 +1,11 @@
+.page {
+  background: var(--white, #ffffff);
+}
+
+.hero {
+  min-height: clamp(360px, 60vh, 560px);
+}
+
+.anchorSection {
+  scroll-margin-top: 180px;
+}

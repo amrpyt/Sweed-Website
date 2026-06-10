@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { legacyBreadcrumbs, type LegacyPageKey } from "./legacy-routes";
 
 export function LegacyBreadcrumb({ page }: { page: LegacyPageKey }) {
@@ -28,9 +28,9 @@ const legacyBreadcrumbCss = `
   .sweed-legacy-breadcrumb {
     width: 100% !important;
     background: #ffffff !important;
-    border-top: 1px solid rgba(45, 41, 71, 0.06) !important;
-    border-bottom: 1px solid rgba(45, 41, 71, 0.08) !important;
-    box-shadow: 0 8px 22px rgba(45, 41, 71, 0.04) !important;
+    border-top: 1px solid rgba(38, 27, 62, 0.06) !important;
+    border-bottom: 1px solid rgba(38, 27, 62, 0.08) !important;
+    box-shadow: 0 8px 22px rgba(38, 27, 62, 0.04) !important;
     position: relative !important;
     z-index: 1 !important;
   }
@@ -44,7 +44,7 @@ const legacyBreadcrumbCss = `
     align-items: center !important;
     justify-content: flex-start !important;
     gap: 0.55rem !important;
-    color: rgba(45, 41, 71, 0.72) !important;
+    color: rgba(38, 27, 62, 0.72) !important;
     font-size: 0.95rem !important;
     font-weight: 700 !important;
     line-height: 1.4 !important;
@@ -53,7 +53,7 @@ const legacyBreadcrumbCss = `
   }
 
   .sweed-legacy-breadcrumb a {
-    color: var(--primary-purple, #2D2947) !important;
+    color: var(--primary-purple, #261b3e) !important;
     text-decoration: none !important;
   }
 
@@ -66,7 +66,7 @@ const legacyBreadcrumbCss = `
 
   .sweed-legacy-breadcrumb i,
   .sweed-legacy-breadcrumb span > span {
-    color: var(--primary-pink, #E3256B) !important;
+    color: var(--primary-pink, #ed2062) !important;
   }
 
   @media (max-width: 768px) {
@@ -76,3 +76,4 @@ const legacyBreadcrumbCss = `
     }
   }
 `;
+

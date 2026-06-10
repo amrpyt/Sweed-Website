@@ -1,7 +1,7 @@
 "use client";
 
 import { Loader2, Play, RotateCcw } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import type { AdvisorResponse } from "./contracts";
 import styles from "./automation-demo.module.css";
 
@@ -25,8 +25,9 @@ const scenarios = [
 
 export function AutomationDemo() {
   const [activeId, setActiveId] = useState(scenarios[0].id);
-  const [resourceId] = useState(() => `automation_${crypto.randomUUID()}`);
-  const [threadId] = useState(() => `automation_thread_${crypto.randomUUID()}`);
+  const runtimeId = useId().replace(/:/g, "_");
+  const resourceId = `automation_${runtimeId}`;
+  const threadId = `automation_thread_${runtimeId}`;
   const [result, setResult] = useState<AdvisorResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");

@@ -2,9 +2,19 @@ import Link from "next/link";
 import type { CTAContent, HeroContent, IconTextItem, SectionHeaderContent, StatItem } from "@/content/types";
 import styles from "./section-blocks.module.css";
 
-export function LegacyDerivedHero({ content, children }: { content: HeroContent; children?: React.ReactNode }) {
+export function LegacyDerivedHero({
+  content,
+  children,
+  className,
+  id,
+}: {
+  content: HeroContent;
+  children?: React.ReactNode;
+  className?: string;
+  id?: string;
+}) {
   return (
-    <section className={styles.hero}>
+    <section className={className ? `${styles.hero} ${className}` : styles.hero} id={id}>
       <div className={`${styles.container} ${styles.heroGrid}`}>
         <div>
           {content.eyebrow ? <p className={styles.eyebrow}>{content.eyebrow}</p> : null}
@@ -31,13 +41,20 @@ export function LegacyDerivedSection({
   header,
   children,
   tone = "default",
+  className,
+  id,
 }: {
   header?: SectionHeaderContent;
   children: React.ReactNode;
   tone?: "default" | "alt";
+  className?: string;
+  id?: string;
 }) {
   return (
-    <section className={`${styles.section} ${tone === "alt" ? styles.sectionAlt : ""}`}>
+    <section
+      className={`${styles.section} ${tone === "alt" ? styles.sectionAlt : ""}${className ? ` ${className}` : ""}`}
+      id={id}
+    >
       <div className={styles.container}>
         {header ? <SectionIntro content={header} /> : null}
         {children}

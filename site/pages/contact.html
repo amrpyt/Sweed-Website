@@ -14,14 +14,14 @@
         }
 
         :root {
-            --primary-pink: #E3256B;
-            --primary-purple: #2D2947;
-            --sunset-orange: #FF6B35;
+            --primary-pink: #ed2062;
+            --primary-purple: #261b3e;
+            --sunset-orange: #261b3e;
             --dark-silver: #6d6e70;
             --white: #ffffff;
             --light-bg: #f8f9fa;
-            --success-green: #28a745;
-            --error-red: #dc3545;
+            --success-green: #261b3e;
+            --error-red: #ed2062;
         }
 
         body {
@@ -234,7 +234,7 @@
 
         /* ===== HERO SECTION ===== */
         .contact-hero {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #ed2062 100%);
             padding: 100px 0 80px;
             text-align: center;
             color: var(--white);
@@ -385,7 +385,7 @@
 
         .contact-method:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(227, 37, 107, 0.15);
+            box-shadow: 0 8px 20px rgba(237, 32, 98, 0.15);
             border-color: var(--primary-pink);
         }
 
@@ -454,11 +454,11 @@
 
         .contact-btn:hover {
             transform: translateX(-5px);
-            box-shadow: 0 5px 15px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 5px 15px rgba(237, 32, 98, 0.3);
         }
 
         .working-hours {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #ed2062 100%);
             color: var(--white);
             padding: 1.5rem;
             border-radius: 15px;
@@ -554,7 +554,92 @@
         .form-textarea:focus {
             outline: none;
             border-color: var(--primary-pink);
-            box-shadow: 0 0 0 3px rgba(227, 37, 107, 0.1);
+            box-shadow: 0 0 0 3px rgba(237, 32, 98, 0.1);
+        }
+
+        .form-help {
+            color: var(--dark-silver);
+            font-size: 0.82rem;
+            margin-top: 0.55rem;
+        }
+
+        .ts-wrapper {
+            position: relative;
+        }
+
+        .ts-wrapper.multi .ts-control {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            min-height: 54px;
+            padding: 0.48rem 0.7rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: var(--white);
+            box-shadow: none;
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            gap: 0.4rem;
+        }
+
+        .ts-control input {
+            min-width: 160px;
+            flex: 1 1 160px;
+            border: 0;
+            outline: 0;
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-purple);
+        }
+
+        .ts-wrapper.focus .ts-control {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(237, 32, 98, 0.1);
+        }
+
+        .ts-wrapper.multi .ts-control > div {
+            background: rgba(237, 32, 98, 0.1);
+            color: var(--primary-purple);
+            border: 1px solid rgba(237, 32, 98, 0.18);
+            border-radius: 999px;
+            padding: 0.35rem 0.72rem;
+            font-weight: 800;
+        }
+
+        .ts-wrapper.plugin-remove_button .item .remove {
+            border-right: 1px solid rgba(38, 27, 62, 0.12);
+            color: var(--primary-pink);
+            margin-right: 0.45rem;
+            padding-right: 0.5rem;
+        }
+
+        .ts-dropdown {
+            position: absolute;
+            top: calc(100% + 0.4rem);
+            right: 0;
+            left: 0;
+            border: 1px solid rgba(38, 27, 62, 0.12);
+            border-radius: 14px;
+            background: var(--white);
+            box-shadow: 0 18px 45px rgba(38, 27, 62, 0.15);
+            overflow: hidden;
+            direction: rtl;
+            font-family: 'Cairo', sans-serif;
+            z-index: 20;
+        }
+
+        .ts-dropdown .option {
+            padding: 0.75rem 1rem;
+            color: var(--primary-purple);
+        }
+
+        .ts-dropdown .active {
+            background: rgba(237, 32, 98, 0.08);
+            color: var(--primary-pink);
+        }
+
+        .ts-dropdown .no-results {
+            padding: 0.75rem 1rem;
+            color: var(--dark-silver);
         }
 
         .form-textarea {
@@ -608,7 +693,7 @@
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 8px 25px rgba(237, 32, 98, 0.3);
         }
 
         .submit-btn i {
@@ -688,32 +773,32 @@
         }
 
         .social-link.facebook:hover {
-            background: #1877f2;
+            background: #261b3e;
             color: var(--white);
         }
 
         .social-link.instagram:hover {
-            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            background: linear-gradient(135deg, #ed2062 0%, #261b3e 100%);
             color: var(--white);
         }
 
         .social-link.linkedin:hover {
-            background: #0077b5;
+            background: #261b3e;
             color: var(--white);
         }
 
         .social-link.twitter:hover {
-            background: #1da1f2;
+            background: #ed2062;
             color: var(--white);
         }
 
         .social-link.youtube:hover {
-            background: #ff0000;
+            background: #ed2062;
             color: var(--white);
         }
 
         .social-link.whatsapp:hover {
-            background: #25d366;
+            background: #ed2062;
             color: var(--white);
         }
 
@@ -762,7 +847,7 @@
 
         .faq-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(227, 37, 107, 0.15);
+            box-shadow: 0 8px 25px rgba(237, 32, 98, 0.15);
         }
 
         .faq-question {
@@ -788,7 +873,7 @@
 
         /* ===== CTA SECTION ===== */
         .cta-section {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, #E3256B 100%);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #ed2062 100%);
             padding: 60px 0;
             text-align: center;
             color: var(--white);
@@ -973,7 +1058,7 @@
             height: 60px;
             bottom: 30px;
             left: 30px;
-            background: #25d366;
+            background: #ed2062;
             color: var(--white);
             border-radius: 50%;
             display: flex;
@@ -997,7 +1082,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: #25d366;
+            background: #ed2062;
             animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
         }
 
@@ -1140,7 +1225,7 @@
             }
 
             .nav-menu a:hover {
-                background: rgba(227, 37, 107, 0.05);
+                background: rgba(237, 32, 98, 0.05);
                 color: var(--primary-pink);
             }
 
@@ -1394,11 +1479,11 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>الاسم الكامل <span class="required">*</span></label>
-                            <input type="text" class="form-input" placeholder="أدخل اسمك الكامل" required>
+                            <input id="contactName" type="text" class="form-input" placeholder="أدخل اسمك الكامل" required>
                         </div>
                         <div class="form-group">
                             <label>رقم الهاتف <span class="required">*</span></label>
-                            <input type="tel" class="form-input" placeholder="01xxxxxxxxx" required>
+                            <input id="contactPhone" type="tel" class="form-input" placeholder="01xxxxxxxxx" required>
                         </div>
                     </div>
 
@@ -1415,8 +1500,7 @@
 
                     <div class="form-group">
                         <label>نوع الخدمة المطلوبة <span class="required">*</span></label>
-                        <select class="form-select" required>
-                            <option value="">اختر الخدمة</option>
+                        <select id="serviceSelect" class="form-select" multiple required>
                             <option value="consulting">استشارات إدارية وتطوير أعمال</option>
                             <option value="branding">بناء العلامة التجارية</option>
                             <option value="marketing">التسويق الرقمي</option>
@@ -1425,6 +1509,7 @@
                             <option value="content">إنتاج المحتوى</option>
                             <option value="other">خدمة أخرى</option>
                         </select>
+                        <p class="form-help">اختار خدمة أو أكثر، وتقدر تحذف أي اختيار من العلامة الصغيرة.</p>
                     </div>
 
                     <div class="form-group">
@@ -1643,21 +1728,29 @@
     </a>
 
     <script>
-        // Header hide/show on scroll
-        let lastScroll = 0;
+        // Keep public chrome visible while scrolling.
         const header = document.getElementById('header');
+        if (header) {
+            header.classList.remove('hidden');
+        }
 
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                header.classList.add('hidden');
-            } else {
-                header.classList.remove('hidden');
-            }
-            
-            lastScroll = currentScroll;
-        });
+        const contactParams = new URLSearchParams(window.location.search);
+        const serviceSelect = document.getElementById('serviceSelect');
+        const requestedServices = (contactParams.get('services') || '').split(',').filter(Boolean);
+        if (serviceSelect && requestedServices.length) {
+            Array.from(serviceSelect.options).forEach((option) => {
+                option.selected = requestedServices.includes(option.value);
+            });
+        }
+
+        const contactName = document.getElementById('contactName');
+        const contactPhone = document.getElementById('contactPhone');
+        if (contactName && contactParams.get('name')) {
+            contactName.value = contactParams.get('name');
+        }
+        if (contactPhone && contactParams.get('phone')) {
+            contactPhone.value = contactParams.get('phone');
+        }
 
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -1745,3 +1838,5 @@
     <script type="module" src="../assets/mobile-polish.js"></script>
 </body>
 </html>
+
+

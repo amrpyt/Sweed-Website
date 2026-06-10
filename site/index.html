@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -279,7 +279,13 @@
             min-height: 600px;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-pink) 100%);
+            background:
+                linear-gradient(135deg, rgba(45, 41, 71, 0.9) 0%, rgba(227, 37, 107, 0.72) 100%),
+                url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=85&w=1600'),
+                url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=85&w=1600');
+            background-position: center, left center, right center;
+            background-repeat: no-repeat;
+            background-size: cover, 58% 100%, 58% 100%;
             overflow: hidden;
             padding: 4rem 0;
         }
@@ -2374,7 +2380,7 @@
             </div>
             <div class="problems-grid">
                 <div class="problem-card">
-                    <div class="problem-icon"><i class="fas fa-chart-line-down"></i></div>
+                    <div class="problem-icon"><i class="fas fa-chart-line"></i></div>
                     <h3 class="problem-title">ميزانية محدودة؟</h3>
                     <p class="problem-description">تبحث عن حلول تسويقية فعالة بتكلفة مناسبة لميزانيتك وتحقق أهدافك.</p>
                     <div class="problem-solution">

@@ -1,19 +1,38 @@
-"use client";
+﻿"use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { LegacyPageKey } from "./legacy-routes";
 
-const navItems: Array<{ href: string; label: string; active: LegacyPageKey }> = [
+type NavItem = {
+  href: string;
+  label: string;
+  active?: LegacyPageKey;
+};
+
+const defaultNavItems: NavItem[] = [
   { href: "/", label: "الرئيسية", active: "home" },
   { href: "/about", label: "من نحن", active: "about" },
-  { href: "/services", label: "خدماتنا", active: "services" },
   { href: "/offers", label: "العروض", active: "offers" },
+  { href: "/services", label: "خدماتنا", active: "services" },
   { href: "/products", label: "منتجاتنا", active: "products" },
   { href: "/portfolio", label: "أعمالنا", active: "portfolio" },
   { href: "/articles", label: "المقالات", active: "articles" },
-  { href: "/faq", label: "الاسئلة الشائعه", active: "faq" },
+  { href: "/faq", label: "الأسئلة الشائعة", active: "faq" },
   { href: "/contact", label: "اتصل بنا", active: "contact" },
+];
+
+const homeNavItems: NavItem[] = [
+  { href: "/#home", label: "الرئيسية", active: "home" },
+  { href: "/#about", label: "من نحن" },
+  { href: "/#offers", label: "العروض" },
+  { href: "/#services", label: "خدماتنا" },
+  { href: "/#products", label: "منتجاتنا" },
+  { href: "/#portfolio", label: "أعمالنا" },
+  { href: "/#blog", label: "المقالات" },
+  { href: "/#faq", label: "الأسئلة الشائعة" },
+  { href: "/#contact", label: "اتصل بنا" },
 ];
 
 function isActive(page: LegacyPageKey, active: LegacyPageKey) {
@@ -24,6 +43,7 @@ function isActive(page: LegacyPageKey, active: LegacyPageKey) {
 
 export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const [isOpen, setIsOpen] = useState(false);
+  const navItems = page === "home" ? homeNavItems : defaultNavItems;
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -81,6 +101,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           </button>
 
           <Link className="logo-container sweed-common-logo" href="/" aria-label="SWEED الرئيسية">
+            <Image alt="SWEED" className="sweed-official-logo" height={80} src="/sweed-logo-official.svg" width={300} />
             <div className="logo-text">
               <div className="logo-main">SWEED</div>
               <div className="logo-subtitle">التسويق والإعلان</div>
@@ -90,7 +111,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           <ul className={`nav-menu ${isOpen ? "active" : ""}`}>
             {navItems.map((item) => (
               <li key={item.href}>
-                <a className={isActive(page, item.active) ? "active" : undefined} href={item.href} onClick={() => setIsOpen(false)}>
+                <a className={item.active && isActive(page, item.active) ? "active" : undefined} href={item.href} onClick={() => setIsOpen(false)}>
                   {item.label}
                 </a>
               </li>
@@ -119,12 +140,17 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
 
 const legacyHeaderCss = `
   .sweed-common-top-bar {
-    background: var(--primary-purple, #2D2947) !important;
+    background: var(--primary-purple, #261b3e) !important;
     color: var(--white, #ffffff) !important;
     padding: 0.7rem 0 !important;
     font-size: 0.85rem !important;
     width: 100% !important;
     overflow: hidden !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 2300 !important;
   }
 
   .sweed-common-top-bar .top-bar-content {
@@ -155,7 +181,7 @@ const legacyHeaderCss = `
   }
 
   .sweed-common-top-bar .top-bar-item i {
-    color: var(--primary-pink, #E3256B) !important;
+    color: var(--primary-pink, #ed2062) !important;
   }
 
   .sweed-common-top-bar .social-media {
@@ -182,12 +208,26 @@ const legacyHeaderCss = `
   .sweed-common-header {
     background: var(--white, #ffffff) !important;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important;
-    position: sticky !important;
-    top: 0 !important;
+    position: fixed !important;
+    top: 52px !important;
+    left: 0 !important;
+    right: 0 !important;
     z-index: 2200 !important;
-    transition: transform 0.3s ease !important;
+    transition: box-shadow 0.3s ease !important;
     width: 100% !important;
     overflow-x: clip !important;
+  }
+
+  body {
+    padding-top: 137px !important;
+  }
+
+  html {
+    scroll-behavior: smooth !important;
+  }
+
+  section[id] {
+    scroll-margin-top: 164px !important;
   }
 
   .sweed-common-header .nav-container {
@@ -209,16 +249,21 @@ const legacyHeaderCss = `
     flex: 0 0 auto !important;
   }
 
+  .sweed-common-logo .sweed-official-logo {
+    width: 118px !important;
+    height: auto !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+  }
+
   .sweed-common-logo .logo-text {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
+    display: none !important;
   }
 
   .sweed-common-logo .logo-main {
     font-size: 2rem !important;
     font-weight: 900 !important;
-    background: linear-gradient(135deg, var(--primary-pink, #E3256B), var(--primary-purple, #2D2947)) !important;
+    background: linear-gradient(135deg, var(--primary-pink, #ed2062), var(--primary-purple, #261b3e)) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
@@ -247,7 +292,7 @@ const legacyHeaderCss = `
   }
 
   .sweed-common-header .nav-menu a {
-    color: var(--primary-purple, #2D2947) !important;
+    color: var(--primary-purple, #261b3e) !important;
     text-decoration: none !important;
     font-weight: 600 !important;
     font-size: 0.95rem !important;
@@ -263,7 +308,7 @@ const legacyHeaderCss = `
     right: 0 !important;
     width: 0 !important;
     height: 2px !important;
-    background: linear-gradient(90deg, var(--primary-pink, #E3256B), var(--sunset-orange, #FF6B35)) !important;
+    background: linear-gradient(90deg, var(--primary-pink, #ed2062), var(--sunset-orange, #261b3e)) !important;
     transition: width 0.3s ease !important;
   }
 
@@ -273,7 +318,7 @@ const legacyHeaderCss = `
   }
 
   .sweed-common-header .nav-menu a.active {
-    color: var(--primary-pink, #E3256B) !important;
+    color: var(--primary-pink, #ed2062) !important;
   }
 
   .sweed-common-header .nav-buttons {
@@ -287,9 +332,9 @@ const legacyHeaderCss = `
     height: 52px !important;
     min-width: 52px !important;
     border-radius: 18px !important;
-    border: 2px solid var(--primary-purple, #2D2947) !important;
+    border: 2px solid var(--primary-purple, #261b3e) !important;
     background: #ffffff !important;
-    color: var(--primary-purple, #2D2947) !important;
+    color: var(--primary-purple, #261b3e) !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -299,7 +344,7 @@ const legacyHeaderCss = `
   .sweed-common-header .btn-download {
     border: 0 !important;
     border-radius: 18px !important;
-    background: linear-gradient(135deg, var(--primary-pink, #E3256B), var(--sunset-orange, #FF6B35)) !important;
+    background: linear-gradient(135deg, var(--primary-pink, #ed2062), var(--sunset-orange, #261b3e)) !important;
     color: #ffffff !important;
     padding: 0 1.15rem !important;
     min-height: 52px !important;
@@ -331,6 +376,10 @@ const legacyHeaderCss = `
 
     .sweed-common-logo .logo-main {
       font-size: 1.65rem !important;
+    }
+
+    .sweed-common-logo .sweed-official-logo {
+      width: 104px !important;
     }
 
     .sweed-common-logo .logo-subtitle {
@@ -376,12 +425,21 @@ const legacyHeaderCss = `
       display: none !important;
     }
 
+    body {
+      padding-top: 78px !important;
+    }
+
+    section[id] {
+      scroll-margin-top: 92px !important;
+    }
+
     .sweed-common-header {
       overflow: visible !important;
       background: rgba(255, 255, 255, 0.96) !important;
-      box-shadow: 0 8px 28px rgba(45, 41, 71, 0.08) !important;
+      box-shadow: 0 8px 28px rgba(38, 27, 62, 0.08) !important;
       backdrop-filter: blur(14px) !important;
       z-index: 2200 !important;
+      top: 0 !important;
     }
 
     .sweed-common-header.mobile-menu-open {
@@ -402,6 +460,10 @@ const legacyHeaderCss = `
       max-width: 190px !important;
       overflow: visible !important;
       white-space: nowrap !important;
+    }
+
+    .sweed-common-logo .sweed-official-logo {
+      width: 96px !important;
     }
 
     .sweed-common-logo .logo-main {
@@ -431,8 +493,8 @@ const legacyHeaderCss = `
       z-index: 2301 !important;
       border: 0 !important;
       border-radius: 15px !important;
-      background: linear-gradient(135deg, #e3256b, #ff6b35) !important;
-      box-shadow: 0 14px 32px rgba(227, 37, 107, 0.32) !important;
+      background: linear-gradient(135deg, #ed2062, #261b3e) !important;
+      box-shadow: 0 14px 32px rgba(237, 32, 98, 0.32) !important;
       transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -445,8 +507,8 @@ const legacyHeaderCss = `
       left: auto !important;
       right: 18px !important;
       background: rgba(255, 255, 255, 0.88) !important;
-      border: 1px solid rgba(227, 37, 107, 0.16) !important;
-      box-shadow: 0 12px 26px rgba(45, 41, 71, 0.12) !important;
+      border: 1px solid rgba(237, 32, 98, 0.16) !important;
+      box-shadow: 0 12px 26px rgba(38, 27, 62, 0.12) !important;
       backdrop-filter: blur(12px) !important;
     }
 
@@ -464,7 +526,7 @@ const legacyHeaderCss = `
       width: 18px !important;
       height: 2px !important;
       margin: 2px 0 !important;
-      background: #2d2947 !important;
+      background: #261b3e !important;
     }
 
     .sweed-common-header .hamburger.active span:nth-child(1) {
@@ -512,10 +574,10 @@ const legacyHeaderCss = `
       flex-direction: column !important;
       align-items: flex-start !important;
       background:
-        radial-gradient(circle at 20% 0%, rgba(255, 107, 53, 0.14), transparent 30%),
+        radial-gradient(circle at 20% 0%, rgba(138, 29, 80, 0.14), transparent 30%),
         linear-gradient(180deg, #ffffff 0%, #fff7fb 100%) !important;
-      box-shadow: -18px 0 55px rgba(45, 41, 71, 0.24) !important;
-      border-left: 1px solid rgba(227, 37, 107, 0.16) !important;
+      box-shadow: -18px 0 55px rgba(38, 27, 62, 0.24) !important;
+      border-left: 1px solid rgba(237, 32, 98, 0.16) !important;
       border-radius: 26px 0 0 26px !important;
       isolation: isolate !important;
       transform: translateX(105%) !important;
@@ -537,11 +599,11 @@ const legacyHeaderCss = `
       display: block !important;
       margin: 0 0 0.75rem !important;
       padding: 0 0 0.85rem !important;
-      border-bottom: 1px solid rgba(227, 37, 107, 0.16) !important;
+      border-bottom: 1px solid rgba(237, 32, 98, 0.16) !important;
       font-weight: 900 !important;
       font-size: clamp(1.15rem, 5vw, 1.45rem) !important;
       line-height: 1.35 !important;
-      background: linear-gradient(135deg, #e3256b, #2d2947) !important;
+      background: linear-gradient(135deg, #ed2062, #261b3e) !important;
       -webkit-background-clip: text !important;
       background-clip: text !important;
       color: transparent !important;
@@ -555,10 +617,10 @@ const legacyHeaderCss = `
       border-radius: 18px !important;
       background:
         linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,247,251,0.96)),
-        radial-gradient(circle at 85% 18%, rgba(227,37,107,0.14), transparent 28%) !important;
-      border: 1px solid rgba(227, 37, 107, 0.16) !important;
-      box-shadow: 0 18px 40px rgba(45, 41, 71, 0.10) !important;
-      color: #2d2947 !important;
+        radial-gradient(circle at 85% 18%, rgba(237,32,98,0.14), transparent 28%) !important;
+      border: 1px solid rgba(237, 32, 98, 0.16) !important;
+      box-shadow: 0 18px 40px rgba(38, 27, 62, 0.10) !important;
+      color: #261b3e !important;
       font-weight: 900 !important;
       line-height: 1.55 !important;
       font-size: 0.9rem !important;
@@ -589,8 +651,8 @@ const legacyHeaderCss = `
       padding: 10px 12px !important;
       border-radius: 15px !important;
       background: rgba(255, 255, 255, 0.84) !important;
-      color: #2d2947 !important;
-      box-shadow: inset 0 0 0 1px rgba(45, 41, 71, 0.06) !important;
+      color: #261b3e !important;
+      box-shadow: inset 0 0 0 1px rgba(38, 27, 62, 0.06) !important;
       font-size: 1rem !important;
       font-weight: 800 !important;
       text-align: right !important;
@@ -599,7 +661,7 @@ const legacyHeaderCss = `
 
     .sweed-common-header .nav-menu li:nth-of-type(n+5) a:not(.active) {
       background: rgba(255, 255, 255, 0.9) !important;
-      color: rgba(45, 41, 71, 0.72) !important;
+      color: rgba(38, 27, 62, 0.72) !important;
     }
 
     .sweed-common-header .nav-menu a::before {
@@ -610,8 +672,8 @@ const legacyHeaderCss = `
       align-items: center !important;
       justify-content: center !important;
       margin-left: 0.58rem !important;
-      color: #e3256b !important;
-      background: rgba(227, 37, 107, 0.08) !important;
+      color: #ed2062 !important;
+      background: rgba(237, 32, 98, 0.08) !important;
       font-family: "Font Awesome 6 Free" !important;
       font-weight: 900 !important;
       flex-shrink: 0 !important;
@@ -633,7 +695,7 @@ const legacyHeaderCss = `
       display: inline-flex !important;
       font-family: "Font Awesome 6 Free" !important;
       font-weight: 900 !important;
-      color: rgba(45, 41, 71, 0.38) !important;
+      color: rgba(38, 27, 62, 0.38) !important;
       margin-right: auto !important;
       width: auto !important;
       height: auto !important;
@@ -643,14 +705,14 @@ const legacyHeaderCss = `
     }
 
     .sweed-common-header .nav-menu a:hover {
-      background: rgba(227, 37, 107, 0.05) !important;
-      color: var(--primary-pink, #E3256B) !important;
+      background: rgba(237, 32, 98, 0.05) !important;
+      color: var(--primary-pink, #ed2062) !important;
     }
 
     .sweed-common-header .nav-menu a.active {
-      background: linear-gradient(135deg, #2d2947 0%, #e3256b 100%) !important;
+      background: linear-gradient(135deg, #261b3e 0%, #ed2062 100%) !important;
       color: #fff !important;
-      box-shadow: 0 16px 32px rgba(45, 41, 71, 0.18) !important;
+      box-shadow: 0 16px 32px rgba(38, 27, 62, 0.18) !important;
     }
 
     .sweed-common-header .nav-menu a.active::before {
@@ -667,3 +729,5 @@ const legacyHeaderCss = `
     }
   }
 `;
+
+

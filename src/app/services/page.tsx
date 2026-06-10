@@ -1,7 +1,0 @@
-import { getLegacyMetadata, LegacyPage } from "@/features/legacy-site";
-
-export const metadata = getLegacyMetadata("services");
-
-export default function ServicesPage() {
-  return <LegacyPage page="services" />;
-}

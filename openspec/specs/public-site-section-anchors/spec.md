@@ -5,12 +5,12 @@ TBD - created by archiving change add-legacy-section-anchors. Update Purpose aft
 ## Requirements
 ### Requirement: Stable section anchors
 
-Public legacy-backed pages SHALL expose stable URL hash anchors for important sections without changing their visual layout.
+Public legacy-backed pages SHALL expose stable URL hash anchors for important sections without changing their visual layout, including the homepage `#expertise` anchor used by public navigation.
 
 #### Scenario: Homepage section is linked directly
 
 - **WHEN** a visitor opens `/#expertise`
-- **THEN** the expertise section SHALL exist with `id="expertise"`
+- **THEN** the linked homepage section SHALL exist with `id="expertise"`
 
 #### Scenario: Inner page section is linked directly
 

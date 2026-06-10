@@ -1,3 +1,4 @@
+import "server-only";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
@@ -55,12 +56,62 @@ function normalizeLegacyContactDetails(html: string) {
     .replaceAll("mailto:mohamedsweed2050@gmail.com", "mailto:info@sweed.com");
 }
 
-function normalizeHtml(html: string) {
-  return addSectionAnchors(normalizeLegacyContactDetails(rewriteLegacyLinks(rewriteAssetUrl(html))));
+function applyHomepageBriefAdjustments(html: string, page: LegacyPageKey) {
+  if (page !== "home") {
+    return html;
+  }
+
+  return html
+    .replace(">شركاء نجاح اشتغلوا معانا<", ">شركاء النجاح<")
+    .replace('<section class="help-section">', '<section class="help-section" id="contact">')
+    .replace(
+      /<select id="quickService" required>[\s\S]*?<\/select>/,
+      `<div data-home-services="true" style="display: grid; gap: 0.85rem;">
+                        <p style="margin: 0; color: rgba(255,255,255,0.82); font-size: 0.95rem; font-weight: 700;">اختر خدمة أو أكثر حسب احتياجك الحالي</p>
+                        <div style="display: flex; gap: 0.85rem; overflow-x: auto; padding-bottom: 0.3rem; scrollbar-width: thin;">
+                            <label style="min-width: 220px; display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.1rem; border-radius: 18px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.18); color: white; cursor: pointer;">
+                                <input type="checkbox" name="quickServices" value="digital-marketing">
+                                <span>التسويق الرقمي والنمو</span>
+                            </label>
+                            <label style="min-width: 220px; display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.1rem; border-radius: 18px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.18); color: white; cursor: pointer;">
+                                <input type="checkbox" name="quickServices" value="websites">
+                                <span>المواقع والتجارب الرقمية</span>
+                            </label>
+                            <label style="min-width: 220px; display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.1rem; border-radius: 18px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.18); color: white; cursor: pointer;">
+                                <input type="checkbox" name="quickServices" value="ai-automation">
+                                <span>الذكاء الاصطناعي والأتمتة</span>
+                            </label>
+                        </div>
+                    </div>`,
+    )
+    .replace('<section class="packages-section" id="packages">', '<section class="packages-section" id="offers">')
+    .replace(">باقات مصممة خصيصاً لنجاحك<", ">باقات وعروض<")
+    .replace(
+      /<div class="packages-cta">[\s\S]*?<\/div>\s*<\/div>\s*<\/section>/,
+      `<div class="packages-cta">
+                <button class="btn btn-secondary" onclick="openPopup()">
+                    <i class="fas fa-phone"></i> احصل على استشارة مخصصة
+                </button>
+            </div>
+            <div class="products-more" data-packages-more="true">
+                <a href="/offers" class="btn btn-primary">
+                    <i class="fas fa-eye"></i> مشاهدة المزيد
+                </a>
+            </div>
+        </div>
+    </section>`,
+    )
+    .replace(">خدماتنا الشاملة<", ">خدماتنا المتكاملة<")
+    .replaceAll('href="pages/service-detail.html" class="service-link"', 'href="/services" class="service-link"');
+}
+
+function normalizeHtml(html: string, page: LegacyPageKey) {
+  return addSectionAnchors(applyHomepageBriefAdjustments(normalizeLegacyContactDetails(rewriteLegacyLinks(rewriteAssetUrl(html))), page));
 }
 
 const sectionAnchorByClass: Record<string, string> = {
   "hero-section": "hero",
+  "clients-marquee-section": "expertise",
   "problems-section": "problems",
   "stats-section": "stats",
   "help-section": "help",
@@ -147,8 +198,10 @@ function removeLegacyChrome(html: string) {
   return html
     .replace(/\s*<!-- TOP BAR -->[\s\S]*?<div class="mobile-menu-overlay"[^>]*><\/div>/i, "")
     .replace(/\s*<!-- HEADER -->[\s\S]*?<div class="mobile-menu-overlay"[^>]*><\/div>/i, "")
+    .replace(/\s*<!-- BREADCRUMB -->[\s\S]*?(?=\s*<!--)/i, "")
     .replace(/\s*<(?:section|nav)\b[^>]*class=["'][^"']*\bbreadcrumb\b[^"']*["'][\s\S]*?<\/(?:section|nav)>/i, "")
     .replace(/\s*<div\b[^>]*class=["'][^"']*\bbreadcrumb\b[^"']*["'][\s\S]*?<\/div>/i, "")
+    .replace(/^\s*<\/div>\s*/i, "")
     .replace(/\s*<!-- FOOTER -->[\s\S]*?<footer class="footer"[\s\S]*?<\/footer>/i, "")
     .replace(/\s*<footer class="footer"[\s\S]*?<\/footer>/i, "")
     .replace(/\s*<!-- WHATSAPP(?: FLOAT(?:ING)? BUTTON| FLOAT BUTTON| BUTTON)? -->[\s\S]*?(?=<!--|$)/gi, "")
@@ -190,8 +243,8 @@ export function getLegacyPage(page: LegacyPageKey): LegacyPageDocument {
 
   return {
     title,
-    headHtml: normalizeHtml(headAssets),
-    bodyHtml: normalizeHtml(bodyWithoutScripts),
+    headHtml: normalizeHtml(headAssets, page),
+    bodyHtml: normalizeHtml(bodyWithoutScripts, page),
     scripts,
   };
 }

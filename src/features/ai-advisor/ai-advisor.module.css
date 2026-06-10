@@ -9,6 +9,61 @@
   font-family: "Cairo", Arial, sans-serif;
 }
 
+.stack {
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+
+.supportDetails {
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+
+.supportDetails > summary {
+  list-style: none;
+}
+
+.supportDetails > summary::-webkit-details-marker {
+  display: none;
+}
+
+.supportDetails:not([open]) .panel,
+.choicePanel:not([open]) > :not(summary) {
+  display: none;
+}
+
+.whatsappFab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.whatsappHint {
+  max-width: 210px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #155d31;
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 10px 14px;
+  box-shadow: 0 18px 40px rgba(16, 76, 40, 0.12);
+}
+
+.whatsappIcon {
+  display: inline-grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 20px 44px rgba(37, 211, 102, 0.36);
+  animation: whatsappPulse 2.6s ease-out infinite;
+}
+
 .launcher {
   display: inline-flex;
   min-height: 54px;
@@ -42,8 +97,12 @@
 .launcher:focus-visible,
 .iconButton:focus-visible,
 .quickPrompts button:focus-visible,
+.utilityButton:focus-visible,
 .composer input:focus,
 .composer button:focus-visible,
+.ticketForm input:focus-visible,
+.ticketForm textarea:focus-visible,
+.ticketForm button:focus-visible,
 .error button:focus-visible,
 .error a:focus-visible {
   outline: 3px solid rgba(233, 30, 99, 0.25);
@@ -181,6 +240,119 @@
   border-radius: 999px;
   background: #27c46b;
   box-shadow: 0 0 0 4px rgba(39, 196, 107, 0.13);
+}
+
+.choiceIntro {
+  border-bottom: 1px solid rgba(52, 24, 54, 0.07);
+  background: #fff;
+  color: #4f4963;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.6;
+  padding: 10px 14px;
+}
+
+.choicePanel {
+  border-bottom: 1px solid rgba(52, 24, 54, 0.07);
+  background: #fff;
+}
+
+.choicePanel > summary {
+  list-style: none;
+}
+
+.choicePanel > summary::-webkit-details-marker {
+  display: none;
+}
+
+.choiceSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  cursor: pointer;
+  color: #241f35;
+  font-size: 0.88rem;
+  font-weight: 900;
+  padding: 10px 14px;
+}
+
+.choiceSummary::after {
+  color: #c2185b;
+  content: "+";
+  font-size: 1rem;
+}
+
+.choicePanel[open] > .choiceSummary::after {
+  content: "-";
+}
+
+.supportTools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #fff;
+  padding: 10px 14px 12px;
+}
+
+.utilityButton {
+  min-height: 38px;
+  border: 1px solid rgba(52, 24, 54, 0.1);
+  border-radius: 999px;
+  background: #fbf9fb;
+  color: #341836;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 900;
+  padding: 8px 11px;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.utilityButton:hover {
+  border-color: rgba(194, 24, 91, 0.28);
+  background: #fff3f7;
+  transform: translateY(-1px);
+}
+
+.ticketForm {
+  display: grid;
+  gap: 10px;
+  background: #fff;
+  padding: 0 14px 12px;
+}
+
+.ticketGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ticketForm input,
+.ticketForm textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(52, 24, 54, 0.12);
+  border-radius: 16px;
+  background: #fbf9fb;
+  color: #241f35;
+  font: inherit;
+  padding: 11px 13px;
+}
+
+.ticketForm button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 14px;
+  background: #341836;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
 }
 
 .messages {
@@ -535,6 +707,20 @@
   }
 }
 
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.36);
+  }
+
+  70% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
 @media (width < 640px) {
   .root {
     inset-inline: 8px;
@@ -546,6 +732,18 @@
     min-height: 54px;
     justify-content: center;
     padding-inline: 16px;
+  }
+
+  .stack {
+    justify-items: stretch;
+  }
+
+  .whatsappFab {
+    justify-content: flex-end;
+  }
+
+  .whatsappHint {
+    display: none;
   }
 
   .panel {
@@ -582,6 +780,10 @@
     font-size: 0.78rem;
   }
 
+  .ticketGrid {
+    grid-template-columns: 1fr;
+  }
+
   .composer {
     padding: 10px 11px calc(12px + env(safe-area-inset-bottom));
   }
@@ -602,6 +804,10 @@
   .status {
     display: none;
   }
+
+  .whatsappHint {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -612,8 +818,10 @@
   .userBubble,
   .assistantBubble .markdown,
   .quickPrompts button,
+  .utilityButton,
   .error button,
   .error a,
+  .ticketForm button,
   .composer button,
   .composer button svg,
   .typingDots span {

@@ -18,7 +18,8 @@ This gives us accessible primitives and consistent behavior without forcing the 
 - Reusable SWEED-specific wrappers should live under `apps/web/src/components/ui` or a focused feature folder.
 - Public marketing sections can stay custom when the layout needs stronger brand expression.
 - Tokens live in `apps/web/src/styles/tokens.css`.
-- Root CSS imports Tailwind first, then HeroUI styles, then SWEED tokens.
+- Root CSS imports Tailwind theme/utilities first, then HeroUI styles, then SWEED tokens.
+- Tailwind Preflight is intentionally omitted during migration because it changes existing CSS Modules baselines.
 
 ## Migration Strategy
 

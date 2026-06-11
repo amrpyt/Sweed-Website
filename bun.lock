@@ -15,6 +15,7 @@
         "@mastra/loggers": "^1.1.1",
         "@mastra/memory": "^1.17.4",
         "@sweed/brand": "workspace:*",
+        "@sweed/content": "workspace:*",
         "ai": "^6.0.174",
         "convex": "^1.40.0",
         "embla-carousel": "^8.6.0",
@@ -42,6 +43,12 @@
     },
     "packages/brand": {
       "name": "@sweed/brand",
+    },
+    "packages/content": {
+      "name": "@sweed/content",
+      "dependencies": {
+        "@sweed/brand": "workspace:*",
+      },
     },
   },
   "packages": {
@@ -476,6 +483,8 @@
     "@swc/helpers": ["@swc/helpers@0.5.15", "", { "dependencies": { "tslib": "^2.8.0" } }, "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g=="],
 
     "@sweed/brand": ["@sweed/brand@workspace:packages/brand"],
+
+    "@sweed/content": ["@sweed/content@workspace:packages/content"],
 
     "@sweed/web": ["@sweed/web@workspace:apps/web"],
 

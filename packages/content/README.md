@@ -1,11 +1,9 @@
 # Content Package
 
-Future owner for typed public-site content:
+Owner for stable shared public-site content:
 
-- homepage content
-- service data
-- offer data
-- article metadata
-- FAQ entries
+- primary navigation
+- shared contact action
+- public shell settings
 
-Content can move here after the active app is inside `apps/web`.
+Keep page-specific copy inside `apps/web` until it has a clear shared owner.

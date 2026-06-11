@@ -24,6 +24,7 @@
     "@mastra/loggers": "^1.1.1",
     "@mastra/memory": "^1.17.4",
     "@sweed/brand": "workspace:*",
+    "@sweed/content": "workspace:*",
     "ai": "^6.0.174",
     "convex": "^1.40.0",
     "embla-carousel": "^8.6.0",

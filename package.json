@@ -22,6 +22,7 @@
     "lint": "bun run --cwd apps/web lint",
     "check": "bun run typecheck:packages && bun run typecheck && bun run lint && bun run unit",
     "smoke": "bun run --cwd apps/web smoke",
+    "smoke:prod": "bun run --cwd apps/web smoke:prod",
     "clean": "bun run --cwd apps/web clean"
   }
 }

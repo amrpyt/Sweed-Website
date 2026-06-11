@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src next.config.ts eslint.config.mjs",
     "smoke": "playwright test",
+    "smoke:prod": "playwright test -c playwright.production.config.ts",
     "clean": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"Remove-Item -Recurse -Force .next,dist -ErrorAction SilentlyContinue\""
   },
   "dependencies": {

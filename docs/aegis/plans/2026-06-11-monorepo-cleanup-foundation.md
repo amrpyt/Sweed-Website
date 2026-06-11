@@ -8,11 +8,11 @@ Clean the SWEED website repository into a professional monorepo-style structure 
 
 Current state:
 
-- The active Next.js app lives at the repository root.
-- Legacy/static HTML still exists under `site/`.
+- The active Next.js app lives under `apps/web`.
+- Legacy/static HTML still exists under `apps/web/site/` for routes that have not been migrated yet.
 - Archived demo work exists under `.archive/`.
 - Generated and local-only folders exist in the working copy.
-- Vercel currently builds from the repository root.
+- Vercel builds from the repository root and delegates build output to `apps/web`.
 
 Target direction:
 
@@ -20,6 +20,7 @@ Target direction:
 SWEED-Website/
   apps/
     web/
+      site/
   packages/
     brand/
     ui/
@@ -27,7 +28,6 @@ SWEED-Website/
     config/
   .archive/
   docs/
-  tests/
 ```
 
 ## Tech Stack
@@ -75,13 +75,13 @@ Actions:
 
 ## Phase 1: Monorepo Shell
 
-Purpose: introduce the folder structure without changing runtime behavior yet.
+Purpose: introduce the folder structure without changing runtime behavior.
 
 Actions:
 
 - Add `apps/` and `packages/` placeholders with README files.
 - Document package ownership rules.
-- Keep the active Next app at root until the deployment boundary is ready.
+- Keep runtime behavior unchanged while introducing `apps/` and `packages/`.
 
 Verification:
 
@@ -106,6 +106,7 @@ Actions:
 
 - Move app source/config files in one controlled slice.
 - Update package scripts and Vercel config.
+- Move legacy HTML source into `apps/web/site` so deployed server routes can read it.
 - Keep imports working.
 - Do not extract packages yet.
 
@@ -122,6 +123,7 @@ Commit:
 
 ```text
 chore: move web app into apps/web
+fix: keep legacy site with web app
 ```
 
 ## Phase 3: Extract Stable Packages

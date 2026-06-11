@@ -1,34 +1,34 @@
 # SWEED Website
 
-Static SWEED marketing website organized with a production-style project layout.
+SWEED marketing website monorepo.
+
+The active production app is a Next.js app in `apps/web`. Legacy HTML is kept inside the web app as migration/reference material until each section is replaced by modular React.
 
 ## Directory Map
 
 ```text
-site/          Deployable website source
-site/pages/    Internal static pages
-public/        Public assets copied into the build
-references/    Original design files, brand assets, and source material
-.archive/      Retired experiments and previous page versions
-.planning/     GSD project planning artifacts
-.codex/        Codex/GSD workflow tooling
-v2/            Preserved Git worktree
-v3/            Preserved Git worktree with local changes
-dist/          Generated production output
+apps/web/           Active Next.js public website and admin surface
+apps/web/site/      Legacy HTML source used by remaining legacy routes
+apps/web/public/    Public assets served by the web app
+packages/           Future shared packages with clear ownership
+docs/               Engineering plans and repo documentation
+references/         Original design files, brand assets, and source material
+.archive/           Retired experiments and previous page versions
 ```
 
 ## Commands
 
 ```bash
-pnpm install
-pnpm run dev
-pnpm run build
-pnpm run lint
+bun install
+bun run dev
+bun run build
+bun run lint
+bun run unit
 ```
 
 ## Site Source
 
-The homepage lives at `site/index.html`.
-Internal pages live at `site/pages/*.html`.
+The modular Next.js source lives in `apps/web/src`.
+Remaining legacy page source lives in `apps/web/site/pages/*.html`.
 
 Original HTML/design references are kept in `references/` so the deployable website stays clean.

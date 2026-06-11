@@ -2,8 +2,6 @@
 
 Runnable applications live here.
 
-Planned apps:
+Current apps:
 
 - `web` - the active Next.js public website and admin surface.
-
-The current web app still lives at the repository root until the deployment boundary is moved safely.

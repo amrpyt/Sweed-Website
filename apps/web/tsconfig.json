@@ -39,9 +39,6 @@
   "exclude": [
     "node_modules",
     "dist",
-    ".archive",
-    "site",
-    "v2",
-    "v3"
+    "site"
   ]
 }

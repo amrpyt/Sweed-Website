@@ -9,15 +9,7 @@ const eslintConfig = defineConfig([
     ".next/**",
     "dist/**",
     "node_modules/**",
-    ".agents/**",
-    ".archive/**",
-    ".claude/**",
-    ".codex/**",
-    ".opencode/**",
-    ".planning/**",
     "site/**",
-    "v2/**",
-    "v3/**",
   ]),
 ]);
 

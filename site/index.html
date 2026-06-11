@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -14,9 +14,9 @@
         }
 
         :root {
-            --primary-pink: #E3256B;
-            --primary-purple: #2D2947;
-            --sunset-orange: #FF6B35;
+            --primary-pink: #ed2062;
+            --primary-purple: #261b3e;
+            --sunset-orange: #261b3e;
             --dark-silver: #6d6e70;
             --white: #ffffff;
             --light-bg: #f8f9fa;
@@ -209,12 +209,12 @@
         .btn-download {
             background: linear-gradient(135deg, var(--primary-pink), var(--sunset-orange));
             color: white;
-            box-shadow: 0 4px 15px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 4px 15px rgba(237, 32, 98, 0.3);
         }
 
         .btn-download:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(227, 37, 107, 0.4);
+            box-shadow: 0 6px 20px rgba(237, 32, 98, 0.4);
         }
 
         .hamburger {
@@ -279,13 +279,7 @@
             min-height: 600px;
             display: flex;
             align-items: center;
-            background:
-                linear-gradient(135deg, rgba(45, 41, 71, 0.9) 0%, rgba(227, 37, 107, 0.72) 100%),
-                url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=85&w=1600'),
-                url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=85&w=1600');
-            background-position: center, left center, right center;
-            background-repeat: no-repeat;
-            background-size: cover, 58% 100%, 58% 100%;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-pink) 100%);
             overflow: hidden;
             padding: 4rem 0;
         }
@@ -385,14 +379,12 @@
         }
 
         .btn-tertiary {
-            background: white;
-            color: var(--primary-purple);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            background: var(--sunset-orange);
+            color: white;
         }
 
         .btn-tertiary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            background: #8a1d50;
         }
 
         .hero-slider-dots {
@@ -475,7 +467,7 @@
 
         .problem-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(227, 37, 107, 0.15);
+            box-shadow: 0 15px 40px rgba(237, 32, 98, 0.15);
             border-color: var(--primary-pink);
         }
 
@@ -636,7 +628,7 @@
 
         .help-form button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 8px 20px rgba(237, 32, 98, 0.3);
         }
 
         /* ===== SECTION 5: WHY CHOOSE US ===== */
@@ -742,134 +734,6 @@
             opacity: 0.8;
         }
 
-        /* ===== SECTION 6: EXPERTISE ===== */
-        .expertise-section {
-            padding: 5rem 0;
-            background: var(--light-bg);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 1100px;
-            margin: 3rem auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 50%;
-            width: 4px;
-            background: linear-gradient(180deg, var(--primary-pink), var(--sunset-orange));
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            width: 45%;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 35px rgba(227, 37, 107, 0.15);
-        }
-
-        .timeline-icon {
-            position: absolute;
-            right: 50%;
-            transform: translateX(50%);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-pink), var(--sunset-orange));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            box-shadow: 0 5px 20px rgba(227, 37, 107, 0.3);
-        }
-
-        .timeline-content h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary-purple);
-            margin-bottom: 1rem;
-        }
-
-        .timeline-content ul {
-            list-style: none;
-            color: var(--dark-silver);
-        }
-
-        .timeline-content ul li {
-            padding: 0.5rem 0;
-            padding-right: 1.5rem;
-            position: relative;
-        }
-
-        .timeline-content ul li::before {
-            content: '✓';
-            position: absolute;
-            right: 0;
-            color: var(--primary-pink);
-            font-weight: 700;
-        }
-
-        /* ===== SECTION 8: PARTNERS ===== */
-        .partners-section {
-            padding: 5rem 0;
-            background: white;
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .partner-card {
-            background: var(--light-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 120px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .partner-card:hover {
-            border-color: var(--primary-pink);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(227, 37, 107, 0.15);
-        }
-
-        .partner-logo {
-            font-size: 2rem;
-            color: var(--primary-purple);
-            font-weight: 800;
-        }
-
         /* ===== SECTION 9: PORTFOLIO ===== */
         .portfolio-section {
             padding: 5rem 0;
@@ -924,7 +788,7 @@
 
         .portfolio-item:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 15px 40px rgba(237, 32, 98, 0.3);
         }
 
         .portfolio-content {
@@ -1009,7 +873,7 @@
             font-size: 1.5rem;
             font-weight: 900;
             flex-shrink: 0;
-            box-shadow: 0 5px 20px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 5px 20px rgba(237, 32, 98, 0.3);
         }
 
         .process-content {
@@ -1221,7 +1085,7 @@
 
         .package-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(227, 37, 107, 0.2);
+            box-shadow: 0 20px 50px rgba(237, 32, 98, 0.2);
             border-color: var(--primary-pink);
         }
 
@@ -1316,7 +1180,7 @@
 
         .package-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 8px 20px rgba(237, 32, 98, 0.3);
         }
 
         .packages-cta {
@@ -1360,7 +1224,7 @@
             background: white;
             border-color: var(--primary-pink);
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(227, 37, 107, 0.15);
+            box-shadow: 0 15px 40px rgba(237, 32, 98, 0.15);
         }
 
         .service-icon {
@@ -1374,7 +1238,7 @@
             justify-content: center;
             font-size: 2rem;
             color: white;
-            box-shadow: 0 8px 20px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 8px 20px rgba(237, 32, 98, 0.3);
             transition: all 0.3s ease;
         }
 
@@ -1442,7 +1306,7 @@
 
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(227, 37, 107, 0.15);
+            box-shadow: 0 15px 40px rgba(237, 32, 98, 0.15);
         }
 
         .product-image {
@@ -1566,7 +1430,7 @@
         }
 
         .about-feature:hover {
-            box-shadow: 0 8px 20px rgba(227, 37, 107, 0.1);
+            box-shadow: 0 8px 20px rgba(237, 32, 98, 0.1);
             transform: translateY(-5px);
         }
 
@@ -1641,7 +1505,7 @@
 
         .blog-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(227, 37, 107, 0.15);
+            box-shadow: 0 15px 40px rgba(237, 32, 98, 0.15);
         }
 
         .blog-image {
@@ -2086,15 +1950,14 @@
 
         .popup-submit:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(227, 37, 107, 0.3);
+            box-shadow: 0 8px 20px rgba(237, 32, 98, 0.3);
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .problems-grid,
             .why-grid,
-            .services-track,
-            .partners-grid {
+            .services-track {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -2211,7 +2074,7 @@
             }
 
             .nav-menu a:hover {
-                background: rgba(227, 37, 107, 0.05);
+                background: rgba(237, 32, 98, 0.05);
                 color: var(--primary-pink);
             }
 
@@ -2236,7 +2099,6 @@
             .stats-grid,
             .packages-grid,
             .portfolio-grid,
-            .partners-grid,
             .about-features {
                 grid-template-columns: 1fr;
             }
@@ -2253,6 +2115,857 @@
             .product-card,
             .blog-card {
                 min-width: 100%;
+            }
+        }
+
+        /* ===== REQUESTED HOMEPAGE REFRESH ===== */
+        .hero-section {
+            min-height: 660px;
+            background:
+                linear-gradient(180deg, rgba(38, 27, 62, 0.94) 0%, rgba(237, 32, 98, 0.78) 58%, rgba(138, 29, 80, 0.72) 100%),
+                url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+            isolation: isolate;
+        }
+
+        .hero-section::before,
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .hero-section::before {
+            background:
+                linear-gradient(180deg, rgba(38, 27, 62, 0.82) 0%, rgba(237, 32, 98, 0.4) 64%, rgba(138, 29, 80, 0.24) 100%),
+                url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+            opacity: 0;
+            filter: blur(3px) saturate(1.08);
+            transform: scale(1.04);
+            animation: heroBusinessFade 18s ease-in-out infinite;
+            z-index: -2;
+        }
+
+        .hero-section::after {
+            background: linear-gradient(180deg, rgba(38, 27, 62, 0.26) 0%, rgba(237, 32, 98, 0.2) 58%, rgba(138, 29, 80, 0.22) 100%);
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+
+        @keyframes heroBusinessFade {
+            0%, 42% { opacity: 0; }
+            52%, 88% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .hero-text h1,
+        .hero-text .hero-subtitle,
+        .hero-text .hero-description {
+            text-shadow: 0 10px 35px rgba(0, 0, 0, 0.34);
+        }
+
+        .hero-buttons .btn-primary,
+        .hero-buttons .btn-tertiary {
+            background: #ffffff;
+            color: var(--primary-purple);
+            border: 2px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-buttons .btn-primary:hover,
+        .hero-buttons .btn-tertiary:hover {
+            color: var(--primary-pink);
+            background: #ffffff;
+        }
+
+        .mobile-social-rail {
+            display: none;
+        }
+
+        .clients-marquee-section {
+            background: #ffffff;
+            padding: 1.4rem 0;
+            border-bottom: 1px solid rgba(38, 27, 62, 0.08);
+            overflow: hidden;
+        }
+
+        .clients-marquee-label {
+            text-align: center;
+            color: var(--dark-silver);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .clients-marquee {
+            overflow: hidden;
+        }
+
+        .clients-marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 1.05rem;
+            animation: clientsMarquee 26s linear infinite;
+        }
+
+        .client-logo-mark {
+            min-width: 164px;
+            height: 64px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            color: #a9afb9;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 247, 249, 0.9));
+            border: 1px solid rgba(169, 175, 185, 0.22);
+            box-shadow: 0 10px 24px rgba(38, 27, 62, 0.035);
+            filter: grayscale(1);
+            opacity: 0.82;
+        }
+
+        .demo-logo-glyph {
+            width: 42px;
+            height: 34px;
+            display: block;
+        }
+
+        .demo-logo-text {
+            color: #b3b8c0;
+            font-size: 0.9rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+        }
+
+        .client-logo-mark:hover {
+            opacity: 1;
+            color: #8f96a3;
+        }
+
+        @keyframes clientsMarquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(50%); }
+        }
+
+        .problems-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.2rem;
+            padding: 0.5rem 0 1.2rem;
+        }
+
+        .problems-grid::-webkit-scrollbar,
+        .portfolio-grid::-webkit-scrollbar,
+        .services-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .problems-grid::-webkit-scrollbar-thumb,
+        .portfolio-grid::-webkit-scrollbar-thumb,
+        .services-slider::-webkit-scrollbar-thumb {
+            background: rgba(237, 32, 98, 0.28);
+            border-radius: 999px;
+        }
+
+        .problem-card {
+            min-width: calc(25% - 1rem);
+            scroll-snap-align: start;
+        }
+
+        .help-section {
+            background:
+                linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.96)),
+                url('/sweed-logo-official.svg') center/680px auto no-repeat;
+            padding: 4.5rem 0;
+        }
+
+        .help-content {
+            max-width: 1100px;
+        }
+
+        .help-form {
+            max-width: 980px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.15fr auto;
+            gap: 0.8rem;
+            align-items: center;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .help-form input,
+        .help-form select {
+            margin: 0;
+            border-radius: 999px;
+            background: #ffffff;
+            box-shadow: 0 10px 24px rgba(38, 27, 62, 0.05);
+        }
+
+        .help-form button {
+            width: auto;
+            min-width: 190px;
+            border-radius: 999px;
+            padding-inline: 1.7rem;
+            white-space: nowrap;
+        }
+
+        .portfolio-filters {
+            display: none;
+        }
+
+        .portfolio-shell,
+        .services-container {
+            position: relative;
+        }
+
+        .portfolio-grid {
+            display: flex;
+            grid-template-columns: none;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding: 0.4rem 0 1rem;
+            scroll-behavior: smooth;
+        }
+
+        .portfolio-item {
+            min-width: calc(25% - 1.5rem);
+            aspect-ratio: auto;
+            min-height: 360px;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 16px 36px rgba(38, 27, 62, 0.08);
+            scroll-snap-align: start;
+            border: 1px solid rgba(38, 27, 62, 0.08);
+        }
+
+        .portfolio-grid > .portfolio-item:nth-child(n+5) {
+            display: none;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            display: block;
+            height: 145px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink), #8a1d50);
+        }
+
+        .portfolio-icon {
+            position: absolute;
+            top: 54px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            font-size: 2.5rem;
+            z-index: 2;
+        }
+
+        .portfolio-content {
+            position: static;
+            background: #ffffff;
+            color: var(--primary-purple);
+            padding: 2rem 1.4rem 1.6rem;
+            text-align: center;
+        }
+
+        .portfolio-category {
+            color: var(--dark-silver);
+            opacity: 1;
+            min-height: 52px;
+        }
+
+        .portfolio-tags {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-nav,
+        .services-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .carousel-arrow {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 0;
+            background: #ffffff;
+            color: var(--primary-purple);
+            box-shadow: 0 12px 28px rgba(38, 27, 62, 0.12);
+            cursor: pointer;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+
+        .carousel-arrow:hover {
+            transform: translateY(-3px);
+            color: var(--primary-pink);
+        }
+
+        .services-section .section-subtitle {
+            max-width: 760px;
+        }
+
+        .services-slider {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+
+        .services-track {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 2rem;
+            min-width: 100%;
+        }
+
+        .service-card {
+            min-width: 0;
+            border-radius: 22px;
+            box-shadow: 0 12px 34px rgba(38, 27, 62, 0.08);
+            position: relative;
+        }
+
+        .service-link::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+        }
+
+        .services-more {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .problems-section,
+        .portfolio-section,
+        .process-section,
+        .testimonials-section,
+        .services-section,
+        .products-section,
+        .blog-section {
+            padding-block: 4rem;
+        }
+
+        .problems-section .slider-arrows,
+        .portfolio-section .portfolio-nav,
+        .testimonials-section .slider-arrows,
+        .services-section .slider-arrows,
+        .products-section .slider-arrows,
+        .blog-section .slider-arrows {
+            flex-wrap: wrap;
+        }
+
+        .problems-section .slider-arrows::after,
+        .portfolio-section .portfolio-nav::after,
+        .testimonials-section .slider-arrows::after,
+        .services-section .slider-arrows::after,
+        .products-section .slider-arrows::after,
+        .blog-section .slider-arrows::after {
+            content: 'اسحب أو استخدم الأسهم';
+            flex-basis: 100%;
+            text-align: center;
+            margin-top: 0.2rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            color: var(--primary-pink);
+            background: rgba(237, 32, 98, 0.08);
+            border: 1px solid rgba(237, 32, 98, 0.14);
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .problems-grid,
+        .portfolio-grid,
+        .testimonials-slider,
+        .services-slider,
+        .products-slider,
+        .blog-slider {
+            overflow: hidden;
+            overflow-y: visible;
+            overscroll-behavior-x: contain;
+            cursor: grab;
+        }
+
+        .problems-grid:active,
+        .portfolio-grid:active,
+        .testimonials-slider:active,
+        .services-slider:active,
+        .products-slider:active,
+        .blog-slider:active {
+            cursor: grabbing;
+        }
+
+        .problems-grid,
+        .portfolio-grid {
+            display: block;
+        }
+
+        .problems-track,
+        .portfolio-track,
+        .testimonials-track,
+        .products-track,
+        .blog-track {
+            display: flex;
+            gap: 2rem;
+            direction: rtl;
+            will-change: transform;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .services-track {
+            direction: rtl;
+            will-change: transform;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .problem-card,
+        .portfolio-item,
+        .testimonial-card,
+        .service-card,
+        .product-card,
+        .blog-card {
+            scroll-snap-align: start;
+            scroll-margin-inline: 1rem;
+        }
+
+        .portfolio-item {
+            flex: 0 0 clamp(310px, 29vw, 370px);
+            min-width: clamp(310px, 29vw, 370px);
+        }
+
+        .problem-card {
+            flex: 0 0 clamp(250px, 24vw, 305px);
+            min-width: clamp(250px, 24vw, 305px);
+        }
+
+        .process-section {
+            --process-pink: #ed2062;
+            --process-purple: #261b3e;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 8% 18%, rgba(237, 32, 98, 0.1), transparent 22%),
+                radial-gradient(circle at 92% 82%, rgba(38, 27, 62, 0.1), transparent 26%),
+                linear-gradient(180deg, #fffdfd 0%, #ffffff 100%);
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            inset-inline: 0;
+            top: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(38, 27, 62, 0.14), transparent);
+        }
+
+        .process-header {
+            max-width: 760px;
+            margin-inline: auto;
+            text-align: center;
+        }
+
+        .process-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(237, 32, 98, 0.12), rgba(38, 27, 62, 0.08));
+            border: 1px solid rgba(237, 32, 98, 0.2);
+            color: var(--process-pink);
+            font-size: 0.95rem;
+            font-weight: 800;
+        }
+
+        .process-section .section-title {
+            color: var(--process-purple);
+            font-size: clamp(2.1rem, 3.2vw, 3.35rem);
+        }
+
+        .process-section .section-subtitle {
+            max-width: 700px;
+            margin-inline: auto;
+        }
+
+        .process-timeline {
+            display: grid;
+            width: 100%;
+            max-width: min(1320px, 100%);
+            grid-template-columns: repeat(4, minmax(220px, 1fr));
+            gap: clamp(1rem, 1.7vw, 1.5rem);
+            margin: 4rem auto 0;
+            position: relative;
+            align-items: stretch;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            top: 4.45rem;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(38, 27, 62, 0.14) 0%, rgba(237, 32, 98, 0.42) 50%, rgba(38, 27, 62, 0.14) 100%);
+            z-index: 0;
+        }
+
+        .process-step {
+            --process-accent: var(--process-pink);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 0;
+            margin: 0;
+            padding: 3.25rem 1.45rem 1.3rem;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(38, 27, 62, 0.08);
+            box-shadow: 0 18px 44px rgba(38, 27, 62, 0.08);
+            text-align: center;
+            z-index: 1;
+        }
+
+        .process-step:nth-child(even) {
+            --process-accent: var(--process-purple);
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 1.2rem;
+            right: 1.2rem;
+            top: 1rem;
+            height: 5px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--process-accent), rgba(237, 32, 98, 0.2));
+            opacity: 0.9;
+        }
+
+        .process-number {
+            position: absolute;
+            top: -1.35rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 68px;
+            height: 68px;
+            border: 5px solid rgba(255, 255, 255, 0.96);
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--process-accent), #ed2062);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 900;
+            box-shadow: 0 16px 30px rgba(38, 27, 62, 0.16);
+        }
+
+        .process-icon {
+            width: 88px;
+            height: 88px;
+            margin: 1.25rem 0 1.1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(237, 32, 98, 0.08), rgba(38, 27, 62, 0.05));
+            color: var(--process-accent);
+            font-size: 2rem;
+        }
+
+        .process-content {
+            flex: 1;
+            width: 100%;
+            padding-top: 0;
+        }
+
+        .process-content h3 {
+            font-size: 1.24rem;
+            color: var(--process-purple);
+            margin-bottom: 0.8rem;
+            line-height: 1.45;
+        }
+
+        .process-content p {
+            color: var(--dark-silver);
+            font-size: 0.92rem;
+            line-height: 1.8;
+            max-width: 21ch;
+            margin-inline: auto;
+        }
+
+        .process-meta {
+            width: 100%;
+            margin-top: 1.2rem;
+            padding: 0.82rem 1rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            background: linear-gradient(135deg, rgba(237, 32, 98, 0.1), rgba(38, 27, 62, 0.06));
+            color: var(--process-accent);
+            font-size: 0.92rem;
+            font-weight: 800;
+        }
+
+        .process-cta {
+            margin-top: 2.4rem;
+            text-align: center;
+        }
+
+        .process-cta-note {
+            margin-bottom: 1rem;
+            color: var(--process-purple);
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .process-cta .btn-primary {
+            background: linear-gradient(135deg, #261b3e, #ed2062);
+            border: none;
+            box-shadow: 0 18px 34px rgba(38, 27, 62, 0.16);
+        }
+
+        .process-cta .btn-primary:hover {
+            background: linear-gradient(135deg, #ed2062, #261b3e);
+        }
+
+        .testimonials-slider,
+        .products-slider,
+        .blog-slider {
+            padding: 0.4rem 0 1.2rem;
+        }
+
+        .testimonials-track,
+        .products-track,
+        .blog-track {
+            width: max-content;
+            transition: none;
+        }
+
+        .testimonial-card {
+            flex: 0 0 clamp(370px, 38vw, 480px);
+            min-width: clamp(370px, 38vw, 480px);
+            min-height: 290px;
+        }
+
+        .products-track {
+            align-items: stretch;
+        }
+
+        .product-card {
+            flex: 0 0 clamp(300px, 28vw, 370px);
+            min-width: clamp(300px, 28vw, 370px);
+        }
+
+        .services-slider {
+            padding: 0.4rem 0 1.2rem;
+        }
+
+        .services-track {
+            grid-auto-flow: column;
+            grid-template-rows: repeat(2, minmax(0, 1fr));
+            grid-template-columns: none;
+            grid-auto-columns: clamp(390px, 37vw, 500px);
+            width: max-content;
+            min-width: 0;
+            align-items: stretch;
+        }
+
+        .service-card {
+            min-width: 0;
+            padding: 1.55rem;
+            text-align: right;
+        }
+
+        .service-icon {
+            width: 58px;
+            height: 58px;
+            margin: 0 0 1rem;
+            border-radius: 18px;
+            font-size: 1.6rem;
+        }
+
+        .service-title {
+            font-size: 1.08rem;
+        }
+
+        .service-description {
+            font-size: 0.88rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card {
+            flex: 0 0 clamp(315px, 29vw, 380px);
+            min-width: clamp(315px, 29vw, 380px);
+            display: grid;
+            grid-template-rows: 118px 1fr;
+            border: 1px solid rgba(38, 27, 62, 0.08);
+            box-shadow: 0 14px 34px rgba(38, 27, 62, 0.07);
+        }
+
+        .blog-image {
+            height: 118px;
+            background:
+                radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.22), transparent 22%),
+                linear-gradient(135deg, var(--primary-purple), var(--primary-pink), var(--sunset-orange));
+            font-size: 2.2rem;
+        }
+
+        .blog-content {
+            padding: 1.25rem;
+        }
+
+        .blog-meta {
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            font-size: 0.74rem;
+        }
+
+        .blog-category {
+            display: inline-flex;
+            margin-bottom: 0.8rem;
+        }
+
+        .blog-title {
+            font-size: 1.02rem;
+            min-height: 58px;
+        }
+
+        .blog-excerpt {
+            font-size: 0.84rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-section::before,
+            .clients-marquee-track {
+                animation: none;
+            }
+
+            .problems-grid,
+            .portfolio-grid,
+            .testimonials-slider,
+            .services-slider,
+            .products-slider,
+            .blog-slider {
+                scroll-behavior: auto;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .problem-card,
+            .portfolio-item,
+            .testimonial-card,
+            .product-card,
+            .blog-card {
+                min-width: 46vw;
+                flex-basis: 46vw;
+            }
+
+            .process-timeline {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                max-width: min(760px, 100%);
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+
+            .help-form {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-track {
+                grid-auto-columns: 46vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 610px;
+                padding-top: 5rem;
+            }
+
+            .mobile-social-rail {
+                position: fixed;
+                top: 42%;
+                right: 0.75rem;
+                z-index: 1900;
+                display: flex;
+                flex-direction: column;
+                gap: 0.55rem;
+            }
+
+            .mobile-social-rail a {
+                width: 42px;
+                height: 42px;
+                border-radius: 14px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffffff;
+                text-decoration: none;
+                background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+                box-shadow: 0 12px 26px rgba(38, 27, 62, 0.22);
+            }
+
+            .problem-card,
+            .portfolio-item,
+            .testimonial-card,
+            .product-card,
+            .blog-card {
+                min-width: 82vw;
+                flex-basis: 82vw;
+            }
+
+            .process-section .section-title {
+                font-size: 2rem;
+            }
+
+            .process-timeline {
+                grid-template-columns: 1fr;
+                max-width: 360px;
+                margin-top: 3.2rem;
+            }
+
+            .process-step {
+                padding: 3.2rem 1.2rem 1.25rem;
+            }
+
+            .process-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 1.8rem;
+            }
+
+            .help-form {
+                grid-template-columns: 1fr;
+            }
+
+            .help-form button {
+                width: 100%;
+            }
+
+            .services-track {
+                display: grid;
+                grid-template-rows: none;
+                grid-auto-flow: column;
+                grid-auto-columns: 82vw;
+                min-width: 0;
+            }
+
+            .service-card {
+                min-width: 0;
             }
         }
     </style>
@@ -2354,13 +3067,13 @@
                 <p class="hero-subtitle">15 سنة في صناعة النجاح وبناء العلامات التجارية الرائدة</p>
                 <p class="hero-description">شريكك الموثوق في رحلة النمو والتميز</p>
                 <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">
+                    <a href="pages/offers.html" class="btn btn-primary">
                         <i class="fas fa-rocket"></i> العرض الخاص
                     </a>
-                    <a href="#" class="btn btn-secondary">
+                    <a href="pages/contact.html" class="btn btn-secondary">
                         <i class="fas fa-phone"></i> تواصل معنا الآن
                     </a>
-                    <a href="#" class="btn btn-tertiary">
+                    <a href="pages/contact.html?services=consulting" class="btn btn-tertiary">
                         <i class="fas fa-gift"></i> احجز استشارة مجانية
                     </a>
                 </div>
@@ -2369,6 +3082,105 @@
                 <div class="slider-dot active"></div>
                 <div class="slider-dot"></div>
                 <div class="slider-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <aside class="mobile-social-rail" aria-label="روابط التواصل الاجتماعي">
+        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="إنستجرام"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/201068274662" target="_blank" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+    </aside>
+
+    <section class="clients-marquee-section" aria-label="عملاؤنا">
+        <div class="clients-marquee-label">شركاء نجاح اشتغلوا معانا</div>
+        <div class="clients-marquee">
+            <div class="clients-marquee-track">
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة نوفا">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <circle cx="20" cy="22" r="12" fill="none" stroke="currentColor" stroke-width="5"/>
+                        <path d="M30 12h21L40 34H19z" fill="currentColor" opacity="0.48"/>
+                    </svg>
+                    <span class="demo-logo-text">NOVA</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة ألفا">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <path d="M8 35 24 8l10 17L44 8l12 27H45l-3-8H23l-4 8z" fill="currentColor" opacity="0.72"/>
+                    </svg>
+                    <span class="demo-logo-text">ALPHA</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة إيدج">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <rect x="10" y="9" width="36" height="12" rx="6" fill="currentColor" opacity="0.55"/>
+                        <rect x="22" y="24" width="32" height="12" rx="6" fill="currentColor" opacity="0.8"/>
+                    </svg>
+                    <span class="demo-logo-text">EDGE</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة سهل">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <path d="M12 31c8-16 20-23 40-21-3 17-14 27-32 28" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                        <path d="M15 33c10-5 22-6 35-3" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity="0.45"/>
+                    </svg>
+                    <span class="demo-logo-text">SAHL</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة شيفت">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <path d="M12 14h30l10 8-10 8H12l10-8z" fill="currentColor" opacity="0.75"/>
+                        <path d="M18 22h28" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.75"/>
+                    </svg>
+                    <span class="demo-logo-text">SHIFT</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة أوربان">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <rect x="10" y="11" width="10" height="24" rx="3" fill="currentColor" opacity="0.45"/>
+                        <rect x="26" y="7" width="10" height="28" rx="3" fill="currentColor" opacity="0.72"/>
+                        <rect x="42" y="16" width="10" height="19" rx="3" fill="currentColor" opacity="0.58"/>
+                    </svg>
+                    <span class="demo-logo-text">URBAN</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة نوفا">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <circle cx="20" cy="22" r="12" fill="none" stroke="currentColor" stroke-width="5"/>
+                        <path d="M30 12h21L40 34H19z" fill="currentColor" opacity="0.48"/>
+                    </svg>
+                    <span class="demo-logo-text">NOVA</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة ألفا">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <path d="M8 35 24 8l10 17L44 8l12 27H45l-3-8H23l-4 8z" fill="currentColor" opacity="0.72"/>
+                    </svg>
+                    <span class="demo-logo-text">ALPHA</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة إيدج">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <rect x="10" y="9" width="36" height="12" rx="6" fill="currentColor" opacity="0.55"/>
+                        <rect x="22" y="24" width="32" height="12" rx="6" fill="currentColor" opacity="0.8"/>
+                    </svg>
+                    <span class="demo-logo-text">EDGE</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة سهل">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <path d="M12 31c8-16 20-23 40-21-3 17-14 27-32 28" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                        <path d="M15 33c10-5 22-6 35-3" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity="0.45"/>
+                    </svg>
+                    <span class="demo-logo-text">SAHL</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة شيفت">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <path d="M12 14h30l10 8-10 8H12l10-8z" fill="currentColor" opacity="0.75"/>
+                        <path d="M18 22h28" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.75"/>
+                    </svg>
+                    <span class="demo-logo-text">SHIFT</span>
+                </span>
+                <span class="client-logo-mark" aria-label="لوجو تجريبي لشركة أوربان">
+                    <svg class="demo-logo-glyph" viewBox="0 0 64 44" aria-hidden="true" focusable="false">
+                        <rect x="10" y="11" width="10" height="24" rx="3" fill="currentColor" opacity="0.45"/>
+                        <rect x="26" y="7" width="10" height="28" rx="3" fill="currentColor" opacity="0.72"/>
+                        <rect x="42" y="16" width="10" height="19" rx="3" fill="currentColor" opacity="0.58"/>
+                    </svg>
+                    <span class="demo-logo-text">URBAN</span>
+                </span>
             </div>
         </div>
     </section>
@@ -2442,6 +3254,15 @@
                 </div>
             </div>
 
+            <div class="slider-arrows">
+                <button class="slider-arrow" type="button" onclick="slideProblems(-1)" aria-label="المشكلة السابقة">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="slider-arrow" type="button" onclick="slideProblems(1)" aria-label="المشكلة التالية">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+
             <div class="problems-cta">
                 <div class="problems-cta-box">
                     <h3>لدينا الحل لكل هذه المشاكل وأكثر!</h3>
@@ -2484,22 +3305,22 @@
             <div class="help-content">
                 <h2 class="help-title">محتاج ايه وهنساعدك؟</h2>
                 <p class="help-subtitle">احجز استشارتك المجانية الآن واحصل على خطة عمل مخصصة لمشروعك</p>
-                <div class="help-form">
-                    <input type="text" placeholder="الاسم الثلاثي *" required>
-                    <input type="tel" placeholder="رقم الواتس *" required>
-                    <select>
+                <form class="help-form" onsubmit="return startSuccessJourney(event)">
+                    <input id="quickName" type="text" placeholder="الاسم الكريم *" required>
+                    <input id="quickPhone" type="tel" placeholder="رقم الواتس *" required>
+                    <select id="quickService" required>
                         <option value="">نوع الخدمة *</option>
                         <option value="consulting">استشارات إدارية وتسويقية</option>
                         <option value="branding">تأسيس البراندات</option>
-                        <option value="digital">التسويق الرقمي</option>
+                        <option value="marketing">التسويق الرقمي</option>
                         <option value="development">البرمجة والتطوير</option>
                         <option value="advertising">الدعايا والإعلان</option>
                         <option value="content">الإنتاج الإبداعي</option>
                     </select>
                     <button type="submit">
-                        <i class="fas fa-paper-plane"></i> أرسل طلبك الآن
+                        <i class="fas fa-rocket"></i> ابدأ رحلة نجاحك
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     </section>
@@ -2557,132 +3378,6 @@
         </div>
     </section>
 
-    <!-- SECTION 6: EXPERTISE -->
-    <section class="expertise-section" id="expertise">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">خبراتنا المتخصصة</h2>
-                <p class="section-subtitle">تخصصات وأساليب متنوعة من الخبرة في خدمة مشاريعك</p>
-            </div>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="timeline-content">
-                        <h3>الاستشارات الإدارية والتسويقية</h3>
-                        <ul>
-                            <li>دراسات الجدوى الشاملة</li>
-                            <li>التخطيط الاستراتيجي</li>
-                            <li>إعادة الهيكلة</li>
-                            <li>إدارة الأزمات</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-palette"></i></div>
-                    <div class="timeline-content">
-                        <h3>التسويق الرقمي</h3>
-                        <ul>
-                            <li>إدارة السوشيال ميديا</li>
-                            <li>تحسين محركات البحث</li>
-                            <li>الإعلانات المدفوعة</li>
-                            <li>التسويق بالمحتوى</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-paint-brush"></i></div>
-                    <div class="timeline-content">
-                        <h3>البرمجة والتطوير</h3>
-                        <ul>
-                            <li>تطوير المواقع الإلكترونية</li>
-                            <li>تطبيقات الجوال</li>
-                            <li>أنظمة CRM و ERP</li>
-                            <li>المتاجر الإلكترونية</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-bullhorn"></i></div>
-                    <div class="timeline-content">
-                        <h3>تأسيس البراندات</h3>
-                        <ul>
-                            <li>مواقع الويب الاحترافية</li>
-                            <li>تطبيقات الجوال</li>
-                            <li>أنظمة ERP</li>
-                            <li>الموشن جرافيك</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-video"></i></div>
-                    <div class="timeline-content">
-                        <h3>الدعايا والإعلان</h3>
-                        <ul>
-                            <li>تصميم الحملات الإعلانية</li>
-                            <li>تطبيقات الجوال</li>
-                            <li>البرمجة الخاصة</li>
-                            <li>التصميم البودكاستي</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-camera"></i></div>
-                    <div class="timeline-content">
-                        <h3>الإنتاج الإبداعي</h3>
-                        <ul>
-                            <li>إنتاج المحتوى</li>
-                            <li>التصوير الفوتوغرافي</li>
-                            <li>إنتاج الفيديوهات</li>
-                            <li>البودكاست</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 8: PARTNERS -->
-    <section class="partners-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">شركاء النجاح</h2>
-                <p class="section-subtitle">أكثر من 640 شركة اختارتنا شريكا لنجاحهم</p>
-            </div>
-            <div class="partners-grid">
-                <div class="partner-card">
-                    <div class="partner-logo">LOGO 1</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">LOGO 2</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">LOGO 3</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">LOGO 4</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">LOGO 5</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">LOGO 6</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">LOGO 7</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">LOGO 8</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- SECTION 9: PORTFOLIO -->
     <section class="portfolio-section" id="portfolio">
         <div class="container">
@@ -2702,41 +3397,45 @@
                 <button class="filter-btn">عقاري</button>
             </div>
 
-            <div class="portfolio-grid">
+            <div class="portfolio-shell">
+            <div class="portfolio-grid" id="portfolioTrack">
                 <div class="portfolio-item">
+                    <div class="portfolio-icon"><i class="fas fa-store"></i></div>
                     <div class="portfolio-content">
-                        <h3 class="portfolio-title">مشروع 1</h3>
-                        <p class="portfolio-category">نشاط تجاري</p>
+                        <h3 class="portfolio-title">متجر إلكترونيات</h3>
+                        <p class="portfolio-category">بناء تجربة متجر كاملة مع حملات إعلانية مستهدفة</p>
                         <div class="portfolio-tags">
-                            <span class="portfolio-tag">زيادة المبيعات</span>
-                            <span class="portfolio-tag">زيادة العملاء</span>
+                            <span class="portfolio-tag">+320% المبيعات</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-item">
+                    <div class="portfolio-icon"><i class="fas fa-utensils"></i></div>
                     <div class="portfolio-content">
-                        <h3 class="portfolio-title">مشروع 2</h3>
-                        <p class="portfolio-category">هوية بصرية</p>
+                        <h3 class="portfolio-title">مطعم العائلة</h3>
+                        <p class="portfolio-category">حملة تسويق رقمي متكاملة مع إدارة حسابات السوشيال</p>
                         <div class="portfolio-tags">
-                            <span class="portfolio-tag">زيادة المبيعات</span>
+                            <span class="portfolio-tag">+180% نمو</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-item">
+                    <div class="portfolio-icon"><i class="fas fa-laptop-code"></i></div>
                     <div class="portfolio-content">
-                        <h3 class="portfolio-title">مشروع 3</h3>
-                        <p class="portfolio-category">موقع إلكتروني</p>
+                        <h3 class="portfolio-title">شركة التقنية المتقدمة</h3>
+                        <p class="portfolio-category">تطوير موقع وتطبيق جوال مع حملة تسويق رقمي شاملة</p>
                         <div class="portfolio-tags">
-                            <span class="portfolio-tag">زيادة العملاء</span>
+                            <span class="portfolio-tag">+250% العملاء</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-item">
+                    <div class="portfolio-icon"><i class="fas fa-building"></i></div>
                     <div class="portfolio-content">
-                        <h3 class="portfolio-title">مشروع 4</h3>
-                        <p class="portfolio-category">حملة تسويقية</p>
+                        <h3 class="portfolio-title">مطور عقاري</h3>
+                        <p class="portfolio-category">هوية ورسائل بيع وصفحات هبوط لحجز الاستشارات</p>
                         <div class="portfolio-tags">
-                            <span class="portfolio-tag">زيادة المبيعات</span>
+                            <span class="portfolio-tag">+140% طلبات</span>
                         </div>
                     </div>
                 </div>
@@ -2777,11 +3476,20 @@
                     </div>
                 </div>
             </div>
+            <div class="portfolio-nav">
+                <button class="carousel-arrow" type="button" onclick="slidePortfolio(-1)" aria-label="السابق">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="carousel-arrow" type="button" onclick="slidePortfolio(1)" aria-label="التالي">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            </div>
 
             <div class="portfolio-more">
-                <button class="btn btn-primary">
+                <a href="pages/portfolio.html" class="btn btn-primary">
                     <i class="fas fa-eye"></i> مشاهدة المزيد
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -2789,51 +3497,71 @@
     <!-- SECTION 10: HOW WE WORK -->
     <section class="process-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">كيف نعمل معك</h2>
-                <p class="section-subtitle">خطوات واضحة ومنظمة لضمان نجاح مشروعك</p>
+            <div class="section-header process-header">
+                <div class="process-eyebrow">خطوات عملنا</div>
+                <h2 class="section-title">كيف نعمل معك خطوة بخطوة</h2>
+                <p class="section-subtitle">مسار واضح من أول مكالمة حتى إطلاق الشغل، بألوان البراند وبدون أي حركة تلقائية تشتت العميل.</p>
             </div>
 
             <div class="process-timeline">
-                <div class="process-step">
+                <article class="process-step">
                     <div class="process-number">1</div>
+                    <div class="process-icon"><i class="fas fa-headset"></i></div>
                     <div class="process-content">
                         <h3>الاستماع والفهم</h3>
-                        <p>نبدأ بفهم أهدافك وتحدياتك بدقة، ونقدم لك تحليلاً أوليًا شاملاً للوضع الحالي</p>
+                        <p>نسمع هدفك، نفهم وضعك الحالي، ونحدد بسرعة أين المشكلة وأين أقرب فرصة للنمو.</p>
                     </div>
-                </div>
+                    <div class="process-meta">
+                        <i class="far fa-clock"></i>
+                        <span>1 - 2 يوم</span>
+                    </div>
+                </article>
 
-                <div class="process-step">
+                <article class="process-step">
                     <div class="process-number">2</div>
+                    <div class="process-icon"><i class="fas fa-chart-pie"></i></div>
                     <div class="process-content">
                         <h3>التحليل والتخطيط</h3>
-                        <p>تحليل السوق والمنافسين، وتطوير استراتيجية تسويقية تناسب مع نقاط قوتك وفرصك</p>
+                        <p>نحلل السوق والمنافسين، ثم نبني خطة عملية تناسب ميزانيتك ومرحلتك الحالية.</p>
                     </div>
-                </div>
+                    <div class="process-meta">
+                        <i class="far fa-clock"></i>
+                        <span>3 - 5 أيام</span>
+                    </div>
+                </article>
 
-                <div class="process-step">
+                <article class="process-step">
                     <div class="process-number">3</div>
+                    <div class="process-icon"><i class="fas fa-pen-ruler"></i></div>
                     <div class="process-content">
                         <h3>التصميم والإبداع</h3>
-                        <p>خطة شاملة تشمل الهوية والمحتوى وتجهيز كل الأصول اللازمة لحملتك بأعلى جودة</p>
+                        <p>نجهز الهوية، المحتوى، والتصميمات الأساسية بشكل مرتب يخدم الرسالة ويجهز التنفيذ.</p>
                     </div>
-                </div>
+                    <div class="process-meta">
+                        <i class="far fa-clock"></i>
+                        <span>5 - 7 أيام</span>
+                    </div>
+                </article>
 
-                <div class="process-step">
+                <article class="process-step">
                     <div class="process-number">4</div>
+                    <div class="process-icon"><i class="fas fa-rocket"></i></div>
                     <div class="process-content">
                         <h3>الإنتاج والتطبيق</h3>
-                        <p>إطلاق العمل الفعلي بكفاءة عالية والتنفيذ المنظم لضمان النتائج المطلوبة في الوقت المحدد</p>
+                        <p>نطلق التنفيذ، نتابع النتائج، ونعدل بسرعة حتى يظل المشروع ماشي في الاتجاه الصح.</p>
                     </div>
-                </div>
+                    <div class="process-meta">
+                        <i class="far fa-clock"></i>
+                        <span>حسب نطاق المشروع</span>
+                    </div>
+                </article>
+            </div>
 
-                <div class="process-step">
-                    <div class="process-number">5</div>
-                    <div class="process-content">
-                        <h3>المتابعة والتطوير</h3>
-                        <p>تقييم أداء الحملات والمبادرات باستمرار، وتطوير النتائج وتحديد فرص جديدة للنمو</p>
-                    </div>
-                </div>
+            <div class="process-cta">
+                <p class="process-cta-note">جاهز نرتب أول خطوة معك؟</p>
+                <a href="pages/contact.html" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> ابدأ مشروعك الآن
+                </a>
             </div>
         </div>
     </section>
@@ -2906,10 +3634,10 @@
                 </div>
                 
                 <div class="slider-arrows">
-                    <button class="slider-arrow" onclick="slideTestimonials(-1)">
+                    <button class="slider-arrow" type="button" onclick="slideTestimonials(-1)" aria-label="رأي العميل السابق">
                         <i class="fas fa-chevron-right"></i>
                     </button>
-                    <button class="slider-arrow" onclick="slideTestimonials(1)">
+                    <button class="slider-arrow" type="button" onclick="slideTestimonials(1)" aria-label="رأي العميل التالي">
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 </div>
@@ -3017,7 +3745,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">خدماتنا الشاملة</h2>
-                <p class="section-subtitle">حلول شاملة لجميع احتياجاتك التسويقية والإدارية</p>
+                <p class="section-subtitle">حلول شاملة لجميع احتياجاتك التسويقية والإدارية وتطوير الاعمال</p>
             </div>
 
             <div class="services-container">
@@ -3068,12 +3796,17 @@
                 </div>
 
                 <div class="slider-arrows">
-                    <button class="slider-arrow" onclick="slideServices(-1)">
+                    <button class="slider-arrow" type="button" onclick="slideServices(-1)" aria-label="الخدمة السابقة">
                         <i class="fas fa-chevron-right"></i>
                     </button>
-                    <button class="slider-arrow" onclick="slideServices(1)">
+                    <button class="slider-arrow" type="button" onclick="slideServices(1)" aria-label="الخدمة التالية">
                         <i class="fas fa-chevron-left"></i>
                     </button>
+                </div>
+                <div class="services-more">
+                    <a href="pages/services.html" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> مشاهدة المزيد
+                    </a>
                 </div>
             </div>
         </div>
@@ -3153,10 +3886,10 @@
                 </div>
 
                 <div class="slider-arrows">
-                    <button class="slider-arrow" onclick="slideProducts(-1)">
+                    <button class="slider-arrow" type="button" onclick="slideProducts(-1)" aria-label="المنتج السابق">
                         <i class="fas fa-chevron-right"></i>
                     </button>
-                    <button class="slider-arrow" onclick="slideProducts(1)">
+                    <button class="slider-arrow" type="button" onclick="slideProducts(1)" aria-label="المنتج التالي">
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 </div>
@@ -3293,10 +4026,10 @@
                 </div>
 
                 <div class="slider-arrows">
-                    <button class="slider-arrow" onclick="slideBlog(-1)">
+                    <button class="slider-arrow" type="button" onclick="slideBlog(-1)" aria-label="المقال السابق">
                         <i class="fas fa-chevron-right"></i>
                     </button>
-                    <button class="slider-arrow" onclick="slideBlog(1)">
+                    <button class="slider-arrow" type="button" onclick="slideBlog(1)" aria-label="المقال التالي">
                         <i class="fas fa-chevron-left"></i>
                     </button>
                 </div>
@@ -3484,21 +4217,11 @@
     </footer>
 
     <script>
-        // Header Show/Hide on Scroll
-        let lastScroll = 0;
+        // Keep public chrome visible while scrolling.
         const header = document.getElementById('mainHeader');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                header.classList.add('hidden');
-            } else {
-                header.classList.remove('hidden');
-            }
-            
-            lastScroll = currentScroll;
-        });
+        if (header) {
+            header.classList.remove('hidden');
+        }
 
         // Popup Functions
         function openPopup() {
@@ -3563,76 +4286,50 @@
             faqItem.classList.toggle('active');
         }
 
-        // Testimonials Slider
-        let testimonialIndex = 0;
+        function scrollLegacyCarousel(containerSelector, cardSelector, direction) {
+            const container = document.querySelector(containerSelector);
+            const card = container?.querySelector(cardSelector);
+            if (!container || !card) return;
+            const distance = card.offsetWidth + 32;
+            container.scrollBy({ left: direction * -distance, behavior: 'smooth' });
+        }
+
+        function slideProblems(direction) {
+            scrollLegacyCarousel('.problems-grid', '.problem-card', direction);
+        }
+
         function slideTestimonials(direction) {
-            const track = document.getElementById('testimonialsTrack');
-            const cards = track.children;
-            const cardWidth = cards[0].offsetWidth + 32; // width + gap
-            
-            testimonialIndex += direction;
-            
-            if (testimonialIndex < 0) {
-                testimonialIndex = cards.length - 3;
-            } else if (testimonialIndex > cards.length - 3) {
-                testimonialIndex = 0;
-            }
-            
-            track.style.transform = `translateX(${testimonialIndex * -cardWidth}px)`;
+            scrollLegacyCarousel('.testimonials-slider', '.testimonial-card', direction);
         }
 
         // Services Slider
-        let serviceIndex = 0;
         function slideServices(direction) {
-            const track = document.getElementById('servicesTrack');
-            const cards = track.children;
-            const cardWidth = cards[0].offsetWidth + 32;
-            
-            serviceIndex += direction;
-            
-            if (serviceIndex < 0) {
-                serviceIndex = cards.length - 3;
-            } else if (serviceIndex > cards.length - 3) {
-                serviceIndex = 0;
-            }
-            
-            track.style.transform = `translateX(${serviceIndex * -cardWidth}px)`;
+            scrollLegacyCarousel('.services-slider', '.service-card', direction);
         }
 
-        // Products Slider
-        let productIndex = 0;
+        function slidePortfolio(direction) {
+            scrollLegacyCarousel('#portfolioTrack', '.portfolio-item', direction);
+        }
+
+        function startSuccessJourney(event) {
+            event.preventDefault();
+            const name = document.getElementById('quickName')?.value || '';
+            const phone = document.getElementById('quickPhone')?.value || '';
+            const service = document.getElementById('quickService')?.value || '';
+            const params = new URLSearchParams();
+            if (service) params.set('services', service);
+            if (name) params.set('name', name);
+            if (phone) params.set('phone', phone);
+            window.location.href = `/contact?${params.toString()}`;
+            return false;
+        }
+
         function slideProducts(direction) {
-            const track = document.getElementById('productsTrack');
-            const cards = track.children;
-            const cardWidth = cards[0].offsetWidth + 32;
-            
-            productIndex += direction;
-            
-            if (productIndex < 0) {
-                productIndex = cards.length - 4;
-            } else if (productIndex > cards.length - 4) {
-                productIndex = 0;
-            }
-            
-            track.style.transform = `translateX(${productIndex * -cardWidth}px)`;
+            scrollLegacyCarousel('.products-slider', '.product-card', direction);
         }
 
-        // Blog Slider
-        let blogIndex = 0;
         function slideBlog(direction) {
-            const track = document.getElementById('blogTrack');
-            const cards = track.children;
-            const cardWidth = cards[0].offsetWidth + 32;
-            
-            blogIndex += direction;
-            
-            if (blogIndex < 0) {
-                blogIndex = cards.length - 4;
-            } else if (blogIndex > cards.length - 4) {
-                blogIndex = 0;
-            }
-            
-            track.style.transform = `translateX(${blogIndex * -cardWidth}px)`;
+            scrollLegacyCarousel('.blog-slider', '.blog-card', direction);
         }
 
         // Countdown Timer
@@ -3640,6 +4337,7 @@
             const days = document.getElementById('days');
             const hours = document.getElementById('hours');
             const minutes = document.getElementById('minutes');
+            if (!days || !hours || !minutes) return;
             
             let d = parseInt(days.textContent);
             let h = parseInt(hours.textContent);
@@ -3696,3 +4394,5 @@
     <script type="module" src="assets/mobile-polish.js"></script>
 </body>
 </html>
+
+

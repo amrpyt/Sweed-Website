@@ -1,0 +1,569 @@
+.page {
+  --rose: #ed2062;
+  --plum: #261b3e;
+  --ink: #140d21;
+  --paper: #fff7fa;
+  --muted: #746b82;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(237, 32, 98, 0.12), transparent 32rem),
+    linear-gradient(180deg, #fff 0%, #fff7fa 48%, #fff 100%);
+  color: var(--ink);
+  direction: rtl;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  width: min(100% - 2rem, 1240px);
+  margin: 1rem auto 0;
+  border: 1px solid rgba(38, 27, 62, 0.1);
+  border-radius: 999px;
+  padding: 0.55rem;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 20px 80px rgba(38, 27, 62, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.brand,
+.navCta,
+.heroActions a,
+.contact a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  white-space: nowrap;
+}
+
+.brand {
+  color: var(--plum);
+  font-weight: 950;
+}
+
+.brand span {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--rose);
+  color: #fff;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.55rem, 1.7vw, 1.5rem);
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 850;
+}
+
+.navCta {
+  min-height: 2.8rem;
+  border-radius: 999px;
+  padding: 0 1rem;
+  background: var(--plum);
+  color: #fff;
+  font-weight: 900;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.78fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  width: min(100% - 2rem, 1240px);
+  min-height: calc(100dvh - 6rem);
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+.kicker,
+.signalStrip span,
+.offerLab header span,
+.processIntro span,
+.proofCopy span,
+.contact span {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  background: rgba(237, 32, 98, 0.1);
+  color: var(--rose);
+  font-size: 0.86rem;
+  font-weight: 950;
+}
+
+.hero h1 {
+  max-width: 10ch;
+  margin: 1.25rem 0;
+  color: var(--plum);
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 950;
+  letter-spacing: -0.075em;
+  line-height: 0.86;
+}
+
+.hero h1 span {
+  color: var(--rose);
+}
+
+.heroText {
+  max-width: 55ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.28rem);
+  line-height: 1.9;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+}
+
+.heroActions a,
+.contact a {
+  min-height: 3.35rem;
+  border-radius: 999px;
+  padding: 0 1.35rem;
+  font-weight: 950;
+}
+
+.heroActions a:first-child,
+.contact a {
+  background: var(--rose);
+  color: #fff;
+  box-shadow: 0 18px 46px rgba(237, 32, 98, 0.22);
+}
+
+.heroActions a:last-child {
+  border: 1px solid rgba(38, 27, 62, 0.14);
+  color: var(--plum);
+  background: #fff;
+}
+
+.commandPanel {
+  position: relative;
+  min-height: 560px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 44px;
+  padding: 1.25rem;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(38, 27, 62, 0.96), rgba(115, 18, 78, 0.92)),
+    radial-gradient(circle at 20% 10%, rgba(237, 32, 98, 0.45), transparent 18rem);
+  color: #fff;
+  box-shadow: 0 34px 120px rgba(38, 27, 62, 0.24);
+}
+
+.panelHeader,
+.commandPanel dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.panelHeader {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  padding-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.76);
+  font-weight: 850;
+}
+
+.panelHeader strong {
+  color: #fff;
+  font-size: 2.4rem;
+  letter-spacing: -0.05em;
+}
+
+.radar {
+  display: grid;
+  min-height: 300px;
+  place-items: center;
+}
+
+.radar span {
+  position: absolute;
+  width: 16rem;
+  height: 16rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4rem rgba(255, 255, 255, 0.04);
+}
+
+.radar b {
+  position: relative;
+  border-radius: 22px;
+  padding: 0.85rem 1.2rem;
+  background: #fff;
+  color: var(--plum);
+  font-size: 2rem;
+  letter-spacing: -0.08em;
+}
+
+.commandPanel dl {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+}
+
+.commandPanel dl div {
+  border-radius: 18px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.commandPanel dt {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.commandPanel dd {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.signalStrip,
+.problemBoard,
+.offerLab,
+.process,
+.proof,
+.contact {
+  width: min(100% - 2rem, 1240px);
+  margin: 0 auto;
+}
+
+.signalStrip {
+  display: grid;
+  grid-template-columns: 1fr 0.72fr;
+  gap: 2rem;
+  align-items: end;
+  border-block: 1px solid rgba(38, 27, 62, 0.12);
+  padding: 4rem 0;
+}
+
+.signalStrip h2,
+.offerLab h2,
+.processIntro h2,
+.proofCopy h2,
+.contact h2 {
+  margin: 1rem 0 0;
+  color: var(--plum);
+  font-size: clamp(2.4rem, 5vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.signalStrip p,
+.proofCopy p,
+.contact p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.12rem;
+  line-height: 1.9;
+}
+
+.problemBoard {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 1fr;
+  gap: 1rem;
+  padding: 4rem 0;
+}
+
+.problemCard,
+.offerCard,
+.offerHero,
+.timeline article,
+.proofTiles a {
+  border: 1px solid rgba(38, 27, 62, 0.1);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 22px 80px rgba(38, 27, 62, 0.08);
+}
+
+.problemCard {
+  min-height: 280px;
+  padding: 1.4rem;
+}
+
+.problemCard:nth-child(2) {
+  transform: translateY(3rem);
+}
+
+.problemCard span {
+  color: rgba(38, 27, 62, 0.24);
+  font-weight: 950;
+}
+
+.problemCard i,
+.offerGrid i,
+.proofTiles i {
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  margin: 2rem 0 1rem;
+  place-items: center;
+  border-radius: 24px;
+  background: rgba(237, 32, 98, 0.1);
+  color: var(--rose);
+  font-size: 1.35rem;
+}
+
+.problemCard h3,
+.offerGrid h3,
+.timeline h3,
+.proofTiles h3 {
+  margin: 0 0 0.6rem;
+  color: var(--plum);
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.problemCard p,
+.offerGrid p,
+.timeline p,
+.proofTiles p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.offerLab,
+.process,
+.proof,
+.contact {
+  padding: 5rem 0;
+}
+
+.offerLab header {
+  max-width: 860px;
+}
+
+.offerGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.offerHero {
+  grid-row: span 2;
+  min-height: 460px;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.22), transparent 18rem),
+    linear-gradient(135deg, var(--plum), var(--rose));
+  color: #fff;
+}
+
+.offerHero h3,
+.offerHero p {
+  color: #fff;
+}
+
+.offerHero small,
+.offerCard small {
+  color: currentColor;
+  opacity: 0.74;
+  font-weight: 900;
+}
+
+.offerCard {
+  min-height: 220px;
+  padding: 1.5rem;
+}
+
+.process {
+  display: grid;
+  grid-template-columns: 0.72fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.processIntro {
+  position: sticky;
+  top: 7rem;
+}
+
+.processIntro p {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.timeline {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.timeline article {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.1rem;
+}
+
+.timeline b {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--plum);
+  color: #fff;
+}
+
+.timeline small {
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  background: rgba(237, 32, 98, 0.1);
+  color: var(--rose);
+  font-weight: 900;
+}
+
+.proof {
+  display: grid;
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.proofCopy {
+  border-radius: 40px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--plum);
+  color: #fff;
+}
+
+.proofCopy h2,
+.proofCopy p {
+  color: #fff;
+}
+
+.proofTiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.proofTiles a {
+  padding: 1.35rem;
+}
+
+.proofTiles a:first-child {
+  grid-column: span 2;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 4rem;
+  border-radius: 44px;
+  padding: clamp(2rem, 5vw, 4rem);
+  background: linear-gradient(135deg, var(--plum), var(--rose));
+  color: #fff;
+}
+
+.contact h2,
+.contact p {
+  color: #fff;
+}
+
+.contact a {
+  background: #fff;
+  color: var(--plum);
+}
+
+@media (max-width: 980px) {
+  .nav {
+    grid-template-columns: auto auto;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .hero,
+  .signalStrip,
+  .process,
+  .proof,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .problemBoard,
+  .offerGrid,
+  .proofTiles {
+    grid-template-columns: 1fr;
+  }
+
+  .problemCard:nth-child(2) {
+    transform: none;
+  }
+
+  .offerHero,
+  .proofTiles a:first-child {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .processIntro {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    width: min(100% - 1rem, 1240px);
+  }
+
+  .brand strong {
+    display: none;
+  }
+
+  .hero,
+  .signalStrip,
+  .problemBoard,
+  .offerLab,
+  .process,
+  .proof,
+  .contact {
+    width: min(100% - 1.25rem, 1240px);
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+
+  .hero h1 {
+    max-width: 9ch;
+    font-size: clamp(3.7rem, 18vw, 5.6rem);
+  }
+
+  .commandPanel {
+    min-height: 460px;
+  }
+
+  .timeline article {
+    grid-template-columns: 1fr;
+  }
+
+  .heroActions a,
+  .contact a {
+    width: 100%;
+  }
+}

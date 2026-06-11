@@ -7,6 +7,7 @@ export function getWorkspaceRoot() {
   const candidates = [
     process.env.SWEED_WORKSPACE_ROOT,
     process.cwd(),
+    join(process.cwd(), "apps", "web"),
     resolve(process.cwd(), "../.."),
   ].filter((candidate): candidate is string => Boolean(candidate));
 

@@ -10,7 +10,7 @@ The active production app is a Next.js app in `apps/web`. Legacy HTML is kept in
 apps/web/           Active Next.js public website and admin surface
 apps/web/site/      Legacy HTML source used by remaining legacy routes
 apps/web/public/    Public assets served by the web app
-packages/           Future shared packages with clear ownership
+packages/           Shared internal packages with clear ownership
 docs/               Engineering plans and repo documentation
 references/         Original design files, brand assets, and source material
 .archive/           Retired experiments and previous page versions

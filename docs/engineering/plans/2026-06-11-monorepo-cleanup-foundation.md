@@ -137,16 +137,23 @@ fix: keep legacy site with web app
 
 Purpose: extract only owners that are already stable.
 
-Actions:
+Completed actions:
 
-- `packages/brand`: colors, fonts, brand constants.
-- `packages/content`: typed marketing content.
-- `packages/ui`: reusable UI only after duplication is proven.
-- `packages/config`: shared TypeScript/ESLint/Playwright config only when needed.
+- `packages/brand`: stable brand primitives and metadata.
+- `packages/content`: shared public-site navigation and shell content.
+- `packages/ui`: framework-neutral `cn` utility only.
+- `packages/config`: shared TypeScript config for workspace packages.
+
+Deferred actions:
+
+- Keep React components in `apps/web` until reuse is proven.
+- Keep page-specific marketing copy in `apps/web` until it has a clear shared owner.
+- Add more shared config only when multiple packages actually need it.
 
 Verification:
 
 ```powershell
+bun run typecheck:packages
 bun run typecheck
 bun run lint
 bun run unit

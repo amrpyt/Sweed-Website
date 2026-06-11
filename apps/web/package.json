@@ -1,0 +1,19 @@
+{
+  "name": "@sweed/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0 --port 3000",
+    "mastra:dev": "mastra dev --dir src/mastra",
+    "mastra:build": "mastra build --dir src/mastra",
+    "mastra:studio:deploy": "mastra studio deploy",
+    "mastra:server:deploy": "mastra server deploy",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0 --port 3000",
+    "unit": "bun test src/**/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src next.config.ts eslint.config.mjs",
+    "smoke": "playwright test",
+    "clean": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"Remove-Item -Recurse -Force .next,dist -ErrorAction SilentlyContinue\""
+  }
+}

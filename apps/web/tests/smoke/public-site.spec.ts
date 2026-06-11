@@ -1,8 +1,13 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "@playwright/test";
 
 const publicRoutes = ["/", "/about", "/services", "/offers", "/products", "/portfolio", "/articles", "/faq", "/contact"];
+
+function getAppRoot() {
+  const nestedAppRoot = join(process.cwd(), "apps", "web");
+  return existsSync(join(nestedAppRoot, "src")) ? nestedAppRoot : process.cwd();
+}
 
 test("public routes render shared shell", async ({ page }) => {
   for (const route of publicRoutes) {
@@ -148,7 +153,8 @@ test("legacy mobile polish asset is served for non-migrated legacy pages", async
 });
 
 test("public app route boundaries show homepage migrated and remaining legacy pages isolated", async () => {
-  const homeRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/page.tsx"), "utf8");
+  const appRoot = getAppRoot();
+  const homeRouteSource = readFileSync(join(appRoot, "src/app/(marketing)/page.tsx"), "utf8");
   expect(homeRouteSource).not.toContain("publicLegacyRoutes");
   expect(homeRouteSource).toContain("HomePublicPage");
 
@@ -162,11 +168,11 @@ test("public app route boundaries show homepage migrated and remaining legacy pa
   ];
 
   for (const file of legacyRouteFiles) {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
+    const source = readFileSync(join(appRoot, file), "utf8");
     expect(source).toContain("publicLegacyRoutes");
   }
 
-  const sharedRouteModule = readFileSync(join(process.cwd(), "src/features/public-site/routes/index.tsx"), "utf8");
+  const sharedRouteModule = readFileSync(join(appRoot, "src/features/public-site/routes/index.tsx"), "utf8");
   expect(sharedRouteModule).not.toContain("page: \"home\"");
   expect(sharedRouteModule).toContain("LegacyPage");
   expect(sharedRouteModule).toContain("getLegacyMetadata");
@@ -177,7 +183,7 @@ test("public app route boundaries show homepage migrated and remaining legacy pa
     ["src/app/(marketing)/faq/page.tsx", "FaqPublicPage"],
     ["src/app/(marketing)/contact/page.tsx", "ContactPublicPage"],
   ] as const) {
-    const source = readFileSync(join(process.cwd(), file), "utf8");
+    const source = readFileSync(join(appRoot, file), "utf8");
     expect(source).not.toContain("publicLegacyRoutes");
     expect(source).toContain(component);
   }

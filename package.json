@@ -9,18 +9,18 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "next dev --hostname 0.0.0.0 --port 3000",
-    "mastra:dev": "mastra dev --dir src/mastra",
-    "mastra:build": "mastra build --dir src/mastra",
-    "mastra:studio:deploy": "mastra studio deploy",
-    "mastra:server:deploy": "mastra server deploy",
-    "build": "next build",
-    "start": "next start --hostname 0.0.0.0 --port 3000",
-    "unit": "bun test src/**/*.test.ts",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint src next.config.ts eslint.config.mjs",
-    "smoke": "playwright test",
-    "clean": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"Remove-Item -Recurse -Force .next,dist -ErrorAction SilentlyContinue\""
+    "dev": "bun run --cwd apps/web dev",
+    "mastra:dev": "bun run --cwd apps/web mastra:dev",
+    "mastra:build": "bun run --cwd apps/web mastra:build",
+    "mastra:studio:deploy": "bun run --cwd apps/web mastra:studio:deploy",
+    "mastra:server:deploy": "bun run --cwd apps/web mastra:server:deploy",
+    "build": "bun run --cwd apps/web build",
+    "start": "bun run --cwd apps/web start",
+    "unit": "bun run --cwd apps/web unit",
+    "typecheck": "bun run --cwd apps/web typecheck",
+    "lint": "bun run --cwd apps/web lint",
+    "smoke": "bun run --cwd apps/web smoke",
+    "clean": "bun run --cwd apps/web clean"
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^2.0.45",

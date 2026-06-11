@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { resolve } from "node:path";
 import { getWorkspaceRoot } from "./workspace-root";
 
 describe("getWorkspaceRoot", () => {
@@ -8,10 +9,11 @@ describe("getWorkspaceRoot", () => {
 
   test("honors an explicit workspace root override", () => {
     const previous = process.env.SWEED_WORKSPACE_ROOT;
-    process.env.SWEED_WORKSPACE_ROOT = process.cwd();
+    const repoRoot = resolve(process.cwd(), "../..");
+    process.env.SWEED_WORKSPACE_ROOT = repoRoot;
 
     try {
-      expect(getWorkspaceRoot()).toBe(process.cwd());
+      expect(getWorkspaceRoot()).toBe(repoRoot);
     } finally {
       if (previous === undefined) {
         delete process.env.SWEED_WORKSPACE_ROOT;

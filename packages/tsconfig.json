@@ -1,8 +1,6 @@
 {
   "extends": "./config/tsconfig/base.json",
   "include": [
-    "brand/src/**/*.ts",
-    "content/src/**/*.ts",
-    "ui/src/**/*.ts"
+    "*/src/**/*.ts"
   ]
 }

@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import { resolve } from "node:path";
-import { getWorkspaceRoot } from "./workspace-root";
+import { getWebAppRoot } from "./web-app-root";
 
-describe("getWorkspaceRoot", () => {
+describe("getWebAppRoot", () => {
   test("resolves the web app root that owns the legacy site files", () => {
-    expect(getWorkspaceRoot().replaceAll("\\", "/")).toEndWith("SWEED-Website/apps/web");
+    expect(getWebAppRoot().replaceAll("\\", "/")).toEndWith("SWEED-Website/apps/web");
   });
 
   test("honors an explicit workspace root override", () => {
@@ -13,7 +13,7 @@ describe("getWorkspaceRoot", () => {
     process.env.SWEED_WORKSPACE_ROOT = webAppRoot;
 
     try {
-      expect(getWorkspaceRoot()).toBe(webAppRoot);
+      expect(getWebAppRoot()).toBe(webAppRoot);
     } finally {
       if (previous === undefined) {
         delete process.env.SWEED_WORKSPACE_ROOT;

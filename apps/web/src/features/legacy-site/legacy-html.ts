@@ -2,7 +2,7 @@ import "server-only";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
-import { getWorkspaceRoot } from "@/lib/workspace-root";
+import { getWebAppRoot } from "@/lib/web-app-root";
 import { legacyHrefMap, legacyPageFiles, type LegacyPageKey } from "./legacy-routes";
 
 type LegacyScript = {
@@ -19,7 +19,7 @@ export type LegacyPageDocument = {
   scripts: LegacyScript[];
 };
 
-const siteRoot = join(getWorkspaceRoot(), "site");
+const siteRoot = join(getWebAppRoot(), "site");
 
 function readLegacyFile(page: LegacyPageKey) {
   return readFileSync(join(siteRoot, legacyPageFiles[page]), "utf8");

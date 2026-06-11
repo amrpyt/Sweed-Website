@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { NextResponse } from "next/server";
-import { getWorkspaceRoot } from "@/lib/workspace-root";
+import { getWebAppRoot } from "@/lib/web-app-root";
 
 const contentTypes: Record<string, string> = {
   "mobile-polish.css": "text/css; charset=utf-8",
@@ -16,7 +16,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ fil
     return new NextResponse("Not found", { status: 404 });
   }
 
-  const body = await readFile(join(getWorkspaceRoot(), "site", "assets", file), "utf8");
+  const body = await readFile(join(getWebAppRoot(), "site", "assets", file), "utf8");
 
   return new NextResponse(body, {
     headers: {

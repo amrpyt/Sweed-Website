@@ -3,7 +3,7 @@ import { join, resolve } from "node:path";
 
 const rootMarkers = ["package.json", "site"];
 
-export function getWorkspaceRoot() {
+export function getWebAppRoot() {
   const candidates = [
     process.env.SWEED_WORKSPACE_ROOT,
     process.cwd(),

@@ -6,11 +6,8 @@
 .mastra-data
 .opencode
 .planning
-openspec
 .tmp
 .vscode
-.artifacts
-.codex-dev.*
 dist
 node_modules
 test-results

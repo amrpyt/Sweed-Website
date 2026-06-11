@@ -14,9 +14,9 @@
 
 - [x] 3.1 Create the child change with research-first OpenSpec artifacts before code edits.
 - [x] 3.2 Triage and fix or quarantine the currently failing smoke cases around AI advisor route proof, mobile footer duplication, missing `#expertise` anchor proof, and legacy-route hydration mismatch noise.
-- [x] 3.3 Add Bun tests for future public-site repositories, mappers, and page-composer helpers under the public-site ownership area.
+- [ ] 3.3 Add Bun tests for future public-site repositories, mappers, and page-composer helpers under the public-site ownership area.
 - [x] 3.4 Extend `tests/smoke/migration-parity.ts` and related smoke coverage so a migrated route can be proven before activation.
-- [x] 3.5 Demonstrate RED first on at least one new public-site repository or composer behavior before implementing the minimal GREEN path.
+- [ ] 3.5 Demonstrate RED first on at least one new public-site repository or composer behavior before implementing the minimal GREEN path.
 - [x] 3.6 Keep existing `bun run unit` and `bun run smoke` green after the new test foundation lands.
 
 ## 4. Child Change: `group-marketing-routes-and-module-boundaries` (`TDD route: strict`)
@@ -29,11 +29,11 @@
 
 ## 5. Child Change: `normalize-public-content-repositories` (`TDD route: strict`)
 
-- [x] 5.1 Create typed repository or page-composer boundaries for public-site entities using `src/content/types.ts` as the base contract vocabulary.
-- [x] 5.2 Normalize route-level page models for at least about, services, articles, and shared navigation/CTA data.
-- [x] 5.3 Keep Arabic-first source content in typed modules and avoid new opaque HTML-content dependencies.
-- [x] 5.4 Add failing Bun tests for repository output, slug/meta readiness, and page-model assembly before implementation.
-- [x] 5.5 Verify the repository layer can support future locale-aware or CMS-backed adapters without changing route contracts.
+- [ ] 5.1 Create typed repository or page-composer boundaries for public-site entities using `src/content/types.ts` as the base contract vocabulary.
+- [ ] 5.2 Normalize route-level page models for at least about, services, articles, and shared navigation/CTA data.
+- [ ] 5.3 Keep Arabic-first source content in typed modules and avoid new opaque HTML-content dependencies.
+- [ ] 5.4 Add failing Bun tests for repository output, slug/meta readiness, and page-model assembly before implementation.
+- [ ] 5.5 Verify the repository layer can support future locale-aware or CMS-backed adapters without changing route contracts.
 
 ## 6. Child Change: `migrate-simple-public-pages-to-typed-composition` (`TDD route: strict`)
 

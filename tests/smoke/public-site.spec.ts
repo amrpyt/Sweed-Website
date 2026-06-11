@@ -15,21 +15,21 @@ const publicRoutes = [
 ];
 
 for (const { route, marker } of publicRoutes) {
-  test(`renders public page ${route}`, async ({ page }) => {
+  test(`renders legacy page ${route}`, async ({ page }) => {
     await page.goto(route);
     await expect(page.locator("body")).toBeVisible();
     await expect(page.locator("body")).toContainText(marker);
   });
 }
 
-test("home navigation points to homepage section anchors in the requested order", async ({ page }) => {
+test("legacy navigation link is rewritten to clean services route", async ({ page }) => {
   await page.goto("/");
-  const navLinks = page.locator(".sweed-common-header .nav-menu a");
-  await expect(navLinks).toHaveCount(9);
-  await expect(navLinks.nth(0)).toHaveAttribute("href", "/#home");
-  await expect(navLinks.nth(2)).toHaveAttribute("href", "/#offers");
-  await expect(navLinks.nth(3)).toHaveAttribute("href", "/#services");
-  await expect(navLinks.nth(8)).toHaveAttribute("href", "/#contact");
+  const servicesLink = page.locator('a[href="/services"]').first();
+  await expect(servicesLink).toBeAttached();
+  await expect(servicesLink).toHaveAttribute("href", "/services");
+  await page.goto("/services");
+  await expect(page).toHaveURL(/\/services$/);
+  await expect(page.locator("body")).toContainText("خدماتنا المتكاملة");
 });
 
 test("common header and logo are shared across legacy pages", async ({ page }) => {
@@ -53,7 +53,7 @@ test("shared footer is consistent across public routes", async ({ page }) => {
   }
 });
 
-test("all inner public pages expose a breadcrumb trail", async ({ page }) => {
+test("all inner legacy pages expose a breadcrumb trail", async ({ page }) => {
   const routes = [
     { route: "/about", current: "من نحن" },
     { route: "/services", current: "خدماتنا" },
@@ -80,7 +80,6 @@ test("legacy sections expose stable hash anchors", async ({ page }) => {
   const anchors = [
     { route: "/#expertise", selector: "#expertise" },
     { route: "/#problems", selector: "#problems" },
-    { route: "/#contact", selector: "#contact" },
     { route: "/about#story", selector: "#story" },
     { route: "/services#services", selector: "#services" },
     { route: "/contact#contact-form", selector: "#contact-form" },
@@ -91,33 +90,6 @@ test("legacy sections expose stable hash anchors", async ({ page }) => {
     await page.goto(route);
     await expect(page.locator(selector)).toHaveCount(1);
   }
-});
-
-test("modular about page updates the URL hash while sections become active", async ({ page }) => {
-  await page.goto("/about");
-
-  await page.locator("#story").scrollIntoViewIfNeeded();
-  await expect(page).toHaveURL(/\/about#story$/);
-
-  await page.locator("#team").scrollIntoViewIfNeeded();
-  await expect(page).toHaveURL(/\/about#team$/);
-});
-
-test("modular services page updates the URL hash while its main section becomes active", async ({ page }) => {
-  await page.goto("/services");
-
-  await page.locator("#services").scrollIntoViewIfNeeded();
-  await expect(page).toHaveURL(/\/services#services$/);
-});
-
-test("modular contact page updates the URL hash while sections become active", async ({ page }) => {
-  await page.goto("/contact");
-
-  await page.locator("#contact-form").scrollIntoViewIfNeeded();
-  await expect(page).toHaveURL(/\/contact#contact-form$/);
-
-  await page.locator("#quick-faq").scrollIntoViewIfNeeded();
-  await expect(page).toHaveURL(/\/contact#quick-faq$/);
 });
 
 test("production SEO endpoints use canonical site URL", async ({ page }) => {
@@ -173,9 +145,8 @@ test("mobile sidebar links are clickable above the overlay", async ({ page, isMo
   const menu = page.locator(".sweed-common-header .nav-menu");
   await expect(menu).toHaveClass(/active/);
   await menu.getByRole("link", { name: "اتصل بنا" }).click();
-  await expect(page).toHaveURL(/\/#contact$/);
-  await expect(page.locator("#contact")).toHaveCount(1);
-  await expect(page.locator("body")).toContainText("محتاج ايه وهنساعدك؟");
+  await expect(page).toHaveURL(/\/contact$/);
+  await expect(page.locator("body")).toContainText("تواصل معنا");
 });
 
 test("mobile sidebar keeps the polished drawer style without layout drift", async ({ page, isMobile }) => {
@@ -210,15 +181,19 @@ test("legacy mobile polish asset is served for pixel-perfect baseline pages", as
   expect(response.headers()["content-type"]).toContain("text/css");
 });
 
-test("public app routes keep legacy modules for non-migrated pages while about, services, faq, and contact use modular composition", async () => {
+test("public app routes intentionally use shared legacy modules until screenshot parity passes", async () => {
   const routeFiles = [
     "src/app/(marketing)/page.tsx",
+    "src/app/(marketing)/about/page.tsx",
+    "src/app/(marketing)/services/page.tsx",
     "src/app/(marketing)/services/[slug]/page.tsx",
     "src/app/(marketing)/offers/page.tsx",
     "src/app/(marketing)/products/page.tsx",
     "src/app/(marketing)/portfolio/page.tsx",
     "src/app/(marketing)/articles/page.tsx",
     "src/app/(marketing)/articles/[slug]/page.tsx",
+    "src/app/(marketing)/faq/page.tsx",
+    "src/app/(marketing)/contact/page.tsx",
   ];
 
   for (const file of routeFiles) {
@@ -229,24 +204,4 @@ test("public app routes keep legacy modules for non-migrated pages while about, 
   const sharedRouteModule = readFileSync(join(process.cwd(), "src/features/public-site/routes/index.tsx"), "utf8");
   expect(sharedRouteModule).toContain("LegacyPage");
   expect(sharedRouteModule).toContain("getLegacyMetadata");
-
-  const aboutRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/about/page.tsx"), "utf8");
-  expect(aboutRouteSource).not.toContain("publicLegacyRoutes");
-  expect(aboutRouteSource).toContain("AboutPublicPage");
-  expect(aboutRouteSource).toContain("getAboutPageModel");
-
-  const servicesRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/services/page.tsx"), "utf8");
-  expect(servicesRouteSource).not.toContain("publicLegacyRoutes");
-  expect(servicesRouteSource).toContain("ServicesPublicPage");
-  expect(servicesRouteSource).toContain("getServicesPageModel");
-
-  const faqRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/faq/page.tsx"), "utf8");
-  expect(faqRouteSource).not.toContain("publicLegacyRoutes");
-  expect(faqRouteSource).toContain("FaqPublicPage");
-  expect(faqRouteSource).toContain("getFaqPageModel");
-
-  const contactRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/contact/page.tsx"), "utf8");
-  expect(contactRouteSource).not.toContain("publicLegacyRoutes");
-  expect(contactRouteSource).toContain("ContactPublicPage");
-  expect(contactRouteSource).toContain("getContactPageModel");
 });

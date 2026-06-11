@@ -1,20 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
-    const style = document.createElement("style");
-    style.textContent = "nextjs-portal { pointer-events: none !important; }";
-    document.documentElement.append(style);
-  });
-});
-
-async function openAdvisor(page: import("@playwright/test").Page) {
-  await page.getByRole("button", { name: "Open AI advisor" }).click({ force: true });
-  await page.locator("aside[aria-label='SWEED support center'] details").first().evaluate((details) => {
-    details.setAttribute("open", "");
-  });
-}
-
 test("advisor API validates input", async ({ page }) => {
   const response = await page.request.post("/api/ai/advisor", {
     data: { mode: "advisor", message: "" },
@@ -39,30 +24,29 @@ test("advisor popup can send a visitor question and render a reply", async ({ pa
   });
 
   await page.goto("/");
-  await openAdvisor(page);
+  await page.getByRole("button", { name: "Open AI advisor" }).click();
   await page.getByRole("button", { name: quickPrompt }).click();
 
-  await expect(page.getByRole("complementary", { name: "SWEED support center" })).toContainText("باقة النمو");
+  await expect(page.getByRole("complementary", { name: "SWEED AI advisor" })).toContainText("باقة النمو");
 });
 
-test("support drawer offers visitor choice on services page", async ({ page }) => {
+test("services page automation demo runs through the advisor API", async ({ page }) => {
   await page.route("**/api/ai/advisor", async (route) => {
     await route.fulfill({
       json: {
-        message: "الشات يعمل من صفحة الخدمات.",
+        message: "الذكاء الاصطناعي يفرز العميل ثم يقترح الخدمة ويفتح مسار التواصل.",
         recommendation: "أتمتة العملاء",
         cta: { label: "تواصل مع SWEED", href: "/contact#contact-form" },
-        references: ["/services"],
+        references: ["/services#ai-automation-demo"],
         fallback: false,
       },
     });
   });
 
-  await page.goto("/services");
-  await openAdvisor(page);
-  await expect(page.getByRole("button", { name: /شات AI مباشر/ })).toBeVisible();
-  await expect(page.getByRole("button", { name: /دعم مباشر أو تذكرة/ })).toBeVisible();
-  await page.getByRole("button", { name: "محتاج خطة تسويق لمشروع جديد" }).click();
+  await page.goto("/services#ai-automation-demo");
+  await page.waitForLoadState("networkidle");
+  const demo = page.locator("#ai-automation-demo");
+  await demo.getByRole("button", { name: "تشغيل الديمو" }).click();
 
-  await expect(page.getByRole("complementary", { name: "SWEED support center" })).toContainText("أتمتة العملاء");
+  await expect(demo).toContainText("يفرز العميل");
 });

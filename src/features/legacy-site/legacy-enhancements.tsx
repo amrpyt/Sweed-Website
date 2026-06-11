@@ -43,14 +43,11 @@ function prefillContactForm() {
 
   const nameInput = document.querySelector<HTMLInputElement>("#contactName");
   const phoneInput = document.querySelector<HTMLInputElement>("#contactPhone");
-  const notesInput = document.querySelector<HTMLTextAreaElement>("#contactNotes");
   const name = params.get("name");
   const phone = params.get("phone");
-  const notes = params.get("notes");
 
   if (nameInput && name) nameInput.value = name;
   if (phoneInput && phone) phoneInput.value = phone;
-  if (notesInput && notes) notesInput.value = notes;
 }
 
 function initServiceMultiSelect() {
@@ -63,7 +60,7 @@ function initServiceMultiSelect() {
     create: false,
     hideSelected: true,
     maxItems: null,
-    placeholder: "اختر خدمة أو أكثر",
+    placeholder: "اختار خدمة أو أكثر",
     plugins: {
       remove_button: {
         title: "حذف الخدمة",
@@ -89,9 +86,6 @@ function ensureEmblaTrack(root: HTMLElement, slideSelector: string, trackClass: 
 
   const track = document.createElement("div");
   track.className = trackClass;
-  track.style.display = "flex";
-  track.style.gap = "1.25rem";
-  track.style.alignItems = "stretch";
   slides[0].before(track);
   slides.forEach((slide) => track.appendChild(slide));
 
@@ -138,9 +132,6 @@ function initEmblaMarquee(
 
   if (!root || reduceMotion) return null;
 
-  root.style.overflow = "hidden";
-  root.style.direction = "ltr";
-
   const track = ensureEmblaTrack(root, slideSelector, trackClass);
   if (!track) return null;
   duplicateSlidesForMarquee(root, track);
@@ -170,166 +161,26 @@ function initEmblaMarquee(
   );
 }
 
-function createQuickServiceOption(value: string, label: string) {
-  const option = document.createElement("label");
-  option.style.minWidth = "220px";
-  option.style.display = "flex";
-  option.style.alignItems = "center";
-  option.style.gap = "0.75rem";
-  option.style.padding = "1rem 1.1rem";
-  option.style.borderRadius = "18px";
-  option.style.background = "rgba(255,255,255,0.14)";
-  option.style.border = "1px solid rgba(255,255,255,0.18)";
-  option.style.color = "#ffffff";
-  option.style.cursor = "pointer";
-
-  const input = document.createElement("input");
-  input.type = "checkbox";
-  input.name = "quickServices";
-  input.value = value;
-
-  const text = document.createElement("span");
-  text.textContent = label;
-
-  option.append(input, text);
-  return option;
-}
-
-function bindHomepageQuickJourney() {
-  const helpForm = document.querySelector<HTMLElement>(".help-form");
-  const actionButton = helpForm?.querySelector<HTMLButtonElement>("button");
-  if (!helpForm || !actionButton || actionButton.dataset.quickJourneyBound === "true") {
-    return;
-  }
-
-  actionButton.dataset.quickJourneyBound = "true";
-  actionButton.type = "button";
-  actionButton.addEventListener("click", (event) => {
-    window.startSuccessJourney?.(event);
-  });
-}
-
-function tuneHomepageBrief() {
-  document.querySelector<HTMLElement>(".clients-marquee-label")?.replaceChildren(document.createTextNode("شركاء النجاح"));
-
-  const helpSection = document.querySelector<HTMLElement>(".help-section");
-  if (helpSection) {
-    helpSection.id = "contact";
-  }
-
-  const helpInputs = helpSection?.querySelectorAll<HTMLInputElement>(".help-form input");
-  if (helpInputs?.[0] && !helpInputs[0].id) {
-    helpInputs[0].id = "quickName";
-  }
-  if (helpInputs?.[1] && !helpInputs[1].id) {
-    helpInputs[1].id = "quickPhone";
-  }
-
-  const quickService = helpSection?.querySelector<HTMLSelectElement>(".help-form select");
-  if (quickService && !document.querySelector('[data-home-services="true"]')) {
-    const wrapper = document.createElement("div");
-    wrapper.dataset.homeServices = "true";
-    wrapper.style.display = "grid";
-    wrapper.style.gap = "0.85rem";
-
-    const helper = document.createElement("p");
-    helper.textContent = "اختر خدمة أو أكثر حسب احتياجك الحالي";
-    helper.style.margin = "0";
-    helper.style.color = "rgba(255,255,255,0.82)";
-    helper.style.fontSize = "0.95rem";
-    helper.style.fontWeight = "700";
-
-    const rail = document.createElement("div");
-    rail.style.display = "flex";
-    rail.style.gap = "0.85rem";
-    rail.style.overflowX = "auto";
-    rail.style.paddingBottom = "0.3rem";
-    rail.style.scrollbarWidth = "thin";
-
-    rail.append(
-      createQuickServiceOption("consulting", "استشارات إدارية وتسويقية"),
-      createQuickServiceOption("branding", "تأسيس البراندات"),
-      createQuickServiceOption("digital", "التسويق الرقمي"),
-      createQuickServiceOption("development", "البرمجة والتطوير"),
-      createQuickServiceOption("advertising", "الدعايا والإعلان"),
-      createQuickServiceOption("content", "الإنتاج الإبداعي"),
-    );
-
-    wrapper.append(helper, rail);
-    quickService.replaceWith(wrapper);
-  }
-
-  bindHomepageQuickJourney();
-
-  const packagesSection = document.querySelector<HTMLElement>(".packages-section");
-  if (packagesSection) {
-    packagesSection.id = "offers";
-    const title = packagesSection.querySelector<HTMLElement>(".section-title");
-    if (title) {
-      title.textContent = "باقات وعروض";
-    }
-
-    if (!packagesSection.querySelector('[data-packages-more="true"]')) {
-      const actions = document.createElement("div");
-      actions.className = "products-more";
-      actions.dataset.packagesMore = "true";
-
-      const link = document.createElement("a");
-      link.href = "/offers";
-      link.className = "btn btn-primary";
-      link.innerHTML = '<i class="fas fa-eye"></i> مشاهدة المزيد';
-      actions.append(link);
-      packagesSection.querySelector(".container")?.append(actions);
-    }
-  }
-
-  const servicesSection = document.querySelector<HTMLElement>(".services-section");
-  if (servicesSection) {
-    const title = servicesSection.querySelector<HTMLElement>(".section-title");
-    if (title) {
-      title.textContent = "خدماتنا المتكاملة";
-    }
-
-    const subtitle = servicesSection.querySelector<HTMLElement>(".section-subtitle");
-    if (subtitle) {
-      subtitle.textContent = "حلول شاملة لجميع احتياجاتك التسويقية والإدارية وتطوير الاعمال";
-    }
-
-    servicesSection.querySelectorAll<HTMLAnchorElement>(".service-link").forEach((link) => {
-      link.href = "/services";
-    });
-  }
-
-  const partnersGrid = document.querySelector<HTMLElement>(".partners-grid");
-  if (partnersGrid) {
-    partnersGrid.querySelectorAll<HTMLElement>(".partner-card").forEach((card) => {
-      card.style.minWidth = "180px";
-      card.style.flex = "0 0 180px";
-    });
-  }
-}
-
 export function LegacyEnhancements({ page }: { page: LegacyPageKey }) {
   useEffect(() => {
     document.getElementById("mainHeader")?.classList.remove("hidden");
     document.getElementById("header")?.classList.remove("hidden");
 
-    if (page === "home") {
-      tuneHomepageBrief();
-    }
-
-    const problemsCarousel: EmblaCarouselType | null = null;
     const emblaCarousels = {
-      problems: problemsCarousel,
+      problems: initEmblaMarquee(".problems-grid", ".problem-card", "problems-track", 0.55),
       portfolio: initEmblaMarquee("#portfolioTrack", ".portfolio-item", "portfolio-track", 0.5),
       testimonials: initEmblaMarquee(".testimonials-slider", ".testimonial-card", "testimonials-track", 0.45),
       services: initEmblaMarquee(".services-slider", ".service-card", "services-track", 0.45),
       products: initEmblaMarquee(".products-slider", ".product-card", "products-track", 0.5),
       blog: initEmblaMarquee(".blog-slider", ".blog-card", "blog-track", 0.45),
-      partners: initEmblaMarquee(".partners-grid", ".partner-card", "partners-track", 0.45),
     } satisfies Record<string, EmblaCarouselType | null>;
 
     window.slideProblems = (direction: number) => {
+      if (emblaCarousels.problems) {
+        if (direction > 0) emblaCarousels.problems.scrollNext();
+        else emblaCarousels.problems.scrollPrev();
+        return;
+      }
       scrollCarousel(".problems-grid", ".problem-card", direction);
     };
 
@@ -384,20 +235,15 @@ export function LegacyEnhancements({ page }: { page: LegacyPageKey }) {
       const params = new URLSearchParams();
       const name = document.querySelector<HTMLInputElement>("#quickName")?.value;
       const phone = document.querySelector<HTMLInputElement>("#quickPhone")?.value;
-      const services = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="quickServices"]:checked'))
-        .map((input) => input.value)
-        .filter(Boolean);
+      const service = document.querySelector<HTMLSelectElement>("#quickService")?.value;
 
-      if (services.length) params.set("services", services.join(","));
+      if (service) params.set("services", service);
       if (name) params.set("name", name);
       if (phone) params.set("phone", phone);
 
-      const nextUrl = params.toString() ? `/contact?${params.toString()}#contact-form` : "/contact#contact-form";
-      window.location.href = nextUrl;
+      window.location.href = `/contact?${params.toString()}`;
       return false;
     };
-
-    bindHomepageQuickJourney();
 
     const serviceMultiSelect = page === "contact" ? initServiceMultiSelect() : null;
 

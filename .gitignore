@@ -17,8 +17,6 @@ playwright-report/
 .env*
 !.env.example
 .vercel
-.artifacts/
-.codex-dev.*
 .claude/
 .codex/
 .mcp.json

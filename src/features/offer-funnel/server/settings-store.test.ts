@@ -28,7 +28,7 @@ describe("offer funnel settings store", () => {
 
     const settings = await getOfferFunnelSettings();
 
-    expect(settings.sectionOffer.dwellSeconds).toBe(30);
+    expect(settings.sectionOffer.dwellSeconds).toBe(60);
     expect(settings.siteOffer.enabled).toBe(true);
   });
 

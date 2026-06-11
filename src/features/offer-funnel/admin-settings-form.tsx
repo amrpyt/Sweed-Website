@@ -1,10 +1,7 @@
 "use client";
 
-import { RotateCcw, Save } from "lucide-react";
-import type { HTMLAttributes } from "react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { defaultOfferFunnelSettings, type OfferFunnelSettings } from "./contracts";
-import { normalizeEgyptWhatsAppPhone } from "./whatsapp";
 import styles from "./admin-settings-form.module.css";
 
 function parseOverrides(value: string) {
@@ -16,7 +13,6 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
   const [settings, setSettings] = useState(initialSettings);
   const [overridesJson, setOverridesJson] = useState(JSON.stringify(initialSettings.sectionLabelOverrides, null, 2));
   const [status, setStatus] = useState("");
-  const normalizedPhone = useMemo(() => normalizeEgyptWhatsAppPhone(settings.whatsapp.phone), [settings.whatsapp.phone]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -51,64 +47,51 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
   }
 
   return (
-    <main className={styles.page} dir="rtl">
-      <form className={styles.shell} onSubmit={handleSubmit}>
-        <header className={styles.header}>
-          <div>
-            <p className={styles.kicker}>SWEED Admin</p>
-            <h1>إعدادات العروض والواتساب</h1>
-            <p>صفحة بسيطة للتحكم في ظهور العروض ورسالة واتساب بدون تعديل الكود.</p>
-          </div>
-          <div className={styles.actions}>
-            <button className={styles.secondary} type="button" onClick={() => {
-              setSettings(defaultOfferFunnelSettings);
-              setOverridesJson(JSON.stringify(defaultOfferFunnelSettings.sectionLabelOverrides, null, 2));
-              setStatus("رجعنا القيم الافتراضية داخل الصفحة. اضغط حفظ لتثبيتها.");
-            }}>
-              <RotateCcw size={18} />
-              الافتراضي
-            </button>
-            <button className={styles.primary} type="submit">
-              <Save size={18} />
-              حفظ
-            </button>
-          </div>
-        </header>
+    <main className={styles.page}>
+      <header className={styles.hero}>
+        <div>
+          <p>Offer Funnel / WhatsApp</p>
+          <h1>لوحة تحكم العروض والواتساب</h1>
+          <span>من هنا تقدر تتحكم في توقيتات الـ popup، نصوص العروض، رقم واتساب، الرسالة الجاهزة، وأسماء السكاشن.</span>
+        </div>
+        <a href="/api/admin/offer-funnel">JSON</a>
+      </header>
 
-        {status ? <p className={styles.status}>{status}</p> : null}
-
-        <section className={styles.section}>
-          <SectionTitle title="تشغيل عام" note="لو قفلت هذا الخيار، كل الـpopups هتتوقف." />
-          <ToggleField
-            id="enabled"
-            label="تشغيل نظام العروض"
-            note="المفتاح الرئيسي لكل العروض."
-            checked={settings.enabled}
-            onChange={(checked) => setSettings((current) => ({ ...current, enabled: checked }))}
-          />
+      <form className={styles.grid} onSubmit={handleSubmit}>
+        <section className={styles.panel}>
+          <h2>تشغيل عام</h2>
+          <div className={styles.checkboxRow}>
+            <input
+              id="enabled"
+              type="checkbox"
+              checked={settings.enabled}
+              onChange={(event) => setSettings((current) => ({ ...current, enabled: event.target.checked }))}
+            />
+            <label htmlFor="enabled">تشغيل كل الفيتشر</label>
+          </div>
         </section>
 
-        <section className={styles.section}>
-          <SectionTitle title="عرض السكشن" note="يظهر لما العميل يقف داخل سكشن محدد مدة معينة." />
-          <div className={styles.grid}>
-            <ToggleField
-              id="section-enabled"
-              label="تفعيل عرض السكشن"
-              note="شغل أو اقفل popup المرتبط بالسكشن."
-              checked={settings.sectionOffer.enabled}
-              onChange={(checked) =>
-                setSettings((current) => ({
-                  ...current,
-                  sectionOffer: { ...current.sectionOffer, enabled: checked },
-                }))
-              }
-            />
+        <section className={styles.panel}>
+          <h2>Popup السكشن</h2>
+          <div className={styles.fields}>
+            <div className={styles.checkboxRow}>
+              <input
+                id="section-enabled"
+                type="checkbox"
+                checked={settings.sectionOffer.enabled}
+                onChange={(event) =>
+                  setSettings((current) => ({
+                    ...current,
+                    sectionOffer: { ...current.sectionOffer, enabled: event.target.checked },
+                  }))
+                }
+              />
+              <label htmlFor="section-enabled">تفعيل Popup السكشن</label>
+            </div>
             <FieldNumber
               id="section-dwell-seconds"
-              label="وقت الانتظار"
-              note="بعد كام ثانية داخل السكشن يظهر العرض."
+              label="عدد الثواني"
               value={settings.sectionOffer.dwellSeconds}
-              suffix="ثانية"
               onChange={(value) =>
                 setSettings((current) => ({
                   ...current,
@@ -119,9 +102,7 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             <FieldNumber
               id="section-discount-percent"
               label="نسبة الخصم"
-              note="النسبة التي تظهر داخل نص العرض."
               value={settings.sectionOffer.discountPercent}
-              suffix="%"
               onChange={(value) =>
                 setSettings((current) => ({
                   ...current,
@@ -131,10 +112,8 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             />
             <FieldNumber
               id="section-offer-hours"
-              label="مدة العرض"
-              note="عدد الساعات المكتوبة للعميل."
+              label="مدة العرض بالساعات"
               value={settings.sectionOffer.offerHours}
-              suffix="ساعة"
               onChange={(value) =>
                 setSettings((current) => ({
                   ...current,
@@ -144,10 +123,8 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             />
             <FieldNumber
               id="section-cooldown-hours"
-              label="فاصل التكرار"
-              note="يمنع ظهور نفس العرض كل مرة."
+              label="Cooldown بالساعات"
               value={settings.sectionOffer.cooldownHours}
-              suffix="ساعة"
               onChange={(value) =>
                 setSettings((current) => ({
                   ...current,
@@ -157,8 +134,7 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             />
             <FieldText
               id="section-title"
-              label="عنوان العرض"
-              note="العنوان الظاهر أعلى popup."
+              label="العنوان"
               value={settings.sectionOffer.title}
               onChange={(value) =>
                 setSettings((current) => ({
@@ -169,8 +145,7 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             />
             <FieldText
               id="section-cta-label"
-              label="نص الزر"
-              note="الكلام المكتوب على زر واتساب."
+              label="زر CTA"
               value={settings.sectionOffer.ctaLabel}
               onChange={(value) =>
                 setSettings((current) => ({
@@ -182,7 +157,7 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             <FieldArea
               id="section-body-template"
               label="نص الرسالة"
-              note="استخدم المتغيرات: {{section}} {{discount}} {{hours}} {{page}}"
+              hint="المتاح: {{section}} {{discount}} {{hours}} {{page}}"
               value={settings.sectionOffer.bodyTemplate}
               onChange={(value) =>
                 setSettings((current) => ({
@@ -194,27 +169,27 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
           </div>
         </section>
 
-        <section className={styles.section}>
-          <SectionTitle title="عرض الموقع" note="عرض عام يظهر بعد وقت معين في أي صفحة." />
-          <div className={styles.grid}>
-            <ToggleField
-              id="site-enabled"
-              label="تفعيل عرض الموقع"
-              note="شغل أو اقفل popup العام."
-              checked={settings.siteOffer.enabled}
-              onChange={(checked) =>
-                setSettings((current) => ({
-                  ...current,
-                  siteOffer: { ...current.siteOffer, enabled: checked },
-                }))
-              }
-            />
+        <section className={styles.panel}>
+          <h2>Popup الموقع كله</h2>
+          <div className={styles.fields}>
+            <div className={styles.checkboxRow}>
+              <input
+                id="site-enabled"
+                type="checkbox"
+                checked={settings.siteOffer.enabled}
+                onChange={(event) =>
+                  setSettings((current) => ({
+                    ...current,
+                    siteOffer: { ...current.siteOffer, enabled: event.target.checked },
+                  }))
+                }
+              />
+              <label htmlFor="site-enabled">تفعيل Popup الموقع</label>
+            </div>
             <FieldNumber
               id="site-dwell-seconds"
-              label="وقت الانتظار"
-              note="بعد كام ثانية داخل الموقع يظهر العرض."
+              label="عدد الثواني"
               value={settings.siteOffer.dwellSeconds}
-              suffix="ثانية"
               onChange={(value) =>
                 setSettings((current) => ({
                   ...current,
@@ -225,9 +200,7 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             <FieldNumber
               id="site-discount-percent"
               label="نسبة الخصم"
-              note="النسبة الظاهرة في العرض العام."
               value={settings.siteOffer.discountPercent}
-              suffix="%"
               onChange={(value) =>
                 setSettings((current) => ({
                   ...current,
@@ -237,8 +210,7 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             />
             <FieldText
               id="site-title"
-              label="عنوان العرض"
-              note="العنوان الظاهر للعرض العام."
+              label="العنوان"
               value={settings.siteOffer.title}
               onChange={(value) =>
                 setSettings((current) => ({
@@ -250,7 +222,7 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             <FieldArea
               id="site-body-template"
               label="نص الرسالة"
-              note="استخدم المتغيرات: {{section}} {{discount}} {{hours}} {{page}}"
+              hint="المتاح: {{section}} {{discount}} {{hours}} {{page}}"
               value={settings.siteOffer.bodyTemplate}
               onChange={(value) =>
                 setSettings((current) => ({
@@ -262,51 +234,51 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
           </div>
         </section>
 
-        <section className={styles.section}>
-          <SectionTitle title="واتساب" note="اكتب الرقم المصري عادي. النظام يحوله تلقائيًا للصيغة الدولية." />
-          <div className={styles.grid}>
-            <ToggleField
-              id="wa-enabled"
-              label="تفعيل واتساب"
-              note="لو اتقفل، زر واتساب لن يظهر."
-              checked={settings.whatsapp.enabled}
-              onChange={(checked) =>
-                setSettings((current) => ({
-                  ...current,
-                  whatsapp: { ...current.whatsapp, enabled: checked },
-                }))
-              }
-            />
-            <ToggleField
-              id="wa-pulse"
-              label="نبض الزر"
-              note="يجعل زر واتساب أكثر لفتًا للانتباه."
-              checked={settings.whatsapp.pulseCta}
-              onChange={(checked) =>
-                setSettings((current) => ({
-                  ...current,
-                  whatsapp: { ...current.whatsapp, pulseCta: checked },
-                }))
-              }
-            />
+        <section className={styles.panel}>
+          <h2>واتساب</h2>
+          <div className={styles.fields}>
+            <div className={styles.checkboxRow}>
+              <input
+                id="wa-enabled"
+                type="checkbox"
+                checked={settings.whatsapp.enabled}
+                onChange={(event) =>
+                  setSettings((current) => ({
+                    ...current,
+                    whatsapp: { ...current.whatsapp, enabled: event.target.checked },
+                  }))
+                }
+              />
+              <label htmlFor="wa-enabled">تفعيل واتساب</label>
+            </div>
+            <div className={styles.checkboxRow}>
+              <input
+                id="wa-pulse"
+                type="checkbox"
+                checked={settings.whatsapp.pulseCta}
+                onChange={(event) =>
+                  setSettings((current) => ({
+                    ...current,
+                    whatsapp: { ...current.whatsapp, pulseCta: event.target.checked },
+                  }))
+                }
+              />
+              <label htmlFor="wa-pulse">تشغيل النبض على الزر</label>
+            </div>
             <FieldText
               id="whatsapp-phone"
               label="رقم واتساب"
-              note={`الرابط النهائي يستخدم: ${normalizedPhone || "اكتب الرقم"}`}
-              inputMode="tel"
-              dir="ltr"
               value={settings.whatsapp.phone}
               onChange={(value) =>
                 setSettings((current) => ({
                   ...current,
-                  whatsapp: { ...current.whatsapp, phone: value },
+                  whatsapp: { ...current.whatsapp, phone: value.replace(/\D+/g, "") },
                 }))
               }
             />
             <FieldText
               id="whatsapp-cta-label"
-              label="نص زر واتساب"
-              note="النص الظاهر للعميل داخل popup."
+              label="نص الزر"
               value={settings.whatsapp.ctaLabel}
               onChange={(value) =>
                 setSettings((current) => ({
@@ -318,7 +290,7 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
             <FieldArea
               id="whatsapp-message-template"
               label="رسالة واتساب"
-              note="الرسالة الجاهزة التي تظهر للعميل قبل الإرسال."
+              hint="المتاح: {{section}} {{discount}} {{hours}} {{page}}"
               value={settings.whatsapp.messageTemplate}
               onChange={(value) =>
                 setSettings((current) => ({
@@ -330,78 +302,55 @@ export function AdminOfferFunnelSettingsForm({ initialSettings }: { initialSetti
           </div>
         </section>
 
-        <section className={styles.section}>
-          <SectionTitle title="أسماء السكاشن" note="اختياري. اربط ID السكشن باسم مفهوم يظهر في الرسالة." />
-          <FieldArea
-            id="section-overrides"
-            label="JSON أسماء السكاشن"
-            note='مثال: { "services": "الخدمات" }'
-            dir="ltr"
-            value={overridesJson}
-            onChange={setOverridesJson}
-          />
+        <section className={styles.panel}>
+          <h2>أسماء السكاشن</h2>
+          <div className={styles.field}>
+            <label htmlFor="section-overrides">JSON لأسماء السكاشن</label>
+            <textarea
+              id="section-overrides"
+              value={overridesJson}
+              onChange={(event) => setOverridesJson(event.target.value)}
+            />
+          </div>
+        </section>
+
+        <section className={styles.panel}>
+          <div className={styles.actions}>
+            <button className={styles.primary} type="submit">حفظ الإعدادات</button>
+            <button
+              className={styles.secondary}
+              type="button"
+              onClick={() => {
+                setSettings(defaultOfferFunnelSettings);
+                setOverridesJson(JSON.stringify(defaultOfferFunnelSettings.sectionLabelOverrides, null, 2));
+                setStatus("رجعنا القيم الافتراضية داخل الصفحة. اضغط حفظ لو عايز تثبتها.");
+              }}
+            >
+              رجع الافتراضي
+            </button>
+          </div>
+          <p className={styles.status}>{status}</p>
         </section>
       </form>
     </main>
   );
 }
 
-function SectionTitle({ title, note }: { title: string; note: string }) {
-  return (
-    <div className={styles.sectionTitle}>
-      <h2>{title}</h2>
-      <p>{note}</p>
-    </div>
-  );
-}
-
-function ToggleField({
-  id,
-  label,
-  note,
-  checked,
-  onChange,
-}: {
-  id: string;
-  label: string;
-  note: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-}) {
-  return (
-    <label className={styles.toggle} htmlFor={id}>
-      <input id={id} type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
-      <span aria-hidden="true" />
-      <span>
-        <strong>{label}</strong>
-        <small>{note}</small>
-      </span>
-    </label>
-  );
-}
-
 function FieldText({
   id,
   label,
-  note,
   value,
-  inputMode,
-  dir,
   onChange,
 }: {
   id: string;
   label: string;
-  note: string;
   value: string;
-  inputMode?: HTMLAttributes<HTMLInputElement>["inputMode"];
-  dir?: "rtl" | "ltr";
   onChange: (value: string) => void;
 }) {
   return (
     <div className={styles.field}>
       <label htmlFor={id}>{label}</label>
-      <input id={id} dir={dir} inputMode={inputMode} value={value} onChange={(event) => onChange(event.target.value)} />
-      <small>{note}</small>
+      <input id={id} value={value} onChange={(event) => onChange(event.target.value)} />
     </div>
   );
 }
@@ -409,31 +358,23 @@ function FieldText({
 function FieldNumber({
   id,
   label,
-  note,
-  suffix,
   value,
   onChange,
 }: {
   id: string;
   label: string;
-  note: string;
-  suffix?: string;
   value: number;
   onChange: (value: number) => void;
 }) {
   return (
     <div className={styles.field}>
       <label htmlFor={id}>{label}</label>
-      <div className={styles.numberWrap}>
-        <input
-          id={id}
-          type="number"
-          value={value}
-          onChange={(event) => onChange(Number(event.target.value || 0))}
-        />
-        {suffix ? <span>{suffix}</span> : null}
-      </div>
-      <small>{note}</small>
+      <input
+        id={id}
+        type="number"
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value || 0))}
+      />
     </div>
   );
 }
@@ -441,23 +382,21 @@ function FieldNumber({
 function FieldArea({
   id,
   label,
-  note,
-  dir,
+  hint,
   value,
   onChange,
 }: {
   id: string;
   label: string;
-  note: string;
-  dir?: "rtl" | "ltr";
+  hint: string;
   value: string;
   onChange: (value: string) => void;
 }) {
   return (
-    <div className={styles.fieldWide}>
+    <div className={styles.field}>
       <label htmlFor={id}>{label}</label>
-      <textarea id={id} dir={dir} value={value} onChange={(event) => onChange(event.target.value)} />
-      <small>{note}</small>
+      <textarea id={id} value={value} onChange={(event) => onChange(event.target.value)} />
+      <span>{hint}</span>
     </div>
   );
 }

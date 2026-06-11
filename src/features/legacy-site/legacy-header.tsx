@@ -5,34 +5,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { LegacyPageKey } from "./legacy-routes";
 
-type NavItem = {
-  href: string;
-  label: string;
-  active?: LegacyPageKey;
-};
-
-const defaultNavItems: NavItem[] = [
+const navItems: Array<{ href: string; label: string; active: LegacyPageKey }> = [
   { href: "/", label: "الرئيسية", active: "home" },
   { href: "/about", label: "من نحن", active: "about" },
-  { href: "/offers", label: "العروض", active: "offers" },
   { href: "/services", label: "خدماتنا", active: "services" },
+  { href: "/offers", label: "العروض", active: "offers" },
   { href: "/products", label: "منتجاتنا", active: "products" },
   { href: "/portfolio", label: "أعمالنا", active: "portfolio" },
   { href: "/articles", label: "المقالات", active: "articles" },
   { href: "/faq", label: "الأسئلة الشائعة", active: "faq" },
   { href: "/contact", label: "اتصل بنا", active: "contact" },
-];
-
-const homeNavItems: NavItem[] = [
-  { href: "/#home", label: "الرئيسية", active: "home" },
-  { href: "/#about", label: "من نحن" },
-  { href: "/#offers", label: "العروض" },
-  { href: "/#services", label: "خدماتنا" },
-  { href: "/#products", label: "منتجاتنا" },
-  { href: "/#portfolio", label: "أعمالنا" },
-  { href: "/#blog", label: "المقالات" },
-  { href: "/#faq", label: "الأسئلة الشائعة" },
-  { href: "/#contact", label: "اتصل بنا" },
 ];
 
 function isActive(page: LegacyPageKey, active: LegacyPageKey) {
@@ -43,7 +25,6 @@ function isActive(page: LegacyPageKey, active: LegacyPageKey) {
 
 export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const [isOpen, setIsOpen] = useState(false);
-  const navItems = page === "home" ? homeNavItems : defaultNavItems;
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -111,7 +92,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           <ul className={`nav-menu ${isOpen ? "active" : ""}`}>
             {navItems.map((item) => (
               <li key={item.href}>
-                <a className={item.active && isActive(page, item.active) ? "active" : undefined} href={item.href} onClick={() => setIsOpen(false)}>
+                <a className={isActive(page, item.active) ? "active" : undefined} href={item.href} onClick={() => setIsOpen(false)}>
                   {item.label}
                 </a>
               </li>
@@ -220,14 +201,6 @@ const legacyHeaderCss = `
 
   body {
     padding-top: 137px !important;
-  }
-
-  html {
-    scroll-behavior: smooth !important;
-  }
-
-  section[id] {
-    scroll-margin-top: 164px !important;
   }
 
   .sweed-common-header .nav-container {
@@ -427,10 +400,6 @@ const legacyHeaderCss = `
 
     body {
       padding-top: 78px !important;
-    }
-
-    section[id] {
-      scroll-margin-top: 92px !important;
     }
 
     .sweed-common-header {

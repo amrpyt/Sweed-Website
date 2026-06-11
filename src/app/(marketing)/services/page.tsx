@@ -1,11 +1,4 @@
-import { ServicesPublicPage } from "@/features/public-site/pages/services-public-page";
-import { getServicesPageModel } from "@/features/public-site";
+import { publicLegacyRoutes } from "@/features/public-site";
 
-const servicesPage = getServicesPageModel();
-
-export const metadata = {
-  title: servicesPage.seo.title,
-  description: servicesPage.seo.description,
-};
-
-export default ServicesPublicPage;
+export const metadata = publicLegacyRoutes.services.metadata;
+export default publicLegacyRoutes.services.Page;

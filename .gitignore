@@ -24,6 +24,7 @@ playwright-report/
 .mcp.json
 .opencode/
 .planning/
+openspec/
 .vscode/
 v2/
 v3/

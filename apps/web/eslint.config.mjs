@@ -15,7 +15,6 @@ const eslintConfig = defineConfig([
     ".codex/**",
     ".opencode/**",
     ".planning/**",
-    "openspec/**",
     "site/**",
     "v2/**",
     "v3/**",

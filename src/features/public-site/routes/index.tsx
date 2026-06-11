@@ -25,7 +25,6 @@ function definePublicLegacyRoute(config: PublicLegacyRouteConfig): PublicLegacyR
 }
 
 export const publicLegacyRoutes = {
-  home: definePublicLegacyRoute({ routePath: "/", page: "home" }),
   about: definePublicLegacyRoute({ routePath: "/about", page: "about" }),
   services: definePublicLegacyRoute({ routePath: "/services", page: "services" }),
   serviceDetail: definePublicLegacyRoute({ routePath: "/services/legacy", page: "service-detail" }),

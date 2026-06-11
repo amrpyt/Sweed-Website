@@ -1,4 +1,9 @@
-import { publicLegacyRoutes } from "@/features/public-site";
+import type { Metadata } from "next";
+import { HomePublicPage } from "@/features/homepage";
 
-export const metadata = publicLegacyRoutes.home.metadata;
-export default publicLegacyRoutes.home.Page;
+export const metadata: Metadata = {
+  title: "سويد | التسويق والإعلان - شريكك الاستراتيجي للنجاح",
+  description: "SWEED helps brands plan, launch, and grow with marketing, branding, content, and digital experiences.",
+};
+
+export default HomePublicPage;

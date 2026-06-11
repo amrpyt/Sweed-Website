@@ -9,10 +9,9 @@ test.beforeEach(async ({ page }) => {
 });
 
 async function openAdvisor(page: import("@playwright/test").Page) {
+  await page.waitForLoadState("networkidle");
   await page.getByRole("button", { name: "Open AI advisor" }).click({ force: true });
-  await page.locator("aside[aria-label='SWEED support center'] details").first().evaluate((details) => {
-    details.setAttribute("open", "");
-  });
+  await expect(page.locator("aside[aria-label='SWEED support center'] details").first()).toHaveAttribute("open", "");
 }
 
 test("advisor API validates input", async ({ page }) => {

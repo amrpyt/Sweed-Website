@@ -1,0 +1,460 @@
+.homepage {
+  --primary-pink: #ed2062;
+  --primary-purple: #261b3e;
+  --ink: #20182f;
+  --muted: #706a7d;
+  --soft: #fff4f8;
+  --line: rgba(38, 27, 62, 0.1);
+  background: radial-gradient(circle at 12% 12%, rgba(237, 32, 98, 0.1), transparent 26rem), #fff;
+  color: var(--ink);
+  direction: rtl;
+}
+
+.container {
+  width: min(100% - 2rem, 1180px);
+  margin-inline: auto;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 690px;
+  display: grid;
+  align-items: center;
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(38, 27, 62, 0.96), rgba(237, 32, 98, 0.86)),
+    url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=80") center/cover;
+}
+
+.heroBg {
+  position: absolute;
+  inset: auto -8rem -12rem auto;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: -1;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.56fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.heroCopy {
+  max-width: 780px;
+}
+
+.eyebrow,
+.sectionHeader span {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border: 1px solid rgba(237, 32, 98, 0.22);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  background: rgba(237, 32, 98, 0.1);
+  color: var(--primary-pink);
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.hero .eyebrow {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.hero h1 {
+  margin: 1.2rem 0 1.1rem;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+  font-weight: 900;
+}
+
+.hero p,
+.sectionHeader p,
+.card p,
+.processCard p,
+.contactBox p {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.hero p {
+  max-width: 660px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.action,
+.whatsappCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border-radius: 999px;
+  padding: 1rem 1.35rem;
+  font-weight: 900;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.action:hover,
+.whatsappCta:hover {
+  transform: translateY(-2px);
+}
+
+.actionPrimary {
+  background: linear-gradient(135deg, var(--primary-pink), #ff5a8a);
+  color: #fff;
+  box-shadow: 0 20px 40px rgba(237, 32, 98, 0.26);
+}
+
+.actionLight {
+  background: #fff;
+  color: var(--primary-purple);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
+}
+
+.heroPanel {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 34px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(16px);
+}
+
+.panelLogo {
+  width: fit-content;
+  border-radius: 22px;
+  padding: 0.6rem 1rem;
+  background: #fff;
+  color: var(--primary-purple);
+  font-size: 1.8rem;
+  font-weight: 950;
+  letter-spacing: -0.08em;
+}
+
+.heroPanel p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.metrics {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.metrics div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 18px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.metrics strong {
+  font-size: 1.5rem;
+}
+
+.partnerStrip {
+  padding: 2.2rem 0;
+  background: var(--primary-purple);
+  color: #fff;
+}
+
+.partnerStrip .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.partnerStrip p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 800;
+}
+
+.partnerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.partnerList span {
+  border-radius: 999px;
+  padding: 0.55rem 0.85rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 800;
+}
+
+.section {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.tint {
+  background: radial-gradient(circle at 10% 10%, rgba(237, 32, 98, 0.09), transparent 22rem), var(--soft);
+}
+
+.sectionHeader {
+  max-width: 760px;
+  margin: 0 auto 2.4rem;
+  text-align: center;
+}
+
+.sectionHeader h2 {
+  margin: 1rem 0 0.8rem;
+  color: var(--primary-purple);
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1.12;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.sectionHeader p {
+  margin: 0 auto;
+  max-width: 650px;
+  font-size: 1.05rem;
+}
+
+.cardGrid,
+.wideGrid,
+.processGrid,
+.faqGrid,
+.articleGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.cardGrid,
+.faqGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.wideGrid,
+.processGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.articleGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card,
+.processCard {
+  position: relative;
+  min-height: 260px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 1.35rem;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 22px 60px rgba(38, 27, 62, 0.08);
+}
+
+.cardLink:hover {
+  border-color: rgba(237, 32, 98, 0.34);
+  box-shadow: 0 26px 70px rgba(237, 32, 98, 0.12);
+}
+
+.cardNumber {
+  color: rgba(38, 27, 62, 0.22);
+  font-size: 0.85rem;
+  font-weight: 950;
+}
+
+.cardIcon,
+.processIcon {
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  margin: 1.1rem 0;
+  place-items: center;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(237, 32, 98, 0.12), rgba(38, 27, 62, 0.08));
+  color: var(--primary-pink);
+  font-size: 1.55rem;
+}
+
+.card h3,
+.processCard h3 {
+  margin: 0 0 0.6rem;
+  color: var(--primary-purple);
+  font-size: 1.35rem;
+  line-height: 1.35;
+  font-weight: 950;
+}
+
+.card p,
+.processCard p {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.card small,
+.processCard small {
+  display: inline-flex;
+  margin-top: 1rem;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  background: rgba(237, 32, 98, 0.1);
+  color: var(--primary-pink);
+  font-weight: 900;
+}
+
+.processSection {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(237, 32, 98, 0.1), transparent 25rem),
+    radial-gradient(circle at 90% 80%, rgba(38, 27, 62, 0.1), transparent 26rem),
+    #fff;
+}
+
+.processCard {
+  text-align: center;
+}
+
+.processNumber {
+  position: absolute;
+  inset-block-start: -1.4rem;
+  inset-inline-start: 50%;
+  display: grid;
+  width: 4.2rem;
+  height: 4.2rem;
+  place-items: center;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 950;
+  transform: translateX(50%);
+  box-shadow: 0 18px 38px rgba(38, 27, 62, 0.18);
+}
+
+.processIcon {
+  margin: 2.4rem auto 1rem;
+}
+
+.faqSection {
+  background: #faf8fb;
+}
+
+.contactCta {
+  padding: 4rem 0 5rem;
+}
+
+.contactBox {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  border-radius: 36px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+  color: #fff;
+  box-shadow: 0 26px 80px rgba(38, 27, 62, 0.18);
+}
+
+.contactBox h2 {
+  margin: 1rem 0 0.6rem;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.12;
+}
+
+.contactBox p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contactBox .eyebrow {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.whatsappCta {
+  background: #fff;
+  color: var(--primary-purple);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action,
+  .whatsappCta,
+  .cardLink {
+    transition: none;
+  }
+}
+
+@media (max-width: 1040px) {
+  .heroGrid,
+  .contactBox {
+    grid-template-columns: 1fr;
+  }
+
+  .wideGrid,
+  .processGrid,
+  .cardGrid,
+  .faqGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .partnerStrip .container {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: min(100% - 1.25rem, 1180px);
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 16vw, 4rem);
+  }
+
+  .actions,
+  .action,
+  .whatsappCta {
+    width: 100%;
+  }
+
+  .cardGrid,
+  .wideGrid,
+  .processGrid,
+  .faqGrid,
+  .articleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .card,
+  .processCard {
+    min-height: auto;
+  }
+}

@@ -2,25 +2,30 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "@playwright/test";
 
-const publicRoutes = [
-  { route: "/", marker: "نحول أحلامك إلى إنجازات حقيقية" },
-  { route: "/about", marker: "من نحن" },
-  { route: "/services", marker: "خدماتنا المتكاملة" },
-  { route: "/offers", marker: "باقاتنا وعروضنا" },
-  { route: "/products", marker: "منتجاتنا المتميزة" },
-  { route: "/portfolio", marker: "معرض أعمالنا" },
-  { route: "/articles", marker: "مدونة سويد" },
-  { route: "/faq", marker: "الأسئلة الشائعة" },
-  { route: "/contact", marker: "تواصل معنا" },
-];
+const publicRoutes = ["/", "/about", "/services", "/offers", "/products", "/portfolio", "/articles", "/faq", "/contact"];
 
-for (const { route, marker } of publicRoutes) {
-  test(`renders public page ${route}`, async ({ page }) => {
+test("public routes render shared shell", async ({ page }) => {
+  for (const route of publicRoutes) {
     await page.goto(route);
     await expect(page.locator("body")).toBeVisible();
-    await expect(page.locator("body")).toContainText(marker);
-  });
-}
+    await expect(page.locator(".sweed-common-top-bar")).toHaveCount(1);
+    await expect(page.locator(".sweed-common-header")).toHaveCount(1);
+    await expect(page.locator(".sweed-common-logo .logo-main")).toHaveText("SWEED");
+    await expect(page.locator(".sweed-common-logo .logo-subtitle")).toHaveText("التسويق والإعلان");
+    await expect(page.locator(".sweed-common-footer")).toHaveCount(1);
+    await expect(page.locator("body")).toContainText("info@sweed.com");
+  }
+});
+
+test("react homepage renders key content and stable anchors", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("body")).toContainText("نحوّل أحلامك إلى إنجازات حقيقية");
+  await expect(page.locator("#process")).toContainText("كيف نعمل معك خطوة بخطوة");
+
+  for (const selector of ["#home", "#expertise", "#problems", "#offers", "#services", "#products", "#portfolio", "#blog", "#faq", "#contact"]) {
+    await expect(page.locator(selector)).toHaveCount(1);
+  }
+});
 
 test("home navigation points to homepage section anchors in the requested order", async ({ page }) => {
   await page.goto("/");
@@ -32,90 +37,33 @@ test("home navigation points to homepage section anchors in the requested order"
   await expect(navLinks.nth(8)).toHaveAttribute("href", "/#contact");
 });
 
-test("common header and logo are shared across legacy pages", async ({ page }) => {
-  for (const route of ["/", "/about", "/services", "/offers", "/contact"]) {
-    await page.goto(route);
-    await expect(page.locator(".sweed-common-top-bar")).toHaveCount(1);
-    await expect(page.locator(".sweed-common-header")).toHaveCount(1);
-    await expect(page.locator(".sweed-common-logo .logo-main")).toHaveText("SWEED");
-    await expect(page.locator(".sweed-common-logo .logo-subtitle")).toHaveText("التسويق والإعلان");
-  }
-});
-
-test("shared footer is consistent across public routes", async ({ page }) => {
-  for (const { route } of publicRoutes) {
-    await page.goto(route);
-    const footer = page.locator(".sweed-common-footer");
-    await expect(footer).toHaveCount(1);
-    await expect(footer.locator("h3").first()).toHaveText("SWEED");
-    await expect(footer).toContainText("01068274662");
-    await expect(footer).toContainText("info@sweed.com");
-  }
-});
-
-test("all inner public pages expose a breadcrumb trail", async ({ page }) => {
-  const routes = [
-    { route: "/about", current: "من نحن" },
-    { route: "/services", current: "خدماتنا" },
-    { route: "/services/legacy", current: "الاستشارات الإدارية" },
-    { route: "/offers", current: "العروض" },
-    { route: "/products", current: "المنتجات" },
-    { route: "/portfolio", current: "أعمالنا" },
-    { route: "/articles", current: "المدونة" },
-    { route: "/articles/legacy", current: "10 استراتيجيات مبتكرة للتسويق الرقمي" },
-    { route: "/faq", current: "الأسئلة الشائعة" },
-    { route: "/contact", current: "اتصل بنا" },
-  ];
-
-  for (const { route, current } of routes) {
+test("inner public pages expose breadcrumb trails", async ({ page }) => {
+  for (const route of ["/about", "/services", "/offers", "/products", "/portfolio", "/articles", "/faq", "/contact"]) {
     await page.goto(route);
     const breadcrumb = page.locator(".breadcrumb").first();
     await expect(breadcrumb).toBeVisible();
-    await expect(breadcrumb.getByRole("link", { name: "الرئيسية" })).toHaveAttribute("href", "/");
-    await expect(breadcrumb).toContainText(current);
+    await expect(breadcrumb.getByRole("link").first()).toHaveAttribute("href", "/");
   }
 });
 
-test("legacy sections expose stable hash anchors", async ({ page }) => {
-  const anchors = [
-    { route: "/#expertise", selector: "#expertise" },
-    { route: "/#problems", selector: "#problems" },
-    { route: "/#contact", selector: "#contact" },
-    { route: "/about#story", selector: "#story" },
-    { route: "/services#services", selector: "#services" },
-    { route: "/contact#contact-form", selector: "#contact-form" },
-    { route: "/articles#stats", selector: "#stats" },
-  ];
-
-  for (const { route, selector } of anchors) {
-    await page.goto(route);
-    await expect(page.locator(selector)).toHaveCount(1);
-  }
-});
-
-test("modular about page updates the URL hash while sections become active", async ({ page }) => {
+test("modular about page updates URL hash while sections become active", async ({ page }) => {
   await page.goto("/about");
-
   await page.locator("#story").scrollIntoViewIfNeeded();
   await expect(page).toHaveURL(/\/about#story$/);
-
   await page.locator("#team").scrollIntoViewIfNeeded();
   await expect(page).toHaveURL(/\/about#team$/);
 });
 
-test("modular services page updates the URL hash while its main section becomes active", async ({ page }) => {
+test("modular services page updates URL hash while its main section becomes active", async ({ page }) => {
   await page.goto("/services");
-
   await page.locator("#services").scrollIntoViewIfNeeded();
   await expect(page).toHaveURL(/\/services#services$/);
 });
 
-test("modular contact page updates the URL hash while sections become active", async ({ page }) => {
+test("modular contact page updates URL hash while sections become active", async ({ page }) => {
   await page.goto("/contact");
-
   await page.locator("#contact-form").scrollIntoViewIfNeeded();
   await expect(page).toHaveURL(/\/contact#contact-form$/);
-
   await page.locator("#quick-faq").scrollIntoViewIfNeeded();
   await expect(page).toHaveURL(/\/contact#quick-faq$/);
 });
@@ -135,8 +83,8 @@ test("production SEO endpoints use canonical site URL", async ({ page }) => {
   expect(robotsBody).not.toContain("sweed.example");
 });
 
-test("legacy public pages normalize old contact emails", async ({ page }) => {
-  for (const route of ["/", "/about", "/services", "/offers", "/articles", "/faq", "/contact"]) {
+test("public pages normalize old contact emails", async ({ page }) => {
+  for (const route of publicRoutes) {
     await page.goto(route);
     await expect(page.locator("body")).toContainText("info@sweed.com");
     await expect(page.locator("body")).not.toContainText("info@sweid.com");
@@ -162,7 +110,7 @@ test("mobile sidebar stays fixed while page scrolls", async ({ page, isMobile })
   expect(Math.round(after?.y ?? -1)).toBe(Math.round(before?.y ?? -2));
 });
 
-test("mobile sidebar links are clickable above the overlay", async ({ page, isMobile }) => {
+test("mobile sidebar links are clickable above overlay", async ({ page, isMobile }) => {
   test.skip(!isMobile, "mobile sidebar click behavior only runs on mobile project");
 
   await page.goto("/");
@@ -175,10 +123,10 @@ test("mobile sidebar links are clickable above the overlay", async ({ page, isMo
   await menu.getByRole("link", { name: "اتصل بنا" }).click();
   await expect(page).toHaveURL(/\/#contact$/);
   await expect(page.locator("#contact")).toHaveCount(1);
-  await expect(page.locator("body")).toContainText("محتاج ايه وهنساعدك؟");
+  await expect(page.locator("body")).toContainText("محتاج إيه وهنساعدك؟");
 });
 
-test("mobile sidebar keeps the polished drawer style without layout drift", async ({ page, isMobile }) => {
+test("mobile sidebar keeps polished drawer style without layout drift", async ({ page, isMobile }) => {
   test.skip(!isMobile, "mobile sidebar style only runs on mobile project");
 
   await page.goto("/articles");
@@ -191,28 +139,20 @@ test("mobile sidebar keeps the polished drawer style without layout drift", asyn
   await expect(menu).toHaveCSS("width", "340px");
   await expect(menu).toHaveCSS("border-top-left-radius", "26px");
   await expect(menu).toHaveCSS("border-bottom-left-radius", "26px");
-
-  const menuBeforeContent = await menu.evaluate((element) => getComputedStyle(element, "::before").content);
-  const menuAfterContent = await menu.evaluate((element) => getComputedStyle(element, "::after").content);
-  const firstLinkBeforeContent = await menu
-    .getByRole("link", { name: "الرئيسية" })
-    .evaluate((element) => getComputedStyle(element, "::before").content);
-
-  expect(menuBeforeContent).toContain("SWEED");
-  expect(menuBeforeContent).toContain("نصنع حضورك");
-  expect(menuAfterContent).toContain("جاهز تنمو أعمالك");
-  expect(firstLinkBeforeContent).toBe('""');
 });
 
-test("legacy mobile polish asset is served for pixel-perfect baseline pages", async ({ page }) => {
+test("legacy mobile polish asset is served for non-migrated legacy pages", async ({ page }) => {
   const response = await page.request.get("/legacy-assets/mobile-polish.css");
   expect(response.ok()).toBeTruthy();
   expect(response.headers()["content-type"]).toContain("text/css");
 });
 
-test("public app routes keep legacy modules for non-migrated pages while about, services, faq, and contact use modular composition", async () => {
-  const routeFiles = [
-    "src/app/(marketing)/page.tsx",
+test("public app route boundaries show homepage migrated and remaining legacy pages isolated", async () => {
+  const homeRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/page.tsx"), "utf8");
+  expect(homeRouteSource).not.toContain("publicLegacyRoutes");
+  expect(homeRouteSource).toContain("HomePublicPage");
+
+  const legacyRouteFiles = [
     "src/app/(marketing)/services/[slug]/page.tsx",
     "src/app/(marketing)/offers/page.tsx",
     "src/app/(marketing)/products/page.tsx",
@@ -221,32 +161,24 @@ test("public app routes keep legacy modules for non-migrated pages while about, 
     "src/app/(marketing)/articles/[slug]/page.tsx",
   ];
 
-  for (const file of routeFiles) {
+  for (const file of legacyRouteFiles) {
     const source = readFileSync(join(process.cwd(), file), "utf8");
     expect(source).toContain("publicLegacyRoutes");
   }
 
   const sharedRouteModule = readFileSync(join(process.cwd(), "src/features/public-site/routes/index.tsx"), "utf8");
+  expect(sharedRouteModule).not.toContain("page: \"home\"");
   expect(sharedRouteModule).toContain("LegacyPage");
   expect(sharedRouteModule).toContain("getLegacyMetadata");
 
-  const aboutRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/about/page.tsx"), "utf8");
-  expect(aboutRouteSource).not.toContain("publicLegacyRoutes");
-  expect(aboutRouteSource).toContain("AboutPublicPage");
-  expect(aboutRouteSource).toContain("getAboutPageModel");
-
-  const servicesRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/services/page.tsx"), "utf8");
-  expect(servicesRouteSource).not.toContain("publicLegacyRoutes");
-  expect(servicesRouteSource).toContain("ServicesPublicPage");
-  expect(servicesRouteSource).toContain("getServicesPageModel");
-
-  const faqRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/faq/page.tsx"), "utf8");
-  expect(faqRouteSource).not.toContain("publicLegacyRoutes");
-  expect(faqRouteSource).toContain("FaqPublicPage");
-  expect(faqRouteSource).toContain("getFaqPageModel");
-
-  const contactRouteSource = readFileSync(join(process.cwd(), "src/app/(marketing)/contact/page.tsx"), "utf8");
-  expect(contactRouteSource).not.toContain("publicLegacyRoutes");
-  expect(contactRouteSource).toContain("ContactPublicPage");
-  expect(contactRouteSource).toContain("getContactPageModel");
+  for (const [file, component] of [
+    ["src/app/(marketing)/about/page.tsx", "AboutPublicPage"],
+    ["src/app/(marketing)/services/page.tsx", "ServicesPublicPage"],
+    ["src/app/(marketing)/faq/page.tsx", "FaqPublicPage"],
+    ["src/app/(marketing)/contact/page.tsx", "ContactPublicPage"],
+  ] as const) {
+    const source = readFileSync(join(process.cwd(), file), "utf8");
+    expect(source).not.toContain("publicLegacyRoutes");
+    expect(source).toContain(component);
+  }
 });

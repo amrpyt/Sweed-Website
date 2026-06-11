@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@font-face {
+    font-family: 'Sweed Font';
+    src: url('/fonts/sweed-normal.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sweed Font';
+    src: url('/fonts/sweed-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: 'Sweed Font', sans-serif;
+    --font-sans: 'Sweed Font', sans-serif;
+    --font-mono: 'Geist Mono', monospace;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --radius-3xl: 2rem;
+    --radius-4xl: 2.5rem;
+
+    --ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+:root {
+    --background: #f8f9fa;
+    --foreground: #2d2947;
+
+    --primary: #e3256b;
+    --primary-foreground: #ffffff;
+
+    --secondary: #ffffff;
+    --secondary-foreground: #2d2947;
+
+    --muted: #e2e8f0;
+    --muted-foreground: #6d6e70;
+
+    --accent: #ff6b35;
+    --accent-foreground: #ffffff;
+
+    --border-color: rgba(45, 41, 71, 0.1);
+
+    --radius: 0.75rem;
+    --ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.dark {
+    --background: #050505;
+    --foreground: #ffffff;
+
+    --primary: #e3256b;
+    --primary-foreground: #ffffff;
+
+    --secondary: #1a1a1a;
+    --secondary-foreground: #ffffff;
+
+    --muted: #111111;
+    --muted-foreground: #a1a1aa;
+
+    --accent: #ff6b35;
+    --accent-foreground: #ffffff;
+
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  * {
+    @apply outline-none;
+    border-color: var(--border-color);
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-500;
+    selection-background-color: var(--primary);
+    selection-color: white;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-2xl bg-white/60 dark:bg-black/40 border border-black/5 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)];
+  }
+
+  .double-bezel {
+    @apply p-1.5 rounded-4xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5;
+  }
+
+  .double-bezel-inner {
+    @apply rounded-[calc(2.5rem-0.375rem)] bg-secondary border border-black/10 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)];
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .noise {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .font-swash {
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+}

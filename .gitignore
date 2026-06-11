@@ -19,6 +19,7 @@ playwright-report/
 .vercel
 .artifacts/
 .codex-dev.*
+.agents/skills/convex*/
 .claude/
 .codex/
 .mcp.json

@@ -4,6 +4,7 @@ import { ConvexHttpClient } from "convex/browser";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { api } from "../../../../convex/_generated/api";
+import { getWorkspaceRoot } from "@/lib/workspace-root";
 import {
   defaultOfferFunnelSettings,
   offerFunnelSettingsSchema,
@@ -18,7 +19,7 @@ function getSettingsPath() {
     return process.env.OFFER_FUNNEL_SETTINGS_PATH;
   }
 
-  return join(/* turbopackIgnore: true */ process.cwd(), ".mastra-data", "offer-funnel-settings.json");
+  return join(/* turbopackIgnore: true */ getWorkspaceRoot(), ".mastra-data", "offer-funnel-settings.json");
 }
 
 function getConvexUrl() {

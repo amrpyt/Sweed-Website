@@ -1,42 +1,27 @@
 import { afterEach, beforeAll, describe, expect, mock, test } from "bun:test";
-import { mkdtempSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
 
 let getOfferFunnelSettings: typeof import("./settings-store").getOfferFunnelSettings;
 let saveOfferFunnelSettings: typeof import("./settings-store").saveOfferFunnelSettings;
+let resetMemoryOfferFunnelSettingsForTest: typeof import("./settings-store").resetMemoryOfferFunnelSettingsForTest;
 
 beforeAll(async () => {
   mock.module("server-only", () => ({}));
-  ({ getOfferFunnelSettings, saveOfferFunnelSettings } = await import("./settings-store"));
+  ({ getOfferFunnelSettings, resetMemoryOfferFunnelSettingsForTest, saveOfferFunnelSettings } = await import("./settings-store"));
 });
 
 describe("offer funnel settings store", () => {
-  const tempRoots: string[] = [];
-
   afterEach(() => {
-    while (tempRoots.length) {
-      rmSync(tempRoots.pop()!, { recursive: true, force: true });
-    }
-    delete process.env.OFFER_FUNNEL_SETTINGS_PATH;
+    resetMemoryOfferFunnelSettingsForTest();
   });
 
-  test("returns defaults when no persisted file exists", async () => {
-    const tempRoot = mkdtempSync(join(tmpdir(), "sweed-offer-funnel-"));
-    tempRoots.push(tempRoot);
-    process.env.OFFER_FUNNEL_SETTINGS_PATH = join(tempRoot, "settings.json");
-
+  test("returns defaults when no durable backend is configured", async () => {
     const settings = await getOfferFunnelSettings();
 
     expect(settings.sectionOffer.dwellSeconds).toBe(30);
     expect(settings.siteOffer.enabled).toBe(true);
   });
 
-  test("persists valid settings and reads them back", async () => {
-    const tempRoot = mkdtempSync(join(tmpdir(), "sweed-offer-funnel-"));
-    tempRoots.push(tempRoot);
-    process.env.OFFER_FUNNEL_SETTINGS_PATH = join(tempRoot, "settings.json");
-
+  test("keeps valid settings in memory when no durable backend is configured", async () => {
     await saveOfferFunnelSettings({
       enabled: true,
       sectionOffer: {

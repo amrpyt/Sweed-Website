@@ -20,6 +20,7 @@
     "typecheck": "bun run --cwd apps/web typecheck",
     "typecheck:packages": "tsc -p packages/tsconfig.json --noEmit",
     "lint": "bun run --cwd apps/web lint",
+    "check": "bun run typecheck:packages && bun run typecheck && bun run lint && bun run unit",
     "smoke": "bun run --cwd apps/web smoke",
     "clean": "bun run --cwd apps/web clean"
   }

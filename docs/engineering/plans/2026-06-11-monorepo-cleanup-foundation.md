@@ -49,10 +49,17 @@ SWEED-Website/
 Each structural slice should run the relevant subset of:
 
 ```powershell
+bun run typecheck:packages
 bun run typecheck
 bun run lint
 bun run unit
 bun run build
+```
+
+For broad cleanup slices, prefer the combined workspace gate:
+
+```powershell
+bun run check
 ```
 
 For route-affecting work, also verify:

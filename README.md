@@ -21,9 +21,9 @@ references/         Original design files, brand assets, and source material
 ```bash
 bun install
 bun run dev
+bun run check
 bun run build
-bun run lint
-bun run unit
+bun run typecheck:packages
 ```
 
 ## Site Source

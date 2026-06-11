@@ -18,6 +18,7 @@
     "start": "bun run --cwd apps/web start",
     "unit": "bun run --cwd apps/web unit",
     "typecheck": "bun run --cwd apps/web typecheck",
+    "typecheck:packages": "tsc -p packages/tsconfig.json --noEmit",
     "lint": "bun run --cwd apps/web lint",
     "smoke": "bun run --cwd apps/web smoke",
     "clean": "bun run --cwd apps/web clean"

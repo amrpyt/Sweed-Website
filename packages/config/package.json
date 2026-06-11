@@ -1,0 +1,8 @@
+{
+  "name": "@sweed/config",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tsconfig/base": "./tsconfig/base.json"
+  }
+}

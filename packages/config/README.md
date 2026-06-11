@@ -1,5 +1,9 @@
 # Config Package
 
-Future owner for shared tooling config.
+Owner for shared tooling config.
 
-Use this only when multiple apps/packages need the same config.
+Current config:
+
+- `tsconfig/base.json` - strict TypeScript defaults for shared workspace packages.
+
+Use this package only when multiple apps/packages need the same config.

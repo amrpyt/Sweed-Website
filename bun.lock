@@ -16,6 +16,7 @@
         "@mastra/memory": "^1.17.4",
         "@sweed/brand": "workspace:*",
         "@sweed/content": "workspace:*",
+        "@sweed/ui": "workspace:*",
         "ai": "^6.0.174",
         "convex": "^1.40.0",
         "embla-carousel": "^8.6.0",
@@ -49,6 +50,9 @@
       "dependencies": {
         "@sweed/brand": "workspace:*",
       },
+    },
+    "packages/ui": {
+      "name": "@sweed/ui",
     },
   },
   "packages": {
@@ -485,6 +489,8 @@
     "@sweed/brand": ["@sweed/brand@workspace:packages/brand"],
 
     "@sweed/content": ["@sweed/content@workspace:packages/content"],
+
+    "@sweed/ui": ["@sweed/ui@workspace:packages/ui"],
 
     "@sweed/web": ["@sweed/web@workspace:apps/web"],
 

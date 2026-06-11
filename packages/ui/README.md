@@ -1,9 +1,10 @@
 # UI Package
 
-Future owner for reusable UI primitives.
+Owner for shared framework-neutral UI utilities first.
 
 Allowed here:
 
+- class name helpers
 - generic buttons
 - layout primitives
 - shared section wrappers

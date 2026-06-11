@@ -23,6 +23,7 @@
     "check": "bun run typecheck:packages && bun run typecheck && bun run lint && bun run unit",
     "smoke": "bun run --cwd apps/web smoke",
     "smoke:prod": "bun run --cwd apps/web smoke:prod",
+    "design:detect": "bunx impeccable detect apps/web/src/app apps/web/src/components apps/web/src/features/homepage apps/web/src/features/public-site apps/web/src/features/offer-funnel",
     "clean": "bun run --cwd apps/web clean"
   }
 }

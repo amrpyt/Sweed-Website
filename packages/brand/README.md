@@ -1,6 +1,6 @@
 # Brand Package
 
-Future owner for SWEED brand primitives:
+Owner for stable SWEED brand primitives:
 
 - colors
 - typography tokens

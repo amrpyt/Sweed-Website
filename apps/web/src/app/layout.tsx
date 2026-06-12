@@ -1,4 +1,12 @@
+import { Tajawal } from "next/font/google";
 import "./globals.css";
+
+const tajawal = Tajawal({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "700", "800", "900"],
+  variable: "--font-tajawal",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -10,7 +18,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
-      <body>{children}</body>
+      <body className={tajawal.variable}>{children}</body>
     </html>
   );
 }

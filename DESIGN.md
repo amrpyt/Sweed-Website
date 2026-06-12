@@ -21,7 +21,7 @@ Arabic-first marketing website for a marketing and advertising agency. The audie
 - Surface: `#f7f8fb`
 - Panel: `#ffffff`
 - Radius system: pill controls, soft 24px cards, larger 32px panels.
-- Typography: Arabic-first sans. Current production font is self-hosted `SF Arabic`; Tajawal remains an acceptable fallback for admin or future font migration.
+- Typography: Arabic-first sans. Tajawal is the primary website font; self-hosted `SF Arabic` remains only as a fallback.
 
 ## Component Rules
 

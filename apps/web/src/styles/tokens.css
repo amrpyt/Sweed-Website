@@ -24,8 +24,8 @@
   --radius-lg: 18px;
   --container: min(1120px, calc(100vw - 32px));
   --sweed-container: min(1400px, calc(100vw - 32px));
-  --font-body: "SF Arabic", "Tajawal", Arial, sans-serif;
-  --font-display: "SF Arabic", "Tajawal", Arial, sans-serif;
+  --font-body: var(--font-tajawal), "Tajawal", "SF Arabic", Arial, sans-serif;
+  --font-display: var(--font-tajawal), "Tajawal", "SF Arabic", Arial, sans-serif;
   --font-weight-body: 400;
   --font-weight-strong: 700;
   --font-weight-display: 900;

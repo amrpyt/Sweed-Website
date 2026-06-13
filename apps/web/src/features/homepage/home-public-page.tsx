@@ -38,10 +38,12 @@ function SectionHeader({ title, summary }: { title: string; summary: string }) {
 function ProblemCard({ card }: { card: HomeCard }) {
   return (
     <HeroHomeCard className={styles.problemCard}>
-      <div className={styles.problemIcon}>
-        <Icon name={card.icon} />
+      <div className={styles.problemCardHeader}>
+        <div className={styles.problemIcon}>
+          <Icon name={card.icon} />
+        </div>
+        <h3>{card.title}</h3>
       </div>
-      <h3>{card.title}</h3>
       <p>{card.summary}</p>
       {card.solution ? (
         <div className={styles.solution}>
@@ -235,13 +237,19 @@ export function HomePublicPage() {
 
         <section className={styles.problemsSection} id="problems">
           <div className={styles.container}>
-            <SectionHeader title="هل تواجه هذه المشاكل؟" summary="نحن نفهم التحديات التي تواجهها الشركات اليوم، ولدينا الحلول المناسبة لها" />
-            <div className={styles.problemsGrid}>
-              {homepageContent.problems.map((card, index) => (
-                <Reveal as="article" delay={index * 70} key={card.title} variant="scaleIn">
-                  <ProblemCard card={card} />
-                </Reveal>
-              ))}
+            <div className={styles.problemsLayout}>
+              <Reveal className={`${styles.sectionHeader} ${styles.problemsHeader}`} variant="slideStart">
+                <span>تشخيص سريع</span>
+                <h2>هل تواجه هذه المشاكل؟</h2>
+                <p>ست مشاكل متكررة بتضيع وقت وميزانية الشركات. اختار الأقرب لك ونحولها لخطة تنفيذ واضحة.</p>
+              </Reveal>
+              <div className={styles.problemsGrid}>
+                {homepageContent.problems.map((card, index) => (
+                  <Reveal as="article" delay={index * 55} key={card.title} variant="scaleIn">
+                    <ProblemCard card={card} />
+                  </Reveal>
+                ))}
+              </div>
             </div>
             <Reveal className={styles.problemsCta} variant="soft">
               <span>تعبت من نفس المشاكل؟</span>

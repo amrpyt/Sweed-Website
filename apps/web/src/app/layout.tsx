@@ -1,4 +1,5 @@
 import { Cairo } from "next/font/google";
+import { PageScrollEffects } from "@/components/motion/page-scroll-effects";
 import "./globals.css";
 
 const cairo = Cairo({
@@ -18,7 +19,10 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <PageScrollEffects />
+      </body>
     </html>
   );
 }

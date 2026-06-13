@@ -27,6 +27,9 @@ html {
   background: var(--color-surface);
   color: var(--color-text);
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-block-start: 96px;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -53,4 +56,10 @@ select {
 ::selection {
   background: var(--color-accent);
   color: var(--color-accent-contrast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

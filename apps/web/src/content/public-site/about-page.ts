@@ -44,6 +44,19 @@ export const aboutPageSource: AboutPageSource = {
         { title: "التنفيذ", summary: "نربط التصميم بالموقع وبالقياس وبنقاط التواصل الحقيقية مع العميل." },
       ],
     },
+    {
+      id: "pillars",
+      header: {
+        title: "ركائز عملنا في SWEED",
+        summary: "كيف نضمن تقديم أفضل تجربة وقيمة حقيقية لمشروعك.",
+      },
+      items: [
+        { icon: "fa-bullseye", title: "رؤية واضحة", summary: "نبدأ بفهم المشروع والهدف الحقيقي قبل أي تنفيذ." },
+        { icon: "fa-trophy", title: "نتائج ملموسة", summary: "كل خطوة مرتبطة بهدف قابل للقياس والمتابعة." },
+        { icon: "fa-check-circle", title: "تنفيذ منظم", summary: "نشتغل بخطة واضحة ومراحل محددة بدل العشوائية." },
+        { icon: "fa-handshake", title: "شراكة طويلة", summary: "نساعدك تبني حضور مستمر مش حملة مؤقتة فقط." },
+      ],
+    },
   ],
   cta: {
     title: "لنرتب حضورك الرقمي بشكل أفضل",

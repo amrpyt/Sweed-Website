@@ -1,3 +1,4 @@
+Use OpenSpec.
 ## Project Direction
 
 - The current site must move toward modular React/Next implementation.

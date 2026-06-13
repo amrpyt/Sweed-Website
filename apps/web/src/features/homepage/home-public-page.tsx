@@ -69,6 +69,20 @@ function FeatureCard({ card }: { card: HomeCard }) {
   );
 }
 
+function WhyPoint({ card }: { card: HomeCard }) {
+  return (
+    <div className={styles.whyPoint}>
+      <span className={styles.whyPointIcon}>
+        <Icon name={card.icon} />
+      </span>
+      <div>
+        <h3>{card.title}</h3>
+        <p>{card.summary}</p>
+      </div>
+    </div>
+  );
+}
+
 function PortfolioCard({ card }: { card: HomeCard }) {
   return (
     <Link className={styles.portfolioCard} href={card.href ?? "/portfolio"}>
@@ -271,18 +285,15 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <div className={styles.whyLayout}>
               <div>
-                <SectionHeader title="ليه تختار SWEED؟" summary="نشتغل معاك بمنهج واضح يجمع بين التفكير، التصميم، التنفيذ، والقياس." />
+                <SectionHeader title="ليه تختار SWEED؟" summary="فريق واحد يرتب الرسالة، ينفذ، ويقيس النتيجة." />
                 <div className={styles.whyGrid}>
                   {homepageContent.why.map((card, index) => (
                     <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                      <FeatureCard card={card} />
+                      <WhyPoint card={card} />
                     </Reveal>
                   ))}
                 </div>
               </div>
-              <Reveal className={styles.videoMock} variant="slideStart">
-                <Icon name="fa-play" />
-              </Reveal>
             </div>
           </div>
         </section>

@@ -60,12 +60,12 @@ export const homepageContent = {
     { value: "98%", label: "معدل رضا العملاء" },
   ] satisfies HomeMetric[],
   why: [
-    { title: "خبرة عملية", summary: "فريق فاهم السوق ويعرف يحول الفكرة لخطة تنفيذ.", icon: "fa-award" },
-    { title: "فريق متكامل", summary: "استراتيجية، تصميم، محتوى، إعلانات، ومتابعة في مسار واحد.", icon: "fa-users" },
-    { title: "نتائج قابلة للقياس", summary: "نربط كل خطوة بمؤشرات واضحة بدل الكلام العام.", icon: "fa-chart-line" },
-    { title: "حماية للبراند", summary: "نحافظ على شكل ورسالة ثابتة في كل نقطة تواصل.", icon: "fa-shield-alt" },
-    { title: "سرعة في التنفيذ", summary: "نبدأ بخطة واضحة ثم ننفذ ونعدل بسرعة.", icon: "fa-bolt" },
-    { title: "دعم مستمر", summary: "متابعة بعد الإطلاق حتى يفضل المشروع في الاتجاه الصح.", icon: "fa-headset" },
+    { title: "خبرة عملية", summary: "نشتغل من واقع السوق، مش قوالب جاهزة.", icon: "fa-award" },
+    { title: "فريق واحد", summary: "استراتيجية، محتوى، تصميم، وتطوير في مسار واحد.", icon: "fa-users" },
+    { title: "قياس واضح", summary: "كل خطوة مربوطة بهدف ورقم.", icon: "fa-chart-line" },
+    { title: "براند ثابت", summary: "رسالة وشكل موحد في كل نقطة تواصل.", icon: "fa-shield-alt" },
+    { title: "تنفيذ أسرع", summary: "نبدأ بخطة قصيرة ونحسن بسرعة.", icon: "fa-bolt" },
+    { title: "متابعة مستمرة", summary: "بعد الإطلاق نراجع ونظبط الاتجاه.", icon: "fa-headset" },
   ] satisfies HomeCard[],
   portfolio: [
     { title: "حملة إطلاق براند", summary: "هوية ورسائل وصفحة هبوط وحملة أولية لبدء السوق بقوة.", icon: "fa-store", href: "/portfolio", category: "Brand Launch", meta: "هوية / محتوى / إعلان" },

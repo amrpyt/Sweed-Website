@@ -457,7 +457,6 @@
 
 .problemIcon,
 .featureIcon,
-.serviceIcon,
 .processIcon {
   display: grid;
   width: 70px;
@@ -467,6 +466,17 @@
   background: linear-gradient(135deg, rgba(237, 32, 98, 0.14), rgba(38, 27, 62, 0.08));
   color: var(--primary-pink);
   font-size: 1.8rem;
+}
+
+.serviceIcon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(237, 32, 98, 0.12), rgba(38, 27, 62, 0.06));
+  color: var(--primary-pink);
+  font-size: 1.35rem;
 }
 
 .problemIcon {

@@ -265,19 +265,16 @@ export function HomePublicPage() {
           </div>
         </section>
 
-        <section className={styles.helpSection}>
+        <section className={styles.servicesSection} id="services">
           <div className={styles.container}>
-            <Reveal className={styles.helpBox} variant="scaleIn">
-              <h2>محتاج ايه وهنساعدك؟</h2>
-              <p>{homepageContent.contact.summary}</p>
-              <div className={styles.helpActions}>
-                <ActionButton action={{ label: "ابدأ رحلة نجاحك", href: "/contact?services=consulting#contact-form", icon: "fa-rocket", variant: "primary" }} />
-                <HomeButton className={`${styles.button} ${styles.buttonLight}`} href={homepageContent.contact.whatsappHref} rel="noreferrer" target="_blank">
-                  <Icon name="fab fa-whatsapp" />
-                  <span>واتساب مباشر</span>
-                </HomeButton>
-              </div>
-            </Reveal>
+            <SectionHeader title="خدماتنا المتكاملة" summary="كل خدمة لها هدف واضح: بناء ثقة، زيادة طلب، أو تحسين تجربة العميل." />
+            <div className={styles.servicesGrid}>
+              {homepageContent.services.map((card, index) => (
+                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                  <ServiceCard card={card} />
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -329,19 +326,6 @@ export function HomePublicPage() {
           </div>
         </section>
 
-        <section className={styles.servicesSection} id="services">
-          <div className={styles.container}>
-            <SectionHeader title="خدماتنا المتكاملة" summary="كل خدمة لها هدف واضح: بناء ثقة، زيادة طلب، أو تحسين تجربة العميل." />
-            <div className={styles.servicesGrid}>
-              {homepageContent.services.map((card, index) => (
-                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                  <ServiceCard card={card} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className={styles.processSection} id="process">
           <div className={styles.container}>
             <SectionHeader title="كيف نعمل معك خطوة بخطوة" summary="مسار واضح من أول مكالمة حتى إطلاق الشغل، بألوان البراند وبدون أي حركة تلقائية تشتت العميل." />
@@ -364,28 +348,6 @@ export function HomePublicPage() {
                   <ProductCard card={card} />
                 </Reveal>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.aboutSection}>
-          <div className={styles.container}>
-            <SectionHeader title="من نحن - سويد" summary="قصة نجاح بدأت بحلم وأصبحت واقعاً ملهماً" />
-            <div className={styles.aboutGrid}>
-              <Reveal className={styles.aboutText} variant="fadeUp">
-                <h3>نصنع حضورك ونرتب طريق نموك.</h3>
-                <p>سويد وكالة تسويق وإعلان تساعدك تبني براند واضح، محتوى مرتب، وتجربة تواصل تقود العميل من المعرفة إلى القرار.</p>
-                <div className={styles.aboutFeatures}>
-                  {homepageContent.about.map((card, index) => (
-                    <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                      <FeatureCard card={card} />
-                    </Reveal>
-                  ))}
-                </div>
-              </Reveal>
-              <Reveal className={styles.aboutVisual} variant="slideStart">
-                <Icon name="fa-map-marked-alt" />
-              </Reveal>
             </div>
           </div>
         </section>

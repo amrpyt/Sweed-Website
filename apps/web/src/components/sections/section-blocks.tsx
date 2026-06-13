@@ -79,6 +79,11 @@ export function CardsGrid({ items }: { items: IconTextItem[] }) {
     <div className={styles.grid}>
       {items.map((item, index) => (
         <Reveal as="article" className={styles.card} delay={index * 70} key={`${item.title}-${item.value ?? ""}`} variant="scaleIn">
+          {item.icon ? (
+            <div className={styles.cardIcon}>
+              <i aria-hidden="true" className={item.icon.includes(" ") ? item.icon : `fas ${item.icon}`} />
+            </div>
+          ) : null}
           <h3>{item.value ?? item.title}</h3>
           {item.value ? <p>{item.title}</p> : null}
           {item.summary ? <p>{item.summary}</p> : null}

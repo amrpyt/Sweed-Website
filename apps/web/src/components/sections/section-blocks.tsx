@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Reveal } from "@/components/motion/reveal";
 import type { CTAContent, HeroContent, IconTextItem, SectionHeaderContent, StatItem } from "@/content/types";
 import styles from "./section-blocks.module.css";
 
@@ -16,7 +17,7 @@ export function LegacyDerivedHero({
   return (
     <section className={className ? `${styles.hero} ${className}` : styles.hero} id={id}>
       <div className={`${styles.container} ${styles.heroGrid}`}>
-        <div>
+        <Reveal variant="hero">
           {content.eyebrow ? <p className={styles.eyebrow}>{content.eyebrow}</p> : null}
           <h1 className={styles.heroTitle}>{content.title}</h1>
           <p className={styles.summary}>{content.summary}</p>
@@ -30,8 +31,8 @@ export function LegacyDerivedHero({
             </div>
           ) : null}
           {content.stats?.length ? <StatsList stats={content.stats} /> : null}
-        </div>
-        {children ? <div>{children}</div> : null}
+        </Reveal>
+        {children ? <Reveal variant="slideStart">{children}</Reveal> : null}
       </div>
     </section>
   );
@@ -65,23 +66,23 @@ export function LegacyDerivedSection({
 
 export function SectionIntro({ content }: { content: SectionHeaderContent }) {
   return (
-    <header className={styles.sectionHeader}>
+    <Reveal as="header" className={styles.sectionHeader} variant="soft">
       {content.eyebrow ? <p className={styles.eyebrow}>{content.eyebrow}</p> : null}
       <h2 className={styles.sectionTitle}>{content.title}</h2>
       {content.summary ? <p className={styles.sectionSummary}>{content.summary}</p> : null}
-    </header>
+    </Reveal>
   );
 }
 
 export function CardsGrid({ items }: { items: IconTextItem[] }) {
   return (
     <div className={styles.grid}>
-      {items.map((item) => (
-        <article className={styles.card} key={`${item.title}-${item.value ?? ""}`}>
+      {items.map((item, index) => (
+        <Reveal as="article" className={styles.card} delay={index * 70} key={`${item.title}-${item.value ?? ""}`} variant="scaleIn">
           <h3>{item.value ?? item.title}</h3>
           {item.value ? <p>{item.title}</p> : null}
           {item.summary ? <p>{item.summary}</p> : null}
-        </article>
+        </Reveal>
       ))}
     </div>
   );
@@ -90,11 +91,11 @@ export function CardsGrid({ items }: { items: IconTextItem[] }) {
 export function StatsList({ stats }: { stats: StatItem[] }) {
   return (
     <div className={styles.stats}>
-      {stats.map((stat) => (
-        <div className={styles.stat} key={`${stat.value}-${stat.label}`}>
+      {stats.map((stat, index) => (
+        <Reveal className={styles.stat} delay={index * 60} key={`${stat.value}-${stat.label}`} variant="scaleIn">
           <strong>{stat.value}</strong>
           <span>{stat.label}</span>
-        </div>
+        </Reveal>
       ))}
     </div>
   );
@@ -102,10 +103,10 @@ export function StatsList({ stats }: { stats: StatItem[] }) {
 
 export function CtaPanel({ content }: { content: CTAContent }) {
   return (
-    <div className={styles.cta}>
+    <Reveal className={styles.cta} variant="scaleIn">
       <h2>{content.title}</h2>
       <p>{content.summary}</p>
       <Link href={content.primaryAction.href}>{content.primaryAction.label}</Link>
-    </div>
+    </Reveal>
   );
 }

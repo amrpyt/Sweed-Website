@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
+import { Reveal } from "@/components/motion/reveal";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter, LegacyHeader } from "@/features/legacy-site";
 import { OfferFunnelController } from "@/features/offer-funnel";
@@ -24,10 +25,10 @@ function ActionButton({ action }: { action: HomeAction }) {
 
 function SectionHeader({ title, summary }: { title: string; summary: string }) {
   return (
-    <div className={styles.sectionHeader}>
+    <Reveal className={styles.sectionHeader} variant="soft">
       <h2>{title}</h2>
       <p>{summary}</p>
-    </div>
+    </Reveal>
   );
 }
 
@@ -174,7 +175,7 @@ export function HomePublicPage() {
         <section className={styles.hero} id="home">
           <div className={styles.container}>
             <div className={styles.heroContent}>
-              <div className={styles.heroText}>
+              <Reveal className={styles.heroText} variant="hero">
                 <span>{homepageContent.hero.eyebrow}</span>
                 <h1>{homepageContent.hero.title}</h1>
                 <p className={styles.heroSubtitle}>{homepageContent.hero.subtitle}</p>
@@ -184,7 +185,7 @@ export function HomePublicPage() {
                     <ActionButton action={action} key={action.label} />
                   ))}
                 </div>
-              </div>
+              </Reveal>
               <div className={styles.heroDots} aria-hidden="true">
                 <i />
                 <i />
@@ -209,25 +210,29 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="هل تواجه هذه المشاكل؟" summary="نحن نفهم التحديات التي تواجهها الشركات اليوم، ولدينا الحلول المناسبة لها" />
             <div className={styles.problemsGrid}>
-              {homepageContent.problems.map((card) => (
-                <ProblemCard card={card} key={card.title} />
+              {homepageContent.problems.map((card, index) => (
+                <Reveal as="article" delay={index * 70} key={card.title} variant="scaleIn">
+                  <ProblemCard card={card} />
+                </Reveal>
               ))}
             </div>
-            <div className={styles.problemsCta}>
+            <Reveal className={styles.problemsCta} variant="soft">
               <span>تعبت من نفس المشاكل؟</span>
               <ActionButton action={{ label: "احجز استشارتك الآن", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
-            </div>
+            </Reveal>
           </div>
         </section>
 
         <section className={styles.statsSection}>
           <div className={styles.container}>
             <div className={styles.statsGrid}>
-              {homepageContent.stats.map((metric) => (
-                <HeroHomeCard className={styles.statCard} key={metric.label}>
-                  <strong>{metric.value}</strong>
-                  <span>{metric.label}</span>
-                </HeroHomeCard>
+              {homepageContent.stats.map((metric, index) => (
+                <Reveal delay={index * 60} key={metric.label} variant="scaleIn">
+                  <HeroHomeCard className={styles.statCard}>
+                    <strong>{metric.value}</strong>
+                    <span>{metric.label}</span>
+                  </HeroHomeCard>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -235,7 +240,7 @@ export function HomePublicPage() {
 
         <section className={styles.helpSection}>
           <div className={styles.container}>
-            <div className={styles.helpBox}>
+            <Reveal className={styles.helpBox} variant="scaleIn">
               <h2>محتاج ايه وهنساعدك؟</h2>
               <p>{homepageContent.contact.summary}</p>
               <div className={styles.helpActions}>
@@ -245,7 +250,7 @@ export function HomePublicPage() {
                   <span>واتساب مباشر</span>
                 </HomeButton>
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
 
@@ -255,14 +260,16 @@ export function HomePublicPage() {
               <div>
                 <SectionHeader title="ليه تختار SWEED؟" summary="نشتغل معاك بمنهج واضح يجمع بين التفكير، التصميم، التنفيذ، والقياس." />
                 <div className={styles.whyGrid}>
-                  {homepageContent.why.map((card) => (
-                    <FeatureCard card={card} key={card.title} />
+                  {homepageContent.why.map((card, index) => (
+                    <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                      <FeatureCard card={card} />
+                    </Reveal>
                   ))}
                 </div>
               </div>
-              <div className={styles.videoMock}>
+              <Reveal className={styles.videoMock} variant="slideStart">
                 <Icon name="fa-play" />
-              </div>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -276,8 +283,10 @@ export function HomePublicPage() {
               ))}
             </div>
             <div className={styles.portfolioGrid}>
-              {homepageContent.portfolio.map((card) => (
-                <PortfolioCard card={card} key={card.title} />
+              {homepageContent.portfolio.map((card, index) => (
+                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                  <PortfolioCard card={card} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -287,8 +296,10 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="عروض واضحة تبدأ منها" summary="اختر نقطة البداية، أو احجز استشارة ونرشح لك الأنسب." />
             <div className={styles.featureGrid}>
-              {homepageContent.offers.map((card) => (
-                <FeatureCard card={card} key={card.title} />
+              {homepageContent.offers.map((card, index) => (
+                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                  <FeatureCard card={card} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -298,8 +309,10 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="خدماتنا المتكاملة" summary="كل خدمة لها هدف واضح: بناء ثقة، زيادة طلب، أو تحسين تجربة العميل." />
             <div className={styles.servicesGrid}>
-              {homepageContent.services.map((card) => (
-                <ServiceCard card={card} key={card.title} />
+              {homepageContent.services.map((card, index) => (
+                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                  <ServiceCard card={card} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -310,7 +323,9 @@ export function HomePublicPage() {
             <SectionHeader title="كيف نعمل معك خطوة بخطوة" summary="مسار واضح من أول مكالمة حتى إطلاق الشغل، بألوان البراند وبدون أي حركة تلقائية تشتت العميل." />
             <div className={styles.processGrid}>
               {homepageContent.process.map((step, index) => (
-                <ProcessCard index={index} key={step.title} step={step} />
+                <Reveal delay={index * 70} key={step.title} variant="scaleIn">
+                  <ProcessCard index={index} step={step} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -320,8 +335,10 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="منتجاتنا الجاهزة" summary="حلول سريعة ومنتجات جاهزة للاستخدام الفوري" />
             <div className={styles.productsGrid}>
-              {homepageContent.products.map((card) => (
-                <ProductCard card={card} key={card.title} />
+              {homepageContent.products.map((card, index) => (
+                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                  <ProductCard card={card} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -331,18 +348,20 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="من نحن - سويد" summary="قصة نجاح بدأت بحلم وأصبحت واقعاً ملهماً" />
             <div className={styles.aboutGrid}>
-              <div className={styles.aboutText}>
+              <Reveal className={styles.aboutText} variant="fadeUp">
                 <h3>نصنع حضورك ونرتب طريق نموك.</h3>
                 <p>سويد وكالة تسويق وإعلان تساعدك تبني براند واضح، محتوى مرتب، وتجربة تواصل تقود العميل من المعرفة إلى القرار.</p>
                 <div className={styles.aboutFeatures}>
-                  {homepageContent.about.map((card) => (
-                    <FeatureCard card={card} key={card.title} />
+                  {homepageContent.about.map((card, index) => (
+                    <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                      <FeatureCard card={card} />
+                    </Reveal>
                   ))}
                 </div>
-              </div>
-              <div className={styles.aboutVisual}>
+              </Reveal>
+              <Reveal className={styles.aboutVisual} variant="slideStart">
                 <Icon name="fa-map-marked-alt" />
-              </div>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -351,8 +370,10 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="المقالات الحديثة" summary="آخر المقالات والنصائح التسويقية المفيدة" />
             <div className={styles.articleGrid}>
-              {homepageContent.articles.map((card) => (
-                <ArticleCard card={card} key={card.title} />
+              {homepageContent.articles.map((card, index) => (
+                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                  <ArticleCard card={card} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -362,8 +383,10 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="الأسئلة الشائعة" summary="إجابات على أهم الأسئلة التي قد تخطر ببالك" />
             <div className={styles.faqList}>
-              {homepageContent.faq.map((card) => (
-                <FaqCard card={card} key={card.title} />
+              {homepageContent.faq.map((card, index) => (
+                <Reveal delay={index * 50} key={card.title} variant="fadeUp">
+                  <FaqCard card={card} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -371,7 +394,7 @@ export function HomePublicPage() {
 
         <section className={styles.ctaSection} id="contact">
           <div className={styles.container}>
-            <div className={styles.ctaBox}>
+            <Reveal className={styles.ctaBox} variant="scaleIn">
               <h2>{homepageContent.contact.title}</h2>
               <p>{homepageContent.contact.summary}</p>
               <div className={styles.ctaButtons}>
@@ -382,7 +405,7 @@ export function HomePublicPage() {
                   <span>واتساب</span>
                 </HomeButton>
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
       </main>

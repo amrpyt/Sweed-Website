@@ -17,27 +17,27 @@
   transform: translate3d(0, 28px, 0);
 }
 
-.hero {
+.reveal[data-motion-ready="true"]:not(.visible).hero {
   transform: translate3d(0, 36px, 0) scale(0.985);
 }
 
-.fadeUp {
+.reveal[data-motion-ready="true"]:not(.visible).fadeUp {
   transform: translate3d(0, 28px, 0);
 }
 
-.scaleIn {
+.reveal[data-motion-ready="true"]:not(.visible).scaleIn {
   transform: translate3d(0, 20px, 0) scale(0.96);
 }
 
-.slideStart {
+.reveal[data-motion-ready="true"]:not(.visible).slideStart {
   transform: translate3d(34px, 0, 0);
 }
 
-[dir="rtl"] .slideStart {
+[dir="rtl"] .reveal[data-motion-ready="true"]:not(.visible).slideStart {
   transform: translate3d(-34px, 0, 0);
 }
 
-.soft {
+.reveal[data-motion-ready="true"]:not(.visible).soft {
   transform: translate3d(0, 16px, 0);
 }
 

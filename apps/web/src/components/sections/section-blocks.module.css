@@ -128,6 +128,8 @@
   color: var(--sweed-white);
   padding: clamp(2rem, 5vw, 4rem);
   text-align: center;
+}
+
 .cardIcon {
   display: grid;
   width: 56px;

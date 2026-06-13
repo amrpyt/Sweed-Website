@@ -109,8 +109,6 @@ function ServiceCard({ card }: { card: HomeCard }) {
         <Icon name={card.icon} />
       </div>
       <h3>{card.title}</h3>
-      <p>{card.summary}</p>
-      <span className={styles.inlineLink}>اعرف المزيد <Icon name="fa-arrow-left" /></span>
     </Link>
   );
 }
@@ -278,6 +276,9 @@ export function HomePublicPage() {
                 </Reveal>
               ))}
             </div>
+            <Reveal className={styles.servicesCta} variant="soft">
+              <ActionButton action={{ label: "مشاهدة كل الخدمات", href: "/services", icon: "fa-arrow-left", variant: "primary" }} />
+            </Reveal>
           </div>
         </section>
 

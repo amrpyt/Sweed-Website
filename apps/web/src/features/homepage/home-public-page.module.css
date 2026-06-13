@@ -718,6 +718,7 @@
 
 .servicesGrid {
   grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.72rem;
 }
 
 .featureCard {
@@ -733,28 +734,41 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 150px;
-  border-radius: 20px;
-  padding: 1.2rem 0.85rem;
-  transition: transform var(--motion-fast), box-shadow var(--motion-fast), border-color var(--motion-fast);
+  min-height: 118px;
+  border-radius: 16px;
+  padding: 0.95rem 0.7rem;
+  box-shadow: none;
+  transition:
+    background 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .serviceCard h3 {
-  margin: 0.85rem 0 0;
+  margin: 0.65rem 0 0;
   color: var(--primary-purple);
-  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
-  font-weight: 700;
-  line-height: 1.4;
+  font-size: clamp(0.84rem, 0.92vw, 0.96rem);
+  font-weight: 850;
+  line-height: 1.35;
 }
 
 .featureCard:hover,
-.serviceCard:hover,
 .portfolioCard:hover,
 .productCard:hover,
 .articleCard:hover {
   border-color: rgba(237, 32, 98, 0.32);
   box-shadow: 0 28px 80px rgba(237, 32, 98, 0.13);
   transform: translateY(-4px);
+}
+
+.serviceCard:hover {
+  border-color: rgba(237, 32, 98, 0.22);
+  background: #fff;
+  transform: translateY(-3px);
+}
+
+.serviceCard:hover .serviceIcon {
+  transform: translateY(-2px);
 }
 
 .meta,
@@ -790,6 +804,18 @@
 .servicesSection,
 .blogSection {
   background: #fff;
+}
+
+.servicesSection {
+  padding-block: clamp(3rem, 5vw, 4.6rem);
+}
+
+.servicesSection .sectionHeader {
+  margin-bottom: clamp(1.25rem, 2.2vw, 1.8rem);
+}
+
+.servicesSection .sectionHeader h2 {
+  font-size: clamp(1.85rem, 3.4vw, 3.2rem);
 }
 
 .filterRow {
@@ -849,8 +875,25 @@
 }
 
 .serviceIcon {
-  background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
-  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(237, 32, 98, 0.1);
+  color: var(--primary-pink);
+  font-size: 1.05rem;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.servicesCta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.2rem, 2vw, 1.7rem);
+}
+
+.servicesCta .button {
+  min-height: 48px;
+  padding: 0.78rem 1.18rem;
+  font-size: 0.94rem;
 }
 
 .processSection {
@@ -1087,6 +1130,7 @@
   .button,
   .featureCard,
   .serviceCard,
+  .serviceIcon,
   .portfolioCard,
   .productCard,
   .articleCard,
@@ -1186,26 +1230,23 @@
   }
 
   .servicesGrid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 0.85rem;
-    padding-bottom: 0.75rem;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-  }
-
-  .servicesGrid::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari */
-  }
-
-  .servicesGrid > * {
-    flex: 0 0 70%; /* Each card wrapper takes 70% of screen width */
-    scroll-snap-align: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.62rem;
   }
 
   .servicesGrid .serviceCard {
-    width: 100%;
-    min-height: 130px;
+    min-height: 108px;
+    padding: 0.82rem 0.58rem;
+  }
+
+  .servicesGrid .serviceIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.92rem;
+  }
+
+  .servicesGrid .serviceCard h3 {
+    font-size: 0.82rem;
   }
 
   .whySection {

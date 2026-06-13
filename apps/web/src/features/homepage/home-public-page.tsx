@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
+import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter, LegacyHeader } from "@/features/legacy-site";
@@ -167,6 +168,11 @@ function FaqCard({ card }: { card: HomeCard }) {
   );
 }
 
+const partnerLogos = homepageContent.clients.map((client) => ({
+  node: <span className={styles.clientMark}>{client}</span>,
+  title: client,
+}));
+
 export function HomePublicPage() {
   return (
     <>
@@ -197,13 +203,19 @@ export function HomePublicPage() {
 
         <section className={styles.clientsStrip} id="expertise" aria-label="عملاؤنا">
           <div className={styles.clientsLabel}>شركاء نجاح اشتغلوا معانا</div>
-          <div className={styles.clientsMarquee}>
-            <div className={styles.clientsTrack}>
-              {[...homepageContent.clients, ...homepageContent.clients].map((client, index) => (
-                <span className={styles.clientMark} key={`${client}-${index}`}>{client}</span>
-              ))}
-            </div>
-          </div>
+          <LogoLoop
+            ariaLabel="شركاء نجاح اشتغلوا معانا"
+            className={styles.clientsMarquee}
+            direction="left"
+            fadeOut
+            fadeOutColor="#ffffff"
+            gap={18}
+            hoverSpeed={18}
+            logoHeight={42}
+            logos={partnerLogos}
+            scaleOnHover
+            speed={72}
+          />
         </section>
 
         <section className={styles.problemsSection} id="problems">

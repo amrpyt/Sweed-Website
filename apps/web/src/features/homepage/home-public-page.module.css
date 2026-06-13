@@ -224,13 +224,6 @@
   overflow: hidden;
 }
 
-.clientsTrack {
-  display: flex;
-  width: max-content;
-  gap: 1rem;
-  margin-inline: auto;
-}
-
 .clientMark {
   display: inline-flex;
   align-items: center;
@@ -897,9 +890,8 @@
     width: 100%;
   }
 
-  .clientsTrack {
+  .clientsMarquee {
     padding-inline: 1rem;
-    overflow-x: auto;
   }
 
   .problemsGrid,

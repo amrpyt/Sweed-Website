@@ -37,7 +37,7 @@
 .hero {
   position: relative;
   display: grid;
-  min-height: 780px;
+  min-height: clamp(640px, 78vh, 740px);
   align-items: center;
   isolation: isolate;
   overflow: hidden;
@@ -55,13 +55,13 @@
 
 .hero::before {
   background:
-    linear-gradient(135deg, rgba(38, 27, 62, 0.88) 0%, rgba(237, 32, 98, 0.62) 100%),
-    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.12), transparent 18rem),
-    radial-gradient(circle at 82% 72%, rgba(237, 32, 98, 0.22), transparent 24rem);
+    linear-gradient(135deg, rgba(38, 27, 62, 0.9) 0%, rgba(104, 20, 74, 0.74) 56%, rgba(237, 32, 98, 0.54) 100%),
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.1), transparent 17rem),
+    radial-gradient(circle at 84% 78%, rgba(237, 32, 98, 0.2), transparent 24rem);
 }
 
 .hero::after {
-  background: linear-gradient(180deg, rgba(38, 27, 62, 0.04), rgba(38, 27, 62, 0.42));
+  background: linear-gradient(180deg, rgba(38, 27, 62, 0.06), rgba(38, 27, 62, 0.34));
 }
 
 .heroImageStack,
@@ -95,61 +95,62 @@
 
 .heroContent {
   display: grid;
-  min-height: 610px;
+  min-height: clamp(500px, 62vh, 590px);
   align-items: center;
   text-align: center;
 }
 
 .heroText {
-  max-width: 920px;
+  max-width: 860px;
   margin-inline: auto;
+  animation: heroTextReveal 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .heroText > span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  margin-bottom: 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  min-height: 38px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 999px;
-  padding: 0.55rem 1.35rem;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  padding: 0.48rem 1.05rem;
+  background: rgba(255, 255, 255, 0.1);
   font-weight: 700;
   letter-spacing: 0;
+  animation: heroBadgeFloat 4.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .heroText h1 {
-  max-width: 900px;
-  margin: 0 auto 1.25rem;
-  font-size: clamp(2.75rem, 5vw, 4.9rem);
-  font-weight: 700;
-  line-height: 1.16;
-  letter-spacing: -0.006em;
-  text-shadow: 0 16px 42px rgba(38, 27, 62, 0.36);
+  max-width: 850px;
+  margin: 0 auto 1rem;
+  font-size: clamp(2.55rem, 4.6vw, 4.45rem);
+  font-weight: 780;
+  line-height: 1.13;
+  letter-spacing: -0.004em;
+  text-shadow: 0 10px 30px rgba(38, 27, 62, 0.3);
 }
 
 .heroSubtitle,
 .heroDescription {
   margin: 0;
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.78;
 }
 
 .heroSubtitle {
-  max-width: 72ch;
+  max-width: 62ch;
   margin-inline: auto;
-  font-size: clamp(1.12rem, 1.7vw, 1.48rem);
-  font-weight: 600;
+  font-size: clamp(1.06rem, 1.45vw, 1.32rem);
+  font-weight: 680;
 }
 
 .heroDescription {
-  margin-top: 0.45rem;
-  max-width: 68ch;
+  margin-top: 0.3rem;
+  max-width: 54ch;
   margin-inline: auto;
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
-  font-weight: 520;
+  font-size: clamp(0.98rem, 1.18vw, 1.12rem);
+  font-weight: 560;
 }
 
 .heroActions,
@@ -162,15 +163,15 @@
 }
 
 .heroActions {
-  margin-top: 2.4rem;
+  margin-top: 1.9rem;
 }
 
 .button {
   min-width: 0;
   height: auto;
-  min-height: 56px;
+  min-height: 52px;
   border: 0;
-  padding: 0.95rem 1.55rem;
+  padding: 0.86rem 1.35rem;
   font-weight: 800;
   font-size: 1rem;
   line-height: 1;
@@ -194,16 +195,15 @@
 }
 
 .buttonPrimary {
-  background: linear-gradient(135deg, var(--primary-pink), #ff6a35);
+  background: var(--primary-pink);
   color: #fff;
-  box-shadow: 0 18px 38px rgba(237, 32, 98, 0.34);
+  box-shadow: 0 14px 28px rgba(237, 32, 98, 0.28);
 }
 
 .buttonSecondary {
-  border: 2px solid rgba(255, 255, 255, 0.42);
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  backdrop-filter: blur(12px);
 }
 
 .buttonLight {
@@ -256,6 +256,29 @@
   100% {
     opacity: 0;
     transform: scale(1.04);
+  }
+}
+
+@keyframes heroTextReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroBadgeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
   }
 }
 
@@ -1051,6 +1074,11 @@
     animation: none;
   }
 
+  .heroText,
+  .heroText > span {
+    animation: none;
+  }
+
   .heroImageOne {
     opacity: 1;
     transform: none;
@@ -1110,14 +1138,22 @@
   }
 
   .heroContent {
-    min-height: calc(100dvh - 120px);
-    padding: 3rem 0 4rem;
+    min-height: calc(100dvh - 140px);
+    padding: 2.6rem 0 3.4rem;
   }
 
   .heroText h1 {
-    font-size: clamp(2.35rem, 11vw, 3.55rem);
+    font-size: clamp(2.15rem, 10.2vw, 3.25rem);
     line-height: 1.16;
     letter-spacing: -0.008em;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1rem, 4vw, 1.18rem);
+  }
+
+  .heroDescription {
+    font-size: 0.96rem;
   }
 
   .heroActions,

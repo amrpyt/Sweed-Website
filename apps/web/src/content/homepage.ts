@@ -33,9 +33,8 @@ export const homepageContent = {
     subtitle: "15 سنة في صناعة النجاح وبناء العلامات التجارية الرائدة",
     summary: "شريكك الموثوق في رحلة النمو والتميز",
     actions: [
-      { label: "العرض الخاص", href: "/offers", icon: "fa-rocket", variant: "primary" },
+      { label: "احجز استشارة مجانية", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" },
       { label: "تواصل معنا الآن", href: "/contact", icon: "fa-phone", variant: "secondary" },
-      { label: "احجز استشارة مجانية", href: "/contact?services=consulting#contact-form", icon: "fa-gift", variant: "light" },
     ] satisfies HomeAction[],
     metrics: [
       { value: "+15", label: "سنة خبرة" },

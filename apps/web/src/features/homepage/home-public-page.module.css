@@ -369,7 +369,7 @@
 }
 
 .problemsSection .container {
-  width: min(100% - 2rem, 1180px);
+  width: min(100% - 2rem, 1040px);
   border: 1px solid rgba(237, 32, 98, 0.1);
   border-radius: 30px;
   padding: clamp(1.15rem, 2.4vw, 1.85rem);
@@ -380,18 +380,25 @@
 }
 
 .problemsLayout {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.82fr) minmax(320px, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
 }
 
 .problemsLayout .problemsHeader {
-  margin-inline: auto;
-  text-align: center;
+  margin: 0;
+  text-align: right;
 }
 
 .problemsGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.68rem;
+  position: relative;
+  min-height: 180px;
+  overflow: hidden;
+  border-radius: 22px;
+  contain: layout paint;
+  isolation: isolate;
 }
 
 .problemCard,
@@ -415,12 +422,32 @@
   min-height: 0;
   flex-direction: column;
   border-radius: 18px;
-  padding: 0.72rem 0.78rem;
+  height: 100%;
+  padding: 1rem;
   box-shadow: none;
   transition:
     border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
     background 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.problemsGrid > article {
+  grid-area: 1 / 1;
+  min-width: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-18px, 0, 0) scale(0.985);
+  transition:
+    opacity 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 440ms cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.problemsGrid > article[data-active-problem="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+  z-index: 1;
 }
 
 .problemCard::before {
@@ -470,11 +497,11 @@
 }
 
 .problemIcon {
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
-  border-radius: 12px;
-  font-size: 1rem;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: 14px;
+  font-size: 1.16rem;
 }
 
 .problemCard h3,
@@ -494,7 +521,7 @@
 
 .problemCard h3 {
   margin: 0;
-  font-size: clamp(0.94rem, 1vw, 1.02rem);
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
   line-height: 1.32;
 }
 
@@ -517,12 +544,12 @@
 
 .problemCard p {
   display: -webkit-box;
-  margin-top: 0.46rem;
+  margin-top: 0.68rem;
   overflow: hidden;
-  font-size: 0.86rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.68;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 
 .solution {
@@ -530,7 +557,7 @@
   width: fit-content;
   align-items: center;
   gap: 0.45rem;
-  margin-top: 0.55rem;
+  margin-top: auto;
   border-radius: 999px;
   padding: 0.34rem 0.62rem;
   background: rgba(237, 32, 98, 0.1);
@@ -544,18 +571,10 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 0.85rem;
+  margin-top: 1rem;
   color: var(--primary-purple);
   font-size: 1rem;
   font-weight: 900;
-}
-
-.problemsGrid article:nth-child(odd) {
-  transform: translateY(-0.25rem);
-}
-
-.problemsGrid article:nth-child(even) {
-  transform: translateY(0.25rem);
 }
 
 .problemsGrid > [data-active-problem="true"] .problemCard {
@@ -1036,8 +1055,17 @@
     transition: none;
   }
 
-  .problemsGrid article:nth-child(odd),
-  .problemsGrid article:nth-child(even) {
+  .problemsGrid > article {
+    transition: none;
+  }
+
+  .problemsGrid > article:not(:first-child) {
+    display: none;
+  }
+
+  .problemsGrid > article:first-child {
+    opacity: 1;
+    pointer-events: auto;
     transform: none;
   }
 }
@@ -1048,7 +1076,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .problemsGrid,
   .featureGrid,
   .servicesGrid,
   .productsGrid,
@@ -1109,7 +1136,6 @@
     margin-bottom: 0.75rem;
   }
 
-  .problemsGrid,
   .statsGrid,
   .whyGrid,
   .featureGrid,
@@ -1147,26 +1173,8 @@
 
   .problemsGrid {
     display: grid;
-    grid-auto-columns: minmax(235px, 78vw);
-    grid-auto-flow: column;
-    grid-template-columns: none;
-    gap: 0.75rem;
-    margin-inline: -0.15rem;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    padding: 0.15rem 0.15rem 0.75rem;
-    scroll-padding-inline: 0.15rem;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
-  }
-
-  .problemsGrid::-webkit-scrollbar {
-    height: 0;
-  }
-
-  .problemsGrid article:nth-child(odd),
-  .problemsGrid article:nth-child(even) {
-    transform: none;
+    min-height: 225px;
+    overflow: hidden;
   }
 
   .problemsGrid > [data-active-problem="true"] .problemCard {
@@ -1185,7 +1193,7 @@
   }
 
   .problemsGrid > * {
-    scroll-snap-align: start;
+    min-width: 0;
   }
 
   .problemCard {

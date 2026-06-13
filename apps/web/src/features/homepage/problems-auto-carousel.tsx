@@ -18,7 +18,6 @@ export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarous
     const scroller = scrollerRef.current;
     if (!scroller) return;
 
-    const mobileQuery = window.matchMedia("(max-width: 720px)");
     const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let timerId: number | undefined;
     let resumeTimerId: number | undefined;
@@ -28,7 +27,9 @@ export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarous
 
     const setActiveSlide = (slides: HTMLElement[], activeIndex: number) => {
       slides.forEach((slide, slideIndex) => {
-        slide.dataset.activeProblem = slideIndex === activeIndex ? "true" : "false";
+        const isActive = slideIndex === activeIndex;
+        slide.dataset.activeProblem = isActive ? "true" : "false";
+        slide.setAttribute("aria-hidden", isActive ? "false" : "true");
       });
       if (activeIndex >= 0) {
         scroller.dataset.activeIndex = String(activeIndex);
@@ -43,7 +44,7 @@ export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarous
       window.clearTimeout(resumeTimerId);
     };
 
-    const shouldRun = () => mobileQuery.matches && !reduceMotionQuery.matches && getSlides().length > 1;
+    const shouldRun = () => !reduceMotionQuery.matches && getSlides().length > 1;
 
     const scheduleNext = () => {
       if (!shouldRun()) return;
@@ -54,7 +55,6 @@ export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarous
 
         index = (index + 1) % slides.length;
         setActiveSlide(slides, index);
-        slides[index]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
         scheduleNext();
       }, ADVANCE_DELAY_MS);
     };
@@ -96,7 +96,6 @@ export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarous
     scroller.addEventListener("pointerdown", pauseThenResume, { passive: true });
     scroller.addEventListener("wheel", pauseThenResume, { passive: true });
     scroller.addEventListener("focusin", pauseThenResume);
-    mobileQuery.addEventListener("change", handleModeChange);
     reduceMotionQuery.addEventListener("change", handleModeChange);
 
     return () => {
@@ -104,7 +103,6 @@ export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarous
       scroller.removeEventListener("pointerdown", pauseThenResume);
       scroller.removeEventListener("wheel", pauseThenResume);
       scroller.removeEventListener("focusin", pauseThenResume);
-      mobileQuery.removeEventListener("change", handleModeChange);
       reduceMotionQuery.removeEventListener("change", handleModeChange);
     };
   }, []);

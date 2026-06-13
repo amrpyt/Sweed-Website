@@ -244,7 +244,17 @@ export function HomePublicPage() {
                 <h2>هل تواجه هذه المشاكل؟</h2>
                 <p>ست مشاكل متكررة بتضيع وقت وميزانية الشركات. اختار الأقرب لك ونحولها لخطة تنفيذ واضحة.</p>
               </Reveal>
-              <ProblemsAutoCarousel className={styles.problemsGrid}>
+              <ProblemsAutoCarousel
+                className={styles.problemsGrid}
+                indicators={homepageContent.problems.map((card) => (
+                  <div key={card.title}>
+                    <span>
+                      <Icon name={card.icon} />
+                    </span>
+                    <strong>{card.title}</strong>
+                  </div>
+                ))}
+              >
                 {homepageContent.problems.map((card, index) => (
                   <Reveal as="article" delay={index * 55} key={card.title} variant="scaleIn">
                     <ProblemCard card={card} />

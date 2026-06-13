@@ -6,16 +6,19 @@ import { useEffect, useRef } from "react";
 type ProblemsAutoCarouselProps = {
   children: ReactNode;
   className?: string;
+  indicators: ReactNode;
 };
 
 const ADVANCE_DELAY_MS = 1650;
 const RESUME_AFTER_USER_MS = 5200;
 
-export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarouselProps) {
+export function ProblemsAutoCarousel({ children, className, indicators }: ProblemsAutoCarouselProps) {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const indicatorsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
+    const indicators = indicatorsRef.current;
     if (!scroller) return;
 
     const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -24,12 +27,16 @@ export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarous
     let index = 0;
 
     const getSlides = () => Array.from(scroller.querySelectorAll(":scope > article")) as HTMLElement[];
+    const getIndicators = () => Array.from(indicators?.querySelectorAll(":scope > div") ?? []) as HTMLElement[];
 
     const setActiveSlide = (slides: HTMLElement[], activeIndex: number) => {
       slides.forEach((slide, slideIndex) => {
         const isActive = slideIndex === activeIndex;
         slide.dataset.activeProblem = isActive ? "true" : "false";
         slide.setAttribute("aria-hidden", isActive ? "false" : "true");
+      });
+      getIndicators().forEach((indicator, indicatorIndex) => {
+        indicator.dataset.activeProblemIndicator = indicatorIndex === activeIndex ? "true" : "false";
       });
       if (activeIndex >= 0) {
         scroller.dataset.activeIndex = String(activeIndex);
@@ -108,8 +115,13 @@ export function ProblemsAutoCarousel({ children, className }: ProblemsAutoCarous
   }, []);
 
   return (
-    <div className={className} ref={scrollerRef}>
-      {children}
+    <div className={className}>
+      <div className="problemsAutoCarousel__stage" ref={scrollerRef}>
+        {children}
+      </div>
+      <div aria-hidden="true" className="problemsAutoCarousel__indicators" ref={indicatorsRef}>
+        {indicators}
+      </div>
     </div>
   );
 }

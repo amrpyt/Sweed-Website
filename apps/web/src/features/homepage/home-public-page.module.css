@@ -558,6 +558,12 @@
   transform: translateY(0.25rem);
 }
 
+.problemsGrid > [data-active-problem="true"] .problemCard {
+  border-color: rgba(237, 32, 98, 0.36);
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(237, 32, 98, 0.14);
+}
+
 .problemsCta .button {
   min-height: 48px;
   padding: 0.78rem 1.15rem;
@@ -1154,9 +1160,17 @@
     scrollbar-width: thin;
   }
 
+  .problemsGrid::-webkit-scrollbar {
+    height: 0;
+  }
+
   .problemsGrid article:nth-child(odd),
   .problemsGrid article:nth-child(even) {
     transform: none;
+  }
+
+  .problemsGrid > [data-active-problem="true"] .problemCard {
+    transform: translateY(-2px);
   }
 
   .problemCard {

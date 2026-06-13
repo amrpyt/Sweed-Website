@@ -9,6 +9,7 @@ import { LegacyFooter, LegacyHeader } from "@/features/legacy-site";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
+import { ProblemsAutoCarousel } from "./problems-auto-carousel";
 
 function Icon({ name }: { name: string }) {
   return <i aria-hidden="true" className={name.includes(" ") ? name : `fas ${name}`} />;
@@ -243,13 +244,13 @@ export function HomePublicPage() {
                 <h2>هل تواجه هذه المشاكل؟</h2>
                 <p>ست مشاكل متكررة بتضيع وقت وميزانية الشركات. اختار الأقرب لك ونحولها لخطة تنفيذ واضحة.</p>
               </Reveal>
-              <div className={styles.problemsGrid}>
+              <ProblemsAutoCarousel className={styles.problemsGrid}>
                 {homepageContent.problems.map((card, index) => (
                   <Reveal as="article" delay={index * 55} key={card.title} variant="scaleIn">
                     <ProblemCard card={card} />
                   </Reveal>
                 ))}
-              </div>
+              </ProblemsAutoCarousel>
             </div>
             <Reveal className={styles.problemsCta} variant="soft">
               <span>تعبت من نفس المشاكل؟</span>

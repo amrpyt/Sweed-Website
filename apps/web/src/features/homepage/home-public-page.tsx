@@ -1,4 +1,6 @@
 import Link from "next/link";
+import type { SimpleIcon } from "simple-icons";
+import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVercel } from "simple-icons";
 import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
@@ -168,66 +170,17 @@ function FaqCard({ card }: { card: HomeCard }) {
   );
 }
 
-function FakeLogoMark({ variant }: { variant: "waves" | "triangle" | "orbit" | "blocks" | "prism" | "bolt" }) {
-  if (variant === "waves") {
-    return (
-      <svg aria-hidden="true" className={styles.clientLogo} viewBox="0 0 120 80">
-        <path d="M12 34c16-25 34-25 54 0 15 18 27 18 42 0-10 31-36 35-58 8-12-14-24-14-38-8Z" />
-        <path d="M12 62c16-25 34-25 54 0 15 18 27 18 42 0-10 31-36 35-58 8-12-14-24-14-38-8Z" />
-      </svg>
-    );
-  }
-
-  if (variant === "triangle") {
-    return (
-      <svg aria-hidden="true" className={styles.clientLogo} viewBox="0 0 120 80">
-        <path d="M60 6 110 74H10Z" />
-      </svg>
-    );
-  }
-
-  if (variant === "orbit") {
-    return (
-      <svg aria-hidden="true" className={styles.clientLogo} viewBox="0 0 120 80">
-        <circle cx="60" cy="40" r="34" />
-        <path d="M42 24c6-5 12-5 18 1 8-3 17-2 25 4-6 1-9 4-10 9 3 8 0 18-8 25-12 10-28 8-38-3 8 3 16 1 20-4-12-2-20-12-20-24 0-5 5-7 13-8Z" fill="#111019" />
-      </svg>
-    );
-  }
-
-  if (variant === "blocks") {
-    return (
-      <svg aria-hidden="true" className={styles.clientLogo} viewBox="0 0 120 80">
-        <path d="M20 42h42c16 0 25-4 28-13 4 9 10 13 19 13-6 21-24 32-52 32H38c-12 0-20-12-18-32Z" />
-        {[32, 46, 60, 74].map((x, index) => (
-          <rect height="10" key={x} width="10" x={x} y={30 - index * 10} />
-        ))}
-        <rect height="10" width="10" x="46" y="20" />
-        <rect height="10" width="10" x="60" y="20" />
-        <rect height="10" width="10" x="74" y="20" />
-      </svg>
-    );
-  }
-
-  if (variant === "prism") {
-    return (
-      <svg aria-hidden="true" className={styles.clientLogo} viewBox="0 0 120 80">
-        <path d="M56 9c4-8 14-8 18 1l28 58c3 7-3 14-10 11L30 57c-7-2-9-11-4-16Z" opacity="0.95" />
-        <path d="M66 17 91 68 38 50Z" fill="#111019" />
-      </svg>
-    );
-  }
-
+function BrandLogo({ icon }: { icon: SimpleIcon }) {
   return (
-    <svg aria-hidden="true" className={styles.clientLogo} viewBox="0 0 120 80">
-      <path d="M75 5 26 48h36L50 75l44-43H61Z" />
+    <svg aria-hidden="true" className={styles.clientLogo} role="img" viewBox="0 0 24 24">
+      <path d={icon.path} />
     </svg>
   );
 }
 
-const partnerLogos = (["waves", "triangle", "orbit", "blocks", "prism", "bolt"] as const).map((variant) => ({
-  node: <FakeLogoMark variant={variant} />,
-  title: variant,
+const partnerLogos = [siReact, siNextdotjs, siTailwindcss, siVercel, siGithub, siDocker, siPrisma].map((icon) => ({
+  node: <BrandLogo icon={icon} />,
+  title: icon.title,
 }));
 
 export function HomePublicPage() {
@@ -265,13 +218,13 @@ export function HomePublicPage() {
             className={styles.clientsMarquee}
             direction="left"
             fadeOut
-            fadeOutColor="#111019"
-            gap={86}
-            hoverSpeed={18}
-            logoHeight={78}
+            fadeOutColor="#ffffff"
+            gap={64}
+            hoverSpeed={0}
+            logoHeight={52}
             logos={partnerLogos}
             scaleOnHover
-            speed={64}
+            speed={46}
           />
         </section>
 

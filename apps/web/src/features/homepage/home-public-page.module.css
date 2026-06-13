@@ -208,21 +208,21 @@
 
 .clientsStrip {
   position: relative;
-  border-block: 1px solid rgba(255, 255, 255, 0.08);
-  padding: clamp(2.4rem, 5vw, 4.2rem) 0;
+  border-block: 1px solid rgba(38, 27, 62, 0.08);
+  padding: clamp(1.35rem, 3vw, 2.25rem) 0;
   background:
-    radial-gradient(circle at 16% 20%, rgba(237, 32, 98, 0.12), transparent 20rem),
-    #111019;
-  color: #f3f3f5;
+    linear-gradient(90deg, rgba(237, 32, 98, 0.035), rgba(38, 27, 62, 0.025) 42%, rgba(237, 32, 98, 0.035)),
+    #fff;
+  color: var(--primary-purple);
 }
 
 .clientsLabel {
-  margin-bottom: 1.8rem;
-  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 1rem;
+  color: rgba(38, 27, 62, 0.58);
   text-align: center;
-  font-size: 0.9rem;
+  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
   font-weight: 900;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
 }
 
 .clientsMarquee {
@@ -231,10 +231,16 @@
 
 .clientLogo {
   display: block;
-  width: clamp(76px, 10vw, 118px);
-  height: clamp(54px, 7vw, 78px);
-  fill: rgba(246, 246, 248, 0.92);
-  filter: drop-shadow(0 16px 30px rgba(255, 255, 255, 0.04));
+  width: clamp(58px, 7.4vw, 92px);
+  height: clamp(38px, 5vw, 58px);
+  fill: rgba(38, 27, 62, 0.56);
+  transition: fill var(--motion-base), opacity var(--motion-base), transform var(--motion-base);
+  opacity: 0.82;
+}
+
+.clientLogo:hover {
+  fill: rgba(38, 27, 62, 0.82);
+  opacity: 1;
 }
 
 .sectionHeader {
@@ -888,11 +894,11 @@
   }
 
   .clientsMarquee {
-    padding-inline: 1rem;
+    padding-inline: 0.75rem;
   }
 
   .clientsLabel {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
   }
 
   .problemsGrid,

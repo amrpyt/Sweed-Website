@@ -8,7 +8,9 @@ Replace homepage partners strip with a reusable React `LogoLoop` component based
 
 - Add modular `LogoLoop` under `apps/web/src/components/motion`.
 - Apply it to `شركاء نجاح اشتغلوا معانا`.
-- Use fake abstract SVG logo marks, not text labels or boxed chips.
+- Use real brand SVG marks from `simple-icons`, not text labels, boxed chips, or handmade icon shapes.
+- Keep the strip visually lightweight: neutral background, small label, 40-60px logo height on desktop, smaller on mobile.
+- Place it directly after hero as trust/social-proof support, not as a dominant content section.
 - Preserve RTL page layout while loop moves right-to-left visually.
 - Respect reduced-motion.
 

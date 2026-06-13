@@ -208,36 +208,33 @@
 
 .clientsStrip {
   position: relative;
-  border-block: 1px solid rgba(38, 27, 62, 0.08);
-  padding: 1.5rem 0;
-  background: #fff;
+  border-block: 1px solid rgba(255, 255, 255, 0.08);
+  padding: clamp(2.4rem, 5vw, 4.2rem) 0;
+  background:
+    radial-gradient(circle at 16% 20%, rgba(237, 32, 98, 0.12), transparent 20rem),
+    #111019;
+  color: #f3f3f5;
 }
 
 .clientsLabel {
-  margin-bottom: 0.9rem;
-  color: var(--primary-pink);
+  margin-bottom: 1.8rem;
+  color: rgba(255, 255, 255, 0.72);
   text-align: center;
+  font-size: 0.9rem;
   font-weight: 900;
+  letter-spacing: 0.04em;
 }
 
 .clientsMarquee {
   overflow: hidden;
 }
 
-.clientMark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 150px;
-  min-height: 58px;
-  border: 1px solid rgba(38, 27, 62, 0.1);
-  border-radius: 18px;
-  background: #fff;
-  color: var(--primary-purple);
-  box-shadow: 0 12px 30px rgba(38, 27, 62, 0.08);
-  font-size: 1.1rem;
-  font-weight: 900;
-  letter-spacing: 0.06em;
+.clientLogo {
+  display: block;
+  width: clamp(76px, 10vw, 118px);
+  height: clamp(54px, 7vw, 78px);
+  fill: rgba(246, 246, 248, 0.92);
+  filter: drop-shadow(0 16px 30px rgba(255, 255, 255, 0.04));
 }
 
 .sectionHeader {
@@ -892,6 +889,10 @@
 
   .clientsMarquee {
     padding-inline: 1rem;
+  }
+
+  .clientsLabel {
+    margin-bottom: 1.25rem;
   }
 
   .problemsGrid,

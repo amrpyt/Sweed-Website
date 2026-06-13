@@ -8,7 +8,7 @@ Replace homepage partners strip with a reusable React `LogoLoop` component based
 
 - Add modular `LogoLoop` under `apps/web/src/components/motion`.
 - Apply it to `شركاء نجاح اشتغلوا معانا`.
-- Use existing client names, no extra icon dependency.
+- Use fake abstract SVG logo marks, not text labels or boxed chips.
 - Preserve RTL page layout while loop moves right-to-left visually.
 - Respect reduced-motion.
 

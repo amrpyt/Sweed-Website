@@ -46,12 +46,12 @@ export const homepageContent = {
   },
   clients: ["NOVA", "ALPHA", "EDGE", "SAHL", "SHIFT", "URBAN"],
   problems: [
-    { title: "ميزانية محدودة؟", summary: "تبحث عن حلول تسويقية فعالة بتكلفة مناسبة لميزانيتك وتحقق أهدافك.", icon: "fa-chart-line", solution: "حلول مرنة حسب ميزانيتك" },
-    { title: "لا تعرف جمهورك؟", summary: "صعوبة في تحديد الفئة المستهدفة وفهم احتياجات عملائك بدقة.", icon: "fa-bullseye", solution: "تحليل واضح للجمهور" },
-    { title: "منافسة شرسة؟", summary: "تجد صعوبة في التميز وسط المنافسين الكثر في مجالك.", icon: "fa-users-slash", solution: "تموضع يبرز اختلافك" },
-    { title: "نتائج بطيئة؟", summary: "تستثمر في التسويق لكن لا ترى نتائج سريعة وملموسة.", icon: "fa-clock", solution: "خطة تنفيذ قابلة للقياس" },
-    { title: "عائد استثمار ضعيف؟", summary: "تنفق الكثير على الإعلانات لكن العائد لا يغطي التكاليف.", icon: "fa-hand-holding-usd", solution: "تحسين مستمر للأداء" },
-    { title: "لا توجد استراتيجية واضحة؟", summary: "تفتقر إلى خطة تسويقية واضحة ومنظمة تحقق أهدافك.", icon: "fa-exclamation-triangle", solution: "استراتيجية خطوة بخطوة" },
+    { title: "ميزانية؟", summary: "تحتاج حلول تسويق مناسبة لميزانيتك.", icon: "fa-chart-line", solution: "حلول مرنة حسب ميزانيتك" },
+    { title: "الجمهور؟", summary: "تحتاج تحديد العميل المناسب بوضوح.", icon: "fa-bullseye", solution: "تحليل واضح للجمهور" },
+    { title: "المنافسة؟", summary: "تحتاج تظهر اختلافك وسط السوق.", icon: "fa-users-slash", solution: "تموضع يبرز اختلافك" },
+    { title: "نتائج بطيئة؟", summary: "تحتاج خطة تنفيذ أسرع وأوضح.", icon: "fa-clock", solution: "خطة تنفيذ قابلة للقياس" },
+    { title: "عائد ضعيف؟", summary: "تحتاج تحسين الإعلانات والقياس.", icon: "fa-hand-holding-usd", solution: "تحسين مستمر للأداء" },
+    { title: "استراتيجية؟", summary: "تحتاج مسار واضح قبل التنفيذ.", icon: "fa-exclamation-triangle", solution: "استراتيجية خطوة بخطوة" },
   ] satisfies HomeCard[],
   stats: [
     { value: "+15", label: "سنة خبرة" },

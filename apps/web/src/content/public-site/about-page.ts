@@ -12,8 +12,10 @@ export const aboutPageSource: AboutPageSource = {
     title: "نبني حضورًا أوضح وقرارات أسرع للنمو",
     summary: "SWEED تجمع الاستراتيجية والمحتوى والتنفيذ التقني في نظام واحد يساعد الشركات تظهر بشكل أوضح وتتحرك بثقة أكبر.",
     stats: [
-      { value: "15+", label: "سنة خبرة" },
-      { value: "640+", label: "عميل وشريك" },
+      { value: "+15", label: "سنة خبرة" },
+      { value: "+478", label: "عميل راض" },
+      { value: "+638", label: "مشروع منفذ" },
+      { value: "98%", label: "معدل رضا العملاء" },
     ],
   },
   sections: [

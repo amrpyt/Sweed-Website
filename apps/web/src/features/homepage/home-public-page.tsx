@@ -44,12 +44,6 @@ function ProblemCard({ card }: { card: HomeCard }) {
         </div>
         <h3>{card.title}</h3>
       </div>
-      {card.solution ? (
-        <div className={styles.solution}>
-          <Icon name="fa-check-circle" />
-          <span>{card.solution}</span>
-        </div>
-      ) : null}
     </HeroHomeCard>
   );
 }
@@ -240,7 +234,7 @@ export function HomePublicPage() {
               <Reveal className={`${styles.sectionHeader} ${styles.problemsHeader}`} variant="slideStart">
                 <span>تشخيص سريع</span>
                 <h2>هل تواجه هذه المشاكل؟</h2>
-                <p>ست مشاكل متكررة بتضيع وقت وميزانية الشركات. اختار الأقرب لك ونحولها لخطة تنفيذ واضحة.</p>
+                <p>اختار التحدي الأقرب لك، ونرتب لك بداية واضحة.</p>
               </Reveal>
               <div className={styles.problemsGrid}>
                 {homepageContent.problems.map((card, index) => (
@@ -251,24 +245,9 @@ export function HomePublicPage() {
               </div>
             </div>
             <Reveal className={styles.problemsCta} variant="soft">
-              <span>تعبت من نفس المشاكل؟</span>
+              <span>ابدأ بخطوة واضحة</span>
               <ActionButton action={{ label: "احجز استشارتك الآن", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
             </Reveal>
-          </div>
-        </section>
-
-        <section className={styles.statsSection}>
-          <div className={styles.container}>
-            <div className={styles.statsGrid}>
-              {homepageContent.stats.map((metric, index) => (
-                <Reveal delay={index * 60} key={metric.label} variant="scaleIn">
-                  <HeroHomeCard className={styles.statCard}>
-                    <strong>{metric.value}</strong>
-                    <span>{metric.label}</span>
-                  </HeroHomeCard>
-                </Reveal>
-              ))}
-            </div>
           </div>
         </section>
 

@@ -336,9 +336,9 @@
 
 .problemsSection {
   background:
-    radial-gradient(circle at 12% 18%, rgba(237, 32, 98, 0.07), transparent 22rem),
-    linear-gradient(180deg, #fff 0%, #fff7fa 100%);
-  padding-block: clamp(2.7rem, 4.8vw, 4.2rem);
+    radial-gradient(circle at 12% 18%, rgba(237, 32, 98, 0.055), transparent 22rem),
+    linear-gradient(180deg, #fff 0%, #fff9fb 100%);
+  padding-block: clamp(2.4rem, 4.2vw, 3.7rem);
 }
 
 .problemsHeader {
@@ -370,13 +370,6 @@
 
 .problemsSection .container {
   width: min(100% - 2rem, 1180px);
-  border: 1px solid rgba(237, 32, 98, 0.1);
-  border-radius: 30px;
-  padding: clamp(1.15rem, 2.4vw, 1.85rem);
-  background:
-    radial-gradient(circle at 88% 12%, rgba(38, 27, 62, 0.07), transparent 18rem),
-    #fff;
-  box-shadow: 0 24px 70px rgba(38, 27, 62, 0.08);
 }
 
 .problemsLayout {
@@ -392,6 +385,8 @@
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.55rem;
+  max-width: 760px;
+  margin-inline: auto;
 }
 
 .problemCard,
@@ -413,10 +408,12 @@
 .problemCard {
   isolation: isolate;
   min-height: 0;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  border-radius: 16px;
-  padding: 0.72rem 0.58rem;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.62rem 0.72rem;
+  background: rgba(255, 255, 255, 0.76);
   box-shadow: none;
   text-align: center;
   transition:
@@ -452,10 +449,10 @@
 }
 
 .problemCardHeader {
-  display: grid;
+  display: flex;
   align-items: center;
-  justify-items: center;
-  gap: 0.45rem;
+  justify-content: center;
+  gap: 0.48rem;
 }
 
 .problemIcon,
@@ -473,11 +470,11 @@
 }
 
 .problemIcon {
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
-  border-radius: 12px;
-  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 999px;
+  font-size: 0.9rem;
 }
 
 .problemCard h3,
@@ -497,7 +494,7 @@
 
 .problemCard h3 {
   margin: 0;
-  font-size: clamp(0.84rem, 0.9vw, 0.96rem);
+  font-size: clamp(0.8rem, 0.82vw, 0.9rem);
   line-height: 1.32;
 }
 
@@ -528,20 +525,6 @@
   -webkit-line-clamp: 3;
 }
 
-.solution {
-  display: inline-flex;
-  width: fit-content;
-  align-items: center;
-  gap: 0.28rem;
-  margin-top: 0.45rem;
-  border-radius: 999px;
-  padding: 0.28rem 0.48rem;
-  background: rgba(237, 32, 98, 0.1);
-  color: var(--primary-pink);
-  font-size: 0.7rem;
-  font-weight: 900;
-}
-
 .problemsCta {
   display: flex;
   align-items: center;
@@ -557,40 +540,6 @@
   min-height: 48px;
   padding: 0.78rem 1.15rem;
   font-size: 0.94rem;
-}
-
-.statsSection {
-  padding: 3rem 0;
-  background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
-}
-
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.statCard {
-  align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 28px;
-  padding: 1.8rem 1rem;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  text-align: center;
-}
-
-.statCard strong {
-  color: #fff;
-  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-  font-weight: 900;
-  line-height: 1;
-}
-
-.statCard span {
-  margin-top: 0.6rem;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 900;
 }
 
 .helpSection {
@@ -1089,7 +1038,6 @@
     margin-bottom: 0.75rem;
   }
 
-  .statsGrid,
   .whyGrid,
   .featureGrid,
   .servicesGrid,
@@ -1107,8 +1055,6 @@
 
   .problemsSection .container {
     width: min(100% - 1rem, 1400px);
-    border-radius: 24px;
-    padding: 1.05rem;
   }
 
   .problemsHeader {
@@ -1126,7 +1072,7 @@
 
   .problemsGrid {
     display: grid;
-    grid-auto-columns: minmax(118px, 34vw);
+    grid-auto-columns: minmax(128px, 38vw);
     grid-auto-flow: column;
     grid-template-columns: none;
     gap: 0.5rem;
@@ -1142,13 +1088,14 @@
   }
 
   .problemCard {
-    padding: 0.7rem 0.5rem;
+    justify-content: flex-start;
+    padding: 0.68rem 0.72rem;
   }
 
   .problemIcon {
-    width: 36px;
-    height: 36px;
-    flex-basis: 36px;
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
     font-size: 0.95rem;
   }
 

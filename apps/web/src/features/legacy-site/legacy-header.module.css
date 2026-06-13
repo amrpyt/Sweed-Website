@@ -1,0 +1,579 @@
+  :global(.sweed-common-top-bar) {
+    background: var(--primary-purple, #261b3e) !important;
+    color: var(--white, #ffffff) !important;
+    padding: 0.7rem 0 !important;
+    font-size: 0.85rem !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 2300 !important;
+  }
+
+  :global(.sweed-common-top-bar) :global(.top-bar-content) {
+    max-width: 1400px !important;
+    width: min(100%, 1400px) !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 1rem !important;
+    direction: ltr !important;
+  }
+
+  :global(.sweed-common-top-bar) :global(.top-bar-left) {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    direction: rtl !important;
+    min-width: 0 !important;
+  }
+
+  :global(.sweed-common-top-bar) :global(.top-bar-item) {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    white-space: nowrap !important;
+  }
+
+  :global(.sweed-common-top-bar) :global(.top-bar-item) i {
+    color: var(--primary-pink, #ed2062) !important;
+  }
+
+  :global(.sweed-common-top-bar) :global(.social-media) {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+    direction: ltr !important;
+    flex: 0 0 auto !important;
+  }
+
+  :global(.sweed-common-top-bar) :global(.social-media) a {
+    width: 30px !important;
+    height: 30px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,0.08) !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 0.85rem !important;
+  }
+
+  :global(.sweed-common-header) {
+    background: var(--white, #ffffff) !important;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1) !important;
+    position: fixed !important;
+    top: 52px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 2200 !important;
+    transition: box-shadow 0.3s ease !important;
+    width: 100% !important;
+    overflow-x: clip !important;
+  }
+:global(body) {
+    padding-top: 137px !important;
+  }
+:global(html) {
+    scroll-behavior: smooth !important;
+  }
+:global(section[id]) {
+    scroll-margin-top: 164px !important;
+  }
+
+  :global(.sweed-common-header) :global(.nav-container) {
+    max-width: 1400px !important;
+    width: min(100%, 1400px) !important;
+    margin: 0 auto !important;
+    padding: 1rem 2rem !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+
+  :global(.sweed-common-logo) {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    text-decoration: none !important;
+    flex: 0 0 auto !important;
+  }
+
+  :global(.sweed-common-logo) :global(.sweed-official-logo) {
+    width: 118px !important;
+    height: auto !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+  }
+
+  :global(.sweed-common-logo) :global(.logo-text) {
+    display: none !important;
+  }
+
+  :global(.sweed-common-logo) :global(.logo-main) {
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+    background: linear-gradient(135deg, var(--primary-pink, #ed2062), var(--primary-purple, #261b3e)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+    letter-spacing: -1px !important;
+    line-height: 1 !important;
+  }
+
+  :global(.sweed-common-logo) :global(.logo-subtitle) {
+    font-size: 0.75rem !important;
+    color: var(--dark-silver, #6d6e70) !important;
+    font-weight: 600 !important;
+    margin-top: 0.2rem !important;
+  }
+
+  :global(.sweed-common-header) :global(.nav-menu) {
+    display: flex !important;
+    list-style: none !important;
+    gap: 1.15rem !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+  }
+
+  :global(.sweed-common-header) :global(.nav-menu) a {
+    color: var(--primary-purple, #261b3e) !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    white-space: nowrap !important;
+  }
+
+  :global(.sweed-common-header) :global(.nav-menu) a::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -5px !important;
+    right: 0 !important;
+    width: 0 !important;
+    height: 2px !important;
+    background: linear-gradient(90deg, var(--primary-pink, #ed2062), var(--sunset-orange, #261b3e)) !important;
+    transition: width 0.3s ease !important;
+  }
+
+  :global(.sweed-common-header) :global(.nav-menu) a:hover::after,
+  :global(.sweed-common-header) :global(.nav-menu) a:global(.active)::after {
+    width: 100% !important;
+  }
+
+  :global(.sweed-common-header) :global(.nav-menu) a:global(.active) {
+    color: var(--primary-pink, #ed2062) !important;
+  }
+
+  :global(.sweed-common-header) :global(.nav-buttons) {
+    display: flex !important;
+    gap: 1rem !important;
+    flex: 0 0 auto !important;
+  }
+
+  :global(.sweed-common-header) :global(.btn-consultation) {
+    border: 0 !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, var(--primary-pink, #ed2062), var(--sunset-orange, #261b3e)) !important;
+    color: #ffffff !important;
+    padding: 0 1.2rem !important;
+    min-height: 52px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+    box-shadow: 0 14px 30px rgba(237, 32, 98, 0.22) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  :global(.sweed-common-header) :global(.btn-consultation):hover,
+  :global(.sweed-common-header) :global(.btn-consultation):focus-visible {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 18px 34px rgba(237, 32, 98, 0.28) !important;
+  }
+
+  :global(.sweed-common-header) :global(.btn-consultation):focus-visible,
+  :global(.sweed-common-header) :global(.nav-menu) a:focus-visible,
+  :global(.sweed-common-header) :global(.hamburger):focus-visible {
+    outline: 3px solid rgba(237, 32, 98, 0.25) !important;
+    outline-offset: 4px !important;
+  }
+
+  :global(.sweed-common-header) :global(.hamburger) {
+    display: none;
+  }
+
+  @media (max-width: 1280px) {
+    :global(.sweed-common-top-bar) :global(.top-bar-content),
+    :global(.sweed-common-header) :global(.nav-container) {
+      padding-inline: 1.25rem !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) {
+      gap: 0.82rem !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) a {
+      font-size: 0.9rem !important;
+    }
+
+    :global(.sweed-common-logo) :global(.logo-main) {
+      font-size: 1.65rem !important;
+    }
+
+    :global(.sweed-common-logo) :global(.sweed-official-logo) {
+      width: 104px !important;
+    }
+
+    :global(.sweed-common-logo) :global(.logo-subtitle) {
+      font-size: 0.66rem !important;
+    }
+
+    :global(.sweed-common-header) :global(.btn-consultation) {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    :global(.sweed-common-top-bar) :global(.top-bar-left) {
+      gap: 0.85rem !important;
+    }
+
+    :global(.sweed-common-top-bar) :global(.top-bar-item):first-child {
+      display: none !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-container) {
+      gap: 0.6rem !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) {
+      gap: 0.58rem !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) a {
+      font-size: 0.82rem !important;
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    :global(.sweed-common-top-bar) {
+      display: none !important;
+    }
+:global(body) {
+      padding-top: 78px !important;
+    }
+:global(section[id]) {
+      scroll-margin-top: 92px !important;
+    }
+
+    :global(.sweed-common-header) {
+      overflow: visible !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      box-shadow: 0 8px 28px rgba(38, 27, 62, 0.08) !important;
+      backdrop-filter: blur(14px) !important;
+      z-index: 2200 !important;
+      top: 0 !important;
+    }
+
+    :global(.sweed-common-header.mobile-menu-open) {
+      transform: none !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-container) {
+      height: 78px !important;
+      padding: 0 18px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+
+    :global(.sweed-common-logo) {
+      align-items: flex-end !important;
+      min-width: 0 !important;
+      max-width: 190px !important;
+      overflow: visible !important;
+      white-space: nowrap !important;
+    }
+
+    :global(.sweed-common-logo) :global(.sweed-official-logo) {
+      width: 96px !important;
+    }
+
+    :global(.sweed-common-logo) :global(.logo-main) {
+      font-size: 1.8rem !important;
+      letter-spacing: 0 !important;
+      line-height: 1 !important;
+    }
+
+    :global(.sweed-common-logo) :global(.logo-subtitle) {
+      max-width: 160px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      font-size: 0.58rem !important;
+    }
+
+    :global(.sweed-common-header) :global(.hamburger) {
+      display: flex !important;
+      position: fixed !important;
+      top: 18px !important;
+      left: 16px !important;
+      right: auto !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      z-index: 2301 !important;
+      border: 0 !important;
+      border-radius: 15px !important;
+      background: linear-gradient(135deg, #ed2062, #261b3e) !important;
+      box-shadow: 0 14px 32px rgba(237, 32, 98, 0.32) !important;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      cursor: pointer !important;
+      padding: 8px !important;
+    }
+
+    :global(.sweed-common-header) :global(.hamburger.active) {
+      left: auto !important;
+      right: 18px !important;
+      background: rgba(255, 255, 255, 0.88) !important;
+      border: 1px solid rgba(237, 32, 98, 0.16) !important;
+      box-shadow: 0 12px 26px rgba(38, 27, 62, 0.12) !important;
+      backdrop-filter: blur(12px) !important;
+    }
+
+    :global(.sweed-common-header) :global(.hamburger) span {
+      background: #fff !important;
+      width: 22px !important;
+      height: 3px !important;
+      margin: 3px 0 !important;
+      border-radius: 999px !important;
+      display: block !important;
+      transition: all 0.3s ease !important;
+    }
+
+    :global(.sweed-common-header) :global(.hamburger.active) span {
+      width: 18px !important;
+      height: 2px !important;
+      margin: 2px 0 !important;
+      background: #261b3e !important;
+    }
+
+    :global(.sweed-common-header) :global(.hamburger.active) span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg) !important;
+    }
+
+    :global(.sweed-common-header) :global(.hamburger.active) span:nth-child(2) {
+      opacity: 0 !important;
+    }
+
+    :global(.sweed-common-header) :global(.hamburger.active) span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg) !important;
+    }
+
+    :global(.mobile-menu-overlay) {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 2099 !important;
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      background: rgba(17, 13, 31, 0.06) !important;
+      transition: opacity 0.24s ease !important;
+    }
+
+    :global(.mobile-menu-overlay.active) {
+      display: block !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) {
+      display: flex !important;
+      position: fixed !important;
+      top: 0 !important;
+      right: 0 !important;
+      width: min(84vw, 340px) !important;
+      height: 100dvh !important;
+      box-sizing: border-box !important;
+      padding: 72px 14px 88px !important;
+      gap: 0.42rem !important;
+      z-index: 2300 !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(138, 29, 80, 0.14), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #fff7fb 100%) !important;
+      box-shadow: -18px 0 55px rgba(38, 27, 62, 0.24) !important;
+      border-left: 1px solid rgba(237, 32, 98, 0.16) !important;
+      border-radius: 26px 0 0 26px !important;
+      isolation: isolate !important;
+      transform: translateX(105%) !important;
+      transition: transform 0.42s cubic-bezier(.2,.85,.22,1) !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu)::before,
+    :global(.sweed-common-header) :global(.nav-menu)::after {
+      position: relative !important;
+      z-index: 2 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      white-space: pre-line !important;
+      text-align: center !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu)::before {
+      content: 'SWEED\\A نصنع حضورك. نطلق مستقبل عملك.' !important;
+      display: block !important;
+      margin: 0 0 0.75rem !important;
+      padding: 0 0 0.85rem !important;
+      border-bottom: 1px solid rgba(237, 32, 98, 0.16) !important;
+      font-weight: 900 !important;
+      font-size: clamp(1.15rem, 5vw, 1.45rem) !important;
+      line-height: 1.35 !important;
+      background: linear-gradient(135deg, #ed2062, #261b3e) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu)::after {
+      content: 'جاهز تنمو أعمالك؟\\A استشارة مجانية عبر واتساب' !important;
+      display: block !important;
+      margin-top: 0.65rem !important;
+      padding: 0.85rem !important;
+      border-radius: 18px !important;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,247,251,0.96)),
+        radial-gradient(circle at 85% 18%, rgba(237,32,98,0.14), transparent 28%) !important;
+      border: 1px solid rgba(237, 32, 98, 0.16) !important;
+      box-shadow: 0 18px 40px rgba(38, 27, 62, 0.10) !important;
+      color: #261b3e !important;
+      font-weight: 900 !important;
+      line-height: 1.55 !important;
+      font-size: 0.9rem !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu.active) {
+      transform: translateX(0) !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) li {
+      width: 100% !important;
+      min-width: 0 !important;
+      border: 0 !important;
+      opacity: 1 !important;
+      animation: none !important;
+      position: relative !important;
+      z-index: 2 !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) a {
+      width: 100% !important;
+      min-height: 48px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 0.55rem !important;
+      padding: 10px 12px !important;
+      border-radius: 15px !important;
+      background: rgba(255, 255, 255, 0.84) !important;
+      color: #261b3e !important;
+      box-shadow: inset 0 0 0 1px rgba(38, 27, 62, 0.06) !important;
+      font-size: 1rem !important;
+      font-weight: 800 !important;
+      text-align: right !important;
+      text-decoration: none !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(n+5) a:not(:global(.active)) {
+      background: rgba(255, 255, 255, 0.9) !important;
+      color: rgba(38, 27, 62, 0.72) !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) a::before {
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 12px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-left: 0.58rem !important;
+      color: #ed2062 !important;
+      background: rgba(237, 32, 98, 0.08) !important;
+      font-family: "Font Awesome 6 Free" !important;
+      font-weight: 900 !important;
+      flex-shrink: 0 !important;
+      position: static !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(1) a::before { content: '\\f015' !important; }
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(2) a::before { content: '\\f0c0' !important; }
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(3) a::before { content: '\\f0b1' !important; }
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(4) a::before { content: '\\f02b' !important; }
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(5) a::before { content: '\\f290' !important; }
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(6) a::before { content: '\\f03e' !important; }
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(7) a::before { content: '\\f303' !important; }
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(8) a::before { content: '\\f059' !important; }
+    :global(.sweed-common-header) :global(.nav-menu) li:nth-of-type(9) a::before { content: '\\f095' !important; }
+
+    :global(.sweed-common-header) :global(.nav-menu) a::after {
+      content: '\\f104' !important;
+      display: inline-flex !important;
+      font-family: "Font Awesome 6 Free" !important;
+      font-weight: 900 !important;
+      color: rgba(38, 27, 62, 0.38) !important;
+      margin-right: auto !important;
+      width: auto !important;
+      height: auto !important;
+      transform: none !important;
+      position: static !important;
+      background: transparent !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) a:hover {
+      background: rgba(237, 32, 98, 0.05) !important;
+      color: var(--primary-pink, #ed2062) !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) a:global(.active) {
+      background: linear-gradient(135deg, #261b3e 0%, #ed2062 100%) !important;
+      color: #fff !important;
+      box-shadow: 0 16px 32px rgba(38, 27, 62, 0.18) !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) a:global(.active)::before {
+      color: #fff !important;
+      background: rgba(255, 255, 255, 0.18) !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-menu) a:global(.active)::after {
+      color: rgba(255, 255, 255, 0.76) !important;
+    }
+
+    :global(.sweed-common-header) :global(.nav-buttons) {
+      display: none !important;
+    }
+  }

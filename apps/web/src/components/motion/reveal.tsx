@@ -30,6 +30,25 @@ export function Reveal<T extends ElementType = "div">({
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+    node.dataset.motionReady = "true";
+
+    const markVisibleIfInViewport = () => {
+      const rect = node.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+      const isInViewport = rect.top < viewportHeight * 0.9 && rect.bottom > 0 && rect.left < viewportWidth && rect.right > 0;
+
+      if (isInViewport) {
+        setIsVisible(true);
+        return true;
+      }
+
+      return false;
+    };
+
+    const frameId = window.requestAnimationFrame(() => {
+      markVisibleIfInViewport();
+    });
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -44,7 +63,10 @@ export function Reveal<T extends ElementType = "div">({
 
     observer.observe(node);
 
-    return () => observer.disconnect();
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      observer.disconnect();
+    };
   }, [once]);
 
   const setNodeRef = (node: HTMLElement | null) => {

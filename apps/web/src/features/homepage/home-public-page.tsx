@@ -9,7 +9,6 @@ import { LegacyFooter, LegacyHeader } from "@/features/legacy-site";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
-import { ProblemsAutoCarousel } from "./problems-auto-carousel";
 
 function Icon({ name }: { name: string }) {
   return <i aria-hidden="true" className={name.includes(" ") ? name : `fas ${name}`} />;
@@ -45,7 +44,6 @@ function ProblemCard({ card }: { card: HomeCard }) {
         </div>
         <h3>{card.title}</h3>
       </div>
-      <p>{card.summary}</p>
       {card.solution ? (
         <div className={styles.solution}>
           <Icon name="fa-check-circle" />
@@ -244,23 +242,13 @@ export function HomePublicPage() {
                 <h2>هل تواجه هذه المشاكل؟</h2>
                 <p>ست مشاكل متكررة بتضيع وقت وميزانية الشركات. اختار الأقرب لك ونحولها لخطة تنفيذ واضحة.</p>
               </Reveal>
-              <ProblemsAutoCarousel
-                className={styles.problemsGrid}
-                indicators={homepageContent.problems.map((card) => (
-                  <div key={card.title}>
-                    <span>
-                      <Icon name={card.icon} />
-                    </span>
-                    <strong>{card.title}</strong>
-                  </div>
-                ))}
-              >
+              <div className={styles.problemsGrid}>
                 {homepageContent.problems.map((card, index) => (
                   <Reveal as="article" delay={index * 55} key={card.title} variant="scaleIn">
                     <ProblemCard card={card} />
                   </Reveal>
                 ))}
-              </ProblemsAutoCarousel>
+              </div>
             </div>
             <Reveal className={styles.problemsCta} variant="soft">
               <span>تعبت من نفس المشاكل؟</span>

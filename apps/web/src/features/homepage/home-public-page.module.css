@@ -369,7 +369,7 @@
 }
 
 .problemsSection .container {
-  width: min(100% - 2rem, 1040px);
+  width: min(100% - 2rem, 1180px);
   border: 1px solid rgba(237, 32, 98, 0.1);
   border-radius: 30px;
   padding: clamp(1.15rem, 2.4vw, 1.85rem);
@@ -380,22 +380,18 @@
 }
 
 .problemsLayout {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.82fr) minmax(320px, 1fr);
-  gap: clamp(1rem, 3vw, 2rem);
-  align-items: center;
+  display: block;
 }
 
 .problemsLayout .problemsHeader {
-  margin: 0;
-  text-align: right;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .problemsGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(180px, 0.85fr);
-  gap: 0.85rem;
-  align-items: stretch;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.55rem;
 }
 
 .problemCard,
@@ -418,92 +414,15 @@
   isolation: isolate;
   min-height: 0;
   flex-direction: column;
-  border-radius: 18px;
-  height: 100%;
-  padding: 1rem;
+  align-items: center;
+  border-radius: 16px;
+  padding: 0.72rem 0.58rem;
   box-shadow: none;
+  text-align: center;
   transition:
     border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
     background 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.problemsGrid :global(.problemsAutoCarousel__stage) {
-  display: grid;
-  position: relative;
-  min-height: 190px;
-  overflow: hidden;
-  border-radius: 22px;
-  contain: layout paint;
-  isolation: isolate;
-}
-
-.problemsGrid :global(.problemsAutoCarousel__stage) > article {
-  grid-area: 1 / 1;
-  min-width: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(-18px, 0, 0) scale(0.985);
-  transition:
-    opacity 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 440ms cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 0;
-}
-
-.problemsGrid :global(.problemsAutoCarousel__stage) > article[data-active-problem="true"] {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate3d(0, 0, 0) scale(1);
-  z-index: 1;
-}
-
-.problemsGrid :global(.problemsAutoCarousel__indicators) {
-  display: grid;
-  gap: 0.45rem;
-}
-
-.problemsGrid :global(.problemsAutoCarousel__indicators > div) {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  border: 1px solid rgba(38, 27, 62, 0.08);
-  border-radius: 14px;
-  padding: 0.52rem 0.62rem;
-  background: rgba(255, 255, 255, 0.7);
-  color: rgba(38, 27, 62, 0.62);
-  transition:
-    border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    background 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.problemsGrid :global(.problemsAutoCarousel__indicators > div[data-active-problem-indicator="true"]) {
-  border-color: rgba(237, 32, 98, 0.24);
-  background: rgba(237, 32, 98, 0.08);
-  color: var(--primary-purple);
-  transform: translateX(-4px);
-}
-
-.problemsGrid :global(.problemsAutoCarousel__indicators span) {
-  display: grid;
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
-  place-items: center;
-  border-radius: 10px;
-  background: rgba(237, 32, 98, 0.1);
-  color: var(--primary-pink);
-  font-size: 0.82rem;
-}
-
-.problemsGrid :global(.problemsAutoCarousel__indicators strong) {
-  overflow: hidden;
-  font-size: 0.84rem;
-  font-weight: 900;
-  line-height: 1.35;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .problemCard::before {
@@ -533,9 +452,10 @@
 }
 
 .problemCardHeader {
-  display: flex;
+  display: grid;
   align-items: center;
-  gap: 0.62rem;
+  justify-items: center;
+  gap: 0.45rem;
 }
 
 .problemIcon,
@@ -553,11 +473,11 @@
 }
 
 .problemIcon {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  border-radius: 14px;
-  font-size: 1.16rem;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 12px;
+  font-size: 1rem;
 }
 
 .problemCard h3,
@@ -577,7 +497,7 @@
 
 .problemCard h3 {
   margin: 0;
-  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
+  font-size: clamp(0.84rem, 0.9vw, 0.96rem);
   line-height: 1.32;
 }
 
@@ -612,13 +532,13 @@
   display: inline-flex;
   width: fit-content;
   align-items: center;
-  gap: 0.45rem;
-  margin-top: auto;
+  gap: 0.28rem;
+  margin-top: 0.45rem;
   border-radius: 999px;
-  padding: 0.34rem 0.62rem;
+  padding: 0.28rem 0.48rem;
   background: rgba(237, 32, 98, 0.1);
   color: var(--primary-pink);
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 900;
 }
 
@@ -631,12 +551,6 @@
   color: var(--primary-purple);
   font-size: 1rem;
   font-weight: 900;
-}
-
-.problemsGrid > [data-active-problem="true"] .problemCard {
-  border-color: rgba(237, 32, 98, 0.36);
-  background: #fff;
-  box-shadow: 0 14px 34px rgba(237, 32, 98, 0.14);
 }
 
 .problemsCta .button {
@@ -1111,19 +1025,6 @@
     transition: none;
   }
 
-  .problemsGrid :global(.problemsAutoCarousel__stage) > article {
-    transition: none;
-  }
-
-  .problemsGrid :global(.problemsAutoCarousel__stage) > article:not(:first-child) {
-    display: none;
-  }
-
-  .problemsGrid :global(.problemsAutoCarousel__stage) > article:first-child {
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
-  }
 }
 
 @media (max-width: 1180px) {
@@ -1137,10 +1038,6 @@
   .productsGrid,
   .articleGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .problemsLayout {
-    grid-template-columns: 1fr;
   }
 
   .problemsLayout .problemsHeader {
@@ -1229,45 +1126,30 @@
 
   .problemsGrid {
     display: grid;
-    grid-template-columns: 1fr;
-    min-height: 225px;
+    grid-auto-columns: minmax(118px, 34vw);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    gap: 0.5rem;
+    margin-inline: -0.15rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 0.15rem 0.15rem 0.65rem;
+    scrollbar-width: none;
   }
 
-  .problemsGrid :global(.problemsAutoCarousel__stage) {
-    min-height: 225px;
-  }
-
-  .problemsGrid :global(.problemsAutoCarousel__indicators) {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0.35rem;
-  }
-
-  .problemsGrid :global(.problemsAutoCarousel__indicators > div) {
-    justify-content: center;
-    padding: 0.4rem;
-  }
-
-  .problemsGrid :global(.problemsAutoCarousel__indicators strong) {
+  .problemsGrid::-webkit-scrollbar {
     display: none;
   }
 
-  .problemsGrid :global(.problemsAutoCarousel__indicators > div[data-active-problem-indicator="true"]) {
-    transform: translateY(-2px);
-  }
-
-  .problemsGrid > [data-active-problem="true"] .problemCard {
-    transform: translateY(-2px);
-  }
-
   .problemCard {
-    padding: 1rem;
+    padding: 0.7rem 0.5rem;
   }
 
   .problemIcon {
-    width: 48px;
-    height: 48px;
-    flex-basis: 48px;
-    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+    font-size: 0.95rem;
   }
 
   .problemsGrid > * {

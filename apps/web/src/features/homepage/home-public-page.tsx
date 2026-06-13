@@ -189,6 +189,11 @@ export function HomePublicPage() {
       <LegacyHeader page="home" />
       <main className={styles.homepage}>
         <section className={styles.hero} id="home">
+          <div className={styles.heroImageStack} aria-hidden="true">
+            <span className={styles.heroImageOne} />
+            <span className={styles.heroImageTwo} />
+            <span className={styles.heroImageThree} />
+          </div>
           <div className={styles.container}>
             <div className={styles.heroContent}>
               <Reveal className={styles.heroText} variant="hero">

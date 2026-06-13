@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { LegacyPageKey } from "./legacy-routes";
 
 type NavItem = {
@@ -35,6 +35,8 @@ const homeNavItems: NavItem[] = [
   { href: "/#contact", label: "اتصل بنا" },
 ];
 
+const primaryNavigationId = "sweed-primary-navigation";
+
 function isActive(page: LegacyPageKey, active: LegacyPageKey) {
   if (page === "service-detail") return active === "services";
   if (page === "article-detail") return active === "articles";
@@ -43,7 +45,9 @@ function isActive(page: LegacyPageKey, active: LegacyPageKey) {
 
 export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const [isOpen, setIsOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
+  const consultationHref = page === "home" ? "/#contact" : "/contact";
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -52,6 +56,23 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
     return () => {
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+
+      setIsOpen(false);
+      menuButtonRef.current?.focus();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen]);
 
@@ -87,8 +108,11 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
       </div>
 
       <header className={`header sweed-common-header ${isOpen ? "mobile-menu-open" : ""}`} id="mainHeader">
-        <nav className="nav-container">
+        <nav aria-label="القائمة الرئيسية" className="nav-container">
           <button
+            ref={menuButtonRef}
+            aria-controls={primaryNavigationId}
+            aria-expanded={isOpen}
             aria-label={isOpen ? "إغلاق القائمة" : "فتح القائمة"}
             className={`hamburger ${isOpen ? "active" : ""}`}
             data-testid="sweed-mobile-menu-button"
@@ -108,23 +132,20 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
             </div>
           </Link>
 
-          <ul className={`nav-menu ${isOpen ? "active" : ""}`}>
+          <ul className={`nav-menu ${isOpen ? "active" : ""}`} id={primaryNavigationId}>
             {navItems.map((item) => (
               <li key={item.href}>
-                <a className={item.active && isActive(page, item.active) ? "active" : undefined} href={item.href} onClick={() => setIsOpen(false)}>
+                <Link className={item.active && isActive(page, item.active) ? "active" : undefined} href={item.href} onClick={() => setIsOpen(false)}>
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
           <div className="nav-buttons">
-            <button className="btn-search" type="button">
-              <i className="fas fa-search" />
-            </button>
-            <button className="btn-download" type="button">
-              <i className="fas fa-download" /> تحميل الكتالوج
-            </button>
+            <Link className="btn-consultation" href={consultationHref}>
+              احجز استشارة مجانية
+            </Link>
           </div>
         </nav>
       </header>
@@ -327,33 +348,34 @@ const legacyHeaderCss = `
     flex: 0 0 auto !important;
   }
 
-  .sweed-common-header .btn-search {
-    width: 52px !important;
-    height: 52px !important;
-    min-width: 52px !important;
-    border-radius: 18px !important;
-    border: 2px solid var(--primary-purple, #261b3e) !important;
-    background: #ffffff !important;
-    color: var(--primary-purple, #261b3e) !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-  }
-
-  .sweed-common-header .btn-download {
+  .sweed-common-header .btn-consultation {
     border: 0 !important;
     border-radius: 18px !important;
     background: linear-gradient(135deg, var(--primary-pink, #ed2062), var(--sunset-orange, #261b3e)) !important;
     color: #ffffff !important;
-    padding: 0 1.15rem !important;
+    padding: 0 1.2rem !important;
     min-height: 52px !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 0.5rem !important;
+    justify-content: center !important;
     font-weight: 800 !important;
-    cursor: pointer !important;
     white-space: nowrap !important;
+    text-decoration: none !important;
+    box-shadow: 0 14px 30px rgba(237, 32, 98, 0.22) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  .sweed-common-header .btn-consultation:hover,
+  .sweed-common-header .btn-consultation:focus-visible {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 18px 34px rgba(237, 32, 98, 0.28) !important;
+  }
+
+  .sweed-common-header .btn-consultation:focus-visible,
+  .sweed-common-header .nav-menu a:focus-visible,
+  .sweed-common-header .hamburger:focus-visible {
+    outline: 3px solid rgba(237, 32, 98, 0.25) !important;
+    outline-offset: 4px !important;
   }
 
   .sweed-common-header .hamburger {
@@ -386,7 +408,7 @@ const legacyHeaderCss = `
       font-size: 0.66rem !important;
     }
 
-    .sweed-common-header .btn-download {
+    .sweed-common-header .btn-consultation {
       display: none !important;
     }
   }
@@ -412,12 +434,6 @@ const legacyHeaderCss = `
       font-size: 0.82rem !important;
     }
 
-    .sweed-common-header .btn-search {
-      width: 46px !important;
-      height: 46px !important;
-      min-width: 46px !important;
-      border-radius: 15px !important;
-    }
   }
 
   @media (max-width: 768px) {

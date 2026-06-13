@@ -1,5 +1,8 @@
 import { AiAdvisorWidget } from "@/features/ai-advisor";
-import { LegacyBreadcrumb, LegacyFooter, LegacyHeader, type LegacyPageKey } from "@/features/legacy-site";
+import { LegacyBreadcrumb } from "@/features/legacy-site/legacy-breadcrumb";
+import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
+import { LegacyHeader } from "@/features/legacy-site/legacy-header";
+import type { LegacyPageKey } from "@/features/legacy-site/legacy-routes";
 import { SectionHashSync } from "../client/section-hash-sync";
 
 export function PublicPageShell({

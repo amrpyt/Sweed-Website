@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CardsGrid, CtaPanel, LegacyDerivedHero, LegacyDerivedSection } from "@/components/sections";
-import { LegacyHeader } from "@/features/legacy-site";
-import type { LegacyPageKey } from "@/features/legacy-site";
+import { LegacyHeader } from "@/features/legacy-site/legacy-header";
+import type { LegacyPageKey } from "@/features/legacy-site/legacy-routes";
 import { typedPages, type TypedPageKey } from "./typed-site-data";
 import styles from "./typed-site-page.module.css";
 

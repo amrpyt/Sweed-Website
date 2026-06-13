@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import type { SimpleIcon } from "simple-icons";
 import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVercel } from "simple-icons";
@@ -8,7 +7,8 @@ import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep }
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
-import { LegacyFooter, LegacyHeader } from "@/features/legacy-site";
+import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
+import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
@@ -102,76 +102,16 @@ function PortfolioCard({ card }: { card: HomeCard }) {
   );
 }
 
-function ServicesSlider() {
-  const items = homepageContent.services;
-  const extendedItems = [...items, ...items, ...items];
-  const [activeIndex, setActiveIndex] = useState(items.length);
-  const [isTransitioning, setIsTransitioning] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setActiveIndex((prev) => prev + 1);
-    }, 2800);
-
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  const handleTransitionEnd = () => {
-    const totalItems = items.length;
-    if (activeIndex >= totalItems * 2) {
-      setIsTransitioning(false);
-      setActiveIndex(activeIndex - totalItems);
-    } else if (activeIndex < totalItems) {
-      setIsTransitioning(false);
-      setActiveIndex(activeIndex + totalItems);
-    }
-  };
-
-  useEffect(() => {
-    if (!isTransitioning) {
-      const raf = requestAnimationFrame(() => {
-        setIsTransitioning(true);
-      });
-      return () => cancelAnimationFrame(raf);
-    }
-  }, [isTransitioning]);
-
+function ServiceCard({ card }: { card: HomeCard }) {
   return (
-    <div 
-      className={styles.sliderContainer}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      aria-label="عرض الخدمات"
-    >
-      <div
-        className={styles.sliderTrack}
-        onTransitionEnd={handleTransitionEnd}
-        style={{
-          transform: `translateX(calc(50% - (var(--slider-card-width) / 2) - ${activeIndex} * (var(--slider-card-width) + var(--slider-gap))))`,
-          transition: isTransitioning ? "transform 1000ms cubic-bezier(0.25, 1, 0.5, 1)" : "none",
-        }}
-      >
-        {extendedItems.map((card, index) => {
-          const isCenter = index === activeIndex;
-          return (
-            <Link
-              key={index}
-              href={card.href ?? "/services"}
-              className={`${styles.sliderCard} ${isCenter ? styles.sliderCardActive : ""}`}
-            >
-              <div className={styles.serviceIcon}>
-                <Icon name={card.icon} />
-              </div>
-              <h3>{card.title}</h3>
-            </Link>
-          );
-        })}
+    <Link className={styles.serviceCard} href={card.href ?? "/services"}>
+      <div className={styles.serviceIcon}>
+        <Icon name={card.icon} />
       </div>
-    </div>
+      <h3>{card.title}</h3>
+      <p>{card.summary}</p>
+      <span className={styles.inlineLink}>اعرف المزيد <Icon name="fa-arrow-left" /></span>
+    </Link>
   );
 }
 

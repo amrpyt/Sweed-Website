@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Tajawal } from "next/font/google";
+import { Cairo } from "next/font/google";
 import { AdminOfferFunnelSettingsForm } from "@/features/offer-funnel";
 import { getOfferFunnelSettings } from "@/features/offer-funnel/server/settings-store";
 
-const tajawal = Tajawal({
+const cairo = Cairo({
   subsets: ["arabic"],
-  weight: ["400", "500", "700", "800"],
+  weight: ["400", "500", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export const dynamic = "force-dynamic";
 export default async function OfferFunnelAdminPage() {
   const settings = await getOfferFunnelSettings();
   return (
-    <div className={tajawal.className}>
+    <div className={cairo.className}>
       <AdminOfferFunnelSettingsForm initialSettings={settings} />
     </div>
   );

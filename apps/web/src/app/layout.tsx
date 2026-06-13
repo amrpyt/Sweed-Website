@@ -1,10 +1,10 @@
-import { Tajawal } from "next/font/google";
+import { Cairo } from "next/font/google";
 import "./globals.css";
 
-const tajawal = Tajawal({
+const cairo = Cairo({
   subsets: ["arabic", "latin"],
   weight: ["400", "500", "700", "800", "900"],
-  variable: "--font-tajawal",
+  variable: "--font-cairo",
   display: "swap",
 });
 
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={tajawal.variable} lang="ar" dir="rtl">
+    <html className={cairo.variable} lang="ar" dir="rtl">
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>

@@ -33,6 +33,6 @@ This gives us accessible primitives and consistent behavior without forcing the 
 - One design system: HeroUI.
 - One accent: SWEED pink.
 - One ink: SWEED purple.
-- One website typeface: Tajawal first, with `SF Arabic` only as fallback.
+- One website typeface: Cairo first, with `SF Arabic` only as fallback.
 - No default HeroUI theme leakage on customer-facing sections.
 - No route or SEO changes as part of design-system migration.

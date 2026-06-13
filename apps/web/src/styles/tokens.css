@@ -24,9 +24,9 @@
   --radius-lg: 18px;
   --container: min(1120px, calc(100vw - 32px));
   --sweed-container: min(1400px, calc(100vw - 32px));
-  --font-body: var(--font-tajawal, "Tajawal"), "Tajawal", "SF Arabic", Arial, sans-serif;
-  --font-display: var(--font-tajawal, "Tajawal"), "Tajawal", "SF Arabic", Arial, sans-serif;
-  --font-weight-body: 400;
+  --font-body: var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
+  --font-display: var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
+  --font-weight-body: 500;
   --font-weight-strong: 700;
   --font-weight-display: 900;
   --text-xs: 0.75rem;
@@ -35,8 +35,8 @@
   --text-lg: 1.125rem;
   --text-xl: 1.35rem;
   --text-2xl: clamp(2rem, 4vw, 3.5rem);
-  --text-3xl: clamp(2.75rem, 7vw, 6.25rem);
-  --leading-tight: 1.08;
+  --text-3xl: clamp(2.75rem, 6.5vw, 6rem);
+  --leading-tight: 1.1;
   --leading-title: 1.18;
   --leading-body: 1.8;
   --space-1: 0.25rem;

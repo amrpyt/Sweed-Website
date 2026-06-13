@@ -88,3 +88,21 @@ Verification target:
 - `bun run check`
 - `bun run build`
 - `bun run --cwd apps/web smoke tests/smoke/homepage-visual.spec.ts`
+
+## 2026-06-13 Cairo Premium Typography Pass
+
+Context: The website typography direction changed from Tajawal to Cairo. The homepage also had oversized display clamps, overly tight Arabic letter spacing, and synthetic weights that were not part of the loaded font set.
+
+Decision:
+
+- Use Cairo as the primary Arabic website font through `next/font/google`.
+- Keep the fallback stack simple: Cairo, `SF Arabic`, Arial, sans-serif.
+- Use available weights only: 500 for body, 700 for emphasis, 800 for UI labels, 900 for display.
+- Keep display heading max at `6rem` and tracking no tighter than `-0.025em` for readable Arabic.
+
+Verification target:
+
+- `bun run check`
+- `bun run build`
+- `bun run design:detect`
+- Browser computed-style checks for Cairo font resolution.

@@ -9,9 +9,18 @@ import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
-import { SweedHero } from "./sweed-hero";
 import styles from "./home-public-page.module.css";
 
+const heroNavItems = [
+  { href: "/#home", label: "الرئيسية", active: true },
+  { href: "/about", label: "من نحن" },
+  { href: "/services", label: "خدماتنا" },
+  { href: "/portfolio", label: "مشاريعنا" },
+  { href: "/#process", label: "منهجنا" },
+  { href: "/articles", label: "المعرفة" },
+  { href: "/#careers", label: "الوظائف" },
+  { href: "/contact", label: "تواصل" },
+];
 
 function Icon({ name }: { name: string }) {
   return <i aria-hidden="true" className={name.includes(" ") ? name : `fas ${name}`} />;
@@ -230,7 +239,64 @@ export function HomePublicPage() {
   return (
     <>
       <main className={styles.homepage}>
-        <SweedHero />
+        <section className={styles.hero} id="home">
+          <header className={styles.heroHeader} aria-label="SWEED primary navigation">
+            <Link className={styles.heroLogo} href="/" aria-label="SWEED home">
+              SWEED
+            </Link>
+            <nav className={styles.heroNav} aria-label="روابط الموقع">
+              {heroNavItems.map((item) => (
+                <Link className={item.active ? styles.heroNavActive : undefined} href={item.href} key={item.label}>
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <HomeButton className={`${styles.button} ${styles.heroHeaderCta}`} href="/contact">
+              <Icon name="fa-arrow-up" />
+              <span>دعنا نبدأ</span>
+            </HomeButton>
+          </header>
+
+          <div className={styles.heroFrame}>
+            <div className={styles.heroRail} aria-hidden="true">
+              <span className={styles.heroRailNumber}>01</span>
+              <span className={styles.heroRailLine} />
+              <div className={styles.heroRailMeta}>
+                <strong>01 / 08</strong>
+                <span>قسم العلامة التجارية</span>
+              </div>
+            </div>
+
+            <div className={styles.heroGrid}>
+              <Reveal className={styles.heroText} variant="hero">
+                <h1>
+                  نصنع العلامات
+                  <br />
+                  التي تقود
+                  <br />
+                  <mark>المستقبل.</mark>
+                </h1>
+                <p className={styles.heroDescription}>
+                  نحن وكالة تسويق وتصميم علامات تجارية تساعد الشركات الطموحة على بناء حضور قوي، وتجربة متكاملة، ونمو مستدام.
+                </p>
+                <div className={styles.heroActions}>
+                  <HomeButton className={`${styles.button} ${styles.buttonPrimary}`} href="/portfolio">
+                    <Icon name="fa-arrow-up" />
+                    <span>استكشف أعمالنا</span>
+                  </HomeButton>
+                  <HomeButton className={`${styles.button} ${styles.buttonSecondary}`} href="/contact">
+                    <Icon name="fa-arrow-up" />
+                    <span>تحدث مع خبير</span>
+                  </HomeButton>
+                </div>
+              </Reveal>
+
+              <div className={styles.heroVisual} aria-label="Grayscale architectural brand mockup" role="img">
+                <span className={styles.heroVisualMarker} />
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className={styles.clientsStrip} id="expertise" aria-label="عملاؤنا">
           <div className={styles.clientsLabel}>شركاء نجاح اشتغلوا معانا</div>

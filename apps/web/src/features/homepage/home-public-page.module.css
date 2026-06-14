@@ -1,19 +1,19 @@
 .homepage {
-  --primary-pink: #ed2062;
-  --primary-purple: #261b3e;
-  --sunset: #ed2062;
-  --ink: #261b3e;
-  --muted: #6d6e70;
+  --primary-pink: #ed1745;
+  --primary-purple: #111111;
+  --sunset: #ed1745;
+  --ink: #111111;
+  --muted: #555555;
   --surface: #f8f9fa;
   --panel: #ffffff;
   --soft-pink: #fff2f7;
-  --line: rgba(38, 27, 62, 0.11);
-  --shadow: 0 18px 55px rgba(38, 27, 62, 0.12);
+  --line: rgba(17, 17, 17, 0.11);
+  --shadow: 0 18px 55px rgba(17, 17, 17, 0.12);
   overflow: hidden;
   background: #fff;
   color: var(--ink);
   direction: rtl;
-  font-family: var(--font-body);
+  font-family: "Helvetica Neue LT Arabic", var(--font-body);
   font-kerning: normal;
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
@@ -36,13 +36,15 @@
 
 .hero {
   position: relative;
-  display: grid;
-  min-height: clamp(640px, 78vh, 740px);
-  align-items: center;
+  min-height: min(920px, 100svh);
   isolation: isolate;
   overflow: hidden;
-  background: #201733;
-  color: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  background:
+    radial-gradient(circle at 17% 82%, rgba(237, 23, 69, 0.04), transparent 18rem),
+    linear-gradient(135deg, rgba(17, 17, 17, 0.035) 0 1px, transparent 1px) 0 0 / 46px 46px,
+    #fbfbfa;
+  color: var(--ink);
 }
 
 .hero::before,
@@ -54,88 +56,176 @@
 }
 
 .hero::before {
+  inset: 13% auto auto 7%;
+  width: min(48vw, 740px);
+  height: min(48vw, 740px);
+  border-radius: 50%;
   background:
-    linear-gradient(135deg, rgba(38, 27, 62, 0.9) 0%, rgba(104, 20, 74, 0.74) 56%, rgba(237, 32, 98, 0.54) 100%),
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.1), transparent 17rem),
-    radial-gradient(circle at 84% 78%, rgba(237, 32, 98, 0.2), transparent 24rem);
+    repeating-radial-gradient(ellipse at center, transparent 0 14px, rgba(17, 17, 17, 0.075) 15px 16px, transparent 17px 30px);
+  opacity: 0.55;
+  transform: rotate(-12deg);
 }
 
 .hero::after {
-  background: linear-gradient(180deg, rgba(38, 27, 62, 0.06), rgba(38, 27, 62, 0.34));
+  inset: auto auto -18% -4%;
+  width: min(52vw, 820px);
+  height: min(42vw, 620px);
+  background:
+    repeating-radial-gradient(ellipse at center, transparent 0 13px, rgba(17, 17, 17, 0.06) 14px 15px, transparent 16px 28px);
+  opacity: 0.55;
+  transform: rotate(18deg);
 }
 
-.heroImageStack,
-.heroImageStack span {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-}
-
-.heroImageStack span {
-  background-position: center;
-  background-size: cover;
-  opacity: 0;
-  transform: scale(1.04);
-  animation: heroImageShuffle 18s infinite;
-}
-
-.heroImageOne {
-  background-image: url("/images/hero/entrepreneur-laptop-office.jpg");
-}
-
-.heroImageTwo {
-  background-image: url("/images/hero/two-men-consultation.jpg");
-  animation-delay: 6s !important;
-}
-
-.heroImageThree {
-  background-image: url("/images/hero/businessman-laptop-standing.jpg");
-  animation-delay: 12s !important;
-}
-
-.heroContent {
+.heroHeader {
+  position: relative;
+  z-index: 2;
   display: grid;
-  min-height: clamp(500px, 62vh, 590px);
+  grid-template-columns: minmax(150px, 0.8fr) minmax(0, 2fr) minmax(150px, 0.8fr);
   align-items: center;
-  text-align: center;
+  min-height: 120px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+  background: rgba(251, 251, 250, 0.82);
+  backdrop-filter: blur(18px);
+}
+
+.heroLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-left: 1px solid rgba(17, 17, 17, 0.12);
+  color: #050505;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.heroNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.4rem, 3vw, 3.7rem);
+  padding-inline: 1.5rem;
+  color: #111;
+  font-size: clamp(0.86rem, 1vw, 1rem);
+  font-weight: 700;
+}
+
+.heroNav a {
+  position: relative;
+  padding-block: 0.6rem;
+}
+
+.heroNavActive::after {
+  position: absolute;
+  right: 50%;
+  bottom: -0.55rem;
+  width: 0.36rem;
+  height: 0.36rem;
+  content: "";
+  background: var(--primary-pink);
+  transform: translateX(50%);
+}
+
+.heroHeaderCta {
+  justify-self: center;
+  min-width: 226px;
+  min-height: 58px;
+  border-radius: 0;
+  background: var(--primary-pink);
+  color: #fff;
+  box-shadow: none;
+}
+
+.heroFrame {
+  position: relative;
+  z-index: 1;
+  min-height: calc(min(920px, 100svh) - 121px);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(430px, 0.95fr);
+  align-items: end;
+  gap: clamp(2rem, 4vw, 5rem);
+  direction: ltr;
+  width: min(100% - clamp(2rem, 8vw, 10rem), 1500px);
+  min-height: calc(min(920px, 100svh) - 121px);
+  margin-inline: auto;
+  padding-block: clamp(3rem, 7vh, 5.5rem) 0;
+}
+
+.heroRail {
+  position: absolute;
+  top: 30%;
+  bottom: 4%;
+  left: clamp(1.4rem, 3.5vw, 4rem);
+  z-index: 2;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.heroRailLine {
+  width: 1px;
+  background: #111;
+}
+
+.heroRailMeta {
+  display: grid;
+  gap: 1.1rem;
+  min-width: 140px;
+  padding-bottom: 1.5rem;
+}
+
+.heroRailMeta strong {
+  border-bottom: 1px solid #111;
+  padding-bottom: 0.7rem;
+  font-size: 1rem;
+}
+
+.heroRailMeta span {
+  max-width: 82px;
+  color: #333;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .heroText {
-  max-width: 860px;
-  margin-inline: auto;
+  align-self: center;
+  direction: rtl;
+  max-width: 780px;
+  padding-block-end: clamp(4rem, 8vh, 7rem);
+  text-align: center;
   animation: heroTextReveal 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.heroText > span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 38px;
-  margin-bottom: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 999px;
-  padding: 0.48rem 1.05rem;
-  background: rgba(255, 255, 255, 0.1);
-  font-weight: 700;
+.heroText h1 {
+  margin: 0;
+  color: #111;
+  font-size: clamp(3.2rem, 6.1vw, 7.4rem);
+  font-weight: 900;
+  line-height: 1.08;
   letter-spacing: 0;
-  animation: heroBadgeFloat 4.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
-.heroText h1 {
-  max-width: 850px;
-  margin: 0 auto 1rem;
-  font-size: clamp(2.55rem, 4.6vw, 4.45rem);
-  font-weight: 780;
-  line-height: 1.13;
-  letter-spacing: -0.004em;
-  text-shadow: 0 10px 30px rgba(38, 27, 62, 0.3);
+.heroText mark {
+  background: transparent;
+  color: var(--primary-pink);
 }
 
 .heroSubtitle,
 .heroDescription {
   margin: 0;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.78;
+  color: #555;
+  line-height: 1.9;
 }
 
 .heroSubtitle {
@@ -146,11 +236,11 @@
 }
 
 .heroDescription {
-  margin-top: 0.3rem;
-  max-width: 54ch;
+  margin-top: clamp(1.2rem, 2.4vw, 2rem);
+  max-width: 58ch;
   margin-inline: auto;
-  font-size: clamp(0.98rem, 1.18vw, 1.12rem);
-  font-weight: 560;
+  font-size: clamp(1rem, 1.2vw, 1.22rem);
+  font-weight: 500;
 }
 
 .heroActions,
@@ -163,19 +253,20 @@
 }
 
 .heroActions {
-  margin-top: 1.9rem;
+  margin-top: clamp(1.6rem, 3vw, 2.6rem);
 }
 
 .button {
   min-width: 0;
   height: auto;
-  min-height: 52px;
-  border: 0;
-  padding: 0.86rem 1.35rem;
-  font-weight: 800;
+  min-height: 64px;
+  border: 1px solid #111;
+  border-radius: 0;
+  padding: 1rem 1.65rem;
+  font-weight: 700;
   font-size: 1rem;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   transition: transform var(--motion-fast), box-shadow var(--motion-fast);
 }
 
@@ -197,13 +288,14 @@
 .buttonPrimary {
   background: var(--primary-pink);
   color: #fff;
-  box-shadow: 0 14px 28px rgba(237, 32, 98, 0.28);
+  border-color: var(--primary-pink);
+  box-shadow: none;
 }
 
 .buttonSecondary {
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.55);
+  background: #fff;
+  color: #111;
 }
 
 .buttonLight {
@@ -218,45 +310,34 @@
   box-shadow: 0 18px 38px rgba(37, 211, 102, 0.22);
 }
 
-.heroDots {
+.heroVisual {
+  position: relative;
+  align-self: stretch;
+  direction: rtl;
+  min-height: clamp(470px, 65vh, 680px);
+  border-inline: 1px solid rgba(17, 17, 17, 0.08);
+  background:
+    linear-gradient(180deg, rgba(251, 251, 250, 0) 58%, #fbfbfa 100%),
+    url("/images/hero/sweed-brutalist-architecture.png") center bottom / cover no-repeat;
+  filter: grayscale(1);
+}
+
+.heroVisual::before {
   position: absolute;
-  bottom: 2.2rem;
-  left: 50%;
-  display: flex;
-  gap: 0.6rem;
-  transform: translateX(-50%);
+  inset: 0;
+  content: "";
+  background: linear-gradient(90deg, rgba(251, 251, 250, 0.28), transparent 22%, rgba(251, 251, 250, 0.1));
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
-.heroDots i {
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-}
-
-.heroDots i:first-child {
-  width: 34px;
-  background: #fff;
-}
-
-@keyframes heroImageShuffle {
-  0%,
-  7% {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-
-  12%,
-  31% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  38%,
-  100% {
-    opacity: 0;
-    transform: scale(1.04);
-  }
+.heroVisualMarker {
+  position: absolute;
+  top: 11%;
+  left: -0.28rem;
+  width: 0.52rem;
+  height: 0.52rem;
+  background: var(--primary-pink);
 }
 
 @keyframes heroTextReveal {
@@ -268,17 +349,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes heroBadgeFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-4px);
   }
 }
 
@@ -1288,18 +1358,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroImageStack span {
+  .heroText {
     animation: none;
-  }
-
-  .heroText,
-  .heroText > span {
-    animation: none;
-  }
-
-  .heroImageOne {
-    opacity: 1;
-    transform: none;
   }
 
   .button,
@@ -1318,6 +1378,61 @@
 }
 
 @media (max-width: 1180px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .heroHeader {
+    grid-template-columns: 1fr auto;
+    min-height: 92px;
+    padding-inline: 1rem;
+  }
+
+  .heroLogo {
+    justify-content: flex-end;
+    border-left: 0;
+  }
+
+  .heroNav {
+    order: 3;
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    gap: 1.2rem;
+    overflow-x: auto;
+    padding: 0 0 0.8rem;
+    scrollbar-width: none;
+  }
+
+  .heroNav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .heroHeaderCta {
+    min-width: 150px;
+    min-height: 48px;
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    width: min(100% - 2rem, 900px);
+    min-height: auto;
+    padding-top: clamp(2.5rem, 7vw, 4.5rem);
+  }
+
+  .heroText {
+    max-width: 760px;
+    margin-inline: auto;
+    padding-bottom: 2.5rem;
+  }
+
+  .heroVisual {
+    min-height: clamp(360px, 48vw, 520px);
+  }
+
+  .heroRail {
+    display: none;
+  }
+
   .portfolioTrack > * {
     flex-basis: calc((100% - 1.25rem) / 3);
   }
@@ -1352,26 +1467,58 @@
   }
 
   .hero {
-    min-height: calc(100dvh - 78px);
+    min-height: auto;
+    border-inline: 0;
   }
 
-  .heroContent {
-    min-height: calc(100dvh - 140px);
-    padding: 2.6rem 0 3.4rem;
+  .heroHeader {
+    min-height: 78px;
+    grid-template-columns: 1fr auto;
+    gap: 0.7rem;
+    padding: 0.75rem;
+  }
+
+  .heroLogo {
+    font-size: 2rem;
+  }
+
+  .heroHeaderCta {
+    min-width: 118px;
+    min-height: 42px;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.82rem;
+  }
+
+  .heroNav {
+    gap: 1rem;
+    font-size: 0.82rem;
+  }
+
+  .heroGrid {
+    width: min(100% - 1.25rem, 620px);
+    gap: 1rem;
+    padding-top: 2rem;
   }
 
   .heroText h1 {
-    font-size: clamp(2.15rem, 10.2vw, 3.25rem);
-    line-height: 1.16;
-    letter-spacing: -0.008em;
+    font-size: clamp(2.35rem, 11.4vw, 3.7rem);
+    line-height: 1.12;
   }
 
-  .heroSubtitle {
-    font-size: clamp(1rem, 4vw, 1.18rem);
+  .heroText {
+    padding-bottom: 1.4rem;
   }
 
   .heroDescription {
-    font-size: 0.96rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .heroVisual {
+    min-height: 315px;
+    border-inline: 0;
+    background-position: center bottom;
   }
 
   .heroActions,

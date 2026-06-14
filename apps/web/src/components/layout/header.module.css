@@ -5,6 +5,14 @@
   border-block-end: 1px solid color-mix(in srgb, var(--color-line) 70%, transparent);
   background: color-mix(in srgb, var(--color-surface) 86%, transparent);
   backdrop-filter: blur(16px);
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.compact {
+  border-block-end-color: color-mix(in srgb, var(--color-line) 85%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
 }
 
 .inner {
@@ -15,6 +23,8 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 24px;
+  padding-block: 10px;
+  transition: min-height 220ms ease;
 }
 
 .logo {
@@ -30,6 +40,7 @@
   height: 36px;
   border-radius: 8px;
   object-fit: contain;
+  transition: width 220ms ease, height 220ms ease;
 }
 
 .desktopNav {
@@ -60,6 +71,20 @@
   gap: 10px;
 }
 
+.compact .inner {
+  min-height: 56px;
+  padding-block: 6px;
+}
+
+.compact .logoImage {
+  width: 30px;
+  height: 30px;
+}
+
+.compact .navLink {
+  padding: 6px 10px;
+}
+
 @media (width < 900px) {
   .inner {
     min-height: 68px;
@@ -69,5 +94,9 @@
   .desktopNav,
   .actions > a {
     display: none;
+  }
+
+  .compact .inner {
+    min-height: 56px;
   }
 }

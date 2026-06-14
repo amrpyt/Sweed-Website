@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import type { SimpleIcon } from "simple-icons";
 import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVercel } from "simple-icons";
@@ -102,6 +103,25 @@ function PortfolioCard({ card }: { card: HomeCard }) {
   );
 }
 
+function PortfolioCarouselActions({
+  onPrevious,
+  onNext,
+}: {
+  onPrevious: () => void;
+  onNext: () => void;
+}) {
+  return (
+    <div className={styles.portfolioRowHeader}>
+      <button className={styles.portfolioNav} onClick={onPrevious} type="button" aria-label="الأعمال السابقة">
+        <Icon name="fa-chevron-right" />
+      </button>
+      <button className={styles.portfolioNav} onClick={onNext} type="button" aria-label="الأعمال التالية">
+        <Icon name="fa-chevron-left" />
+      </button>
+    </div>
+  );
+}
+
 function ServiceCard({ card }: { card: HomeCard }) {
   return (
     <Link className={styles.serviceCard} href={card.href ?? "/services"}>
@@ -194,6 +214,20 @@ const partnerLogos = [siReact, siNextdotjs, siTailwindcss, siVercel, siGithub, s
 }));
 
 export function HomePublicPage() {
+  const portfolioTrackRef = useRef<HTMLDivElement>(null);
+
+  const scrollPortfolio = (direction: -1 | 1) => {
+    const container = portfolioTrackRef.current;
+    if (!container) return;
+
+    const card = container.querySelector<HTMLAnchorElement>(`.${styles.portfolioCard}`);
+    const step = card ? card.getBoundingClientRect().width : container.clientWidth * 0.9;
+    container.scrollTo({
+      left: container.scrollLeft + direction * (step + 16),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <LegacyHeader page="home" />
@@ -302,17 +336,16 @@ export function HomePublicPage() {
         <section className={styles.portfolioSection} id="portfolio">
           <div className={styles.container}>
             <SectionHeader title="أعمالنا تتحدث عن نفسها" summary="نفخر بالمشاريع الناجحة التي حققناها لعملائنا" />
-            <div className={styles.filterRow}>
-              {["الكل", "هوية", "إعلانات", "مواقع", "محتوى"].map((filter) => (
-                <HomeChip className={styles.filterChip} key={filter}>{filter}</HomeChip>
-              ))}
-            </div>
-            <div className={styles.portfolioGrid}>
+            <PortfolioCarouselActions onNext={() => scrollPortfolio(-1)} onPrevious={() => scrollPortfolio(1)} />
+            <div className={styles.portfolioTrack} ref={portfolioTrackRef}>
               {homepageContent.portfolio.map((card, index) => (
                 <Reveal delay={index * 70} key={card.title} variant="scaleIn">
                   <PortfolioCard card={card} />
                 </Reveal>
               ))}
+            </div>
+            <div className={styles.portfolioFooter}>
+              <ActionButton action={{ label: "مشاهدة كل الأعمال", href: "/portfolio", icon: "fa-arrow-left", variant: "primary" }} />
             </div>
           </div>
         </section>

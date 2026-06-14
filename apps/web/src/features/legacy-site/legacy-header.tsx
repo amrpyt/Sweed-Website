@@ -46,6 +46,7 @@ function isActive(page: LegacyPageKey, active: LegacyPageKey) {
 
 export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
   const consultationHref = page === "home" ? "/#contact" : "/contact";
@@ -59,6 +60,22 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
       document.documentElement.style.overflow = "";
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    const onScroll = () => setIsCompact(window.scrollY > 18);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("sweed-header-compact", isCompact);
+
+    return () => {
+      document.body.classList.remove("sweed-header-compact");
+    };
+  }, [isCompact]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -79,7 +96,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
 
   return (
     <>
-      <div className="top-bar sweed-common-top-bar">
+      <div className={`top-bar sweed-common-top-bar ${isCompact ? "compact" : ""}`}>
         <div className="top-bar-content">
           <div className="top-bar-left">
             <div className="top-bar-item">
@@ -106,7 +123,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
         </div>
       </div>
 
-      <header className={`header sweed-common-header ${isOpen ? "mobile-menu-open" : ""}`} id="mainHeader">
+      <header className={`header sweed-common-header ${isCompact ? "compact" : ""} ${isOpen ? "mobile-menu-open" : ""}`} id="mainHeader">
         <nav aria-label="القائمة الرئيسية" className="nav-container">
           <button
             ref={menuButtonRef}

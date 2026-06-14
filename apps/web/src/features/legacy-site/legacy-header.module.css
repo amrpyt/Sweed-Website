@@ -10,6 +10,16 @@
     left: 0 !important;
     right: 0 !important;
     z-index: 2300 !important;
+    transition: padding 0.28s ease, opacity 0.28s ease !important;
+  }
+
+  :global(.sweed-common-top-bar.compact) {
+    padding: 0.35rem 0 !important;
+  }
+
+  :global(.sweed-common-top-bar.compact) :global(.social-media) a {
+    width: 26px !important;
+    height: 26px !important;
   }
 
   :global(.sweed-common-top-bar) :global(.top-bar-content) {
@@ -72,18 +82,43 @@
     left: 0 !important;
     right: 0 !important;
     z-index: 2200 !important;
-    transition: box-shadow 0.3s ease !important;
+    transition: box-shadow 0.3s ease, top 0.28s ease !important;
     width: 100% !important;
     overflow-x: clip !important;
   }
+
+  :global(.sweed-common-header.compact) {
+    top: 34px !important;
+  }
+
+  :global(.sweed-common-header.compact) :global(.nav-container) {
+    padding-block: 0.55rem !important;
+  }
+
+  :global(.sweed-common-header.compact) :global(.sweed-common-logo) :global(.sweed-official-logo) {
+    width: 96px !important;
+  }
+
+  :global(.sweed-common-header.compact) :global(.btn-consultation) {
+    min-height: 44px !important;
+  }
+
 :global(body) {
     padding-top: 137px !important;
+  }
+
+:global(body.sweed-header-compact) {
+    padding-top: 106px !important;
   }
 :global(html) {
     scroll-behavior: smooth !important;
   }
 :global(section[id]) {
     scroll-margin-top: 164px !important;
+  }
+
+:global(body.sweed-header-compact) :global(section[id]) {
+    scroll-margin-top: 132px !important;
   }
 
   :global(.sweed-common-header) :global(.nav-container) {
@@ -278,8 +313,16 @@
 :global(body) {
       padding-top: 78px !important;
     }
+
+:global(body.sweed-header-compact) {
+      padding-top: 68px !important;
+    }
 :global(section[id]) {
       scroll-margin-top: 92px !important;
+    }
+
+:global(body.sweed-header-compact) :global(section[id]) {
+      scroll-margin-top: 78px !important;
     }
 
     :global(.sweed-common-header) {
@@ -289,6 +332,15 @@
       backdrop-filter: blur(14px) !important;
       z-index: 2200 !important;
       top: 0 !important;
+    }
+
+    :global(.sweed-common-header.compact) :global(.nav-container) {
+      height: 68px !important;
+      padding-block: 0.35rem !important;
+    }
+
+    :global(.sweed-common-header.compact) :global(.sweed-common-logo) :global(.sweed-official-logo) {
+      width: 84px !important;
     }
 
     :global(.sweed-common-header.mobile-menu-open) {

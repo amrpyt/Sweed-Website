@@ -7,20 +7,12 @@ import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVe
 import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
+import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
+import { LegacyHeader } from "@/features/legacy-site/legacy-header";
+import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
-
-const heroNavItems = [
-  { href: "/#home", label: "الرئيسية", active: true },
-  { href: "/about", label: "من نحن" },
-  { href: "/services", label: "خدماتنا" },
-  { href: "/portfolio", label: "مشاريعنا" },
-  { href: "/#process", label: "منهجنا" },
-  { href: "/articles", label: "المعرفة" },
-  { href: "/#careers", label: "الوظائف" },
-  { href: "/contact", label: "تواصل" },
-];
 
 function Icon({ name }: { name: string }) {
   return <i aria-hidden="true" className={name.includes(" ") ? name : `fas ${name}`} />;
@@ -238,61 +230,31 @@ export function HomePublicPage() {
 
   return (
     <>
+      <LegacyHeader page="home" />
       <main className={styles.homepage}>
         <section className={styles.hero} id="home">
-          <header className={styles.heroHeader} aria-label="SWEED primary navigation">
-            <Link className={styles.heroLogo} href="/" aria-label="SWEED home">
-              SWEED
-            </Link>
-            <nav className={styles.heroNav} aria-label="روابط الموقع">
-              {heroNavItems.map((item) => (
-                <Link className={item.active ? styles.heroNavActive : undefined} href={item.href} key={item.label}>
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-            <HomeButton className={`${styles.button} ${styles.heroHeaderCta}`} href="/contact">
-              <Icon name="fa-arrow-up" />
-              <span>دعنا نبدأ</span>
-            </HomeButton>
-          </header>
-
-          <div className={styles.heroFrame}>
-            <div className={styles.heroRail} aria-hidden="true">
-              <span className={styles.heroRailNumber}>01</span>
-              <span className={styles.heroRailLine} />
-              <div className={styles.heroRailMeta}>
-                <strong>01 / 08</strong>
-                <span>قسم العلامة التجارية</span>
-              </div>
-            </div>
-
-            <div className={styles.heroGrid}>
+          <div className={styles.heroImageStack} aria-hidden="true">
+            <span className={styles.heroImageOne} />
+            <span className={styles.heroImageTwo} />
+            <span className={styles.heroImageThree} />
+          </div>
+          <div className={styles.container}>
+            <div className={styles.heroContent}>
               <Reveal className={styles.heroText} variant="hero">
-                <h1>
-                  نصنع العلامات
-                  <br />
-                  التي تقود
-                  <br />
-                  <mark>المستقبل.</mark>
-                </h1>
-                <p className={styles.heroDescription}>
-                  نحن وكالة تسويق وتصميم علامات تجارية تساعد الشركات الطموحة على بناء حضور قوي، وتجربة متكاملة، ونمو مستدام.
-                </p>
+                <span>{homepageContent.hero.eyebrow}</span>
+                <h1>{homepageContent.hero.title}</h1>
+                <p className={styles.heroSubtitle}>{homepageContent.hero.subtitle}</p>
+                <p className={styles.heroDescription}>{homepageContent.hero.summary}</p>
                 <div className={styles.heroActions}>
-                  <HomeButton className={`${styles.button} ${styles.buttonPrimary}`} href="/portfolio">
-                    <Icon name="fa-arrow-up" />
-                    <span>استكشف أعمالنا</span>
-                  </HomeButton>
-                  <HomeButton className={`${styles.button} ${styles.buttonSecondary}`} href="/contact">
-                    <Icon name="fa-arrow-up" />
-                    <span>تحدث مع خبير</span>
-                  </HomeButton>
+                  {homepageContent.hero.actions.map((action) => (
+                    <ActionButton action={action} key={action.label} />
+                  ))}
                 </div>
               </Reveal>
-
-              <div className={styles.heroVisual} aria-label="Grayscale architectural brand mockup" role="img">
-                <span className={styles.heroVisualMarker} />
+              <div className={styles.heroDots} aria-hidden="true">
+                <i />
+                <i />
+                <i />
               </div>
             </div>
           </div>
@@ -471,6 +433,8 @@ export function HomePublicPage() {
         </section>
       </main>
       <LegacyFooter />
+      <OfferFunnelController page="home" />
+      <AiAdvisorWidget />
     </>
   );
 }

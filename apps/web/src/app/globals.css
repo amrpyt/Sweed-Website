@@ -18,13 +18,6 @@
   font-weight: 700;
 }
 
-@font-face {
-  font-family: "Helvetica Neue LT Arabic";
-  src: url("/fonts/helvetica-neue-lt-arabic-roman.ttf") format("truetype");
-  font-display: swap;
-  font-weight: 400 900;
-}
-
 * {
   box-sizing: border-box;
 }

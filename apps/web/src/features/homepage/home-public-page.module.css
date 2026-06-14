@@ -717,8 +717,8 @@
 }
 
 .servicesGrid {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0.72rem;
+  grid-template-columns: repeat(6, minmax(120px, 1fr));
+  gap: 0.55rem;
 }
 
 .featureCard {
@@ -734,9 +734,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 118px;
-  border-radius: 16px;
-  padding: 0.95rem 0.7rem;
+  min-height: 101px;
+  border-radius: 14px;
+  padding: 0.72rem 0.58rem;
   box-shadow: none;
   transition:
     background 260ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -745,10 +745,10 @@
 }
 
 .serviceCard h3 {
-  margin: 0.65rem 0 0;
+  margin: 0.48rem 0 0;
   color: var(--primary-purple);
-  font-size: clamp(0.84rem, 0.92vw, 0.96rem);
-  font-weight: 850;
+  font-size: clamp(0.76rem, 0.9vw, 0.9rem);
+  font-weight: 760;
   line-height: 1.35;
 }
 
@@ -806,44 +806,71 @@
   background: #fff;
 }
 
+.portfolioSection {
+  padding-block: clamp(3.4rem, 5vw, 5.1rem);
+}
+
+.portfolioSection .sectionHeader {
+  margin-bottom: 1.1rem;
+}
+
 .servicesSection {
-  padding-block: clamp(3rem, 5vw, 4.6rem);
+  padding-block: clamp(2.2rem, 3.7vw, 3.4rem);
 }
 
 .servicesSection .sectionHeader {
-  margin-bottom: clamp(1.25rem, 2.2vw, 1.8rem);
+  margin-bottom: clamp(0.85rem, 1.4vw, 1.25rem);
 }
 
 .servicesSection .sectionHeader h2 {
-  font-size: clamp(1.85rem, 3.4vw, 3.2rem);
+  font-size: clamp(1.55rem, 2.6vw, 2.4rem);
 }
 
-.filterRow {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.7rem;
-  margin: -1.2rem 0 2.4rem;
+.servicesSection .sectionHeader p {
+  max-width: 640px;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  margin-inline: auto;
 }
 
-.filterChip,
 .categoryChip {
   background: rgba(237, 32, 98, 0.1);
   color: var(--primary-pink);
   font-weight: 900;
 }
 
-.portfolioGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.2rem;
+.portfolioRowHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.portfolioTrack {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding-bottom: 0.4rem;
+  -ms-overflow-style: none;
+}
+
+.portfolioTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.portfolioTrack > * {
+  flex: 0 0 calc((100% - 2.25rem) / 4);
+  min-width: 220px;
+  max-width: 320px;
+  scroll-snap-align: start;
 }
 
 .portfolioCard {
-  min-height: 360px;
+  min-height: 290px;
   flex-direction: column;
   justify-content: flex-end;
-  border-radius: 28px;
+  border-radius: 20px;
   background:
     linear-gradient(180deg, rgba(38, 27, 62, 0.08), rgba(38, 27, 62, 0.9)),
     linear-gradient(135deg, rgba(237, 32, 98, 0.18), rgba(38, 27, 62, 0.14));
@@ -868,6 +895,35 @@
   padding: 1.35rem;
 }
 
+.portfolioNav {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--primary-purple);
+  background: rgba(237, 32, 98, 0.1);
+  font-size: 0.84rem;
+}
+
+.portfolioNav:hover,
+.portfolioNav:focus-visible {
+  background: rgba(237, 32, 98, 0.18);
+}
+
+.portfolioFooter {
+  margin-top: 1.15rem;
+  display: flex;
+  justify-content: center;
+}
+
+.portfolioFooter .button {
+  min-height: 46px;
+  padding-block: 0.74rem;
+}
+
 .portfolioCard h3,
 .portfolioCard p,
 .portfolioCard span {
@@ -875,25 +931,25 @@
 }
 
 .serviceIcon {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border-radius: 999px;
   background: rgba(237, 32, 98, 0.1);
   color: var(--primary-pink);
-  font-size: 1.05rem;
+  font-size: 0.94rem;
   transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .servicesCta {
   display: flex;
   justify-content: center;
-  margin-top: clamp(1.2rem, 2vw, 1.7rem);
+  margin-top: 0.95rem;
 }
 
 .servicesCta .button {
-  min-height: 48px;
-  padding: 0.78rem 1.18rem;
-  font-size: 0.94rem;
+  min-height: 42px;
+  padding: 0.6rem 1rem;
+  font-size: 0.88rem;
 }
 
 .processSection {
@@ -1143,7 +1199,10 @@
 }
 
 @media (max-width: 1180px) {
-  .portfolioGrid,
+  .portfolioTrack > * {
+    flex-basis: calc((100% - 1.5rem) / 3);
+  }
+
   .processGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1152,10 +1211,6 @@
   .productsGrid,
   .articleGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .servicesGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .problemsLayout .problemsHeader {
@@ -1221,7 +1276,15 @@
 
   .whyGrid,
   .featureGrid,
-  .portfolioGrid,
+  .portfolioTrack > * {
+    flex-basis: min(84vw, 320px);
+    max-width: none;
+  }
+
+  .portfolioTrack {
+    gap: 0.6rem;
+  }
+
   .processGrid,
   .productsGrid,
   .articleGrid,
@@ -1230,23 +1293,23 @@
   }
 
   .servicesGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.62rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
   .servicesGrid .serviceCard {
-    min-height: 108px;
-    padding: 0.82rem 0.58rem;
+    min-height: 88px;
+    padding: 0.64rem 0.54rem;
   }
 
   .servicesGrid .serviceIcon {
-    width: 36px;
-    height: 36px;
-    font-size: 0.92rem;
+    width: 32px;
+    height: 32px;
+    font-size: 0.84rem;
   }
 
   .servicesGrid .serviceCard h3 {
-    font-size: 0.82rem;
+    font-size: 0.74rem;
   }
 
   .whySection {
@@ -1350,7 +1413,6 @@
   .whySection,
   .portfolioSection,
   .offersSection,
-  .servicesSection,
   .processSection,
   .productsSection,
   .aboutSection,
@@ -1358,6 +1420,19 @@
   .faqSection,
   .ctaSection {
     padding: 3.8rem 0;
+  }
+
+  .servicesSection {
+    padding: 2.8rem 0;
+  }
+
+  .servicesSection .sectionHeader {
+    margin-bottom: 0.9rem;
+  }
+
+  .servicesSection .sectionHeader p {
+    font-size: 0.93rem;
+    line-height: 1.5;
   }
 
   .problemCard,

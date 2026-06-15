@@ -1,0 +1,11 @@
+{
+  "name": "@sweed/capture-core",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "dependencies": {
+    "playwright": "^1.59.1"
+  }
+}

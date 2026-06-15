@@ -1,0 +1,24 @@
+{
+  "name": "@sweed/capture-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server/index.mjs",
+    "typecheck": "tsc --noEmit",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@sweed/capture-core": "workspace:*",
+    "@vitejs/plugin-react": "^latest",
+    "vite": "^latest",
+    "typescript": "~5.8.2",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "lucide-react": "^0.546.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3"
+  }
+}

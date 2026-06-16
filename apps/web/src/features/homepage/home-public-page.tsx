@@ -90,10 +90,8 @@ function WhyPoint({ card }: { card: HomeCard }) {
 function PortfolioCard({ card }: { card: HomeCard }) {
   return (
     <Link className={styles.portfolioCard} href={card.href ?? "/portfolio"}>
-      <div className={styles.portfolioMedia}>
-        <div className={styles.portfolioIcon}>
-          <Icon name={card.icon} />
-        </div>
+      <div className={styles.portfolioIcon}>
+        <Icon name={card.icon} />
       </div>
       <div className={styles.portfolioContent}>
         {card.category ? <HomeChip className={styles.categoryChip}>{card.category}</HomeChip> : null}
@@ -339,28 +337,15 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="أعمالنا تتحدث عن نفسها" summary="نفخر بالمشاريع الناجحة التي حققناها لعملائنا" />
             <PortfolioCarouselActions onNext={() => scrollPortfolio(-1)} onPrevious={() => scrollPortfolio(1)} />
+            <div className={styles.portfolioTrack} ref={portfolioTrackRef}>
+              {homepageContent.portfolio.map((card, index) => (
+                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                  <PortfolioCard card={card} />
+                </Reveal>
+              ))}
+            </div>
             <div className={styles.portfolioFooter}>
               <ActionButton action={{ label: "مشاهدة كل الأعمال", href: "/portfolio", icon: "fa-arrow-left", variant: "primary" }} />
-            </div>
-            <div className={styles.portfolioViewport} ref={portfolioTrackRef}>
-              <div className={styles.portfolioTrack}>
-                {[...homepageContent.portfolio, ...homepageContent.portfolio].map((card, index) => (
-                  <Reveal
-                    aria-hidden={index >= homepageContent.portfolio.length ? "true" : undefined}
-                    delay={(index % homepageContent.portfolio.length) * 70}
-                    key={`${card.title}-${index}`}
-                    variant="scaleIn"
-                  >
-                    <PortfolioCard card={card} />
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-            <div className={styles.portfolioDots} aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <span />
             </div>
           </div>
         </section>

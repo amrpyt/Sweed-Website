@@ -24,21 +24,26 @@
 }
 
 .hugeLogo {
-  font-size: clamp(3rem, 12vw, 10rem);
-  font-weight: 900;
-  color: #ffffff;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  font-family: var(--font-heading);
+  position: relative;
+  width: clamp(300px, 60vw, 800px);
+  aspect-ratio: 1; /* Since the canvas is 1000x1000 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .leftHalf, .rightHalf {
-  display: inline-block;
+  position: absolute;
+  inset: 0;
   will-change: transform;
+}
+
+.leftHalf {
+  clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+}
+
+.rightHalf {
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
 }
 
 .smallCounter {

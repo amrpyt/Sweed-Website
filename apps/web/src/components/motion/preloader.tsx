@@ -1,14 +1,14 @@
 "use client";
-
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./preloader.module.css";
+import MetallicPaint from "./MetallicPaint";
 
 export function Preloader() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const leftRef = useRef<HTMLSpanElement>(null);
-  const rightRef = useRef<HTMLSpanElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Prevent scrolling while preloading
@@ -59,8 +59,12 @@ export function Preloader() {
     <div ref={containerRef} className={styles.preloaderContainer} aria-hidden="true">
       <div className={styles.content}>
         <div ref={textRef} className={styles.hugeLogo} dir="ltr">
-          <span ref={leftRef} className={styles.leftHalf}>SW</span>
-          <span ref={rightRef} className={styles.rightHalf}>EED</span>
+          <div ref={leftRef} className={styles.leftHalf}>
+             <MetallicPaint imageSrc="/sweed-logo-official.svg" lightColor="#ffffff" darkColor="#160f24" tintColor="#ed2062" speed={0.5} refraction={0.02} />
+          </div>
+          <div ref={rightRef} className={styles.rightHalf}>
+             <MetallicPaint imageSrc="/sweed-logo-official.svg" lightColor="#ffffff" darkColor="#160f24" tintColor="#ed2062" speed={0.5} refraction={0.02} />
+          </div>
         </div>
       </div>
     </div>

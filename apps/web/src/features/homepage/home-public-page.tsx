@@ -258,29 +258,14 @@ export function HomePublicPage() {
   const clientsStripRef = useRef<HTMLElement>(null);
 
   const scrollToPortfolioCard = (index: number) => {
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      const container = portfolioTrackRef.current;
-      if (!container) return;
-      const cards = container.querySelectorAll(`.${styles.portfolioCard}`);
-      const card = cards[index];
-      if (card) {
-        card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-      }
-      setActivePortfolioIndex(index);
-      return;
+    const container = portfolioTrackRef.current;
+    if (!container) return;
+    const cards = container.querySelectorAll(`.${styles.portfolioCard}`);
+    const card = cards[index];
+    if (card) {
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-
-    const st = ScrollTrigger.getAll().find((trigger) => trigger.trigger === portfolioSectionRef.current);
-    if (!st) return;
-
-    const targetProgress = index / (homepageContent.portfolio.length - 1);
-    const targetScroll = st.start + targetProgress * (st.end - st.start);
-
-    window.scrollTo({
-      top: targetScroll,
-      behavior: "smooth"
-    });
+    setActivePortfolioIndex(index);
   };
 
   const handleMobileScroll = () => {
@@ -362,7 +347,7 @@ export function HomePublicPage() {
       });
     }
 
-    // Portfolio horizontal scroll trigger with lateral pin indicator
+    // 3D vertical scrolling tilt effect for the cards (physics/animations)
     const portfolioSection = portfolioSectionRef.current;
     const portfolioTrack = portfolioTrackRef.current;
     const progressLineFill = portfolioProgressLineRef.current;
@@ -370,69 +355,42 @@ export function HomePublicPage() {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
-      if (!portfolioSection || !portfolioTrack) return;
+      if (!portfolioTrack) return;
 
-      const getScrollDistance = () => {
-        const panels = Array.from(portfolioTrack.children) as HTMLElement[];
-        const lastPanel = panels.at(-1);
-        if (!lastPanel) return Math.max(0, portfolioTrack.scrollWidth - window.innerWidth);
-
-        const lastPanelEnd = lastPanel.offsetLeft + lastPanel.offsetWidth;
-        const trackInset = Math.max(0, portfolioTrack.getBoundingClientRect().left);
-        const viewportEndPadding = Math.min(96, window.innerWidth * 0.08);
-        return Math.max(0, trackInset + lastPanelEnd - window.innerWidth + viewportEndPadding);
-      };
-      const scrollWidth = getScrollDistance();
-
-      if (scrollWidth <= 0) return;
-
-      const portfolioTween = gsap.to(portfolioTrack, {
-        x: () => -getScrollDistance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: portfolioSection,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          start: "top top+=72",
-          end: () => `+=${getScrollDistance() + window.innerHeight * 0.75}`,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            if (progressLineFill) {
-              gsap.set(progressLineFill, { scaleX: self.progress });
-            }
-            const numItems = homepageContent.portfolio.length;
-            const activeCardIndex = Math.min(
-              Math.floor(self.progress * numItems),
-              numItems - 1
-            );
-            setActivePortfolioIndex(Math.max(0, activeCardIndex));
-          },
-        },
-      });
-
-      // 3D scrolling tilt effect for the cards (physics/animations)
       const cards = Array.from(portfolioTrack.children) as HTMLElement[];
       const cardTweens: gsap.core.Tween[] = [];
       
-      cards.forEach((card) => {
+      cards.forEach((card, index) => {
+        // Create scroll trigger for each individual card
         const tween = gsap.fromTo(card,
           {
-            rotationY: 25,
-            z: -120,
-            opacity: 0.8,
+            rotationX: 75.688,
+            scale: 1.07569,
+            y: "43.359vh",
+            transformOrigin: "center center",
           },
           {
-            rotationY: -25,
-            z: -120,
-            opacity: 0.8,
+            rotationX: 0,
+            scale: 1,
+            y: 0,
             ease: "none",
             scrollTrigger: {
               trigger: card,
-              containerAnimation: portfolioTween,
-              start: "left right",
-              end: "right left",
-              scrub: true,
+              start: "top 100%", // Start animating when the top of the card enters the viewport
+              end: "top 35%",    // Finish animating when the card is near the center
+              scrub: 1,
+              onUpdate: (self) => {
+                if (self.isActive || self.progress > 0) {
+                  // Update progress indicator based on which card is active
+                  setActivePortfolioIndex(index);
+                  if (progressLineFill) {
+                    gsap.to(progressLineFill, { 
+                      scaleX: Math.max(0.05, (index + self.progress) / cards.length),
+                      duration: 0.1
+                    });
+                  }
+                }
+              }
             }
           }
         );
@@ -440,7 +398,6 @@ export function HomePublicPage() {
       });
 
       return () => {
-        portfolioTween.kill();
         cardTweens.forEach((t) => t.kill());
       };
     });
@@ -449,62 +406,38 @@ export function HomePublicPage() {
     const hoverPill = hoverPillRef.current;
     let cleanupCursor: (() => void) | undefined;
 
-    if (portfolioSection && hoverPill && window.matchMedia("(pointer: fine)").matches) {
+    if (hoverPill && window.matchMedia("(pointer: fine)").matches) {
       const onMouseMove = (e: MouseEvent) => {
-        const rect = portfolioSection.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        // Track viewport coordinates directly
+        const x = e.clientX;
+        const y = e.clientY;
 
         gsap.to(hoverPill, {
           x: x,
           y: y,
-          duration: 0.25,
+          duration: 0.2,
           ease: "power2.out",
         });
       };
 
-      const onMouseEnter = () => {
-        gsap.to(hoverPill, {
-          scale: 1,
-          opacity: 1,
-          duration: 0.2,
-        });
-      };
-
-      const onMouseLeave = () => {
-        gsap.to(hoverPill, {
-          scale: 0,
-          opacity: 0,
-          duration: 0.2,
-        });
-      };
-
-      portfolioSection.addEventListener("mousemove", onMouseMove);
-      portfolioSection.addEventListener("mouseenter", onMouseEnter);
-      portfolioSection.addEventListener("mouseleave", onMouseLeave);
-
-      const cards = portfolioSection.querySelectorAll(`.${styles.portfolioCard}`);
+      const cards = document.querySelectorAll(`.${styles.portfolioCard}`);
       const onCardEnter = () => {
-        hoverPill.classList.add(styles.hoverPillActive);
         gsap.to(hoverPill, {
-          backgroundColor: "#ed2062",
-          borderColor: "transparent",
-          color: "#fff",
-          scale: 1.3,
+          opacity: 1,
+          scale: 1,
           duration: 0.2,
         });
       };
 
       const onCardLeave = () => {
-        hoverPill.classList.remove(styles.hoverPillActive);
         gsap.to(hoverPill, {
-          backgroundColor: "rgba(255, 255, 255, 0.1)",
-          borderColor: "rgba(255, 255, 255, 0.3)",
-          color: "transparent",
-          scale: 1,
+          opacity: 0,
+          scale: 0.8,
           duration: 0.2,
         });
       };
+
+      window.addEventListener("mousemove", onMouseMove);
 
       cards.forEach((card) => {
         card.addEventListener("mouseenter", onCardEnter);
@@ -512,9 +445,7 @@ export function HomePublicPage() {
       });
 
       cleanupCursor = () => {
-        portfolioSection.removeEventListener("mousemove", onMouseMove);
-        portfolioSection.removeEventListener("mouseenter", onMouseEnter);
-        portfolioSection.removeEventListener("mouseleave", onMouseLeave);
+        window.removeEventListener("mousemove", onMouseMove);
         cards.forEach((card) => {
           card.removeEventListener("mouseenter", onCardEnter);
           card.removeEventListener("mouseleave", onCardLeave);
@@ -714,30 +645,6 @@ export function HomePublicPage() {
             </div>
             
             <div className={styles.portfolioScrollWrapper}>
-              {/* Pinned Lateral progress indicator */}
-              <div className={styles.lateralIndicator} aria-label="مؤشر معرض الأعمال">
-                <div className={styles.progressLine}>
-                  <div ref={portfolioProgressLineRef} className={styles.progressLineFill} />
-                </div>
-                <div className={styles.dotsWrapper}>
-                  {homepageContent.portfolio.map((card, index) => (
-                    <button
-                      key={card.title}
-                      className={`${styles.indicatorDot} ${activePortfolioIndex === index ? styles.activeDot : ""}`}
-                      onClick={() => scrollToPortfolioCard(index)}
-                      type="button"
-                      aria-label={`عرض مشروع ${card.title}`}
-                    >
-                      <span className={styles.dotCircle} />
-                      <span className={styles.dotLabel}>
-                        <span className={styles.dotNum}>0{index + 1}</span>
-                        <span className={styles.dotCategory}>{card.category}</span>
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
               {/* Scrolling track */}
               <div 
                 ref={portfolioTrackRef} 

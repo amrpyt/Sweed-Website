@@ -7,7 +7,7 @@ if (isDevelopment) {
   scriptSrc.push("'unsafe-eval'");
 }
 
-const connectSrc = ["'self'", "https:"];
+const connectSrc = ["'self'", "https:", "blob:"];
 if (isDevelopment) {
   connectSrc.push("ws:", "wss:", "http://localhost:3000");
 }

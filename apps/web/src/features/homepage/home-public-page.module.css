@@ -1110,37 +1110,30 @@
   }
 
   .portfolioScrollWrapper {
-    display: grid;
-    min-height: 100svh;
-    grid-template-columns: minmax(118px, 156px) minmax(0, 1fr);
-    gap: clamp(1rem, 2vw, 2rem);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     padding-block-start: clamp(5.5rem, 11vh, 8rem);
-    padding-left: max(1.25rem, calc((100vw - 1400px) / 2));
-    padding-right: 0;
+    padding-inline: max(1.25rem, calc((100vw - 1400px) / 2));
     direction: ltr;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .portfolioTrack {
     display: flex;
-    min-width: max-content;
-    width: max-content;
-    gap: clamp(1.15rem, 2.4vw, 2.25rem);
-    will-change: transform;
-    overflow: visible;
-    padding-block: 0.75rem 1rem;
-    padding-inline-end: max(12vw, 8rem);
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 8rem; /* Matches Treehaus work-list_list grid-row-gap: 8rem */
+    padding-bottom: 8rem;
   }
 
   .portfolioTrack > * {
-    flex: 0 0 clamp(340px, 34vw, 540px) !important;
-    min-width: clamp(340px, 34vw, 540px) !important;
-    max-width: clamp(340px, 34vw, 540px) !important;
-    scroll-snap-align: none;
+    width: 100% !important;
+    max-width: none !important;
   }
 
   .portfolioFooter {
@@ -1349,17 +1342,7 @@
 }
 
 .portfolioIcon {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  display: grid;
-  width: 60px;
-  height: 60px;
-  place-items: center;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.16);
-  color: #fff;
-  font-size: 1.45rem;
+  display: none; /* Treehaus doesn't use the icon in the image */
 }
 
 .portfolioContent {
@@ -2426,25 +2409,27 @@
 
 /* Custom Cursor Follower & Hover Pill animations */
 .hoverPill {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transform: translate3d(0vw, 0vh, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  transform-style: preserve-3d;
+  opacity: 0;
+  will-change: transform;
   pointer-events: none;
   z-index: 99;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  color: transparent;
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-align: center;
+  
+  /* Treehaus hover_pill styles */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  text-transform: uppercase;
+  background-color: #0000004d;
+  border-radius: 4rem;
+  padding: .75rem 2.25rem;
+  font-family: var(--font-body);
+  font-size: .875rem;
+  font-weight: 500;
   white-space: nowrap;
   backdrop-filter: blur(4px);
   transition: background-color 0.25s ease, border-color 0.25s ease;

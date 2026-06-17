@@ -220,25 +220,25 @@
 
   :global(.sweed-common-header) :global(.btn-consultation) {
     border: 0 !important;
-    border-radius: 18px !important;
-    background: linear-gradient(135deg, var(--primary-pink, #ed2062), var(--sunset-orange, #261b3e)) !important;
+    border-radius: 0 !important;
+    background: #ed2062 !important;
     color: #ffffff !important;
-    padding: 0 1.2rem !important;
+    padding: 0 1.8rem !important;
     min-height: 52px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-weight: 800 !important;
+    font-weight: 500 !important;
     white-space: nowrap !important;
     text-decoration: none !important;
-    box-shadow: 0 14px 30px rgba(237, 32, 98, 0.22) !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    box-shadow: none !important;
+    transition: transform 0.2s ease, background 0.2s ease !important;
   }
 
   :global(.sweed-common-header) :global(.btn-consultation):hover,
   :global(.sweed-common-header) :global(.btn-consultation):focus-visible {
+    background: #e21857 !important;
     transform: translateY(-1px) !important;
-    box-shadow: 0 18px 34px rgba(237, 32, 98, 0.28) !important;
   }
 
   :global(.sweed-common-header) :global(.btn-consultation):focus-visible,
@@ -740,7 +740,7 @@
       padding: 0 1.5rem !important;
       display: flex !important;
       align-items: center !important;
-      font-weight: 700 !important;
+      font-weight: 500 !important;
       font-size: 0.9rem !important;
     }
     

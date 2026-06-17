@@ -2,7 +2,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 /**
  * Registers GSAP plugins and sets up scroll-triggered section heading reveals.
@@ -12,7 +12,7 @@ import { useLayoutEffect } from "react";
  * Individual page sections opt in by adding `data-gsap-heading` to their heading wrappers.
  */
 export function GsapProvider() {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 

@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { OfferFunnelSettings } from "./contracts";
 import { renderOfferTemplate } from "./contracts";
 import styles from "./offer-funnel-controller.module.css";
-import { buildWhatsAppHref } from "./whatsapp";
 
 type PopupState = {
   kind: "section" | "site";
@@ -163,18 +162,6 @@ export function OfferFunnelController({ page }: { page: string }) {
     return popup.kind === "section" ? settings.sectionOffer : settings.siteOffer;
   }, [popup, settings]);
 
-  const whatsappHref = useMemo(() => {
-    if (!settings || !popup || !popupConfig || !settings.whatsapp.enabled) return "#";
-    return buildWhatsAppHref({
-      phone: settings.whatsapp.phone,
-      template: settings.whatsapp.messageTemplate,
-      sectionLabel: popup.sectionLabel,
-      discountPercent: popupConfig.discountPercent,
-      offerHours: popupConfig.offerHours,
-      pageLabel: page,
-    });
-  }, [page, popup, popupConfig, settings]);
-
   if (!settings?.enabled || !popup || !popupConfig) {
     return null;
   }
@@ -196,16 +183,14 @@ export function OfferFunnelController({ page }: { page: string }) {
         <span className={styles.sectionTag}>القسم الحالي: {popup.sectionLabel}</span>
         <div className={styles.actions}>
           <a
-            className={`${styles.primary} ${settings.whatsapp.pulseCta ? styles.pulse : ""}`}
-            href={whatsappHref}
-            target="_blank"
-            rel="noreferrer"
+            className={styles.primary}
+            href="/contact#contact-form"
             onClick={() => {
               markCooldown(window.localStorage, popupKey);
               setPopup(null);
             }}
           >
-            {settings.whatsapp.ctaLabel || popupConfig.ctaLabel}
+            {popupConfig.ctaLabel}
           </a>
           <button
             className={styles.secondary}

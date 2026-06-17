@@ -1,44 +1,27 @@
 .button {
   position: relative;
   display: inline-flex;
-  min-height: 48px;
+  min-height: 52px;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
   border: 1px solid transparent;
-  border-radius: var(--radius-full);
-  padding: 12px 24px;
+  border-radius: 0;
+  padding: 0 1.8rem;
   cursor: pointer;
-  font-weight: 700;
-  font-size: var(--text-md);
-  line-height: 1.2;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
   text-decoration: none;
   transition:
     transform var(--motion-fast),
     border-color var(--motion-fast),
     background var(--motion-fast),
-    color var(--motion-fast),
-    box-shadow var(--motion-fast);
-}
-
-.button::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  opacity: 0;
-  box-shadow: 0 12px 24px -8px currentColor;
-  transition: opacity var(--motion-fast);
-  content: "";
-  pointer-events: none;
+    color var(--motion-fast);
 }
 
 .button:hover {
   transform: translateY(-2px);
-}
-
-.button:hover::before {
-  opacity: 0.2;
 }
 
 .button:active {
@@ -60,35 +43,34 @@
 }
 
 .primary {
-  background: var(--color-accent);
-  color: var(--color-accent-contrast);
-  box-shadow: 0 4px 12px -2px rgba(237, 32, 98, 0.25);
+  background: #ed2062;
+  color: #ffffff;
 }
 
 .primary:hover {
-  background: var(--color-accent-hover);
-  box-shadow: 0 8px 20px -4px rgba(237, 32, 98, 0.35);
+  background: #e21857;
 }
 
 .secondary {
-  border-color: var(--color-line);
-  background: var(--color-panel);
-  color: var(--color-text);
+  border-color: #1a1a1a;
+  background: #ffffff;
+  color: #1a1a1a;
 }
 
 .secondary:hover {
-  border-color: var(--color-accent);
-  background: var(--color-accent-soft);
-  color: var(--color-accent);
+  border-color: #1a1a1a;
+  background: #fcfcfc;
+  color: #1a1a1a;
 }
 
 .ghost {
   background: transparent;
-  color: var(--color-text);
+  color: #1a1a1a;
 }
 
 .ghost:hover {
-  background: var(--color-soft);
+  background: rgba(237, 32, 98, 0.08);
+  color: #ed2062;
 }
 
 .buttonIcon {
@@ -114,15 +96,14 @@
 
 @media (max-width: 768px) {
   .button {
-    min-height: 44px;
-    padding: 10px 20px;
-    font-size: var(--text-sm);
+    min-height: 48px;
+    padding: 0 1.35rem;
+    font-size: 0.92rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .button,
-  .button::before,
   .buttonIcon {
     transition: none;
   }
@@ -139,4 +120,3 @@
     transform: rotate(180deg);
   }
 }
-

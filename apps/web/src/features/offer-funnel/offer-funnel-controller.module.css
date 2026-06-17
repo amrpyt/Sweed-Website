@@ -72,18 +72,20 @@
 
 .primary,
 .secondary {
-  border: 0;
-  border-radius: 999px;
-  padding: 12px 18px;
-  font-weight: 700;
+  min-height: 52px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 0 1.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
   cursor: pointer;
-  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, opacity 160ms ease;
 }
 
 .primary {
-  background: linear-gradient(135deg, #ed2062, #ff7a31);
+  background: #ed2062;
   color: #fff;
-  box-shadow: 0 16px 36px rgba(237, 32, 98, 0.28);
 }
 
 .primary:hover,
@@ -91,13 +93,22 @@
   transform: translateY(-1px);
 }
 
+.primary:hover {
+  background: #e21857;
+}
+
 .pulse {
   animation: pulse 1.5s ease-in-out infinite;
 }
 
 .secondary {
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
+}
+
+.secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
 }
 
 @keyframes pulse {

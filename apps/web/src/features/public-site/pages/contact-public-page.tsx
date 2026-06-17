@@ -1,5 +1,5 @@
 import { CardsGrid, LegacyDerivedHero, LegacyDerivedSection } from "@/components/sections";
-import { getContactPageModel, getPublicSiteShellData } from "../page-composers/public-page-models";
+import { getContactPageModel } from "../page-composers/public-page-models";
 import { ContactInquiryForm } from "./contact-inquiry-form";
 import { PublicPageShell } from "./public-page-shell";
 import aboutStyles from "./about-public-page.module.css";
@@ -7,7 +7,6 @@ import styles from "./contact-public-page.module.css";
 
 export function ContactPublicPage() {
   const page = getContactPageModel();
-  const shell = getPublicSiteShellData();
 
   return (
     <PublicPageShell page="contact" sectionIds={[page.form.id, ...page.sections.map((section) => section.id)]}>
@@ -15,7 +14,7 @@ export function ContactPublicPage() {
         <LegacyDerivedHero className={aboutStyles.hero} content={page.hero} />
         <LegacyDerivedSection className={aboutStyles.anchorSection} id={page.form.id}>
           <div className={styles.formLayout}>
-            <ContactInquiryForm form={page.form} whatsappHref={shell.siteSettings.whatsappUrl} />
+            <ContactInquiryForm form={page.form} />
             <aside className={styles.infoPanel}>
               <h2>قبل أن ترسل الطلب</h2>
               <p>اجمع النقاط الأساسية عن مشروعك الحالي أو الخدمة التي تريد تحسينها، وسنرتب معك أول خطوة عملية.</p>

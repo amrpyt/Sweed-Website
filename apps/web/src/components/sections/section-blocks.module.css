@@ -51,6 +51,51 @@
   margin-top: 2rem;
 }
 
+.actions a,
+.cta > a {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: #ed2062;
+  color: #ffffff;
+  padding: 0 1.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    transform var(--motion-fast, 180ms ease),
+    border-color var(--motion-fast, 180ms ease),
+    background var(--motion-fast, 180ms ease),
+    color var(--motion-fast, 180ms ease);
+}
+
+.actions a:hover,
+.cta > a:hover {
+  background: #e21857;
+  transform: translateY(-2px);
+}
+
+.actions a:nth-child(2) {
+  border-color: #1a1a1a;
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+.actions a:nth-child(2):hover {
+  background: #fcfcfc;
+  color: #1a1a1a;
+}
+
+.actions a:focus-visible,
+.cta > a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
 .stats {
   margin-top: 2rem;
 }
@@ -146,6 +191,11 @@
   .heroGrid,
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .actions a,
+  .cta > a {
+    width: 100%;
   }
 }
 

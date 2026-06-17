@@ -7,7 +7,6 @@
   --surface: #f8f9fa;
   --panel: #ffffff;
   --soft-pink: #fff2f7;
-  --whatsapp: #25d366;
   --line: rgba(38, 27, 62, 0.11);
   --shadow: 0 18px 55px rgba(38, 27, 62, 0.12);
   overflow: hidden;
@@ -109,6 +108,8 @@
 }
 
 .heroContent {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -187,16 +188,18 @@
   height: 52px;
   border: 0;
   overflow: hidden;
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-weight: 400;
+  font-size: 1rem;
   transition: transform var(--motion-base), box-shadow var(--motion-base);
   display: inline-flex;
   align-items: stretch;
   justify-content: flex-start;
   padding: 0 !important;
   direction: ltr; /* Order icon on left, text on right */
-  border-radius: 8px;
+  border-radius: 0;
   box-sizing: border-box;
+  cursor: pointer;
+  z-index: 50;
 }
 
 .button:hover {
@@ -218,12 +221,13 @@
 }
 
 .buttonText {
+  flex: 1;
   padding: 0 1.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-weight: 400;
+  font-size: 1rem;
   direction: rtl; /* Arabic text remains RTL inside its box */
 }
 
@@ -263,25 +267,22 @@
 
 /* Building Section */
 .buildingSection {
-  margin-top: 1.5rem;
+  margin-top: -15rem;
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  height: 230px;
-  overflow: hidden;
+  align-items: flex-end;
   z-index: 2;
+  pointer-events: none;
 }
 
 .buildingWrapper {
   position: relative;
   width: 100%;
-  max-width: 760px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  height: 100%;
+  align-items: flex-end;
 }
 
 .buildingImg {
@@ -289,12 +290,14 @@
   height: auto;
   z-index: 2;
   object-fit: contain;
+  object-position: bottom;
+  display: block;
+  clip-path: inset(0 0 35% 0);
+  margin-top: -5%;
+  margin-bottom: -35%;
   filter: grayscale(100%);
+  mix-blend-mode: multiply;
   transition: transform 0.4s ease;
-}
-
-.buildingWrapper:hover .buildingImg {
-  transform: scale(1.02);
 }
 
 .waveSvg {
@@ -312,7 +315,7 @@
 
 /* Metrics Footer */
 .heroMetricsWrapper {
-  margin-top: 4rem;
+  margin-top: 0;
   width: 100%;
   border-top: 1px solid rgba(38, 27, 62, 0.08);
   padding-top: 2rem;
@@ -475,25 +478,6 @@
 .buttonLight:hover {
   background: linear-gradient(135deg, #fff, #fafafa);
   box-shadow: 0 24px 48px rgba(38, 27, 62, 0.2);
-}
-
-.buttonWhatsapp {
-  background: var(--whatsapp);
-  color: #fff;
-  box-shadow:
-    0 4px 12px rgba(37, 211, 102, 0.25),
-    0 18px 38px rgba(37, 211, 102, 0.15);
-}
-
-.ctaWhatsappButton {
-  min-width: 150px;
-}
-
-.buttonWhatsapp:hover {
-  background: linear-gradient(135deg, #25d366, #20b858);
-  box-shadow:
-    0 8px 20px rgba(37, 211, 102, 0.35),
-    0 24px 48px rgba(37, 211, 102, 0.25);
 }
 
 .heroDots {

@@ -34,36 +34,6 @@
   display: none;
 }
 
-.whatsappFab {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.whatsappHint {
-  max-width: 210px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.96);
-  color: #155d31;
-  font-size: 0.82rem;
-  font-weight: 900;
-  padding: 10px 14px;
-  box-shadow: 0 18px 40px rgba(16, 76, 40, 0.12);
-}
-
-.whatsappIcon {
-  display: inline-grid;
-  width: 56px;
-  height: 56px;
-  place-items: center;
-  border-radius: 999px;
-  background: #25d366;
-  color: #fff;
-  box-shadow: 0 20px 44px rgba(37, 211, 102, 0.36);
-  animation: whatsappPulse 2.6s ease-out infinite;
-}
-
 .launcher {
   display: inline-flex;
   min-height: 54px;
@@ -707,20 +677,6 @@
   }
 }
 
-@keyframes whatsappPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.36);
-  }
-
-  70% {
-    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
-}
-
 @media (width < 640px) {
   .root {
     inset-inline: auto 8px;
@@ -736,14 +692,6 @@
 
   .stack {
     justify-items: end;
-  }
-
-  .whatsappFab {
-    display: none;
-  }
-
-  .whatsappHint {
-    display: none;
   }
 
   .panel {
@@ -805,9 +753,6 @@
     display: none;
   }
 
-  .whatsappHint {
-    display: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

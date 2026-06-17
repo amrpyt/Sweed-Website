@@ -22,6 +22,14 @@ import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
 
 function Icon({ name }: { name: string }) {
+  if (name === "fa-arrow-left" || name === "fa-arrow-up-left" || name === "fa-arrow-up-right") {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 17L17 7" />
+        <path d="M7 7h10v10" />
+      </svg>
+    );
+  }
   return <i aria-hidden="true" className={name.includes(" ") ? name : `fas ${name}`} />;
 }
 
@@ -41,7 +49,7 @@ function ActionButton({ action }: { action: HomeAction }) {
 
 function SectionHeader({ title, summary }: { title: string; summary: string }) {
   return (
-    <div className={styles.sectionHeader} data-gsap-heading>
+    <div className={styles.sectionHeader}>
       <h2>{title}</h2>
       <p>{summary}</p>
     </div>
@@ -559,10 +567,6 @@ export function HomePublicPage() {
                 <MagneticButton>
                   <ActionButton action={{ label: "تواصل معنا الآن", href: "/contact", icon: "fa-phone", variant: "secondary" }} />
                 </MagneticButton>
-                <HomeButton className={`${styles.button} ${styles.buttonWhatsapp} ${styles.ctaWhatsappButton}`} href={homepageContent.contact.whatsappHref} rel="noreferrer" target="_blank">
-                  <Icon name="fab fa-whatsapp" />
-                  <span>واتساب</span>
-                </HomeButton>
               </div>
             </Reveal>
           </div>

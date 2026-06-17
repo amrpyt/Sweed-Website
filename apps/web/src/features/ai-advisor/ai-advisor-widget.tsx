@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useId, useState } from "react";
-import { Bot, MessageCircle, PhoneCall, SendHorizonal } from "lucide-react";
+import { Bot, MessageCircle, SendHorizonal } from "lucide-react";
 import styles from "./ai-advisor.module.css";
 
 type ChatMessage = {
@@ -12,7 +12,6 @@ type ChatMessage = {
 const titleId = "sweed-ai-advisor-title";
 const knowledgeBaseHref = "/faq#faq";
 const contactHref = "/contact#contact-form";
-const whatsappHref = `https://wa.me/201068274662?text=${encodeURIComponent("مرحبا، أريد التحدث مع فريق SWEED على واتساب.")}`;
 const quickPrompts = [
   "عايز أعرف أنسب باقة لشركة صغيرة",
   "محتاج خطة تسويق لمشروع جديد",
@@ -21,7 +20,7 @@ const quickPrompts = [
 
 const initialMessage: ChatMessage = {
   role: "assistant",
-  content: "اختار الطريقة المناسبة لك: شات AI سريع، أو تذكرة دعم وواتساب مباشر.",
+  content: "اختار الطريقة المناسبة لك: شات AI سريع، أو تذكرة دعم من نموذج التواصل.",
 };
 
 export function AiAdvisorWidget() {
@@ -86,13 +85,6 @@ export function AiAdvisorWidget() {
   return (
     <aside className={styles.root} aria-label="SWEED support center">
       <div className={styles.stack}>
-        <a className={styles.whatsappFab} href={whatsappHref} target="_blank" rel="noreferrer" aria-label="ابدأ محادثة واتساب">
-          <span className={styles.whatsappHint}>ابدأ محادثة واتساب</span>
-          <span className={styles.whatsappIcon}>
-            <PhoneCall aria-hidden size={20} />
-          </span>
-        </a>
-
         <details className={styles.supportDetails}>
           <summary className={styles.launcher} role="button" aria-label="Open AI advisor">
             <span className={styles.launcherIcon}>
@@ -185,9 +177,6 @@ export function AiAdvisorWidget() {
               <div className={styles.supportTools}>
                 <a className={styles.utilityButton} href={knowledgeBaseHref}>
                   قاعدة المعرفة
-                </a>
-                <a className={styles.utilityButton} href={whatsappHref} target="_blank" rel="noreferrer">
-                  واتساب مباشر
                 </a>
                 <a className={styles.utilityButton} href={contactHref}>
                   نموذج التواصل

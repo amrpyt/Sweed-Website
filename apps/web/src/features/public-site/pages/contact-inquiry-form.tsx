@@ -2,11 +2,11 @@
 
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import { Button, ButtonLink, TextAreaField, TextField } from "@/components/ui";
+import { Button, TextAreaField, TextField } from "@/components/ui";
 import type { ContactFormModel } from "../page-composers/types";
 import styles from "./contact-public-page.module.css";
 
-export function ContactInquiryForm({ form, whatsappHref }: { form: ContactFormModel; whatsappHref: string }) {
+export function ContactInquiryForm({ form }: { form: ContactFormModel }) {
   const searchParams = useSearchParams();
 
   const defaults = useMemo(() => {
@@ -66,9 +66,6 @@ export function ContactInquiryForm({ form, whatsappHref }: { form: ContactFormMo
 
       <div className={styles.formActions}>
         <Button type="submit">{form.submitLabel}</Button>
-        <ButtonLink href={whatsappHref} variant="secondary">
-          واتساب
-        </ButtonLink>
       </div>
     </form>
   );

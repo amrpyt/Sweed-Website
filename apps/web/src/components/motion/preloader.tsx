@@ -60,10 +60,10 @@ export function Preloader() {
       <div className={styles.content}>
         <div ref={textRef} className={styles.hugeLogo} dir="ltr">
           <div ref={leftRef} className={styles.leftHalf}>
-             <MetallicPaint imageSrc="/sweed-logo-official.svg" lightColor="#ffffff" darkColor="#160f24" tintColor="#ed2062" speed={0.5} refraction={0.02} />
+             <MetallicPaint imageSrc="/sweed-logo-official.svg" lightColor="#ffffff" darkColor="#111111" tintColor="#ffffff" speed={0.5} refraction={0.02} />
           </div>
           <div ref={rightRef} className={styles.rightHalf}>
-             <MetallicPaint imageSrc="/sweed-logo-official.svg" lightColor="#ffffff" darkColor="#160f24" tintColor="#ed2062" speed={0.5} refraction={0.02} />
+             <MetallicPaint imageSrc="/sweed-logo-official.svg" lightColor="#ffffff" darkColor="#111111" tintColor="#ffffff" speed={0.5} refraction={0.02} />
           </div>
         </div>
       </div>

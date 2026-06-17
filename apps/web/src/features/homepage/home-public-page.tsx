@@ -12,7 +12,6 @@ import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
 import { MagneticButton } from "@/components/motion/magnetic-button";
-import { HorizontalScroll } from "@/components/motion/horizontal-scroll";
 import { Preloader } from "@/components/motion/preloader";
 import { BackToTop, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
@@ -371,20 +370,21 @@ export function HomePublicPage() {
     mm.add("(min-width: 769px)", () => {
       if (!portfolioSection || !portfolioTrack) return;
 
+      const getScrollDistance = () => Math.max(0, portfolioTrack.scrollWidth - window.innerWidth);
       const isRTL = document.documentElement.dir === "rtl";
-      const scrollWidth = portfolioTrack.scrollWidth - portfolioSection.clientWidth;
+      const scrollWidth = getScrollDistance();
 
       if (scrollWidth <= 0) return;
 
       const portfolioTween = gsap.to(portfolioTrack, {
-        x: isRTL ? scrollWidth : -scrollWidth,
+        x: () => (isRTL ? getScrollDistance() : -getScrollDistance()),
         ease: "none",
         scrollTrigger: {
           trigger: portfolioSection,
           pin: true,
           scrub: 1,
-          start: "top top+=80",
-          end: () => `+=${scrollWidth * 1.5}`,
+          start: "top top",
+          end: () => `+=${getScrollDistance()}`,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             if (progressLineFill) {

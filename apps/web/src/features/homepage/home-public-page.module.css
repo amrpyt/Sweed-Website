@@ -1043,10 +1043,13 @@
 }
 
 .portfolioSection {
-  padding-block: clamp(4.5rem, 8vw, 8rem);
   position: relative;
   overflow: hidden;
-  background: #fff;
+  padding-block: clamp(4.5rem, 8vw, 8rem);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0 28%, rgba(255, 255, 255, 0.78) 44%, transparent 74%),
+    radial-gradient(circle at 84% 22%, rgba(237, 32, 98, 0.16), transparent 24rem),
+    linear-gradient(135deg, #fff 0%, #f8f3f6 54%, #261b3e 54%, #261b3e 100%);
 }
 
 .portfolioSection .sectionHeader {
@@ -1072,28 +1075,58 @@
 
 /* On Desktop: Pinning and Grid Columns */
 @media (min-width: 769px) {
+  .portfolioSection {
+    min-height: 100svh;
+    padding-block: 0;
+  }
+
+  .portfolioSection > .container {
+    display: grid;
+    min-height: 100svh;
+    grid-template-rows: auto 1fr auto;
+    align-content: center;
+    padding-block: clamp(4.8rem, 7vh, 6rem) clamp(2rem, 4vh, 3rem);
+  }
+
+  .portfolioSection .sectionHeader {
+    margin-bottom: clamp(1rem, 2vh, 1.35rem);
+  }
+
+  .portfolioSection .sectionHeader h2 {
+    max-width: 780px;
+    font-size: clamp(2.6rem, 5.8vw, 6rem);
+  }
+
+  .portfolioSection .sectionHeader p {
+    max-width: 520px;
+  }
+
   .portfolioScrollWrapper {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 3rem;
+    min-height: min(58vh, 560px);
+    grid-template-columns: minmax(190px, 240px) 1fr;
+    gap: clamp(1.4rem, 3vw, 3.5rem);
     align-items: center;
-    padding-left: 1rem;
+    margin-inline: calc((100vw - 100%) / -2);
+    padding-inline-start: max(1.25rem, calc((100vw - 1400px) / 2));
     overflow: hidden;
   }
 
   .portfolioTrack {
     display: flex;
-    gap: 2rem;
+    min-width: max-content;
     width: max-content;
+    gap: clamp(1rem, 2.2vw, 2rem);
     will-change: transform;
     overflow: visible;
-    padding-bottom: 1rem;
+    padding-block: 0.75rem 1rem;
+    padding-inline-end: max(12vw, 8rem);
   }
 
   .portfolioTrack > * {
-    flex: 0 0 350px !important;
-    min-width: 350px !important;
-    max-width: 350px !important;
+    flex: 0 0 clamp(330px, 36vw, 560px) !important;
+    min-width: clamp(330px, 36vw, 560px) !important;
+    max-width: clamp(330px, 36vw, 560px) !important;
     scroll-snap-align: none;
   }
 }
@@ -1278,10 +1311,10 @@
 }
 
 .portfolioCard {
-  min-height: 248px;
+  min-height: clamp(248px, 46vh, 520px);
   flex-direction: column;
   justify-content: flex-end;
-  border-radius: 18px;
+  border-radius: 26px;
   background:
     linear-gradient(180deg, rgba(38, 27, 62, 0.08), rgba(38, 27, 62, 0.9)),
     linear-gradient(135deg, rgba(237, 32, 98, 0.18), rgba(38, 27, 62, 0.14));
@@ -1305,7 +1338,7 @@
 }
 
 .portfolioContent {
-  padding: 1rem;
+  padding: clamp(1rem, 2.5vw, 1.65rem);
 }
 
 .portfolioFooter {
@@ -1328,17 +1361,17 @@
 
 .portfolioCard h3 {
   margin-top: 0.8rem;
-  font-size: clamp(1.02rem, 1.15vw, 1.18rem);
+  font-size: clamp(1.08rem, 1.55vw, 1.75rem);
   line-height: 1.25;
 }
 
 .portfolioCard p {
   display: -webkit-box;
   overflow: hidden;
-  font-size: 0.92rem;
+  font-size: clamp(0.92rem, 1vw, 1.05rem);
   line-height: 1.55;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 
 .portfolioCard span {
@@ -1666,10 +1699,6 @@
 }
 
 @media (max-width: 1180px) {
-  .portfolioTrack > * {
-    flex-basis: calc((100% - 1.25rem) / 3);
-  }
-
   .processGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

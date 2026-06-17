@@ -129,7 +129,7 @@
   font-size: 0.82rem;
   font-weight: 700;
   color: #1a1a1a;
-  letter-spacing: 1px;
+  letter-spacing: 0;
 }
 
 .heroEyebrow .divider {
@@ -144,7 +144,7 @@
   font-size: clamp(3.2rem, 6.5vw, 6.2rem);
   font-weight: 600;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   color: #1a1a1a;
   text-align: center;
 }
@@ -195,7 +195,7 @@
   align-items: stretch;
   justify-content: flex-start;
   padding: 0 !important;
-  direction: ltr; /* Order icon on left, text on right */
+  direction: rtl;
   border-radius: 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -211,6 +211,7 @@
 }
 
 .buttonIconPrefix {
+  order: 2;
   width: 52px;
   display: flex;
   align-items: center;
@@ -221,6 +222,7 @@
 }
 
 .buttonText {
+  order: 1;
   flex: 1;
   padding: 0 1.8rem;
   display: flex;
@@ -228,7 +230,10 @@
   justify-content: center;
   font-weight: 400;
   font-size: 1rem;
-  direction: rtl; /* Arabic text remains RTL inside its box */
+}
+
+.directionalIcon {
+  transform: scaleX(-1);
 }
 
 .buttonPrimary {
@@ -257,7 +262,7 @@
 .buttonSecondary .buttonIconPrefix {
   background: #f2f2f2;
   color: #1a1a1a;
-  border-right: 1px solid #1a1a1a;
+  border-inline-start: 1px solid #1a1a1a;
 }
 
 .buttonSecondary:hover {
@@ -873,7 +878,7 @@
 
 .whyPoint:hover {
   border-color: rgba(237, 32, 98, 0.22);
-  transform: translateX(-3px);
+  transform: translateX(3px);
 }
 
 .whyPointIcon {

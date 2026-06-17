@@ -24,7 +24,18 @@ import styles from "./home-public-page.module.css";
 function Icon({ name }: { name: string }) {
   if (name === "fa-arrow-left" || name === "fa-arrow-up-left" || name === "fa-arrow-up-right") {
     return (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        aria-hidden="true"
+        className={styles.directionalIcon}
+        fill="none"
+        height="20"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        width="20"
+      >
         <path d="M7 17L17 7" />
         <path d="M7 7h10v10" />
       </svg>
@@ -246,13 +257,15 @@ export function HomePublicPage() {
 
     const card = container.querySelector<HTMLAnchorElement>(`.${styles.portfolioCard}`);
     const step = card ? card.getBoundingClientRect().width : container.clientWidth * 0.9;
+    const inlineDirection = getComputedStyle(container).direction === "rtl" ? 1 : -1;
     container.scrollTo({
-      left: container.scrollLeft + direction * (step + 16),
+      left: container.scrollLeft + direction * inlineDirection * (step + 16),
       behavior: "smooth",
     });
   };
 
   useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     const section = heroSectionRef.current;
     if (!section) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -265,8 +278,8 @@ export function HomePublicPage() {
     const redDots = section.querySelectorAll(`.${styles.redDot}`);
     gsap.set(redDots, { scale: 0 });
 
-    // Timeline for assets reveal (triggered after preloader, i.e., around 1.4s delay)
-    const tl = gsap.timeline({ delay: 1.4 });
+    // Timeline for assets reveal (triggered strictly after preloader finishes: 1.2s)
+    const tl = gsap.timeline({ delay: 1.2 });
 
     tl.to([gridLineLeftRef.current, gridLineRightRef.current], {
       scaleY: 1,
@@ -346,7 +359,7 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <div className={styles.heroContent}>
               <div className={styles.heroEyebrowWrapper}>
-                <HeroFadeIn delay={0}>
+                <HeroFadeIn delay={1.2}>
                   <div className={styles.heroEyebrow}>
                     <span>SWEED</span>
                     <span className={styles.divider} />
@@ -355,7 +368,7 @@ export function HomePublicPage() {
                 </HeroFadeIn>
               </div>
 
-              <HeroTextReveal className={styles.heroH1}>
+              <HeroTextReveal className={styles.heroH1} delay={1.2}>
                 <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>نصنع </span>
                 <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>العلامات </span>
                 <br className={styles.h1Break} />
@@ -365,7 +378,7 @@ export function HomePublicPage() {
                 <span data-word className={styles.highlightText} style={{ display: "inline-block", whiteSpace: "pre" }}>المستقبل.</span>
               </HeroTextReveal>
 
-              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={0.45}>
+              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={1.65}>
                 <p className={styles.heroSubtitle}>
                   نحن وكالة تسويق وتصميم علامات تجارية متكاملة.
                 </p>
@@ -374,7 +387,7 @@ export function HomePublicPage() {
                 </p>
               </HeroFadeIn>
 
-              <HeroFadeIn delay={0.6}>
+              <HeroFadeIn delay={1.8}>
                 <div className={styles.heroActions}>
                   {homepageContent.hero.actions.map((action) => (
                     <MagneticButton key={action.label}>

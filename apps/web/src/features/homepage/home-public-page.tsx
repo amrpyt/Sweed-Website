@@ -246,6 +246,7 @@ export function HomePublicPage() {
   const portfolioSectionRef = useRef<HTMLDivElement>(null);
   const portfolioTrackRef = useRef<HTMLDivElement>(null);
   const portfolioProgressLineRef = useRef<HTMLDivElement>(null);
+  const hoverPillRef = useRef<HTMLDivElement>(null);
   const [activePortfolioIndex, setActivePortfolioIndex] = useState(0);
 
   const heroSectionRef = useRef<HTMLDivElement>(null);
@@ -410,15 +411,122 @@ export function HomePublicPage() {
         },
       });
 
+      // 3D scrolling tilt effect for the cards (physics/animations)
+      const cards = Array.from(portfolioTrack.children) as HTMLElement[];
+      const cardTweens: gsap.core.Tween[] = [];
+      
+      cards.forEach((card) => {
+        const tween = gsap.fromTo(card,
+          {
+            rotationY: 25,
+            z: -120,
+            opacity: 0.8,
+          },
+          {
+            rotationY: -25,
+            z: -120,
+            opacity: 0.8,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: portfolioTween,
+              start: "left right",
+              end: "right left",
+              scrub: true,
+            }
+          }
+        );
+        cardTweens.push(tween);
+      });
+
       return () => {
         portfolioTween.kill();
+        cardTweens.forEach((t) => t.kill());
       };
     });
+
+    // Custom cursor follower (hover pill) logic for desktop pointer
+    const hoverPill = hoverPillRef.current;
+    let cleanupCursor: (() => void) | undefined;
+
+    if (portfolioSection && hoverPill && window.matchMedia("(pointer: fine)").matches) {
+      const onMouseMove = (e: MouseEvent) => {
+        const rect = portfolioSection.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        gsap.to(hoverPill, {
+          x: x,
+          y: y,
+          duration: 0.25,
+          ease: "power2.out",
+        });
+      };
+
+      const onMouseEnter = () => {
+        gsap.to(hoverPill, {
+          scale: 1,
+          opacity: 1,
+          duration: 0.2,
+        });
+      };
+
+      const onMouseLeave = () => {
+        gsap.to(hoverPill, {
+          scale: 0,
+          opacity: 0,
+          duration: 0.2,
+        });
+      };
+
+      portfolioSection.addEventListener("mousemove", onMouseMove);
+      portfolioSection.addEventListener("mouseenter", onMouseEnter);
+      portfolioSection.addEventListener("mouseleave", onMouseLeave);
+
+      const cards = portfolioSection.querySelectorAll(`.${styles.portfolioCard}`);
+      const onCardEnter = () => {
+        hoverPill.classList.add(styles.hoverPillActive);
+        gsap.to(hoverPill, {
+          backgroundColor: "#ed2062",
+          borderColor: "transparent",
+          color: "#fff",
+          scale: 1.3,
+          duration: 0.2,
+        });
+      };
+
+      const onCardLeave = () => {
+        hoverPill.classList.remove(styles.hoverPillActive);
+        gsap.to(hoverPill, {
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          borderColor: "rgba(255, 255, 255, 0.3)",
+          color: "transparent",
+          scale: 1,
+          duration: 0.2,
+        });
+      };
+
+      cards.forEach((card) => {
+        card.addEventListener("mouseenter", onCardEnter);
+        card.addEventListener("mouseleave", onCardLeave);
+      });
+
+      cleanupCursor = () => {
+        portfolioSection.removeEventListener("mousemove", onMouseMove);
+        portfolioSection.removeEventListener("mouseenter", onMouseEnter);
+        portfolioSection.removeEventListener("mouseleave", onMouseLeave);
+        cards.forEach((card) => {
+          card.removeEventListener("mouseenter", onCardEnter);
+          card.removeEventListener("mouseleave", onCardLeave);
+        });
+      };
+    }
 
     return () => {
       tl.kill();
       stTl.kill();
       mm.revert();
+      if (cleanupCursor) cleanupCursor();
     };
   }, []);
 
@@ -585,6 +693,9 @@ export function HomePublicPage() {
         </section>
 
         <section ref={portfolioSectionRef} className={styles.portfolioSection} id="portfolio">
+          <div ref={hoverPillRef} className={styles.hoverPill}>
+            شاهد المشروع
+          </div>
           <div className={styles.container}>
             <div className={styles.portfolioHead}>
               <div className={styles.portfolioYear}>{homepageContent.portfolioHead.year}</div>

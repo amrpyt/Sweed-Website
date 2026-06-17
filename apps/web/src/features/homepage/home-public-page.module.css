@@ -480,7 +480,7 @@
   color: rgba(38, 27, 62, 0.58);
   text-align: center;
   font-size: clamp(0.78rem, 1.4vw, 0.95rem);
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.01em;
 }
 
@@ -512,9 +512,9 @@
   margin: 0 0 1rem;
   color: var(--primary-purple);
   font-size: clamp(2.2rem, 4vw, 3.6rem);
-  font-weight: 900;
+  font-weight: 600;
   line-height: 1.08;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   text-wrap: balance;
 }
 
@@ -523,8 +523,8 @@
   max-width: 640px;
   color: var(--muted);
   font-size: 1.08rem;
-  font-weight: 500;
-  line-height: 1.7;
+  font-weight: 450;
+  line-height: 1.75;
 }
 
 .problemsSection,
@@ -538,7 +538,7 @@
 .blogSection,
 .faqSection,
 .ctaSection {
-  padding: clamp(4rem, 8vw, 8rem) 0;
+  padding: clamp(4.5rem, 8vw, 8rem) 0;
 }
 
 .problemsSection {
@@ -561,7 +561,7 @@
   background: rgba(237, 32, 98, 0.1);
   color: var(--primary-pink);
   font-size: 0.92rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .problemsHeader h2 {
@@ -711,7 +711,7 @@
   margin-top: 0.85rem;
   color: var(--primary-purple);
   font-size: clamp(1rem, 1.1vw, 1.12rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0;
 }
@@ -735,7 +735,7 @@
   margin: 0;
   color: var(--muted);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.85;
 }
 
@@ -766,7 +766,7 @@
   margin-top: 2.5rem;
   color: var(--primary-purple);
   font-size: 1.05rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .problemsCta .button {
@@ -797,9 +797,9 @@
   margin: 0 0 1.2rem;
   color: #fff;
   font-size: clamp(2.2rem, 5vw, 4.2rem);
-  font-weight: 900;
+  font-weight: 600;
   line-height: 1.08;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .helpBox p,
@@ -898,7 +898,7 @@
   margin: 0 0 0.25rem;
   color: var(--primary-purple);
   font-size: clamp(0.94rem, 1vw, 1.08rem);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.28;
 }
 
@@ -906,7 +906,7 @@
   margin: 0;
   color: rgba(38, 27, 62, 0.7);
   font-size: 0.84rem;
-  font-weight: 650;
+  font-weight: 500;
   line-height: 1.45;
   display: -webkit-box;
   overflow: hidden;
@@ -952,7 +952,7 @@
   margin: 0.48rem 0 0;
   color: var(--primary-purple);
   font-size: clamp(0.8rem, 0.9vw, 0.94rem);
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.4;
 }
 
@@ -1019,7 +1019,7 @@
   background: rgba(237, 32, 98, 0.1);
   color: var(--primary-pink);
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .videoMock,
@@ -1088,7 +1088,7 @@
 .categoryChip {
   background: rgba(237, 32, 98, 0.1);
   color: var(--primary-pink);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .portfolioRowHeader {
@@ -1265,7 +1265,7 @@
   background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
   color: #fff;
   font-size: 1.15rem;
-  font-weight: 900;
+  font-weight: 700;
   transform: translateX(-50%);
   box-shadow: 0 12px 28px rgba(38, 27, 62, 0.16);
 }
@@ -1300,7 +1300,7 @@
   background: rgba(237, 32, 98, 0.1);
   color: var(--primary-pink);
   font-size: 0.8rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .productCard {
@@ -1339,13 +1339,13 @@
 .productFooter span {
   color: var(--muted);
   text-decoration: line-through;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .productFooter strong {
   color: var(--primary-pink);
   font-size: 1.08rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .productFooter em {
@@ -1354,7 +1354,7 @@
   background: var(--primary-purple);
   color: #fff;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 0.82rem;
 }
 
@@ -1382,7 +1382,7 @@
   margin: 0 0 0.65rem;
   color: var(--primary-purple);
   font-size: clamp(1.45rem, 2.4vw, 2.35rem);
-  font-weight: 900;
+  font-weight: 600;
   line-height: 1.16;
   letter-spacing: 0;
 }
@@ -1420,7 +1420,7 @@
   margin-top: 0.55rem;
   color: var(--muted);
   font-size: 0.84rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .articleBody strong {
@@ -1470,7 +1470,7 @@
   color: var(--primary-purple);
   cursor: pointer;
   font-size: 0.98rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.45;
   list-style: none;
 }

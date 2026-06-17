@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   /* Brand Colors */
   --sweed-primary-purple: #261b3e;
   --sweed-primary-pink: #ed2062;
@@ -69,8 +69,9 @@
   --text-lg: 1.125rem;
   --text-xl: 1.35rem;
   --text-2xl: clamp(1.5rem, 2.5vw, 2rem);
-  --text-3xl: clamp(2rem, 4vw, 3.5rem);
+  --text-3xl: clamp(2.2rem, 4.5vw, 4rem);
   --text-4xl: clamp(2.75rem, 6.5vw, 6rem);
+  --text-5xl: clamp(3.5rem, 8vw, 7rem);
   
   /* Line Heights */
   --leading-tight: 1.1;
@@ -94,6 +95,8 @@
   --space-20: 5rem;
   --space-24: 6rem;
   --space-32: 8rem;
+  --space-40: 10rem;
+  --space-48: 12rem;
   
   /* Focus Ring */
   --focus-ring: 0 0 0 3px rgba(237, 32, 98, 0.18);

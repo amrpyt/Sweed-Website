@@ -24,28 +24,28 @@ export function Preloader() {
     // Premium smooth fade in for the text
     tl.fromTo(textRef.current, 
       { filter: "blur(12px)", opacity: 0, y: 15 },
-      { filter: "blur(0px)", opacity: 1, y: 0, duration: 1.2, ease: "power2.out" }
+      { filter: "blur(0px)", opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
     );
 
     // Slide up preloader overlay with a sharp triangle (inverted V) clip-path
     tl.to(containerRef.current, {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 50% -100%, 0% 0%)",
-      duration: 1.8,
+      duration: 1.4,
       ease: "expo.inOut",
-    }, "+=0.6"); // Wait a bit before opening
+    }, "+=0.3"); // Wait a bit before opening
 
     // Split the word at the same time the triangle opens
     tl.to(leftRef.current, {
       x: "-40vw",
       opacity: 0,
-      duration: 1.8,
+      duration: 1.4,
       ease: "expo.inOut",
     }, "<");
 
     tl.to(rightRef.current, {
       x: "40vw",
       opacity: 0,
-      duration: 1.8,
+      duration: 1.4,
       ease: "expo.inOut",
     }, "<");
 

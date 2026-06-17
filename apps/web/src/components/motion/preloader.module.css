@@ -24,17 +24,16 @@
 }
 
 .hugeLogo {
-  font-size: clamp(4rem, 15vw, 12rem);
-  font-weight: 200; /* Very thin */
+  font-size: clamp(3rem, 12vw, 10rem);
+  font-weight: 900;
   color: #ffffff;
   line-height: 1;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   font-family: var(--font-heading);
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: scaleY(3.5); /* Make it extremely tall */
 }
 
 .leftHalf, .rightHalf {

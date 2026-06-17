@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -78,6 +78,17 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   }, [isCompact]);
 
   useEffect(() => {
+    if (page === "home") {
+      document.body.classList.add("sweed-header-home");
+    } else {
+      document.body.classList.remove("sweed-header-home");
+    }
+    return () => {
+      document.body.classList.remove("sweed-header-home");
+    };
+  }, [page]);
+
+  useEffect(() => {
     if (!isOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -96,34 +107,36 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
 
   return (
     <>
-      <div className={`top-bar sweed-common-top-bar ${isCompact ? "compact" : ""}`}>
-        <div className="top-bar-content">
-          <div className="top-bar-left">
-            <div className="top-bar-item">
-              <i className="fas fa-phone" />
-              <span>01068274662</span>
+      {page !== "home" && (
+        <div className={`top-bar sweed-common-top-bar ${isCompact ? "compact" : ""}`}>
+          <div className="top-bar-content">
+            <div className="top-bar-left">
+              <div className="top-bar-item">
+                <i className="fas fa-phone" />
+                <span>01068274662</span>
+              </div>
+              <div className="top-bar-item">
+                <i className="fas fa-envelope" />
+                <span>info@sweed.com</span>
+              </div>
+              <div className="top-bar-item">
+                <i className="fas fa-clock" />
+                <span>السبت - الخميس: 9:00 ص - 6:00 م</span>
+              </div>
             </div>
-            <div className="top-bar-item">
-              <i className="fas fa-envelope" />
-              <span>info@sweed.com</span>
+            <div className="social-media">
+              <a href="#" aria-label="فيسبوك"><i className="fab fa-facebook-f" /></a>
+              <a href="#" aria-label="إنستجرام"><i className="fab fa-instagram" /></a>
+              <a href="#" aria-label="لينكد إن"><i className="fab fa-linkedin-in" /></a>
+              <a href="#" aria-label="يوتيوب"><i className="fab fa-youtube" /></a>
+              <a href="#" aria-label="واتساب"><i className="fab fa-whatsapp" /></a>
+              <a href="#" aria-label="تيك توك"><i className="fab fa-tiktok" /></a>
             </div>
-            <div className="top-bar-item">
-              <i className="fas fa-clock" />
-              <span>السبت - الخميس: 9:00 ص - 6:00 م</span>
-            </div>
-          </div>
-          <div className="social-media">
-            <a href="#" aria-label="فيسبوك"><i className="fab fa-facebook-f" /></a>
-            <a href="#" aria-label="إنستجرام"><i className="fab fa-instagram" /></a>
-            <a href="#" aria-label="لينكد إن"><i className="fab fa-linkedin-in" /></a>
-            <a href="#" aria-label="يوتيوب"><i className="fab fa-youtube" /></a>
-            <a href="#" aria-label="واتساب"><i className="fab fa-whatsapp" /></a>
-            <a href="#" aria-label="تيك توك"><i className="fab fa-tiktok" /></a>
           </div>
         </div>
-      </div>
+      )}
 
-      <header className={`header sweed-common-header ${isCompact ? "compact" : ""} ${isOpen ? "mobile-menu-open" : ""}`} id="mainHeader">
+      <header className={`header sweed-common-header ${isCompact ? "compact" : ""} ${isOpen ? "mobile-menu-open" : ""} ${page === "home" ? "is-home-page" : ""}`} id="mainHeader">
         <nav aria-label="القائمة الرئيسية" className="nav-container">
           <button
             ref={menuButtonRef}
@@ -160,7 +173,14 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
 
           <div className="nav-buttons">
             <Link className="btn-consultation" href={consultationHref}>
-              احجز استشارة مجانية
+              {page === "home" ? (
+                <>
+                  <span className="btn-icon-box"><i className="fa-solid fa-arrow-up-right" /></span>
+                  <span className="btn-text">دعنا نبدأ</span>
+                </>
+              ) : (
+                "احجز استشارة مجانية"
+              )}
             </Link>
           </div>
         </nav>

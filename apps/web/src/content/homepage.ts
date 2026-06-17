@@ -28,19 +28,19 @@ export type HomeProcessStep = HomeCard & {
 
 export const homepageContent = {
   hero: {
-    eyebrow: "SWEED Marketing & Advertising",
-    title: "نحوّل أحلامك إلى إنجازات حقيقية",
-    subtitle: "15 سنة في صناعة النجاح وبناء العلامات التجارية الرائدة",
-    summary: "شريكك الموثوق في رحلة النمو والتميز",
+    eyebrow: "SWEED | MARKETING & ADVERTISING",
+    title: "نصنع العلامات التي تقود المستقبل.",
+    subtitle: "نحن وكالة تسويق وتصميم علامات تجارية متكاملة. نساعد الشركات الطموحة على بناء حضور قوي، وتجربة متكاملة، ونمو مستدام.",
+    summary: "",
     actions: [
-      { label: "احجز استشارة مجانية", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" },
-      { label: "تواصل معنا الآن", href: "/contact", icon: "fa-phone", variant: "secondary" },
+      { label: "استكشف أعمالنا", href: "/#portfolio", icon: "fa-arrow-up-right", variant: "primary" },
+      { label: "تحدث مع خبير", href: "/#contact", icon: "fa-arrow-up-right", variant: "secondary" },
     ] satisfies HomeAction[],
     metrics: [
-      { value: "+15", label: "سنة خبرة" },
-      { value: "+478", label: "عميل راض" },
-      { value: "+638", label: "مشروع منفذ" },
-      { value: "98%", label: "معدل رضا العملاء" },
+      { value: "+150", label: "مشروع مكتمل" },
+      { value: "15", label: "سنة خبرة" },
+      { value: "92%", label: "معدل احتفاظ العملاء" },
+      { value: "7", label: "أسواق نخدمها" },
     ] satisfies HomeMetric[],
   },
   clients: ["NOVA", "ALPHA", "EDGE", "SAHL", "SHIFT", "URBAN"],

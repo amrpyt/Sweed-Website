@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { SimpleIcon } from "simple-icons";
 import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVercel } from "simple-icons";
 import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
@@ -28,8 +29,10 @@ function ActionButton({ action }: { action: HomeAction }) {
 
   return (
     <HomeButton className={`${styles.button} ${variantClass}`} href={action.href}>
-      <Icon name={action.icon} />
-      <span>{action.label}</span>
+      <span className={styles.buttonIconPrefix}>
+        <Icon name={action.icon} />
+      </span>
+      <span className={styles.buttonText}>{action.label}</span>
     </HomeButton>
   );
 }
@@ -241,39 +244,94 @@ export function HomePublicPage() {
       <LegacyHeader page="home" />
       <main className={styles.homepage}>
         <section className={styles.hero} id="home">
-          <div className={styles.heroImageStack} aria-hidden="true">
-            <span className={styles.heroImageOne} />
-            <span className={styles.heroImageTwo} />
-            <span className={styles.heroImageThree} />
+          {/* Decorative Grid Lines */}
+          <div className={styles.gridLineLeft} aria-hidden="true">
+            <span className={styles.redDot} />
           </div>
+          <div className={styles.gridLineRight} aria-hidden="true">
+            <span className={styles.redDot} />
+          </div>
+
+          {/* Dotted matrices */}
+          <div className={`${styles.dottedMatrix} ${styles.matrixLeft}`} aria-hidden="true" />
+          <div className={`${styles.dottedMatrix} ${styles.matrixRight}`} aria-hidden="true" />
+
           <div className={styles.container}>
             <div className={styles.heroContent}>
-              <div className={styles.heroText}>
+              <div className={styles.heroEyebrowWrapper}>
                 <HeroFadeIn delay={0}>
-                  <span>{homepageContent.hero.eyebrow}</span>
-                </HeroFadeIn>
-                <HeroTextReveal className={styles.heroH1}>{homepageContent.hero.title}</HeroTextReveal>
-                <HeroFadeIn className={styles.heroSubtitle} delay={0.45}>
-                  <p>{homepageContent.hero.subtitle}</p>
-                </HeroFadeIn>
-                <HeroFadeIn className={styles.heroDescription} delay={0.6}>
-                  <p>{homepageContent.hero.summary}</p>
-                </HeroFadeIn>
-                <HeroFadeIn delay={0.75}>
-                  <div className={styles.heroActions}>
-                    {homepageContent.hero.actions.map((action) => (
-                      <MagneticButton key={action.label}>
-                        <ActionButton action={action} />
-                      </MagneticButton>
-                    ))}
+                  <div className={styles.heroEyebrow}>
+                    <span>SWEED</span>
+                    <span className={styles.divider} />
+                    <span>MARKETING & ADVERTISING</span>
                   </div>
                 </HeroFadeIn>
               </div>
-              <div className={styles.heroDots} aria-hidden="true">
-                <i />
-                <i />
-                <i />
+
+              <HeroTextReveal className={styles.heroH1}>
+                <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>نصنع </span>
+                <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>العلامات </span>
+                <br className={styles.h1Break} />
+                <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>التي </span>
+                <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>تقود </span>
+                <br className={styles.h1Break} />
+                <span data-word className={styles.highlightText} style={{ display: "inline-block", whiteSpace: "pre" }}>المستقبل.</span>
+              </HeroTextReveal>
+
+              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={0.45}>
+                <p className={styles.heroSubtitle}>
+                  نحن وكالة تسويق وتصميم علامات تجارية متكاملة.
+                </p>
+                <p className={styles.heroSubtitle}>
+                  نساعد الشركات الطموحة على بناء حضور قوي، وتجربة متكاملة، ونمو مستدام.
+                </p>
+              </HeroFadeIn>
+
+              <HeroFadeIn delay={0.6}>
+                <div className={styles.heroActions}>
+                  {homepageContent.hero.actions.map((action) => (
+                    <MagneticButton key={action.label}>
+                      <ActionButton action={action} />
+                    </MagneticButton>
+                  ))}
+                </div>
+              </HeroFadeIn>
+
+              <HeroFadeIn delay={0.75} className={styles.buildingSection}>
+                <div className={styles.buildingWrapper}>
+                  {/* Waves SVG */}
+                  <svg className={styles.waveSvg} viewBox="0 0 1200 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M-100 150 C 150 50, 350 250, 600 150 C 850 50, 1050 250, 1300 150" stroke="rgba(38, 27, 62, 0.08)" strokeWidth="1.5" fill="none" />
+                    <path d="M-100 180 C 150 80, 350 280, 600 180 C 850 80, 1050 280, 1300 180" stroke="rgba(38, 27, 62, 0.05)" strokeWidth="1.5" fill="none" />
+                    <path d="M-100 120 C 150 20, 350 220, 600 120 C 850 20, 1050 220, 1300 120" stroke="rgba(38, 27, 62, 0.04)" strokeWidth="1" fill="none" />
+                  </svg>
+                  <Image
+                    src="/images/hero/sweed-building.png"
+                    alt="SWEED Building Mockup"
+                    width={800}
+                    height={450}
+                    priority
+                    className={styles.buildingImg}
+                  />
+                </div>
+              </HeroFadeIn>
+
+              <div className={styles.heroMetricsWrapper}>
+                <div className={styles.metricsRow}>
+                  {homepageContent.hero.metrics.map((metric, idx) => (
+                    <div key={idx} className={styles.metricItem}>
+                      <span className={styles.metricVal}>{metric.value}</span>
+                      <span className={styles.metricLbl}>{metric.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className={styles.metricsFooterLine}>
+                  <span className={styles.footerLabelLeft}>01</span>
+                  <span className={styles.footerDot} />
+                  <span className={styles.footerLabelRight}>08</span>
+                </div>
               </div>
+
             </div>
           </div>
         </section>

@@ -629,3 +629,151 @@
       display: none !important;
     }
   }
+
+  /* Homepage Minimal Header Styling */
+  :global(body.sweed-header-home) {
+    padding-top: 80px !important;
+  }
+  :global(body.sweed-header-home.sweed-header-compact) {
+    padding-top: 70px !important;
+  }
+  :global(body.sweed-header-home) :global(section[id]) {
+    scroll-margin-top: 100px !important;
+  }
+  :global(body.sweed-header-home.sweed-header-compact) :global(section[id]) {
+    scroll-margin-top: 90px !important;
+  }
+
+  :global(.sweed-common-header.is-home-page) {
+    top: 0 !important;
+    background: #ffffff !important;
+    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.03) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  @media (min-width: 769px) {
+    :global(.sweed-common-header.is-home-page) :global(.sweed-common-logo) {
+      display: none !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.hamburger) {
+      display: flex !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      flex-direction: column !important;
+      gap: 5px !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 40px !important;
+      height: 40px !important;
+      padding: 0 !important;
+      cursor: pointer !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.hamburger) span {
+      background: #1a1a1a !important;
+      width: 24px !important;
+      height: 2px !important;
+      margin: 0 !important;
+      border-radius: 99px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.hamburger.active) span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg) !important;
+    }
+    :global(.sweed-common-header.is-home-page) :global(.hamburger.active) span:nth-child(2) {
+      opacity: 0 !important;
+    }
+    :global(.sweed-common-header.is-home-page) :global(.hamburger.active) span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg) !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.nav-menu) {
+      flex: 1 1 auto !important;
+      justify-content: center !important;
+      gap: 2.2rem !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.nav-menu) a {
+      color: #1a1a1a !important;
+      font-weight: 500 !important;
+      font-size: 0.95rem !important;
+      transition: opacity 0.2s ease !important;
+      position: relative !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.nav-menu) a:hover {
+      opacity: 0.7 !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.nav-menu) a::after {
+      display: none !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.nav-menu) a:global(.active) {
+      color: #1a1a1a !important;
+      font-weight: 700 !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.nav-menu) a:global(.active)::before {
+      content: "" !important;
+      position: absolute !important;
+      bottom: -12px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 6px !important;
+      height: 6px !important;
+      background: #ed2062 !important;
+      border-radius: 0 !important;
+      display: block !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.nav-buttons) {
+      display: flex !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.btn-consultation) {
+      background: #ed2062 !important;
+      color: #ffffff !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      min-height: 48px !important;
+      box-shadow: none !important;
+      overflow: hidden !important;
+      display: inline-flex !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      text-decoration: none !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box) {
+      background: #d01350 !important;
+      width: 48px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: #ffffff !important;
+      font-size: 0.95rem !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-text) {
+      padding: 0 1.5rem !important;
+      display: flex !important;
+      align-items: center !important;
+      font-weight: 700 !important;
+      font-size: 0.9rem !important;
+    }
+    
+    :global(.sweed-common-header.is-home-page) :global(.btn-consultation):hover {
+      transform: none !important;
+      background: #e21857 !important;
+    }
+  }
+
+  :global(.sweed-common-header.is-home-page.compact) :global(.nav-container) {
+    padding-block: 0.4rem !important;
+  }
+

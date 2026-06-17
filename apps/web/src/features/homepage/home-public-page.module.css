@@ -2318,3 +2318,109 @@
     page-break-inside: avoid;
   }
 }
+
+/* Treehaus-inspired Asymmetric Header for Sweed portfolio */
+.portfolioHead {
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-column-gap: 2.5rem;
+  grid-row-gap: 1.5rem;
+  place-items: end start;
+  margin-bottom: clamp(2rem, 4.5vw, 4.5rem);
+  direction: rtl;
+  position: relative;
+  z-index: 5;
+}
+
+.portfolioYear {
+  font-size: clamp(2.5rem, 4.35vw, 4.75rem);
+  line-height: 1.04;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0.9;
+  justify-self: end;
+}
+
+.portfolioHeadTexts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 28rem;
+  text-align: right;
+  direction: rtl;
+}
+
+.portfolioLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ed2062;
+  margin: 0;
+}
+
+.portfolioDescription {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+.portfolioHeadingWrap {
+  position: relative;
+  justify-self: start;
+}
+
+.portfolioHeadingDisplay {
+  font-size: clamp(2.5rem, 4.35vw, 4.75rem);
+  line-height: 1.04;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.portfolioCountBadge {
+  position: absolute;
+  top: -0.5rem;
+  left: -1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ed2062;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .portfolioHead {
+    grid-template-columns: 1fr;
+    grid-row-gap: 1.25rem;
+    place-items: start;
+    margin-bottom: 2rem;
+  }
+  
+  .portfolioYear {
+    font-size: 2rem;
+    justify-self: start;
+  }
+  
+  .portfolioHeadingDisplay {
+    font-size: 2rem;
+  }
+
+  .portfolioHeadingWrap {
+    justify-self: start;
+  }
+  
+  .portfolioDescription {
+    font-size: 0.92rem;
+  }
+}
+

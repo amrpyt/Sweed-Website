@@ -18,6 +18,7 @@ import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
+import { Chess3DSection } from "./chess-3d-section";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
 
@@ -370,7 +371,16 @@ export function HomePublicPage() {
     mm.add("(min-width: 769px)", () => {
       if (!portfolioSection || !portfolioTrack) return;
 
-      const getScrollDistance = () => Math.max(0, portfolioTrack.scrollWidth - window.innerWidth);
+      const getScrollDistance = () => {
+        const panels = Array.from(portfolioTrack.children) as HTMLElement[];
+        const lastPanel = panels.at(-1);
+        if (!lastPanel) return Math.max(0, portfolioTrack.scrollWidth - window.innerWidth);
+
+        const lastPanelEnd = lastPanel.offsetLeft + lastPanel.offsetWidth;
+        const trackInset = Math.max(0, portfolioTrack.getBoundingClientRect().left);
+        const viewportEndPadding = Math.min(96, window.innerWidth * 0.08);
+        return Math.max(0, trackInset + lastPanelEnd - window.innerWidth + viewportEndPadding);
+      };
       const scrollWidth = getScrollDistance();
 
       if (scrollWidth <= 0) return;
@@ -382,12 +392,13 @@ export function HomePublicPage() {
           trigger: portfolioSection,
           pin: true,
           scrub: 1,
-          start: "top top",
-          end: () => `+=${getScrollDistance()}`,
+          anticipatePin: 1,
+          start: "top top+=72",
+          end: () => `+=${getScrollDistance() + window.innerHeight * 0.75}`,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             if (progressLineFill) {
-              gsap.set(progressLineFill, { scaleY: self.progress });
+              gsap.set(progressLineFill, { scaleX: self.progress });
             }
             const numItems = homepageContent.portfolio.length;
             const activeCardIndex = Math.min(
@@ -515,6 +526,8 @@ export function HomePublicPage() {
           />
         </section>
 
+        <Chess3DSection />
+
         <section className={styles.problemsSection} id="problems">
           <div className={styles.container}>
             <div className={styles.problemsLayout}>
@@ -573,7 +586,21 @@ export function HomePublicPage() {
 
         <section ref={portfolioSectionRef} className={styles.portfolioSection} id="portfolio">
           <div className={styles.container}>
-            <SectionHeader title="أعمالنا تتحدث عن نفسها" summary="نفخر بالمشاريع الناجحة التي حققناها لعملائنا" />
+            <div className={styles.portfolioHead}>
+              <div className={styles.portfolioYear}>{homepageContent.portfolioHead.year}</div>
+              <div className={styles.portfolioHeadTexts}>
+                <h2 className={styles.portfolioLabel}>{homepageContent.portfolioHead.label}</h2>
+                <p className={styles.portfolioDescription}>
+                  {homepageContent.portfolioHead.description}
+                </p>
+              </div>
+              <div className={styles.portfolioHeadingWrap}>
+                <h3 className={styles.portfolioHeadingDisplay}>{homepageContent.portfolioHead.title}</h3>
+                <div className={styles.portfolioCountBadge}>
+                  {homepageContent.portfolio.length}
+                </div>
+              </div>
+            </div>
             
             <div className={styles.portfolioScrollWrapper}>
               {/* Pinned Lateral progress indicator */}
@@ -606,10 +633,8 @@ export function HomePublicPage() {
                 className={styles.portfolioTrack}
                 onScroll={handleMobileScroll}
               >
-                {homepageContent.portfolio.map((card, index) => (
-                  <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                    <PortfolioCard card={card} />
-                  </Reveal>
+                {homepageContent.portfolio.map((card) => (
+                  <PortfolioCard card={card} key={card.title} />
                 ))}
               </div>
             </div>

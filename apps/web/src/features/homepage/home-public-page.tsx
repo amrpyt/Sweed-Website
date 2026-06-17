@@ -7,6 +7,9 @@ import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVe
 import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
+import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
+import { MagneticButton } from "@/components/motion/magnetic-button";
+import { HorizontalScroll } from "@/components/motion/horizontal-scroll";
 import { BackToTop, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
@@ -33,10 +36,10 @@ function ActionButton({ action }: { action: HomeAction }) {
 
 function SectionHeader({ title, summary }: { title: string; summary: string }) {
   return (
-    <Reveal className={styles.sectionHeader} variant="soft">
+    <div className={styles.sectionHeader} data-gsap-heading>
       <h2>{title}</h2>
       <p>{summary}</p>
-    </Reveal>
+    </div>
   );
 }
 
@@ -245,17 +248,27 @@ export function HomePublicPage() {
           </div>
           <div className={styles.container}>
             <div className={styles.heroContent}>
-              <Reveal className={styles.heroText} variant="hero">
-                <span>{homepageContent.hero.eyebrow}</span>
-                <h1>{homepageContent.hero.title}</h1>
-                <p className={styles.heroSubtitle}>{homepageContent.hero.subtitle}</p>
-                <p className={styles.heroDescription}>{homepageContent.hero.summary}</p>
-                <div className={styles.heroActions}>
-                  {homepageContent.hero.actions.map((action) => (
-                    <ActionButton action={action} key={action.label} />
-                  ))}
-                </div>
-              </Reveal>
+              <div className={styles.heroText}>
+                <HeroFadeIn delay={0}>
+                  <span>{homepageContent.hero.eyebrow}</span>
+                </HeroFadeIn>
+                <HeroTextReveal className={styles.heroH1}>{homepageContent.hero.title}</HeroTextReveal>
+                <HeroFadeIn className={styles.heroSubtitle} delay={0.45}>
+                  <p>{homepageContent.hero.subtitle}</p>
+                </HeroFadeIn>
+                <HeroFadeIn className={styles.heroDescription} delay={0.6}>
+                  <p>{homepageContent.hero.summary}</p>
+                </HeroFadeIn>
+                <HeroFadeIn delay={0.75}>
+                  <div className={styles.heroActions}>
+                    {homepageContent.hero.actions.map((action) => (
+                      <MagneticButton key={action.label}>
+                        <ActionButton action={action} />
+                      </MagneticButton>
+                    ))}
+                  </div>
+                </HeroFadeIn>
+              </div>
               <div className={styles.heroDots} aria-hidden="true">
                 <i />
                 <i />
@@ -342,15 +355,17 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <SectionHeader title="أعمالنا تتحدث عن نفسها" summary="نفخر بالمشاريع الناجحة التي حققناها لعملائنا" />
             <PortfolioCarouselActions onNext={() => scrollPortfolio(-1)} onPrevious={() => scrollPortfolio(1)} />
-            <div className={styles.portfolioTrack} ref={portfolioTrackRef}>
+            <HorizontalScroll className={styles.portfolioScrollWrapper} trackClassName={styles.portfolioTrack}>
               {homepageContent.portfolio.map((card, index) => (
                 <Reveal delay={index * 70} key={card.title} variant="scaleIn">
                   <PortfolioCard card={card} />
                 </Reveal>
               ))}
-            </div>
+            </HorizontalScroll>
             <div className={styles.portfolioFooter}>
-              <ActionButton action={{ label: "مشاهدة كل الأعمال", href: "/portfolio", icon: "fa-arrow-left", variant: "primary" }} />
+              <MagneticButton>
+                <ActionButton action={{ label: "مشاهدة كل الأعمال", href: "/portfolio", icon: "fa-arrow-left", variant: "primary" }} />
+              </MagneticButton>
             </div>
           </div>
         </section>
@@ -426,8 +441,12 @@ export function HomePublicPage() {
               <h2>{homepageContent.contact.title}</h2>
               <p>{homepageContent.contact.summary}</p>
               <div className={styles.ctaButtons}>
-                <ActionButton action={{ label: "احجز استشارة مجانية", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
-                <ActionButton action={{ label: "تواصل معنا الآن", href: "/contact", icon: "fa-phone", variant: "secondary" }} />
+                <MagneticButton>
+                  <ActionButton action={{ label: "احجز استشارة مجانية", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
+                </MagneticButton>
+                <MagneticButton>
+                  <ActionButton action={{ label: "تواصل معنا الآن", href: "/contact", icon: "fa-phone", variant: "secondary" }} />
+                </MagneticButton>
                 <HomeButton className={`${styles.button} ${styles.buttonWhatsapp} ${styles.ctaWhatsappButton}`} href={homepageContent.contact.whatsappHref} rel="noreferrer" target="_blank">
                   <Icon name="fab fa-whatsapp" />
                   <span>واتساب</span>

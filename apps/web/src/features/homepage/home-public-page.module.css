@@ -111,10 +111,10 @@
 .heroText {
   max-width: 860px;
   margin-inline: auto;
-  animation: heroTextReveal 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  text-align: center;
 }
 
-.heroText > span {
+.heroText span:not([data-word]) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -129,13 +129,14 @@
   animation: heroBadgeFloat 4.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
-.heroText h1 {
+.heroText h1,
+.heroH1 {
   max-width: 900px;
   margin: 0 auto 1.4rem;
-  font-size: clamp(2.45rem, 4.7vw, 4.45rem);
-  font-weight: 500;
-  line-height: 1.18;
-  letter-spacing: 0;
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  font-weight: 780;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   text-shadow: 0 10px 30px rgba(38, 27, 62, 0.3);
 }
 
@@ -943,6 +944,10 @@
 
 .portfolioSection {
   padding-block: clamp(4.5rem, 8vw, 8rem);
+}
+
+.portfolioScrollWrapper {
+  overflow: visible;
 }
 
 .portfolioSection .sectionHeader {

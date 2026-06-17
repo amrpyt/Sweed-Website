@@ -371,13 +371,12 @@ export function HomePublicPage() {
       if (!portfolioSection || !portfolioTrack) return;
 
       const getScrollDistance = () => Math.max(0, portfolioTrack.scrollWidth - window.innerWidth);
-      const isRTL = document.documentElement.dir === "rtl";
       const scrollWidth = getScrollDistance();
 
       if (scrollWidth <= 0) return;
 
       const portfolioTween = gsap.to(portfolioTrack, {
-        x: () => (isRTL ? getScrollDistance() : -getScrollDistance()),
+        x: () => -getScrollDistance(),
         ease: "none",
         scrollTrigger: {
           trigger: portfolioSection,

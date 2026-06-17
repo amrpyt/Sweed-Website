@@ -1047,9 +1047,10 @@
   overflow: hidden;
   padding-block: clamp(4.5rem, 8vw, 8rem);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0 28%, rgba(255, 255, 255, 0.78) 44%, transparent 74%),
-    radial-gradient(circle at 84% 22%, rgba(237, 32, 98, 0.16), transparent 24rem),
-    linear-gradient(135deg, #fff 0%, #f8f3f6 54%, #261b3e 54%, #261b3e 100%);
+    radial-gradient(circle at 16% 18%, rgba(237, 32, 98, 0.2), transparent 24rem),
+    radial-gradient(circle at 82% 72%, rgba(255, 255, 255, 0.12), transparent 28rem),
+    #261b3e;
+  color: #fff;
 }
 
 .portfolioSection .sectionHeader {
@@ -1081,34 +1082,46 @@
   }
 
   .portfolioSection > .container {
-    display: grid;
+    position: relative;
+    display: block;
     min-height: 100svh;
-    grid-template-rows: auto 1fr auto;
-    align-content: center;
-    padding-block: clamp(4.8rem, 7vh, 6rem) clamp(2rem, 4vh, 3rem);
+    padding-block: 0;
   }
 
   .portfolioSection .sectionHeader {
-    margin-bottom: clamp(1rem, 2vh, 1.35rem);
+    position: absolute;
+    inset-block-start: clamp(5.25rem, 10vh, 7rem);
+    inset-inline: 0;
+    z-index: 3;
+    margin-bottom: 0;
+    text-align: start;
   }
 
   .portfolioSection .sectionHeader h2 {
-    max-width: 780px;
-    font-size: clamp(2.6rem, 5.8vw, 6rem);
+    max-width: 760px;
+    color: #fff;
+    font-size: clamp(2.8rem, 4.6vw, 5.2rem);
+    line-height: 1;
   }
 
   .portfolioSection .sectionHeader p {
-    max-width: 520px;
+    max-width: 560px;
+    color: rgba(255, 255, 255, 0.72);
   }
 
   .portfolioScrollWrapper {
     display: grid;
-    min-height: min(58vh, 560px);
-    grid-template-columns: minmax(190px, 240px) 1fr;
-    gap: clamp(1.4rem, 3vw, 3.5rem);
+    min-height: 100svh;
+    grid-template-columns: minmax(118px, 156px) minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 2rem);
     align-items: center;
-    margin-inline: calc((100vw - 100%) / -2);
-    padding-inline-start: max(1.25rem, calc((100vw - 1400px) / 2));
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-block-start: clamp(5.5rem, 11vh, 8rem);
+    padding-left: max(1.25rem, calc((100vw - 1400px) / 2));
+    padding-right: 0;
+    direction: ltr;
     overflow: hidden;
   }
 
@@ -1116,7 +1129,7 @@
     display: flex;
     min-width: max-content;
     width: max-content;
-    gap: clamp(1rem, 2.2vw, 2rem);
+    gap: clamp(1.15rem, 2.4vw, 2.25rem);
     will-change: transform;
     overflow: visible;
     padding-block: 0.75rem 1rem;
@@ -1124,10 +1137,19 @@
   }
 
   .portfolioTrack > * {
-    flex: 0 0 clamp(330px, 36vw, 560px) !important;
-    min-width: clamp(330px, 36vw, 560px) !important;
-    max-width: clamp(330px, 36vw, 560px) !important;
+    flex: 0 0 clamp(340px, 34vw, 540px) !important;
+    min-width: clamp(340px, 34vw, 540px) !important;
+    max-width: clamp(340px, 34vw, 540px) !important;
     scroll-snap-align: none;
+  }
+
+  .portfolioFooter {
+    position: absolute;
+    inset-block-end: clamp(1.1rem, 3vh, 2rem);
+    left: 0;
+    z-index: 3;
+    justify-content: flex-start;
+    margin-top: 0;
   }
 }
 
@@ -1136,10 +1158,10 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding-right: 1.5rem;
-  border-right: 2px solid rgba(237, 32, 98, 0.1);
-  direction: ltr; /* Ensure dots and labels align consistently LTR on the side column */
+  gap: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  direction: ltr;
 }
 
 /* Track progress line */
@@ -1187,7 +1209,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(38, 27, 62, 0.3);
+  background: rgba(255, 255, 255, 0.28);
   border: 2px solid transparent;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   position: relative;
@@ -1205,14 +1227,14 @@
 .dotNum {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--primary-purple);
+  color: rgba(255, 255, 255, 0.86);
   line-height: 1;
 }
 
 .dotCategory {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #555;
+  color: rgba(255, 255, 255, 0.48);
   margin-top: 0.2rem;
 }
 
@@ -1221,7 +1243,7 @@
   background: var(--primary-pink);
   transform: scale(1.4);
   box-shadow: 0 0 12px var(--primary-pink);
-  border-color: #fff;
+  border-color: rgba(255, 255, 255, 0.9);
 }
 
 .activeDot .dotLabel {
@@ -1234,7 +1256,7 @@
 }
 
 .activeDot .dotCategory {
-  color: var(--primary-purple);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 /* Hover effects */
@@ -1311,16 +1333,19 @@
 }
 
 .portfolioCard {
-  min-height: clamp(248px, 46vh, 520px);
+  min-height: clamp(300px, 42vh, 460px);
   flex-direction: column;
   justify-content: flex-end;
-  border-radius: 26px;
+  direction: rtl;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
   background:
-    linear-gradient(180deg, rgba(38, 27, 62, 0.08), rgba(38, 27, 62, 0.9)),
-    linear-gradient(135deg, rgba(237, 32, 98, 0.18), rgba(38, 27, 62, 0.14));
+    linear-gradient(180deg, rgba(38, 27, 62, 0.12), rgba(38, 27, 62, 0.92)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(237, 32, 98, 0.16));
   color: #fff;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
 }
 
 .portfolioIcon {

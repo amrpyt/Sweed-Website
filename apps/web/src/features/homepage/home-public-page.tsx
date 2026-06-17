@@ -306,7 +306,7 @@ export function HomePublicPage() {
                     <path d="M-100 120 C 150 20, 350 220, 600 120 C 850 20, 1050 220, 1300 120" stroke="rgba(38, 27, 62, 0.04)" strokeWidth="1" fill="none" />
                   </svg>
                   <Image
-                    src="/images/hero/sweed-building.png"
+                    src="/images/hero/custom-image.png"
                     alt="SWEED Building Mockup"
                     width={800}
                     height={450}

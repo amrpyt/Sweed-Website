@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./preloader.module.css";
-import MetallicPaint from "./MetallicPaint";
 
 export function Preloader() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -60,10 +59,10 @@ export function Preloader() {
       <div className={styles.content}>
         <div ref={textRef} className={styles.hugeLogo} dir="ltr">
           <div ref={leftRef} className={styles.leftHalf}>
-             <MetallicPaint imageSrc="/sweed-logo-official.svg" lightColor="#ffffff" darkColor="#111111" tintColor="#ffffff" speed={0.5} refraction={0.02} />
+            <img src="/sweed-logo-official.svg" alt="SWEED Left" className={styles.logoImage} />
           </div>
           <div ref={rightRef} className={styles.rightHalf}>
-             <MetallicPaint imageSrc="/sweed-logo-official.svg" lightColor="#ffffff" darkColor="#111111" tintColor="#ffffff" speed={0.5} refraction={0.02} />
+            <img src="/sweed-logo-official.svg" alt="SWEED Right" className={styles.logoImage} />
           </div>
         </div>
       </div>

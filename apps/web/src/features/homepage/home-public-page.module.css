@@ -17,6 +17,13 @@
   font-kerning: normal;
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage {
+    scroll-behavior: auto;
+  }
 }
 
 .homepage h1,
@@ -167,23 +174,50 @@
 }
 
 .button {
+  position: relative;
   min-width: 0;
   height: auto;
   min-height: 52px;
   border: 0;
+  border-radius: var(--radius-full);
   padding: 0.86rem 1.35rem;
+  overflow: hidden;
   font-weight: 800;
   font-size: 1rem;
   line-height: 1;
   letter-spacing: -0.01em;
-  transition: transform var(--motion-fast), box-shadow var(--motion-fast);
+  transition:
+    transform var(--motion-base),
+    box-shadow var(--motion-base),
+    background var(--motion-fast);
+}
+
+.button::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity var(--motion-fast);
+  content: "";
+  pointer-events: none;
 }
 
 .button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+
+.button:hover::before {
+  opacity: 1;
+}
+
+.button:active {
+  transform: translateY(-1px);
 }
 
 .button > span {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   width: 100%;
   height: 100%;
@@ -194,16 +228,44 @@
   text-decoration: none;
 }
 
+.button > span > i {
+  transition: transform var(--motion-fast);
+}
+
+.button:hover > span > i {
+  transform: translateX(-2px);
+}
+
 .buttonPrimary {
   background: var(--primary-pink);
   color: #fff;
-  box-shadow: 0 14px 28px rgba(237, 32, 98, 0.28);
+  box-shadow:
+    0 4px 12px rgba(237, 32, 98, 0.25),
+    0 14px 28px rgba(237, 32, 98, 0.15);
+}
+
+.buttonPrimary:hover {
+  background: linear-gradient(135deg, var(--primary-pink), #c91a52);
+  box-shadow:
+    0 8px 20px rgba(237, 32, 98, 0.35),
+    0 20px 40px rgba(237, 32, 98, 0.25);
+}
+
+.buttonPrimary:focus-visible {
+  outline: 3px solid rgba(237, 32, 98, 0.4);
+  outline-offset: 2px;
 }
 
 .buttonSecondary {
   border: 1px solid rgba(255, 255, 255, 0.38);
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
+  backdrop-filter: blur(12px);
+}
+
+.buttonSecondary:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .buttonLight {
@@ -212,10 +274,24 @@
   box-shadow: 0 18px 38px rgba(38, 27, 62, 0.14);
 }
 
+.buttonLight:hover {
+  background: linear-gradient(135deg, #fff, #fafafa);
+  box-shadow: 0 24px 48px rgba(38, 27, 62, 0.2);
+}
+
 .buttonWhatsapp {
   background: #25d366;
   color: #fff;
-  box-shadow: 0 18px 38px rgba(37, 211, 102, 0.22);
+  box-shadow:
+    0 4px 12px rgba(37, 211, 102, 0.25),
+    0 18px 38px rgba(37, 211, 102, 0.15);
+}
+
+.buttonWhatsapp:hover {
+  background: linear-gradient(135deg, #25d366, #20b858);
+  box-shadow:
+    0 8px 20px rgba(37, 211, 102, 0.35),
+    0 24px 48px rgba(37, 211, 102, 0.25);
 }
 
 .heroDots {
@@ -438,12 +514,13 @@
   border-radius: 999px;
   padding: 0.62rem 0.72rem;
   background: rgba(255, 255, 255, 0.76);
-  box-shadow: none;
+  box-shadow: 0 2px 8px rgba(38, 27, 62, 0.08);
   text-align: center;
   transition:
-    border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    background 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    border-color 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .problemCard::before {
@@ -457,19 +534,25 @@
   opacity: 0;
   transform: translateX(-30%) rotate(8deg);
   transition:
-    opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 540ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .problemCard:hover {
   border-color: rgba(237, 32, 98, 0.26);
   background: #fff;
-  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(237, 32, 98, 0.15);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .problemCard:hover::before {
   opacity: 1;
   transform: translateX(135%) rotate(8deg);
+}
+
+.problemCard:focus-within {
+  outline: 2px solid rgba(237, 32, 98, 0.4);
+  outline-offset: 2px;
 }
 
 .problemCardHeader {
@@ -771,18 +854,29 @@
 .productCard:hover,
 .articleCard:hover {
   border-color: rgba(237, 32, 98, 0.32);
-  box-shadow: 0 28px 80px rgba(237, 32, 98, 0.13);
-  transform: translateY(-4px);
+  box-shadow:
+    0 12px 32px rgba(237, 32, 98, 0.12),
+    0 28px 80px rgba(237, 32, 98, 0.08);
+  transform: translateY(-6px);
+}
+
+.featureCard:focus-within,
+.portfolioCard:focus-within,
+.productCard:focus-within,
+.articleCard:focus-within {
+  outline: 2px solid rgba(237, 32, 98, 0.4);
+  outline-offset: 2px;
 }
 
 .serviceCard:hover {
   border-color: rgba(237, 32, 98, 0.22);
   background: #fff;
-  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(237, 32, 98, 0.1);
+  transform: translateY(-4px);
 }
 
 .serviceCard:hover .serviceIcon {
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .featureCard h3 {
@@ -1782,5 +1876,188 @@
   .articleCard,
   .processCard {
     min-height: auto;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY ENHANCEMENTS
+   ================================ */
+
+/* Enhanced focus states for all interactive elements */
+.homepage a:focus-visible,
+.homepage button:focus-visible {
+  outline: 3px solid rgba(237, 32, 98, 0.5);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip to content link for keyboard navigation */
+.skipLink {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  z-index: 9999;
+  border-radius: var(--radius-md);
+  padding: 12px 24px;
+  background: var(--primary-pink);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateX(-50%);
+  transition: top var(--motion-fast);
+}
+
+.skipLink:focus {
+  top: 16px;
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+  .homepage a,
+  .homepage button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .problemCard,
+  .featureCard,
+  .serviceCard,
+  .portfolioCard,
+  .productCard,
+  .articleCard {
+    border-width: 2px;
+  }
+
+  .button {
+    border-width: 2px;
+  }
+}
+
+/* Focus visible polyfill for older browsers */
+.homepage *:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ================================
+   LOADING STATES
+   ================================ */
+
+.sectionLoading {
+  position: relative;
+  min-height: 400px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.sectionLoading::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(237, 32, 98, 0.2);
+  border-top-color: var(--primary-pink);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ================================
+   IMPROVED MOBILE RESPONSIVENESS
+   ================================ */
+
+@media (max-width: 480px) {
+  .heroText h1 {
+    font-size: clamp(1.85rem, 9vw, 2.5rem);
+  }
+
+  .sectionHeader h2 {
+    font-size: clamp(1.35rem, 6vw, 1.8rem);
+  }
+
+  .button {
+    min-height: 48px;
+    padding: 0.75rem 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  .problemsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+
+  .servicesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================ */
+
+/* GPU acceleration for smooth animations */
+.problemCard,
+.featureCard,
+.serviceCard,
+.portfolioCard,
+.productCard,
+.articleCard,
+.button {
+  will-change: transform;
+}
+
+.problemCard:hover,
+.featureCard:hover,
+.serviceCard:hover,
+.portfolioCard:hover,
+.productCard:hover,
+.articleCard:hover,
+.button:hover {
+  will-change: transform, box-shadow;
+}
+
+/* Contain paint for better performance */
+.problemCard,
+.featureCard,
+.serviceCard,
+.portfolioCard,
+.productCard,
+.articleCard {
+  contain: layout style paint;
+}
+
+/* ================================
+   PRINT STYLES
+   ================================ */
+
+@media print {
+  .hero,
+  .ctaSection,
+  .button,
+  .heroDots,
+  .portfolioNav {
+    display: none;
+  }
+
+  .homepage {
+    background: #fff;
+    color: #000;
+  }
+
+  .sectionHeader,
+  .problemCard,
+  .featureCard,
+  .serviceCard {
+    page-break-inside: avoid;
   }
 }

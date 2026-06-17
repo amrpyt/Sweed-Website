@@ -7,6 +7,7 @@ import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVe
 import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
+import { BackToTop, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
@@ -230,6 +231,7 @@ export function HomePublicPage() {
 
   return (
     <>
+      <ProgressIndicator />
       <LegacyHeader page="home" />
       <main className={styles.homepage}>
         <section className={styles.hero} id="home">
@@ -435,6 +437,8 @@ export function HomePublicPage() {
       <LegacyFooter />
       <OfferFunnelController page="home" />
       <AiAdvisorWidget />
+      <BackToTop />
+      <ToastContainer />
     </>
   );
 }

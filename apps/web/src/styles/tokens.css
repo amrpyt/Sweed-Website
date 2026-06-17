@@ -1,4 +1,5 @@
 ﻿:root {
+  /* Brand Colors */
   --sweed-primary-purple: #261b3e;
   --sweed-primary-pink: #ed2062;
   --sweed-sunset-orange: #261b3e;
@@ -7,6 +8,8 @@
   --sweed-white: #ffffff;
   --sweed-gradient-primary: linear-gradient(135deg, var(--sweed-primary-pink), var(--sweed-primary-purple));
   --sweed-gradient-warm: linear-gradient(135deg, var(--sweed-primary-pink), var(--sweed-sunset-orange));
+  
+  /* Semantic Colors */
   --color-surface: #f7f8fb;
   --color-panel: #ffffff;
   --color-text: var(--sweed-primary-purple);
@@ -15,30 +18,69 @@
   --color-accent: var(--sweed-primary-pink);
   --color-accent-strong: var(--sweed-primary-purple);
   --color-accent-contrast: #ffffff;
+  --color-accent-hover: #d11d57;
+  --color-accent-soft: rgba(237, 32, 98, 0.1);
   --color-support: var(--sweed-primary-pink);
   --color-ink: #182230;
   --color-soft: #eef4f3;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  
+  /* Shadows - Elevated & Soft */
+  --shadow-xs: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(16, 24, 40, 0.1), 0 1px 2px -1px rgba(16, 24, 40, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(16, 24, 40, 0.1), 0 4px 6px -4px rgba(16, 24, 40, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(16, 24, 40, 0.1), 0 8px 10px -6px rgba(16, 24, 40, 0.1);
   --shadow-soft: 0 18px 60px rgb(16 24 40 / 10%);
+  --shadow-float: 0 24px 48px -12px rgba(38, 27, 62, 0.18);
+  
+  /* Border Radius */
+  --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 18px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  --shape-control: 999px;
+  --shape-card: 24px;
+  --shape-panel: 32px;
+  
+  /* Container Widths */
   --container: min(1120px, calc(100vw - 32px));
   --sweed-container: min(1400px, calc(100vw - 32px));
+  --container-narrow: min(800px, calc(100vw - 32px));
+  --container-wide: min(1600px, calc(100vw - 32px));
+  
+  /* Typography */
   --font-body: var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
   --font-display: var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
   --font-weight-body: 500;
+  --font-weight-medium: 600;
   --font-weight-strong: 700;
   --font-weight-display: 900;
+  
+  /* Font Sizes */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-md: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.35rem;
-  --text-2xl: clamp(2rem, 4vw, 3.5rem);
-  --text-3xl: clamp(2.75rem, 6.5vw, 6rem);
+  --text-2xl: clamp(1.5rem, 2.5vw, 2rem);
+  --text-3xl: clamp(2rem, 4vw, 3.5rem);
+  --text-4xl: clamp(2.75rem, 6.5vw, 6rem);
+  
+  /* Line Heights */
   --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
   --leading-title: 1.18;
   --leading-body: 1.8;
+  --leading-relaxed: 1.75;
+  
+  /* Spacing Scale */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -50,13 +92,29 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
-  --shape-control: 999px;
-  --shape-card: 24px;
-  --shape-panel: 32px;
-  --focus-ring: 0 0 0 4px rgb(237 32 98 / 18%);
-  --motion-fast: 160ms ease;
-  --motion-base: 240ms ease;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  
+  /* Focus Ring */
+  --focus-ring: 0 0 0 3px rgba(237, 32, 98, 0.18);
+  --focus-ring-offset: 0 0 0 2px var(--color-panel);
+  
+  /* Motion & Transitions */
+  --motion-instant: 80ms ease;
+  --motion-fast: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
   --motion-slow: 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-spring: 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Z-Index Scale */
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-fixed: 1200;
+  --z-modal-backdrop: 1300;
+  --z-modal: 1400;
+  --z-toast: 1500;
+  --z-tooltip: 1600;
 }
 
 

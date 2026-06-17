@@ -1,0 +1,139 @@
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.required {
+  color: var(--color-error);
+}
+
+.input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  background: var(--color-panel);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  transition:
+    border-color var(--motion-fast),
+    box-shadow var(--motion-fast),
+    background var(--motion-fast);
+}
+
+.input::placeholder {
+  color: var(--color-muted);
+  opacity: 0.7;
+}
+
+.input:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-line));
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: var(--color-surface);
+}
+
+.inputError {
+  border-color: var(--color-error);
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+}
+
+.inputSuccess {
+  border-color: var(--color-success);
+}
+
+.inputWithIcon {
+  padding-right: 44px;
+}
+
+.inputIcon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  color: var(--color-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.inputIconSuccess {
+  color: var(--color-success);
+}
+
+.inputIconError {
+  color: var(--color-error);
+}
+
+.helperText {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.errorText {
+  margin: 0;
+  color: var(--color-error);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.successText {
+  margin: 0;
+  color: var(--color-success);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.characterCount {
+  color: var(--color-muted);
+  text-align: left;
+  font-size: var(--text-xs);
+}
+
+.characterCountOver {
+  color: var(--color-error);
+}
+
+@media (max-width: 768px) {
+  .input {
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: var(--text-sm);
+  }
+}

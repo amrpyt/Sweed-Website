@@ -31,14 +31,14 @@
     align-items: center !important;
     justify-content: space-between !important;
     gap: 1rem !important;
-    direction: ltr !important;
+    direction: rtl !important;
   }
 
   :global(.sweed-common-top-bar) :global(.top-bar-left) {
     display: flex !important;
     align-items: center !important;
     gap: 1.5rem !important;
-    direction: rtl !important;
+    direction: ltr !important; /* Keep numbers/emails readable LTR, but within the RTL layout */
     min-width: 0 !important;
   }
 
@@ -57,7 +57,7 @@
     display: flex !important;
     align-items: center !important;
     gap: 0.65rem !important;
-    direction: ltr !important;
+    direction: ltr !important; /* Keep icons in their natural brand order LTR */
     flex: 0 0 auto !important;
   }
 

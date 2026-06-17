@@ -1044,10 +1044,9 @@
 
 .portfolioSection {
   padding-block: clamp(4.5rem, 8vw, 8rem);
-}
-
-.portfolioScrollWrapper {
-  overflow: visible;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
 }
 
 .portfolioSection .sectionHeader {
@@ -1066,56 +1065,216 @@
   line-height: 1.55;
 }
 
-.servicesSection {
-  padding-block: clamp(4.5rem, 8vw, 8rem);
+.portfolioScrollWrapper {
+  position: relative;
+  width: 100%;
 }
 
-.servicesSection .sectionHeader {
-  margin-bottom: clamp(2rem, 3vw, 3rem);
+/* On Desktop: Pinning and Grid Columns */
+@media (min-width: 769px) {
+  .portfolioScrollWrapper {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding-left: 1rem;
+    overflow: hidden;
+  }
+
+  .portfolioTrack {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    will-change: transform;
+    overflow: visible;
+    padding-bottom: 1rem;
+  }
+
+  .portfolioTrack > * {
+    flex: 0 0 350px !important;
+    min-width: 350px !important;
+    max-width: 350px !important;
+    scroll-snap-align: none;
+  }
 }
 
-.servicesSection .sectionHeader h2 {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
+/* Lateral Pin Indicator styles */
+.lateralIndicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+  border-right: 2px solid rgba(237, 32, 98, 0.1);
+  direction: ltr; /* Ensure dots and labels align consistently LTR on the side column */
 }
 
-.servicesSection .sectionHeader p {
-  max-width: 640px;
-  font-size: 0.98rem;
-  line-height: 1.55;
-  margin-inline: auto;
+/* Track progress line */
+.progressLine {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: transparent;
 }
 
-.categoryChip {
-  background: rgba(237, 32, 98, 0.1);
-  color: var(--primary-pink);
+.progressLineFill {
+  width: 100%;
+  height: 100%;
+  background: var(--primary-pink);
+  transform: scaleY(0);
+  transform-origin: top;
+  will-change: transform;
+  box-shadow: 0 0 8px var(--primary-pink);
+}
+
+.dotsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 2;
+}
+
+.indicatorDot {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  outline: none;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.dotCircle {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(38, 27, 62, 0.3);
+  border: 2px solid transparent;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+}
+
+.dotLabel {
+  display: flex;
+  flex-direction: column;
+  opacity: 0.45;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+  font-family: var(--font-cairo);
+}
+
+.dotNum {
+  font-size: 0.8rem;
   font-weight: 700;
+  color: var(--primary-purple);
+  line-height: 1;
 }
 
-.portfolioRowHeader {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.55rem;
+.dotCategory {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-top: 0.2rem;
 }
 
-.portfolioTrack {
-  display: flex;
-  gap: 0.85rem;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-  padding-bottom: 0.4rem;
-  -ms-overflow-style: none;
+/* Active Indicator state styling */
+.activeDot .dotCircle {
+  background: var(--primary-pink);
+  transform: scale(1.4);
+  box-shadow: 0 0 12px var(--primary-pink);
+  border-color: #fff;
 }
 
-.portfolioTrack::-webkit-scrollbar {
-  display: none;
+.activeDot .dotLabel {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-.portfolioTrack > * {
-  flex: 0 0 calc((100% - 2.25rem) / 4);
-  min-width: 200px;
-  max-width: 280px;
-  scroll-snap-align: start;
+.activeDot .dotNum {
+  color: var(--primary-pink);
+}
+
+.activeDot .dotCategory {
+  color: var(--primary-purple);
+}
+
+/* Hover effects */
+.indicatorDot:hover .dotCircle {
+  background: var(--primary-pink);
+  transform: scale(1.2);
+}
+
+.indicatorDot:hover .dotLabel {
+  opacity: 0.8;
+}
+
+/* Mobile responsive fallback layout */
+@media (max-width: 768px) {
+  .portfolioScrollWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .portfolioTrack {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+    -ms-overflow-style: none;
+    width: 100%;
+  }
+
+  .portfolioTrack::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolioTrack > * {
+    flex: 0 0 85% !important;
+    min-width: 270px;
+    scroll-snap-align: center;
+  }
+
+  /* Horizontal indicator below track on mobile */
+  .lateralIndicator {
+    border-right: none;
+    padding-right: 0;
+    justify-content: center;
+    order: 2; /* Put dots below track */
+    direction: rtl; /* RTL friendly layout on mobile footer */
+  }
+
+  .progressLine {
+    display: none;
+  }
+
+  .dotsWrapper {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .dotLabel {
+    display: none; /* Hide labels on mobile to save space */
+  }
+
+  .dotCircle {
+    width: 8px;
+    height: 8px;
+  }
+
+  .activeDot .dotCircle {
+    transform: scale(1.3);
+    box-shadow: 0 0 8px var(--primary-pink);
+  }
 }
 
 .portfolioCard {
@@ -1127,6 +1286,8 @@
     linear-gradient(180deg, rgba(38, 27, 62, 0.08), rgba(38, 27, 62, 0.9)),
     linear-gradient(135deg, rgba(237, 32, 98, 0.18), rgba(38, 27, 62, 0.14));
   color: #fff;
+  position: relative;
+  overflow: hidden;
 }
 
 .portfolioIcon {
@@ -1145,24 +1306,6 @@
 
 .portfolioContent {
   padding: 1rem;
-}
-
-.portfolioNav {
-  width: 2rem;
-  height: 2rem;
-  display: grid;
-  place-items: center;
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  color: var(--primary-purple);
-  background: rgba(237, 32, 98, 0.1);
-  font-size: 0.84rem;
-}
-
-.portfolioNav:hover,
-.portfolioNav:focus-visible {
-  background: rgba(237, 32, 98, 0.18);
 }
 
 .portfolioFooter {

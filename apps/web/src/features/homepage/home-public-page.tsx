@@ -1,7 +1,8 @@
 "use client";
 
 import gsap from "gsap";
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import Image from "next/image";
 import type { SimpleIcon } from "simple-icons";
@@ -242,7 +243,11 @@ const partnerLogos = [siReact, siNextdotjs, siTailwindcss, siVercel, siGithub, s
 }));
 
 export function HomePublicPage() {
+  const portfolioSectionRef = useRef<HTMLDivElement>(null);
   const portfolioTrackRef = useRef<HTMLDivElement>(null);
+  const portfolioProgressLineRef = useRef<HTMLDivElement>(null);
+  const [activePortfolioIndex, setActivePortfolioIndex] = useState(0);
+
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const gridLineLeftRef = useRef<HTMLDivElement>(null);
   const gridLineRightRef = useRef<HTMLDivElement>(null);
@@ -251,17 +256,43 @@ export function HomePublicPage() {
   const buildingRef = useRef<HTMLDivElement>(null);
   const clientsStripRef = useRef<HTMLElement>(null);
 
-  const scrollPortfolio = (direction: -1 | 1) => {
+  const scrollToPortfolioCard = (index: number) => {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      const container = portfolioTrackRef.current;
+      if (!container) return;
+      const cards = container.querySelectorAll(`.${styles.portfolioCard}`);
+      const card = cards[index];
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      }
+      setActivePortfolioIndex(index);
+      return;
+    }
+
+    const st = ScrollTrigger.getAll().find((trigger) => trigger.trigger === portfolioSectionRef.current);
+    if (!st) return;
+
+    const targetProgress = index / (homepageContent.portfolio.length - 1);
+    const targetScroll = st.start + targetProgress * (st.end - st.start);
+
+    window.scrollTo({
+      top: targetScroll,
+      behavior: "smooth"
+    });
+  };
+
+  const handleMobileScroll = () => {
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) return;
     const container = portfolioTrackRef.current;
     if (!container) return;
 
+    const scrollLeft = Math.abs(container.scrollLeft);
     const card = container.querySelector<HTMLAnchorElement>(`.${styles.portfolioCard}`);
-    const step = card ? card.getBoundingClientRect().width : container.clientWidth * 0.9;
-    const inlineDirection = getComputedStyle(container).direction === "rtl" ? 1 : -1;
-    container.scrollTo({
-      left: container.scrollLeft + direction * inlineDirection * (step + 16),
-      behavior: "smooth",
-    });
+    const cardWidth = card ? card.getBoundingClientRect().width : container.clientWidth * 0.75;
+    const index = Math.round(scrollLeft / (cardWidth + 16)); // card width + gap
+    setActivePortfolioIndex(Math.max(0, Math.min(index, homepageContent.portfolio.length - 1)));
   };
 
   useLayoutEffect(() => {
@@ -269,6 +300,8 @@ export function HomePublicPage() {
     const section = heroSectionRef.current;
     if (!section) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
 
     // Set initial states
     gsap.set([gridLineLeftRef.current, gridLineRightRef.current], { scaleY: 0, transformOrigin: "top" });
@@ -328,9 +361,54 @@ export function HomePublicPage() {
       });
     }
 
+    // Portfolio horizontal scroll trigger with lateral pin indicator
+    const portfolioSection = portfolioSectionRef.current;
+    const portfolioTrack = portfolioTrackRef.current;
+    const progressLineFill = portfolioProgressLineRef.current;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
+      if (!portfolioSection || !portfolioTrack) return;
+
+      const isRTL = document.documentElement.dir === "rtl";
+      const scrollWidth = portfolioTrack.scrollWidth - portfolioSection.clientWidth;
+
+      if (scrollWidth <= 0) return;
+
+      const portfolioTween = gsap.to(portfolioTrack, {
+        x: isRTL ? scrollWidth : -scrollWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: portfolioSection,
+          pin: true,
+          scrub: 1,
+          start: "top top+=80",
+          end: () => `+=${scrollWidth * 1.5}`,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (progressLineFill) {
+              gsap.set(progressLineFill, { scaleY: self.progress });
+            }
+            const numItems = homepageContent.portfolio.length;
+            const activeCardIndex = Math.min(
+              Math.floor(self.progress * numItems),
+              numItems - 1
+            );
+            setActivePortfolioIndex(Math.max(0, activeCardIndex));
+          },
+        },
+      });
+
+      return () => {
+        portfolioTween.kill();
+      };
+    });
+
     return () => {
       tl.kill();
       stTl.kill();
+      mm.revert();
     };
   }, []);
 
@@ -494,17 +572,49 @@ export function HomePublicPage() {
           </div>
         </section>
 
-        <section className={styles.portfolioSection} id="portfolio">
+        <section ref={portfolioSectionRef} className={styles.portfolioSection} id="portfolio">
           <div className={styles.container}>
             <SectionHeader title="أعمالنا تتحدث عن نفسها" summary="نفخر بالمشاريع الناجحة التي حققناها لعملائنا" />
-            <PortfolioCarouselActions onNext={() => scrollPortfolio(-1)} onPrevious={() => scrollPortfolio(1)} />
-            <HorizontalScroll className={styles.portfolioScrollWrapper} trackClassName={styles.portfolioTrack}>
-              {homepageContent.portfolio.map((card, index) => (
-                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                  <PortfolioCard card={card} />
-                </Reveal>
-              ))}
-            </HorizontalScroll>
+            
+            <div className={styles.portfolioScrollWrapper}>
+              {/* Pinned Lateral progress indicator */}
+              <div className={styles.lateralIndicator} aria-label="مؤشر معرض الأعمال">
+                <div className={styles.progressLine}>
+                  <div ref={portfolioProgressLineRef} className={styles.progressLineFill} />
+                </div>
+                <div className={styles.dotsWrapper}>
+                  {homepageContent.portfolio.map((card, index) => (
+                    <button
+                      key={card.title}
+                      className={`${styles.indicatorDot} ${activePortfolioIndex === index ? styles.activeDot : ""}`}
+                      onClick={() => scrollToPortfolioCard(index)}
+                      type="button"
+                      aria-label={`عرض مشروع ${card.title}`}
+                    >
+                      <span className={styles.dotCircle} />
+                      <span className={styles.dotLabel}>
+                        <span className={styles.dotNum}>0{index + 1}</span>
+                        <span className={styles.dotCategory}>{card.category}</span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Scrolling track */}
+              <div 
+                ref={portfolioTrackRef} 
+                className={styles.portfolioTrack}
+                onScroll={handleMobileScroll}
+              >
+                {homepageContent.portfolio.map((card, index) => (
+                  <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                    <PortfolioCard card={card} />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
             <div className={styles.portfolioFooter}>
               <MagneticButton>
                 <ActionButton action={{ label: "مشاهدة كل الأعمال", href: "/portfolio", icon: "fa-arrow-left", variant: "primary" }} />

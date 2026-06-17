@@ -723,9 +723,9 @@
 
 @media (width < 640px) {
   .root {
-    inset-inline: 8px;
+    inset-inline: auto 8px;
     inset-block-end: calc(8px + env(safe-area-inset-bottom));
-    justify-items: stretch;
+    justify-items: end;
   }
 
   .launcher {
@@ -735,11 +735,11 @@
   }
 
   .stack {
-    justify-items: stretch;
+    justify-items: end;
   }
 
   .whatsappFab {
-    justify-content: flex-end;
+    display: none;
   }
 
   .whatsappHint {

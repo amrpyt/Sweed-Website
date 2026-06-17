@@ -231,6 +231,9 @@ export function HomePublicPage() {
 
   return (
     <>
+      <a className={styles.skipLink} href="#home">
+        تخطي إلى المحتوى
+      </a>
       <ProgressIndicator />
       <LegacyHeader page="home" />
       <main className={styles.homepage}>
@@ -251,6 +254,10 @@ export function HomePublicPage() {
                   {homepageContent.hero.actions.map((action) => (
                     <ActionButton action={action} key={action.label} />
                   ))}
+                  <HomeButton className={`${styles.button} ${styles.buttonWhatsapp} ${styles.heroWhatsappButton}`} href={homepageContent.contact.whatsappHref} rel="noreferrer" target="_blank">
+                    <Icon name="fab fa-whatsapp" />
+                    <span>واتساب مباشر</span>
+                  </HomeButton>
                 </div>
               </Reveal>
               <div className={styles.heroDots} aria-hidden="true">
@@ -425,7 +432,7 @@ export function HomePublicPage() {
               <div className={styles.ctaButtons}>
                 <ActionButton action={{ label: "احجز استشارة مجانية", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
                 <ActionButton action={{ label: "تواصل معنا الآن", href: "/contact", icon: "fa-phone", variant: "secondary" }} />
-                <HomeButton className={`${styles.button} ${styles.buttonWhatsapp}`} href={homepageContent.contact.whatsappHref} rel="noreferrer" target="_blank">
+                <HomeButton className={`${styles.button} ${styles.buttonWhatsapp} ${styles.ctaWhatsappButton}`} href={homepageContent.contact.whatsappHref} rel="noreferrer" target="_blank">
                   <Icon name="fab fa-whatsapp" />
                   <span>واتساب</span>
                 </HomeButton>

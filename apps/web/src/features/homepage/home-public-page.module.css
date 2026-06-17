@@ -303,6 +303,7 @@
   filter: grayscale(100%);
   mix-blend-mode: multiply;
   transition: transform 0.4s ease;
+  transform: translateX(2.2%);
 }
 
 .waveSvg {

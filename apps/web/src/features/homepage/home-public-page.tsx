@@ -303,7 +303,7 @@ export function HomePublicPage() {
       opacity: 1,
       duration: 1.1,
       ease: "power3.out",
-    }, "-=0.7");
+    }, "+=0.4");
 
     // ScrollTrigger for the pyramid reveal of the Partners section over the building
     const pyramid = clientsStripRef.current?.querySelector(`.${styles.pyramidOverlay}`);

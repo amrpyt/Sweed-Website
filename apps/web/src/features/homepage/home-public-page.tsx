@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import gsap from "gsap";
+import { useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { SimpleIcon } from "simple-icons";
@@ -11,6 +12,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
 import { MagneticButton } from "@/components/motion/magnetic-button";
 import { HorizontalScroll } from "@/components/motion/horizontal-scroll";
+import { Preloader } from "@/components/motion/preloader";
 import { BackToTop, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
@@ -222,6 +224,12 @@ const partnerLogos = [siReact, siNextdotjs, siTailwindcss, siVercel, siGithub, s
 
 export function HomePublicPage() {
   const portfolioTrackRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLDivElement>(null);
+  const gridLineLeftRef = useRef<HTMLDivElement>(null);
+  const gridLineRightRef = useRef<HTMLDivElement>(null);
+  const matrixLeftRef = useRef<HTMLDivElement>(null);
+  const matrixRightRef = useRef<HTMLDivElement>(null);
+  const buildingRef = useRef<HTMLDivElement>(null);
 
   const scrollPortfolio = (direction: -1 | 1) => {
     const container = portfolioTrackRef.current;
@@ -235,26 +243,72 @@ export function HomePublicPage() {
     });
   };
 
+  useLayoutEffect(() => {
+    const section = heroSectionRef.current;
+    if (!section) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Set initial states
+    gsap.set([gridLineLeftRef.current, gridLineRightRef.current], { scaleY: 0, transformOrigin: "top" });
+    gsap.set([matrixLeftRef.current, matrixRightRef.current], { opacity: 0, filter: "blur(4px)" });
+    gsap.set(buildingRef.current, { y: 60, opacity: 0 });
+    
+    const redDots = section.querySelectorAll(`.${styles.redDot}`);
+    gsap.set(redDots, { scale: 0 });
+
+    // Timeline for assets reveal (triggered after preloader, i.e., around 1.4s delay)
+    const tl = gsap.timeline({ delay: 1.4 });
+
+    tl.to([gridLineLeftRef.current, gridLineRightRef.current], {
+      scaleY: 1,
+      duration: 1.2,
+      ease: "power4.out",
+    })
+    .to([matrixLeftRef.current, matrixRightRef.current], {
+      opacity: 0.6,
+      filter: "blur(0px)",
+      duration: 0.9,
+      ease: "power2.out",
+    }, "-=0.8")
+    .to(redDots, {
+      scale: 1,
+      duration: 0.5,
+      ease: "back.out(1.7)",
+      stagger: 0.15,
+    }, "-=0.6")
+    .to(buildingRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 1.1,
+      ease: "power3.out",
+    }, "-=0.7");
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
     <>
+      <Preloader />
       <a className={styles.skipLink} href="#home">
         تخطي إلى المحتوى
       </a>
       <ProgressIndicator />
       <LegacyHeader page="home" />
       <main className={styles.homepage}>
-        <section className={styles.hero} id="home">
+        <section ref={heroSectionRef} className={styles.hero} id="home">
           {/* Decorative Grid Lines */}
-          <div className={styles.gridLineLeft} aria-hidden="true">
+          <div ref={gridLineLeftRef} className={styles.gridLineLeft} aria-hidden="true">
             <span className={styles.redDot} />
           </div>
-          <div className={styles.gridLineRight} aria-hidden="true">
+          <div ref={gridLineRightRef} className={styles.gridLineRight} aria-hidden="true">
             <span className={styles.redDot} />
           </div>
 
           {/* Dotted matrices */}
-          <div className={`${styles.dottedMatrix} ${styles.matrixLeft}`} aria-hidden="true" />
-          <div className={`${styles.dottedMatrix} ${styles.matrixRight}`} aria-hidden="true" />
+          <div ref={matrixLeftRef} className={`${styles.dottedMatrix} ${styles.matrixLeft}`} aria-hidden="true" />
+          <div ref={matrixRightRef} className={`${styles.dottedMatrix} ${styles.matrixRight}`} aria-hidden="true" />
 
           <div className={styles.container}>
             <div className={styles.heroContent}>
@@ -297,8 +351,8 @@ export function HomePublicPage() {
                 </div>
               </HeroFadeIn>
 
-              <HeroFadeIn delay={0.75} className={styles.buildingSection}>
-                <div className={styles.buildingWrapper}>
+              <div className={styles.buildingSection}>
+                <div ref={buildingRef} className={styles.buildingWrapper}>
                   {/* Waves SVG */}
                   <svg className={styles.waveSvg} viewBox="0 0 1200 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M-100 150 C 150 50, 350 250, 600 150 C 850 50, 1050 250, 1300 150" stroke="rgba(38, 27, 62, 0.08)" strokeWidth="1.5" fill="none" />
@@ -314,7 +368,7 @@ export function HomePublicPage() {
                     className={styles.buildingImg}
                   />
                 </div>
-              </HeroFadeIn>
+              </div>
 
               <div className={styles.heroMetricsWrapper}>
                 <div className={styles.metricsRow}>

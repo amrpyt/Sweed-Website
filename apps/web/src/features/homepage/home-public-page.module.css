@@ -141,7 +141,7 @@
   max-width: 960px;
   margin: 0 auto 2.2rem;
   font-size: clamp(3.2rem, 6.5vw, 6.2rem);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.03em;
   color: #1a1a1a;
@@ -195,7 +195,7 @@
   justify-content: flex-start;
   padding: 0 !important;
   direction: ltr; /* Order icon on left, text on right */
-  border-radius: 0;
+  border-radius: 8px;
   box-sizing: border-box;
 }
 
@@ -263,15 +263,15 @@
 
 /* Building Section */
 .buildingSection {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  height: auto;
-  min-height: 280px;
-  overflow: visible;
+  align-items: flex-start;
+  height: 230px;
+  overflow: hidden;
+  z-index: 2;
 }
 
 .buildingWrapper {
@@ -280,7 +280,8 @@
   max-width: 760px;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
+  height: 100%;
 }
 
 .buildingImg {

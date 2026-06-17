@@ -652,49 +652,25 @@
     transition: all 0.3s ease !important;
   }
 
+  :global(.sweed-common-header.is-home-page.compact) {
+    top: 0 !important;
+  }
+
   @media (min-width: 769px) {
     :global(.sweed-common-header.is-home-page) :global(.sweed-common-logo) {
-      display: none !important;
+      display: flex !important;
+      order: 3 !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.hamburger) {
-      display: flex !important;
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      flex-direction: column !important;
-      gap: 5px !important;
-      justify-content: center !important;
-      align-items: center !important;
-      width: 40px !important;
-      height: 40px !important;
-      padding: 0 !important;
-      cursor: pointer !important;
-    }
-    
-    :global(.sweed-common-header.is-home-page) :global(.hamburger) span {
-      background: #1a1a1a !important;
-      width: 24px !important;
-      height: 2px !important;
-      margin: 0 !important;
-      border-radius: 99px !important;
-      transition: all 0.3s ease !important;
-    }
-    
-    :global(.sweed-common-header.is-home-page) :global(.hamburger.active) span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg) !important;
-    }
-    :global(.sweed-common-header.is-home-page) :global(.hamburger.active) span:nth-child(2) {
-      opacity: 0 !important;
-    }
-    :global(.sweed-common-header.is-home-page) :global(.hamburger.active) span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg) !important;
+      display: none !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.nav-menu) {
       flex: 1 1 auto !important;
       justify-content: center !important;
       gap: 2.2rem !important;
+      order: 2 !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.nav-menu) a {
@@ -733,6 +709,7 @@
     
     :global(.sweed-common-header.is-home-page) :global(.nav-buttons) {
       display: flex !important;
+      order: 1 !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) {

@@ -16,10 +16,12 @@ export function HeroTextReveal({
   children,
   className,
   as: Tag = "h1",
+  delay = 0,
 }: {
   children: ReactNode;
   className?: string;
   as?: "h1" | "h2" | "h3" | "p" | "span" | "div";
+  delay?: number;
 }) {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -40,7 +42,7 @@ export function HeroTextReveal({
     });
 
     // Animate in with stagger
-    const tl = gsap.timeline({ delay: 0.15 });
+    const tl = gsap.timeline({ delay });
     tl.to(words, {
       opacity: 1,
       y: 0,

@@ -238,6 +238,7 @@ export function HomePublicPage() {
   const matrixLeftRef = useRef<HTMLDivElement>(null);
   const matrixRightRef = useRef<HTMLDivElement>(null);
   const buildingRef = useRef<HTMLDivElement>(null);
+  const clientsStripRef = useRef<HTMLElement>(null);
 
   const scrollPortfolio = (direction: -1 | 1) => {
     const container = portfolioTrackRef.current;
@@ -291,8 +292,32 @@ export function HomePublicPage() {
       ease: "power3.out",
     }, "-=0.7");
 
+    // ScrollTrigger for the pyramid reveal of the Partners section over the building
+    const pyramid = clientsStripRef.current?.querySelector(`.${styles.pyramidOverlay}`);
+    const stTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section, // heroSectionRef.current
+        start: "top top", // Starts immediately on scroll
+        end: "bottom top", // End when bottom of hero section hits top of screen
+        scrub: 1,          // Smooth scrubbing
+      }
+    });
+
+    if (pyramid) {
+      stTl.to(pyramid, {
+        clipPath: "polygon(0% 100%, 0% 100%, 50% 0%, 100% 100%, 100% 100%)",
+        duration: 1,
+        ease: "none"
+      }).to(pyramid, {
+        clipPath: "polygon(0% 100%, 0% 0%, 50% 0%, 100% 0%, 100% 100%)",
+        duration: 1,
+        ease: "none"
+      });
+    }
+
     return () => {
       tl.kill();
+      stTl.kill();
     };
   }, []);
 
@@ -378,27 +403,12 @@ export function HomePublicPage() {
                 </div>
               </div>
 
-              <div className={styles.heroMetricsWrapper}>
-                <div className={styles.metricsRow}>
-                  {homepageContent.hero.metrics.map((metric, idx) => (
-                    <div key={idx} className={styles.metricItem}>
-                      <span className={styles.metricVal}>{metric.value}</span>
-                      <span className={styles.metricLbl}>{metric.label}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className={styles.metricsFooterLine}>
-                  <span className={styles.footerLabelLeft}>01</span>
-                  <span className={styles.footerDot} />
-                  <span className={styles.footerLabelRight}>08</span>
-                </div>
-              </div>
-
             </div>
           </div>
         </section>
 
-        <section className={styles.clientsStrip} id="expertise" aria-label="عملاؤنا">
+        <section ref={clientsStripRef} className={styles.clientsStrip} id="expertise" aria-label="عملاؤنا">
+          <div className={styles.pyramidOverlay} />
           <div className={styles.clientsLabel}>شركاء نجاح اشتغلوا معانا</div>
           <LogoLoop
             ariaLabel="شركاء نجاح اشتغلوا معانا"

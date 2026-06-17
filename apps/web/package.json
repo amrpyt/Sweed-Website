@@ -45,6 +45,7 @@
     "simple-icons": "^16.23.0",
     "tailwindcss": "^4.3.0",
     "tom-select": "^2.6.1",
+    "use-scramble": "^2.2.15",
     "zod": "^4.4.3"
   },
   "devDependencies": {

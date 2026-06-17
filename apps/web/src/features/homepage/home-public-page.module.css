@@ -313,80 +313,18 @@
   pointer-events: none;
 }
 
-/* Metrics Footer */
-.heroMetricsWrapper {
-  margin-top: 0;
-  width: 100%;
-  border-top: 1px solid rgba(38, 27, 62, 0.08);
-  padding-top: 2rem;
-  position: relative;
-  z-index: 5;
-}
-
-.metricsRow {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-  justify-items: center;
-}
-
-.metricItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  width: 100%;
-  position: relative;
-}
-
-.metricItem:not(:last-child)::after {
-  content: "";
+/* Pyramid Overlay Animation */
+.pyramidOverlay {
   position: absolute;
+  bottom: 100%;
   left: 0;
-  top: 15%;
-  bottom: 15%;
-  width: 1px;
-  background: rgba(38, 27, 62, 0.08);
-}
-
-.metricVal {
-  font-size: clamp(2rem, 3.2vw, 2.8rem);
-  font-weight: 800;
-  color: #ed2062;
-  line-height: 1;
-}
-
-.metricLbl {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #4a4a4a;
-}
-
-.metricsFooterLine {
-  margin-top: 2.2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  border-top: 1px solid rgba(38, 27, 62, 0.05);
-  padding-top: 1.2rem;
-}
-
-.footerDot {
-  width: 6px;
-  height: 6px;
-  background: #ed2062;
-}
-
-.footerLabelLeft,
-.footerLabelRight {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  display: inline-block;
-  border-bottom: 2px solid #1a1a1a;
-  padding-bottom: 2px;
-  line-height: 1;
+  height: 100vh;
+  background: #ffffff;
+  clip-path: polygon(0% 100%, 0% 100%, 50% 100%, 100% 100%, 100% 100%);
+  will-change: clip-path;
+  z-index: 10;
+  pointer-events: none;
 }
 
 /* Mobile Responsiveness for Hero */
@@ -445,28 +383,7 @@
     display: none;
   }
   
-  .heroMetricsWrapper {
-    margin-top: 3rem;
-  }
-  
-  .metricsRow {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 0;
-  }
-  
-  .metricItem:not(:last-child)::after {
-    display: none;
-  }
-  
-  .metricItem:nth-child(even)::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 15%;
-    bottom: 15%;
-    width: 1px;
-    background: rgba(38, 27, 62, 0.08);
-  }
+/* Removed metrics mobile */
 }
 
 .buttonLight {
@@ -548,9 +465,7 @@
   position: relative;
   border-block: 1px solid rgba(38, 27, 62, 0.08);
   padding: clamp(2.5rem, 4.5vw, 4.5rem) 0;
-  background:
-    linear-gradient(90deg, rgba(237, 32, 98, 0.035), rgba(38, 27, 62, 0.025) 42%, rgba(237, 32, 98, 0.035)),
-    #fff;
+  background: #ffffff;
   color: var(--primary-purple);
 }
 

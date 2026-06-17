@@ -46,7 +46,6 @@ function isActive(page: LegacyPageKey, active: LegacyPageKey) {
 
 export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isCompact, setIsCompact] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
   const consultationHref = page === "home" ? "/#contact" : "/contact";
@@ -62,20 +61,12 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   }, [isOpen]);
 
   useEffect(() => {
-    const onScroll = () => setIsCompact(window.scrollY > 18);
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.classList.toggle("sweed-header-compact", isCompact);
+    document.body.classList.add("sweed-header-compact");
 
     return () => {
       document.body.classList.remove("sweed-header-compact");
     };
-  }, [isCompact]);
+  }, []);
 
   useEffect(() => {
     if (page === "home") {
@@ -108,7 +99,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   return (
     <>
       {page !== "home" && (
-        <div className={`top-bar sweed-common-top-bar ${isCompact ? "compact" : ""}`}>
+        <div className={`top-bar sweed-common-top-bar compact`}>
           <div className="top-bar-content">
             <div className="top-bar-left">
               <div className="top-bar-item">
@@ -136,7 +127,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
         </div>
       )}
 
-      <header className={`header sweed-common-header ${isCompact ? "compact" : ""} ${isOpen ? "mobile-menu-open" : ""} ${page === "home" ? "is-home-page" : ""}`} id="mainHeader">
+      <header className={`header sweed-common-header compact ${isOpen ? "mobile-menu-open" : ""} ${page === "home" ? "is-home-page" : ""}`} id="mainHeader">
         <nav aria-label="القائمة الرئيسية" className="nav-container">
           <button
             ref={menuButtonRef}

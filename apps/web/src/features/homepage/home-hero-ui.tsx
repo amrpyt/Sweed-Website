@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Button, Card, Chip } from "@heroui/react";
 import type { ReactNode } from "react";
 
@@ -12,21 +13,20 @@ type HomeButtonProps = {
 };
 
 export function HomeButton({ children, className, href, rel, target }: HomeButtonProps) {
+  const router = useRouter();
+
   const navigate = () => {
     if (target === "_blank") {
       window.open(href, target, rel ? "noopener,noreferrer" : undefined);
       return;
     }
-
-    window.location.href = href;
+    router.push(href);
   };
 
   return (
-    <Button className={className} onPress={navigate}>
-      <span>
-        {children}
-      </span>
-    </Button>
+    <button type="button" className={className} onClick={navigate}>
+      {children}
+    </button>
   );
 }
 

@@ -124,7 +124,7 @@
   border-radius: 999px;
   padding: 0.48rem 1.05rem;
   background: rgba(255, 255, 255, 0.1);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0;
   animation: heroBadgeFloat 4.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
@@ -132,10 +132,10 @@
 .heroText h1 {
   max-width: 900px;
   margin: 0 auto 1.4rem;
-  font-size: clamp(3rem, 5.5vw, 5.2rem);
-  font-weight: 780;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.45rem, 4.7vw, 4.45rem);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: 0;
   text-shadow: 0 10px 30px rgba(38, 27, 62, 0.3);
 }
 
@@ -150,8 +150,8 @@
   max-width: 58ch;
   margin-inline: auto;
   margin-top: 0.6rem;
-  font-size: clamp(1.12rem, 1.6vw, 1.42rem);
-  font-weight: 680;
+  font-size: clamp(1rem, 1.28vw, 1.2rem);
+  font-weight: 450;
 }
 
 .heroDescription {
@@ -159,7 +159,7 @@
   max-width: 54ch;
   margin-inline: auto;
   font-size: clamp(0.98rem, 1.18vw, 1.12rem);
-  font-weight: 560;
+  font-weight: 460;
 }
 
 .heroActions,
@@ -184,8 +184,8 @@
   border-radius: var(--radius-full);
   padding: 0.86rem 1.35rem;
   overflow: hidden;
-  font-weight: 800;
-  font-size: 1rem;
+  font-weight: 560;
+  font-size: 0.94rem;
   line-height: 1;
   letter-spacing: 0;
   transition:
@@ -287,13 +287,6 @@
   box-shadow:
     0 4px 12px rgba(37, 211, 102, 0.25),
     0 18px 38px rgba(37, 211, 102, 0.15);
-}
-
-.heroWhatsappButton {
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow:
-    0 0 0 4px rgba(37, 211, 102, 0.12),
-    0 18px 38px rgba(37, 211, 102, 0.24);
 }
 
 .ctaWhatsappButton {
@@ -1468,9 +1461,9 @@
   }
 
   .heroText h1 {
-    font-size: clamp(2.4rem, 10.5vw, 3.6rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 8.7vw, 2.85rem);
+    line-height: 1.18;
+    letter-spacing: 0;
   }
 
   .heroDots {

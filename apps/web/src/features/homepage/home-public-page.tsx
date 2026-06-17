@@ -254,10 +254,6 @@ export function HomePublicPage() {
                   {homepageContent.hero.actions.map((action) => (
                     <ActionButton action={action} key={action.label} />
                   ))}
-                  <HomeButton className={`${styles.button} ${styles.buttonWhatsapp} ${styles.heroWhatsappButton}`} href={homepageContent.contact.whatsappHref} rel="noreferrer" target="_blank">
-                    <Icon name="fab fa-whatsapp" />
-                    <span>واتساب مباشر</span>
-                  </HomeButton>
                 </div>
               </Reveal>
               <div className={styles.heroDots} aria-hidden="true">

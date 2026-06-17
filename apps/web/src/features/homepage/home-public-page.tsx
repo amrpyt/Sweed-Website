@@ -359,7 +359,7 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <div className={styles.heroContent}>
               <div className={styles.heroEyebrowWrapper}>
-                <HeroFadeIn delay={3.0}>
+                <HeroFadeIn delay={2.5}>
                   <div className={styles.heroEyebrow}>
                     <span>SWEED</span>
                     <span className={styles.divider} />
@@ -368,7 +368,7 @@ export function HomePublicPage() {
                 </HeroFadeIn>
               </div>
 
-              <HeroTextReveal className={styles.heroH1} delay={3.0}>
+              <HeroTextReveal className={styles.heroH1} delay={2.5}>
                 <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>نصنع </span>
                 <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>العلامات </span>
                 <br className={styles.h1Break} />
@@ -378,7 +378,7 @@ export function HomePublicPage() {
                 <span data-word className={styles.highlightText} style={{ display: "inline-block", whiteSpace: "pre" }}>المستقبل.</span>
               </HeroTextReveal>
 
-              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={3.3}>
+              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={2.8}>
                 <p className={styles.heroSubtitle}>
                   نحن وكالة تسويق وتصميم علامات تجارية متكاملة.
                 </p>
@@ -387,7 +387,7 @@ export function HomePublicPage() {
                 </p>
               </HeroFadeIn>
 
-              <HeroFadeIn delay={3.5}>
+              <HeroFadeIn delay={3.0}>
                 <div className={styles.heroActions}>
                   {homepageContent.hero.actions.map((action) => (
                     <MagneticButton key={action.label}>

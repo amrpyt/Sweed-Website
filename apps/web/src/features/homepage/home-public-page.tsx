@@ -278,8 +278,8 @@ export function HomePublicPage() {
     const redDots = section.querySelectorAll(`.${styles.redDot}`);
     gsap.set(redDots, { scale: 0 });
 
-    // Timeline for assets reveal (triggered strictly after preloader finishes: 1.2s)
-    const tl = gsap.timeline({ delay: 0 });
+    // Timeline for assets reveal (starts when preloader triangle begins opening: 1.6s)
+    const tl = gsap.timeline({ delay: 1.6 });
 
     tl.to([gridLineLeftRef.current, gridLineRightRef.current], {
       scaleY: 1,
@@ -359,7 +359,7 @@ export function HomePublicPage() {
           <div className={styles.container}>
             <div className={styles.heroContent}>
               <div className={styles.heroEyebrowWrapper}>
-                <HeroFadeIn delay={1.2}>
+                <HeroFadeIn delay={3.0}>
                   <div className={styles.heroEyebrow}>
                     <span>SWEED</span>
                     <span className={styles.divider} />
@@ -368,7 +368,7 @@ export function HomePublicPage() {
                 </HeroFadeIn>
               </div>
 
-              <HeroTextReveal className={styles.heroH1} delay={1.2}>
+              <HeroTextReveal className={styles.heroH1} delay={3.0}>
                 <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>نصنع </span>
                 <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>العلامات </span>
                 <br className={styles.h1Break} />
@@ -378,7 +378,7 @@ export function HomePublicPage() {
                 <span data-word className={styles.highlightText} style={{ display: "inline-block", whiteSpace: "pre" }}>المستقبل.</span>
               </HeroTextReveal>
 
-              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={1.5}>
+              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={3.3}>
                 <p className={styles.heroSubtitle}>
                   نحن وكالة تسويق وتصميم علامات تجارية متكاملة.
                 </p>
@@ -387,7 +387,7 @@ export function HomePublicPage() {
                 </p>
               </HeroFadeIn>
 
-              <HeroFadeIn delay={1.7}>
+              <HeroFadeIn delay={3.5}>
                 <div className={styles.heroActions}>
                   {homepageContent.hero.actions.map((action) => (
                     <MagneticButton key={action.label}>

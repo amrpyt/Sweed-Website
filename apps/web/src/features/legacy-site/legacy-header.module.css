@@ -137,7 +137,8 @@
     align-items: center !important;
     gap: 1rem !important;
     text-decoration: none !important;
-    flex: 0 0 auto !important;
+    flex: 1 1 0% !important; /* Force equal width to keep nav-menu perfectly centered */
+    justify-content: flex-start !important;
   }
 
   :global(.sweed-common-logo) :global(.sweed-official-logo) {
@@ -178,7 +179,7 @@
     margin: 0 !important;
     padding: 0 !important;
     min-width: 0 !important;
-    flex: 1 1 auto !important;
+    flex: 0 0 auto !important; /* Let it take its natural width */
     justify-content: center !important;
   }
 
@@ -215,7 +216,8 @@
   :global(.sweed-common-header) :global(.nav-buttons) {
     display: flex !important;
     gap: 1rem !important;
-    flex: 0 0 auto !important;
+    flex: 1 1 0% !important; /* Force equal width to keep nav-menu perfectly centered */
+    justify-content: flex-end !important;
   }
 
   :global(.sweed-common-header) :global(.btn-consultation) {

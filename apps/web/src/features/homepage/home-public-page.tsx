@@ -247,7 +247,6 @@ export function HomePublicPage() {
   const portfolioTrackRef = useRef<HTMLDivElement>(null);
   const portfolioProgressLineRef = useRef<HTMLDivElement>(null);
   const hoverPillRef = useRef<HTMLDivElement>(null);
-  const [activePortfolioIndex, setActivePortfolioIndex] = useState(0);
 
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const gridLineLeftRef = useRef<HTMLDivElement>(null);
@@ -265,20 +264,6 @@ export function HomePublicPage() {
     if (card) {
       card.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-    setActivePortfolioIndex(index);
-  };
-
-  const handleMobileScroll = () => {
-    const isMobile = window.innerWidth <= 768;
-    if (!isMobile) return;
-    const container = portfolioTrackRef.current;
-    if (!container) return;
-
-    const scrollLeft = Math.abs(container.scrollLeft);
-    const card = container.querySelector<HTMLAnchorElement>(`.${styles.portfolioCard}`);
-    const cardWidth = card ? card.getBoundingClientRect().width : container.clientWidth * 0.75;
-    const index = Math.round(scrollLeft / (cardWidth + 16)); // card width + gap
-    setActivePortfolioIndex(Math.max(0, Math.min(index, homepageContent.portfolio.length - 1)));
   };
 
   useLayoutEffect(() => {
@@ -380,16 +365,7 @@ export function HomePublicPage() {
               end: "top 35%",    // Finish animating when the card is near the center
               scrub: 1,
               onUpdate: (self) => {
-                if (self.isActive || self.progress > 0) {
-                  // Update progress indicator based on which card is active
-                  setActivePortfolioIndex(index);
-                  if (progressLineFill) {
-                    gsap.to(progressLineFill, { 
-                      scaleX: Math.max(0.05, (index + self.progress) / cards.length),
-                      duration: 0.1
-                    });
-                  }
-                }
+                // We no longer use activePortfolioIndex
               }
             }
           }
@@ -649,7 +625,6 @@ export function HomePublicPage() {
               <div 
                 ref={portfolioTrackRef} 
                 className={styles.portfolioTrack}
-                onScroll={handleMobileScroll}
               >
                 {homepageContent.portfolio.map((card) => (
                   <PortfolioCard card={card} key={card.title} />

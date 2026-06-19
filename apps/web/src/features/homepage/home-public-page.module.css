@@ -295,7 +295,7 @@
 
 /* Building Section */
 .buildingSection {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   position: relative;
   width: 100%;
   display: flex;
@@ -324,8 +324,6 @@
   clip-path: inset(0 0 35% 0);
   margin-top: 0;
   margin-bottom: -28%;
-  filter: grayscale(100%);
-  mix-blend-mode: multiply;
   transition: transform 0.4s ease;
   transform: translateX(0.5%);
 }
@@ -375,7 +373,8 @@
   }
   
   .heroH1 {
-    font-size: 2.3rem;
+    max-width: calc(100vw - 2rem);
+    font-size: 2.15rem;
     margin-bottom: 1.5rem;
   }
   
@@ -401,6 +400,12 @@
   }
   
   .button {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .heroActions .button {
+    min-width: 0;
     width: 100%;
   }
   

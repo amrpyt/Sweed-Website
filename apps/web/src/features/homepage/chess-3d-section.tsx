@@ -1,11 +1,33 @@
 "use client";
 
 import Script from "next/script";
-import { createElement } from "react";
+import { createElement, useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./chess-3d-section.module.css";
 
 export function Chess3DSection() {
+  const viewerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const viewer = viewerRef.current;
+    if (!viewer) return;
+
+    let frame = 0;
+    let angle = 0;
+    let last = performance.now();
+
+    const rotate = (now: number) => {
+      angle = (angle + (now - last) * 0.012) % 360;
+      last = now;
+      const distance = window.innerWidth <= 520 ? "4.2m" : window.innerWidth <= 860 ? "3.4m" : "3.2m";
+      viewer.setAttribute("camera-orbit", `${angle.toFixed(2)}deg 72deg ${distance}`);
+      frame = requestAnimationFrame(rotate);
+    };
+
+    frame = requestAnimationFrame(rotate);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <section className={styles.section} aria-label="SWEED 3D strategy board">
       <Script
@@ -21,8 +43,8 @@ export function Chess3DSection() {
             "auto-rotate": "",
             "auto-rotate-delay": "0",
             "camera-controls": "true",
-            "camera-orbit": "0deg 72deg 2.6m",
-            "camera-target": "0m 0.65m 0m",
+            "camera-orbit": "0deg 72deg 3.2m",
+            "camera-target": "-0.5m 0.65m 0m",
             className: styles.viewer,
             "disable-zoom": "",
             "environment-image": "neutral",
@@ -33,6 +55,7 @@ export function Chess3DSection() {
             loading: "eager",
             "rotation-per-second": "14deg",
             "shadow-intensity": "0.35",
+            ref: viewerRef,
             src: "/models/chess-3d.glb",
           })}
           <Image

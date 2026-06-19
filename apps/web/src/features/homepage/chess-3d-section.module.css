@@ -158,7 +158,7 @@
   }
 
   .viewer {
-    width: 98vw;
+    width: min(92vw, 620px);
     height: 46vh;
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -197,7 +197,7 @@
   }
 
   .viewer {
-    width: 102vw;
+    width: 92vw;
     height: 44vh;
     opacity: 1;
     transform: translateY(0) scale(1);

@@ -296,8 +296,7 @@ export function HomePublicPage() {
     const redDots = section.querySelectorAll(`.${styles.redDot}`);
     gsap.set(redDots, { scale: 0 });
 
-    // Timeline for assets reveal (starts when preloader triangle begins opening: 1.6s)
-    const tl = gsap.timeline({ delay: 1.6 });
+    const tl = gsap.timeline({ delay: 0.2 });
 
     tl.to([gridLineLeftRef.current, gridLineRightRef.current], {
       scaleY: 1,
@@ -321,7 +320,7 @@ export function HomePublicPage() {
       opacity: 1,
       duration: 1.1,
       ease: "power3.out",
-    }, "+=0.4");
+    }, "-=0.2");
 
     // ScrollTrigger for the pyramid reveal of the Partners section over the building
     const pyramid = clientsStripRef.current?.querySelector(`.${styles.pyramidOverlay}`);
@@ -483,7 +482,7 @@ export function HomePublicPage() {
 
           <div className={styles.container}>
             <div className={styles.heroContent}>
-              <HeroTextReveal className={styles.heroH1} delay={2.5}>
+              <HeroTextReveal className={styles.heroH1} delay={0.15}>
                 <span className={styles.h1Line}>
                   <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>نصنع </span>
                   <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>العلامات </span>
@@ -496,7 +495,7 @@ export function HomePublicPage() {
                 </span>
               </HeroTextReveal>
 
-              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={2.8}>
+              <HeroFadeIn className={styles.heroSubtitleWrapper} delay={0.25}>
                 <p className={styles.heroSubtitle}>
                   نحن وكالة تسويق وتصميم علامات تجارية متكاملة.
                 </p>
@@ -505,7 +504,7 @@ export function HomePublicPage() {
                 </p>
               </HeroFadeIn>
 
-              <HeroFadeIn delay={3.0}>
+              <HeroFadeIn delay={0.35}>
                 <div className={styles.heroActions}>
                   <MagneticButton>
                     <ActionButton action={homepageContent.hero.actions[0]} />

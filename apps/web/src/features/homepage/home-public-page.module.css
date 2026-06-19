@@ -26,14 +26,12 @@
   }
 }
 
-.homepage h1,
-.homepage h2,
-.homepage h3 {
+.homepage :where(h1, h2, h3) {
   color: #261b3e;
   text-wrap: balance;
 }
 
-.homepage p {
+.homepage :where(p) {
   color: #6d6e70;
   text-wrap: pretty;
 }
@@ -48,7 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(800px, 92vh, 1000px);
+  min-height: clamp(740px, 88vh, 920px);
   overflow: hidden;
   background: #fafafa;
   color: #261b3e;
@@ -141,9 +139,9 @@
 }
 
 .heroH1 {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto 2.2rem;
-  font-size: clamp(3.2rem, 6.5vw, 6.2rem);
+  font-size: clamp(2.9rem, 5.5vw, 5.35rem);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: 0;
@@ -297,7 +295,7 @@
 
 /* Building Section */
 .buildingSection {
-  margin-top: -15rem;
+  margin-top: 2.5rem;
   position: relative;
   width: 100%;
   display: flex;
@@ -316,15 +314,16 @@
 }
 
 .buildingImg {
-  width: 100%;
+  width: min(100%, 1120px);
   height: auto;
+  margin-inline: auto;
   z-index: 2;
   object-fit: contain;
   object-position: bottom;
   display: block;
   clip-path: inset(0 0 35% 0);
-  margin-top: -5%;
-  margin-bottom: -35%;
+  margin-top: 0;
+  margin-bottom: -28%;
   filter: grayscale(100%);
   mix-blend-mode: multiply;
   transition: transform 0.4s ease;

@@ -21,7 +21,7 @@ export function Chess3DSection() {
             "auto-rotate": "",
             "auto-rotate-delay": "0",
             "camera-controls": "true",
-            "camera-orbit": "0deg 75deg 3.2m",
+            "camera-orbit": "0deg 72deg 2.6m",
             "camera-target": "0m 0.65m 0m",
             className: styles.viewer,
             "disable-zoom": "",

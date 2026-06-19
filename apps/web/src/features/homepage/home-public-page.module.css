@@ -29,10 +29,12 @@
 .homepage h1,
 .homepage h2,
 .homepage h3 {
+  color: #261b3e;
   text-wrap: balance;
 }
 
 .homepage p {
+  color: #6d6e70;
   text-wrap: pretty;
 }
 
@@ -49,7 +51,7 @@
   min-height: clamp(800px, 92vh, 1000px);
   overflow: hidden;
   background: #fafafa;
-  color: #1a1a1a;
+  color: #261b3e;
   padding-block: 4rem;
 }
 
@@ -145,7 +147,7 @@
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: 0;
-  color: #1a1a1a;
+  color: #261b3e;
   text-align: center;
 }
 
@@ -153,12 +155,17 @@
   display: block;
 }
 
+.h1Line {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .highlightText {
   color: #ed2062;
 }
 
 .heroSubtitleWrapper {
-  max-width: 65ch;
+  max-width: min(92vw, 920px);
   margin-inline: auto;
   text-align: center;
   margin-bottom: 3rem;
@@ -167,8 +174,8 @@
 .heroSubtitle {
   margin: 0;
   margin-bottom: 0.4rem;
-  color: #4a4a4a;
-  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  color: #6d6e70;
+  font-size: clamp(1.12rem, 1.5vw, 1.4rem);
   line-height: 1.8;
   font-weight: 450;
 }
@@ -200,6 +207,10 @@
   box-sizing: border-box;
   cursor: pointer;
   z-index: 50;
+}
+
+.heroActions .button {
+  min-width: min(92vw, 420px);
 }
 
 .button:hover {
@@ -237,37 +248,51 @@
 }
 
 .buttonPrimary {
-  background: #ed2062;
+  background: var(--primary-purple);
   color: #ffffff;
-  border: none;
+  border: 1px solid rgba(38, 27, 62, 0.28);
   box-shadow: none;
 }
 
+.buttonPrimary::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: 10px;
+  background: #ed2062;
+}
+
+.buttonPrimary .buttonText {
+  background: transparent;
+  color: #ffffff;
+}
+
 .buttonPrimary .buttonIconPrefix {
-  background: #d01350;
+  background: transparent;
   color: #ffffff;
 }
 
 .buttonPrimary:hover {
-  background: #e21857;
+  background: #1f1735;
 }
 
 .buttonSecondary {
   background: #ffffff;
-  color: #1a1a1a;
-  border: 1px solid #1a1a1a;
+  color: #ed2062;
+  border: 1px solid #ed2062;
   box-shadow: none;
 }
 
 .buttonSecondary .buttonIconPrefix {
-  background: #f2f2f2;
-  color: #1a1a1a;
-  border-inline-start: 1px solid #1a1a1a;
+  background: #ffffff;
+  color: #ed2062;
+  border-inline-start: 1px solid #ed2062;
 }
 
 .buttonSecondary:hover {
-  background: #fcfcfc;
-  border-color: #000000;
+  background: #fff7fa;
+  border-color: #ed2062;
 }
 
 /* Building Section */
@@ -492,13 +517,13 @@
   display: block;
   width: clamp(58px, 7.4vw, 92px);
   height: clamp(38px, 5vw, 58px);
-  fill: rgba(38, 27, 62, 0.56);
+  fill: #6d6e70;
   transition: fill var(--motion-base), opacity var(--motion-base), transform var(--motion-base);
-  opacity: 0.82;
+  opacity: 1;
 }
 
 .clientLogo:hover {
-  fill: rgba(38, 27, 62, 0.82);
+  fill: #6d6e70;
   opacity: 1;
 }
 

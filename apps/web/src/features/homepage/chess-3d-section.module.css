@@ -34,16 +34,15 @@
   width: min(100% - 2rem, 1320px);
   min-height: 100svh;
   margin-inline: auto;
-  place-items: center;
-  padding-block: clamp(5rem, 8vw, 7rem);
+  align-content: center;
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  padding-block: clamp(4rem, 6vw, 5rem);
 }
 
 .copy {
-  position: absolute;
-  inset-inline: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
+  order: 1;
+  position: relative;
+  z-index: 6;
   display: grid;
   width: min(100%, 1320px);
   max-width: none;
@@ -76,11 +75,11 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  color: #ffffff;
-  font-size: clamp(4rem, 10.4vw, 10rem);
+  color: #ffffff !important;
+  font-size: clamp(3rem, 6.4vw, 6.8rem);
   font-stretch: 110%;
   font-weight: 500;
-  line-height: 0.92;
+  line-height: 1;
   letter-spacing: 0;
   text-wrap: balance;
   text-shadow:
@@ -90,19 +89,20 @@
 
 .summary {
   max-width: 56ch;
-  margin: clamp(1.2rem, 2vw, 1.8rem) auto 0;
-  color: rgba(255, 255, 255, 0.76);
+  margin: clamp(0.9rem, 1.4vw, 1.2rem) auto 0;
+  color: rgba(255, 255, 255, 0.78) !important;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   font-weight: 400;
   line-height: 1.85;
 }
 
 .viewerShell {
+  order: 2;
   position: relative;
-  z-index: 5;
+  z-index: 2;
   display: grid;
   width: 100%;
-  min-height: min(78vh, 760px);
+  min-height: min(46vh, 430px);
   place-items: center;
   overflow: hidden;
   pointer-events: auto;
@@ -121,22 +121,19 @@
 }
 
 .viewer {
-  width: min(58vw, 820px);
-  height: min(78vh, 760px);
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: min(56vw, 720px);
+  height: min(50vh, 480px);
   filter: drop-shadow(0 0 42px rgba(237, 32, 98, 0.28));
   opacity: 1;
-  transform: translateY(1%) scale(1);
+  transform: translateY(-18%) scale(1);
   transform-origin: center;
 }
 
 .horseFallback {
-  position: absolute;
-  z-index: 2;
-  width: min(18vw, 260px);
-  height: auto;
-  opacity: 0.92;
-  filter: drop-shadow(0 24px 64px rgba(237, 32, 98, 0.26));
-  pointer-events: none;
+  display: none;
 }
 
 .viewer::part(default-progress-bar) {
@@ -151,7 +148,7 @@
 
   .title {
     max-width: none;
-    font-size: clamp(3.1rem, 16vw, 6.2rem);
+    font-size: clamp(2.5rem, 11vw, 4.6rem);
   }
 
   .summary {
@@ -161,15 +158,14 @@
   }
 
   .viewer {
-    width: 112vw;
-    height: 64vh;
+    width: 98vw;
+    height: 46vh;
     opacity: 1;
-    transform: translateY(10%) scale(1);
+    transform: translateY(0) scale(1);
   }
 
   .horseFallback {
-    width: min(48vw, 220px);
-    transform: translateY(8%);
+    width: min(58vw, 240px);
   }
 
   .viewerShell::before {
@@ -192,7 +188,7 @@
   }
 
   .title {
-    font-size: clamp(2.8rem, 15vw, 4.4rem);
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
   }
 
   .summary {
@@ -201,14 +197,13 @@
   }
 
   .viewer {
-    width: 122vw;
-    height: 58vh;
+    width: 102vw;
+    height: 44vh;
     opacity: 1;
-    transform: translateY(16%) scale(1);
+    transform: translateY(0) scale(1);
   }
 
   .horseFallback {
-    width: min(58vw, 210px);
-    transform: translateY(12%);
+    width: min(62vw, 220px);
   }
 }

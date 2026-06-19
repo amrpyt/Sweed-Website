@@ -19,13 +19,20 @@ export function Chess3DSection() {
           {createElement("model-viewer", {
             alt: "Interactive 3D chess model",
             "auto-rotate": "",
+            "auto-rotate-delay": "0",
             "camera-controls": "true",
+            "camera-orbit": "0deg 75deg 3.2m",
+            "camera-target": "0m 0.65m 0m",
             className: styles.viewer,
             "disable-zoom": "",
+            "environment-image": "neutral",
+            exposure: "2.2",
+            "field-of-view": "28deg",
             "interaction-prompt": "none",
             "interaction-prompt-threshold": "0",
             loading: "eager",
-            "rotation-per-second": "11deg",
+            "rotation-per-second": "14deg",
+            "shadow-intensity": "0.35",
             src: "/models/chess-3d.glb",
           })}
           <Image

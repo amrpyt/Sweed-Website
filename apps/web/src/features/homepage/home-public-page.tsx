@@ -12,7 +12,6 @@ import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
 import { MagneticButton } from "@/components/motion/magnetic-button";
-import { Preloader } from "@/components/motion/preloader";
 import { BackToTop, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
@@ -463,7 +462,6 @@ export function HomePublicPage() {
 
   return (
     <>
-      <Preloader />
       <a className={styles.skipLink} href="#home">
         تخطي إلى المحتوى
       </a>
@@ -485,24 +483,17 @@ export function HomePublicPage() {
 
           <div className={styles.container}>
             <div className={styles.heroContent}>
-              <div className={styles.heroEyebrowWrapper}>
-                <HeroFadeIn delay={2.5}>
-                  <div className={styles.heroEyebrow}>
-                    <span>SWEED</span>
-                    <span className={styles.divider} />
-                    <span>MARKETING & ADVERTISING</span>
-                  </div>
-                </HeroFadeIn>
-              </div>
-
               <HeroTextReveal className={styles.heroH1} delay={2.5}>
-                <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>نصنع </span>
-                <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>العلامات </span>
+                <span className={styles.h1Line}>
+                  <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>نصنع </span>
+                  <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>العلامات </span>
+                  <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>التي </span>
+                  <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>تقود </span>
+                </span>
                 <br className={styles.h1Break} />
-                <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>التي </span>
-                <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>تقود </span>
-                <br className={styles.h1Break} />
-                <span data-word className={styles.highlightText} style={{ display: "inline-block", whiteSpace: "pre" }}>المستقبل.</span>
+                <span className={styles.h1Line}>
+                  <span data-word className={styles.highlightText} style={{ display: "inline-block", whiteSpace: "pre" }}>المستقبل.</span>
+                </span>
               </HeroTextReveal>
 
               <HeroFadeIn className={styles.heroSubtitleWrapper} delay={2.8}>
@@ -516,11 +507,9 @@ export function HomePublicPage() {
 
               <HeroFadeIn delay={3.0}>
                 <div className={styles.heroActions}>
-                  {homepageContent.hero.actions.map((action) => (
-                    <MagneticButton key={action.label}>
-                      <ActionButton action={action} />
-                    </MagneticButton>
-                  ))}
+                  <MagneticButton>
+                    <ActionButton action={homepageContent.hero.actions[0]} />
+                  </MagneticButton>
                 </div>
               </HeroFadeIn>
 
@@ -557,11 +546,11 @@ export function HomePublicPage() {
             fadeOut
             fadeOutColor="#ffffff"
             gap={64}
-            hoverSpeed={0}
+            hoverSpeed={82}
             logoHeight={52}
             logos={partnerLogos}
             scaleOnHover
-            speed={46}
+            speed={82}
           />
         </section>
 

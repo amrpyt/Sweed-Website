@@ -5,6 +5,13 @@
 @import "../styles/tokens.css";
 
 @font-face {
+  font-family: "SWEED Helvetica Arabic";
+  src: url("/fonts/helvetica-arabic.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 400 900;
+}
+
+@font-face {
   font-family: "SF Arabic";
   src: url("/fonts/sf-arabic-regular.ttf") format("truetype");
   font-display: swap;
@@ -39,6 +46,21 @@ body {
   background: var(--color-surface);
   color: var(--color-text);
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #261b3e;
+}
+
+p,
+figcaption,
+small {
+  color: #6d6e70;
 }
 
 a {

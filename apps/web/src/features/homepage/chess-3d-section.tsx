@@ -13,19 +13,32 @@ export function Chess3DSection() {
     if (!viewer) return;
 
     let frame = 0;
-    let angle = 0;
-    let last = performance.now();
+    const start = performance.now();
+
+    const tintModel = () => {
+      const model = (viewer as any).model;
+      const materials = model?.materials ?? [];
+      for (const material of materials) {
+        material.pbrMetallicRoughness?.setBaseColorFactor?.([0.84, 0.84, 0.9, 1]);
+        material.pbrMetallicRoughness?.setMetallicFactor?.(0.62);
+        material.pbrMetallicRoughness?.setRoughnessFactor?.(0.24);
+      }
+    };
 
     const rotate = (now: number) => {
-      angle = (angle + (now - last) * 0.012) % 360;
-      last = now;
-      const distance = window.innerWidth <= 520 ? "4.2m" : window.innerWidth <= 860 ? "3.4m" : "3.2m";
-      viewer.setAttribute("camera-orbit", `${angle.toFixed(2)}deg 72deg ${distance}`);
+      const angle = 95 + Math.sin((now - start) * 0.001) * 1.5;
+      const distance = window.innerWidth <= 520 ? "5.8m" : window.innerWidth <= 860 ? "5.4m" : "5m";
+      viewer.setAttribute("camera-target", "1m 0m 0m");
+      viewer.setAttribute("camera-orbit", `${angle.toFixed(2)}deg 66deg ${distance}`);
       frame = requestAnimationFrame(rotate);
     };
 
+    viewer.addEventListener("load", tintModel);
     frame = requestAnimationFrame(rotate);
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      cancelAnimationFrame(frame);
+      viewer.removeEventListener("load", tintModel);
+    };
   }, []);
 
   return (
@@ -40,20 +53,17 @@ export function Chess3DSection() {
         <div className={styles.viewerShell}>
           {createElement("model-viewer", {
             alt: "Interactive 3D chess model",
-            "auto-rotate": "",
-            "auto-rotate-delay": "0",
             "camera-controls": "true",
-            "camera-orbit": "0deg 72deg 3.2m",
-            "camera-target": "-0.5m 0.65m 0m",
+            "camera-orbit": "95deg 66deg 5.2m",
+            "camera-target": "1m 0m 0m",
             className: styles.viewer,
             "disable-zoom": "",
             "environment-image": "neutral",
-            exposure: "2.2",
-            "field-of-view": "28deg",
+            exposure: "3.1",
+            "field-of-view": "34deg",
             "interaction-prompt": "none",
             "interaction-prompt-threshold": "0",
             loading: "eager",
-            "rotation-per-second": "14deg",
             "shadow-intensity": "0.35",
             ref: viewerRef,
             src: "/models/chess-3d.glb",

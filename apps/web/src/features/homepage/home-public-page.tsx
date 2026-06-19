@@ -256,6 +256,29 @@ export function HomePublicPage() {
   const buildingRef = useRef<HTMLDivElement>(null);
   const clientsStripRef = useRef<HTMLElement>(null);
 
+  useLayoutEffect(() => {
+    const scrollKey = "sweed-home-scroll-y";
+    const savedScroll = window.sessionStorage.getItem(scrollKey);
+
+    if (savedScroll && !window.location.hash) {
+      window.requestAnimationFrame(() => {
+        window.scrollTo({ top: Number(savedScroll), left: 0, behavior: "auto" });
+      });
+    }
+
+    const saveScroll = () => {
+      window.sessionStorage.setItem(scrollKey, String(window.scrollY));
+    };
+
+    window.addEventListener("pagehide", saveScroll);
+    window.addEventListener("beforeunload", saveScroll);
+
+    return () => {
+      window.removeEventListener("pagehide", saveScroll);
+      window.removeEventListener("beforeunload", saveScroll);
+    };
+  }, []);
+
   const scrollToPortfolioCard = (index: number) => {
     const container = portfolioTrackRef.current;
     if (!container) return;
@@ -281,7 +304,6 @@ export function HomePublicPage() {
   };
 
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     const section = heroSectionRef.current;
     if (!section) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

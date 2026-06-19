@@ -648,10 +648,11 @@
 
   :global(.sweed-common-header.is-home-page) {
     top: 0 !important;
-    background: #ffffff !important;
-    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.03) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
-    transition: all 0.3s ease !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 18px 46px rgba(38, 27, 62, 0.08) !important;
+    border-bottom: 1px solid rgba(38, 27, 62, 0.08) !important;
+    backdrop-filter: blur(18px) !important;
+    transition: box-shadow 0.3s ease, background 0.3s ease !important;
   }
 
   :global(.sweed-common-header.is-home-page.compact) {
@@ -659,9 +660,19 @@
   }
 
   @media (min-width: 769px) {
+    :global(.sweed-common-header.is-home-page) :global(.nav-container) {
+      display: grid !important;
+      grid-template-columns: minmax(120px, 180px) minmax(0, 1fr) minmax(150px, 190px) !important;
+      height: 76px !important;
+      padding-block: 0 !important;
+      gap: clamp(1rem, 2vw, 2rem) !important;
+    }
+
     :global(.sweed-common-header.is-home-page) :global(.sweed-common-logo) {
       display: flex !important;
       order: 3 !important;
+      min-width: 0 !important;
+      justify-content: flex-end !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.hamburger) {
@@ -671,16 +682,19 @@
     :global(.sweed-common-header.is-home-page) :global(.nav-menu) {
       flex: 1 1 auto !important;
       justify-content: center !important;
-      gap: 2.2rem !important;
+      gap: clamp(1rem, 2vw, 1.75rem) !important;
       order: 2 !important;
+      width: 100% !important;
+      min-width: 0 !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.nav-menu) a {
-      color: #1a1a1a !important;
-      font-weight: 500 !important;
-      font-size: 0.95rem !important;
-      transition: opacity 0.2s ease !important;
+      color: #261b3e !important;
+      font-weight: 600 !important;
+      font-size: clamp(0.82rem, 0.95vw, 0.95rem) !important;
+      transition: color 0.2s ease, opacity 0.2s ease !important;
       position: relative !important;
+      line-height: 1 !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.nav-menu) a:hover {
@@ -692,7 +706,7 @@
     }
     
     :global(.sweed-common-header.is-home-page) :global(.nav-menu) a:global(.active) {
-      color: #1a1a1a !important;
+      color: #ed2062 !important;
       font-weight: 700 !important;
     }
     
@@ -712,25 +726,43 @@
     :global(.sweed-common-header.is-home-page) :global(.nav-buttons) {
       display: flex !important;
       order: 1 !important;
+      min-width: 0 !important;
+      justify-content: flex-start !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) {
-      background: #ed2062 !important;
+      background: #261b3e !important;
       color: #ffffff !important;
       border-radius: 0 !important;
       padding: 0 !important;
       min-height: 48px !important;
+      min-width: 168px !important;
       box-shadow: none !important;
       overflow: hidden !important;
-      display: inline-flex !important;
+      display: inline-grid !important;
+      grid-template-columns: minmax(0, 1fr) 48px 8px !important;
       align-items: stretch !important;
-      justify-content: flex-start !important;
+      justify-content: stretch !important;
       text-decoration: none !important;
+      direction: ltr !important;
+    }
+
+    :global(.sweed-common-header.is-home-page) :global(.btn-consultation)::after {
+      content: "" !important;
+      background: #ed2062 !important;
+      grid-column: 3 !important;
+      grid-row: 1 !important;
+      width: 8px !important;
+      height: 100% !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box) {
-      background: #d01350 !important;
+      background: transparent !important;
       width: 48px !important;
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+      height: 100% !important;
+      align-self: stretch !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -739,16 +771,24 @@
     }
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-text) {
-      padding: 0 1.5rem !important;
+      min-width: 0 !important;
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+      height: 100% !important;
+      align-self: stretch !important;
+      padding: 0 1rem !important;
       display: flex !important;
       align-items: center !important;
+      justify-content: center !important;
       font-weight: 500 !important;
       font-size: 0.9rem !important;
+      line-height: 1 !important;
+      direction: rtl !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation):hover {
       transform: none !important;
-      background: #e21857 !important;
+      background: #1f1735 !important;
     }
   }
 

@@ -144,22 +144,15 @@
   position: relative;
   z-index: 4;
   display: block;
-  width: min(30vw, 390px);
+  width: auto;
   height: clamp(300px, 42vh, 520px);
   filter:
     drop-shadow(0 0 18px rgba(255, 255, 255, 0.16))
     drop-shadow(0 22px 44px rgba(0, 0, 0, 0.68));
   opacity: 1;
+  object-fit: contain;
   transform: translateY(4%) scale(1);
   transform-origin: center;
-}
-
-.horseFallback {
-  display: none;
-}
-
-.viewer::part(default-progress-bar) {
-  display: none;
 }
 
 @media (max-width: 860px) {
@@ -182,7 +175,7 @@
   }
 
   .viewer {
-    width: min(58vw, 300px);
+    width: auto;
     height: 39vh;
     opacity: 1;
     transform: translateY(7%) scale(1);
@@ -216,7 +209,7 @@
   }
 
   .viewer {
-    width: min(66vw, 250px);
+    width: auto;
     height: 36vh;
     opacity: 1;
     transform: translateY(12%) scale(1);

@@ -30,7 +30,6 @@
     "@sweed/content": "workspace:*",
     "@sweed/ui": "workspace:*",
     "@tailwindcss/postcss": "^4.3.0",
-    "@types/three": "^0.184.1",
     "ai": "^6.0.174",
     "convex": "^1.40.0",
     "embla-carousel": "^8.6.0",
@@ -45,7 +44,6 @@
     "server-only": "^0.0.1",
     "simple-icons": "^16.23.0",
     "tailwindcss": "^4.3.0",
-    "three": "^0.184.0",
     "tom-select": "^2.6.1",
     "use-scramble": "^2.2.15",
     "zod": "^4.4.3"

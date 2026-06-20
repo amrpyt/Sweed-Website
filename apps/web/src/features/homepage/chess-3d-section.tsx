@@ -22,7 +22,7 @@ export function Chess3DSection() {
       if (disposed || !canvasRef.current) return;
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(31, 1, 0.1, 100);
+      const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
       const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
@@ -34,17 +34,17 @@ export function Chess3DSection() {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.65;
+      renderer.toneMappingExposure = 1.35;
 
-      scene.add(new THREE.AmbientLight(0xffffff, 2.2));
+      scene.add(new THREE.AmbientLight(0xffffff, 1.25));
 
-      const keyLight = new THREE.DirectionalLight(0xffffff, 3.6);
-      keyLight.position.set(3, 4, 5);
+      const keyLight = new THREE.DirectionalLight(0xffffff, 4.8);
+      keyLight.position.set(2.5, 4, 4.5);
       scene.add(keyLight);
 
-      const rimLight = new THREE.DirectionalLight(0xed2062, 1.1);
-      rimLight.position.set(-4, 2, -3);
-      scene.add(rimLight);
+      const sideLight = new THREE.DirectionalLight(0xffffff, 1.8);
+      sideLight.position.set(-3, 1.5, 2);
+      scene.add(sideLight);
 
       const dracoLoader = new DRACOLoader();
       dracoLoader.setDecoderPath("/draco/");
@@ -60,14 +60,14 @@ export function Chess3DSection() {
       const center = box.getCenter(new THREE.Vector3());
       const size = box.getSize(new THREE.Vector3());
       model.position.sub(center);
-      model.rotation.y = -0.35;
+      model.rotation.y = -0.55;
 
       model.traverse((node) => {
         if (!(node instanceof THREE.Mesh)) return;
         node.material = new THREE.MeshStandardMaterial({
-          color: 0xe4e4ee,
-          metalness: 0.62,
-          roughness: 0.24,
+          color: 0x17171a,
+          metalness: 0.78,
+          roughness: 0.16,
         });
       });
 
@@ -81,9 +81,9 @@ export function Chess3DSection() {
         camera.aspect = width / height;
 
         const maxDim = Math.max(size.x, size.y, size.z);
-        const distance = maxDim * (width < 520 ? 2.55 : width < 860 ? 2.35 : 2.1);
-        camera.position.set(0, maxDim * 0.18, distance);
-        camera.lookAt(0, maxDim * 0.06, 0);
+        const distance = maxDim * (width < 520 ? 2.2 : width < 860 ? 2.05 : 1.9);
+        camera.position.set(0, maxDim * 0.12, distance);
+        camera.lookAt(0, maxDim * 0.03, 0);
         camera.updateProjectionMatrix();
       };
 
@@ -92,7 +92,7 @@ export function Chess3DSection() {
       fitCamera();
 
       const render = () => {
-        model.rotation.y += 0.008;
+        model.rotation.y += 0.006;
         renderer.render(scene, camera);
         frame = requestAnimationFrame(render);
       };
@@ -129,16 +129,16 @@ export function Chess3DSection() {
   return (
     <section className={styles.section} aria-label="SWEED 3D strategy board">
       <div className={styles.inner}>
-        <div className={styles.viewerShell}>
-          <canvas ref={canvasRef} className={styles.viewer} aria-label="Rotating 3D chess horse" />
-        </div>
-
         <div className={styles.copy}>
           <span className={styles.eyebrow}>SWEED STRATEGY</span>
-          <h2 className={styles.title}>نحرك البراند بخطة واضحة</h2>
+          <h2 className={styles.title}>Luxury brand strategists</h2>
           <p className={styles.summary}>
-            كل خطوة في التسويق والتصميم لها هدف. نبني لك نظام يربط الهوية، المحتوى، والإعلانات في اتجاه واحد.
+            نقدم لكل عميل قصة مصممة بعناية، وخطة واضحة تجعل العلامة التجارية تتحرك بثقة.
           </p>
+        </div>
+
+        <div className={styles.viewerShell}>
+          <canvas ref={canvasRef} className={styles.viewer} aria-label="Rotating 3D chess horse" />
         </div>
       </div>
     </section>

@@ -1,82 +1,136 @@
 "use client";
 
-import Script from "next/script";
-import { createElement, useEffect, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
 import styles from "./chess-3d-section.module.css";
 
 export function Chess3DSection() {
-  const viewerRef = useRef<HTMLElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const viewer = viewerRef.current;
-    if (!viewer) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
     let frame = 0;
-    const start = performance.now();
+    let disposed = false;
+    let cleanupScene = () => {};
 
-    const tintModel = () => {
-      const model = (viewer as any).model;
-      const materials = model?.materials ?? [];
-      for (const material of materials) {
-        material.pbrMetallicRoughness?.setBaseColorFactor?.([0.84, 0.84, 0.9, 1]);
-        material.pbrMetallicRoughness?.setMetallicFactor?.(0.62);
-        material.pbrMetallicRoughness?.setRoughnessFactor?.(0.24);
-      }
+    const mountScene = async () => {
+      const THREE = await import("three");
+      const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
+      const { DRACOLoader } = await import("three/examples/jsm/loaders/DRACOLoader.js");
+
+      if (disposed || !canvasRef.current) return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(31, 1, 0.1, 100);
+      const renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true,
+        canvas,
+        powerPreference: "high-performance",
+      });
+
+      renderer.setClearColor(0x000000, 0);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.65;
+
+      scene.add(new THREE.AmbientLight(0xffffff, 2.2));
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 3.6);
+      keyLight.position.set(3, 4, 5);
+      scene.add(keyLight);
+
+      const rimLight = new THREE.DirectionalLight(0xed2062, 1.1);
+      rimLight.position.set(-4, 2, -3);
+      scene.add(rimLight);
+
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath("/draco/");
+
+      const loader = new GLTFLoader();
+      loader.setDRACOLoader(dracoLoader);
+      const gltf = await loader.loadAsync("/models/chess-3d.glb");
+
+      if (disposed) return;
+
+      const model = gltf.scene;
+      const box = new THREE.Box3().setFromObject(model);
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      model.position.sub(center);
+      model.rotation.y = -0.35;
+
+      model.traverse((node) => {
+        if (!(node instanceof THREE.Mesh)) return;
+        node.material = new THREE.MeshStandardMaterial({
+          color: 0xe4e4ee,
+          metalness: 0.62,
+          roughness: 0.24,
+        });
+      });
+
+      scene.add(model);
+
+      const fitCamera = () => {
+        const rect = canvas.getBoundingClientRect();
+        const width = Math.max(1, rect.width);
+        const height = Math.max(1, rect.height);
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const distance = maxDim * (width < 520 ? 2.55 : width < 860 ? 2.35 : 2.1);
+        camera.position.set(0, maxDim * 0.18, distance);
+        camera.lookAt(0, maxDim * 0.06, 0);
+        camera.updateProjectionMatrix();
+      };
+
+      const resizeObserver = new ResizeObserver(fitCamera);
+      resizeObserver.observe(canvas);
+      fitCamera();
+
+      const render = () => {
+        model.rotation.y += 0.008;
+        renderer.render(scene, camera);
+        frame = requestAnimationFrame(render);
+      };
+
+      render();
+
+      cleanupScene = () => {
+        resizeObserver.disconnect();
+        cancelAnimationFrame(frame);
+        scene.traverse((node) => {
+          if (!(node instanceof THREE.Mesh)) return;
+          node.geometry.dispose();
+          if (Array.isArray(node.material)) {
+            node.material.forEach((material) => material.dispose());
+          } else {
+            node.material.dispose();
+          }
+        });
+        renderer.dispose();
+        dracoLoader.dispose();
+      };
     };
 
-    const rotate = (now: number) => {
-      const angle = 95 + Math.sin((now - start) * 0.001) * 1.5;
-      const distance = window.innerWidth <= 520 ? "5.8m" : window.innerWidth <= 860 ? "5.4m" : "5m";
-      viewer.setAttribute("camera-target", "1m 0m 0m");
-      viewer.setAttribute("camera-orbit", `${angle.toFixed(2)}deg 66deg ${distance}`);
-      frame = requestAnimationFrame(rotate);
-    };
+    mountScene().catch((error) => {
+      console.error("Failed to render 3D chess model", error);
+    });
 
-    viewer.addEventListener("load", tintModel);
-    frame = requestAnimationFrame(rotate);
     return () => {
-      cancelAnimationFrame(frame);
-      viewer.removeEventListener("load", tintModel);
+      disposed = true;
+      cleanupScene();
     };
   }, []);
 
   return (
     <section className={styles.section} aria-label="SWEED 3D strategy board">
-      <Script
-        src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"
-        strategy="afterInteractive"
-        type="module"
-      />
-
       <div className={styles.inner}>
         <div className={styles.viewerShell}>
-          {createElement("model-viewer", {
-            alt: "Interactive 3D chess model",
-            "camera-controls": "true",
-            "camera-orbit": "95deg 66deg 5.2m",
-            "camera-target": "1m 0m 0m",
-            className: styles.viewer,
-            "disable-zoom": "",
-            "environment-image": "neutral",
-            exposure: "3.1",
-            "field-of-view": "34deg",
-            "interaction-prompt": "none",
-            "interaction-prompt-threshold": "0",
-            loading: "eager",
-            "shadow-intensity": "0.35",
-            ref: viewerRef,
-            src: "/models/chess-3d.glb",
-          })}
-          <Image
-            alt=""
-            aria-hidden="true"
-            className={styles.horseFallback}
-            height={612}
-            priority={false}
-            src="/images/homepage/strategy-horse.png"
-            width={282}
-          />
+          <canvas ref={canvasRef} className={styles.viewer} aria-label="Rotating 3D chess horse" />
         </div>
 
         <div className={styles.copy}>

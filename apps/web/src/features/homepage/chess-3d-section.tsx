@@ -12,30 +12,32 @@ export function Chess3DSection() {
     const viewer = viewerRef.current;
     if (!viewer) return;
 
+    let frame = 0;
+    const start = performance.now();
+
     const tintModel = () => {
       const model = (viewer as any).model;
       const materials = model?.materials ?? [];
-      for (const [index, material] of materials.entries()) {
-        const color = index % 2 === 0 ? [0.96, 0.96, 0.96, 1] : [0.02, 0.02, 0.025, 1];
-        material.pbrMetallicRoughness?.setBaseColorFactor?.(color);
-        material.pbrMetallicRoughness?.setMetallicFactor?.(0.35);
-        material.pbrMetallicRoughness?.setRoughnessFactor?.(0.32);
+      for (const material of materials) {
+        material.pbrMetallicRoughness?.setBaseColorFactor?.([0.84, 0.84, 0.9, 1]);
+        material.pbrMetallicRoughness?.setMetallicFactor?.(0.62);
+        material.pbrMetallicRoughness?.setRoughnessFactor?.(0.24);
       }
     };
 
-    const frameModel = () => {
-      const distance = window.innerWidth <= 520 ? "7m" : window.innerWidth <= 860 ? "6.2m" : "5.6m";
+    const rotate = (now: number) => {
+      const angle = 95 + Math.sin((now - start) * 0.001) * 1.5;
+      const distance = window.innerWidth <= 520 ? "5.8m" : window.innerWidth <= 860 ? "5.4m" : "5m";
       viewer.setAttribute("camera-target", "1m 0m 0m");
-      viewer.setAttribute("camera-orbit", `95deg 66deg ${distance}`);
+      viewer.setAttribute("camera-orbit", `${angle.toFixed(2)}deg 66deg ${distance}`);
+      frame = requestAnimationFrame(rotate);
     };
 
     viewer.addEventListener("load", tintModel);
-    window.addEventListener("resize", frameModel);
-    frameModel();
-
+    frame = requestAnimationFrame(rotate);
     return () => {
+      cancelAnimationFrame(frame);
       viewer.removeEventListener("load", tintModel);
-      window.removeEventListener("resize", frameModel);
     };
   }, []);
 

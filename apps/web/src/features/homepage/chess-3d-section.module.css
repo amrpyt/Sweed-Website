@@ -127,23 +127,10 @@
   display: block;
   width: min(68vw, 860px);
   height: clamp(360px, 54vh, 560px);
-  filter: grayscale(1) contrast(1.8) brightness(0.78) drop-shadow(0 0 42px rgba(255, 255, 255, 0.22));
+  filter: drop-shadow(0 0 42px rgba(237, 32, 98, 0.28));
   opacity: 1;
-  --horse-y: -6%;
-  animation: horseSpin 7s linear infinite;
-  transform: translateY(var(--horse-y)) scale(1);
+  transform: translateY(-6%) scale(1);
   transform-origin: center;
-  transform-style: preserve-3d;
-}
-
-@keyframes horseSpin {
-  from {
-    transform: translateY(var(--horse-y)) scale(1) rotateY(0deg);
-  }
-
-  to {
-    transform: translateY(var(--horse-y)) scale(1) rotateY(360deg);
-  }
 }
 
 .horseFallback {
@@ -175,7 +162,7 @@
     width: min(96vw, 680px);
     height: 50vh;
     opacity: 1;
-    --horse-y: 0;
+    transform: translateY(0) scale(1);
   }
 
   .horseFallback {
@@ -214,7 +201,7 @@
     width: 92vw;
     height: 43vh;
     opacity: 1;
-    --horse-y: 0;
+    transform: translateY(0) scale(1);
   }
 
   .horseFallback {

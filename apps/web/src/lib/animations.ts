@@ -56,7 +56,7 @@ export function getStaggerDelay(index: number, baseDelay: number = 100): number 
 /**
  * Debounce utility for scroll/resize events
  */
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends (...args: never[]) => void>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
@@ -71,7 +71,7 @@ export function debounce<T extends (...args: any[]) => void>(
 /**
  * Throttle utility for high-frequency events
  */
-export function throttle<T extends (...args: any[]) => void>(
+export function throttle<T extends (...args: never[]) => void>(
   func: T,
   limit: number
 ): (...args: Parameters<T>) => void {

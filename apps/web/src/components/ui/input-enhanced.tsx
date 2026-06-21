@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes } from "react";
+import { useId, type InputHTMLAttributes } from "react";
 import styles from "./input-enhanced.module.css";
 
 type InputEnhancedProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -23,7 +23,8 @@ export function InputEnhanced({
   id,
   ...props
 }: InputEnhancedProps) {
-  const inputId = id || `input-${Math.random().toString(36).slice(2)}`;
+  const generatedId = useId();
+  const inputId = id || generatedId;
   const hasError = !!errorText;
   const hasSuccess = !!successText && !hasError;
   const currentLength = value?.toString().length || 0;

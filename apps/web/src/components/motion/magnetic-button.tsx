@@ -26,6 +26,7 @@ export function MagneticButton({
   const onMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (isTouch.current) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const el = ref.current;
       if (!el) return;
 
@@ -47,6 +48,7 @@ export function MagneticButton({
   );
 
   const onMouseLeave = useCallback(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const el = ref.current;
     if (!el) return;
 
@@ -61,11 +63,6 @@ export function MagneticButton({
   const onTouchStart = useCallback(() => {
     isTouch.current = true;
   }, []);
-
-  // Check reduced motion preference
-  if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return <div className={className}>{children}</div>;
-  }
 
   return (
     <div

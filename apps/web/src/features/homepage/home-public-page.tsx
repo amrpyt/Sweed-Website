@@ -105,17 +105,22 @@ function WhyPoint({ card }: { card: HomeCard }) {
   );
 }
 
-function PortfolioCard({ card }: { card: HomeCard }) {
+function PortfolioCard({ card, index }: { card: HomeCard; index: number }) {
   return (
     <Link className={styles.portfolioCard} href={card.href ?? "/portfolio"}>
-      <div className={styles.portfolioIcon}>
-        <Icon name={card.icon} />
+      <div className={styles.portfolioMetaRow}>
+        {card.category ? <span>{card.category}</span> : null}
+        {card.meta ? <span>{card.meta}</span> : null}
       </div>
       <div className={styles.portfolioContent}>
-        {card.category ? <HomeChip className={styles.categoryChip}>{card.category}</HomeChip> : null}
-        <h3>{card.title}</h3>
-        <p>{card.summary}</p>
-        {card.meta ? <span>{card.meta}</span> : null}
+        <span className={styles.portfolioNumber}>{index + 1}</span>
+        <div>
+          <h3>{card.title}</h3>
+          <p>{card.summary}</p>
+        </div>
+      </div>
+      <div className={styles.portfolioVisual}>
+        <Icon name={card.icon} />
       </div>
     </Link>
   );
@@ -343,6 +348,41 @@ export function HomePublicPage() {
       });
     }
 
+    const portfolioSection = portfolioSectionRef.current;
+    const portfolioTrack = portfolioTrackRef.current;
+    const portfolioProgress = portfolioSection?.querySelector(`.${styles.portfolioProgressBar}`);
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
+      if (!portfolioSection || !portfolioTrack || !portfolioProgress) return;
+
+      const getScrollAmount = () => -(portfolioTrack.scrollWidth - window.innerWidth);
+      gsap.set(portfolioProgress, { scaleX: 0, transformOrigin: "left center" });
+
+      const tween = gsap.to(portfolioTrack, {
+        x: getScrollAmount,
+        ease: "none",
+      });
+
+      const trigger = ScrollTrigger.create({
+        trigger: portfolioSection,
+        start: "top top",
+        end: () => `+=${getScrollAmount() * -1}`,
+        pin: true,
+        scrub: 1,
+        animation: tween,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          gsap.set(portfolioProgress, { scaleX: self.progress, transformOrigin: "left center" });
+        },
+      });
+
+      return () => {
+        trigger.kill();
+        tween.kill();
+      };
+    });
+
     // Custom cursor follower (hover pill) logic for desktop pointer
     const hoverPill = hoverPillRef.current;
     let cleanupCursor: (() => void) | undefined;
@@ -397,6 +437,7 @@ export function HomePublicPage() {
     return () => {
       tl.kill();
       stTl.kill();
+      mm.revert();
       if (cleanupCursor) cleanupCursor();
     };
   }, []);
@@ -523,40 +564,33 @@ export function HomePublicPage() {
           <div ref={hoverPillRef} className={styles.hoverPill}>
             شاهد المشروع
           </div>
-          <div className={styles.container}>
-            <div className={styles.portfolioHead}>
-              <div className={styles.portfolioYear}>{homepageContent.portfolioHead.year}</div>
-              <div className={styles.portfolioHeadTexts}>
-                <h2 className={styles.portfolioLabel}>{homepageContent.portfolioHead.label}</h2>
-                <p className={styles.portfolioDescription}>
-                  {homepageContent.portfolioHead.description}
-                </p>
-              </div>
-              <div className={styles.portfolioHeadingWrap}>
-                <h3 className={styles.portfolioHeadingDisplay}>{homepageContent.portfolioHead.title}</h3>
-                <div className={styles.portfolioCountBadge}>
-                  {homepageContent.portfolio.length}
+          <div className={styles.portfolioScrollWrapper}>
+            <div
+              ref={portfolioTrackRef}
+              className={styles.portfolioTrack}
+              onScroll={handleMobileScroll}
+            >
+              <div className={styles.portfolioHead}>
+                <div className={styles.portfolioYear}>{homepageContent.portfolioHead.year}</div>
+                <div className={styles.portfolioHeadTexts}>
+                  <h2 className={styles.portfolioLabel}>{homepageContent.portfolioHead.label}</h2>
+                  <p className={styles.portfolioDescription}>
+                    {homepageContent.portfolioHead.description}
+                  </p>
+                </div>
+                <div className={styles.portfolioHeadingWrap}>
+                  <h3 className={styles.portfolioHeadingDisplay}>{homepageContent.portfolioHead.title}</h3>
+                  <div className={styles.portfolioCountBadge}>
+                    {homepageContent.portfolio.length}
+                  </div>
                 </div>
               </div>
+              {homepageContent.portfolio.map((card, index) => (
+                <PortfolioCard card={card} index={index} key={card.title} />
+              ))}
             </div>
-            
-            <div className={styles.portfolioScrollWrapper}>
-              {/* Scrolling track */}
-              <div 
-                ref={portfolioTrackRef} 
-                className={styles.portfolioTrack}
-                onScroll={handleMobileScroll}
-              >
-                {homepageContent.portfolio.map((card) => (
-                  <PortfolioCard card={card} key={card.title} />
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.portfolioFooter}>
-              <MagneticButton>
-                <ActionButton action={{ label: "مشاهدة كل الأعمال", href: "/portfolio", icon: "fa-arrow-left", variant: "primary" }} />
-              </MagneticButton>
+            <div className={styles.portfolioProgressTrack}>
+              <div className={styles.portfolioProgressBar} />
             </div>
           </div>
         </section>

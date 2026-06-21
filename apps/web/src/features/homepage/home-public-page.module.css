@@ -1397,22 +1397,32 @@
     margin-right: calc(50% - 50vw);
     padding-block-start: clamp(5.5rem, 11vh, 8rem);
     padding-inline: max(1.25rem, calc((100vw - 1400px) / 2));
-    direction: ltr;
-    overflow: visible;
+    direction: rtl;
+    overflow: hidden;
   }
 
   .portfolioTrack {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     width: 100%;
-    gap: 8rem; /* Matches Treehaus work-list_list grid-row-gap: 8rem */
-    padding-bottom: 8rem;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 1rem;
+    -ms-overflow-style: none;
+  }
+
+  .portfolioTrack::-webkit-scrollbar {
+    display: none;
   }
 
   .portfolioTrack > * {
-    width: 100% !important;
-    max-width: none !important;
+    flex: 0 0 min(72vw, 980px) !important;
+    width: min(72vw, 980px) !important;
+    max-width: 980px !important;
+    scroll-snap-align: start;
   }
 
   .portfolioFooter {
@@ -1551,6 +1561,7 @@
 
   .portfolioTrack {
     display: flex;
+    direction: rtl;
     gap: 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -1567,7 +1578,7 @@
   .portfolioTrack > * {
     flex: 0 0 85% !important;
     min-width: 270px;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
   }
 
   /* Horizontal indicator below track on mobile */

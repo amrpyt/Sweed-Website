@@ -223,7 +223,6 @@ const partnerLogos = [siReact, siNextdotjs, siTailwindcss, siVercel, siGithub, s
 export function HomePublicPage() {
   const portfolioSectionRef = useRef<HTMLDivElement>(null);
   const portfolioTrackRef = useRef<HTMLDivElement>(null);
-  const portfolioProgressLineRef = useRef<HTMLDivElement>(null);
   const hoverPillRef = useRef<HTMLDivElement>(null);
   const [activePortfolioIndex, setActivePortfolioIndex] = useState(0);
 
@@ -270,8 +269,6 @@ export function HomePublicPage() {
   };
 
   const handleMobileScroll = () => {
-    const isMobile = window.innerWidth <= 768;
-    if (!isMobile) return;
     const container = portfolioTrackRef.current;
     if (!container) return;
 
@@ -346,61 +343,6 @@ export function HomePublicPage() {
       });
     }
 
-    // 3D vertical scrolling tilt effect for the cards (physics/animations)
-    const portfolioSection = portfolioSectionRef.current;
-    const portfolioTrack = portfolioTrackRef.current;
-    const progressLineFill = portfolioProgressLineRef.current;
-
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 769px)", () => {
-      if (!portfolioTrack) return;
-
-      const cards = Array.from(portfolioTrack.children) as HTMLElement[];
-      const cardTweens: gsap.core.Tween[] = [];
-      
-      cards.forEach((card, index) => {
-        // Create scroll trigger for each individual card
-        const tween = gsap.fromTo(card,
-          {
-            rotationX: 75.688,
-            scale: 1.07569,
-            y: "43.359vh",
-            transformOrigin: "center center",
-          },
-          {
-            rotationX: 0,
-            scale: 1,
-            y: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 100%", // Start animating when the top of the card enters the viewport
-              end: "top 35%",    // Finish animating when the card is near the center
-              scrub: 1,
-              onUpdate: (self) => {
-                if (self.isActive || self.progress > 0) {
-                  // Update progress indicator based on which card is active
-                  setActivePortfolioIndex(index);
-                  if (progressLineFill) {
-                    gsap.to(progressLineFill, { 
-                      scaleX: Math.max(0.05, (index + self.progress) / cards.length),
-                      duration: 0.1
-                    });
-                  }
-                }
-              }
-            }
-          }
-        );
-        cardTweens.push(tween);
-      });
-
-      return () => {
-        cardTweens.forEach((t) => t.kill());
-      };
-    });
-
     // Custom cursor follower (hover pill) logic for desktop pointer
     const hoverPill = hoverPillRef.current;
     let cleanupCursor: (() => void) | undefined;
@@ -455,7 +397,6 @@ export function HomePublicPage() {
     return () => {
       tl.kill();
       stTl.kill();
-      mm.revert();
       if (cleanupCursor) cleanupCursor();
     };
   }, []);

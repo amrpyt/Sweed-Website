@@ -108,18 +108,18 @@ function WhyPoint({ card }: { card: HomeCard }) {
 function PortfolioCard({ card, index }: { card: HomeCard; index: number }) {
   return (
     <Link className={styles.portfolioCard} href={card.href ?? "/portfolio"}>
-      <div className={styles.portfolioMetaRow}>
+      <div className={styles.portfolioMetaRow} data-portfolio-reveal>
         {card.category ? <span>{card.category}</span> : null}
         {card.meta ? <span>{card.meta}</span> : null}
       </div>
-      <div className={styles.portfolioContent}>
+      <div className={styles.portfolioContent} data-portfolio-reveal>
         <span className={styles.portfolioNumber}>{index + 1}</span>
         <div>
           <h3>{card.title}</h3>
           <p>{card.summary}</p>
         </div>
       </div>
-      <div className={styles.portfolioVisual}>
+      <div className={styles.portfolioVisual} data-portfolio-visual>
         <Icon name={card.icon} />
       </div>
     </Link>
@@ -353,24 +353,55 @@ export function HomePublicPage() {
     const portfolioProgress = portfolioSection?.querySelector(`.${styles.portfolioProgressBar}`);
     const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 769px)", () => {
-      if (!portfolioSection || !portfolioTrack || !portfolioProgress) return;
+    mm.add(
+      {
+        isDesktop: "(min-width: 769px)",
+        reduceMotion: "(prefers-reduced-motion: reduce)",
+      },
+      (context) => {
+      if (!context.conditions?.isDesktop || !portfolioSection || !portfolioTrack || !portfolioProgress) return;
 
       const getScrollAmount = () => -(portfolioTrack.scrollWidth - window.innerWidth);
-      gsap.set(portfolioProgress, { scaleX: 0, transformOrigin: "left center" });
+      const reduceMotion = context.conditions.reduceMotion;
+      const revealItems = portfolioSection.querySelectorAll("[data-portfolio-reveal]");
+      const visuals = portfolioSection.querySelectorAll("[data-portfolio-visual]");
 
-      const tween = gsap.to(portfolioTrack, {
+      gsap.set(portfolioProgress, { scaleX: 0, transformOrigin: "left center" });
+      gsap.set(revealItems, { autoAlpha: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 28 });
+      gsap.set(visuals, { clipPath: reduceMotion ? "circle(100% at 50% 50%)" : "circle(18% at 50% 50%)" });
+
+      const timeline = gsap.timeline();
+
+      if (!reduceMotion) {
+        timeline
+          .to(revealItems, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.45,
+            ease: "power2.out",
+            stagger: 0.055,
+          })
+          .to(visuals, {
+            clipPath: "circle(100% at 50% 50%)",
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.06,
+          }, "<0.12");
+      }
+
+      timeline.to(portfolioTrack, {
         x: getScrollAmount,
         ease: "none",
-      });
+        duration: 4,
+      }, reduceMotion ? 0 : ">");
 
       const trigger = ScrollTrigger.create({
         trigger: portfolioSection,
         start: "top top",
-        end: () => `+=${getScrollAmount() * -1}`,
+        end: () => `+=${getScrollAmount() * -1 + (reduceMotion ? 0 : window.innerHeight * 0.75)}`,
         pin: true,
         scrub: 1,
-        animation: tween,
+        animation: timeline,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           gsap.set(portfolioProgress, { scaleX: self.progress, transformOrigin: "left center" });
@@ -379,7 +410,7 @@ export function HomePublicPage() {
 
       return () => {
         trigger.kill();
-        tween.kill();
+        timeline.kill();
       };
     });
 
@@ -570,15 +601,15 @@ export function HomePublicPage() {
               className={styles.portfolioTrack}
               onScroll={handleMobileScroll}
             >
-              <div className={styles.portfolioHead}>
-                <div className={styles.portfolioYear}>{homepageContent.portfolioHead.year}</div>
-                <div className={styles.portfolioHeadTexts}>
+              <div className={styles.portfolioHead} data-portfolio-panel>
+                <div className={styles.portfolioYear} data-portfolio-reveal>{homepageContent.portfolioHead.year}</div>
+                <div className={styles.portfolioHeadTexts} data-portfolio-reveal>
                   <h2 className={styles.portfolioLabel}>{homepageContent.portfolioHead.label}</h2>
                   <p className={styles.portfolioDescription}>
                     {homepageContent.portfolioHead.description}
                   </p>
                 </div>
-                <div className={styles.portfolioHeadingWrap}>
+                <div className={styles.portfolioHeadingWrap} data-portfolio-reveal>
                   <h3 className={styles.portfolioHeadingDisplay}>{homepageContent.portfolioHead.title}</h3>
                   <div className={styles.portfolioCountBadge}>
                     {homepageContent.portfolio.length}

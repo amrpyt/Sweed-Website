@@ -43,10 +43,11 @@
 
 .hero {
   position: relative;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(740px, 88vh, 920px);
+  min-height: clamp(680px, 82vh, 840px);
   overflow: hidden;
   background: #fafafa;
   color: #261b3e;
@@ -305,7 +306,7 @@
 
 /* Building Section */
 .buildingSection {
-  margin-top: 2rem;
+  margin-top: 1rem;
   position: relative;
   width: 100%;
   display: flex;
@@ -324,7 +325,7 @@
 }
 
 .buildingImg {
-  width: min(100%, 1120px);
+  width: min(92%, 960px);
   height: auto;
   margin-inline: auto;
   z-index: 2;
@@ -333,7 +334,7 @@
   display: block;
   clip-path: inset(0 0 35% 0);
   margin-top: 0;
-  margin-bottom: -28%;
+  margin-bottom: -30%;
   transition: transform 0.4s ease;
   transform: translateX(0.5%);
 }
@@ -509,18 +510,18 @@
 .clientsStrip {
   position: relative;
   border-block: 1px solid rgba(38, 27, 62, 0.08);
-  padding: clamp(2.5rem, 4.5vw, 4.5rem) 0;
+  padding: clamp(1.7rem, 3vw, 3rem) 0 clamp(2.2rem, 3.8vw, 3.8rem);
   background: #ffffff;
   color: var(--primary-purple);
 }
 
 .clientsLabel {
-  margin-bottom: 1rem;
-  color: rgba(38, 27, 62, 0.58);
+  margin: 0 auto clamp(0.65rem, 1.2vw, 0.9rem);
+  color: rgba(38, 27, 62, 0.68);
   text-align: center;
-  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  font-size: clamp(0.78rem, 1.25vw, 0.92rem);
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 .clientsMarquee {

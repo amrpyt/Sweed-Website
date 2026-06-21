@@ -101,7 +101,6 @@ export function HomeProblemsCompassSection() {
       <div className={styles.container}>
         <div ref={innerRef} className={styles.problemsCompassInner}>
           <div className={`${styles.sectionHeader} ${styles.problemsHeader}`}>
-            <span>تشخيص سريع</span>
             <h2>هل تواجه هذه المشاكل؟</h2>
             <p>اختار التحدي الأقرب لك، ونرتب لك بداية واضحة.</p>
           </div>

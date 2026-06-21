@@ -739,12 +739,12 @@
       min-width: 168px !important;
       box-shadow: none !important;
       overflow: hidden !important;
-      display: inline-grid !important;
-      grid-template-columns: minmax(0, 1fr) 48px 8px !important;
-      align-items: stretch !important;
-      justify-content: stretch !important;
+      position: relative !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       text-decoration: none !important;
-      direction: ltr !important;
+      direction: rtl !important;
     }
 
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation)::before {
@@ -754,24 +754,26 @@
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation)::after {
       content: "" !important;
       background: #ed2062 !important;
-      grid-column: 3 !important;
-      grid-row: 1 !important;
+      position: absolute !important;
+      inset-block: 0 !important;
+      inset-inline-end: 0 !important;
       width: 8px !important;
-      height: 100% !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box) {
+      position: absolute !important;
+      inset-inline-start: 0.75rem !important;
+      top: 50% !important;
       background: transparent !important;
       width: 48px !important;
-      grid-column: 2 !important;
-      grid-row: 1 !important;
-      height: 100% !important;
-      align-self: stretch !important;
+      height: 48px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       color: #ffffff !important;
       font-size: 0.95rem !important;
+      transform: translateY(-50%) !important;
+      pointer-events: none !important;
     }
 
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box) i {
@@ -788,11 +790,9 @@
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-text) {
       min-width: 0 !important;
-      grid-column: 1 !important;
-      grid-row: 1 !important;
       height: 100% !important;
-      align-self: stretch !important;
-      padding: 0 1rem !important;
+      width: 100% !important;
+      padding: 0 3.7rem !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;

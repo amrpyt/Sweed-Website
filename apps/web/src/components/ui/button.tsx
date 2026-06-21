@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
-import { StarBorder } from "./star-border";
 import styles from "./button.module.css";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
@@ -23,18 +22,12 @@ type LinkButtonProps = BaseProps &
 
 export function Button({ children, variant = "primary", className = "", ...props }: ButtonProps) {
   return (
-    <StarBorder
-      as="button"
-      className={`${styles.buttonFrame} ${className}`}
-      color={variant === "primary" ? "white" : "#ed2062"}
-      contentClassName={`${styles.button} ${styles[variant]}`}
-      {...props}
-    >
+    <button className={`${styles.button} ${styles[variant]} ${className}`} {...props}>
       <span aria-hidden="true" className={styles.starIcon}>
         {"\u2726"}
       </span>
       {children}
-    </StarBorder>
+    </button>
   );
 }
 
@@ -46,18 +39,11 @@ export function ButtonLink({
   ...props
 }: LinkButtonProps) {
   return (
-    <StarBorder
-      as={Link}
-      className={`${styles.buttonFrame} ${className}`}
-      color={variant === "primary" ? "white" : "#ed2062"}
-      contentClassName={`${styles.button} ${styles[variant]}`}
-      href={href}
-      {...props}
-    >
+    <Link className={`${styles.button} ${styles[variant]} ${className}`} href={href} {...props}>
       <span aria-hidden="true" className={styles.starIcon}>
         {"\u2726"}
       </span>
       {children}
-    </StarBorder>
+    </Link>
   );
 }

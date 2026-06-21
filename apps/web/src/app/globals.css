@@ -84,6 +84,7 @@ select {
 ) {
   position: relative;
   white-space: nowrap;
+  padding-inline: max(2.8em, 1rem);
 }
 
 :where(
@@ -94,18 +95,21 @@ select {
   a[class*="utilityButton"]
 )::before {
   content: "\2726";
-  position: relative;
+  position: absolute;
+  inset-inline-start: 0.9em;
+  top: 50%;
   display: inline-flex;
   width: 1.1em;
   min-width: 1.1em;
   align-items: center;
   justify-content: center;
-  margin-inline-end: 0.5em;
+  margin-inline-end: 0;
   color: currentColor;
   font-size: 1.05em;
   line-height: 1;
   filter: drop-shadow(0 0 6px currentColor);
   text-shadow: 0 0 14px currentColor;
+  transform: translateY(-50%);
   animation: sweedStarTwinkle 2.6s ease-in-out infinite;
 }
 
@@ -113,12 +117,12 @@ select {
   0%,
   100% {
     opacity: 0.62;
-    transform: scale(0.92);
+    transform: translateY(-50%) scale(0.92);
   }
 
   50% {
     opacity: 1;
-    transform: scale(1.08);
+    transform: translateY(-50%) scale(1.08);
   }
 }
 ::selection {

@@ -204,12 +204,11 @@
   font-weight: 400;
   font-size: 1rem;
   transition: transform var(--motion-base), box-shadow var(--motion-base);
-  display: inline-grid;
-  grid-template-columns: minmax(0, 1fr) 54px 10px;
-  align-items: stretch;
-  justify-content: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 !important;
-  direction: ltr;
+  direction: rtl;
   border-radius: 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -230,17 +229,18 @@
 }
 
 .buttonIconPrefix {
-  grid-column: 2;
-  grid-row: 1;
+  position: absolute;
+  inset-inline-start: 1rem;
+  top: 50%;
   width: 54px;
-  height: 100%;
-  align-self: stretch;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
-  flex-shrink: 0;
   transition: background var(--motion-fast);
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .buttonIconPrefix > * {
@@ -257,12 +257,10 @@
 }
 
 .buttonText {
-  grid-column: 1;
-  grid-row: 1;
   min-width: 0;
   height: 100%;
-  align-self: stretch;
-  padding: 0 1.35rem;
+  width: 100%;
+  padding: 0 4.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -286,11 +284,10 @@
 
 .buttonPrimary::after {
   content: "";
-  position: static;
-  grid-column: 3;
-  grid-row: 1;
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
   width: 10px;
-  height: 100%;
   background: #ed2062;
 }
 
@@ -316,9 +313,8 @@
 }
 
 .buttonSecondary .buttonIconPrefix {
-  background: #ffffff;
+  background: transparent;
   color: #ed2062;
-  border-inline-start: 1px solid #ed2062;
 }
 
 .buttonSecondary:hover {

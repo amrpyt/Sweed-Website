@@ -68,9 +68,10 @@ export function HomeProblemsCompassSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=150%",
+          end: "+=110%",
           pin: true,
-          scrub: 0.8,
+          scrub: true,
+          anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
@@ -89,8 +90,7 @@ export function HomeProblemsCompassSection() {
             stagger: 0.08,
           },
           0.12,
-        )
-        .to(innerRef.current, { opacity: 0, duration: 0.35, ease: "power2.out" }, 1.15);
+        );
     }, sectionRef);
 
     return () => ctx.revert();

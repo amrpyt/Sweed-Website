@@ -661,6 +661,7 @@
 }
 
 .compassImageWrap img {
+  filter: brightness(0) saturate(100%) invert(12%) sepia(23%) saturate(1526%) hue-rotate(226deg) brightness(93%) contrast(96%);
   object-fit: contain;
 }
 
@@ -670,12 +671,12 @@
   left: 50%;
   z-index: 2;
   display: flex;
-  width: min(280px, 24vw);
+  width: min(330px, 27vw);
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.85rem;
   border: 1px solid rgba(237, 32, 98, 0.18);
   border-radius: 999px;
-  padding: 0.72rem 0.85rem;
+  padding: 0.9rem 1rem;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 14px 34px rgba(38, 27, 62, 0.12);
   transform: translate(-50%, -50%);
@@ -684,14 +685,14 @@
 
 .compassProblemIcon {
   display: grid;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
   place-items: center;
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(237, 32, 98, 0.14), rgba(38, 27, 62, 0.08));
   color: var(--primary-pink);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
 .compassProblemText {
@@ -703,14 +704,14 @@
 
 .compassProblemText strong {
   color: var(--ink);
-  font-size: clamp(0.95rem, 1.05vw, 1.08rem);
+  font-size: clamp(1.05rem, 1.12vw, 1.18rem);
 }
 
 .compassProblemText span {
   display: -webkit-box;
   overflow: hidden;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   line-height: 1.35;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;

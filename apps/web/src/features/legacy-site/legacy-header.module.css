@@ -780,8 +780,9 @@
 
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box)::before {
       content: "\2726" !important;
-      filter: drop-shadow(0 0 4px currentColor) !important;
-      text-shadow: 0 0 10px currentColor !important;
+      font-size: 1.2rem !important;
+      filter: drop-shadow(0 0 6px currentColor) !important;
+      text-shadow: 0 0 14px currentColor !important;
       animation: sweedHeaderStarTwinkle 2.6s ease-in-out infinite !important;
     }
     

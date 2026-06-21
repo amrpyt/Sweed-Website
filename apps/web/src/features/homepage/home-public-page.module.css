@@ -198,14 +198,14 @@
 .button {
   position: relative;
   min-width: 0;
-  height: 52px;
+  height: 54px;
   border: 0;
   overflow: hidden;
   font-weight: 400;
   font-size: 1rem;
   transition: transform var(--motion-base), box-shadow var(--motion-base);
   display: inline-grid;
-  grid-template-columns: minmax(0, 1fr) 52px 10px;
+  grid-template-columns: minmax(0, 1fr) 54px 10px;
   align-items: stretch;
   justify-content: stretch;
   padding: 0 !important;
@@ -214,6 +214,7 @@
   box-sizing: border-box;
   cursor: pointer;
   z-index: 50;
+  white-space: nowrap;
 }
 
 .heroActions .button {
@@ -231,7 +232,7 @@
 .buttonIconPrefix {
   grid-column: 2;
   grid-row: 1;
-  width: 52px;
+  width: 54px;
   height: 100%;
   align-self: stretch;
   display: flex;
@@ -248,10 +249,10 @@
 
 .buttonIconPrefix::before {
   content: "\2726";
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   line-height: 1;
-  filter: drop-shadow(0 0 4px currentColor);
-  text-shadow: 0 0 10px currentColor;
+  filter: drop-shadow(0 0 6px currentColor);
+  text-shadow: 0 0 14px currentColor;
   animation: homeButtonStarTwinkle 2.6s ease-in-out infinite;
 }
 
@@ -261,7 +262,7 @@
   min-width: 0;
   height: 100%;
   align-self: stretch;
-  padding: 0 1.2rem;
+  padding: 0 1.35rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -269,6 +270,7 @@
   font-size: 1rem;
   line-height: 1;
   direction: rtl;
+  white-space: nowrap;
 }
 
 .directionalIcon {

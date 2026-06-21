@@ -76,17 +76,18 @@ select {
 }
 
 :where(
-  button:not([aria-label]):not([class*="hamburger"]):not([class*="starBorder"]):not([class*="buttonFrame"]),
+  button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"]),
   a.btn,
   .btn,
   .btn-consultation,
   a[class*="utilityButton"]
 ) {
   position: relative;
+  white-space: nowrap;
 }
 
 :where(
-  button:not([aria-label]):not([class*="hamburger"]):not([class*="starBorder"]):not([class*="buttonFrame"]),
+  button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"]),
   a.btn,
   .btn,
   .btn-consultation,
@@ -95,14 +96,16 @@ select {
   content: "\2726";
   position: relative;
   display: inline-flex;
+  width: 1.1em;
+  min-width: 1.1em;
   align-items: center;
   justify-content: center;
-  margin-inline-end: 0.45em;
+  margin-inline-end: 0.5em;
   color: currentColor;
-  font-size: 0.78em;
+  font-size: 1.05em;
   line-height: 1;
-  filter: drop-shadow(0 0 4px currentColor);
-  text-shadow: 0 0 10px currentColor;
+  filter: drop-shadow(0 0 6px currentColor);
+  text-shadow: 0 0 14px currentColor;
   animation: sweedStarTwinkle 2.6s ease-in-out infinite;
 }
 
@@ -129,7 +132,7 @@ select {
   }
 
   :where(
-    button:not([aria-label]):not([class*="hamburger"]):not([class*="starBorder"]):not([class*="buttonFrame"])::before,
+    button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"])::before,
     a.btn::before,
     .btn::before,
     .btn-consultation::before,

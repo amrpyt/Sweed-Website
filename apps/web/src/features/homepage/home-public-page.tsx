@@ -18,6 +18,7 @@ import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { Chess3DSection } from "./chess-3d-section";
+import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
@@ -65,19 +66,6 @@ function SectionHeader({ title, summary }: { title: string; summary: string }) {
       <h2>{title}</h2>
       <p>{summary}</p>
     </div>
-  );
-}
-
-function ProblemCard({ card }: { card: HomeCard }) {
-  return (
-    <HeroHomeCard className={styles.problemCard}>
-      <div className={styles.problemCardHeader}>
-        <div className={styles.problemIcon}>
-          <Icon name={card.icon} />
-        </div>
-        <h3>{card.title}</h3>
-      </div>
-    </HeroHomeCard>
   );
 }
 
@@ -567,28 +555,7 @@ export function HomePublicPage() {
 
         <Chess3DSection />
 
-        <section className={styles.problemsSection} id="problems">
-          <div className={styles.container}>
-            <div className={styles.problemsLayout}>
-              <Reveal className={`${styles.sectionHeader} ${styles.problemsHeader}`} variant="slideStart">
-                <span>تشخيص سريع</span>
-                <h2>هل تواجه هذه المشاكل؟</h2>
-                <p>اختار التحدي الأقرب لك، ونرتب لك بداية واضحة.</p>
-              </Reveal>
-              <div className={styles.problemsGrid}>
-                {homepageContent.problems.map((card, index) => (
-                  <Reveal as="article" delay={index * 55} key={card.title} variant="scaleIn">
-                    <ProblemCard card={card} />
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-            <Reveal className={styles.problemsCta} variant="soft">
-              <span>ابدأ بخطوة واضحة</span>
-              <ActionButton action={{ label: "احجز استشارتك الآن", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
-            </Reveal>
-          </div>
-        </section>
+        <HomeProblemsCompassSection />
 
         <HomeServicesScrollSection />
 

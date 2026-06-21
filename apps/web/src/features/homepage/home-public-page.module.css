@@ -627,6 +627,118 @@
   text-align: center;
 }
 
+.problemsCompassInner {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.5rem, 3vw, 2.4rem);
+}
+
+.compassStage {
+  position: relative;
+  min-height: clamp(620px, 66vw, 760px);
+  max-width: 1120px;
+  margin-inline: auto;
+  isolation: isolate;
+}
+
+.compassImageWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: clamp(250px, 32vw, 390px);
+  aspect-ratio: 1;
+  filter: drop-shadow(0 22px 38px rgba(38, 27, 62, 0.18));
+  transform: translate(-50%, -50%);
+}
+
+.compassImageWrap img {
+  object-fit: contain;
+}
+
+.compassProblemCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  width: min(280px, 24vw);
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid rgba(237, 32, 98, 0.18);
+  border-radius: 999px;
+  padding: 0.72rem 0.85rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px rgba(38, 27, 62, 0.12);
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+.compassProblemIcon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(237, 32, 98, 0.14), rgba(38, 27, 62, 0.08));
+  color: var(--primary-pink);
+  font-size: 0.95rem;
+}
+
+.compassProblemText {
+  display: grid;
+  gap: 0.14rem;
+  min-width: 0;
+  text-align: start;
+}
+
+.compassProblemText strong {
+  color: var(--ink);
+  font-size: clamp(0.95rem, 1.05vw, 1.08rem);
+}
+
+.compassProblemText span {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+@media (max-width: 899px) {
+  .problemsCompassInner {
+    min-height: auto;
+  }
+
+  .compassStage {
+    display: grid;
+    min-height: auto;
+    gap: 0.6rem;
+  }
+
+  .compassImageWrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(72vw, 280px);
+    margin: 0 auto 0.45rem;
+    transform: none;
+  }
+
+  .compassProblemCard {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none;
+  }
+}
+
 .problemsGrid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -2092,6 +2204,34 @@
   .problemsHeader p {
     font-size: 0.9rem;
     line-height: 1.45;
+  }
+
+  .problemsCompassInner {
+    min-height: auto;
+    gap: 1.1rem;
+  }
+
+  .compassStage {
+    display: grid;
+    min-height: auto;
+    gap: 0.6rem;
+  }
+
+  .compassImageWrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(72vw, 280px);
+    margin: 0 auto 0.45rem;
+    transform: none;
+  }
+
+  .compassProblemCard {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none;
   }
 
   .problemsGrid {

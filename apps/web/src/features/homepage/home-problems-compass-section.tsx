@@ -113,7 +113,7 @@ export function HomeProblemsCompassSection() {
                 fill
                 priority={false}
                 sizes="(max-width: 768px) 72vw, 390px"
-                src="/images/homepage/compass-problems.jpg"
+                src="/images/homepage/compass-problems.png"
               />
             </div>
 

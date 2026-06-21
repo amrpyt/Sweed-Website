@@ -8,6 +8,7 @@ import Image from "next/image";
 import type { SimpleIcon } from "simple-icons";
 import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVercel } from "simple-icons";
 import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
+import { CircleCursor } from "@/components/motion/circle-cursor";
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
@@ -465,6 +466,7 @@ export function HomePublicPage() {
         تخطي إلى المحتوى
       </a>
       <ProgressIndicator />
+      <CircleCursor />
       <LegacyHeader page="home" />
       <main className={styles.homepage}>
         <section ref={heroSectionRef} className={styles.hero} id="home">

@@ -730,7 +730,7 @@
       justify-content: flex-start !important;
     }
     
-    :global(.sweed-common-header.is-home-page) :global(.btn-consultation) {
+  :global(.sweed-common-header.is-home-page) :global(.btn-consultation) {
       background: #261b3e !important;
       color: #ffffff !important;
       border-radius: 0 !important;
@@ -745,6 +745,10 @@
       justify-content: stretch !important;
       text-decoration: none !important;
       direction: ltr !important;
+    }
+
+    :global(.sweed-common-header.is-home-page) :global(.btn-consultation)::before {
+      content: none !important;
     }
 
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation)::after {
@@ -769,6 +773,17 @@
       color: #ffffff !important;
       font-size: 0.95rem !important;
     }
+
+    :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box) i {
+      display: none !important;
+    }
+
+    :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box)::before {
+      content: "\2726" !important;
+      filter: drop-shadow(0 0 4px currentColor) !important;
+      text-shadow: 0 0 10px currentColor !important;
+      animation: sweedHeaderStarTwinkle 2.6s ease-in-out infinite !important;
+    }
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-text) {
       min-width: 0 !important;
@@ -785,7 +800,7 @@
       line-height: 1 !important;
       direction: rtl !important;
     }
-    
+
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation):hover {
       transform: none !important;
       background: #1f1735 !important;
@@ -796,3 +811,15 @@
     padding-block: 0.4rem !important;
   }
 
+@keyframes sweedHeaderStarTwinkle {
+  0%,
+  100% {
+    opacity: 0.62;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}

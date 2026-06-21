@@ -20,6 +20,13 @@
   scroll-behavior: smooth;
 }
 
+@media (pointer: fine) {
+  .homepage,
+  .homepage :where(a, button, summary, input, textarea, select, [role="button"]) {
+    cursor: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .homepage {
     scroll-behavior: auto;
@@ -235,6 +242,19 @@
   transition: background var(--motion-fast);
 }
 
+.buttonIconPrefix > * {
+  display: none;
+}
+
+.buttonIconPrefix::before {
+  content: "\2726";
+  font-size: 0.85rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px currentColor);
+  text-shadow: 0 0 10px currentColor;
+  animation: homeButtonStarTwinkle 2.6s ease-in-out infinite;
+}
+
 .buttonText {
   grid-column: 1;
   grid-row: 1;
@@ -302,6 +322,19 @@
 .buttonSecondary:hover {
   background: #fff7fa;
   border-color: #ed2062;
+}
+
+@keyframes homeButtonStarTwinkle {
+  0%,
+  100% {
+    opacity: 0.62;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
 }
 
 /* Building Section */

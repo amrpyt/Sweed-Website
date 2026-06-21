@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Button, Card, Chip } from "@heroui/react";
 import type { ReactNode } from "react";
+import { StarBorder } from "@/components/ui/star-border";
 
 type HomeButtonProps = {
   children: ReactNode;
@@ -24,9 +25,9 @@ export function HomeButton({ children, className, href, rel, target }: HomeButto
   };
 
   return (
-    <button type="button" className={className} onClick={navigate}>
+    <StarBorder as="button" color="#ffffff" contentClassName={className} type="button" onClick={navigate}>
       {children}
-    </button>
+    </StarBorder>
   );
 }
 

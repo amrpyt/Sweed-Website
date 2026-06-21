@@ -1,0 +1,58 @@
+.cursor {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  mix-blend-mode: difference;
+}
+
+.ready {
+  opacity: 1;
+}
+
+.ring,
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 999px;
+  will-change: transform, width, height, opacity;
+}
+
+.ring {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.06);
+  transition:
+    width 180ms ease,
+    height 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  transition: opacity 180ms ease;
+}
+
+.active .ring {
+  width: 64px;
+  height: 64px;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.active .dot {
+  opacity: 0;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor {
+    display: none;
+  }
+}

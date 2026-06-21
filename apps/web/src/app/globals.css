@@ -75,6 +75,49 @@ select {
   font: inherit;
 }
 
+:where(
+  button:not([aria-label]):not([class*="hamburger"]):not([class*="starBorder"]):not([class*="buttonFrame"]),
+  a.btn,
+  .btn,
+  .btn-consultation,
+  a[class*="utilityButton"]
+) {
+  position: relative;
+}
+
+:where(
+  button:not([aria-label]):not([class*="hamburger"]):not([class*="starBorder"]):not([class*="buttonFrame"]),
+  a.btn,
+  .btn,
+  .btn-consultation,
+  a[class*="utilityButton"]
+)::before {
+  content: "\2726";
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 0.45em;
+  color: currentColor;
+  font-size: 0.78em;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px currentColor);
+  text-shadow: 0 0 10px currentColor;
+  animation: sweedStarTwinkle 2.6s ease-in-out infinite;
+}
+
+@keyframes sweedStarTwinkle {
+  0%,
+  100% {
+    opacity: 0.62;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
 ::selection {
   background: var(--color-accent);
   color: var(--color-accent-contrast);
@@ -83,5 +126,15 @@ select {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  :where(
+    button:not([aria-label]):not([class*="hamburger"]):not([class*="starBorder"]):not([class*="buttonFrame"])::before,
+    a.btn::before,
+    .btn::before,
+    .btn-consultation::before,
+    a[class*="utilityButton"]::before
+  ) {
+    animation: none;
   }
 }

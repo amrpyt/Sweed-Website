@@ -18,6 +18,7 @@ import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { Chess3DSection } from "./chess-3d-section";
+import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
 
@@ -230,15 +231,6 @@ const partnerLogos = [siReact, siNextdotjs, siTailwindcss, siVercel, siGithub, s
   title: icon.title,
 }));
 
-const serviceImages = [
-  "/images/hero/two-men-consultation.jpg",
-  "/images/hero/entrepreneur-laptop-office.jpg",
-  "/images/hero/businessman-laptop-standing.jpg",
-  "/images/hero/sweed-building.png",
-  "/images/hero/two-men-consultation.jpg",
-  "/images/hero/entrepreneur-laptop-office.jpg",
-];
-
 export function HomePublicPage() {
   const portfolioSectionRef = useRef<HTMLDivElement>(null);
   const portfolioTrackRef = useRef<HTMLDivElement>(null);
@@ -253,11 +245,6 @@ export function HomePublicPage() {
   const matrixRightRef = useRef<HTMLDivElement>(null);
   const buildingRef = useRef<HTMLDivElement>(null);
   const clientsStripRef = useRef<HTMLElement>(null);
-  const servicesSectionRef = useRef<HTMLElement>(null);
-  const servicesVisualRef = useRef<HTMLDivElement>(null);
-  const serviceImageRefs = useRef<HTMLDivElement[]>([]);
-  const serviceItemRefs = useRef<HTMLAnchorElement[]>([]);
-  const serviceNumberRefs = useRef<HTMLSpanElement[]>([]);
 
   useLayoutEffect(() => {
     const scrollKey = "sweed-home-scroll-y";
@@ -374,8 +361,6 @@ export function HomePublicPage() {
     const portfolioSection = portfolioSectionRef.current;
     const portfolioTrack = portfolioTrackRef.current;
     const progressLineFill = portfolioProgressLineRef.current;
-    const servicesSection = servicesSectionRef.current;
-    const servicesVisual = servicesVisualRef.current;
 
     const mm = gsap.matchMedia();
 
@@ -424,67 +409,6 @@ export function HomePublicPage() {
 
       return () => {
         cardTweens.forEach((t) => t.kill());
-      };
-    });
-
-    mm.add("(min-width: 769px)", () => {
-      const items = serviceItemRefs.current.filter(Boolean);
-      const images = serviceImageRefs.current.filter(Boolean);
-      const numbers = serviceNumberRefs.current.filter(Boolean);
-      if (!servicesSection || !servicesVisual || items.length === 0) return;
-
-      gsap.set(items, { opacity: 0.16 });
-      gsap.set(numbers, { opacity: 0 });
-      gsap.set(images, { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" });
-      gsap.set(items[0], { opacity: 1 });
-      gsap.set(numbers[0], { opacity: 1 });
-      gsap.set(images[0], { clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)" });
-
-      const pin = ScrollTrigger.create({
-        trigger: servicesSection,
-        start: "top top",
-        end: () => `+=${Math.max(420, servicesSection.scrollHeight - window.innerHeight * 0.55)}`,
-        pin: servicesVisual,
-        invalidateOnRefresh: true,
-      });
-
-      const tweens = items.flatMap((item, index) => [
-        gsap.fromTo(item, { opacity: 0.16 }, {
-          opacity: 1,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: item,
-            start: "top 55%",
-            end: "bottom 55%",
-            toggleActions: "play reverse play reverse",
-          },
-        }),
-        gsap.fromTo(numbers[index], { opacity: 0 }, {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power2.in",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 55%",
-            end: "bottom 55%",
-            toggleActions: "play reverse play reverse",
-          },
-        }),
-        gsap.fromTo(images[index], { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" }, {
-          clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)",
-          duration: 0.7,
-          scrollTrigger: {
-            trigger: item,
-            start: "top 55%",
-            end: "bottom 55%",
-            toggleActions: "play none play reverse",
-          },
-        }),
-      ]);
-
-      return () => {
-        pin.kill();
-        tweens.forEach((tween) => tween.kill());
       };
     });
 
@@ -666,57 +590,7 @@ export function HomePublicPage() {
           </div>
         </section>
 
-        <section ref={servicesSectionRef} className={styles.servicesSection} id="services">
-          <div className={styles.container}>
-            <SectionHeader title="خدماتنا المتكاملة" summary="كل خدمة لها هدف واضح: بناء ثقة، زيادة طلب، أو تحسين تجربة العميل." />
-            <div className={styles.servicesStory}>
-              <div ref={servicesVisualRef} className={styles.servicesVisual} aria-hidden="true">
-                {homepageContent.services.map((card, index) => (
-                  <div
-                    className={styles.serviceImageLayer}
-                    key={card.title}
-                    ref={(node) => {
-                      if (node) serviceImageRefs.current[index] = node;
-                    }}
-                  >
-                    <Image alt="" fill sizes="(max-width: 768px) 100vw, 54vw" src={serviceImages[index % serviceImages.length]} />
-                  </div>
-                ))}
-              </div>
-              <div className={styles.servicesList}>
-                <div className={styles.servicesListTitle}>
-                  <h3>خدماتنا المتكاملة</h3>
-                </div>
-                {homepageContent.services.map((card, index) => (
-                  <Link
-                    className={styles.servicePanel}
-                    href={card.href ?? "/services"}
-                    key={card.title}
-                    ref={(node) => {
-                      if (node) serviceItemRefs.current[index] = node;
-                    }}
-                  >
-                    <span
-                      className={styles.servicePanelNumber}
-                      ref={(node) => {
-                        if (node) serviceNumberRefs.current[index] = node;
-                      }}
-                    >
-                      {index + 1}
-                    </span>
-                    <span className={styles.servicePanelBody}>
-                      <strong>{card.title}</strong>
-                      <span>{card.summary}</span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <Reveal className={styles.servicesCta} variant="soft">
-              <ActionButton action={{ label: "مشاهدة كل الخدمات", href: "/services", icon: "fa-arrow-left", variant: "primary" }} />
-            </Reveal>
-          </div>
-        </section>
+        <HomeServicesScrollSection />
 
         <section className={styles.whySection} id="about">
           <div className={styles.container}>

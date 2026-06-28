@@ -13,6 +13,8 @@ type PopupState = {
 
 const VISITOR_ID_KEY = "sweed-offer-funnel-visitor-id";
 const SESSION_ID_KEY = "sweed-offer-funnel-session-id";
+// ponytail: temporary kill switch, remove when offer popups should return.
+const OFFER_POPUPS_ENABLED = false;
 
 function getOrCreateStorageId(storage: Storage, key: string) {
   const existing = storage.getItem(key);
@@ -56,6 +58,10 @@ function markCooldown(storage: Storage, key: string) {
 }
 
 export function OfferFunnelController({ page }: { page: string }) {
+  if (!OFFER_POPUPS_ENABLED) {
+    return null;
+  }
+
   const [settings, setSettings] = useState<OfferFunnelSettings | null>(null);
   const [popup, setPopup] = useState<PopupState | null>(null);
   const activeSectionIdRef = useRef("hero");

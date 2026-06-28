@@ -603,8 +603,6 @@
 .portfolioSection,
 .offersSection,
 .servicesSection,
-.processSection,
-.productsSection,
 .aboutSection,
 .blogSection,
 .faqSection,
@@ -1002,7 +1000,6 @@
 
 .whySection,
 .offersSection,
-.productsSection,
 .faqSection {
   background: #faf8fb;
 }
@@ -1683,85 +1680,6 @@
   font-size: 0.88rem;
 }
 
-.processSection {
-  background:
-    radial-gradient(circle at 12% 12%, rgba(237, 32, 98, 0.1), transparent 25rem),
-    radial-gradient(circle at 92% 82%, rgba(38, 27, 62, 0.1), transparent 26rem),
-    #fff;
-  padding-block: clamp(4.5rem, 8vw, 8rem);
-}
-
-.processGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
-  padding-top: 1.5rem;
-}
-
-.processCard {
-  position: relative;
-  overflow: visible;
-  min-height: 250px;
-  align-items: center;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 2.45rem 1rem 1rem;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: var(--shadow);
-  text-align: center;
-}
-
-.processNumber {
-  position: absolute;
-  top: -1.5rem;
-  left: 50%;
-  display: grid;
-  width: 3.6rem;
-  height: 3.6rem;
-  place-items: center;
-  border: 5px solid #fff;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
-  color: #fff;
-  font-size: 1.15rem;
-  font-weight: 700;
-  transform: translateX(-50%);
-  box-shadow: 0 12px 28px rgba(38, 27, 62, 0.16);
-}
-
-.processIcon {
-  margin-inline: auto;
-  background: rgba(237, 32, 98, 0.08);
-}
-
-.processCard h3 {
-  margin-top: 0.85rem;
-  font-size: clamp(1rem, 1.1vw, 1.12rem);
-  line-height: 1.24;
-}
-
-.processCard p {
-  display: -webkit-box;
-  overflow: hidden;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-
-.processCard small {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: auto;
-  border-radius: 999px;
-  padding: 0.5rem 0.75rem;
-  background: rgba(237, 32, 98, 0.1);
-  color: var(--primary-pink);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
 .productCard {
   flex-direction: column;
   border-radius: 24px;
@@ -1982,6 +1900,34 @@
 }
 
 @media (max-width: 1180px) {
+  .problemsCompassInner {
+    min-height: auto;
+  }
+
+  .compassStage {
+    display: grid;
+    min-height: auto;
+    margin-top: 0;
+    gap: 0.6rem;
+  }
+
+  .compassImageWrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(58vw, 300px);
+    margin: 0 auto 0.45rem;
+    transform: none;
+  }
+
+  .compassProblemCard {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none;
+  }
+
   .processGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2315,8 +2261,6 @@
   .whySection,
   .portfolioSection,
   .offersSection,
-  .processSection,
-  .productsSection,
   .aboutSection,
   .blogSection,
   .faqSection,

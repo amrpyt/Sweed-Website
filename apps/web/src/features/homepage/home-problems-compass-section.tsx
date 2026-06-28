@@ -56,7 +56,7 @@ export function HomeProblemsCompassSection() {
         return;
       }
 
-      if (window.innerWidth < 900) {
+      if (window.innerWidth <= 1180) {
         gsap.set([compassRef.current, ...cards], { clearProps: "all" });
         return;
       }

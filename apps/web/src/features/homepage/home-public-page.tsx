@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { SimpleIcon } from "simple-icons";
 import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVercel } from "simple-icons";
-import { homepageContent, type HomeAction, type HomeCard, type HomeProcessStep } from "@/content/homepage";
+import { homepageContent, type HomeAction, type HomeCard } from "@/content/homepage";
 import { CircleCursor } from "@/components/motion/circle-cursor";
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
@@ -142,44 +142,6 @@ function PortfolioCarouselActions({
         <Icon name="fa-chevron-left" />
       </button>
     </div>
-  );
-}
-
-function ProcessCard({ step, index }: { step: HomeProcessStep; index: number }) {
-  return (
-    <HeroHomeCard className={styles.processCard}>
-      <div className={styles.processNumber}>{index + 1}</div>
-      <div className={styles.processIcon}>
-        <Icon name={step.icon} />
-      </div>
-      <h3>{step.title}</h3>
-      <p>{step.summary}</p>
-      <small>
-        <Icon name="fa-clock" />
-        {step.duration}
-      </small>
-    </HeroHomeCard>
-  );
-}
-
-function ProductCard({ card }: { card: HomeCard }) {
-  return (
-    <Link className={styles.productCard} href={card.href ?? "/products"}>
-      <div className={styles.productImage}>
-        <Icon name={card.icon} />
-      </div>
-      <div className={styles.productBody}>
-        <h3>{card.title}</h3>
-        <p>{card.summary}</p>
-        <div className={styles.productFooter}>
-          <div>
-            {card.oldPrice ? <span>{card.oldPrice}</span> : null}
-            {card.price ? <strong>{card.price}</strong> : null}
-          </div>
-          <em>اشتري الآن</em>
-        </div>
-      </div>
-    </Link>
   );
 }
 
@@ -636,32 +598,6 @@ export function HomePublicPage() {
               {homepageContent.offers.map((card, index) => (
                 <Reveal delay={index * 70} key={card.title} variant="scaleIn">
                   <FeatureCard card={card} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.processSection} id="process">
-          <div className={styles.container}>
-            <SectionHeader title="كيف نعمل معك خطوة بخطوة" summary="مسار واضح من أول مكالمة حتى إطلاق الشغل، بألوان البراند وبدون أي حركة تلقائية تشتت العميل." />
-            <div className={styles.processGrid}>
-              {homepageContent.process.map((step, index) => (
-                <Reveal delay={index * 70} key={step.title} variant="scaleIn">
-                  <ProcessCard index={index} step={step} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.productsSection} id="products">
-          <div className={styles.container}>
-            <SectionHeader title="منتجاتنا الجاهزة" summary="حلول سريعة ومنتجات جاهزة للاستخدام الفوري" />
-            <div className={styles.productsGrid}>
-              {homepageContent.products.map((card, index) => (
-                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                  <ProductCard card={card} />
                 </Reveal>
               ))}
             </div>

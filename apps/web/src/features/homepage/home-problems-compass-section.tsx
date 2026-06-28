@@ -57,7 +57,22 @@ export function HomeProblemsCompassSection() {
       }
 
       if (window.innerWidth <= 1180) {
-        gsap.set([compassRef.current, ...cards], { clearProps: "all" });
+        gsap.fromTo(
+          [compassRef.current, ...cards],
+          { opacity: 0, y: 18 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+            ease: "power2.out",
+            stagger: 0.06,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 72%",
+              once: true,
+            },
+          },
+        );
         return;
       }
 

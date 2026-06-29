@@ -1,7 +1,7 @@
 "use client";
 
 import gsap from "gsap";
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { SimpleIcon } from "simple-icons";
@@ -145,6 +145,94 @@ const partnerLogos = [siReact, siNextdotjs, siTailwindcss, siVercel, siGithub, s
   node: <BrandLogo icon={icon} />,
   title: icon.title,
 }));
+
+function BlitScrollDemoSection() {
+  const [isOpen, setIsOpen] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoWrapRef = useRef<HTMLDivElement>(null);
+  const overlayVideoRef = useRef<HTMLVideoElement>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const videoWrap = videoWrapRef.current;
+    if (!section || !videoWrap) return;
+
+    const clamp = (value: number) => Math.max(0, Math.min(1, value));
+    const lerp = (from: number, to: number, progress: number) => from + (to - from) * progress;
+    const update = () => {
+      const rect = section.getBoundingClientRect();
+      const max = Math.max(1, section.offsetHeight - window.innerHeight);
+      const progress = clamp(-rect.top / max);
+      const isMobile = window.matchMedia("(max-width: 760px)").matches;
+      videoWrap.style.setProperty("--blit-top", `${lerp(isMobile ? 72 : 78, 42, progress)}vh`);
+      videoWrap.style.setProperty("--blit-width", `${lerp(isMobile ? 88 : 62, 88, progress)}vw`);
+      videoWrap.style.setProperty("--blit-scale", String(lerp(1, 1.04, progress)));
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  function openVideo() {
+    setIsOpen(true);
+    const video = overlayVideoRef.current;
+    if (!video) return;
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  }
+
+  function closeVideo() {
+    setIsOpen(false);
+    overlayVideoRef.current?.pause();
+  }
+
+  return (
+    <section ref={sectionRef} className={styles.blitSection} aria-label="Blit scroll effect demo">
+      <div className={styles.blitSticky}>
+        <h2 className={styles.blitTitle}>
+          <button className={styles.blitPlus} type="button" onClick={openVideo} aria-label="Open Blit demo video">
+            +
+          </button>
+          <span>folds in</span>
+          <span>perception</span>
+        </h2>
+        <div ref={videoWrapRef} className={styles.blitVideoWrap}>
+          <video
+            src="/videos/blit-scroll-effect-demo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/images/portfolio/blit-scroll-effect-demo-poster.png"
+            preload="metadata"
+          />
+        </div>
+      </div>
+
+      <div className={`${styles.blitOverlay} ${isOpen ? styles.blitOverlayOpen : ""}`} aria-hidden={!isOpen}>
+        <button className={styles.blitClose} type="button" onClick={closeVideo} aria-label="Close Blit demo video">
+          ×
+        </button>
+        <div className={styles.blitOverlayFrame}>
+          <video
+            ref={overlayVideoRef}
+            src="/videos/blit-scroll-effect-demo.mp4"
+            controls
+            playsInline
+            poster="/images/portfolio/blit-scroll-effect-demo-poster.png"
+            preload="metadata"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export function HomePublicPage() {
   const heroSectionRef = useRef<HTMLDivElement>(null);
@@ -290,6 +378,8 @@ export function HomePublicPage() {
             />
           </div>
         </section>
+
+        <BlitScrollDemoSection />
 
         <HomeProblemsCompassSection />
 

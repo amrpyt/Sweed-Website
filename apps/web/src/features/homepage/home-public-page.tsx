@@ -1,26 +1,9 @@
 "use client";
 
 import gsap from "gsap";
-import { useCallback, useEffect, useRef, useLayoutEffect, useState } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import type { SimpleIcon } from "simple-icons";
-import {
-  siCloudflare,
-  siDocker,
-  siFigma,
-  siFacebook,
-  siGithub,
-  siGoogle,
-  siMeta,
-  siNextdotjs,
-  siPrisma,
-  siReact,
-  siShopify,
-  siStripe,
-  siTailwindcss,
-  siVercel,
-} from "simple-icons";
 import { homepageContent, type HomeAction, type HomeCard } from "@/content/homepage";
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
@@ -144,131 +127,6 @@ function FaqCard({ card }: { card: HomeCard }) {
       </summary>
       <p>{card.summary}</p>
     </details>
-  );
-}
-
-type PixelLogo = {
-  icon: SimpleIcon;
-  colors: string[];
-};
-
-function PixelCanvas({ colors }: { colors: string[] }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>(0);
-  const pixelsRef = useRef<{ x: number; y: number; delay: number; size: number; color: string }[]>([]);
-
-  const draw = useCallback((visible: boolean) => {
-    cancelAnimationFrame(animationRef.current);
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !ctx) return;
-
-    let frame = visible ? 0 : 42;
-    const animate = () => {
-      frame += visible ? 1 : -1;
-      frame = Math.max(0, Math.min(42, frame));
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const pixel of pixelsRef.current) {
-        const progress = Math.max(0, Math.min(1, (frame - pixel.delay) / 16));
-        if (progress <= 0) continue;
-        ctx.fillStyle = pixel.color;
-        ctx.fillRect(pixel.x, pixel.y, pixel.size * progress, pixel.size * progress);
-      }
-
-      if ((visible && frame < 42) || (!visible && frame > 0)) {
-        animationRef.current = requestAnimationFrame(animate);
-      }
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-  }, []);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = Math.max(1, Math.floor(rect.width));
-      canvas.height = Math.max(1, Math.floor(rect.height));
-      const pixels = [];
-      for (let x = 0; x < canvas.width; x += 7) {
-        for (let y = 0; y < canvas.height; y += 7) {
-          const dx = x - canvas.width / 2;
-          const dy = y - canvas.height / 2;
-          pixels.push({
-            x,
-            y,
-            delay: Math.sqrt(dx * dx + dy * dy) / 18,
-            size: 2 + Math.random() * 2,
-            color: colors[Math.floor(Math.random() * colors.length)],
-          });
-        }
-      }
-      pixelsRef.current = pixels;
-    };
-
-    resize();
-    const observer = new ResizeObserver(resize);
-    observer.observe(canvas);
-
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(animationRef.current);
-    };
-  }, [colors]);
-
-  return <canvas ref={canvasRef} className={styles.partnerPixelCanvas} onMouseEnter={() => draw(true)} onMouseLeave={() => draw(false)} />;
-}
-
-function PartnerLogoCard({ logo }: { logo: PixelLogo }) {
-  return (
-    <div className={styles.partnerLogoCard}>
-      <PixelCanvas colors={logo.colors} />
-      <svg aria-hidden="true" className={styles.partnerLogo} role="img" viewBox="0 0 24 24">
-        <path d={logo.icon.path} />
-      </svg>
-      <span>{logo.icon.title}</span>
-    </div>
-  );
-}
-
-const partnerLogos: PixelLogo[] = [
-  { icon: siGoogle, colors: ["#4285f4", "#34a853", "#fbbc05", "#ea4335"] },
-  { icon: siMeta, colors: ["#0866ff", "#4d9cff", "#8ac2ff"] },
-  { icon: siFacebook, colors: ["#1877f2", "#4b93db", "#87baf0"] },
-  { icon: siStripe, colors: ["#635bff", "#8c85ff", "#b2adff"] },
-  { icon: siShopify, colors: ["#95bf47", "#5e8e3e", "#c6e377"] },
-  { icon: siReact, colors: ["#61dafb", "#29a9d6", "#b8f3ff"] },
-  { icon: siNextdotjs, colors: ["#111111", "#6d6e70", "#ed2062"] },
-  { icon: siVercel, colors: ["#111111", "#261b3e", "#ed2062"] },
-  { icon: siTailwindcss, colors: ["#38bdf8", "#0ea5e9", "#a5f3fc"] },
-  { icon: siGithub, colors: ["#181717", "#6d6e70", "#ed2062"] },
-  { icon: siDocker, colors: ["#2496ed", "#60a5fa", "#bae6fd"] },
-  { icon: siPrisma, colors: ["#2d3748", "#4a5568", "#ed2062"] },
-  { icon: siFigma, colors: ["#f24e1e", "#a259ff", "#1abcfe"] },
-  { icon: siCloudflare, colors: ["#f38020", "#faae40", "#fff2d8"] },
-];
-
-function PartnersPixelGrid() {
-  return (
-    <section className={styles.partnersSection} id="expertise" aria-label="SWEED partners and platforms">
-      <div className={styles.partnersGrid}>
-        {partnerLogos.slice(0, 5).map((logo) => (
-          <PartnerLogoCard key={logo.icon.title} logo={logo} />
-        ))}
-        <PartnerLogoCard logo={partnerLogos[5]} />
-        <div className={styles.partnersCopy}>
-          <span>Partners we build with</span>
-          <h2>SWEED connects brand, content, ads, and web systems into one growth engine.</h2>
-        </div>
-        <PartnerLogoCard logo={partnerLogos[6]} />
-        {partnerLogos.slice(7).map((logo) => (
-          <PartnerLogoCard key={logo.icon.title} logo={logo} />
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -492,7 +350,6 @@ export function HomePublicPage() {
             </div>
           </div>
 
-          <PartnersPixelGrid />
         </section>
 
         <BlitScrollDemoSection />

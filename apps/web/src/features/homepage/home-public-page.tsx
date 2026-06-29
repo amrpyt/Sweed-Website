@@ -187,7 +187,7 @@ function BlitScrollDemoSection() {
       <div ref={stickyRef} className={styles.blitSticky}>
         <h2 className={styles.blitTitle}>
           <button className={styles.blitPlus} type="button" onClick={openVideo} aria-label="افتح فيديو سويد">
-            +
+            <span aria-hidden="true" />
           </button>
           <span>سويد تحوّل</span>
           <span>الانتباه</span>

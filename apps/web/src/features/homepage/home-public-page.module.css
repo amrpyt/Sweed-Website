@@ -611,19 +611,42 @@
 .blitPlus {
   position: absolute;
   z-index: 5;
-  top: clamp(2.4rem, 5vw, 4.4rem);
+  top: clamp(3rem, 5.4vw, 4.8rem);
   left: auto;
-  right: 0;
-  width: clamp(96px, 10vw, 142px);
-  height: clamp(96px, 10vw, 142px);
-  border: 0;
+  right: clamp(0.4rem, 1vw, 1rem);
+  display: grid;
+  place-items: center;
+  width: clamp(74px, 7vw, 96px);
+  height: clamp(74px, 7vw, 96px);
+  border: 1px solid rgba(237, 32, 98, 0.35);
   border-radius: 999px;
-  background: #ff3b0a;
+  background: #261b3e;
   color: #fff;
   cursor: pointer;
-  font: inherit;
-  font-size: clamp(2.4rem, 4vw, 3.4rem);
-  line-height: 1;
+  box-shadow: 0 18px 50px rgba(38, 27, 62, 0.2);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.blitPlus::before {
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgba(237, 32, 98, 0.18);
+  border-radius: inherit;
+  content: "";
+}
+
+.blitPlus span {
+  width: 0;
+  height: 0;
+  margin-inline-start: 4px;
+  border-block: 12px solid transparent;
+  border-left: 18px solid #fff;
+}
+
+.blitPlus:hover {
+  background: #ed2062;
+  box-shadow: 0 22px 60px rgba(237, 32, 98, 0.24);
+  transform: translateY(-2px);
 }
 
 .blitVideoWrap {

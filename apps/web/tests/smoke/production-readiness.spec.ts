@@ -98,7 +98,7 @@ test("production visual checkpoints can render key homepage sections", async ({ 
   test.skip(testInfo.project.name.includes("mobile"), "desktop-only section screenshots keep prod smoke fast");
 
   await page.goto("/", { waitUntil: "networkidle" });
-  await expect(page.locator("body")).toContainText("نحوّل أحلامك");
+  await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");
   await page.screenshot({ path: testInfo.outputPath("home-hero.png"), fullPage: false });
 
   for (const [name, selector] of [

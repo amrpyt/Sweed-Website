@@ -385,16 +385,7 @@
 
 /* Pyramid Overlay Animation */
 .pyramidOverlay {
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: #ffffff;
-  clip-path: polygon(0% 100%, 0% 100%, 50% 100%, 100% 100%, 100% 100%);
-  will-change: clip-path;
-  z-index: 10;
-  pointer-events: none;
+  display: none;
 }
 
 /* Mobile Responsiveness for Hero */
@@ -1131,12 +1122,14 @@
 .serviceImageLayer {
   position: absolute;
   inset: 0;
-  clip-path: polygon(0 0, 0 0, 0 0, 0 0);
-  will-change: clip-path;
+  opacity: 0;
+  transform: scale(0.985);
+  will-change: opacity, transform;
 }
 
 .serviceImageLayer:first-child {
-  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  opacity: 1;
+  transform: scale(1);
 }
 
 .serviceImageLayer img {
@@ -2723,38 +2716,6 @@
 }
 
 /* Custom Cursor Follower & Hover Pill animations */
-.hoverPill {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translate3d(0vw, 0vh, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-  transform-style: preserve-3d;
-  opacity: 0;
-  will-change: transform;
-  pointer-events: none;
-  z-index: 99;
-  
-  /* Treehaus hover_pill styles */
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  color: #fff;
-  text-transform: uppercase;
-  background-color: #0000004d;
-  border-radius: 4rem;
-  padding: .75rem 2.25rem;
-  font-family: var(--font-body);
-  font-size: .875rem;
-  font-weight: 500;
-  white-space: nowrap;
-  backdrop-filter: blur(4px);
-  transition: background-color 0.25s ease, border-color 0.25s ease;
-}
-
-.hoverPillActive {
-  border-color: transparent !important;
-  color: #fff !important;
-}
-
 /* Hide standard cursor on desktop mouse pointer devices */
 @media (pointer: fine) {
   .portfolioSection {

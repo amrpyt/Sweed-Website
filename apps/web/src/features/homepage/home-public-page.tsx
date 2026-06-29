@@ -2,13 +2,11 @@
 
 import gsap from "gsap";
 import { useRef, useLayoutEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import Image from "next/image";
 import type { SimpleIcon } from "simple-icons";
 import { siDocker, siGithub, siNextdotjs, siPrisma, siReact, siTailwindcss, siVercel } from "simple-icons";
 import { homepageContent, type HomeAction, type HomeCard } from "@/content/homepage";
-import { CircleCursor } from "@/components/motion/circle-cursor";
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
@@ -155,18 +153,15 @@ export function HomePublicPage() {
   const matrixLeftRef = useRef<HTMLDivElement>(null);
   const matrixRightRef = useRef<HTMLDivElement>(null);
   const buildingRef = useRef<HTMLDivElement>(null);
-  const clientsStripRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     const section = heroSectionRef.current;
     if (!section) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    gsap.registerPlugin(ScrollTrigger);
-
     // Set initial states
     gsap.set([gridLineLeftRef.current, gridLineRightRef.current], { scaleY: 0, transformOrigin: "top" });
-    gsap.set([matrixLeftRef.current, matrixRightRef.current], { opacity: 0, filter: "blur(4px)" });
+    gsap.set([matrixLeftRef.current, matrixRightRef.current], { opacity: 0 });
     gsap.set(buildingRef.current, { y: 60, opacity: 0 });
     
     const redDots = section.querySelectorAll(`.${styles.redDot}`);
@@ -181,7 +176,6 @@ export function HomePublicPage() {
     })
     .to([matrixLeftRef.current, matrixRightRef.current], {
       opacity: 0.6,
-      filter: "blur(0px)",
       duration: 0.9,
       ease: "power2.out",
     }, "-=0.8")
@@ -198,32 +192,8 @@ export function HomePublicPage() {
       ease: "power3.out",
     }, "-=0.2");
 
-    // ScrollTrigger for the pyramid reveal of the Partners section over the building
-    const pyramid = clientsStripRef.current?.querySelector(`.${styles.pyramidOverlay}`);
-    const stTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section, // heroSectionRef.current
-        start: "top top", // Starts immediately on scroll
-        end: "bottom top", // End when bottom of hero section hits top of screen
-        scrub: 1,          // Smooth scrubbing
-      }
-    });
-
-    if (pyramid) {
-      stTl.to(pyramid, {
-        clipPath: "polygon(0% 100%, 0% 100%, 50% 0%, 100% 100%, 100% 100%)",
-        duration: 1,
-        ease: "none"
-      }).to(pyramid, {
-        clipPath: "polygon(0% 100%, 0% 0%, 50% 0%, 100% 0%, 100% 100%)",
-        duration: 1,
-        ease: "none"
-      });
-    }
-
     return () => {
       tl.kill();
-      stTl.kill();
     };
   }, []);
 
@@ -233,7 +203,6 @@ export function HomePublicPage() {
         تخطي إلى المحتوى
       </a>
       <ProgressIndicator />
-      <CircleCursor />
       <LegacyHeader page="home" />
       <main className={styles.homepage}>
         <section ref={heroSectionRef} className={styles.hero} id="home">
@@ -304,7 +273,7 @@ export function HomePublicPage() {
           </div>
         </section>
 
-        <section ref={clientsStripRef} className={styles.clientsStrip} id="expertise" aria-label="عملاؤنا">
+        <section className={styles.clientsStrip} id="expertise" aria-label="عملاؤنا">
           <div className={styles.pyramidOverlay} />
           <div className={styles.clientsLabel}>شركاء نجاح اشتغلوا معانا</div>
           <LogoLoop

@@ -57,42 +57,17 @@ export function HomeProblemsCompassSection() {
         return;
       }
 
-      if (window.innerWidth <= 1180) {
-        gsap.fromTo(
-          [compassRef.current, ...cards],
-          { opacity: 0, y: 18 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.55,
-            ease: "power2.out",
-            stagger: 0.06,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 72%",
-              once: true,
-            },
-          },
-        );
-        return;
-      }
-
       gsap.set(cards, { x: 0, y: 0, opacity: 0, scale: 0.72 });
       gsap.set(compassRef.current, { scale: 0.92, opacity: 0 });
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=110%",
-          pin: true,
-          scrub: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      timeline
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 72%",
+            once: true,
+          },
+        })
         .to(compassRef.current, { scale: 1, opacity: 1, duration: 0.35, ease: "power2.out" })
         .to(
           cards,

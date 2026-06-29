@@ -63,18 +63,10 @@ export function HomeServicesScrollSection() {
 
       gsap.set(items, { opacity: 0.16 });
       gsap.set(numbers, { opacity: 0 });
-      gsap.set(images, { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" });
+      gsap.set(images, { autoAlpha: 0, scale: 0.985 });
       gsap.set(items[0], { opacity: 1 });
       gsap.set(numbers[0], { opacity: 1 });
-      gsap.set(images[0], { clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)" });
-
-      const pin = ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: () => `+=${Math.max(420, section.scrollHeight - window.innerHeight * 0.55)}`,
-        pin: visual,
-        invalidateOnRefresh: true,
-      });
+      gsap.set(images[0], { autoAlpha: 1, scale: 1 });
 
       const tweens = items.flatMap((item, index) => [
         gsap.fromTo(item, { opacity: 0.16 }, {
@@ -98,8 +90,9 @@ export function HomeServicesScrollSection() {
             toggleActions: "play reverse play reverse",
           },
         }),
-        gsap.fromTo(images[index], { clipPath: "polygon(0 0, 0 0, 0 0, 0 0)" }, {
-          clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)",
+        gsap.fromTo(images[index], { autoAlpha: 0, scale: 0.985 }, {
+          autoAlpha: 1,
+          scale: 1,
           duration: 0.7,
           scrollTrigger: {
             trigger: item,
@@ -111,7 +104,6 @@ export function HomeServicesScrollSection() {
       ]);
 
       return () => {
-        pin.kill();
         tweens.forEach((tween) => tween.kill());
       };
     });

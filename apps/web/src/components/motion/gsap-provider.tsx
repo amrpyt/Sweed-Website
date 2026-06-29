@@ -26,11 +26,10 @@ export function GsapProvider() {
       const p = wrapper.querySelector("p");
 
       if (h2) {
-        gsap.set(h2, { opacity: 0, y: 48, filter: "blur(6px)" });
+        gsap.set(h2, { opacity: 0, y: 48 });
         gsap.to(h2, {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
           duration: 0.9,
           ease: "power4.out",
           scrollTrigger: {

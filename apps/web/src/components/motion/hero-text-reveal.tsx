@@ -37,8 +37,7 @@ export function HeroTextReveal({
     gsap.set(words, {
       opacity: 0,
       y: 32,
-      filter: "blur(8px)",
-      willChange: "opacity, transform, filter",
+      willChange: "opacity, transform",
     });
 
     // Animate in with stagger
@@ -46,7 +45,6 @@ export function HeroTextReveal({
     tl.to(words, {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       duration: 0.65,
       stagger: 0.06,
       ease: "power4.out",
@@ -56,7 +54,7 @@ export function HeroTextReveal({
     return () => {
       tl.kill();
     };
-  }, []);
+  }, [delay]);
 
   // Convert children text into word spans
   const text = typeof children === "string" ? children : "";

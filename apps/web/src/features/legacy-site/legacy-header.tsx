@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { LegacyPageKey } from "./legacy-routes";
+import { useScrollHeaderVisibility } from "./use-scroll-header-visibility";
 import "./legacy-header.module.css";
 
 type NavItem = {
@@ -49,6 +50,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
   const consultationHref = page === "home" ? "/#contact" : "/contact";
+  const isHeaderHidden = useScrollHeaderVisibility({ disabled: isOpen });
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -99,7 +101,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   return (
     <>
       {page !== "home" && (
-        <div className={`top-bar sweed-common-top-bar compact`}>
+        <div className={`top-bar sweed-common-top-bar compact ${isHeaderHidden ? "is-scroll-hidden" : ""}`}>
           <div className="top-bar-content">
             <div className="top-bar-left">
               <div className="top-bar-item">
@@ -127,7 +129,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
         </div>
       )}
 
-      <header className={`header sweed-common-header compact ${isOpen ? "mobile-menu-open" : ""} ${page === "home" ? "is-home-page" : ""}`} id="mainHeader">
+      <header className={`header sweed-common-header compact ${isOpen ? "mobile-menu-open" : ""} ${isHeaderHidden ? "is-scroll-hidden" : ""} ${page === "home" ? "is-home-page" : ""}`} id="mainHeader">
         <nav aria-label="القائمة الرئيسية" className="nav-container">
           <button
             ref={menuButtonRef}

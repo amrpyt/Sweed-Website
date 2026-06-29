@@ -1,0 +1,231 @@
+.section {
+  position: relative;
+  z-index: 6;
+  min-height: 100svh;
+  padding: clamp(4.5rem, 7vw, 6rem) clamp(1rem, 2.5vw, 2.75rem);
+  background: #261b3e;
+  color: #1f1735;
+  isolation: isolate;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: calc(100svh - clamp(9rem, 14vw, 12rem));
+  max-width: 118rem;
+  margin-inline: auto;
+  border: 1px solid rgba(38, 27, 62, 0.18);
+  background: #f7f7f5;
+  box-shadow: 0 38px 110px rgba(10, 7, 18, 0.28);
+}
+
+.visualPane,
+.copyPane {
+  position: relative;
+  overflow: hidden;
+  min-height: 42rem;
+}
+
+.visualPane {
+  border-inline-end: 18px solid #261b3e;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(237, 32, 98, 0.14) 50%, transparent calc(50% + 0.5px)),
+    linear-gradient(0deg, transparent calc(50% - 0.5px), rgba(237, 32, 98, 0.1) 50%, transparent calc(50% + 0.5px)),
+    #e4e4e1;
+}
+
+.scope {
+  position: absolute;
+  inset: 19%;
+  border: 1px solid rgba(38, 27, 62, 0.12);
+  border-radius: 50%;
+}
+
+.scope::before,
+.scope::after {
+  position: absolute;
+  inset: 17%;
+  border: 1px dashed rgba(38, 27, 62, 0.12);
+  border-radius: 50%;
+  content: "";
+}
+
+.scope::after {
+  inset: 34%;
+}
+
+.visualCard {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.image {
+  width: min(42vw, 34rem);
+  aspect-ratio: 1.34;
+  border: 2px solid #ed2062;
+  background-position: center;
+  background-size: cover;
+  box-shadow:
+    0 30px 80px rgba(38, 27, 62, 0.18),
+    0 0 0 14px rgba(237, 32, 98, 0.08);
+}
+
+.visualCard > span {
+  position: absolute;
+  top: clamp(2rem, 4vw, 4rem);
+  inset-inline-end: clamp(2rem, 4vw, 4rem);
+  color: rgba(38, 27, 62, 0.46);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.telemetry {
+  position: absolute;
+  inset-inline-start: clamp(1.8rem, 4vw, 4rem);
+  inset-block-end: clamp(1.8rem, 4vw, 4rem);
+  color: rgba(38, 27, 62, 0.58);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+.copyPane {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: clamp(1.25rem, 2vw, 2rem);
+  padding: clamp(2rem, 5vw, 5rem);
+  direction: rtl;
+}
+
+.kicker {
+  color: #ed2062;
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.copyPane h2 {
+  max-width: 42rem;
+  margin: 0;
+  color: #1f1735;
+  font-size: clamp(3rem, 5vw, 5.6rem);
+  font-weight: 900;
+  line-height: 1.03;
+  letter-spacing: 0;
+}
+
+.panels {
+  position: relative;
+  min-height: 22rem;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: end;
+  gap: clamp(1.2rem, 2vw, 1.8rem);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ed2062;
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.panel h3 {
+  max-width: 42rem;
+  margin: 0;
+  color: #1f1735;
+  font-size: clamp(2.4rem, 4vw, 4.9rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.panel ul {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  color: #303030;
+  font-size: clamp(1rem, 1.35vw, 1.28rem);
+  line-height: 1.65;
+  list-style: none;
+}
+
+.panel li {
+  position: relative;
+  padding-inline-end: 1.55rem;
+}
+
+.panel li::before {
+  position: absolute;
+  top: 0.62em;
+  inset-inline-end: 0;
+  width: 0.56rem;
+  height: 0.56rem;
+  background: #ed2062;
+  content: "";
+}
+
+.progressWrap {
+  position: relative;
+  height: 2.5rem;
+  border-inline: 1px solid rgba(38, 27, 62, 0.38);
+}
+
+.progressWrap::before {
+  position: absolute;
+  inset-inline: 1rem;
+  top: 50%;
+  height: 2px;
+  background: rgba(237, 32, 98, 0.18);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.progressWrap span {
+  position: absolute;
+  inset-inline-start: 1rem;
+  top: 50%;
+  width: calc(100% - 2rem);
+  height: 2px;
+  background: #ed2062;
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: right center;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 1rem;
+  }
+
+  .shell {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .visualPane {
+    min-height: 24rem;
+    border-inline-end: 0;
+    border-bottom: 14px solid #261b3e;
+  }
+
+  .image {
+    width: min(74vw, 24rem);
+  }
+
+  .copyPane {
+    min-height: 32rem;
+    padding: 2rem 1.5rem;
+  }
+}

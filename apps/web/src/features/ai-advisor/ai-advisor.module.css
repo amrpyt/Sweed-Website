@@ -1,23 +1,24 @@
 .root {
   position: fixed;
   inset-block-end: calc(20px + env(safe-area-inset-bottom));
-  inset-inline-end: 20px;
+  left: 20px;
+  right: auto;
   z-index: 1200;
   display: grid;
-  justify-items: end;
+  justify-items: start;
   direction: rtl;
   font-family: "Cairo", Arial, sans-serif;
 }
 
 .stack {
   display: grid;
-  justify-items: end;
-  gap: 12px;
+  justify-items: start;
+  gap: 10px;
 }
 
 .supportDetails {
   display: grid;
-  justify-items: end;
+  justify-items: start;
   gap: 12px;
 }
 
@@ -36,17 +37,21 @@
 
 .launcher {
   display: inline-flex;
-  min-height: 54px;
+  width: 48px;
+  height: 48px;
+  min-height: 48px;
   align-items: center;
-  gap: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-  background: #341836;
-  box-shadow: 0 18px 44px rgba(44, 20, 48, 0.28);
-  color: white;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid rgba(237, 32, 98, 0.26);
+  border-radius: 0;
+  background: #261b3e;
+  box-shadow: 0 14px 36px rgba(38, 27, 62, 0.22);
+  color: #ffffff;
   cursor: pointer;
-  font-weight: 900;
-  padding: 10px 16px 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 0;
   transition:
     transform 180ms ease,
     box-shadow 180ms ease,
@@ -55,8 +60,8 @@
 }
 
 .launcher:hover {
-  background: #451a42;
-  box-shadow: 0 22px 52px rgba(44, 20, 48, 0.34);
+  background: #1f1735;
+  box-shadow: 0 18px 44px rgba(38, 27, 62, 0.28);
   transform: translateY(-2px);
 }
 
@@ -82,22 +87,22 @@
 .launcherIcon {
   position: relative;
   display: inline-grid;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   flex: 0 0 auto;
   place-items: center;
-  border-radius: 999px;
+  border-radius: 0;
   background: #e91e63;
 }
 
 .launcherPulse {
   position: absolute;
-  inset-block-start: 0;
-  inset-inline-end: -1px;
-  width: 10px;
-  height: 10px;
-  border: 2px solid #341836;
-  border-radius: 999px;
+  inset-block-start: -3px;
+  inset-inline-end: -3px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #261b3e;
+  border-radius: 0;
   background: #27c46b;
 }
 
@@ -111,7 +116,7 @@
 }
 
 .launcherText {
-  white-space: nowrap;
+  display: none;
 }
 
 .panel {
@@ -120,14 +125,14 @@
   max-height: min(620px, calc(100dvh - 40px));
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid rgba(52, 24, 54, 0.1);
-  border-radius: 20px;
+  border: 1px solid rgba(38, 27, 62, 0.14);
+  border-radius: 0;
   background: #fff;
   box-shadow:
     0 22px 58px rgba(24, 18, 36, 0.2),
     0 2px 8px rgba(24, 18, 36, 0.06);
   animation: panelIn 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  transform-origin: bottom right;
+  transform-origin: bottom left;
 }
 
 .header {
@@ -679,25 +684,28 @@
 
 @media (width < 640px) {
   .root {
-    inset-inline: auto 8px;
+    left: 8px;
+    right: auto;
     inset-block-end: calc(8px + env(safe-area-inset-bottom));
-    justify-items: end;
+    justify-items: start;
   }
 
   .launcher {
-    min-height: 54px;
+    width: 48px;
+    height: 48px;
+    min-height: 48px;
     justify-content: center;
-    padding-inline: 16px;
+    padding: 0;
   }
 
   .stack {
-    justify-items: end;
+    justify-items: start;
   }
 
   .panel {
     width: 100%;
     max-height: calc(100dvh - 16px - env(safe-area-inset-bottom));
-    border-radius: 20px;
+    border-radius: 0;
   }
 
   .header {

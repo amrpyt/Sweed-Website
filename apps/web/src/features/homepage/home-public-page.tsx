@@ -1,7 +1,7 @@
 "use client";
 
 import gsap from "gsap";
-import { useRef, useLayoutEffect, useState } from "react";
+import { useRef, useLayoutEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,6 +19,7 @@ import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { Chess3DSection } from "./chess-3d-section";
+import { HomePortfolioArmorySection } from "./home-portfolio-armory-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
@@ -105,46 +106,6 @@ function WhyPoint({ card }: { card: HomeCard }) {
   );
 }
 
-function PortfolioCard({ card, index }: { card: HomeCard; index: number }) {
-  return (
-    <Link className={styles.portfolioCard} href={card.href ?? "/portfolio"}>
-      <div className={styles.portfolioMetaRow}>
-        {card.category ? <span>{card.category}</span> : null}
-        {card.meta ? <span>{card.meta}</span> : null}
-      </div>
-      <div className={styles.portfolioContent}>
-        <span className={styles.portfolioNumber}>{index + 1}</span>
-        <div>
-          <h3>{card.title}</h3>
-          <p>{card.summary}</p>
-        </div>
-      </div>
-      <div className={styles.portfolioVisual}>
-        <Icon name={card.icon} />
-      </div>
-    </Link>
-  );
-}
-
-function PortfolioCarouselActions({
-  onPrevious,
-  onNext,
-}: {
-  onPrevious: () => void;
-  onNext: () => void;
-}) {
-  return (
-    <div className={styles.portfolioRowHeader}>
-      <button className={styles.portfolioNav} onClick={onPrevious} type="button" aria-label="الأعمال السابقة">
-        <Icon name="fa-chevron-right" />
-      </button>
-      <button className={styles.portfolioNav} onClick={onNext} type="button" aria-label="الأعمال التالية">
-        <Icon name="fa-chevron-left" />
-      </button>
-    </div>
-  );
-}
-
 function ArticleCard({ card }: { card: HomeCard }) {
   return (
     <Link className={styles.articleCard} href={card.href ?? "/articles"}>
@@ -188,11 +149,6 @@ const partnerLogos = [siReact, siNextdotjs, siTailwindcss, siVercel, siGithub, s
 }));
 
 export function HomePublicPage() {
-  const portfolioSectionRef = useRef<HTMLDivElement>(null);
-  const portfolioTrackRef = useRef<HTMLDivElement>(null);
-  const hoverPillRef = useRef<HTMLDivElement>(null);
-  const [activePortfolioIndex, setActivePortfolioIndex] = useState(0);
-
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const gridLineLeftRef = useRef<HTMLDivElement>(null);
   const gridLineRightRef = useRef<HTMLDivElement>(null);
@@ -223,28 +179,6 @@ export function HomePublicPage() {
       window.removeEventListener("beforeunload", saveScroll);
     };
   }, []);
-
-  const scrollToPortfolioCard = (index: number) => {
-    const container = portfolioTrackRef.current;
-    if (!container) return;
-    const cards = container.querySelectorAll(`.${styles.portfolioCard}`);
-    const card = cards[index];
-    if (card) {
-      card.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-    setActivePortfolioIndex(index);
-  };
-
-  const handleMobileScroll = () => {
-    const container = portfolioTrackRef.current;
-    if (!container) return;
-
-    const scrollLeft = Math.abs(container.scrollLeft);
-    const card = container.querySelector<HTMLAnchorElement>(`.${styles.portfolioCard}`);
-    const cardWidth = card ? card.getBoundingClientRect().width : container.clientWidth * 0.75;
-    const index = Math.round(scrollLeft / (cardWidth + 16)); // card width + gap
-    setActivePortfolioIndex(Math.max(0, Math.min(index, homepageContent.portfolio.length - 1)));
-  };
 
   useLayoutEffect(() => {
     const section = heroSectionRef.current;
@@ -310,131 +244,9 @@ export function HomePublicPage() {
       });
     }
 
-    const portfolioSection = portfolioSectionRef.current;
-    const portfolioTrack = portfolioTrackRef.current;
-    const portfolioProgress = portfolioSection?.querySelector(`.${styles.portfolioProgressBar}`);
-    const mm = gsap.matchMedia();
-
-    mm.add(
-      {
-        isDesktop: "(min-width: 769px)",
-        reduceMotion: "(prefers-reduced-motion: reduce)",
-      },
-      (context) => {
-      if (!context.conditions?.isDesktop || !portfolioSection || !portfolioTrack || !portfolioProgress) return;
-
-      const getScrollAmount = () => -(portfolioTrack.scrollWidth - window.innerWidth);
-      const reduceMotion = context.conditions.reduceMotion;
-      const introItems = portfolioSection.querySelectorAll("[data-portfolio-intro]");
-
-      gsap.set(portfolioProgress, { scaleX: 0, transformOrigin: "left center" });
-      gsap.set(portfolioSection, {
-        autoAlpha: reduceMotion ? 1 : 0,
-        scale: reduceMotion ? 1 : 0.96,
-        transformOrigin: "center center",
-      });
-      gsap.set(introItems, { autoAlpha: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 34 });
-
-      const timeline = gsap.timeline();
-
-      if (!reduceMotion) {
-        timeline
-          .to(portfolioSection, {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.65,
-            ease: "power2.out",
-          })
-          .to(introItems, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.55,
-            ease: "power2.out",
-            stagger: 0.06,
-          }, "<0.18");
-      }
-
-      timeline.to(portfolioTrack, {
-        x: getScrollAmount,
-        ease: "none",
-        duration: 4,
-      }, reduceMotion ? 0 : ">");
-
-      const trigger = ScrollTrigger.create({
-        trigger: portfolioSection,
-        start: "top top",
-        end: () => `+=${getScrollAmount() * -1 + (reduceMotion ? 0 : window.innerHeight * 0.75)}`,
-        pin: true,
-        scrub: 1,
-        animation: timeline,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          gsap.set(portfolioProgress, { scaleX: self.progress, transformOrigin: "left center" });
-        },
-      });
-
-      return () => {
-        trigger.kill();
-        timeline.kill();
-      };
-    });
-
-    // Custom cursor follower (hover pill) logic for desktop pointer
-    const hoverPill = hoverPillRef.current;
-    let cleanupCursor: (() => void) | undefined;
-
-    if (hoverPill && window.matchMedia("(pointer: fine)").matches) {
-      const onMouseMove = (e: MouseEvent) => {
-        // Track viewport coordinates directly
-        const x = e.clientX;
-        const y = e.clientY;
-
-        gsap.to(hoverPill, {
-          x: x,
-          y: y,
-          duration: 0.2,
-          ease: "power2.out",
-        });
-      };
-
-      const cards = document.querySelectorAll(`.${styles.portfolioCard}`);
-      const onCardEnter = () => {
-        gsap.to(hoverPill, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.2,
-        });
-      };
-
-      const onCardLeave = () => {
-        gsap.to(hoverPill, {
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.2,
-        });
-      };
-
-      window.addEventListener("mousemove", onMouseMove);
-
-      cards.forEach((card) => {
-        card.addEventListener("mouseenter", onCardEnter);
-        card.addEventListener("mouseleave", onCardLeave);
-      });
-
-      cleanupCursor = () => {
-        window.removeEventListener("mousemove", onMouseMove);
-        cards.forEach((card) => {
-          card.removeEventListener("mouseenter", onCardEnter);
-          card.removeEventListener("mouseleave", onCardLeave);
-        });
-      };
-    }
-
     return () => {
       tl.kill();
       stTl.kill();
-      mm.revert();
-      if (cleanupCursor) cleanupCursor();
     };
   }, []);
 
@@ -556,40 +368,7 @@ export function HomePublicPage() {
           </div>
         </section>
 
-        <section ref={portfolioSectionRef} className={styles.portfolioSection} id="portfolio">
-          <div ref={hoverPillRef} className={styles.hoverPill}>
-            شاهد المشروع
-          </div>
-          <div className={styles.portfolioScrollWrapper}>
-            <div
-              ref={portfolioTrackRef}
-              className={styles.portfolioTrack}
-              onScroll={handleMobileScroll}
-            >
-              <div className={styles.portfolioHead} data-portfolio-panel>
-                <div className={styles.portfolioYear} data-portfolio-intro>{homepageContent.portfolioHead.year}</div>
-                <div className={styles.portfolioHeadTexts} data-portfolio-intro>
-                  <h2 className={styles.portfolioLabel}>{homepageContent.portfolioHead.label}</h2>
-                  <p className={styles.portfolioDescription}>
-                    {homepageContent.portfolioHead.description}
-                  </p>
-                </div>
-                <div className={styles.portfolioHeadingWrap} data-portfolio-intro>
-                  <h3 className={styles.portfolioHeadingDisplay}>{homepageContent.portfolioHead.title}</h3>
-                  <div className={styles.portfolioCountBadge}>
-                    {homepageContent.portfolio.length}
-                  </div>
-                </div>
-              </div>
-              {homepageContent.portfolio.map((card, index) => (
-                <PortfolioCard card={card} index={index} key={card.title} />
-              ))}
-            </div>
-            <div className={styles.portfolioProgressTrack}>
-              <div className={styles.portfolioProgressBar} />
-            </div>
-          </div>
-        </section>
+        <HomePortfolioArmorySection />
 
         <section className={styles.offersSection} id="offers">
           <div className={styles.container}>

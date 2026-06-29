@@ -58,10 +58,6 @@ function markCooldown(storage: Storage, key: string) {
 }
 
 export function OfferFunnelController({ page }: { page: string }) {
-  if (!OFFER_POPUPS_ENABLED) {
-    return null;
-  }
-
   const [settings, setSettings] = useState<OfferFunnelSettings | null>(null);
   const [popup, setPopup] = useState<PopupState | null>(null);
   const activeSectionIdRef = useRef("hero");
@@ -70,6 +66,8 @@ export function OfferFunnelController({ page }: { page: string }) {
   const shownRef = useRef<Record<string, boolean>>({});
 
   useEffect(() => {
+    if (!OFFER_POPUPS_ENABLED) return;
+
     let cancelled = false;
 
     fetch("/api/offer-funnel", { cache: "no-store" })
@@ -88,6 +86,7 @@ export function OfferFunnelController({ page }: { page: string }) {
   }, []);
 
   useEffect(() => {
+    if (!OFFER_POPUPS_ENABLED) return;
     if (!settings?.enabled || typeof window === "undefined") return;
 
     getOrCreateStorageId(window.localStorage, VISITOR_ID_KEY);
@@ -168,7 +167,7 @@ export function OfferFunnelController({ page }: { page: string }) {
     return popup.kind === "section" ? settings.sectionOffer : settings.siteOffer;
   }, [popup, settings]);
 
-  if (!settings?.enabled || !popup || !popupConfig) {
+  if (!OFFER_POPUPS_ENABLED || !settings?.enabled || !popup || !popupConfig) {
     return null;
   }
 

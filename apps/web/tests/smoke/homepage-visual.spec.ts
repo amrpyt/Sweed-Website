@@ -4,11 +4,10 @@ const visualSections = [
   "home",
   "expertise",
   "problems",
-  "offers",
   "services",
-  "process",
-  "products",
+  "about",
   "portfolio",
+  "offers",
   "blog",
   "faq",
   "contact",
@@ -27,6 +26,7 @@ test("react homepage visual baselines by section", async ({ page }, testInfo) =>
       .sweed-common-top-bar,
       .sweed-common-header,
       .mobile-menu-overlay,
+      [class*="logoLoop"],
       [class*="ai-advisor"],
       [data-testid="offer-funnel-popup-shell"] {
         display: none !important;
@@ -34,7 +34,7 @@ test("react homepage visual baselines by section", async ({ page }, testInfo) =>
     `,
   });
   await expect(page.locator("#home")).toBeVisible();
-  await expect(page.locator("#process")).toContainText("كيف نعمل معك خطوة بخطوة");
+  await expect(page.locator("#services")).toContainText("خدماتنا المتكاملة");
 
   for (const sectionId of visualSections) {
     const section = page.locator(`#${sectionId}`);

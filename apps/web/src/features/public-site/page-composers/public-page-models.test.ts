@@ -21,7 +21,7 @@ describe("public-site page composers", () => {
 
     expect(page.breadcrumb).toBe("من نحن");
     expect(page.seo.title).toBe("من نحن - SWEED");
-    expect(page.sections.map((section) => section.id)).toEqual(["story", "team"]);
+    expect(page.sections.map((section) => section.id)).toEqual(["story", "team", "pillars"]);
     expect(page.sections[0]?.items.some((item) => item.title === "رؤيتنا")).toBe(true);
   });
 

@@ -13,7 +13,6 @@ test("public routes render shared shell", async ({ page }) => {
   for (const route of publicRoutes) {
     await page.goto(route);
     await expect(page.locator("body")).toBeVisible();
-    await expect(page.locator(".sweed-common-top-bar")).toHaveCount(1);
     await expect(page.locator(".sweed-common-header")).toHaveCount(1);
     await expect(page.locator(".sweed-common-logo .logo-main")).toHaveText("SWEED");
     await expect(page.locator(".sweed-common-logo .logo-subtitle")).toHaveText("التسويق والإعلان");
@@ -24,10 +23,10 @@ test("public routes render shared shell", async ({ page }) => {
 
 test("react homepage renders key content and stable anchors", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("body")).toContainText("نحوّل أحلامك إلى إنجازات حقيقية");
-  await expect(page.locator("#process")).toContainText("كيف نعمل معك خطوة بخطوة");
+  await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");
+  await expect(page.locator("#services")).toContainText("خدماتنا المتكاملة");
 
-  for (const selector of ["#home", "#expertise", "#problems", "#offers", "#services", "#products", "#portfolio", "#blog", "#faq", "#contact"]) {
+  for (const selector of ["#home", "#expertise", "#problems", "#services", "#about", "#portfolio", "#offers", "#blog", "#faq", "#contact"]) {
     await expect(page.locator(selector)).toHaveCount(1);
   }
 });
@@ -128,7 +127,7 @@ test("mobile sidebar links are clickable above overlay", async ({ page, isMobile
   await menu.getByRole("link", { name: "اتصل بنا" }).click();
   await expect(page).toHaveURL(/\/#contact$/);
   await expect(page.locator("#contact")).toHaveCount(1);
-  await expect(page.locator("body")).toContainText("محتاج إيه وهنساعدك؟");
+  await expect(page.locator("body")).toContainText("جاهز تبدأ أول خطوة معانا؟");
 });
 
 test("mobile sidebar keeps polished drawer style without layout drift", async ({ page, isMobile }) => {

@@ -7,10 +7,10 @@ import { homepageContent } from "@/content/homepage";
 import styles from "./home-portfolio-armory-section.module.css";
 
 const projectImages = [
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=80",
+  "/images/hero/two-men-consultation.jpg",
+  "/images/hero/entrepreneur-laptop-office.jpg",
+  "/images/hero/businessman-laptop-standing.jpg",
+  "/images/hero/sweed-building.png",
 ];
 
 function SignalText({ as: Tag, children }: { as: "h2" | "h3"; children: string }) {
@@ -22,7 +22,7 @@ function SignalText({ as: Tag, children }: { as: "h2" | "h3"; children: string }
         .map((word, index, words) => (
           <span data-portfolio-word key={`${word}-${index}`}>
             {word}
-            {index < words.length - 1 ? " " : ""}
+            {index < words.length - 1 ? "\u00A0" : ""}
           </span>
         ))}
     </Tag>
@@ -46,16 +46,15 @@ export function HomePortfolioArmorySection() {
     const progress = root.querySelector<HTMLElement>("[data-portfolio-progress]");
     if (panels.length === 0 || visualCards.length === 0 || !progress) return;
 
-    gsap.set(panels.slice(1), { autoAlpha: 0, y: 42, filter: "blur(14px)" });
-    gsap.set(visualCards.slice(1), { autoAlpha: 0, y: 70, scale: 0.96, filter: "blur(14px)" });
+    gsap.set(panels.slice(1), { autoAlpha: 0, y: 42 });
+    gsap.set(visualCards.slice(1), { autoAlpha: 0, y: 70, scale: 0.96 });
     gsap.set(root.querySelectorAll<HTMLElement>("[data-portfolio-word]"), {
       color: "#ed2062",
       display: "inline-block",
-      filter: "blur(7px)",
       opacity: 0,
       y: "0.45em",
     });
-    gsap.set([...headingWords, ...wordGroups[0]], { color: "#1f1735", filter: "blur(0px)", opacity: 1, y: 0 });
+    gsap.set([...headingWords, ...wordGroups[0]], { color: "#1f1735", opacity: 1, y: 0 });
 
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -73,11 +72,11 @@ export function HomePortfolioArmorySection() {
     panels.forEach((panel, index) => {
       if (index === 0) return;
       timeline
-        .to([panels[index - 1], visualCards[index - 1]], { autoAlpha: 0, y: 42, filter: "blur(14px)", duration: 0.22, ease: "none" }, index - 0.18)
-        .to(visualCards[index], { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.28, ease: "none" }, index - 0.08)
-        .to(panel, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.28, ease: "none" }, index - 0.08)
-        .to(wordGroups[index], { color: "#ed2062", filter: "blur(7px)", opacity: 0, y: "0.45em", duration: 0.01, stagger: 0 }, index - 0.08)
-        .to(wordGroups[index], { color: "#1f1735", filter: "blur(0px)", opacity: 1, y: 0, duration: 0.42, ease: "none", stagger: 0.06 }, index);
+        .to([panels[index - 1], visualCards[index - 1]], { autoAlpha: 0, y: 42, duration: 0.22, ease: "none" }, index - 0.18)
+        .to(visualCards[index], { autoAlpha: 1, y: 0, scale: 1, duration: 0.28, ease: "none" }, index - 0.08)
+        .to(panel, { autoAlpha: 1, y: 0, duration: 0.28, ease: "none" }, index - 0.08)
+        .to(wordGroups[index], { color: "#ed2062", opacity: 0, y: "0.45em", duration: 0.01, stagger: 0 }, index - 0.08)
+        .to(wordGroups[index], { color: "#1f1735", opacity: 1, y: 0, duration: 0.42, ease: "none", stagger: 0.06 }, index);
     });
 
     const resetHashScroll = () => {

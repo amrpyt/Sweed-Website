@@ -56,6 +56,9 @@ if (!isDevelopment) {
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  images: {
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+  },
   poweredByHeader: false,
   async headers() {
     return [

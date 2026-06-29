@@ -19,7 +19,6 @@ import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
-import { Chess3DSection } from "./chess-3d-section";
 import { HomePortfolioArmorySection } from "./home-portfolio-armory-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
@@ -322,8 +321,6 @@ export function HomePublicPage() {
             speed={82}
           />
         </section>
-
-        <Chess3DSection />
 
         <HomeProblemsCompassSection />
 

@@ -158,6 +158,7 @@ export function AiAdvisorWidget() {
               <form className={styles.composer} action={contactHref} method="get" onSubmit={handleSubmit}>
                 <input
                   aria-label="اكتب رسالتك للمساعد"
+                  autoComplete="off"
                   name="message"
                   placeholder="اكتب رسالتك للمساعد"
                   value={draft}
@@ -185,8 +186,8 @@ export function AiAdvisorWidget() {
 
               <form className={styles.ticketForm} action="/contact" method="get">
                 <div className={styles.ticketGrid}>
-                  <input aria-label="اسم صاحب التذكرة" name="name" placeholder="الاسم" />
-                  <input aria-label="رقم واتساب صاحب التذكرة" name="phone" placeholder="رقم الواتساب" />
+                  <input aria-label="اسم صاحب التذكرة" autoComplete="name" name="name" placeholder="الاسم" />
+                  <input aria-label="رقم واتساب صاحب التذكرة" autoComplete="tel" name="phone" placeholder="رقم الواتساب" />
                 </div>
                 <textarea aria-label="ملخص المشكلة" name="notes" placeholder="اكتب ملخص المشكلة أو الطلب" rows={3} />
                 <button type="submit">إرسال التذكرة</button>

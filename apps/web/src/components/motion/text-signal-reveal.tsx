@@ -46,8 +46,7 @@ export function TextSignalReveal({
         color: highlightColor,
         opacity: 0,
         y: "0.45em",
-        filter: "blur(7px)",
-        willChange: "opacity, transform, filter, color",
+        willChange: "opacity, transform, color",
       });
 
       const timeline = gsap.timeline({
@@ -65,7 +64,6 @@ export function TextSignalReveal({
         .to(wordEls, {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
           duration: 0.34,
           ease: "power2.out",
           stagger: 0.055,
@@ -89,7 +87,7 @@ export function TextSignalReveal({
   const content: ReactNode = words.map((word, index) => (
     <span data-signal-word key={`${word}-${index}`} style={{ display: "inline-block", whiteSpace: "pre" }}>
       {word}
-      {index < words.length - 1 ? " " : ""}
+      {index < words.length - 1 ? "\u00A0" : ""}
     </span>
   ));
 

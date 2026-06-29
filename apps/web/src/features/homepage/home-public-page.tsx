@@ -183,14 +183,15 @@ function BlitScrollDemoSection() {
   }
 
   return (
-    <section ref={sectionRef} className={styles.blitSection} aria-label="Blit scroll effect demo">
+    <section ref={sectionRef} className={styles.blitSection} aria-label="عرض فيديو سويد التفاعلي">
       <div ref={stickyRef} className={styles.blitSticky}>
         <h2 className={styles.blitTitle}>
-          <button className={styles.blitPlus} type="button" onClick={openVideo} aria-label="Open Blit demo video">
+          <button className={styles.blitPlus} type="button" onClick={openVideo} aria-label="افتح فيديو سويد">
             +
           </button>
-          <span>SWEED turns</span>
-          <span>attention into growth</span>
+          <span>سويد تحوّل</span>
+          <span>الانتباه</span>
+          <span>إلى نمو</span>
         </h2>
         <div ref={videoWrapRef} className={styles.blitVideoWrap}>
           <video
@@ -199,14 +200,13 @@ function BlitScrollDemoSection() {
             muted
             loop
             playsInline
-            poster="/images/portfolio/blit-scroll-effect-demo-poster.png"
             preload="metadata"
           />
         </div>
       </div>
 
       <div className={`${styles.blitOverlay} ${isOpen ? styles.blitOverlayOpen : ""}`} aria-hidden={!isOpen}>
-        <button className={styles.blitClose} type="button" onClick={closeVideo} aria-label="Close Blit demo video">
+        <button className={styles.blitClose} type="button" onClick={closeVideo} aria-label="أغلق فيديو سويد">
           ×
         </button>
         <div className={styles.blitOverlayFrame}>
@@ -215,7 +215,6 @@ function BlitScrollDemoSection() {
             src="/videos/blit-scroll-effect-demo.mp4"
             controls
             playsInline
-            poster="/images/portfolio/blit-scroll-effect-demo-poster.png"
             preload="metadata"
           />
         </div>

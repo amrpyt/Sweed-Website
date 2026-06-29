@@ -20,6 +20,7 @@ export function SmoothScroll() {
   useLayoutEffect(() => {
     if (disabledPathPrefixes.some((prefix) => pathname?.startsWith(prefix))) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.innerWidth < 900) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -30,10 +31,10 @@ export function SmoothScroll() {
     const lenis = new Lenis({
       anchors: true,
       autoRaf: false, // GSAP ticker drives the loop now
-      duration: 1.05,
+      duration: 0.78,
       easing: (time: number) => 1 - Math.pow(1 - time, 3),
       smoothWheel: true,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1,
     });
 
     // Sync ScrollTrigger with Lenis scroll events
@@ -44,7 +45,6 @@ export function SmoothScroll() {
       lenis.raf(time * 1000);
     };
     gsap.ticker.add(tickerCallback);
-    gsap.ticker.lagSmoothing(0);
 
     return () => {
       gsap.ticker.remove(tickerCallback);

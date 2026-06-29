@@ -1,11 +1,13 @@
 .section {
   position: relative;
   z-index: 6;
-  min-height: 100svh;
+  min-height: calc(100svh - 80px);
   padding: clamp(4.5rem, 7vw, 6rem) clamp(1rem, 2.5vw, 2.75rem);
   background: #261b3e;
   color: #1f1735;
   isolation: isolate;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .shell {

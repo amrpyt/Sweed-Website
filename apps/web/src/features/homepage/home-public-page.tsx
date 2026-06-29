@@ -271,24 +271,24 @@ export function HomePublicPage() {
 
             </div>
           </div>
-        </section>
 
-        <section className={styles.clientsStrip} id="expertise" aria-label="عملاؤنا">
-          <div className={styles.pyramidOverlay} />
-          <div className={styles.clientsLabel}>شركاء نعتز بهم</div>
-          <LogoLoop
-            ariaLabel="شركاء نجاح اشتغلوا معانا"
-            className={styles.clientsMarquee}
-            direction="left"
-            fadeOut
-            fadeOutColor="#ffffff"
-            gap={44}
-            hoverSpeed={82}
-            logoHeight={34}
-            logos={partnerLogos}
-            scaleOnHover
-            speed={82}
-          />
+          <div className={styles.clientsStrip} id="expertise" aria-label="عملاؤنا">
+            <div className={styles.pyramidOverlay} />
+            <div className={styles.clientsLabel}>شركاء نعتز بهم</div>
+            <LogoLoop
+              ariaLabel="شركاء نجاح اشتغلوا معانا"
+              className={styles.clientsMarquee}
+              direction="left"
+              fadeOut
+              fadeOutColor="#ffffff"
+              gap={44}
+              hoverSpeed={82}
+              logoHeight={34}
+              logos={partnerLogos}
+              scaleOnHover
+              speed={82}
+            />
+          </div>
         </section>
 
         <HomeProblemsCompassSection />

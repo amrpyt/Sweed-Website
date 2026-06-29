@@ -35,15 +35,17 @@ export function HeroTextReveal({
 
     // Set initial state
     gsap.set(words, {
+      filter: "blur(3px)",
       opacity: 0,
       y: 32,
-      willChange: "opacity, transform",
+      willChange: "filter, opacity, transform",
     });
 
     // Animate in with stagger
     const tl = gsap.timeline({ delay });
     tl.to(words, {
       opacity: 1,
+      filter: "blur(0px)",
       y: 0,
       duration: 0.65,
       stagger: 0.06,

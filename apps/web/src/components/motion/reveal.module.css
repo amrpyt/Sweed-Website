@@ -3,13 +3,15 @@
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   transition:
+    filter 720ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay);
-  will-change: opacity, transform;
+  will-change: filter, opacity, transform;
 }
 
 .reveal[data-motion-ready="true"]:not(.visible) {
+  filter: blur(3px);
   opacity: 0;
   transform: translate3d(0, 28px, 0);
 }
@@ -39,6 +41,7 @@
 }
 
 .visible {
+  filter: blur(0);
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
 }
@@ -46,6 +49,7 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
+    filter: none;
     transform: none;
     animation: none;
     transition: none;

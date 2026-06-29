@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { TextSignalReveal } from "@/components/motion";
 import styles from "./chess-3d-section.module.css";
 
 export function Chess3DSection() {
@@ -7,7 +8,9 @@ export function Chess3DSection() {
       <div className={styles.inner}>
         <div className={styles.copy}>
           <span className={styles.eyebrow}>SWEED STRATEGY</span>
-          <h2 className={styles.title}>Luxury brand strategists</h2>
+          <TextSignalReveal as="h2" className={styles.title}>
+            Luxury brand strategists
+          </TextSignalReveal>
           <p className={styles.summary}>
             نقدم لكل عميل قصة مصممة بعناية، وخطة واضحة تجعل العلامة التجارية تتحرك بثقة.
           </p>

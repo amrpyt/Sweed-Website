@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
+import { TextSignalReveal } from "@/components/motion";
 import { homepageContent } from "@/content/homepage";
 import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
@@ -116,7 +117,7 @@ export function HomeProblemsCompassSection() {
       <div className={styles.container}>
         <div ref={innerRef} className={styles.problemsCompassInner}>
           <div className={`${styles.sectionHeader} ${styles.problemsHeader}`}>
-            <h2>هل تواجه هذه المشاكل؟</h2>
+            <TextSignalReveal as="h2">هل تواجه هذه المشاكل؟</TextSignalReveal>
             <p>اختار التحدي الأقرب لك، ونرتب لك بداية واضحة.</p>
           </div>
 

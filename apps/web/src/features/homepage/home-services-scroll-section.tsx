@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
+import { TextSignalReveal } from "@/components/motion";
 import { homepageContent } from "@/content/homepage";
 import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
@@ -122,7 +123,7 @@ export function HomeServicesScrollSection() {
     <section ref={sectionRef} className={styles.servicesSection} id="services">
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2>خدماتنا المتكاملة</h2>
+          <TextSignalReveal as="h2">خدماتنا المتكاملة</TextSignalReveal>
           <p>كل خدمة لها هدف واضح: بناء ثقة، زيادة طلب، أو تحسين تجربة العميل.</p>
         </div>
         <div className={styles.servicesStory}>
@@ -141,7 +142,7 @@ export function HomeServicesScrollSection() {
           </div>
           <div className={styles.servicesList}>
             <div className={styles.servicesListTitle}>
-              <h3>خدماتنا المتكاملة</h3>
+              <TextSignalReveal as="h3">خدماتنا المتكاملة</TextSignalReveal>
             </div>
             {homepageContent.services.map((card, index) => (
               <Link

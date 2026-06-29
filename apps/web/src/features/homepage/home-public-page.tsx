@@ -12,6 +12,7 @@ import { CircleCursor } from "@/components/motion/circle-cursor";
 import { LogoLoop } from "@/components/motion/logo-loop";
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
+import { TextSignalReveal } from "@/components/motion";
 import { MagneticButton } from "@/components/motion/magnetic-button";
 import { BackToTop, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
@@ -65,7 +66,7 @@ function ActionButton({ action }: { action: HomeAction }) {
 function SectionHeader({ title, summary }: { title: string; summary: string }) {
   return (
     <div className={styles.sectionHeader}>
-      <h2>{title}</h2>
+      <TextSignalReveal as="h2">{title}</TextSignalReveal>
       <p>{summary}</p>
     </div>
   );
@@ -77,7 +78,7 @@ function FeatureCard({ card }: { card: HomeCard }) {
       <div className={styles.featureIcon}>
         <Icon name={card.icon} />
       </div>
-      <h3>{card.title}</h3>
+      <TextSignalReveal as="h3">{card.title}</TextSignalReveal>
       <p>{card.summary}</p>
       {card.meta ? <span className={styles.meta}>{card.meta}</span> : null}
     </>
@@ -99,7 +100,7 @@ function WhyPoint({ card }: { card: HomeCard }) {
         <Icon name={card.icon} />
       </span>
       <div>
-        <h3>{card.title}</h3>
+        <TextSignalReveal as="h3">{card.title}</TextSignalReveal>
         <p>{card.summary}</p>
       </div>
     </div>
@@ -115,7 +116,7 @@ function ArticleCard({ card }: { card: HomeCard }) {
       <div className={styles.articleBody}>
         {card.category ? <HomeChip className={styles.categoryChip}>{card.category}</HomeChip> : null}
         {card.meta ? <span className={styles.articleMeta}>{card.meta}</span> : null}
-        <h3>{card.title}</h3>
+        <TextSignalReveal as="h3">{card.title}</TextSignalReveal>
         <p>{card.summary}</p>
         <strong>اقرأ المزيد <Icon name="fa-arrow-left" /></strong>
       </div>
@@ -156,29 +157,6 @@ export function HomePublicPage() {
   const matrixRightRef = useRef<HTMLDivElement>(null);
   const buildingRef = useRef<HTMLDivElement>(null);
   const clientsStripRef = useRef<HTMLElement>(null);
-
-  useLayoutEffect(() => {
-    const scrollKey = "sweed-home-scroll-y";
-    const savedScroll = window.sessionStorage.getItem(scrollKey);
-
-    if (savedScroll && !window.location.hash) {
-      window.requestAnimationFrame(() => {
-        window.scrollTo({ top: Number(savedScroll), left: 0, behavior: "auto" });
-      });
-    }
-
-    const saveScroll = () => {
-      window.sessionStorage.setItem(scrollKey, String(window.scrollY));
-    };
-
-    window.addEventListener("pagehide", saveScroll);
-    window.addEventListener("beforeunload", saveScroll);
-
-    return () => {
-      window.removeEventListener("pagehide", saveScroll);
-      window.removeEventListener("beforeunload", saveScroll);
-    };
-  }, []);
 
   useLayoutEffect(() => {
     const section = heroSectionRef.current;
@@ -412,7 +390,7 @@ export function HomePublicPage() {
         <section className={styles.ctaSection} id="contact">
           <div className={styles.container}>
             <Reveal className={styles.ctaBox} variant="scaleIn">
-              <h2>{homepageContent.contact.title}</h2>
+              <TextSignalReveal as="h2">{homepageContent.contact.title}</TextSignalReveal>
               <p>{homepageContent.contact.summary}</p>
               <div className={styles.ctaButtons}>
                 <MagneticButton>

@@ -276,8 +276,9 @@ export function HomePublicPage() {
 
       const rect = section.getBoundingClientRect();
       const progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height * 0.75)));
-      const peak = 100 - progress * 100;
-      const sides = 100 - progress * 100;
+      const phase = progress * 2;
+      const peak = phase <= 1 ? 100 - phase * 100 : 0;
+      const sides = phase <= 1 ? 100 : 100 - (phase - 1) * 100;
       pyramid.style.clipPath = `polygon(0% 100%, 0% ${sides}%, 50% ${peak}%, 100% ${sides}%, 100% 100%)`;
     };
 

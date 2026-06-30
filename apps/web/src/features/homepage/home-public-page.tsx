@@ -230,6 +230,7 @@ export function HomePublicPage() {
   const matrixLeftRef = useRef<HTMLDivElement>(null);
   const matrixRightRef = useRef<HTMLDivElement>(null);
   const buildingRef = useRef<HTMLDivElement>(null);
+  const pyramidRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const section = heroSectionRef.current;
@@ -269,8 +270,25 @@ export function HomePublicPage() {
       ease: "power3.out",
     }, "-=0.2");
 
+    const updatePyramid = () => {
+      const pyramid = pyramidRef.current;
+      if (!pyramid) return;
+
+      const rect = section.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height * 0.75)));
+      const peak = 100 - progress * 100;
+      const sides = 100 - progress * 100;
+      pyramid.style.clipPath = `polygon(0% 100%, 0% ${sides}%, 50% ${peak}%, 100% ${sides}%, 100% 100%)`;
+    };
+
+    updatePyramid();
+    window.addEventListener("scroll", updatePyramid, { passive: true });
+    window.addEventListener("resize", updatePyramid);
+
     return () => {
       tl.kill();
+      window.removeEventListener("scroll", updatePyramid);
+      window.removeEventListener("resize", updatePyramid);
     };
   }, []);
 
@@ -349,6 +367,7 @@ export function HomePublicPage() {
             </div>
           </div>
 
+          <div ref={pyramidRef} className={styles.pyramidOverlay} aria-hidden="true" />
         </section>
 
         <BlitScrollDemoSection />

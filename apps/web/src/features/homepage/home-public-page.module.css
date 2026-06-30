@@ -53,11 +53,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: clamp(680px, 82vh, 840px);
+  min-height: clamp(760px, 92vh, 980px);
   overflow: hidden;
   background: #fafafa;
   color: #261b3e;
-  padding-block: 4rem;
+  padding-block: 4rem 0;
 }
 
 .gridLineLeft,
@@ -336,7 +336,15 @@
 
 /* Building Section */
 .buildingSection {
-  display: none;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: clamp(190px, 24vw, 330px);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .buildingWrapper {
@@ -344,20 +352,20 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .buildingImg {
-  width: min(92%, 960px);
+  width: min(86vw, 900px);
   height: auto;
   margin-inline: auto;
   z-index: 2;
   object-fit: contain;
   object-position: bottom;
   display: block;
-  clip-path: inset(0 0 35% 0);
+  clip-path: inset(0 0 28% 0);
   margin-top: 0;
-  margin-bottom: -30%;
+  margin-bottom: 0;
   transition: transform 0.4s ease;
   transform: translateX(0.5%);
 }
@@ -377,7 +385,15 @@
 
 /* Pyramid Overlay Animation */
 .pyramidOverlay {
-  display: none;
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 3;
+  height: min(46vh, 430px);
+  background: #ffffff;
+  clip-path: polygon(0% 100%, 0% 100%, 50% 100%, 100% 100%, 100% 100%);
+  pointer-events: none;
+  will-change: clip-path;
 }
 
 /* Mobile Responsiveness for Hero */
@@ -439,8 +455,16 @@
   }
   
   .buildingSection {
-    min-height: auto;
-    margin-top: 2.5rem;
+    height: 150px;
+    margin-top: 1.25rem;
+  }
+
+  .buildingImg {
+    width: min(96vw, 520px);
+  }
+
+  .pyramidOverlay {
+    height: 28vh;
   }
   
   .waveSvg {

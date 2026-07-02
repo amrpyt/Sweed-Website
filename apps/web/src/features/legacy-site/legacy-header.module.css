@@ -664,25 +664,31 @@
   }
 
   :global(.sweed-common-header.is-home-page) {
-    top: 0 !important;
-    background: rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 18px 46px rgba(38, 27, 62, 0.08) !important;
-    border-bottom: 1px solid rgba(38, 27, 62, 0.08) !important;
-    backdrop-filter: blur(18px) !important;
+    top: 14px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-bottom: 0 !important;
+    backdrop-filter: none !important;
     transition: box-shadow 0.3s ease, background 0.3s ease, transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease !important;
   }
 
   :global(.sweed-common-header.is-home-page.compact) {
-    top: 0 !important;
+    top: 10px !important;
   }
 
   @media (min-width: 769px) {
     :global(.sweed-common-header.is-home-page) :global(.nav-container) {
       display: grid !important;
       grid-template-columns: minmax(120px, 180px) minmax(0, 1fr) minmax(150px, 190px) !important;
-      height: 76px !important;
-      padding-block: 0 !important;
+      width: min(calc(100% - 2rem), 1320px) !important;
+      height: 64px !important;
+      padding: 0 1rem !important;
       gap: clamp(1rem, 2vw, 2rem) !important;
+      border: 1px solid rgba(38, 27, 62, 0.1) !important;
+      border-radius: 18px !important;
+      background: rgba(255, 255, 255, 0.94) !important;
+      box-shadow: 0 18px 42px rgba(38, 27, 62, 0.1) !important;
+      backdrop-filter: blur(16px) !important;
     }
 
     :global(.sweed-common-header.is-home-page) :global(.sweed-common-logo) {
@@ -750,13 +756,14 @@
   :global(.sweed-common-header.is-home-page) :global(.btn-consultation) {
       --topbar-button-radius: 16px;
       --topbar-button-inset: 7px;
+      --topbar-button-icon-size: 34px;
       --topbar-button-inner-radius: calc(var(--topbar-button-radius) - var(--topbar-button-inset));
       background: #261b3e !important;
       color: #ffffff !important;
       border-radius: var(--topbar-button-radius) !important;
       padding: 0 !important;
       min-height: 48px !important;
-      min-width: 168px !important;
+      min-width: 166px !important;
       box-shadow: none !important;
       overflow: hidden !important;
       position: relative !important;
@@ -776,9 +783,9 @@
       background: #ed2062 !important;
       position: absolute !important;
       top: 50% !important;
-      left: 7px !important;
-      width: 34px !important;
-      height: 34px !important;
+      left: var(--topbar-button-inset) !important;
+      width: var(--topbar-button-icon-size) !important;
+      height: var(--topbar-button-icon-size) !important;
       border-radius: var(--topbar-button-inner-radius) !important;
       transform: translateY(-50%) !important;
       transition: width 320ms cubic-bezier(0.22, 1, 0.36, 1), height 320ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 320ms cubic-bezier(0.22, 1, 0.36, 1) !important;
@@ -786,30 +793,25 @@
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box) {
       position: absolute !important;
-      left: 7px !important;
+      left: var(--topbar-button-inset) !important;
       top: 50% !important;
       background: transparent !important;
-      width: 34px !important;
-      height: 34px !important;
+      width: var(--topbar-button-icon-size) !important;
+      height: var(--topbar-button-icon-size) !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       color: #ffffff !important;
-      font-size: 0.95rem !important;
+      font-size: 0.86rem !important;
+      z-index: 3 !important;
       transform: translateY(-50%) !important;
       pointer-events: none !important;
     }
 
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box) i {
-      display: none !important;
-    }
-
-    :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-icon-box)::before {
-      content: "\2726" !important;
-      font-size: 1.2rem !important;
-      filter: drop-shadow(0 0 6px currentColor) !important;
-      text-shadow: 0 0 14px currentColor !important;
-      animation: sweedHeaderStarTwinkle 2.6s ease-in-out infinite !important;
+      display: inline-block !important;
+      line-height: 1 !important;
+      transform: scaleX(-1) !important;
     }
     
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation) :global(.btn-text) {
@@ -829,7 +831,7 @@
     }
 
     :global(.sweed-common-header.is-home-page) :global(.btn-consultation):hover {
-      transform: none !important;
+      transform: translateY(-1px) !important;
       background: #261b3e !important;
     }
 
@@ -841,18 +843,5 @@
   }
 
   :global(.sweed-common-header.is-home-page.compact) :global(.nav-container) {
-    padding-block: 0.4rem !important;
+    height: 60px !important;
   }
-
-@keyframes sweedHeaderStarTwinkle {
-  0%,
-  100% {
-    opacity: 0.62;
-    transform: scale(0.92);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-}

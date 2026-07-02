@@ -33,8 +33,8 @@ export const homepageContent = {
     subtitle: "نحن وكالة تسويق وتصميم علامات تجارية متكاملة. نساعد الشركات الطموحة على بناء حضور قوي، وتجربة متكاملة، ونمو مستدام.",
     summary: "",
     actions: [
-      { label: "استكشف أعمالنا", href: "/#portfolio", icon: "fa-arrow-up-right", variant: "primary" },
-      { label: "تحدث مع خبير", href: "/#contact", icon: "fa-arrow-up-right", variant: "secondary" },
+      { label: "شوف أعمالنا", href: "/#portfolio", icon: "fa-arrow-up-right", variant: "primary" },
+      { label: "كلم خبير", href: "/#contact", icon: "fa-arrow-up-right", variant: "secondary" },
     ] satisfies HomeAction[],
     metrics: [
       { value: "+150", label: "مشروع مكتمل" },

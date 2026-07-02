@@ -138,7 +138,7 @@ export function HomeProblemsCompassSection() {
               <span className={styles.buttonIconPrefix}>
                 <ArrowIcon />
               </span>
-              <span className={styles.buttonText}>احجز استشارتك الآن</span>
+              <span className={styles.buttonText}>احجز استشارة</span>
             </HomeButton>
           </div>
         </div>

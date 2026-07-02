@@ -24,9 +24,15 @@ export function HomeButton({ children, className, href, rel, target }: HomeButto
   };
 
   return (
-    <button type="button" className={className} onClick={navigate}>
+    <Button
+      className={className}
+      size="lg"
+      type="button"
+      variant="primary"
+      onPress={navigate}
+    >
       {children}
-    </button>
+    </Button>
   );
 }
 

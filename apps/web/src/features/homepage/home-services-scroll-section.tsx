@@ -166,7 +166,7 @@ export function HomeServicesScrollSection() {
             <span className={styles.buttonIconPrefix}>
               <ArrowIcon />
             </span>
-            <span className={styles.buttonText}>مشاهدة كل الخدمات</span>
+            <span className={styles.buttonText}>كل الخدمات</span>
           </HomeButton>
         </div>
       </div>

@@ -1,19 +1,20 @@
 "use client";
 
 import gsap from "gsap";
-import { useRef, useLayoutEffect, useState } from "react";
+import { useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { BorderBeam } from "border-beam";
 import { homepageContent, type HomeAction, type HomeCard } from "@/content/homepage";
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
 import { TextSignalReveal } from "@/components/motion";
-import { MagneticButton } from "@/components/motion/magnetic-button";
 import { BackToTop, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
+import { HomeBlitScrollSection } from "./home-blit-scroll-section";
 import { HomePortfolioArmorySection } from "./home-portfolio-armory-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
@@ -127,99 +128,6 @@ function FaqCard({ card }: { card: HomeCard }) {
       </summary>
       <p>{card.summary}</p>
     </details>
-  );
-}
-
-function BlitScrollDemoSection() {
-  const [isOpen, setIsOpen] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-  const videoWrapRef = useRef<HTMLDivElement>(null);
-  const overlayVideoRef = useRef<HTMLVideoElement>(null);
-
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const sticky = stickyRef.current;
-    const videoWrap = videoWrapRef.current;
-    if (!section || !sticky || !videoWrap) return;
-
-    const clamp = (value: number) => Math.max(0, Math.min(1, value));
-    const lerp = (from: number, to: number, progress: number) => from + (to - from) * progress;
-    const update = () => {
-      const rect = section.getBoundingClientRect();
-      const max = Math.max(1, section.offsetHeight - window.innerHeight);
-      const progress = clamp(-rect.top / (max * 0.5));
-      const isMobile = window.matchMedia("(max-width: 760px)").matches;
-      const isActive = rect.top <= 0 && rect.bottom >= window.innerHeight;
-      sticky.style.position = isActive ? "fixed" : "absolute";
-      sticky.style.top = isActive ? "0" : rect.top > 0 ? "0" : "auto";
-      sticky.style.bottom = isActive || rect.top > 0 ? "auto" : "0";
-      videoWrap.style.setProperty("--blit-top", `${lerp(isMobile ? 70 : 74, 0, progress)}vh`);
-      videoWrap.style.setProperty("--blit-width", `${lerp(isMobile ? 88 : 58, 100, progress)}vw`);
-      videoWrap.style.setProperty("--blit-height", `${lerp(isMobile ? 50 : 38, 100, progress)}vh`);
-    };
-
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
-
-  function openVideo() {
-    setIsOpen(true);
-    const video = overlayVideoRef.current;
-    if (!video) return;
-    video.currentTime = 0;
-    video.play().catch(() => {});
-  }
-
-  function closeVideo() {
-    setIsOpen(false);
-    overlayVideoRef.current?.pause();
-  }
-
-  return (
-    <section ref={sectionRef} className={styles.blitSection} aria-label="عرض فيديو سويد التفاعلي">
-      <div ref={stickyRef} className={styles.blitSticky}>
-        <h2 className={styles.blitTitle}>
-          <button className={styles.blitPlus} type="button" onClick={openVideo} aria-label="افتح فيديو سويد">
-            <span aria-hidden="true" />
-          </button>
-          <span>سويد تحوّل</span>
-          <span>الانتباه</span>
-          <span>إلى نمو</span>
-        </h2>
-        <div ref={videoWrapRef} className={styles.blitVideoWrap}>
-          <video
-            src="/videos/blit-scroll-effect-demo.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-        </div>
-      </div>
-
-      <div className={`${styles.blitOverlay} ${isOpen ? styles.blitOverlayOpen : ""}`} aria-hidden={!isOpen}>
-        <button className={styles.blitClose} type="button" onClick={closeVideo} aria-label="أغلق فيديو سويد">
-          ×
-        </button>
-        <div className={styles.blitOverlayFrame}>
-          <video
-            ref={overlayVideoRef}
-            src="/videos/blit-scroll-effect-demo.mp4"
-            controls
-            playsInline
-            preload="metadata"
-          />
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -340,9 +248,7 @@ export function HomePublicPage() {
 
               <HeroFadeIn delay={0.35}>
                 <div className={styles.heroActions}>
-                  <MagneticButton>
-                    <ActionButton action={homepageContent.hero.actions[0]} />
-                  </MagneticButton>
+                  <ActionButton action={homepageContent.hero.actions[0]} />
                 </div>
               </HeroFadeIn>
 
@@ -354,14 +260,20 @@ export function HomePublicPage() {
                     <path d="M-100 180 C 150 80, 350 280, 600 180 C 850 80, 1050 280, 1300 180" stroke="rgba(38, 27, 62, 0.05)" strokeWidth="1.5" fill="none" />
                     <path d="M-100 120 C 150 20, 350 220, 600 120 C 850 20, 1050 220, 1300 120" stroke="rgba(38, 27, 62, 0.04)" strokeWidth="1" fill="none" />
                   </svg>
-                  <Image
-                    src="/images/hero/custom-image.png"
-                    alt="SWEED Building Mockup"
-                    width={800}
-                    height={450}
-                    priority
-                    className={styles.buildingImg}
-                  />
+                  <BorderBeam size="pulse-outside" colorVariant="colorful" strength={0.7}>
+                    <div className={styles.buildingBeamFrame}>
+                      <span className={styles.buildingBeamEdge} aria-hidden="true" />
+                      <span className={styles.buildingBeamEdge} aria-hidden="true" />
+                      <Image
+                        src="/images/hero/custom-image.png"
+                        alt="SWEED Building Mockup"
+                        width={800}
+                        height={450}
+                        priority
+                        className={styles.buildingImg}
+                      />
+                    </div>
+                  </BorderBeam>
                 </div>
               </div>
 
@@ -371,7 +283,7 @@ export function HomePublicPage() {
           <div ref={pyramidRef} className={styles.pyramidOverlay} aria-hidden="true" />
         </section>
 
-        <BlitScrollDemoSection />
+        <HomeBlitScrollSection />
 
         <HomeProblemsCompassSection />
 
@@ -441,12 +353,8 @@ export function HomePublicPage() {
               <TextSignalReveal as="h2">{homepageContent.contact.title}</TextSignalReveal>
               <p>{homepageContent.contact.summary}</p>
               <div className={styles.ctaButtons}>
-                <MagneticButton>
-                  <ActionButton action={{ label: "احجز استشارة مجانية", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
-                </MagneticButton>
-                <MagneticButton>
-                  <ActionButton action={{ label: "تواصل معنا الآن", href: "/contact", icon: "fa-phone", variant: "secondary" }} />
-                </MagneticButton>
+                <ActionButton action={{ label: "احجز استشارة", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
+                <ActionButton action={{ label: "تواصل معنا", href: "/contact", icon: "fa-phone", variant: "secondary" }} />
               </div>
             </Reveal>
           </div>

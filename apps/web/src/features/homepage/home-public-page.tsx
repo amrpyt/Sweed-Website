@@ -9,7 +9,7 @@ import { homepageContent, type HomeAction, type HomeCard } from "@/content/homep
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
 import { TextSignalReveal } from "@/components/motion";
-import { BackToTop, ProgressIndicator, ToastContainer } from "@/components/ui";
+import { BackToTop, BrandActionButtonContent, getBrandActionButtonClassName, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
@@ -45,15 +45,9 @@ function Icon({ name }: { name: string }) {
 }
 
 function ActionButton({ action }: { action: HomeAction }) {
-  const variantClass =
-    action.variant === "secondary" ? styles.buttonSecondary : action.variant === "light" ? styles.buttonLight : styles.buttonPrimary;
-
   return (
-    <HomeButton className={`${styles.button} ${variantClass}`} href={action.href}>
-      <span className={styles.buttonIconPrefix}>
-        <Icon name={action.icon} />
-      </span>
-      <span className={styles.buttonText}>{action.label}</span>
+    <HomeButton className={getBrandActionButtonClassName({ size: "hero", variant: action.variant ?? "primary" })} href={action.href}>
+      <BrandActionButtonContent>{action.label}</BrandActionButtonContent>
     </HomeButton>
   );
 }

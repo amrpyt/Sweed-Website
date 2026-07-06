@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { TextSignalReveal } from "@/components/motion";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui";
 import { homepageContent } from "@/content/homepage";
 import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
@@ -17,26 +18,6 @@ const compassPoints = [
   { x: -340, y: 155 },
   { x: -340, y: -155 },
 ];
-
-function ArrowIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className={styles.directionalIcon}
-      fill="none"
-      height="20"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2.5"
-      viewBox="0 0 24 24"
-      width="20"
-    >
-      <path d="M7 17L17 7" />
-      <path d="M7 7h10v10" />
-    </svg>
-  );
-}
 
 export function HomeProblemsCompassSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -134,11 +115,8 @@ export function HomeProblemsCompassSection() {
 
           <div className={styles.problemsCta}>
             <span>ابدأ بخطوة واضحة</span>
-            <HomeButton className={`${styles.button} ${styles.buttonPrimary}`} href="/contact?services=consulting#contact-form">
-              <span className={styles.buttonIconPrefix}>
-                <ArrowIcon />
-              </span>
-              <span className={styles.buttonText}>احجز استشارة</span>
+            <HomeButton className={getBrandActionButtonClassName({ variant: "primary" })} href="/contact?services=consulting#contact-form">
+              <BrandActionButtonContent>احجز استشارة</BrandActionButtonContent>
             </HomeButton>
           </div>
         </div>

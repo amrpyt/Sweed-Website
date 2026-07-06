@@ -1,6 +1,10 @@
 import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
-import styles from "./button.module.css";
+import {
+  BrandActionButtonContent,
+  getBrandActionButtonClassName,
+  type BrandActionButtonVariant,
+} from "./brand-action-button";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
@@ -20,13 +24,15 @@ type LinkButtonProps = BaseProps &
     href: string;
   };
 
+function variantToBrandVariant(variant: ButtonVariant): BrandActionButtonVariant {
+  if (variant === "ghost") return "light";
+  return variant;
+}
+
 export function Button({ children, variant = "primary", className = "", ...props }: ButtonProps) {
   return (
-    <button className={`${styles.button} ${styles[variant]} ${className}`} {...props}>
-      <span aria-hidden="true" className={styles.starIcon}>
-        {"\u2726"}
-      </span>
-      {children}
+    <button className={getBrandActionButtonClassName({ className, variant: variantToBrandVariant(variant) })} {...props}>
+      <BrandActionButtonContent>{children}</BrandActionButtonContent>
     </button>
   );
 }
@@ -39,11 +45,8 @@ export function ButtonLink({
   ...props
 }: LinkButtonProps) {
   return (
-    <Link className={`${styles.button} ${styles[variant]} ${className}`} href={href} {...props}>
-      <span aria-hidden="true" className={styles.starIcon}>
-        {"\u2726"}
-      </span>
-      {children}
+    <Link className={getBrandActionButtonClassName({ className, variant: variantToBrandVariant(variant) })} href={href} {...props}>
+      <BrandActionButtonContent>{children}</BrandActionButtonContent>
     </Link>
   );
 }

@@ -90,5 +90,4 @@ console.log(JSON.stringify({
   offlineQa: report.offlineQa?.status,
   visualDiff: report.visualDiff?.status,
   servedAt: report.servedAt,
-  server use at it using selecet d
 }, null, 2));

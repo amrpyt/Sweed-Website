@@ -1,0 +1,206 @@
+.borderBeam {
+  --beam-radius: 24px;
+  --beam-border-width: 2px;
+  --beam-spread: 10px;
+  --beam-strength: 1;
+  --beam-duration: 1.96s;
+  --beam-brightness: 1.2;
+  --beam-saturation: 1.15;
+  --beam-hue-range: 24deg;
+  --beam-gradient: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    #ed2062 34deg,
+    #261b3e 92deg,
+    transparent 154deg,
+    #ed2062 218deg,
+    #261b3e 284deg,
+    transparent 360deg
+  );
+  position: relative;
+  display: inline-block;
+  border-radius: var(--beam-radius);
+  isolation: isolate;
+}
+
+.borderBeam::after,
+.borderBeam::before,
+.beamBloom {
+  position: absolute;
+  border-radius: calc(var(--beam-radius) + var(--beam-spread));
+  content: "";
+  pointer-events: none;
+}
+
+.borderBeam::after,
+.borderBeam::before {
+  inset: calc(var(--beam-spread) * -1);
+  padding: var(--beam-border-width);
+  background: var(--beam-gradient);
+  opacity: calc(var(--beam-strength) * 0.85);
+  filter: saturate(var(--beam-saturation)) brightness(var(--beam-brightness));
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+}
+
+.borderBeam::after {
+  z-index: 1;
+}
+
+.borderBeam::before {
+  z-index: -1;
+  padding: calc(var(--beam-border-width) + 8px);
+  opacity: calc(var(--beam-strength) * 0.22);
+  filter: blur(14px) saturate(var(--beam-saturation)) brightness(var(--beam-brightness));
+}
+
+.beamBloom {
+  inset: calc((var(--beam-spread) + 4px) * -1);
+  z-index: -2;
+  background: var(--beam-gradient);
+  opacity: calc(var(--beam-strength) * 0.13);
+  filter: blur(22px) saturate(var(--beam-saturation)) brightness(var(--beam-brightness));
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  padding: 12px;
+}
+
+.active::after,
+.active::before,
+.active .beamBloom {
+  animation: borderBeamSpin var(--beam-duration) linear infinite;
+}
+
+.inactive::after,
+.inactive::before,
+.inactive .beamBloom {
+  opacity: 0;
+}
+
+.staticColors::after,
+.staticColors::before,
+.staticColors .beamBloom {
+  animation: none;
+}
+
+.sm {
+  --beam-border-width: 1px;
+  --beam-spread: 5px;
+}
+
+.md {
+  --beam-border-width: 2px;
+  --beam-spread: 8px;
+}
+
+.line {
+  --beam-border-width: 2px;
+  --beam-spread: 6px;
+}
+
+.pulseInner {
+  --beam-border-width: 2px;
+  --beam-spread: 3px;
+}
+
+.pulseOutside {
+  --beam-border-width: 3px;
+  --beam-spread: 10px;
+}
+
+.pulse-inner {
+  --beam-border-width: 2px;
+  --beam-spread: 3px;
+}
+
+.pulse-outside {
+  --beam-border-width: 3px;
+  --beam-spread: 10px;
+}
+
+.colorful {
+  --beam-gradient: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    #ed2062 34deg,
+    #261b3e 92deg,
+    transparent 154deg,
+    #ed2062 218deg,
+    #261b3e 284deg,
+    transparent 360deg
+  );
+}
+
+.mono {
+  --beam-gradient: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    rgba(38, 27, 62, 0.8) 48deg,
+    rgba(38, 27, 62, 0.24) 130deg,
+    transparent 210deg,
+    rgba(38, 27, 62, 0.68) 284deg,
+    transparent 360deg
+  );
+}
+
+.ocean {
+  --beam-gradient: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    #261b3e 46deg,
+    #4f3a86 120deg,
+    transparent 190deg,
+    #261b3e 286deg,
+    transparent 360deg
+  );
+}
+
+.sunset {
+  --beam-gradient: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    #ed2062 48deg,
+    #ff8a3d 126deg,
+    transparent 196deg,
+    #ed2062 284deg,
+    transparent 360deg
+  );
+}
+
+.light,
+.dark,
+.auto {
+  color-scheme: light;
+}
+
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes borderBeamSpin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .active::after,
+  .active::before,
+  .active .beamBloom {
+    animation: none;
+  }
+}

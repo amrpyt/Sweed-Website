@@ -1,5 +1,7 @@
 export { AccordionItem } from "./accordion";
 export { Badge } from "./badge";
+export { BrandActionArrowIcon, BrandActionButtonContent, getBrandActionButtonClassName } from "./brand-action-button";
+export type { BrandActionButtonSize, BrandActionButtonVariant } from "./brand-action-button";
 export { Button, ButtonLink } from "./button";
 export { Card } from "./card";
 export { Section, SectionHeader } from "./section";

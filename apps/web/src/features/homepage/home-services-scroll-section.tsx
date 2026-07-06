@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 import { TextSignalReveal } from "@/components/motion";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui";
 import { homepageContent } from "@/content/homepage";
 import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
@@ -18,26 +19,6 @@ const serviceImages = [
   "/images/hero/two-men-consultation.jpg",
   "/images/hero/entrepreneur-laptop-office.jpg",
 ];
-
-function ArrowIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className={styles.directionalIcon}
-      fill="none"
-      height="20"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2.5"
-      viewBox="0 0 24 24"
-      width="20"
-    >
-      <path d="M7 17L17 7" />
-      <path d="M7 7h10v10" />
-    </svg>
-  );
-}
 
 export function HomeServicesScrollSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -162,11 +143,8 @@ export function HomeServicesScrollSection() {
           </div>
         </div>
         <div className={styles.servicesCta}>
-          <HomeButton className={`${styles.button} ${styles.buttonPrimary}`} href="/services">
-            <span className={styles.buttonIconPrefix}>
-              <ArrowIcon />
-            </span>
-            <span className={styles.buttonText}>كل الخدمات</span>
+          <HomeButton className={getBrandActionButtonClassName({ variant: "primary" })} href="/services">
+            <BrandActionButtonContent>كل الخدمات</BrandActionButtonContent>
           </HomeButton>
         </div>
       </div>

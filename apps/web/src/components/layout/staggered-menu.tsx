@@ -14,6 +14,7 @@ import {
 } from "react";
 import type { NavigationItem } from "@/content/navigation";
 import styles from "./staggered-menu.module.css";
+import polishStyles from "./staggered-menu-polish.module.css";
 
 type MenuPosition = "left" | "right";
 
@@ -54,7 +55,7 @@ export function StaggeredMenu({
   socialItems = [],
   displaySocials = true,
   displayItemNumbering = true,
-  logoUrl = "/sweed-logo.png",
+  logoUrl = "/sweed-logo-official.svg",
   accentColor = "#ed2062",
   closeOnClickAway = true,
   onMenuOpen,
@@ -391,9 +392,13 @@ export function StaggeredMenu({
   }, [pathname, closeMenu]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      document.body.classList.remove("sweed-menu-open");
+      return;
+    }
 
     const previousOverflow = document.body.style.overflow;
+    document.body.classList.add("sweed-menu-open");
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -432,6 +437,7 @@ export function StaggeredMenu({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => {
+      document.body.classList.remove("sweed-menu-open");
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
     };
@@ -445,14 +451,14 @@ export function StaggeredMenu({
   return (
     <div
       ref={rootRef}
-      className={styles.root}
+      className={`${styles.root} ${polishStyles.root}`}
       data-testid="sweed-staggered-menu"
       data-open={open ? "true" : "false"}
       data-position={position}
       style={{ "--staggered-accent": accentColor } as React.CSSProperties}
     >
       <header className={styles.header} aria-label="رأس الموقع">
-        <div className={styles.headerInner}>
+        <div className={`${styles.headerInner} ${polishStyles.headerInner}`}>
           <Link
             className={styles.logo}
             href="/"
@@ -463,17 +469,16 @@ export function StaggeredMenu({
               src={logoUrl}
               alt=""
               aria-hidden
-              className={styles.logoImage}
-              width={38}
-              height={38}
+              className={`${styles.logoImage} ${polishStyles.logoImage}`}
+              width={120}
+              height={32}
               priority
             />
-            <span className={styles.logoWordmark}>SWEED</span>
           </Link>
 
           <button
             ref={toggleBtnRef}
-            className={styles.toggle}
+            className={`${styles.toggle} ${polishStyles.toggle}`}
             data-testid="sweed-menu-button"
             type="button"
             aria-label={open ? "إغلاق القائمة الرئيسية" : "فتح القائمة الرئيسية"}
@@ -537,7 +542,7 @@ export function StaggeredMenu({
                     : pathname.startsWith(item.href);
 
                 return (
-                  <li className={styles.itemWrap} key={item.href}>
+                  <li className={`${styles.itemWrap} ${polishStyles.itemWrap}`} key={item.href}>
                     <Link
                       className={styles.item}
                       data-current={isCurrent ? "true" : undefined}
@@ -547,7 +552,9 @@ export function StaggeredMenu({
                       tabIndex={open ? undefined : -1}
                       onClick={() => closeMenu(false)}
                     >
-                      <span className={styles.itemLabel}>{item.label}</span>
+                      <span className={`${styles.itemLabel} ${polishStyles.itemLabel}`}>
+                        {item.label}
+                      </span>
                       {displayItemNumbering ? (
                         <span className={styles.itemNumber} aria-hidden="true">
                           {formatArabicIndex(index + 1)}

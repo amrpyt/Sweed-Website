@@ -8,6 +8,13 @@
   justify-items: start;
   direction: rtl;
   font-family: "Cairo", Arial, sans-serif;
+  transition: opacity 160ms ease, visibility 160ms ease;
+}
+
+:global(body.sweed-menu-open) .root {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .stack {

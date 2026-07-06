@@ -81,3 +81,34 @@ test("staggered menu is side anchored on desktop and full width on mobile", asyn
   );
   expect(hasHorizontalOverflow).toBe(false);
 });
+
+test("review polish keeps the trigger with the panel and preserves Arabic shaping", async ({
+  page,
+  isMobile,
+}) => {
+  await page.goto("/");
+  await waitForPageReady(page);
+
+  const logo = page.getByRole("link", { name: "العودة إلى الرئيسية" }).locator("img");
+  const { panel, trigger } = await openMenu(page);
+
+  const logoBox = await logo.boundingBox();
+  expect(Math.round(logoBox?.width ?? 0)).toBeGreaterThanOrEqual(88);
+
+  const firstLabel = panel.getByRole("link", { name: "انتقل إلى الرئيسية" }).locator("span").first();
+  await expect(firstLabel).toHaveCSS("letter-spacing", "normal");
+
+  const navigationZ = Number(
+    await page.getByTestId("sweed-staggered-menu").evaluate((element) => getComputedStyle(element).zIndex),
+  );
+  const advisorZ = Number(
+    await page.getByLabel("SWEED support center").first().evaluate((element) => getComputedStyle(element).zIndex),
+  );
+  expect(navigationZ).toBeGreaterThan(advisorZ);
+
+  if (!isMobile) {
+    const panelBox = await panel.boundingBox();
+    const triggerBox = await trigger.boundingBox();
+    expect(triggerBox?.x ?? 0).toBeGreaterThanOrEqual(panelBox?.x ?? 0);
+  }
+});

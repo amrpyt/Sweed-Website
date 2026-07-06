@@ -1,0 +1,38 @@
+.root {
+  z-index: 1300;
+}
+
+.headerInner {
+  direction: ltr;
+}
+
+.logoImage {
+  width: clamp(96px, 9vw, 120px);
+  height: auto;
+  border-radius: 0;
+}
+
+.toggle {
+  direction: rtl;
+  border-color: color-mix(in srgb, var(--color-accent-strong) 34%, transparent);
+  background: #ffffff;
+  color: var(--color-accent-strong);
+}
+
+.root[data-open="true"] .toggle {
+  border-color: color-mix(in srgb, var(--staggered-accent) 42%, transparent);
+  background: color-mix(in srgb, var(--staggered-accent) 8%, #ffffff);
+  color: var(--staggered-accent);
+}
+
+.itemWrap {
+  margin-block: -0.14em;
+  padding-block: 0.14em;
+}
+
+.itemLabel {
+  font-size: clamp(2.25rem, 3.75vw, 3.45rem);
+  letter-spacing: normal;
+  line-height: 1.1;
+  white-space: nowrap;
+}

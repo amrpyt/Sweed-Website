@@ -17,7 +17,7 @@ export function Header() {
       displaySocials
       displayItemNumbering
       colors={["#ed2062", "#261b3e"]}
-      logoUrl="/sweed-logo.png"
+      logoUrl="/sweed-logo-official.svg"
       accentColor="#ed2062"
     />
   );

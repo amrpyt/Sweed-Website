@@ -22,8 +22,6 @@ const serviceImages = [
 
 export function HomeServicesScrollSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const visualRef = useRef<HTMLDivElement>(null);
-  const imageRefs = useRef<HTMLDivElement[]>([]);
   const itemRefs = useRef<HTMLAnchorElement[]>([]);
   const numberRefs = useRef<HTMLSpanElement[]>([]);
   const progressRefs = useRef<HTMLSpanElement[]>([]);
@@ -37,21 +35,17 @@ export function HomeServicesScrollSection() {
 
     mm.add("(min-width: 769px)", () => {
       const section = sectionRef.current;
-      const visual = visualRef.current;
       const items = itemRefs.current.filter(Boolean);
-      const images = imageRefs.current.filter(Boolean);
       const numbers = numberRefs.current.filter(Boolean);
       const progress = progressRefs.current.filter(Boolean);
-      if (!section || !visual || items.length === 0) return;
+      if (!section || items.length === 0) return;
 
       gsap.set(items, { autoAlpha: 0.68, y: 28, scale: 0.96 });
       gsap.set(numbers, { autoAlpha: 0.35 });
       gsap.set(progress, { scaleY: 0.18, transformOrigin: "50% 0%" });
-      gsap.set(images, { autoAlpha: 0, scale: 1.06, y: 22 });
       gsap.set(items[0], { autoAlpha: 1, y: 0, scale: 1 });
       gsap.set(numbers[0], { autoAlpha: 1 });
       gsap.set(progress[0], { scaleY: 1 });
-      gsap.set(images[0], { autoAlpha: 1, scale: 1, y: 0 });
 
       const tweens = items.flatMap((item, index) => [
         gsap.to(item, {
@@ -102,19 +96,6 @@ export function HomeServicesScrollSection() {
             toggleActions: "play reverse play reverse",
           },
         }),
-        gsap.to(images[index], {
-          autoAlpha: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.75,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 64%",
-            end: "bottom 42%",
-            toggleActions: "play none play reverse",
-          },
-        }),
       ]);
 
       return () => {
@@ -133,24 +114,6 @@ export function HomeServicesScrollSection() {
           <p>كل خدمة لها هدف واضح: بناء ثقة، زيادة طلب، أو تحسين تجربة العميل.</p>
         </div>
         <div className={styles.servicesStory}>
-          <div ref={visualRef} className={styles.servicesVisual} aria-hidden="true">
-            <div className={styles.servicesVisualChrome}>
-              <span>01</span>
-              <span>Service System</span>
-            </div>
-            {homepageContent.services.map((card, index) => (
-              <div
-                className={styles.serviceImageLayer}
-                key={card.title}
-                ref={(node) => {
-                  if (node) imageRefs.current[index] = node;
-                }}
-              >
-                <Image alt="" fill sizes="(max-width: 768px) 100vw, 54vw" src={serviceImages[index % serviceImages.length]} />
-              </div>
-            ))}
-            <div className={styles.servicesVisualOverlay} />
-          </div>
           <div className={styles.servicesList}>
             <div className={styles.servicesListTitle}>
               <TextSignalReveal as="h3">خدماتنا المتكاملة</TextSignalReveal>
@@ -171,6 +134,9 @@ export function HomeServicesScrollSection() {
                   }}
                   aria-hidden="true"
                 />
+                <span className={styles.servicePanelMedia} aria-hidden="true">
+                  <Image alt="" fill sizes="(max-width: 768px) 82vw, 42vw" src={serviceImages[index % serviceImages.length]} />
+                </span>
                 <span
                   className={styles.servicePanelNumber}
                   ref={(node) => {

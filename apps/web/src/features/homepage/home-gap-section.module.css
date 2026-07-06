@@ -8,7 +8,8 @@
 }
 
 .sticky {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: grid;
   height: 100svh;
   place-items: center;
@@ -50,6 +51,17 @@
 
 .horizontalLine::after {
   right: -2px;
+}
+
+.lineSquare {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  display: block;
+  background: #393632;
+  transform: translateX(-50%);
 }
 
 .horizontalLine:nth-child(1) {
@@ -94,9 +106,14 @@
   transform: translate(-50%, -50%);
 }
 
-.headline span {
+.headingGroup {
   display: block;
   will-change: transform;
+}
+
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
 .imageStack {
@@ -111,9 +128,10 @@
   border-radius: 0.45rem;
   background: #181715;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.44);
+  clip-path: inset(50% 50% 50% 50% round 0.25rem);
   transform: translate(-50%, -50%);
   transform-origin: 50% 50%;
-  will-change: transform;
+  will-change: clip-path;
 }
 
 .imageStack::after {

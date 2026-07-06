@@ -22,9 +22,8 @@ const serviceImages = [
 
 export function HomeServicesScrollSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const storyRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<HTMLAnchorElement[]>([]);
-  const numberRefs = useRef<HTMLSpanElement[]>([]);
-  const progressRefs = useRef<HTMLSpanElement[]>([]);
 
   useLayoutEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -34,72 +33,43 @@ export function HomeServicesScrollSection() {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
-      const section = sectionRef.current;
+      const story = storyRef.current;
       const items = itemRefs.current.filter(Boolean);
-      const numbers = numberRefs.current.filter(Boolean);
-      const progress = progressRefs.current.filter(Boolean);
-      if (!section || items.length === 0) return;
+      if (!story || items.length === 0) return;
 
-      gsap.set(items, { autoAlpha: 0.68, y: 28, scale: 0.96 });
-      gsap.set(numbers, { autoAlpha: 0.35 });
-      gsap.set(progress, { scaleY: 0.18, transformOrigin: "50% 0%" });
-      gsap.set(items[0], { autoAlpha: 1, y: 0, scale: 1 });
-      gsap.set(numbers[0], { autoAlpha: 1 });
-      gsap.set(progress[0], { scaleY: 1 });
+      gsap.set(items, {
+        autoAlpha: 1,
+        scale: 1,
+        yPercent: (index) => (index === 0 ? 0 : 112),
+        zIndex: (index) => index + 1,
+      });
 
-      const tweens = items.flatMap((item, index) => [
-        gsap.to(item, {
-          autoAlpha: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.65,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 64%",
-            end: "bottom 42%",
-            toggleActions: "play reverse play reverse",
-          },
-        }),
-        gsap.to(item, {
-          autoAlpha: 0.62,
-          y: -22,
-          scale: 0.96,
-          duration: 0.45,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: item,
-            start: "bottom 42%",
-            end: "bottom 24%",
-            toggleActions: "play none none reverse",
-          },
-        }),
-        gsap.to(numbers[index], {
-          autoAlpha: 1,
-          duration: 0.45,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 64%",
-            end: "bottom 42%",
-            toggleActions: "play reverse play reverse",
-          },
-        }),
-        gsap.to(progress[index], {
-          scaleY: 1,
-          duration: 0.65,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 64%",
-            end: "bottom 42%",
-            toggleActions: "play reverse play reverse",
-          },
-        }),
-      ]);
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: story,
+          start: "top top",
+          end: () => `+=${items.length * window.innerHeight * 1.05}`,
+          pin: story,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      items.forEach((item, index) => {
+        if (index === 0) return;
+
+        const step = (index - 1) * 1.15;
+
+        timeline
+          .to(items[index - 1], { scale: 0.94, autoAlpha: 0.62, duration: 0.75, ease: "none" }, step)
+          .to(item, { yPercent: 0, duration: 0.85, ease: "none" }, step);
+      });
+
+      timeline.to(items[items.length - 1], { duration: 1.15, ease: "none" });
 
       return () => {
-        tweens.forEach((tween) => tween.kill());
+        timeline.kill();
       };
     });
 
@@ -113,7 +83,7 @@ export function HomeServicesScrollSection() {
           <TextSignalReveal as="h2">خدماتنا المتكاملة</TextSignalReveal>
           <p>كل خدمة لها هدف واضح: بناء ثقة، زيادة طلب، أو تحسين تجربة العميل.</p>
         </div>
-        <div className={styles.servicesStory}>
+        <div ref={storyRef} className={styles.servicesStory}>
           <div className={styles.servicesList}>
             <div className={styles.servicesListTitle}>
               <TextSignalReveal as="h3">خدماتنا المتكاملة</TextSignalReveal>
@@ -129,9 +99,6 @@ export function HomeServicesScrollSection() {
               >
                 <span
                   className={styles.servicePanelProgress}
-                  ref={(node) => {
-                    if (node) progressRefs.current[index] = node;
-                  }}
                   aria-hidden="true"
                 />
                 <span className={styles.servicePanelMedia} aria-hidden="true">
@@ -139,9 +106,6 @@ export function HomeServicesScrollSection() {
                 </span>
                 <span
                   className={styles.servicePanelNumber}
-                  ref={(node) => {
-                    if (node) numberRefs.current[index] = node;
-                  }}
                 >
                   {index + 1}
                 </span>

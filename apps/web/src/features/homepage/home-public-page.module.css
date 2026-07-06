@@ -1241,10 +1241,8 @@
 
 .servicesStory {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.2rem, 2.6vw, 2rem);
-  align-items: start;
+  height: clamp(620px, calc(100svh - 2rem), 820px);
+  overflow: hidden;
   direction: ltr;
 }
 
@@ -1253,16 +1251,16 @@
 }
 
 .servicesList {
-  display: grid;
-  gap: 0.95rem;
+  position: relative;
+  height: 100%;
   direction: rtl;
 }
 
 .servicesListTitle {
-  position: sticky;
-  top: calc(var(--home-header-offset) + 1.5rem);
-  z-index: 2;
-  margin-bottom: 0.5rem;
+  display: none;
+  position: relative;
+  z-index: 6;
+  margin-bottom: 1rem;
   border: 1px solid rgba(38, 27, 62, 0.1);
   border-radius: 24px;
   padding: 1.2rem;
@@ -1287,11 +1285,13 @@
 }
 
 .servicePanel {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: grid;
   grid-template-columns: 0.25rem minmax(320px, 0.95fr) 3rem minmax(0, 1fr);
   gap: clamp(1rem, 2vw, 2rem);
-  min-height: clamp(560px, calc(100svh - 8.5rem), 760px);
+  height: 100%;
+  min-height: 0;
   border: 1px solid rgba(38, 27, 62, 0.1);
   border-radius: 26px;
   padding: 1.2rem;
@@ -1333,7 +1333,7 @@
   position: relative;
   z-index: 2;
   display: block;
-  min-height: clamp(420px, calc(100svh - 13rem), 620px);
+  min-height: 0;
   overflow: hidden;
   border: 1px solid rgba(38, 27, 62, 0.1);
   border-radius: 22px;
@@ -2501,6 +2501,8 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.2rem;
+    height: auto;
+    overflow: visible;
     direction: rtl;
   }
 
@@ -2513,6 +2515,7 @@
     grid-auto-columns: minmax(260px, 82vw);
     grid-auto-flow: column;
     gap: 0.75rem;
+    height: auto;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     padding-bottom: 0.7rem;
@@ -2525,6 +2528,7 @@
   }
 
   .servicesListTitle {
+    display: block;
     grid-column: 1 / -1;
     margin-bottom: 0.1rem;
     position: relative;
@@ -2534,6 +2538,9 @@
   }
 
   .servicePanel {
+    position: relative;
+    inset: auto;
+    height: auto;
     grid-template-columns: 0.22rem minmax(0, 1fr);
     min-height: 260px;
     border: 1px solid rgba(38, 27, 62, 0.1);

@@ -53,7 +53,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: clamp(760px, 92vh, 980px);
+  min-height: max(760px, 100svh);
   overflow: hidden;
   background: #fafafa;
   color: #261b3e;
@@ -356,8 +356,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: clamp(420px, 43vw, 640px);
-  margin-top: clamp(0.75rem, 1.5vw, 1.25rem);
+  height: clamp(520px, 50svh, 720px);
+  margin-top: 0;
   overflow: hidden;
   pointer-events: none;
 }

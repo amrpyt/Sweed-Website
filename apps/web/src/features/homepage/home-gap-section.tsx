@@ -17,6 +17,7 @@ const gapImages = [
 export function HomeGapSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
+  const imageStackRef = useRef<HTMLSpanElement>(null);
   const leftRef = useRef<HTMLSpanElement>(null);
   const rightRef = useRef<HTMLSpanElement>(null);
   const imageRefs = useRef<HTMLSpanElement[]>([]);
@@ -25,12 +26,13 @@ export function HomeGapSection() {
   useLayoutEffect(() => {
     const section = sectionRef.current;
     const sticky = stickyRef.current;
+    const imageStack = imageStackRef.current;
     const left = leftRef.current;
     const right = rightRef.current;
     const paragraph = paragraphRef.current;
     const images = imageRefs.current.filter(Boolean);
 
-    if (!section || !sticky || !left || !right || !paragraph || images.length === 0) return;
+    if (!section || !sticky || !imageStack || !left || !right || !paragraph || images.length === 0) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
@@ -38,34 +40,45 @@ export function HomeGapSection() {
     gsap.set(images, { autoAlpha: 0, scale: 1.08 });
     gsap.set(images[0], { autoAlpha: 1, scale: 1 });
 
+    const pin = ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: "bottom bottom",
+      pin: sticky,
+      pinSpacing: false,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    });
+
     const timeline = gsap.timeline({
       defaults: { ease: "none" },
       scrollTrigger: {
         trigger: section,
-        start: "top top",
-        end: "+=130%",
-        pin: sticky,
+        start: "top bottom",
+        end: "bottom bottom",
         scrub: true,
-        anticipatePin: 1,
         invalidateOnRefresh: true,
       },
     });
 
     timeline
-      .to(left, { xPercent: -12, yPercent: -42, duration: 1 }, 0)
-      .to(right, { xPercent: 12, yPercent: -42, duration: 1 }, 0)
-      .fromTo(paragraph, { autoAlpha: 0.35, y: 34 }, { autoAlpha: 1, y: 0, duration: 0.65 }, 0.25);
+      .fromTo(left, { x: "-30vw" }, { x: 0, duration: 1 }, 0)
+      .fromTo(right, { x: "30vw" }, { x: 0, duration: 1 }, 0)
+      .fromTo(imageStack, { scale: 0.74 }, { scale: 1, duration: 0.38 }, 0)
+      .fromTo(paragraph, { y: 26 }, { y: 0, duration: 0.45 }, 0.1);
 
+    const imageSteps = [0.24, 0.58, 0.76, 0.94];
     images.slice(1).forEach((image, index) => {
-      const step = 0.18 + index * 0.16;
+      const step = imageSteps[index] ?? 0.94;
       timeline
-        .to(images[index], { autoAlpha: 0, scale: 0.96, duration: 0.12 }, step)
-        .to(image, { autoAlpha: 1, scale: 1, duration: 0.12 }, step);
+        .to(images[index], { autoAlpha: 0, duration: 0.08 }, step)
+        .to(image, { autoAlpha: 1, scale: 1, duration: 0.08 }, step);
     });
 
     ScrollTrigger.refresh();
 
     return () => {
+      pin.kill();
       timeline.scrollTrigger?.kill();
       timeline.kill();
     };
@@ -74,13 +87,17 @@ export function HomeGapSection() {
   return (
     <section ref={sectionRef} className={styles.section} id="brand-gap" aria-label="We close the digital gap">
       <div ref={stickyRef} className={styles.sticky}>
-        <div className={styles.grid} aria-hidden="true" />
+        <div className={styles.overlay} aria-hidden="true">
+          <span className={styles.horizontalLine} />
+          <span className={styles.horizontalLine} />
+          <span className={styles.horizontalLine} />
+        </div>
         <div className={styles.eyebrow}>SWEED / BRAND PRESENCE</div>
         <div className={styles.headline} aria-label="We close that gap">
           <span ref={leftRef}>We close</span>
           <span ref={rightRef}>That gap</span>
         </div>
-        <span className={styles.imageStack} aria-hidden="true">
+        <span ref={imageStackRef} className={styles.imageStack} aria-hidden="true">
           {gapImages.map((src, index) => (
             <span
               className={styles.imageFrame}

@@ -13,9 +13,9 @@ test("public routes render shared shell", async ({ page }) => {
   for (const route of publicRoutes) {
     await page.goto(route);
     await expect(page.locator("body")).toBeVisible();
-    await expect(page.locator(".sweed-common-header")).toHaveCount(1);
-    await expect(page.locator(".sweed-common-logo .logo-main")).toHaveText("SWEED");
-    await expect(page.locator(".sweed-common-logo .logo-subtitle")).toHaveText("التسويق والإعلان");
+    await expect(page.getByTestId("sweed-staggered-menu")).toHaveCount(1);
+    await expect(page.getByRole("link", { name: "العودة إلى الرئيسية" })).toBeVisible();
+    await expect(page.getByTestId("sweed-menu-button")).toBeVisible();
     await expect(page.locator(".sweed-common-footer")).toHaveCount(1);
     await expect(page.locator("body")).toContainText("info@sweed.com");
   }
@@ -26,14 +26,15 @@ test("react homepage renders key content and stable anchors", async ({ page }) =
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");
   await expect(page.locator("#services")).toContainText("خدماتنا المتكاملة");
 
-  for (const selector of ["#home", "#expertise", "#problems", "#services", "#about", "#portfolio", "#offers", "#blog", "#faq", "#contact"]) {
+  for (const selector of ["#home", "#problems", "#services", "#about", "#portfolio", "#offers", "#blog", "#faq", "#contact"]) {
     await expect(page.locator(selector)).toHaveCount(1);
   }
 });
 
-test("home navigation points to homepage section anchors in the requested order", async ({ page }) => {
+test("home staggered navigation points to homepage section anchors in the requested order", async ({ page }) => {
   await page.goto("/");
-  const navLinks = page.locator(".sweed-common-header .nav-menu a");
+  await page.getByTestId("sweed-menu-button").click();
+  const navLinks = page.getByRole("navigation", { name: "التنقل الرئيسي" }).getByRole("link");
   await expect(navLinks).toHaveCount(9);
   await expect(navLinks.nth(0)).toHaveAttribute("href", "/#home");
   await expect(navLinks.nth(2)).toHaveAttribute("href", "/#offers");
@@ -97,52 +98,55 @@ test("public pages normalize old contact emails", async ({ page }) => {
   }
 });
 
-test("mobile sidebar stays fixed while page scrolls", async ({ page, isMobile }) => {
-  test.skip(!isMobile, "mobile sidebar behavior only runs on mobile project");
+test("mobile staggered panel stays fixed while page scroll is locked", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile menu behavior only runs on mobile project");
 
   await page.goto("/");
-  await page.waitForTimeout(1000);
-  const button = page.getByTestId("sweed-mobile-menu-button");
+  const button = page.getByTestId("sweed-menu-button");
   await expect(button).toBeVisible();
   await button.click();
-  const menu = page.locator(".sweed-common-header .nav-menu");
-  await expect(menu).toHaveClass(/active/);
+  const menu = page.getByTestId("sweed-menu-panel");
+  await expect(menu).toBeVisible();
   await expect(menu).toHaveCSS("position", "fixed");
+  await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
   const before = await menu.boundingBox();
   await page.mouse.wheel(0, 900);
   const after = await menu.boundingBox();
   expect(Math.round(after?.y ?? -1)).toBe(Math.round(before?.y ?? -2));
 });
 
-test("mobile sidebar links are clickable above overlay", async ({ page, isMobile }) => {
-  test.skip(!isMobile, "mobile sidebar click behavior only runs on mobile project");
+test("mobile staggered links are clickable above the backdrop", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile menu click behavior only runs on mobile project");
 
   await page.goto("/");
-  await page.waitForTimeout(1000);
-  const button = page.getByTestId("sweed-mobile-menu-button");
+  const button = page.getByTestId("sweed-menu-button");
   await expect(button).toBeVisible();
   await button.click();
-  const menu = page.locator(".sweed-common-header .nav-menu");
-  await expect(menu).toHaveClass(/active/);
-  await menu.getByRole("link", { name: "اتصل بنا" }).click();
+  const menu = page.getByTestId("sweed-menu-panel");
+  await expect(menu).toBeVisible();
+  await menu.getByRole("link", { name: "انتقل إلى اتصل بنا" }).click();
   await expect(page).toHaveURL(/\/#contact$/);
   await expect(page.locator("#contact")).toHaveCount(1);
   await expect(page.locator("body")).toContainText("جاهز تبدأ أول خطوة معانا؟");
+  await expect(button).toHaveAttribute("aria-expanded", "false");
 });
 
-test("mobile sidebar keeps polished drawer style without layout drift", async ({ page, isMobile }) => {
-  test.skip(!isMobile, "mobile sidebar style only runs on mobile project");
+test("mobile staggered panel fills the viewport without horizontal drift", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile menu style only runs on mobile project");
 
   await page.goto("/articles");
-  await page.waitForTimeout(1000);
-  const button = page.getByTestId("sweed-mobile-menu-button");
+  const button = page.getByTestId("sweed-menu-button");
   await expect(button).toBeVisible();
   await button.click();
-  const menu = page.locator(".sweed-common-header .nav-menu");
-  await expect(menu).toHaveClass(/active/);
-  await expect(menu).toHaveCSS("width", "340px");
-  await expect(menu).toHaveCSS("border-top-left-radius", "26px");
-  await expect(menu).toHaveCSS("border-bottom-left-radius", "26px");
+  const menu = page.getByTestId("sweed-menu-panel");
+  await expect(menu).toBeVisible();
+  const viewportWidth = page.viewportSize()?.width ?? 0;
+  const menuBox = await menu.boundingBox();
+  expect(Math.round(menuBox?.width ?? 0)).toBe(viewportWidth);
+  const hasHorizontalOverflow = await menu.evaluate(
+    (element) => element.scrollWidth > element.clientWidth,
+  );
+  expect(hasHorizontalOverflow).toBe(false);
 });
 
 test("legacy mobile polish asset is served for non-migrated legacy pages", async ({ page }) => {

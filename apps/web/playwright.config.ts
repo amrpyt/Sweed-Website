@@ -1,4 +1,11 @@
+import { existsSync } from "node:fs";
 import { defineConfig, devices } from "@playwright/test";
+
+const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:3000";
+const systemChromiumPath = "/usr/bin/chromium-browser";
+const chromiumPath =
+  process.env.PLAYWRIGHT_CHROMIUM_PATH ??
+  (existsSync(systemChromiumPath) ? systemChromiumPath : undefined);
 
 export default defineConfig({
   testDir: "./tests/smoke",
@@ -9,13 +16,16 @@ export default defineConfig({
   },
   webServer: {
     command: "bun run dev",
-    url: "http://localhost:3000",
+    url: baseUrl,
     reuseExistingServer: true,
     timeout: 60_000,
   },
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: baseUrl,
     trace: "on-first-retry",
+    launchOptions: chromiumPath
+      ? { executablePath: chromiumPath, args: ["--no-sandbox"] }
+      : undefined,
   },
   projects: [
     {

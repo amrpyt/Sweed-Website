@@ -35,7 +35,7 @@ test("production public routes respond and render the shared shell", async ({ pa
 
     expect(response?.status(), route).toBe(200);
     await expect(page.locator("body"), route).toBeVisible();
-    await expect(page.locator(".sweed-common-header"), route).toHaveCount(1);
+    await expect(page.getByTestId("sweed-staggered-menu"), route).toHaveCount(1);
     await expect(page.locator(".sweed-common-footer"), route).toHaveCount(1);
     await expect(page.locator("body"), route).toContainText("info@sweed.com");
   }

@@ -23,9 +23,7 @@ test("react homepage visual baselines by section", async ({ page }, testInfo) =>
         transition-duration: 0s !important;
         transition-delay: 0s !important;
       }
-      .sweed-common-top-bar,
-      .sweed-common-header,
-      .mobile-menu-overlay,
+      [data-testid="sweed-staggered-menu"],
       [class*="logoLoop"],
       [class*="ai-advisor"],
       [data-testid="offer-funnel-popup-shell"] {

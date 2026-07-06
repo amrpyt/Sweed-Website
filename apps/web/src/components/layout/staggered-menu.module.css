@@ -1,0 +1,385 @@
+:global(html) {
+  scroll-padding-top: 88px;
+}
+
+:global(section[id]) {
+  scroll-margin-top: 88px;
+}
+
+.root {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 60;
+  height: 72px;
+  direction: rtl;
+  font-family: var(--font-body);
+  pointer-events: none;
+}
+
+.header {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  border-block-end: 1px solid color-mix(in srgb, var(--color-line) 78%, transparent);
+  background: color-mix(in srgb, var(--color-panel) 90%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  pointer-events: none;
+}
+
+.headerInner {
+  display: flex;
+  width: var(--container);
+  min-height: 72px;
+  margin-inline: auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo,
+.toggle {
+  pointer-events: auto;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-accent-strong);
+  text-decoration: none;
+}
+
+.logoImage {
+  display: block;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  object-fit: contain;
+}
+
+.logoWordmark {
+  direction: ltr;
+  font-size: 0.98rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.toggle {
+  position: relative;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-strong) 18%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-panel) 90%, transparent);
+  color: var(--color-accent-strong);
+  padding: 0 16px;
+  font: inherit;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.toggle:hover {
+  border-color: color-mix(in srgb, var(--staggered-accent) 44%, transparent);
+  background: color-mix(in srgb, var(--staggered-accent) 9%, var(--color-panel));
+  color: var(--staggered-accent);
+}
+
+.toggle:active {
+  transform: scale(0.98);
+}
+
+.toggle:focus-visible,
+.logo:focus-visible,
+.item:focus-visible,
+.socialLink:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--staggered-accent) 26%, transparent);
+  outline-offset: 4px;
+}
+
+.toggleTextWrap {
+  position: relative;
+  display: inline-block;
+  width: 3.8rem;
+  height: 1em;
+  overflow: hidden;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.toggleTextInner {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  will-change: transform;
+}
+
+.toggleLine {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+.icon {
+  position: relative;
+  display: inline-flex;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.iconLine {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translate(50%, -50%);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  border: 0;
+  background: color-mix(in srgb, var(--color-accent-strong) 28%, transparent);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  cursor: default;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preLayers,
+.panel {
+  position: fixed;
+  inset-block: 0;
+  width: clamp(360px, 43vw, 580px);
+  will-change: transform;
+}
+
+.preLayers {
+  right: 0;
+  z-index: 10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.preLayer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.panel {
+  right: 0;
+  z-index: 15;
+  display: flex;
+  overflow-y: auto;
+  background: var(--color-panel);
+  color: var(--color-accent-strong);
+  padding: clamp(112px, 15vh, 144px) clamp(28px, 4vw, 56px) 36px;
+  visibility: hidden;
+  pointer-events: none;
+  overscroll-behavior: contain;
+}
+
+.root[data-position="left"] .preLayers,
+.root[data-position="left"] .panel {
+  right: auto;
+  left: 0;
+}
+
+.panelInner {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  flex: 1;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.list,
+.socialList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1.1vh, 12px);
+}
+
+.itemWrap {
+  position: relative;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 18px;
+  color: var(--color-accent-strong);
+  padding-block: 2px;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.item:hover,
+.item:focus-visible,
+.item[data-current="true"] {
+  color: var(--staggered-accent);
+}
+
+.itemLabel {
+  display: inline-block;
+  min-width: 0;
+  font-size: clamp(2.35rem, 4vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.itemNumber {
+  display: inline-flex;
+  min-width: 2rem;
+  justify-content: flex-end;
+  color: var(--staggered-accent);
+  padding-block-start: 0.58em;
+  font-size: clamp(0.76rem, 1.2vw, 0.94rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.socials {
+  margin-block-start: auto;
+  border-block-start: 1px solid color-mix(in srgb, var(--color-accent-strong) 14%, transparent);
+  padding-block-start: 22px;
+}
+
+.socialTitle {
+  margin: 0 0 12px;
+  color: var(--staggered-accent);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.socialList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+}
+
+.socialLink {
+  position: relative;
+  display: inline-block;
+  color: var(--color-accent-strong);
+  padding-block: 2px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease;
+}
+
+.socialList:hover .socialLink:not(:hover),
+.socialList:focus-within .socialLink:not(:focus-visible) {
+  opacity: 0.42;
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+  color: var(--staggered-accent);
+}
+
+@media (width < 760px) {
+  .root {
+    height: 64px;
+  }
+
+  .headerInner {
+    min-height: 64px;
+  }
+
+  .logoImage {
+    width: 34px;
+    height: 34px;
+  }
+
+  .logoWordmark {
+    display: none;
+  }
+
+  .toggle {
+    min-height: 42px;
+    padding-inline: 14px;
+  }
+
+  .preLayers,
+  .panel {
+    width: 100vw;
+  }
+
+  .panel {
+    padding: 98px max(22px, env(safe-area-inset-left)) max(28px, env(safe-area-inset-bottom));
+  }
+
+  .itemLabel {
+    font-size: clamp(2.35rem, 12vw, 4rem);
+  }
+}
+
+@media (height < 760px) {
+  .panel {
+    padding-block-start: 92px;
+  }
+
+  .list {
+    gap: 4px;
+  }
+
+  .itemLabel {
+    font-size: clamp(2rem, 7vh, 3.35rem);
+  }
+
+  .socials {
+    padding-block-start: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .item,
+  .socialLink {
+    transition: none;
+  }
+}

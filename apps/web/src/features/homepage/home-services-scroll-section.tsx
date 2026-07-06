@@ -48,7 +48,7 @@ export function HomeServicesScrollSection() {
         scrollTrigger: {
           trigger: story,
           start: "top top",
-          end: () => `+=${items.length * window.innerHeight * 1.05}`,
+          end: () => `+=${(items.length - 1) * window.innerHeight * 0.48 + window.innerHeight * 0.18}`,
           pin: story,
           scrub: true,
           anticipatePin: 1,
@@ -59,14 +59,15 @@ export function HomeServicesScrollSection() {
       items.forEach((item, index) => {
         if (index === 0) return;
 
-        const step = (index - 1) * 1.15;
+        const step = index - 1;
 
         timeline
-          .to(items[index - 1], { scale: 0.94, autoAlpha: 0.62, duration: 0.75, ease: "none" }, step)
-          .to(item, { yPercent: 0, duration: 0.85, ease: "none" }, step);
+          .to(items[index - 1], { scale: 0.965, autoAlpha: 0.72, duration: 0.55, ease: "none" }, step)
+          .to(item, { yPercent: 0, duration: 0.72, ease: "none" }, step);
       });
 
-      timeline.to(items[items.length - 1], { duration: 1.15, ease: "none" });
+      timeline.to(items[items.length - 1], { duration: 0.35, ease: "none" });
+      ScrollTrigger.refresh();
 
       return () => {
         timeline.kill();

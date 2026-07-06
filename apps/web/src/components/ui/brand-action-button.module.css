@@ -13,18 +13,19 @@
   --brand-action-min-width: 220px;
   --brand-action-min-height: 54px;
   --brand-action-font-size: 1rem;
-  --brand-action-label-shift: -0.48rem;
+  --brand-action-label-shift: 0;
   --brand-action-icon-offset-x: 0;
   --brand-action-icon-offset-y: 0;
   --brand-action-font-weight: 750;
   --brand-action-inner-radius: calc(var(--brand-action-radius) - var(--brand-action-inset));
   position: relative !important;
   display: grid !important;
-  grid-template-columns: var(--brand-action-inset) var(--brand-action-icon-size) minmax(var(--brand-action-gap), 1fr) max-content minmax(var(--brand-action-gap), 1fr) !important;
+  grid-template-columns: var(--brand-action-icon-size) minmax(0, 1fr) !important;
+  column-gap: var(--brand-action-gap) !important;
   min-width: var(--brand-action-min-width) !important;
   min-height: var(--brand-action-min-height) !important;
   align-items: center !important;
-  padding: var(--brand-action-inset) 0 !important;
+  padding: var(--brand-action-inset) calc(var(--brand-action-inset) + 0.9rem) var(--brand-action-inset) var(--brand-action-inset) !important;
   border: 1px solid var(--brand-action-border) !important;
   border-radius: var(--brand-action-radius) !important;
   overflow: hidden !important;
@@ -93,7 +94,7 @@
   position: relative !important;
   z-index: 3 !important;
   display: inline-grid !important;
-  grid-column: 2 !important;
+  grid-column: 1 !important;
   flex: 0 0 var(--brand-action-icon-size) !important;
   place-items: center !important;
   width: var(--brand-action-icon-size) !important;
@@ -116,11 +117,12 @@
 .label {
   position: relative !important;
   z-index: 2 !important;
-  grid-column: 4 !important;
+  grid-column: 2 !important;
   display: inline-flex !important;
   min-width: 0 !important;
   align-items: center !important;
   justify-content: center !important;
+  justify-self: center !important;
   color: currentColor !important;
   direction: rtl !important;
   font-size: inherit !important;
@@ -180,7 +182,7 @@
   --brand-action-min-height: 58px;
   --brand-action-font-size: 1.03rem;
   --brand-action-gap: 0.64rem;
-  --brand-action-label-shift: -0.34rem;
+  --brand-action-label-shift: 0;
   --brand-action-icon-offset-x: 0;
 }
 

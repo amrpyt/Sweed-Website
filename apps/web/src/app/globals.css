@@ -76,7 +76,7 @@ select {
 }
 
 :where(
-  button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"]),
+  button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"]):not([class*="brand-action-button-module"]),
   a.btn,
   .btn,
   .btn-consultation,
@@ -88,7 +88,7 @@ select {
 }
 
 :where(
-  button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"]),
+  button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"]):not([class*="brand-action-button-module"]),
   a.btn,
   .btn,
   .btn-consultation,
@@ -136,7 +136,7 @@ select {
   }
 
   :where(
-    button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"])::before,
+    button:not([aria-label]):not([class*="hamburger"]):not([class*="button-module"]):not([class*="home-public-page-module"]):not([class*="brand-action-button-module"])::before,
     a.btn::before,
     .btn::before,
     .btn-consultation::before,

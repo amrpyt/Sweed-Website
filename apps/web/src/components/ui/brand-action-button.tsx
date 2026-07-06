@@ -42,8 +42,8 @@ export function BrandActionArrowIcon() {
       viewBox="0 0 24 24"
       width="18"
     >
-      <path d="M16 16L8 8" />
-      <path d="M9 8h7v7" />
+      <path d="M7 17L17 7" />
+      <path d="M7 7h10v10" />
     </svg>
   );
 }

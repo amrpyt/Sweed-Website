@@ -1,0 +1,141 @@
+.section {
+  position: relative;
+  min-height: 100svh;
+  background: #080807;
+  color: #e8e8e3;
+  direction: ltr;
+}
+
+.sticky {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  isolation: isolate;
+}
+
+.grid {
+  position: absolute;
+  inset: clamp(1rem, 2vw, 1.8rem);
+  z-index: -1;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: calc(100% / 6) calc(100% / 4);
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+.eyebrow {
+  position: absolute;
+  top: clamp(6rem, 12vh, 9rem);
+  left: 50%;
+  color: #938f8a;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  transform: translateX(-50%);
+}
+
+.headline {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(100%, 1400px);
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2rem, 8vw, 9rem);
+  color: #e8e8e3;
+  font-size: clamp(4.2rem, 7vw, 11.2rem);
+  font-weight: 650;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.headline span {
+  display: block;
+  will-change: transform;
+}
+
+.imageStack {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: clamp(12rem, 14vw, 16rem);
+  aspect-ratio: 0.8;
+  overflow: hidden;
+  border: 1px solid rgba(232, 232, 227, 0.18);
+  border-radius: 0.45rem;
+  background: #181715;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.44);
+  transform: translate(-50%, -50%);
+}
+
+.imageStack::after {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: linear-gradient(180deg, transparent 58%, rgba(0, 0, 0, 0.34));
+  content: "";
+}
+
+.imageFrame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  will-change: opacity, transform;
+}
+
+.imageFrame img {
+  object-fit: cover;
+}
+
+.copy {
+  position: absolute;
+  bottom: clamp(4rem, 8vh, 6.5rem);
+  left: 50%;
+  z-index: 4;
+  width: min(92vw, 32rem);
+  margin: 0;
+  color: #e8e8e3;
+  font-size: clamp(1rem, 1.15vw, 1.25rem);
+  line-height: 1.45;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: 100svh;
+  }
+
+  .sticky {
+    padding: 1rem;
+  }
+
+  .eyebrow {
+    top: 6rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .headline {
+    flex-direction: column;
+    gap: 11rem;
+    justify-content: center;
+    font-size: clamp(3.2rem, 16vw, 5.6rem);
+    text-align: center;
+  }
+
+  .imageStack {
+    width: min(58vw, 13rem);
+  }
+
+  .copy {
+    bottom: 3rem;
+    font-size: 0.95rem;
+  }
+}

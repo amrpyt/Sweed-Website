@@ -15,6 +15,7 @@ import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeBlitScrollSection } from "./home-blit-scroll-section";
+import { HomeGapSection } from "./home-gap-section";
 import { HomePortfolioArmorySection } from "./home-portfolio-armory-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
@@ -280,6 +281,8 @@ export function HomePublicPage() {
         <HomeBlitScrollSection />
 
         <HomeProblemsCompassSection />
+
+        <HomeGapSection />
 
         <HomeServicesScrollSection />
 

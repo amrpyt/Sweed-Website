@@ -26,13 +26,20 @@
 }
 
 .itemWrap {
-  margin-block: -0.14em;
-  padding-block: 0.14em;
+  overflow: clip;
+  overflow-clip-margin: 0.42em;
+  margin-block: -0.3em;
+  padding-block: 0.3em;
+  line-height: 1.2;
 }
 
 .itemLabel {
   font-size: clamp(2.25rem, 3.75vw, 3.45rem);
   letter-spacing: normal;
-  line-height: 1.1;
+  line-height: 1.2;
   white-space: nowrap;
+}
+
+:global([data-testid="sweed-menu-panel"][data-motion-state="open"]) .itemWrap {
+  overflow: visible;
 }

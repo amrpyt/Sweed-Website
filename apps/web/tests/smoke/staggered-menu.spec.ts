@@ -98,6 +98,19 @@ test("review polish keeps the trigger with the panel and preserves Arabic shapin
   const firstLabel = panel.getByRole("link", { name: "انتقل إلى الرئيسية" }).locator("span").first();
   await expect(firstLabel).toHaveCSS("letter-spacing", "normal");
 
+  const contactLabel = panel.getByRole("link", { name: "انتقل إلى اتصل بنا" }).locator("span").first();
+  const clippingMetrics = await contactLabel.evaluate((element) => {
+    const wrap = element.parentElement?.parentElement;
+    const styles = getComputedStyle(element);
+    return {
+      lineHeight: Number.parseFloat(styles.lineHeight),
+      fontSize: Number.parseFloat(styles.fontSize),
+      wrapOverflow: wrap ? getComputedStyle(wrap).overflow : "",
+    };
+  });
+  expect(clippingMetrics.lineHeight / clippingMetrics.fontSize).toBeGreaterThanOrEqual(1.18);
+  expect(clippingMetrics.wrapOverflow).toBe("visible");
+
   const navigationZ = Number(
     await page.getByTestId("sweed-staggered-menu").evaluate((element) => getComputedStyle(element).zIndex),
   );

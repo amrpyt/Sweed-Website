@@ -42,6 +42,44 @@ test("Arabic staggered menu opens, traps the page, and closes with Escape", asyn
   await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
 });
 
+test("header hides on downward scroll and returns elevated on upward scroll", async ({ page }) => {
+  await page.goto("/");
+  await waitForPageReady(page);
+
+  const root = page.getByTestId("sweed-staggered-menu");
+  const header = page.locator('header[aria-label="رأس الموقع"]');
+  const trigger = page.getByTestId("sweed-menu-button");
+
+  await expect(root).toHaveAttribute("data-header-hidden", "false");
+  await page.evaluate(() => window.scrollTo({ top: 900, behavior: "instant" }));
+  await expect(root).toHaveAttribute("data-header-hidden", "true");
+
+  const hiddenTransform = await header.evaluate(
+    (element) => getComputedStyle(element).transform,
+  );
+  expect(hiddenTransform).not.toBe("none");
+  await expect
+    .poll(async () => (await header.boundingBox())?.y ?? 0)
+    .toBeLessThanOrEqual(-60);
+
+  await page.evaluate(() => window.scrollTo({ top: 560, behavior: "instant" }));
+  await expect(root).toHaveAttribute("data-header-hidden", "false");
+  await expect(root).toHaveAttribute("data-scrolled", "true");
+  await expect(header).not.toHaveCSS("box-shadow", "none");
+  await expect
+    .poll(async () => Math.abs((await header.boundingBox())?.y ?? 999))
+    .toBeLessThanOrEqual(1);
+
+  await page.evaluate(() => window.scrollTo({ top: 566, behavior: "instant" }));
+  await page.waitForTimeout(120);
+  await expect(root).toHaveAttribute("data-header-hidden", "false");
+
+  await page.evaluate(() => window.scrollTo({ top: 980, behavior: "instant" }));
+  await expect(root).toHaveAttribute("data-header-hidden", "true");
+  await trigger.focus();
+  await expect(root).toHaveAttribute("data-header-hidden", "false");
+});
+
 test("staggered menu keeps homepage anchors and closes after navigation", async ({ page }) => {
   await page.goto("/");
   await waitForPageReady(page);

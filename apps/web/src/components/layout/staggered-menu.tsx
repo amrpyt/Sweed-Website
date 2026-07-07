@@ -40,6 +40,11 @@ type StaggeredMenuProps = {
 
 const menuLabel = "القائمة";
 const closeLabel = "إغلاق";
+const topRevealThreshold = 24;
+const hideStartThreshold = 96;
+const hideDistanceThreshold = 18;
+const showDistanceThreshold = 10;
+const scrollThrottleMs = 40;
 
 function formatArabicIndex(index: number) {
   return new Intl.NumberFormat("ar-EG", {
@@ -64,8 +69,14 @@ export function StaggeredMenu({
   const pathname = usePathname();
   const panelId = `staggered-menu-${useId().replaceAll(":", "")}`;
   const [open, setOpen] = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const [pageScrolled, setPageScrolled] = useState(false);
   const openRef = useRef(false);
   const reducedMotionRef = useRef(false);
+  const lastScrollYRef = useRef(0);
+  const accumulatedScrollRef = useRef(0);
+  const scrollDirectionRef = useRef<-1 | 0 | 1>(0);
+  const scrollTimerRef = useRef<number | null>(null);
 
   const rootRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLButtonElement>(null);
@@ -363,6 +374,7 @@ export function StaggeredMenu({
       animateToggle(nextOpen);
 
       if (nextOpen) {
+        setHeaderHidden(false);
         playOpen();
         onMenuOpen?.();
       } else {
@@ -388,8 +400,75 @@ export function StaggeredMenu({
   );
 
   useEffect(() => {
-    closeMenu(false);
-  }, [pathname, closeMenu]);
+    const initialScrollY = Math.max(window.scrollY, 0);
+    lastScrollYRef.current = initialScrollY;
+    accumulatedScrollRef.current = 0;
+    scrollDirectionRef.current = 0;
+    const initializationTimer = window.setTimeout(() => {
+      setPageScrolled(initialScrollY > topRevealThreshold);
+    }, 0);
+
+    const applyScrollState = () => {
+      scrollTimerRef.current = null;
+
+      const currentScrollY = Math.max(window.scrollY, 0);
+      const delta = currentScrollY - lastScrollYRef.current;
+      setPageScrolled(currentScrollY > topRevealThreshold);
+
+      if (openRef.current || currentScrollY <= topRevealThreshold) {
+        setHeaderHidden(false);
+        accumulatedScrollRef.current = 0;
+        scrollDirectionRef.current = 0;
+        lastScrollYRef.current = currentScrollY;
+        return;
+      }
+
+      if (Math.abs(delta) < 1) {
+        lastScrollYRef.current = currentScrollY;
+        return;
+      }
+
+      const direction: -1 | 1 = delta > 0 ? 1 : -1;
+      if (scrollDirectionRef.current !== direction) {
+        scrollDirectionRef.current = direction;
+        accumulatedScrollRef.current = Math.abs(delta);
+      } else {
+        accumulatedScrollRef.current += Math.abs(delta);
+      }
+
+      if (
+        direction === 1 &&
+        currentScrollY > hideStartThreshold &&
+        accumulatedScrollRef.current >= hideDistanceThreshold
+      ) {
+        setHeaderHidden(true);
+        accumulatedScrollRef.current = 0;
+      } else if (
+        direction === -1 &&
+        accumulatedScrollRef.current >= showDistanceThreshold
+      ) {
+        setHeaderHidden(false);
+        accumulatedScrollRef.current = 0;
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    const handleScroll = () => {
+      if (scrollTimerRef.current !== null) return;
+      scrollTimerRef.current = window.setTimeout(applyScrollState, scrollThrottleMs);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.clearTimeout(initializationTimer);
+      if (scrollTimerRef.current !== null) {
+        window.clearTimeout(scrollTimerRef.current);
+        scrollTimerRef.current = null;
+      }
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) {
@@ -455,9 +534,15 @@ export function StaggeredMenu({
       data-testid="sweed-staggered-menu"
       data-open={open ? "true" : "false"}
       data-position={position}
+      data-header-hidden={headerHidden && !open ? "true" : "false"}
+      data-scrolled={pageScrolled ? "true" : "false"}
       style={{ "--staggered-accent": accentColor } as React.CSSProperties}
+      onFocusCapture={() => setHeaderHidden(false)}
     >
-      <header className={styles.header} aria-label="رأس الموقع">
+      <header
+        className={`${styles.header} ${polishStyles.header}`}
+        aria-label="رأس الموقع"
+      >
         <div className={`${styles.headerInner} ${polishStyles.headerInner}`}>
           <Link
             className={styles.logo}

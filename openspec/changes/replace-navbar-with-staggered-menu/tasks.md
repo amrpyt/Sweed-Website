@@ -17,8 +17,8 @@
 
 ## Scroll-direction header
 
-- [ ] Keep the header visible at the top of the page.
-- [ ] Hide it after intentional downward scrolling and reveal it on upward scrolling.
-- [ ] Prevent jitter with direction thresholds and keep the header visible while the menu is open or focused.
-- [ ] Add an elevated scrolled state, reduced-motion support, and desktop/mobile regression coverage.
-- [ ] Build, deploy, review, and commit the behavior.
+- [x] Keep the header visible at the top of the page.
+- [x] Hide it after intentional downward scrolling and reveal it on upward scrolling.
+- [x] Prevent jitter with direction thresholds and keep the header visible while the menu is open or focused.
+- [x] Add an elevated scrolled state, reduced-motion support, and desktop/mobile regression coverage.
+- [x] Build, deploy, review, and commit the behavior.

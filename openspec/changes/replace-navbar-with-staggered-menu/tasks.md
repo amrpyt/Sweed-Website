@@ -14,3 +14,11 @@
 - [x] Add regression checks and repeat desktop/mobile screenshot review.
 - [x] Commit the visual polish.
 - [x] Fix Arabic ascender clipping inside the staggered reveal masks at narrow viewport widths.
+
+## Scroll-direction header
+
+- [ ] Keep the header visible at the top of the page.
+- [ ] Hide it after intentional downward scrolling and reveal it on upward scrolling.
+- [ ] Prevent jitter with direction thresholds and keep the header visible while the menu is open or focused.
+- [ ] Add an elevated scrolled state, reduced-motion support, and desktop/mobile regression coverage.
+- [ ] Build, deploy, review, and commit the behavior.

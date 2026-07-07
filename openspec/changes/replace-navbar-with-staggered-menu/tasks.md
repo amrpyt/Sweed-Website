@@ -22,3 +22,9 @@
 - [x] Prevent jitter with direction thresholds and keep the header visible while the menu is open or focused.
 - [x] Add an elevated scrolled state, reduced-motion support, and desktop/mobile regression coverage.
 - [x] Build, deploy, review, and commit the behavior.
+
+## Services stack containment
+
+- [ ] Clip off-stage service cards inside the desktop story viewport so cards 5 and 6 do not remain visible below the active card.
+- [ ] Preserve the mobile horizontal scroller and card shadows.
+- [ ] Add browser regression coverage, deploy, review, and commit the fix.

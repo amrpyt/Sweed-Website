@@ -84,14 +84,20 @@ export function HomeServicesScrollSection() {
           <TextSignalReveal as="h2">خدماتنا المتكاملة</TextSignalReveal>
           <p>كل خدمة لها هدف واضح: بناء ثقة، زيادة طلب، أو تحسين تجربة العميل.</p>
         </div>
-        <div ref={storyRef} className={styles.servicesStory}>
-          <div className={styles.servicesList}>
+        <div
+          ref={storyRef}
+          className={styles.servicesStory}
+          data-testid="home-services-story"
+        >
+          <div className={styles.servicesList} data-testid="home-services-list">
             <div className={styles.servicesListTitle}>
               <TextSignalReveal as="h3">خدماتنا المتكاملة</TextSignalReveal>
             </div>
             {homepageContent.services.map((card, index) => (
               <Link
                 className={styles.servicePanel}
+                data-testid="home-service-panel"
+                data-service-index={index + 1}
                 href={card.href ?? "/services"}
                 key={card.title}
                 ref={(node) => {

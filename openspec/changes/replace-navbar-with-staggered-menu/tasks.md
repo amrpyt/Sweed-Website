@@ -25,6 +25,6 @@
 
 ## Services stack containment
 
-- [ ] Clip off-stage service cards inside the desktop story viewport so cards 5 and 6 do not remain visible below the active card.
-- [ ] Preserve the mobile horizontal scroller and card shadows.
-- [ ] Add browser regression coverage, deploy, review, and commit the fix.
+- [x] Clip off-stage service cards inside the desktop story viewport so cards 5 and 6 do not remain visible below the active card.
+- [x] Preserve the mobile horizontal scroller and card shadows.
+- [x] Add browser regression coverage, deploy, review, and commit the fix.

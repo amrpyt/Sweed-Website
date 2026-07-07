@@ -1420,6 +1420,18 @@
   color: var(--primary-pink);
 }
 
+@media (min-width: 769px) {
+  .servicesStory {
+    overflow: hidden;
+    border-radius: 42px;
+    isolation: isolate;
+  }
+
+  .servicesList {
+    overflow: hidden;
+  }
+}
+
 .featureCard {
   flex-direction: column;
   min-height: 210px;

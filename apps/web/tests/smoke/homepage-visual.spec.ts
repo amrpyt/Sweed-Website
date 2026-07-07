@@ -43,3 +43,29 @@ test("react homepage visual baselines by section", async ({ page }, testInfo) =>
     });
   }
 });
+
+test("services stack contains future cards on desktop and keeps mobile horizontal scrolling", async ({
+  page,
+  isMobile,
+}) => {
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+
+  const story = page.getByTestId("home-services-story");
+  const list = page.getByTestId("home-services-list");
+  const panels = page.getByTestId("home-service-panel");
+
+  await expect(story).toBeVisible();
+  await expect(panels).toHaveCount(6);
+
+  if (isMobile) {
+    await expect(story).toHaveCSS("overflow", "visible");
+    await expect(list).toHaveCSS("overflow-x", "auto");
+    expect(await list.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+    return;
+  }
+
+  await expect(story).toHaveCSS("overflow", "hidden");
+  await expect(list).toHaveCSS("overflow", "hidden");
+  await expect(panels.nth(5)).toHaveAttribute("data-service-index", "6");
+});

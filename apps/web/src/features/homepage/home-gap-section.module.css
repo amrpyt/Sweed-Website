@@ -1,10 +1,11 @@
 .section {
   position: relative;
-  height: 200svh;
+  height: 270svh;
   padding: clamp(1rem, 1.1vw, 1.75rem);
   background: #261b3e;
   color: #fff7fb;
   direction: rtl;
+  unicode-bidi: isolate;
 }
 
 .sticky {
@@ -14,6 +15,7 @@
   height: 100svh;
   place-items: center;
   overflow: hidden;
+  direction: rtl;
   isolation: isolate;
 }
 
@@ -82,9 +84,12 @@
   top: clamp(6.5rem, 12vh, 10rem);
   left: 50%;
   color: #ff8db4;
+  direction: rtl;
   font-size: 0.82rem;
   font-weight: 900;
   letter-spacing: 0.04em;
+  text-align: center;
+  unicode-bidi: plaintext;
   transform: translateX(-50%);
 }
 
@@ -94,7 +99,7 @@
   left: 50%;
   z-index: 2;
   display: flex;
-  width: min(100%, 1400px);
+  width: min(100%, 1440px);
   align-items: center;
   justify-content: space-between;
   gap: clamp(2rem, 8vw, 9rem);
@@ -105,18 +110,16 @@
   letter-spacing: -0.025em;
   line-height: 0.96;
   text-align: center;
+  unicode-bidi: isolate;
   white-space: nowrap;
   transform: translate(-50%, -50%);
 }
 
 .headingGroup {
   display: block;
-  will-change: transform;
-}
-
-.char {
-  display: inline-block;
-  will-change: transform, opacity;
+  direction: rtl;
+  unicode-bidi: isolate;
+  will-change: transform, opacity, filter;
 }
 
 .imageStack {
@@ -167,17 +170,19 @@
   z-index: 4;
   width: min(92vw, 34rem);
   margin: 0;
-  color: rgba(255, 247, 251, 0.92);
+  color: rgba(255, 247, 251, 0.94);
+  direction: rtl;
   font-size: clamp(1rem, 1.15vw, 1.22rem);
   line-height: 1.65;
   text-align: center;
+  unicode-bidi: plaintext;
   transform: translateX(-50%);
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 @media (max-width: 768px) {
   .section {
-    height: 180svh;
+    height: 240svh;
   }
 
   .sticky {

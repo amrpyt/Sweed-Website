@@ -39,15 +39,15 @@ export function HomeGapSection() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.set(images, { autoAlpha: 0 });
-    gsap.set(images[0], { autoAlpha: 1 });
-    gsap.set(left, { autoAlpha: 0.42, x: "-30vw", transformOrigin: "50% 50%" });
-    gsap.set(right, { autoAlpha: 0.42, x: "30vw", transformOrigin: "50% 50%" });
+    gsap.set(images, { autoAlpha: 0, scale: 1.04 });
+    gsap.set(images[0], { autoAlpha: 1, scale: 1 });
+    gsap.set(left, { autoAlpha: 0.72, x: "34vw", filter: "blur(6px)", transformOrigin: "50% 50%" });
+    gsap.set(right, { autoAlpha: 0.72, x: "-34vw", filter: "blur(6px)", transformOrigin: "50% 50%" });
 
     const pin = ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: () => `+=${Math.max(section.offsetHeight - window.innerHeight, window.innerHeight)}`,
+      end: () => `+=${Math.max(section.offsetHeight - window.innerHeight, window.innerHeight * 1.65)}`,
       pin: sticky,
       pinSpacing: true,
       pinType: "fixed",
@@ -67,7 +67,7 @@ export function HomeGapSection() {
 
     const startImageCycle = () => {
       if (imageTimer || images.length < 2) return;
-      imageTimer = setInterval(showNextImage, 800);
+      imageTimer = setInterval(showNextImage, 960);
     };
 
     const stopImageCycle = () => {
@@ -98,15 +98,17 @@ export function HomeGapSection() {
     });
 
     timeline
-      .fromTo(left, { x: "-30vw", autoAlpha: 0.42 }, { x: 0, autoAlpha: 1, duration: 1 }, 0)
-      .fromTo(right, { x: "30vw", autoAlpha: 0.42 }, { x: 0, autoAlpha: 1, duration: 1 }, 0)
+      .fromTo(left, { x: "34vw", autoAlpha: 0.72, filter: "blur(6px)" }, { x: 0, autoAlpha: 1, filter: "blur(0px)", duration: 1.75 }, 0.15)
+      .fromTo(right, { x: "-34vw", autoAlpha: 0.72, filter: "blur(6px)" }, { x: 0, autoAlpha: 1, filter: "blur(0px)", duration: 1.75 }, 0.15)
       .fromTo(
         imageStack,
-        { clipPath: "inset(50% 50% 50% 50% round 0.25rem)" },
-        { clipPath: "inset(0% 0% 0% 0% round 0.25rem)", duration: 1 },
-        0,
+        { clipPath: "inset(50% 50% 50% 50% round 0.25rem)", scale: 0.92 },
+        { clipPath: "inset(0% 0% 0% 0% round 0.25rem)", scale: 1, duration: 1.55 },
+        0.35,
       )
-      .fromTo(paragraph, { y: 26 }, { y: 0, duration: 0.45 }, 0.1);
+      .fromTo(images, { scale: 1.04 }, { scale: 1, duration: 1.55, stagger: 0.03 }, 0.35)
+      .fromTo(paragraph, { y: 34, autoAlpha: 0.72 }, { y: 0, autoAlpha: 1, duration: 0.75 }, 0.72)
+      .to([left, right], { scale: 1.015, duration: 0.35 }, 1.9);
 
     ScrollTrigger.refresh();
 
@@ -134,11 +136,11 @@ export function HomeGapSection() {
           </span>
         </div>
         <div className={styles.eyebrow}>SWEED / الحضور الرقمي</div>
-        <div className={styles.headline} aria-label="نحوّل الفجوة">
-          <span ref={leftRef} className={styles.headingGroup} aria-hidden="true">
+        <div className={styles.headline} data-testid="brand-gap-headline" aria-label="نحوّل الفجوة">
+          <span ref={leftRef} className={styles.headingGroup} data-testid="brand-gap-lead-word" aria-hidden="true">
             {leftTitle}
           </span>
-          <span ref={rightRef} className={styles.headingGroup} aria-hidden="true">
+          <span ref={rightRef} className={styles.headingGroup} data-testid="brand-gap-target-word" aria-hidden="true">
             {rightTitle}
           </span>
         </div>

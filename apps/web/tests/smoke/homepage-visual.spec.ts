@@ -44,12 +44,13 @@ test("react homepage visual baselines by section", async ({ page }, testInfo) =>
   }
 });
 
-test("brand gap section uses Arabic copy and SWEED dark surface", async ({ page }) => {
+test("brand gap section uses Arabic copy, RTL order, and SWEED dark surface", async ({ page, isMobile }) => {
   await page.goto("/");
   await page.waitForLoadState("networkidle");
 
   const section = page.locator("#brand-gap");
-  await section.scrollIntoViewIfNeeded();
+  await page.evaluate(() => document.querySelector("#brand-gap")?.scrollIntoView({ block: "center" }));
+  await expect(section).toBeVisible();
 
   await expect(section).toHaveAttribute("aria-label", "نحوّل فجوة الحضور الرقمي إلى ثقة وطلب");
   await expect(section).toContainText("SWEED / الحضور الرقمي");
@@ -58,6 +59,27 @@ test("brand gap section uses Arabic copy and SWEED dark surface", async ({ page 
   await expect(section).toContainText("حضورك الرقمي لازم يشرح قيمتك");
   await expect(section.locator('[class*="char"]')).toHaveCount(0);
   await expect(section).toHaveCSS("background-color", "rgb(38, 27, 62)");
+
+  const headline = page.getByTestId("brand-gap-headline");
+  const leadWord = page.getByTestId("brand-gap-lead-word");
+  const targetWord = page.getByTestId("brand-gap-target-word");
+
+  await expect(headline).toHaveCSS("direction", "rtl");
+  await expect(leadWord).toHaveCSS("direction", "rtl");
+  await expect(targetWord).toHaveCSS("direction", "rtl");
+
+  const leadBox = await leadWord.boundingBox();
+  const targetBox = await targetWord.boundingBox();
+  expect(leadBox).not.toBeNull();
+  expect(targetBox).not.toBeNull();
+
+  if (leadBox && targetBox) {
+    if (isMobile) {
+      expect(leadBox.y).toBeLessThan(targetBox.y);
+    } else {
+      expect(leadBox.x).toBeGreaterThan(targetBox.x);
+    }
+  }
 });
 
 test("services stack contains future cards on desktop and keeps mobile horizontal scrolling", async ({

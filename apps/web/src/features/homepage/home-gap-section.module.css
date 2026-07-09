@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  height: 340svh;
+  height: 270svh;
   padding: clamp(1rem, 1.1vw, 1.75rem);
   background: #261b3e;
   color: #fff7fb;
@@ -182,7 +182,7 @@
 
 @media (max-width: 768px) {
   .section {
-    height: 300svh;
+    height: 240svh;
   }
 
   .sticky {

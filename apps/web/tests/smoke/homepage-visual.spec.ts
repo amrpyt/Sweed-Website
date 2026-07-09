@@ -44,6 +44,22 @@ test("react homepage visual baselines by section", async ({ page }, testInfo) =>
   }
 });
 
+test("brand gap section uses Arabic copy and SWEED dark surface", async ({ page }) => {
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+
+  const section = page.locator("#brand-gap");
+  await section.scrollIntoViewIfNeeded();
+
+  await expect(section).toHaveAttribute("aria-label", "نحوّل فجوة الحضور الرقمي إلى ثقة وطلب");
+  await expect(section).toContainText("SWEED / الحضور الرقمي");
+  await expect(section).toContainText("نحوّل");
+  await expect(section).toContainText("الفجوة");
+  await expect(section).toContainText("حضورك الرقمي لازم يشرح قيمتك");
+  await expect(section.locator('[class*="char"]')).toHaveCount(0);
+  await expect(section).toHaveCSS("background-color", "rgb(38, 27, 62)");
+});
+
 test("services stack contains future cards on desktop and keeps mobile horizontal scrolling", async ({
   page,
   isMobile,

@@ -14,8 +14,8 @@ const gapImages = [
   "/images/homepage/strategy-horse.png",
 ];
 
-const leftTitle = "We close";
-const rightTitle = "That gap";
+const leftTitle = "نحوّل";
+const rightTitle = "الفجوة";
 
 export function HomeGapSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -23,8 +23,6 @@ export function HomeGapSection() {
   const imageStackRef = useRef<HTMLSpanElement>(null);
   const leftRef = useRef<HTMLSpanElement>(null);
   const rightRef = useRef<HTMLSpanElement>(null);
-  const leftCharRefs = useRef<HTMLSpanElement[]>([]);
-  const rightCharRefs = useRef<HTMLSpanElement[]>([]);
   const imageRefs = useRef<HTMLSpanElement[]>([]);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
 
@@ -36,9 +34,6 @@ export function HomeGapSection() {
     const right = rightRef.current;
     const paragraph = paragraphRef.current;
     const images = imageRefs.current.filter(Boolean);
-    const leftChars = leftCharRefs.current.filter(Boolean);
-    const rightChars = rightCharRefs.current.filter(Boolean);
-
     if (!section || !sticky || !imageStack || !left || !right || !paragraph || images.length === 0) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -46,8 +41,8 @@ export function HomeGapSection() {
 
     gsap.set(images, { autoAlpha: 0 });
     gsap.set(images[0], { autoAlpha: 1 });
-    gsap.set(leftChars, { x: -80, scaleY: 0.95, autoAlpha: 0, transformOrigin: "50% 50%" });
-    gsap.set(rightChars, { x: 80, scaleY: 0.95, autoAlpha: 0, transformOrigin: "50% 50%" });
+    gsap.set(left, { autoAlpha: 0.42, x: "-30vw", transformOrigin: "50% 50%" });
+    gsap.set(right, { autoAlpha: 0.42, x: "30vw", transformOrigin: "50% 50%" });
 
     const pin = ScrollTrigger.create({
       trigger: section,
@@ -103,8 +98,8 @@ export function HomeGapSection() {
     });
 
     timeline
-      .fromTo(left, { x: "-30vw" }, { x: 0, duration: 1 }, 0)
-      .fromTo(right, { x: "30vw" }, { x: 0, duration: 1 }, 0)
+      .fromTo(left, { x: "-30vw", autoAlpha: 0.42 }, { x: 0, autoAlpha: 1, duration: 1 }, 0)
+      .fromTo(right, { x: "30vw", autoAlpha: 0.42 }, { x: 0, autoAlpha: 1, duration: 1 }, 0)
       .fromTo(
         imageStack,
         { clipPath: "inset(50% 50% 50% 50% round 0.25rem)" },
@@ -112,42 +107,6 @@ export function HomeGapSection() {
         0,
       )
       .fromTo(paragraph, { y: 26 }, { y: 0, duration: 0.45 }, 0.1);
-
-    const leftCharsTween = gsap.to(leftChars, {
-      keyframes: {
-        "40%": { autoAlpha: 1 },
-        "90%": { x: 0, scaleY: 1 },
-        "100%": { autoAlpha: 1, x: 0, scaleY: 1 },
-      },
-      duration: 1,
-      ease: "expo.out",
-      stagger: { each: 0.022, from: "end" },
-      scrollTrigger: {
-        trigger: sticky,
-        start: "top 50%",
-        end: "bottom top",
-        scrub: 0.5,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    const rightCharsTween = gsap.to(rightChars, {
-      keyframes: {
-        "40%": { autoAlpha: 1 },
-        "90%": { x: 0, scaleY: 1 },
-        "100%": { autoAlpha: 1, x: 0, scaleY: 1 },
-      },
-      duration: 1,
-      ease: "expo.out",
-      stagger: { each: 0.022, from: "start" },
-      scrollTrigger: {
-        trigger: sticky,
-        start: "top 50%",
-        end: "bottom top",
-        scrub: 0.5,
-        invalidateOnRefresh: true,
-      },
-    });
 
     ScrollTrigger.refresh();
 
@@ -157,15 +116,11 @@ export function HomeGapSection() {
       pin.kill();
       timeline.scrollTrigger?.kill();
       timeline.kill();
-      leftCharsTween.scrollTrigger?.kill();
-      leftCharsTween.kill();
-      rightCharsTween.scrollTrigger?.kill();
-      rightCharsTween.kill();
     };
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.section} id="brand-gap" aria-label="We close the digital gap">
+    <section ref={sectionRef} className={styles.section} id="brand-gap" aria-label="نحوّل فجوة الحضور الرقمي إلى ثقة وطلب">
       <div ref={stickyRef} className={styles.sticky}>
         <div className={styles.overlay} aria-hidden="true">
           <span className={styles.horizontalLine}>
@@ -178,33 +133,13 @@ export function HomeGapSection() {
             <i className={styles.lineSquare} />
           </span>
         </div>
-        <div className={styles.eyebrow}>SWEED / BRAND PRESENCE</div>
-        <div className={styles.headline} aria-label="We close that gap">
+        <div className={styles.eyebrow}>SWEED / الحضور الرقمي</div>
+        <div className={styles.headline} aria-label="نحوّل الفجوة">
           <span ref={leftRef} className={styles.headingGroup} aria-hidden="true">
-            {Array.from(leftTitle).map((char, index) => (
-              <span
-                className={styles.char}
-                key={`${char}-${index}`}
-                ref={(node) => {
-                  if (node) leftCharRefs.current[index] = node;
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
+            {leftTitle}
           </span>
           <span ref={rightRef} className={styles.headingGroup} aria-hidden="true">
-            {Array.from(rightTitle).map((char, index) => (
-              <span
-                className={styles.char}
-                key={`${char}-${index}`}
-                ref={(node) => {
-                  if (node) rightCharRefs.current[index] = node;
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
+            {rightTitle}
           </span>
         </div>
         <span ref={imageStackRef} className={styles.imageStack} aria-hidden="true">
@@ -221,8 +156,7 @@ export function HomeGapSection() {
           ))}
         </span>
         <p ref={paragraphRef} className={styles.copy}>
-          Your website should make the value of your brand obvious before a customer asks for proof.
-          We turn unclear presence into a sharp story, trusted visuals, and a page that moves people to act.
+          حضورك الرقمي لازم يشرح قيمتك قبل ما العميل يسأل. نحول الظهور الضعيف إلى قصة واضحة، صورة موثوقة، وصفحة تدفع العميل للتحرك.
         </p>
       </div>
     </section>

@@ -11,18 +11,19 @@ import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
 
 const compassPoints = [
-  { x: 0, y: -245 },
-  { x: 340, y: -155 },
-  { x: 340, y: 155 },
-  { x: 0, y: 245 },
-  { x: -340, y: 155 },
-  { x: -340, y: -155 },
+  { x: 0, y: -255, rotate: 0 },
+  { x: 390, y: -150, rotate: -2 },
+  { x: 390, y: 150, rotate: 2 },
+  { x: 0, y: 255, rotate: 0 },
+  { x: -390, y: 150, rotate: -2 },
+  { x: -390, y: -150, rotate: 2 },
 ];
 
 export function HomeProblemsCompassSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const compassRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
@@ -30,39 +31,61 @@ export function HomeProblemsCompassSection() {
 
     const ctx = gsap.context(() => {
       const cards = cardRefs.current.filter(Boolean);
-      if (!sectionRef.current || !innerRef.current || cards.length === 0) return;
+      if (!sectionRef.current || !innerRef.current || !compassRef.current || cards.length === 0) return;
 
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduceMotion) {
-        gsap.set([compassRef.current, ...cards], { clearProps: "all" });
+        gsap.set([compassRef.current, ctaRef.current, ...cards], { clearProps: "all" });
         return;
       }
 
-      gsap.set(cards, { x: 0, y: 0, opacity: 0, scale: 0.72 });
-      gsap.set(compassRef.current, { scale: 0.92, opacity: 0 });
+      const isDesktop = window.matchMedia("(min-width: 900px)").matches;
+      const animatedElements = [compassRef.current, ctaRef.current, ...cards].filter(Boolean);
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 72%",
-            once: true,
-          },
-        })
-        .to(compassRef.current, { scale: 1, opacity: 1, duration: 0.35, ease: "power2.out" })
+      gsap.set(animatedElements, { opacity: 0 });
+      gsap.set(compassRef.current, { scale: 0.86, rotate: -7 });
+      gsap.set(ctaRef.current, { y: 20 });
+
+      if (isDesktop) {
+        gsap.set(cards, { xPercent: -50, yPercent: -50, x: 0, y: 0, scale: 0.68, rotate: 0 });
+      } else {
+        gsap.set(cards, { y: 24, scale: 0.96 });
+      }
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          once: true,
+        },
+      });
+
+      timeline
+        .to(compassRef.current, { scale: 1, rotate: 0, opacity: 1, duration: 0.65, ease: "back.out(1.45)" })
         .to(
           cards,
-          {
-              x: (_, target) => Number((target as HTMLElement).dataset.x),
-              y: (_, target) => Number((target as HTMLElement).dataset.y),
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            stagger: 0.08,
-          },
+          isDesktop
+            ? {
+                x: (_, target) => Number((target as HTMLElement).dataset.x),
+                y: (_, target) => Number((target as HTMLElement).dataset.y),
+                rotate: (_, target) => Number((target as HTMLElement).dataset.rotate),
+                opacity: 1,
+                scale: 1,
+                duration: 0.9,
+                ease: "power3.out",
+                stagger: { each: 0.07, from: "center" },
+              }
+            : {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 0.55,
+                ease: "power2.out",
+                stagger: 0.06,
+              },
           0.12,
-        );
+        )
+        .to(ctaRef.current, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, "-=0.25");
     }, sectionRef);
 
     return () => ctx.revert();
@@ -96,6 +119,7 @@ export function HomeProblemsCompassSection() {
                 className={styles.compassProblemCard}
                 data-x={point.x}
                 data-y={point.y}
+                data-rotate={point.rotate}
                 key={card.title}
                 ref={(node) => {
                     if (node) cardRefs.current[index] = node;
@@ -113,7 +137,7 @@ export function HomeProblemsCompassSection() {
             })}
           </div>
 
-          <div className={styles.problemsCta}>
+          <div ref={ctaRef} className={styles.problemsCta}>
             <span>ابدأ بخطوة واضحة</span>
             <HomeButton className={getBrandActionButtonClassName({ variant: "primary" })} href="/contact?services=consulting#contact-form">
               <BrandActionButtonContent>احجز استشارة</BrandActionButtonContent>

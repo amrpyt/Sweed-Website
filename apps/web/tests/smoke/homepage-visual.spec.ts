@@ -70,8 +70,14 @@ test("brand gap section uses Arabic copy, RTL order, and SWEED dark surface", as
 
   const leadBox = await leadWord.boundingBox();
   const targetBox = await targetWord.boundingBox();
+  const sectionBox = await section.boundingBox();
   expect(leadBox).not.toBeNull();
   expect(targetBox).not.toBeNull();
+  expect(sectionBox).not.toBeNull();
+
+  if (sectionBox) {
+    expect(sectionBox.height).toBeGreaterThan(page.viewportSize()!.height * (isMobile ? 2.8 : 3.2));
+  }
 
   if (leadBox && targetBox) {
     if (isMobile) {

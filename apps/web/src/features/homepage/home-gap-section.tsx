@@ -39,15 +39,22 @@ export function HomeGapSection() {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const getScrollDistance = () => Math.max(section.offsetHeight - window.innerHeight, window.innerHeight * 2.55);
+    const leadStartX = isMobile ? "18vw" : "42vw";
+    const targetStartX = isMobile ? "-18vw" : "-42vw";
+    const leadCloseX = isMobile ? "0vw" : "-21vw";
+    const targetCloseX = isMobile ? "0vw" : "21vw";
+
     gsap.set(images, { autoAlpha: 0, scale: 1.04 });
     gsap.set(images[0], { autoAlpha: 1, scale: 1 });
-    gsap.set(left, { autoAlpha: 0.72, x: "34vw", filter: "blur(6px)", transformOrigin: "50% 50%" });
-    gsap.set(right, { autoAlpha: 0.72, x: "-34vw", filter: "blur(6px)", transformOrigin: "50% 50%" });
+    gsap.set(left, { autoAlpha: 0.72, x: leadStartX, filter: "blur(6px)", transformOrigin: "50% 50%" });
+    gsap.set(right, { autoAlpha: 0.72, x: targetStartX, filter: "blur(6px)", transformOrigin: "50% 50%" });
 
     const pin = ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: () => `+=${Math.max(section.offsetHeight - window.innerHeight, window.innerHeight * 1.65)}`,
+      end: () => `+=${getScrollDistance()}`,
       pin: sticky,
       pinSpacing: true,
       pinType: "fixed",
@@ -90,25 +97,35 @@ export function HomeGapSection() {
       defaults: { ease: "none" },
       scrollTrigger: {
         trigger: section,
-        start: "top 50%",
-        end: "bottom top",
+        start: "top top",
+        end: () => `+=${getScrollDistance()}`,
         scrub: true,
         invalidateOnRefresh: true,
       },
     });
 
     timeline
-      .fromTo(left, { x: "34vw", autoAlpha: 0.72, filter: "blur(6px)" }, { x: 0, autoAlpha: 1, filter: "blur(0px)", duration: 1.75 }, 0.15)
-      .fromTo(right, { x: "-34vw", autoAlpha: 0.72, filter: "blur(6px)" }, { x: 0, autoAlpha: 1, filter: "blur(0px)", duration: 1.75 }, 0.15)
+      .fromTo(
+        left,
+        { x: leadStartX, autoAlpha: 0.72, filter: "blur(6px)" },
+        { x: leadCloseX, autoAlpha: 1, filter: "blur(0px)", duration: 2.85 },
+        0.15,
+      )
+      .fromTo(
+        right,
+        { x: targetStartX, autoAlpha: 0.72, filter: "blur(6px)" },
+        { x: targetCloseX, autoAlpha: 1, filter: "blur(0px)", duration: 2.85 },
+        0.15,
+      )
       .fromTo(
         imageStack,
         { clipPath: "inset(50% 50% 50% 50% round 0.25rem)", scale: 0.92 },
-        { clipPath: "inset(0% 0% 0% 0% round 0.25rem)", scale: 1, duration: 1.55 },
-        0.35,
+        { clipPath: "inset(0% 0% 0% 0% round 0.25rem)", scale: 1, duration: 1.7 },
+        0.45,
       )
-      .fromTo(images, { scale: 1.04 }, { scale: 1, duration: 1.55, stagger: 0.03 }, 0.35)
-      .fromTo(paragraph, { y: 34, autoAlpha: 0.72 }, { y: 0, autoAlpha: 1, duration: 0.75 }, 0.72)
-      .to([left, right], { scale: 1.015, duration: 0.35 }, 1.9);
+      .fromTo(images, { scale: 1.04 }, { scale: 1, duration: 1.7, stagger: 0.03 }, 0.45)
+      .fromTo(paragraph, { y: 34, autoAlpha: 0.72 }, { y: 0, autoAlpha: 1, duration: 0.85 }, 0.85)
+      .to([left, right], { scale: 1.015, duration: 0.45 }, 3.05);
 
     ScrollTrigger.refresh();
 

@@ -18,11 +18,12 @@ import { HomeBlitScrollSection } from "./home-blit-scroll-section";
 import { HomeConversionProvider, HomeConversionStateMarker } from "./home-conversion-context";
 import { HomeGapSection } from "./home-gap-section";
 import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
+import { HomeOffersSection } from "./home-offers-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeVideoDialog } from "./home-video-dialog";
 import { HomeWhyMetricsSection } from "./home-why-metrics-section";
-import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
+import { HomeButton, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
 
 function Icon({ name }: { name: string }) {
@@ -62,27 +63,6 @@ function SectionHeader({ title, summary }: { title: string; summary: string }) {
       <TextSignalReveal as="h2">{title}</TextSignalReveal>
       <p>{summary}</p>
     </div>
-  );
-}
-
-function FeatureCard({ card }: { card: HomeCard }) {
-  const body = (
-    <>
-      <div className={styles.featureIcon}>
-        <Icon name={card.icon} />
-      </div>
-      <TextSignalReveal as="h3">{card.title}</TextSignalReveal>
-      <p>{card.summary}</p>
-      {card.meta ? <span className={styles.meta}>{card.meta}</span> : null}
-    </>
-  );
-
-  return card.href ? (
-    <Link className={styles.featureCard} href={card.href}>
-      {body}
-    </Link>
-  ) : (
-    <HeroHomeCard className={styles.featureCard}>{body}</HeroHomeCard>
   );
 }
 
@@ -291,18 +271,7 @@ export function HomePublicPage() {
 
         <HomeArchigreenProjectsSection />
 
-        <section className={styles.offersSection} id="offers">
-          <div className={styles.container}>
-            <SectionHeader title="عروض واضحة تبدأ منها" summary="اختر نقطة البداية، أو احجز استشارة ونرشح لك الأنسب." />
-            <div className={styles.featureGrid}>
-              {homepageContent.offers.map((card, index) => (
-                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                  <FeatureCard card={card} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HomeOffersSection />
 
         <section className={styles.faqSection} id="faq">
           <div className={styles.container}>

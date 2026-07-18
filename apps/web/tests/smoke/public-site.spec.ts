@@ -71,6 +71,41 @@ test("home staggered navigation points to homepage section anchors in the reques
   await expect(page.getByTestId("sweed-header-contact-action")).toHaveAttribute("href", "/#contact");
 });
 
+test("portfolio cards expose numeric results and filter by service", async ({ page }) => {
+  await page.goto("/");
+
+  const portfolioSection = page.locator("#portfolio");
+  const projectCards = page.getByTestId("home-portfolio-card");
+  await expect(projectCards).toHaveCount(4);
+  await expect(projectCards.first()).toContainText("+42% تذكّر للعلامة");
+  await expect(projectCards.nth(1)).toContainText("+67% طلبات مؤهلة");
+  await expect(portfolioSection.getByRole("link", { name: "شاهد كل الأعمال" })).toHaveAttribute("href", "/portfolio");
+
+  await portfolioSection.getByRole("button", { name: "مواقع" }).click();
+  await expect(projectCards).toHaveCount(1);
+  await expect(projectCards.first()).toContainText("حضور Astra الرقمي");
+
+  await portfolioSection.getByRole("button", { name: "الكل" }).click();
+  await expect(projectCards).toHaveCount(4);
+});
+
+test("offer cards list inclusions and carry the selected package to contact", async ({ page }) => {
+  await page.goto("/");
+
+  const offers = page.getByTestId("home-offer-card");
+  await expect(offers).toHaveCount(3);
+  await expect(offers.nth(1)).toHaveAttribute("data-featured", "true");
+  await expect(offers.nth(1)).toContainText("الأكثر طلبًا");
+  await expect(offers.nth(1).getByRole("listitem")).toHaveCount(4);
+
+  await offers.nth(1).getByRole("button", { name: "احجز مكالمة نمو" }).click();
+  await expect(page).toHaveURL(/\/#contact$/);
+  await expect(offers.nth(1)).toHaveAttribute("data-selected", "true");
+  await expect(page.getByTestId("home-conversion-state")).toHaveAttribute("data-selected-offer", "باقة النمو");
+  await expect(page.getByTestId("home-conversion-state")).toHaveAttribute("data-cta-source", "offers");
+  await expect(page.locator("#contact")).toBeInViewport();
+});
+
 test("services use unique media and service-specific destinations", async ({ page }) => {
   await page.goto("/");
 

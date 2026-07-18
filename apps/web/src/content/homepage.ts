@@ -22,6 +22,10 @@ export type HomeCard = {
   price?: string;
   oldPrice?: string;
   image?: string;
+  result?: string;
+  items?: string[];
+  featured?: boolean;
+  ctaLabel?: string;
 };
 
 export type HomeProcessStep = HomeCard & {
@@ -97,15 +101,40 @@ export const homepageContent = {
     title: "أعمال مُختارة",
   },
   portfolio: [
-    { title: "حملة إطلاق براند", summary: "هوية ورسائل وصفحة هبوط وحملة أولية لبدء السوق بقوة.", icon: "fa-store", href: "/portfolio", category: "Brand Launch", meta: "هوية / محتوى / إعلان" },
-    { title: "نمو مبيعات متجر", summary: "اختبار عروض ورسائل وتحسين مسار الشراء لزيادة الطلبات.", icon: "fa-cart-shopping", href: "/portfolio", category: "E-commerce", meta: "إعلانات / تحويلات" },
-    { title: "حضور شركة B2B", summary: "تنظيف الرسالة وترتيب الخدمات والمحتوى لرفع الثقة.", icon: "fa-building", href: "/portfolio", category: "B2B", meta: "تموضع / موقع" },
-    { title: "محتوى سوشيال ميديا", summary: "خطة محتوى وتصميمات شهرية تحافظ على حضور ثابت.", icon: "fa-photo-film", href: "/portfolio", category: "Content", meta: "تصميم / نشر" },
+    { title: "إطلاق علامة نوفا", summary: "تموضع وهوية ورسائل وصفحة إطلاق صنعت حضورًا متماسكًا من أول يوم.", icon: "fa-store", href: "/portfolio", category: "براندنج", meta: "هوية / محتوى / إطلاق", image: "/images/hero/custom-image.png", result: "+42% تذكّر للعلامة" },
+    { title: "محرك مبيعات Pulse", summary: "عروض وصفحات هبوط واختبارات إعلانية أسبوعية رفعت كفاءة مسار الطلب.", icon: "fa-cart-shopping", href: "/portfolio", category: "أداء", meta: "إعلانات / تحويلات", image: "/images/hero/entrepreneur-laptop-office.jpg", result: "+67% طلبات مؤهلة" },
+    { title: "حضور Astra الرقمي", summary: "إعادة ترتيب الخدمات والإثباتات ودعوات التواصل داخل تجربة موقع أوضح.", icon: "fa-building", href: "/portfolio", category: "مواقع", meta: "استراتيجية / تجربة / تطوير", image: "/images/hero/two-men-consultation.jpg", result: "+31% معدل تحويل" },
+    { title: "Signal Content Studio", summary: "نظام محتوى واتجاه بصري قابل للتكرار حافظ على ثبات العلامة عبر القنوات.", icon: "fa-photo-film", href: "/portfolio", category: "محتوى", meta: "تصميم / إنتاج / نشر", image: "/images/homepage/strategy-horse.png", result: "3× معدل التفاعل" },
   ] satisfies HomeCard[],
   offers: [
-    { title: "باقة الانطلاقة", summary: "هوية أولية ورسائل أساسية وخطة محتوى لأول شهر.", icon: "fa-seedling", href: "/offers", meta: "مناسبة للبدايات" },
-    { title: "باقة النمو", summary: "حملات إعلانية ومحتوى ومتابعة نتائج لزيادة الطلبات.", icon: "fa-bullhorn", href: "/offers", meta: "للشركات الجاهزة للنمو" },
-    { title: "باقة التحول الرقمي", summary: "موقع أو صفحة هبوط وتجربة تحويل تساعد العميل يقرر أسرع.", icon: "fa-laptop-code", href: "/offers", meta: "للتحويلات والقياس" },
+    {
+      title: "باقة الانطلاقة",
+      summary: "أساس واضح ومهني يساعد مشروعك يبدأ بصورة صحيحة.",
+      icon: "fa-seedling",
+      href: "/offers",
+      meta: "مناسبة للبدايات",
+      items: ["جلسة تحديد الاتجاه", "هوية ورسائل أساسية", "خطة محتوى لأول شهر", "ملفات جاهزة للانطلاق"],
+      ctaLabel: "اطلب باقة الانطلاقة",
+    },
+    {
+      title: "باقة النمو",
+      summary: "تنفيذ وقياس مستمر لزيادة الطلبات وتحسين العائد.",
+      icon: "fa-bullhorn",
+      href: "/offers",
+      meta: "للشركات الجاهزة للنمو",
+      items: ["خطة نمو لمدة 90 يوم", "حملات إعلانية وإدارة محتوى", "اختبارات عروض وكرياتيف", "تقرير وتحسين أسبوعي"],
+      featured: true,
+      ctaLabel: "احجز مكالمة نمو",
+    },
+    {
+      title: "باقة التحول الرقمي",
+      summary: "تجربة رقمية متكاملة تربط البراند بالمبيعات والقياس.",
+      icon: "fa-laptop-code",
+      href: "/offers",
+      meta: "للتحويلات والقياس",
+      items: ["موقع أو منصة مخصصة", "تصميم تجربة ومسار تحويل", "ربط أدوات القياس والتواصل", "إطلاق ودعم ما بعد التسليم"],
+      ctaLabel: "ناقش التحول الرقمي",
+    },
   ] satisfies HomeCard[],
   services: [
     { title: "الاستشارات التسويقية", summary: "تحليل، تموضع، وخطة عملية تناسب ميزانيتك ومرحلتك.", icon: "fa-compass-drafting", href: "/services#consulting", image: "/images/hero/two-men-consultation.jpg" },

@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useId, useRef } from "react";
+import { useId, useRef, useState } from "react";
 import styles from "./home-video-dialog.module.css";
 
 type HomeVideoDialogProps = {
@@ -25,15 +25,18 @@ export function HomeVideoDialog({
   const titleId = useId();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   function openDialog() {
+    setIsOpen(true);
     dialogRef.current?.showModal();
   }
 
   function closeDialog() {
     videoRef.current?.pause();
     dialogRef.current?.close();
+    setIsOpen(false);
     triggerRef.current?.focus();
   }
 
@@ -76,7 +79,7 @@ export function HomeVideoDialog({
             </button>
           </div>
           <div className={styles.videoFrame}>
-            <video ref={videoRef} src={videoSrc} poster={poster} controls playsInline preload="metadata" />
+            <video ref={videoRef} src={isOpen ? videoSrc : undefined} poster={poster} controls playsInline preload="none" />
           </div>
         </div>
       </dialog>

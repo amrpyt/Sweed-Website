@@ -71,6 +71,28 @@ test("home staggered navigation points to homepage section anchors in the reques
   await expect(page.getByTestId("sweed-header-contact-action")).toHaveAttribute("href", "/#contact");
 });
 
+test("about and slogan sections use the approved structure and lazy video behavior", async ({ page }) => {
+  await page.goto("/");
+
+  const aboutSection = page.locator("#about");
+  await expect(aboutSection).toContainText("فريق يفهم مشروعك قبل ما يقترح عليك أي حل");
+  await expect(aboutSection.getByRole("link", { name: "تعرف على سويد" })).toHaveAttribute("href", "/about");
+  await expect(aboutSection.locator("img")).toHaveAttribute("loading", "lazy");
+
+  const aboutVideoTrigger = page.getByTestId("home-about-video-trigger");
+  await aboutVideoTrigger.click();
+  const dialog = page.getByRole("dialog", { name: "تعرف على SWEED" });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator("video")).toHaveAttribute("src", /blit-scroll-effect-demo\.mp4/);
+  await expect(dialog.locator("video")).toHaveJSProperty("paused", true);
+  await dialog.getByRole("button", { name: "إغلاق الفيديو" }).click();
+  await expect(aboutVideoTrigger).toBeFocused();
+
+  const sloganSection = page.locator("#slogan");
+  await expect(sloganSection).toContainText("نصنع أثرًا");
+  await expect(sloganSection).toContainText("يدفع للنمو");
+});
+
 test("problem cards record their service mapping and focus the contact section", async ({ page }) => {
   await page.goto("/");
 

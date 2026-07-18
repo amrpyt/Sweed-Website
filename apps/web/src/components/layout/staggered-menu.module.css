@@ -76,6 +76,7 @@
 
 .logo {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 10px;
   color: var(--color-accent-strong);
@@ -333,7 +334,9 @@
 
 .socialLink {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: var(--color-accent-strong);
   padding-block: 2px;
   font-size: 1rem;
@@ -377,13 +380,13 @@
   }
 
   .headerAction {
-    min-height: 42px;
+    min-height: 44px;
     padding-inline: 14px;
     font-size: 0.82rem;
   }
 
   .toggle {
-    min-height: 42px;
+    min-height: 44px;
     padding-inline: 14px;
   }
 

@@ -71,6 +71,39 @@ test("home staggered navigation points to homepage section anchors in the reques
   await expect(page.getByTestId("sweed-header-contact-action")).toHaveAttribute("href", "/#contact");
 });
 
+test("homepage publishes Arabic canonical and social metadata", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://sweed.com/");
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /سويد شريكك في الاستراتيجية/);
+  await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute("content", "ar_EG");
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", "https://sweed.com/");
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
+});
+
+test("homepage controls do not receive decorative pseudo-content in their accessible names", async ({ page }) => {
+  await page.goto("/#contact");
+  const submitButton = page.getByTestId("home-contact-form").getByRole("button", { name: "أرسل طلب الاستشارة" });
+  await expect(submitButton).toBeVisible();
+  const pseudoContent = await submitButton.evaluate((button) => getComputedStyle(button, "::before").content);
+  expect(["none", "normal", '""']).toContain(pseudoContent);
+});
+
+test("contact lead endpoint silently rejects honeypot submissions", async ({ page }) => {
+  const response = await page.request.post("/api/contact-leads", {
+    data: {
+      name: "Spam Bot",
+      phone: "01000000000",
+      interest: "consulting",
+      message: "This payload should not be stored because honeypot is filled.",
+      website: "https://spam.invalid",
+      source: "honeypot-test",
+    },
+  });
+  expect(response.status()).toBe(201);
+  await expect(response.json()).resolves.toMatchObject({ ok: true, leadId: "accepted" });
+});
+
 test("FAQ keeps one answer open and publishes FAQPage structured data", async ({ page }) => {
   await page.goto("/");
 

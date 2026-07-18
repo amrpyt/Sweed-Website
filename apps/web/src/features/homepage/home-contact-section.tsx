@@ -53,6 +53,7 @@ export function HomeContactSection() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const submittedForm = new FormData(event.currentTarget);
     const effectiveValues = { ...values, interest: effectiveInterest };
     const nextErrors = validate(effectiveValues);
     setErrors(nextErrors);
@@ -70,6 +71,7 @@ export function HomeContactSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...effectiveValues,
+          website: submittedForm.get("website"),
           selectedProblem: selection.problem ?? "",
           selectedService: selection.service ?? "",
           selectedOffer: selection.offer ?? "",
@@ -127,6 +129,10 @@ export function HomeContactSection() {
         </div>
 
         <form className={styles.form} data-testid="home-contact-form" noValidate onSubmit={handleSubmit}>
+          <label className={styles.honeypot} aria-hidden="true">
+            <span>اترك هذا الحقل فارغًا</span>
+            <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+          </label>
           <input type="hidden" name="selectedProblem" value={selection.problem ?? ""} readOnly />
           <input type="hidden" name="selectedService" value={selection.service ?? ""} readOnly />
           <input type="hidden" name="selectedOffer" value={selection.offer ?? ""} readOnly />

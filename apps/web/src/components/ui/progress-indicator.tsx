@@ -8,10 +8,9 @@ export function ProgressIndicator() {
 
   useEffect(() => {
     const updateProgress = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY;
-      const progress = (scrolled / scrollHeight) * 100;
-      setScrollProgress(Math.min(progress, 100));
+      const scrollHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const progress = (window.scrollY / scrollHeight) * 100;
+      setScrollProgress(Math.min(Math.max(progress, 0), 100));
     };
 
     window.addEventListener("scroll", updateProgress, { passive: true });
@@ -22,7 +21,7 @@ export function ProgressIndicator() {
 
   return (
     <div className={styles.progressIndicator} role="progressbar" aria-valuenow={scrollProgress} aria-valuemin={0} aria-valuemax={100}>
-      <div className={styles.progressBar} style={{ width: `${scrollProgress}%` }} />
+      <div className={styles.progressBar} style={{ transform: `scaleX(${scrollProgress / 100})` }} />
     </div>
   );
 }

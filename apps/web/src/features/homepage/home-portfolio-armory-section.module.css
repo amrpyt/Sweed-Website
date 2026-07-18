@@ -29,7 +29,7 @@
 }
 
 .visualPane {
-  border-inline-end: 18px solid #261b3e;
+  border-inline-end: 1px solid rgba(38, 27, 62, 0.18);
   background:
     linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(237, 32, 98, 0.14) 50%, transparent calc(50% + 0.5px)),
     linear-gradient(0deg, transparent calc(50% - 0.5px), rgba(237, 32, 98, 0.1) 50%, transparent calc(50% + 0.5px)),

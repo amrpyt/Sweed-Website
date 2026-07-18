@@ -236,15 +236,12 @@
 .button::before {
   position: absolute;
   z-index: 0;
-  top: 50%;
-  left: var(--button-inset);
-  width: var(--button-icon-size);
-  height: var(--button-icon-size);
+  inset: var(--button-inset);
   border-radius: var(--button-inner-radius);
   background: var(--button-fill);
+  clip-path: inset(0 calc(100% - var(--button-icon-size)) 0 0 round var(--button-inner-radius));
   content: "";
-  transform: translateY(-50%);
-  transition: width 360ms cubic-bezier(0.22, 1, 0.36, 1), height 360ms cubic-bezier(0.22, 1, 0.36, 1), left 360ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: clip-path 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .heroActions .button {
@@ -259,10 +256,7 @@
 
 .button:hover::before,
 .button:focus-visible::before {
-  left: var(--button-inset);
-  width: calc(100% - (var(--button-inset) * 2));
-  height: calc(100% - (var(--button-inset) * 2));
-  border-radius: var(--button-inner-radius);
+  clip-path: inset(0 round var(--button-inner-radius));
 }
 
 .button:active {

@@ -26,7 +26,7 @@
     "capture:framer": "node scripts/capture-framer-site.mjs",
     "capture:studio": "bun run --cwd apps/capture-studio build && bun run --cwd apps/capture-studio dev",
     "capture:test": "node tests/capture-core-smoke.mjs",
-    "design:detect": "bunx impeccable detect apps/web/src/app apps/web/src/components apps/web/src/features/homepage apps/web/src/features/public-site apps/web/src/features/offer-funnel",
+    "design:detect": "bun x impeccable detect apps/web/src/app apps/web/src/components apps/web/src/features/homepage apps/web/src/features/public-site apps/web/src/features/offer-funnel",
     "clean": "bun run --cwd apps/web clean"
   }
 }

@@ -106,3 +106,50 @@ Verification target:
 - `bun run build`
 - `bun run design:detect`
 - Browser computed-style checks for Cairo font resolution.
+
+## 2026-07-18 Final Homepage Brief Implementation
+
+Context: SWEED supplied the approved July 2026 homepage brief covering final section order, navigation, media placeholders, conversion attribution, services, proof, packages, FAQ, articles, contact, footer, and AI support paths.
+
+Workflow:
+
+- Created `openspec/changes/implement-final-homepage-brief` and delivered the work in nine independently tested stages.
+- Applied the Impeccable audit/redesign workflow and preserved modular React/Next boundaries.
+- Committed every completed implementation stage before starting the next.
+- Preserved unrelated untracked process-curtain experiments rather than including or deleting them.
+
+Key decisions:
+
+- Use one conversion context for problem, service, offer, and CTA-source attribution.
+- Keep videos source-free until their accessible dialog opens.
+- Use a shared contact endpoint for homepage leads and support tickets.
+- Persist leads locally with private permissions and support an optional webhook through `SWEED_CONTACT_WEBHOOK_URL`.
+- Keep the AI advisor useful without a configured model by returning deterministic, intent-aware local recommendations.
+- Remove generic decorative pseudo-content from buttons because it changed accessible names.
+- Replace layout-property animation with `clip-path` or `transform`.
+- Publish Arabic canonical, Open Graph, Twitter, and FAQ structured metadata.
+
+Verification run:
+
+- `bun run design:detect` — zero findings.
+- `bun run check` — passed with six pre-existing non-blocking warnings.
+- `bun run build` — passed.
+- `bun test apps/web/src/features/ai-advisor/server/service.test.ts` — 12 passed.
+- `bun run --cwd apps/web smoke tests/smoke/public-site.spec.ts tests/smoke/ai-advisor.spec.ts` — 63 passed, 3 expected desktop skips, 0 failed.
+- Desktop and mobile public-demo runtime checks: no overflow, duplicate IDs, broken images, unlabeled controls, or console errors.
+- Public HTTPS route returned HTTP/2 200 after deployment.
+
+Implementation commits:
+
+- `0d99e67 feat: align homepage navigation and section order`
+- `10dc0b9 feat: add homepage hero video and dual CTAs`
+- `e880c35 feat: connect homepage problems to contact intent`
+- `b18f190 feat: rebuild homepage about and slogan sections`
+- `36d15fd feat: refine homepage services and trust metrics`
+- `737b961 feat: finalize homepage portfolio and offers`
+- `3e046d4 feat: add homepage FAQ schema and dynamic articles`
+- `e1776db feat: connect homepage contact and support leads`
+
+Final QA report:
+
+- `docs/engineering/homepage-final-brief-qa-2026-07-18.md`

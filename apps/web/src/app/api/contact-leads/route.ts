@@ -4,6 +4,11 @@ import { saveContactLead, type ContactLeadInput } from "@/features/contact-leads
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const maxBodyBytes = 16_384;
+const rateLimitWindowMs = 10 * 60 * 1000;
+const maxRequestsPerWindow = 8;
+const recentRequests = new Map<string, number[]>();
+
 const limits = {
   name: 120,
   phone: 40,
@@ -17,6 +22,14 @@ const limits = {
 
 function cleanString(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+}
+
+function isRateLimited(clientKey: string) {
+  const now = Date.now();
+  const recent = (recentRequests.get(clientKey) ?? []).filter((timestamp) => now - timestamp < rateLimitWindowMs);
+  recent.push(now);
+  recentRequests.set(clientKey, recent);
+  return recent.length > maxRequestsPerWindow;
 }
 
 function parseLead(body: unknown): { lead?: ContactLeadInput; errors?: Record<string, string> } {
@@ -46,12 +59,29 @@ function parseLead(body: unknown): { lead?: ContactLeadInput; errors?: Record<st
 }
 
 export async function POST(request: NextRequest) {
+  const contentLength = Number(request.headers.get("content-length") ?? "0");
+  if (Number.isFinite(contentLength) && contentLength > maxBodyBytes) {
+    return NextResponse.json({ ok: false, errors: { form: "حجم الطلب أكبر من المسموح" } }, { status: 413 });
+  }
+
+  const clientKey = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "unknown";
+  if (isRateLimited(clientKey)) {
+    return NextResponse.json(
+      { ok: false, errors: { form: "تم إرسال محاولات كثيرة. انتظر قليلًا ثم جرّب مرة أخرى." } },
+      { status: 429 },
+    );
+  }
+
   let body: unknown;
 
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ ok: false, errors: { form: "تعذر قراءة بيانات الطلب" } }, { status: 400 });
+  }
+
+  if (body && typeof body === "object" && cleanString((body as Record<string, unknown>).website, 200)) {
+    return NextResponse.json({ ok: true, leadId: "accepted", forwarded: false }, { status: 201 });
   }
 
   const parsed = parseLead(body);

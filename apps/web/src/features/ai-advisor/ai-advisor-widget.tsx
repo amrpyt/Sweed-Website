@@ -2,6 +2,7 @@
 
 import { FormEvent, useId, useState } from "react";
 import { Bot, MessageCircle, SendHorizonal } from "lucide-react";
+import { homepageContent } from "@/content/homepage";
 import styles from "./ai-advisor.module.css";
 
 type ChatMessage = {
@@ -10,8 +11,8 @@ type ChatMessage = {
 };
 
 const titleId = "sweed-ai-advisor-title";
-const knowledgeBaseHref = "/faq#faq";
-const contactHref = "/contact#contact-form";
+const knowledgeBaseHref = "/#faq";
+const contactHref = "/#contact";
 const quickPrompts = [
   "عايز أعرف أنسب باقة لشركة صغيرة",
   "محتاج خطة تسويق لمشروع جديد",
@@ -30,6 +31,8 @@ export function AiAdvisorWidget() {
   const [draft, setDraft] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [ticketState, setTicketState] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [ticketMessage, setTicketMessage] = useState("");
 
   const sendMessage = async (message: string) => {
     const trimmed = message.trim();
@@ -80,6 +83,40 @@ export function AiAdvisorWidget() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     void sendMessage(draft);
+  };
+
+  const handleTicketSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    setTicketState("submitting");
+    setTicketMessage("");
+
+    try {
+      const response = await fetch("/api/contact-leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          phone: formData.get("phone"),
+          interest: "support-ticket",
+          message: formData.get("notes"),
+          source: "ai-support-ticket",
+        }),
+      });
+      const payload = (await response.json()) as { ok?: boolean; errors?: Record<string, string> };
+
+      if (!response.ok || !payload.ok) {
+        throw new Error(Object.values(payload.errors ?? {}).join(" ") || "تعذر إرسال التذكرة");
+      }
+
+      form.reset();
+      setTicketState("success");
+      setTicketMessage("تم تسجيل التذكرة بنجاح. سيتواصل معك الفريق في أقرب وقت.");
+    } catch (ticketError) {
+      setTicketState("error");
+      setTicketMessage(ticketError instanceof Error ? ticketError.message : "تعذر إرسال التذكرة الآن.");
+    }
   };
 
   return (
@@ -182,15 +219,43 @@ export function AiAdvisorWidget() {
                 <a className={styles.utilityButton} href={contactHref}>
                   نموذج التواصل
                 </a>
+                <a className={styles.utilityButton} href={homepageContent.contact.whatsappHref} target="_blank" rel="noreferrer">
+                  واتساب
+                </a>
               </div>
 
-              <form className={styles.ticketForm} action="/contact" method="get">
+              <form className={styles.ticketForm} data-testid="sweed-support-ticket-form" onSubmit={handleTicketSubmit}>
                 <div className={styles.ticketGrid}>
-                  <input aria-label="اسم صاحب التذكرة" autoComplete="name" name="name" placeholder="الاسم" />
-                  <input aria-label="رقم واتساب صاحب التذكرة" autoComplete="tel" name="phone" placeholder="رقم الواتساب" />
+                  <input
+                    aria-label="اسم صاحب التذكرة"
+                    autoComplete="name"
+                    minLength={2}
+                    name="name"
+                    placeholder="الاسم"
+                    required
+                  />
+                  <input
+                    aria-label="رقم واتساب صاحب التذكرة"
+                    autoComplete="tel"
+                    inputMode="tel"
+                    minLength={8}
+                    name="phone"
+                    placeholder="رقم الواتساب"
+                    required
+                  />
                 </div>
-                <textarea aria-label="ملخص المشكلة" name="notes" placeholder="اكتب ملخص المشكلة أو الطلب" rows={3} />
-                <button type="submit">إرسال التذكرة</button>
+                <textarea
+                  aria-label="ملخص المشكلة"
+                  minLength={10}
+                  name="notes"
+                  placeholder="اكتب ملخص المشكلة أو الطلب"
+                  required
+                  rows={3}
+                />
+                <button type="submit" disabled={ticketState === "submitting"}>
+                  {ticketState === "submitting" ? "جاري الإرسال..." : "إرسال التذكرة"}
+                </button>
+                <p aria-live="polite" data-ticket-state={ticketState}>{ticketMessage}</p>
               </form>
             </details>
           </section>

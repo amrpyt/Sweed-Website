@@ -5,15 +5,14 @@ import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { BorderBeam } from "border-beam";
 import { homepageContent, type HomeAction } from "@/content/homepage";
-import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
-import { TextSignalReveal } from "@/components/motion";
 import { BackToTop, BrandActionButtonContent, getBrandActionButtonClassName, ProgressIndicator, ToastContainer } from "@/components/ui";
 import { AiAdvisorWidget } from "@/features/ai-advisor";
 import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeBlitScrollSection } from "./home-blit-scroll-section";
+import { HomeContactSection } from "./home-contact-section";
 import { HomeConversionProvider, HomeConversionStateMarker } from "./home-conversion-context";
 import { HomeFaqBlogSection } from "./home-faq-blog-section";
 import { HomeGapSection } from "./home-gap-section";
@@ -214,18 +213,7 @@ export function HomePublicPage() {
 
         <HomeFaqBlogSection />
 
-        <section className={styles.ctaSection} id="contact">
-          <div className={styles.container}>
-            <Reveal className={styles.ctaBox} variant="scaleIn">
-              <TextSignalReveal as="h2">{homepageContent.contact.title}</TextSignalReveal>
-              <p>{homepageContent.contact.summary}</p>
-              <div className={styles.ctaButtons}>
-                <ActionButton action={{ label: "احجز استشارة", href: "/contact?services=consulting#contact-form", icon: "fa-calendar-check", variant: "primary" }} />
-                <ActionButton action={{ label: "تواصل معنا", href: "/contact", icon: "fa-phone", variant: "secondary" }} />
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <HomeContactSection />
         </main>
       </HomeConversionProvider>
       <LegacyFooter />

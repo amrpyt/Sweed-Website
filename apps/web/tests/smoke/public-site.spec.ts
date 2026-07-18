@@ -105,6 +105,83 @@ test("homepage reads the latest three articles from the shared content source", 
   await expect(page.locator("#blog").getByRole("link", { name: "كل المقالات" })).toHaveAttribute("href", "/articles");
 });
 
+test("contact form preserves conversion context and shows a real submission result", async ({ page }) => {
+  let submittedLead: Record<string, unknown> | undefined;
+  await page.route("**/api/contact-leads", async (route) => {
+    submittedLead = route.request().postDataJSON() as Record<string, unknown>;
+    await route.fulfill({
+      status: 201,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true, leadId: "playwright-lead", forwarded: false }),
+    });
+  });
+
+  await page.goto("/");
+  const growthOffer = page.getByTestId("home-offer-card").filter({ hasText: "باقة النمو" });
+  await growthOffer.getByRole("button", { name: "احجز مكالمة نمو" }).click();
+
+  const form = page.getByTestId("home-contact-form");
+  await expect(form.locator('input[name="selectedOffer"]')).toHaveValue("باقة النمو");
+  await expect(form.locator('input[name="source"]')).toHaveValue("offers");
+  await expect(form.locator('select[name="interest"]')).toHaveValue("باقة النمو");
+
+  await form.locator('input[name="name"]').fill("اختبار آلي");
+  await form.locator('input[name="phone"]').fill("01000000000");
+  await form.locator('textarea[name="message"]').fill("طلب اختبار آلي للتأكد من وصول بيانات الباقة كاملة.");
+  await form.getByRole("button", { name: "أرسل طلب الاستشارة" }).click();
+
+  await expect(form).toContainText("تم استلام طلبك بنجاح");
+  expect(submittedLead).toMatchObject({
+    name: "اختبار آلي",
+    phone: "01000000000",
+    interest: "باقة النمو",
+    selectedOffer: "باقة النمو",
+    source: "offers",
+  });
+});
+
+test("contact form blocks invalid submissions with field-level errors", async ({ page }) => {
+  await page.goto("/#contact");
+  const form = page.getByTestId("home-contact-form");
+  await form.getByRole("button", { name: "أرسل طلب الاستشارة" }).click();
+  await expect(form.getByText("اكتب اسمك بحرفين على الأقل")).toBeVisible();
+  await expect(form.getByText("اكتب رقم هاتف صحيح")).toBeVisible();
+  await expect(form.getByText("اختر الخدمة أو الباقة الأقرب لك")).toBeVisible();
+  await expect(form.getByText("اكتب نبذة من 10 أحرف على الأقل")).toBeVisible();
+});
+
+test("footer uses homepage anchors and has no empty social links", async ({ page }) => {
+  await page.goto("/");
+  const footer = page.locator(".sweed-common-footer");
+  await expect(footer.locator('a[href="#"]')).toHaveCount(0);
+  await expect(footer.getByRole("link", { name: "أعمالنا" })).toHaveAttribute("href", "/#portfolio");
+  await expect(footer.getByRole("link", { name: "+20 106 827 4662" })).toHaveAttribute("href", "tel:+201068274662");
+  await expect(footer.getByRole("link", { name: "info@sweed.com" })).toHaveAttribute("href", "mailto:info@sweed.com");
+  await expect(footer.getByRole("link", { name: "تواصل مع SWEED عبر واتساب" })).toHaveAttribute("href", /wa\.me/);
+});
+
+test("support ticket uses the same contact endpoint and exposes WhatsApp", async ({ page }) => {
+  let ticketPayload: Record<string, unknown> | undefined;
+  await page.route("**/api/contact-leads", async (route) => {
+    ticketPayload = route.request().postDataJSON() as Record<string, unknown>;
+    await route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+  });
+
+  await page.goto("/");
+  await page.getByRole("button", { name: "Open AI advisor" }).click();
+  await page.getByText("دعم مباشر أو تذكرة", { exact: true }).click();
+
+  const ticketForm = page.getByTestId("sweed-support-ticket-form");
+  await ticketForm.getByLabel("اسم صاحب التذكرة").fill("اختبار الدعم");
+  await ticketForm.getByLabel("رقم واتساب صاحب التذكرة").fill("01000000000");
+  await ticketForm.getByLabel("ملخص المشكلة").fill("هذه تذكرة اختبار آلي لمسار الدعم الموحد.");
+  await ticketForm.getByRole("button", { name: "إرسال التذكرة" }).click();
+
+  await expect(ticketForm).toContainText("تم تسجيل التذكرة بنجاح");
+  expect(ticketPayload).toMatchObject({ interest: "support-ticket", source: "ai-support-ticket" });
+  await expect(page.locator('aside[aria-label="SWEED support center"] a[href*="wa.me"]')).toHaveAttribute("href", /wa\.me/);
+});
+
 test("portfolio cards expose numeric results and filter by service", async ({ page }) => {
   await page.goto("/");
 

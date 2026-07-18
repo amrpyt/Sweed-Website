@@ -4,19 +4,60 @@ import type { AdvisorRequest, AdvisorResponse } from "../contracts";
 import { createSweedAdvisorAgent, hasAdvisorModelConfig } from "./agent";
 import { recordAdvisorDebugEvent } from "./debug-store";
 
-const FALLBACK_MESSAGE =
-  "المساعد غير متاح الآن، تواصل معنا وسنرشح لك الباقة المناسبة حسب هدفك.";
+const CONTACT_HREF = "/#contact";
+const FALLBACK_MESSAGE = "احكي لنا هدفك بشكل مختصر وسنرتب لك نقطة بداية واضحة.";
 
-const FALLBACK_RESPONSE: AdvisorResponse = {
-  message: FALLBACK_MESSAGE,
-  recommendation: "تواصل مع فريق SWEED",
-  cta: {
-    label: "افتح صفحة التواصل",
-    href: "/contact#contact-form",
-  },
-  references: ["/contact#contact-form"],
-  fallback: true,
-};
+function buildLocalFallback(message: string): AdvisorResponse {
+  const normalizedMessage = message.toLocaleLowerCase("ar");
+
+  if (/(?:موقع|ويب|برمجة|تطوير|landing|website)/i.test(normalizedMessage)) {
+    return {
+      message: "ابدأ بتحديد الخدمة الأساسية، الجمهور، والخطوة التي تريد من الزائر تنفيذها. بعدها نبني هيكل الموقع ومسار التحويل قبل التصميم.",
+      recommendation: "خدمة البرمجة والتطوير",
+      cta: { label: "احجز جلسة تحديد نطاق", href: CONTACT_HREF },
+      references: ["/services#development", CONTACT_HREF],
+      fallback: true,
+    };
+  }
+
+  if (/(?:تسويق|إعلان|اعلان|مبيعات|عملاء|حملة|campaign|marketing)/i.test(normalizedMessage)) {
+    return {
+      message: "لمشروع جديد، الأفضل نبدأ بتحديد العرض والجمهور والهدف القابل للقياس، ثم نختبر حملة صغيرة قبل زيادة الميزانية.",
+      recommendation: "باقة النمو أو استشارة تسويقية",
+      cta: { label: "احجز استشارتك المجانية", href: CONTACT_HREF },
+      references: ["/#offers", "/services#consulting", CONTACT_HREF],
+      fallback: true,
+    };
+  }
+
+  if (/(?:براند|هوية|شعار|لوجو|branding|brand)/i.test(normalizedMessage)) {
+    return {
+      message: "قبل الشعار، نحدد تموضع العلامة ورسالتها وشخصيتها. ده يخلي الهوية البصرية مبنية على قرار تجاري واضح مش ذوق فقط.",
+      recommendation: "خدمة التصميم والهوية البصرية",
+      cta: { label: "ناقش هوية مشروعك", href: CONTACT_HREF },
+      references: ["/services#branding", CONTACT_HREF],
+      fallback: true,
+    };
+  }
+
+  if (/(?:ذكاء|أتمتة|اتمتة|ai|automation|بوت|مساعد)/i.test(normalizedMessage)) {
+    return {
+      message: "ابدأ بمهمة متكررة وواضحة يمكن قياس وقتها وأخطائها. نبني لها سيناريو تجريبي قبل ربطها بأنظمة الشركة.",
+      recommendation: "حل رقمي مخصص أو باقة التحول الرقمي",
+      cta: { label: "اعرض علينا السيناريو", href: CONTACT_HREF },
+      references: ["/#offers", CONTACT_HREF],
+      fallback: true,
+    };
+  }
+
+  return {
+    message: FALLBACK_MESSAGE,
+    recommendation: "استشارة تحديد الاحتياج",
+    cta: { label: "افتح نموذج التواصل", href: CONTACT_HREF },
+    references: [CONTACT_HREF],
+    fallback: true,
+  };
+}
 
 const SENSITIVE_DATA_PATTERN = /(?:كلمة\s*السر|باسورد|password|passcode|رقم\s*قومي|بطاقة\s*ائتمان|credit\s*card|cvv)/i;
 
@@ -26,9 +67,9 @@ const SENSITIVE_DATA_RESPONSE: AdvisorResponse = {
   recommendation: "تواصل آمن مع فريق SWEED",
   cta: {
     label: "افتح صفحة التواصل",
-    href: "/contact#contact-form",
+    href: CONTACT_HREF,
   },
-  references: ["/contact#contact-form"],
+  references: [CONTACT_HREF],
   fallback: false,
 };
 
@@ -93,6 +134,7 @@ export function buildAdvisorGenerateOptions(request: AdvisorRequest) {
 
 export function sanitizeAdvisorText(text: string) {
   return text
+    .replace(/\/contact#contact-form/gi, CONTACT_HREF)
     .replace(/\[([^\]]+)\]\(https?:\/\/(?:www\.)?sweed(?:[a-z0-9-]+)?\.[a-z]{2,}[^)]+\)/gi, "$1")
     .replace(/(?<!@)\bhttps?:\/\/(?:www\.)?sweed(?:[a-z0-9-]+)?\.[a-z]{2,}(?=\/)/gi, "")
     .replace(/(?<!@)\b(?:www\.)?sweed(?:[a-z0-9-]+)?\.[a-z]{2,}(?=\/)/gi, "")
@@ -130,9 +172,9 @@ function responseFromText(text: string, fallback: boolean): AdvisorResponse {
     recommendation: fallback ? "تواصل مع فريق SWEED" : "باقة SWEED المناسبة",
     cta: {
       label: "تواصل مع SWEED",
-      href: "/contact#contact-form",
+      href: CONTACT_HREF,
     },
-    references: ["/services#services", "/offers#offers", "/contact#contact-form"],
+    references: ["/#services", "/#offers", CONTACT_HREF],
     fallback,
   };
 }
@@ -151,13 +193,14 @@ export async function askSweedAdvisor(request: AdvisorRequest): Promise<AdvisorR
   }
 
   if (!hasAdvisorModelConfig()) {
+    const response = buildLocalFallback(request.message);
     recordAdvisorDebugEvent({
       request,
-      response: FALLBACK_RESPONSE,
+      response,
       durationMs: Math.round(performance.now() - startedAt),
       status: "fallback",
     });
-    return FALLBACK_RESPONSE;
+    return response;
   }
 
   try {
@@ -172,12 +215,13 @@ export async function askSweedAdvisor(request: AdvisorRequest): Promise<AdvisorR
     });
     return response;
   } catch {
+    const response = buildLocalFallback(request.message);
     recordAdvisorDebugEvent({
       request,
-      response: FALLBACK_RESPONSE,
+      response,
       durationMs: Math.round(performance.now() - startedAt),
       status: "error",
     });
-    return FALLBACK_RESPONSE;
+    return response;
   }
 }

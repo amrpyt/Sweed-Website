@@ -30,8 +30,8 @@ test("advisor popup can send a visitor question and render a reply", async ({ pa
       json: {
         message: "أنسب بداية هي باقة النمو مع صفحة تواصل واضحة.",
         recommendation: "باقة النمو",
-        cta: { label: "تواصل مع SWEED", href: "/contact#contact-form" },
-        references: ["/offers#offers"],
+        cta: { label: "تواصل مع SWEED", href: "/#contact" },
+        references: ["/#offers"],
         fallback: false,
       },
     });
@@ -50,8 +50,8 @@ test("support drawer offers visitor choice on services page", async ({ page }) =
       json: {
         message: "الشات يعمل من صفحة الخدمات.",
         recommendation: "أتمتة العملاء",
-        cta: { label: "تواصل مع SWEED", href: "/contact#contact-form" },
-        references: ["/services"],
+        cta: { label: "تواصل مع SWEED", href: "/#contact" },
+        references: ["/#services"],
         fallback: false,
       },
     });

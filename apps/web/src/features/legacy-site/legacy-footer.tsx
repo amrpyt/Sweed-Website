@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { homepageContent } from "@/content/homepage";
 
 export function LegacyFooter() {
   return (
@@ -10,39 +11,39 @@ export function LegacyFooter() {
             <h3>SWEED</h3>
             <p>نصنع حضورك. نطلق مستقبل عملك عبر التسويق والإعلان والتجارب الرقمية.</p>
             <div className="footer-social">
-              <a href="#" aria-label="فيسبوك"><i className="fab fa-facebook-f" /></a>
-              <a href="#" aria-label="إنستجرام"><i className="fab fa-instagram" /></a>
-              <a href="#" aria-label="لينكد إن"><i className="fab fa-linkedin-in" /></a>
-              <a href="#" aria-label="واتساب"><i className="fab fa-whatsapp" /></a>
+              <a href={homepageContent.contact.whatsappHref} target="_blank" rel="noreferrer" aria-label="تواصل مع SWEED عبر واتساب">
+                <i className="fab fa-whatsapp" />
+              </a>
             </div>
           </div>
 
           <div className="footer-section">
             <h3>روابط سريعة</h3>
             <ul>
-              <li><Link href="/">الرئيسية</Link></li>
-              <li><Link href="/about">من نحن</Link></li>
-              <li><Link href="/services">خدماتنا</Link></li>
-              <li><Link href="/offers">العروض</Link></li>
-              <li><Link href="/articles">المقالات</Link></li>
-              <li><Link href="/contact">اتصل بنا</Link></li>
+              <li><Link href="/#home">الرئيسية</Link></li>
+              <li><Link href="/#about">من نحن</Link></li>
+              <li><Link href="/#services">خدماتنا</Link></li>
+              <li><Link href="/#portfolio">أعمالنا</Link></li>
+              <li><Link href="/#offers">العروض</Link></li>
+              <li><Link href="/#blog">المقالات</Link></li>
+              <li><Link href="/#contact">اتصل بنا</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h3>خدماتنا</h3>
             <ul>
-              <li><Link href="/services">الاستشارات</Link></li>
-              <li><Link href="/services">البراند والهوية</Link></li>
-              <li><Link href="/services">التسويق الرقمي</Link></li>
-              <li><Link href="/services">البرمجة والمواقع</Link></li>
+              <li><Link href="/services#consulting">الاستشارات</Link></li>
+              <li><Link href="/services#branding">البراند والهوية</Link></li>
+              <li><Link href="/services#digital-marketing">التسويق الرقمي</Link></li>
+              <li><Link href="/services#development">البرمجة والمواقع</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h3>تواصل معنا</h3>
-            <p><i className="fas fa-phone" /> 01068274662</p>
-            <p><i className="fas fa-envelope" /> info@sweed.com</p>
+            <p><i className="fas fa-phone" /> <a href="tel:+201068274662" dir="ltr">+20 106 827 4662</a></p>
+            <p><i className="fas fa-envelope" /> <a href="mailto:info@sweed.com">info@sweed.com</a></p>
             <p><i className="fas fa-map-marker-alt" /> القاهرة، مصر</p>
           </div>
         </div>

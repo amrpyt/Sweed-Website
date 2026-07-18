@@ -18,7 +18,22 @@ describe("askSweedAdvisor", () => {
     });
 
     expect(response.fallback).toBe(false);
-    expect(response.cta.href).toBe("/contact#contact-form");
+    expect(response.cta.href).toBe("/#contact");
+  });
+
+  test("returns a useful local recommendation when no model provider is configured", async () => {
+    const response = await askSweedAdvisor({
+      mode: "advisor",
+      message: "محتاج خطة تسويق لمشروع جديد",
+      resourceId: "visitor_local",
+      threadId: "thread_local",
+      history: [],
+    });
+
+    expect(response.fallback).toBe(true);
+    expect(response.message).toContain("تحديد العرض والجمهور");
+    expect(response.recommendation).toContain("باقة النمو");
+    expect(response.cta.href).toBe("/#contact");
   });
 });
 
@@ -137,6 +152,6 @@ describe("sanitizeAdvisorText", () => {
   test("normalizes angle-wrapped internal routes from model output", async () => {
     const { sanitizeAdvisorText } = await import("./service");
 
-    expect(sanitizeAdvisorText("contact us at </contact#contact-form>.")).toBe("contact us at /contact#contact-form.");
+    expect(sanitizeAdvisorText("contact us at </contact#contact-form>.")).toBe("contact us at /#contact.");
   });
 });

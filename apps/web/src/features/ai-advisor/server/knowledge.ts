@@ -61,18 +61,18 @@ export function buildSweedKnowledge(): SweedKnowledge {
       {
         question: "كيف أختار الخدمة المناسبة؟",
         answer: "نبدأ بفهم هدفك: حضور، عملاء محتملين، مبيعات، أو أتمتة. بعدها نرشح مسار واضح.",
-        url: "/faq#faq",
+        url: "/#faq",
       },
       {
         question: "هل الأسعار ثابتة؟",
         answer: "التكلفة تعتمد على نطاق العمل، لذلك أي رقم نهائي يحتاج تأكيد من فريق SWEED.",
-        url: "/contact#contact-form",
+        url: "/#contact",
       },
     ],
     contact: {
       phone: "01068274662",
       email: "info@sweed.com",
-      url: "/contact#contact-form",
+      url: "/#contact",
     },
   };
 }

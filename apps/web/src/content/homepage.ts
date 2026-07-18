@@ -21,6 +21,7 @@ export type HomeCard = {
   category?: string;
   price?: string;
   oldPrice?: string;
+  image?: string;
 };
 
 export type HomeProcessStep = HomeCard & {
@@ -78,9 +79,8 @@ export const homepageContent = {
   ] satisfies HomeCard[],
   stats: [
     { value: "+15", label: "سنة خبرة" },
-    { value: "+478", label: "عميل راض" },
     { value: "+638", label: "مشروع منفذ" },
-    { value: "98%", label: "معدل رضا العملاء" },
+    { value: "+478", label: "عميل وثق فينا" },
   ] satisfies HomeMetric[],
   why: [
     { title: "خبرة عملية", summary: "نشتغل من واقع السوق، مش قوالب جاهزة.", icon: "fa-award" },
@@ -108,12 +108,12 @@ export const homepageContent = {
     { title: "باقة التحول الرقمي", summary: "موقع أو صفحة هبوط وتجربة تحويل تساعد العميل يقرر أسرع.", icon: "fa-laptop-code", href: "/offers", meta: "للتحويلات والقياس" },
   ] satisfies HomeCard[],
   services: [
-    { title: "الاستشارات التسويقية", summary: "تحليل، تموضع، وخطة عملية تناسب ميزانيتك ومرحلتك.", icon: "fa-compass-drafting", href: "/services" },
-    { title: "التصميم والهوية البصرية", summary: "هوية ورسائل وتصميمات أساسية تخدم البراند بوضوح.", icon: "fa-palette", href: "/services" },
-    { title: "خدمات التسويق الرقمي", summary: "حملات تسويقية شاملة على المنصات المناسبة لجمهورك.", icon: "fa-bullhorn", href: "/services" },
-    { title: "البرمجة والتطوير", summary: "مواقع ومنصات وتجارب رقمية تساعد العميل يثق ويتواصل.", icon: "fa-code", href: "/services" },
-    { title: "دعاية وإعلان متكاملة", summary: "حملات دعائية تضمن انتشار واضح في المناطق المستهدفة.", icon: "fa-ad", href: "/services" },
-    { title: "إنتاج المحتوى والميديا", summary: "تصوير وفيديوهات وموشن جرافيك وعناصر إنتاج إبداعية.", icon: "fa-video", href: "/services" },
+    { title: "الاستشارات التسويقية", summary: "تحليل، تموضع، وخطة عملية تناسب ميزانيتك ومرحلتك.", icon: "fa-compass-drafting", href: "/services#consulting", image: "/images/hero/two-men-consultation.jpg" },
+    { title: "التصميم والهوية البصرية", summary: "هوية ورسائل وتصميمات أساسية تخدم البراند بوضوح.", icon: "fa-palette", href: "/services#branding", image: "/images/hero/custom-image.png" },
+    { title: "خدمات التسويق الرقمي", summary: "حملات تسويقية شاملة على المنصات المناسبة لجمهورك.", icon: "fa-bullhorn", href: "/services#digital-marketing", image: "/images/hero/entrepreneur-laptop-office.jpg" },
+    { title: "البرمجة والتطوير", summary: "مواقع ومنصات وتجارب رقمية تساعد العميل يثق ويتواصل.", icon: "fa-code", href: "/services#development", image: "/images/hero/businessman-laptop-standing.jpg" },
+    { title: "دعاية وإعلان متكاملة", summary: "حملات دعائية تضمن انتشار واضح في المناطق المستهدفة.", icon: "fa-ad", href: "/services#advertising", image: "/images/hero/sweed-building.png" },
+    { title: "إنتاج المحتوى والميديا", summary: "تصوير وفيديوهات وموشن جرافيك وعناصر إنتاج إبداعية.", icon: "fa-video", href: "/services#media", image: "/images/portfolio/blit-scroll-effect-demo-poster.png" },
   ] satisfies HomeCard[],
   process: [
     { title: "الاستماع والفهم", summary: "نسمع هدفك، نفهم وضعك الحالي، ونحدد أين المشكلة وأقرب فرصة للنمو.", icon: "fa-headset", duration: "1 - 2 يوم" },

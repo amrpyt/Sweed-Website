@@ -21,6 +21,7 @@ import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-sectio
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeVideoDialog } from "./home-video-dialog";
+import { HomeWhyMetricsSection } from "./home-why-metrics-section";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
 
@@ -82,20 +83,6 @@ function FeatureCard({ card }: { card: HomeCard }) {
     </Link>
   ) : (
     <HeroHomeCard className={styles.featureCard}>{body}</HeroHomeCard>
-  );
-}
-
-function WhyPoint({ card }: { card: HomeCard }) {
-  return (
-    <div className={styles.whyPoint}>
-      <span className={styles.whyPointIcon}>
-        <Icon name={card.icon} />
-      </span>
-      <div>
-        <TextSignalReveal as="h3">{card.title}</TextSignalReveal>
-        <p>{card.summary}</p>
-      </div>
-    </div>
   );
 }
 
@@ -300,22 +287,7 @@ export function HomePublicPage() {
 
         <HomeServicesScrollSection />
 
-        <section className={styles.whySection} id="sweed-why" data-projects-stack-source="true">
-          <div className={styles.container}>
-            <div className={styles.whyLayout}>
-              <div>
-                <SectionHeader title="ليه تختار SWEED؟" summary="فريق واحد يرتب الرسالة، ينفذ، ويقيس النتيجة." />
-                <div className={styles.whyGrid}>
-                  {homepageContent.why.map((card, index) => (
-                    <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                      <WhyPoint card={card} />
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <HomeWhyMetricsSection />
 
         <HomeArchigreenProjectsSection />
 

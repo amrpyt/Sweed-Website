@@ -11,15 +11,6 @@ import { homepageContent } from "@/content/homepage";
 import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
 
-const serviceImages = [
-  "/images/hero/two-men-consultation.jpg",
-  "/images/hero/entrepreneur-laptop-office.jpg",
-  "/images/hero/businessman-laptop-standing.jpg",
-  "/images/hero/sweed-building.png",
-  "/images/hero/two-men-consultation.jpg",
-  "/images/hero/entrepreneur-laptop-office.jpg",
-];
-
 export function HomeServicesScrollSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const storyRef = useRef<HTMLDivElement>(null);
@@ -108,8 +99,14 @@ export function HomeServicesScrollSection() {
                   className={styles.servicePanelProgress}
                   aria-hidden="true"
                 />
-                <span className={styles.servicePanelMedia} aria-hidden="true">
-                  <Image alt="" fill sizes="(max-width: 768px) 82vw, 42vw" src={serviceImages[index % serviceImages.length]} />
+                <span className={styles.servicePanelMedia}>
+                  <Image
+                    alt={`صورة توضيحية لخدمة ${card.title}`}
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 768px) 82vw, 42vw"
+                    src={card.image ?? "/images/hero/custom-image.png"}
+                  />
                 </span>
                 <span
                   className={styles.servicePanelNumber}
@@ -122,7 +119,7 @@ export function HomeServicesScrollSection() {
                   </span>
                   <strong>{card.title}</strong>
                   <span>{card.summary}</span>
-                  <em>{"\u0627\u0643\u062a\u0634\u0641 \u0627\u0644\u062e\u062f\u0645\u0629"}</em>
+                  <em>اكتشف الخدمة</em>
                 </span>
               </Link>
             ))}

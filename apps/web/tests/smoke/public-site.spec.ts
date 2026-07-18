@@ -71,6 +71,40 @@ test("home staggered navigation points to homepage section anchors in the reques
   await expect(page.getByTestId("sweed-header-contact-action")).toHaveAttribute("href", "/#contact");
 });
 
+test("services use unique media and service-specific destinations", async ({ page }) => {
+  await page.goto("/");
+
+  const servicePanels = page.getByTestId("home-service-panel");
+  const expectedHrefs = [
+    "/services#consulting",
+    "/services#branding",
+    "/services#digital-marketing",
+    "/services#development",
+    "/services#advertising",
+    "/services#media",
+  ];
+
+  await expect(servicePanels).toHaveCount(expectedHrefs.length);
+  for (const [index, href] of expectedHrefs.entries()) {
+    await expect(servicePanels.nth(index)).toHaveAttribute("href", href);
+  }
+
+  const imageSources = await servicePanels.locator("img").evaluateAll((images) => images.map((image) => image.getAttribute("src")));
+  expect(new Set(imageSources).size).toBe(expectedHrefs.length);
+  await expect(page.locator("#services").getByRole("button", { name: "كل الخدمات" })).toBeVisible();
+});
+
+test("why SWEED metrics count up once the trust section becomes visible", async ({ page }) => {
+  await page.goto("/");
+
+  const metrics = page.getByTestId("home-trust-metric");
+  await expect(metrics).toHaveCount(3);
+  await metrics.first().scrollIntoViewIfNeeded();
+  await expect(metrics.first().locator("strong")).toHaveText("+١٥", { timeout: 4000 });
+  await expect(metrics.nth(1).locator("strong")).toHaveText("+٦٣٨", { timeout: 4000 });
+  await expect(metrics.nth(2).locator("strong")).toHaveText("+٤٧٨", { timeout: 4000 });
+});
+
 test("about and slogan sections use the approved structure and lazy video behavior", async ({ page }) => {
   await page.goto("/");
 

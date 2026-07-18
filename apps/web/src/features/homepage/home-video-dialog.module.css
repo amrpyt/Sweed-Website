@@ -1,0 +1,152 @@
+.trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.trigger:focus-visible {
+  outline: 4px solid rgb(237 32 98 / 0.34);
+  outline-offset: 6px;
+}
+
+.playBadge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 8;
+  display: inline-grid;
+  width: clamp(56px, 6vw, 76px);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 999px;
+  background: #ed2062;
+  color: #ffffff;
+  font-size: clamp(1rem, 1.7vw, 1.3rem);
+  box-shadow: 0 8px 0 rgb(38 27 62 / 0.18);
+  transform: translate(-50%, -50%);
+  transition:
+    background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.trigger:hover .playBadge,
+.trigger:focus-visible .playBadge {
+  background: #261b3e;
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.playLabel {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + clamp(44px, 5vw, 58px));
+  z-index: 8;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.94);
+  color: #261b3e;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.86rem;
+  font-weight: 800;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.dialog {
+  width: min(94vw, 1040px);
+  max-width: none;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  color: #ffffff;
+  padding: 0;
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background: rgb(18 11 31 / 0.82);
+  backdrop-filter: blur(8px);
+}
+
+.dialogPanel {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #261b3e;
+}
+
+.dialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+}
+
+.dialogHeader h2 {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 800;
+}
+
+.closeButton {
+  display: inline-grid;
+  width: 42px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 0.24);
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  background: #ed2062;
+}
+
+.closeButton:active {
+  transform: scale(0.96);
+}
+
+.closeButton:focus-visible {
+  outline: 3px solid rgb(255 255 255 / 0.5);
+  outline-offset: 3px;
+}
+
+.videoFrame {
+  aspect-ratio: 16 / 9;
+  background: #120b1f;
+}
+
+.videoFrame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (width < 640px) {
+  .dialog {
+    width: calc(100vw - 1rem);
+  }
+
+  .playLabel {
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playBadge,
+  .closeButton {
+    transition: none;
+  }
+}

@@ -359,15 +359,19 @@
   height: clamp(520px, 50svh, 720px);
   margin-top: 0;
   overflow: hidden;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .buildingWrapper {
   position: relative;
-  width: 100%;
   display: flex;
-  justify-content: center;
+  width: 100%;
   align-items: flex-start;
+  justify-content: center;
+}
+
+.heroMediaTrigger {
+  width: 100%;
 }
 
 .buildingBeamFrame {

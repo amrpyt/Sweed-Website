@@ -71,6 +71,26 @@ test("home staggered navigation points to homepage section anchors in the reques
   await expect(page.getByTestId("sweed-header-contact-action")).toHaveAttribute("href", "/#contact");
 });
 
+test("homepage hero exposes approved CTAs and an accessible video dialog", async ({ page }) => {
+  await page.goto("/");
+
+  await page.getByRole("button", { name: "احجز استشارتك المجانية" }).click();
+  await expect(page).toHaveURL(/\/#contact$/);
+
+  await page.goto("/");
+  await page.getByRole("button", { name: "شاهد أعمالنا" }).click();
+  await expect(page).toHaveURL(/\/#portfolio$/);
+
+  await page.goto("/");
+  await page.getByTestId("home-hero-video-trigger").click();
+  const dialog = page.getByRole("dialog", { name: "فيديو SWEED التعريفي" });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator("video")).toHaveJSProperty("paused", true);
+  await dialog.getByRole("button", { name: "إغلاق الفيديو" }).click();
+  await expect(dialog).not.toBeVisible();
+  await expect(page.getByTestId("home-hero-video-trigger")).toBeFocused();
+});
+
 test("inner public pages expose breadcrumb trails", async ({ page }) => {
   for (const route of ["/about", "/services", "/offers", "/products", "/portfolio", "/articles", "/faq", "/contact"]) {
     await page.goto(route);

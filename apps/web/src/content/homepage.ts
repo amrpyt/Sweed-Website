@@ -33,9 +33,32 @@ export const homepageContent = {
     subtitle: "نحن وكالة تسويق وتصميم علامات تجارية متكاملة. نساعد الشركات الطموحة على بناء حضور قوي، وتجربة متكاملة، ونمو مستدام.",
     summary: "",
     actions: [
-      { label: "شوف أعمالنا", href: "/#portfolio", icon: "fa-arrow-up-right", variant: "primary" },
-      { label: "كلم خبير", href: "/#contact", icon: "fa-arrow-up-right", variant: "secondary" },
+      { label: "احجز استشارتك المجانية", href: "/#contact", icon: "fa-calendar-check", variant: "primary" },
+      { label: "شاهد أعمالنا", href: "/#portfolio", icon: "fa-arrow-up-right", variant: "secondary" },
     ] satisfies HomeAction[],
+    media: [
+      {
+        kind: "video",
+        src: "/videos/blit-scroll-effect-demo.mp4",
+        poster: "/images/hero/custom-image.png",
+        alt: "واجهة بصرية تعرّف بخدمات SWEED",
+      },
+      {
+        kind: "image",
+        src: "/images/hero/entrepreneur-laptop-office.jpg",
+        alt: "فريق يعمل على مشروع تسويقي",
+      },
+      {
+        kind: "image",
+        src: "/images/hero/two-men-consultation.jpg",
+        alt: "جلسة استشارة بين فريق SWEED وعميل",
+      },
+      {
+        kind: "image",
+        src: "/images/hero/businessman-laptop-standing.jpg",
+        alt: "متابعة تنفيذ مشروع رقمي",
+      },
+    ],
     metrics: [
       { value: "+150", label: "مشروع مكتمل" },
       { value: "15", label: "سنة خبرة" },

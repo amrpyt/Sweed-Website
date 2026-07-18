@@ -103,7 +103,7 @@ export function HomeBlitScrollSection() {
   }
 
   return (
-    <section ref={sectionRef} className={styles.section} aria-label="عرض فيديو سويد التفاعلي">
+    <section ref={sectionRef} className={styles.section} id="about" aria-label="من نحن وفيديو سويد التعريفي">
       <div ref={stickyRef} className={styles.sticky}>
         <div ref={mediaRef} className={styles.mediaFrame}>
           <video src="/videos/blit-scroll-effect-demo.mp4" autoPlay muted loop playsInline preload="metadata" />

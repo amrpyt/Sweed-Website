@@ -38,8 +38,40 @@
 }
 
 .logo,
+.headerAction,
 .toggle {
   pointer-events: auto;
+}
+
+.headerControls {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerAction {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--staggered-accent);
+  color: #ffffff;
+  padding-inline: 20px;
+  font-size: 0.94rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.headerAction:hover {
+  background: var(--color-accent-strong);
+}
+
+.headerAction:active {
+  transform: scale(0.98);
 }
 
 .logo {
@@ -99,6 +131,7 @@
 
 .toggle:focus-visible,
 .logo:focus-visible,
+.headerAction:focus-visible,
 .item:focus-visible,
 .socialLink:focus-visible {
   outline: 3px solid color-mix(in srgb, var(--staggered-accent) 26%, transparent);
@@ -339,6 +372,16 @@
     display: none;
   }
 
+  .headerControls {
+    gap: 8px;
+  }
+
+  .headerAction {
+    min-height: 42px;
+    padding-inline: 14px;
+    font-size: 0.82rem;
+  }
+
   .toggle {
     min-height: 42px;
     padding-inline: 14px;
@@ -377,6 +420,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .headerAction,
   .toggle,
   .item,
   .socialLink {

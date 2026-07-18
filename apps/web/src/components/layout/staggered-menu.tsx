@@ -561,28 +561,39 @@ export function StaggeredMenu({
             />
           </Link>
 
-          <button
-            ref={toggleBtnRef}
-            className={`${styles.toggle} ${polishStyles.toggle}`}
-            data-testid="sweed-menu-button"
-            type="button"
-            aria-label={open ? "إغلاق القائمة الرئيسية" : "فتح القائمة الرئيسية"}
-            aria-expanded={open}
-            aria-controls={panelId}
-            onClick={toggleMenu}
-          >
-            <span className={styles.toggleTextWrap} aria-hidden="true">
-              <span ref={textInnerRef} className={styles.toggleTextInner}>
-                <span className={styles.toggleLine}>{menuLabel}</span>
-                <span className={styles.toggleLine}>{closeLabel}</span>
-              </span>
-            </span>
+          <div className={styles.headerControls}>
+            <Link
+              className={styles.headerAction}
+              data-testid="sweed-header-contact-action"
+              href="/#contact"
+              onClick={() => closeMenu(false)}
+            >
+              دعنا نبدأ
+            </Link>
 
-            <span ref={iconRef} className={styles.icon} aria-hidden="true">
-              <span ref={plusHRef} className={styles.iconLine} />
-              <span ref={plusVRef} className={styles.iconLine} />
-            </span>
-          </button>
+            <button
+              ref={toggleBtnRef}
+              className={`${styles.toggle} ${polishStyles.toggle}`}
+              data-testid="sweed-menu-button"
+              type="button"
+              aria-label={open ? "إغلاق القائمة الرئيسية" : "فتح القائمة الرئيسية"}
+              aria-expanded={open}
+              aria-controls={panelId}
+              onClick={toggleMenu}
+            >
+              <span className={styles.toggleTextWrap} aria-hidden="true">
+                <span ref={textInnerRef} className={styles.toggleTextInner}>
+                  <span className={styles.toggleLine}>{menuLabel}</span>
+                  <span className={styles.toggleLine}>{closeLabel}</span>
+                </span>
+              </span>
+
+              <span ref={iconRef} className={styles.icon} aria-hidden="true">
+                <span ref={plusHRef} className={styles.iconLine} />
+                <span ref={plusVRef} className={styles.iconLine} />
+              </span>
+            </button>
+          </div>
         </div>
       </header>
 

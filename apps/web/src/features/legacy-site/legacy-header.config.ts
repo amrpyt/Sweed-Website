@@ -23,12 +23,10 @@ export const defaultNavItems: NavItem[] = [
 export const homeNavItems: NavItem[] = [
   { href: "/#home", label: "الرئيسية", active: "home" },
   { href: "/#about", label: "من نحن" },
-  { href: "/#offers", label: "العروض" },
   { href: "/#services", label: "خدماتنا" },
-  { href: "/#products", label: "منتجاتنا" },
   { href: "/#portfolio", label: "أعمالنا" },
+  { href: "/#offers", label: "العروض" },
   { href: "/#blog", label: "المقالات" },
-  { href: "/#faq", label: "الأسئلة الشائعة" },
   { href: "/#contact", label: "اتصل بنا" },
 ];
 

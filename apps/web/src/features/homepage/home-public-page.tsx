@@ -16,7 +16,7 @@ import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeBlitScrollSection } from "./home-blit-scroll-section";
 import { HomeGapSection } from "./home-gap-section";
-import { HomePortfolioArmorySection } from "./home-portfolio-armory-section";
+import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeButton, HomeCard as HeroHomeCard, HomeChip } from "./home-hero-ui";
@@ -278,15 +278,15 @@ export function HomePublicPage() {
           <div ref={pyramidRef} className={styles.pyramidOverlay} aria-hidden="true" />
         </section>
 
-        <HomeBlitScrollSection />
-
         <HomeProblemsCompassSection />
+
+        <HomeBlitScrollSection />
 
         <HomeGapSection />
 
         <HomeServicesScrollSection />
 
-        <section className={styles.whySection} id="about">
+        <section className={styles.whySection} id="sweed-why" data-projects-stack-source="true">
           <div className={styles.container}>
             <div className={styles.whyLayout}>
               <div>
@@ -303,7 +303,7 @@ export function HomePublicPage() {
           </div>
         </section>
 
-        <HomePortfolioArmorySection />
+        <HomeArchigreenProjectsSection />
 
         <section className={styles.offersSection} id="offers">
           <div className={styles.container}>
@@ -318,19 +318,6 @@ export function HomePublicPage() {
           </div>
         </section>
 
-        <section className={styles.blogSection} id="blog">
-          <div className={styles.container}>
-            <SectionHeader title="المقالات الحديثة" summary="آخر المقالات والنصائح التسويقية المفيدة" />
-            <div className={styles.articleGrid}>
-              {homepageContent.articles.map((card, index) => (
-                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                  <ArticleCard card={card} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className={styles.faqSection} id="faq">
           <div className={styles.container}>
             <SectionHeader title="الأسئلة الشائعة" summary="إجابات على أهم الأسئلة التي قد تخطر ببالك" />
@@ -338,6 +325,19 @@ export function HomePublicPage() {
               {homepageContent.faq.map((card, index) => (
                 <Reveal delay={index * 50} key={card.title} variant="fadeUp">
                   <FaqCard card={card} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.blogSection} id="blog">
+          <div className={styles.container}>
+            <SectionHeader title="المقالات الحديثة" summary="آخر المقالات والنصائح التسويقية المفيدة" />
+            <div className={styles.articleGrid}>
+              {homepageContent.articles.map((card, index) => (
+                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
+                  <ArticleCard card={card} />
                 </Reveal>
               ))}
             </div>

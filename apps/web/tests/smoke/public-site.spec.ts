@@ -26,20 +26,49 @@ test("react homepage renders key content and stable anchors", async ({ page }) =
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");
   await expect(page.locator("#services")).toContainText("خدماتنا المتكاملة");
 
-  for (const selector of ["#home", "#problems", "#services", "#about", "#portfolio", "#offers", "#blog", "#faq", "#contact"]) {
-    await expect(page.locator(selector)).toHaveCount(1);
+  const expectedSectionOrder = [
+    "home",
+    "problems",
+    "about",
+    "slogan",
+    "services",
+    "sweed-why",
+    "portfolio",
+    "offers",
+    "faq",
+    "blog",
+    "contact",
+  ];
+
+  for (const id of expectedSectionOrder) {
+    await expect(page.locator(`#${id}`)).toHaveCount(1);
   }
+
+  const homepageSections = page.locator("main section[id]");
+  await expect(homepageSections).toHaveCount(expectedSectionOrder.length);
+  await expect(homepageSections.evaluateAll((sections) => sections.map((section) => section.id))).resolves.toEqual(expectedSectionOrder);
 });
 
 test("home staggered navigation points to homepage section anchors in the requested order", async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("sweed-menu-button").click();
   const navLinks = page.getByRole("navigation", { name: "التنقل الرئيسي" }).getByRole("link");
-  await expect(navLinks).toHaveCount(9);
-  await expect(navLinks.nth(0)).toHaveAttribute("href", "/#home");
-  await expect(navLinks.nth(2)).toHaveAttribute("href", "/#offers");
-  await expect(navLinks.nth(3)).toHaveAttribute("href", "/#services");
-  await expect(navLinks.nth(8)).toHaveAttribute("href", "/#contact");
+  const expectedHrefs = [
+    "/#home",
+    "/#about",
+    "/#services",
+    "/#portfolio",
+    "/#offers",
+    "/#blog",
+    "/#contact",
+  ];
+  await expect(navLinks).toHaveCount(expectedHrefs.length);
+
+  for (const [index, href] of expectedHrefs.entries()) {
+    await expect(navLinks.nth(index)).toHaveAttribute("href", href);
+  }
+
+  await expect(page.getByTestId("sweed-header-contact-action")).toHaveAttribute("href", "/#contact");
 });
 
 test("inner public pages expose breadcrumb trails", async ({ page }) => {

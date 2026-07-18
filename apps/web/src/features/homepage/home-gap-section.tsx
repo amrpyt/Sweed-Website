@@ -122,7 +122,7 @@ export function HomeGapSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.section} id="brand-gap" aria-label="نحوّل فجوة الحضور الرقمي إلى ثقة وطلب">
+    <section ref={sectionRef} className={styles.section} id="slogan" aria-label="سلوجن سويد: نحوّل فجوة الحضور الرقمي إلى ثقة وطلب">
       <div ref={stickyRef} className={styles.sticky}>
         <div className={styles.overlay} aria-hidden="true">
           <span className={styles.horizontalLine}>

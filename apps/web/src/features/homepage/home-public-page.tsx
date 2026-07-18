@@ -2,10 +2,9 @@
 
 import gsap from "gsap";
 import { useRef, useLayoutEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { BorderBeam } from "border-beam";
-import { homepageContent, type HomeAction, type HomeCard } from "@/content/homepage";
+import { homepageContent, type HomeAction } from "@/content/homepage";
 import { Reveal } from "@/components/motion/reveal";
 import { HeroTextReveal, HeroFadeIn } from "@/components/motion/hero-text-reveal";
 import { TextSignalReveal } from "@/components/motion";
@@ -16,6 +15,7 @@ import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeBlitScrollSection } from "./home-blit-scroll-section";
 import { HomeConversionProvider, HomeConversionStateMarker } from "./home-conversion-context";
+import { HomeFaqBlogSection } from "./home-faq-blog-section";
 import { HomeGapSection } from "./home-gap-section";
 import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
 import { HomeOffersSection } from "./home-offers-section";
@@ -23,75 +23,14 @@ import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeVideoDialog } from "./home-video-dialog";
 import { HomeWhyMetricsSection } from "./home-why-metrics-section";
-import { HomeButton, HomeChip } from "./home-hero-ui";
+import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
-
-function Icon({ name }: { name: string }) {
-  if (name === "fa-arrow-left" || name === "fa-arrow-up-left" || name === "fa-arrow-up-right") {
-    return (
-      <svg
-        aria-hidden="true"
-        className={styles.directionalIcon}
-        fill="none"
-        height="20"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        width="20"
-      >
-        <path d="M7 17L17 7" />
-        <path d="M7 7h10v10" />
-      </svg>
-    );
-  }
-  return <i aria-hidden="true" className={name.includes(" ") ? name : `fas ${name}`} />;
-}
 
 function ActionButton({ action }: { action: HomeAction }) {
   return (
     <HomeButton className={getBrandActionButtonClassName({ size: "hero", variant: action.variant ?? "primary" })} href={action.href}>
       <BrandActionButtonContent>{action.label}</BrandActionButtonContent>
     </HomeButton>
-  );
-}
-
-function SectionHeader({ title, summary }: { title: string; summary: string }) {
-  return (
-    <div className={styles.sectionHeader}>
-      <TextSignalReveal as="h2">{title}</TextSignalReveal>
-      <p>{summary}</p>
-    </div>
-  );
-}
-
-function ArticleCard({ card }: { card: HomeCard }) {
-  return (
-    <Link className={styles.articleCard} href={card.href ?? "/articles"}>
-      <div className={styles.articleIcon}>
-        <Icon name={card.icon} />
-      </div>
-      <div className={styles.articleBody}>
-        {card.category ? <HomeChip className={styles.categoryChip}>{card.category}</HomeChip> : null}
-        {card.meta ? <span className={styles.articleMeta}>{card.meta}</span> : null}
-        <TextSignalReveal as="h3">{card.title}</TextSignalReveal>
-        <p>{card.summary}</p>
-        <strong>اقرأ المزيد <Icon name="fa-arrow-left" /></strong>
-      </div>
-    </Link>
-  );
-}
-
-function FaqCard({ card }: { card: HomeCard }) {
-  return (
-    <details className={styles.faqItem}>
-      <summary>
-        <span>{card.title}</span>
-        <Icon name="fa-chevron-down" />
-      </summary>
-      <p>{card.summary}</p>
-    </details>
   );
 }
 
@@ -273,31 +212,7 @@ export function HomePublicPage() {
 
         <HomeOffersSection />
 
-        <section className={styles.faqSection} id="faq">
-          <div className={styles.container}>
-            <SectionHeader title="الأسئلة الشائعة" summary="إجابات على أهم الأسئلة التي قد تخطر ببالك" />
-            <div className={styles.faqList}>
-              {homepageContent.faq.map((card, index) => (
-                <Reveal delay={index * 50} key={card.title} variant="fadeUp">
-                  <FaqCard card={card} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.blogSection} id="blog">
-          <div className={styles.container}>
-            <SectionHeader title="المقالات الحديثة" summary="آخر المقالات والنصائح التسويقية المفيدة" />
-            <div className={styles.articleGrid}>
-              {homepageContent.articles.map((card, index) => (
-                <Reveal delay={index * 70} key={card.title} variant="scaleIn">
-                  <ArticleCard card={card} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HomeFaqBlogSection />
 
         <section className={styles.ctaSection} id="contact">
           <div className={styles.container}>

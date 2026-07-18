@@ -190,6 +190,7 @@ export const articles: Article[] = [
     seo: {
       title: "كيف تختار الباقة التسويقية المناسبة؟",
       description: "دليل بسيط لاختيار باقة تسويقية حسب مرحلة شركتك.",
+      image: "/images/hero/two-men-consultation.jpg",
     },
     order: 1,
   },
@@ -210,8 +211,35 @@ export const articles: Article[] = [
     seo: {
       title: "لماذا يساعد AI Demo في قرار العميل؟",
       description: "كيف يجعل AI Demo قرار العميل أسرع وأسهل.",
+      image: "/images/hero/businessman-laptop-standing.jpg",
     },
     order: 2,
+  },
+  {
+    slug: "marketing-metrics-that-matter",
+    title: "5 أرقام لازم تتابعها قبل ما تزود ميزانية التسويق",
+    summary: "مؤشرات بسيطة تكشف هل الحملة بتتحسن فعلًا ولا الميزانية بتضيع في حركة بدون نتيجة.",
+    category: "قياس الأداء",
+    publishedAt: "2026-06-18",
+    readingTime: "5 دقائق",
+    body: [
+      {
+        id: "qualified-leads",
+        title: "ابدأ بجودة الطلبات",
+        summary: "عدد الرسائل وحده مش كفاية. راقب كام طلب مناسب وصل فعلًا لفريق المبيعات.",
+      },
+      {
+        id: "conversion-rate",
+        title: "اربط الزيارات بالتحويل",
+        summary: "اعرف نسبة الزوار الذين اتخذوا الخطوة المطلوبة قبل ما تضاعف الإنفاق.",
+      },
+    ],
+    seo: {
+      title: "5 مؤشرات لقياس أداء التسويق",
+      description: "أهم مؤشرات الأداء التي يجب مراجعتها قبل زيادة ميزانية الحملات.",
+      image: "/images/hero/entrepreneur-laptop-office.jpg",
+    },
+    order: 3,
   },
 ];
 

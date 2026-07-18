@@ -71,6 +71,40 @@ test("home staggered navigation points to homepage section anchors in the reques
   await expect(page.getByTestId("sweed-header-contact-action")).toHaveAttribute("href", "/#contact");
 });
 
+test("FAQ keeps one answer open and publishes FAQPage structured data", async ({ page }) => {
+  await page.goto("/");
+
+  const faqSection = page.locator("#faq");
+  const faqItems = faqSection.locator("[data-open]");
+  const faqButtons = faqSection.locator('button[aria-controls^="home-faq-panel-"]');
+  const faqCount = await faqItems.count();
+  await expect(faqButtons).toHaveCount(faqCount);
+  await expect(faqButtons.first()).toHaveAttribute("aria-expanded", "true");
+
+  await faqButtons.nth(1).click();
+  await expect(faqButtons.first()).toHaveAttribute("aria-expanded", "false");
+  await expect(faqButtons.nth(1)).toHaveAttribute("aria-expanded", "true");
+  await expect(faqSection.getByRole("region")).toHaveCount(1);
+
+  const schemaText = await faqSection.locator('script[type="application/ld+json"]').textContent();
+  const schema = JSON.parse(schemaText ?? "{}");
+  expect(schema["@type"]).toBe("FAQPage");
+  expect(schema.mainEntity).toHaveLength(faqCount);
+});
+
+test("homepage reads the latest three articles from the shared content source", async ({ page }) => {
+  await page.goto("/");
+
+  const latestArticles = page.getByTestId("home-latest-article");
+  await expect(latestArticles).toHaveCount(3);
+  await expect(latestArticles.first()).toContainText("5 أرقام لازم تتابعها قبل ما تزود ميزانية التسويق");
+  await expect(latestArticles.first().getByRole("link", { name: /5 أرقام/ }).first()).toHaveAttribute(
+    "href",
+    "/articles/marketing-metrics-that-matter",
+  );
+  await expect(page.locator("#blog").getByRole("link", { name: "كل المقالات" })).toHaveAttribute("href", "/articles");
+});
+
 test("portfolio cards expose numeric results and filter by service", async ({ page }) => {
   await page.goto("/");
 

@@ -71,6 +71,21 @@ test("home staggered navigation points to homepage section anchors in the reques
   await expect(page.getByTestId("sweed-header-contact-action")).toHaveAttribute("href", "/#contact");
 });
 
+test("problem cards record their service mapping and focus the contact section", async ({ page }) => {
+  await page.goto("/");
+
+  const problemCard = page.getByTestId("home-problem-card").filter({ hasText: "عائد ضعيف؟" });
+  await problemCard.click();
+
+  await expect(page).toHaveURL(/\/#contact$/);
+  await expect(problemCard).toHaveAttribute("aria-pressed", "true");
+  await expect(problemCard).toHaveAttribute("data-active", "true");
+  await expect(page.getByTestId("home-conversion-state")).toHaveAttribute("data-selected-problem", "عائد ضعيف؟");
+  await expect(page.getByTestId("home-conversion-state")).toHaveAttribute("data-selected-service", "advertising");
+  await expect(page.getByTestId("home-conversion-state")).toHaveAttribute("data-cta-source", "problems");
+  await expect(page.locator("#contact")).toBeInViewport();
+});
+
 test("homepage hero exposes approved CTAs and an accessible video dialog", async ({ page }) => {
   await page.goto("/");
 

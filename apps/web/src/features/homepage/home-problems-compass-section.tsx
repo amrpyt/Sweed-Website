@@ -7,6 +7,7 @@ import { useLayoutEffect, useRef } from "react";
 import { TextSignalReveal } from "@/components/motion";
 import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui";
 import { homepageContent } from "@/content/homepage";
+import { useHomeConversion } from "./home-conversion-context";
 import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
 
@@ -24,7 +25,8 @@ export function HomeProblemsCompassSection() {
   const innerRef = useRef<HTMLDivElement>(null);
   const compassRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<HTMLDivElement[]>([]);
+  const cardRefs = useRef<HTMLButtonElement[]>([]);
+  const { selection, selectAndFocusContact } = useHomeConversion();
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -114,15 +116,26 @@ export function HomeProblemsCompassSection() {
             {homepageContent.problems.map((card, index) => {
               const point = compassPoints[index % compassPoints.length];
 
-            return (
-              <div
-                className={styles.compassProblemCard}
-                data-x={point.x}
-                data-y={point.y}
-                data-rotate={point.rotate}
-                key={card.title}
-                ref={(node) => {
+              return (
+                <button
+                  className={styles.compassProblemCard}
+                  data-active={selection.problem === card.title ? "true" : "false"}
+                  data-testid="home-problem-card"
+                  data-x={point.x}
+                  data-y={point.y}
+                  data-rotate={point.rotate}
+                  key={card.title}
+                  ref={(node) => {
                     if (node) cardRefs.current[index] = node;
+                  }}
+                  type="button"
+                  aria-pressed={selection.problem === card.title}
+                  onClick={() => {
+                    selectAndFocusContact({
+                      problem: card.title,
+                      service: card.serviceKey,
+                      source: "problems",
+                    });
                   }}
                 >
                   <span className={styles.compassProblemIcon}>
@@ -132,14 +145,14 @@ export function HomeProblemsCompassSection() {
                     <strong>{card.title}</strong>
                     <span>{card.summary}</span>
                   </span>
-                </div>
+                </button>
               );
             })}
           </div>
 
           <div ref={ctaRef} className={styles.problemsCta}>
             <span>ابدأ بخطوة واضحة</span>
-            <HomeButton className={getBrandActionButtonClassName({ variant: "primary" })} href="/contact?services=consulting#contact-form">
+            <HomeButton className={getBrandActionButtonClassName({ variant: "primary" })} href="/#contact">
               <BrandActionButtonContent>احجز استشارة</BrandActionButtonContent>
             </HomeButton>
           </div>

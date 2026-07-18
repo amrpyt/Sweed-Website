@@ -17,6 +17,7 @@ export type HomeCard = {
   href?: string;
   meta?: string;
   solution?: string;
+  serviceKey?: string;
   category?: string;
   price?: string;
   oldPrice?: string;
@@ -68,12 +69,12 @@ export const homepageContent = {
   },
   clients: ["NOVA", "ALPHA", "EDGE", "SAHL", "SHIFT", "URBAN"],
   problems: [
-    { title: "ميزانية؟", summary: "تحتاج حلول تسويق مناسبة لميزانيتك.", icon: "fa-chart-line", solution: "حلول مرنة حسب ميزانيتك" },
-    { title: "الجمهور؟", summary: "تحتاج تحديد العميل المناسب بوضوح.", icon: "fa-bullseye", solution: "تحليل واضح للجمهور" },
-    { title: "المنافسة؟", summary: "تحتاج تظهر اختلافك وسط السوق.", icon: "fa-users-slash", solution: "تموضع يبرز اختلافك" },
-    { title: "نتائج بطيئة؟", summary: "تحتاج خطة تنفيذ أسرع وأوضح.", icon: "fa-clock", solution: "خطة تنفيذ قابلة للقياس" },
-    { title: "عائد ضعيف؟", summary: "تحتاج تحسين الإعلانات والقياس.", icon: "fa-hand-holding-usd", solution: "تحسين مستمر للأداء" },
-    { title: "استراتيجية؟", summary: "تحتاج مسار واضح قبل التنفيذ.", icon: "fa-exclamation-triangle", solution: "استراتيجية خطوة بخطوة" },
+    { title: "ميزانية؟", summary: "تحتاج حلول تسويق مناسبة لميزانيتك.", icon: "fa-chart-line", solution: "حلول مرنة حسب ميزانيتك", serviceKey: "consulting" },
+    { title: "الجمهور؟", summary: "تحتاج تحديد العميل المناسب بوضوح.", icon: "fa-bullseye", solution: "تحليل واضح للجمهور", serviceKey: "digital-marketing" },
+    { title: "المنافسة؟", summary: "تحتاج تظهر اختلافك وسط السوق.", icon: "fa-users-slash", solution: "تموضع يبرز اختلافك", serviceKey: "branding" },
+    { title: "نتائج بطيئة؟", summary: "تحتاج خطة تنفيذ أسرع وأوضح.", icon: "fa-clock", solution: "خطة تنفيذ قابلة للقياس", serviceKey: "consulting" },
+    { title: "عائد ضعيف؟", summary: "تحتاج تحسين الإعلانات والقياس.", icon: "fa-hand-holding-usd", solution: "تحسين مستمر للأداء", serviceKey: "advertising" },
+    { title: "استراتيجية؟", summary: "تحتاج مسار واضح قبل التنفيذ.", icon: "fa-exclamation-triangle", solution: "استراتيجية خطوة بخطوة", serviceKey: "consulting" },
   ] satisfies HomeCard[],
   stats: [
     { value: "+15", label: "سنة خبرة" },

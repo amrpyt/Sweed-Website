@@ -15,6 +15,7 @@ import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeBlitScrollSection } from "./home-blit-scroll-section";
+import { HomeConversionProvider, HomeConversionStateMarker } from "./home-conversion-context";
 import { HomeGapSection } from "./home-gap-section";
 import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
@@ -204,7 +205,9 @@ export function HomePublicPage() {
       </a>
       <ProgressIndicator />
       <LegacyHeader page="home" />
-      <main className={styles.homepage}>
+      <HomeConversionProvider>
+        <HomeConversionStateMarker />
+        <main className={styles.homepage}>
         <section ref={heroSectionRef} className={styles.hero} id="home">
           {/* Decorative Grid Lines */}
           <div ref={gridLineLeftRef} className={styles.gridLineLeft} aria-hidden="true">
@@ -367,7 +370,8 @@ export function HomePublicPage() {
             </Reveal>
           </div>
         </section>
-      </main>
+        </main>
+      </HomeConversionProvider>
       <LegacyFooter />
       <OfferFunnelController page="home" />
       <AiAdvisorWidget />

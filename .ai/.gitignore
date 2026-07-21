@@ -1,0 +1,4 @@
+# Volatile execution state stays local to this workspace.
+STATE.md
+HANDOFF.md
+sessions/

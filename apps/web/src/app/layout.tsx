@@ -1,6 +1,24 @@
+import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import { PageScrollEffects } from "@/components/motion/page-scroll-effects";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  icons: {
+    icon: [
+      {
+        url: "/sweed-logo-official.svg",
+        type: "image/svg+xml",
+      },
+      {
+        url: "/sweed-logo.png",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/sweed-logo-official.svg",
+    apple: "/sweed-logo.png",
+  },
+};
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],

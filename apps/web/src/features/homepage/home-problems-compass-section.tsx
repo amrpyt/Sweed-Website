@@ -78,8 +78,17 @@ export function HomeProblemsCompassSection() {
         </header>
 
         <div className={styles.problemLayout} data-has-selection={hasSelection ? "true" : "false"}>
-          <div className={styles.cardsColumn}>
-            {homepageContent.problems.slice(0, 3).map((problem, index) => (
+          <DirectionHub
+            dialAngle={dialAngle}
+            dialStyle={dialStyle}
+            hasSelection={hasSelection}
+            selectedIndex={selectedIndex}
+            selectedProblem={selectedProblem}
+            onContinue={continueToContact}
+          />
+
+          <div className={styles.problemList} role="group" aria-label="اختار المشكلة الأقرب لوضع مشروعك">
+            {homepageContent.problems.map((problem, index) => (
               <ProblemButton
                 key={problem.title}
                 index={index}
@@ -89,82 +98,84 @@ export function HomeProblemsCompassSection() {
               />
             ))}
           </div>
-
-          <div
-            className={styles.directionHub}
-            data-active={hasSelection ? "true" : "false"}
-            data-dial-angle={dialAngle}
-            data-problems-visual
-            data-testid="home-direction-dial"
-            style={dialStyle}
-          >
-            <div className={styles.dialShell}>
-              <svg className={styles.directionDial} viewBox="0 0 360 360" aria-hidden="true">
-                <circle className={styles.dialSurface} cx="180" cy="180" r="158" />
-                <circle className={styles.dialOuterRing} cx="180" cy="180" r="148" />
-                <circle className={styles.dialInnerRing} cx="180" cy="180" r="112" />
-                <circle className={styles.dialCoreRing} cx="180" cy="180" r="72" />
-
-                <path className={styles.dialAxis} d="M180 32V328M32 180H328" />
-                <path className={styles.dialDiagonal} d="M75 75L285 285M285 75L75 285" />
-
-                {dialNodes.map((node, index) => (
-                  <g
-                    className={`${styles.dialNode} ${selectedIndex === index ? styles.dialNodeActive : ""}`}
-                    key={`${node.x}-${node.y}`}
-                    transform={`translate(${node.x} ${node.y})`}
-                  >
-                    <circle r="18" />
-                    <text textAnchor="middle" y="4">
-                      {String(index + 1).padStart(2, "0")}
-                    </text>
-                  </g>
-                ))}
-
-                <g className={styles.needle}>
-                  <path className={styles.needleShadow} d="M180 183L170 76L180 48L190 76Z" />
-                  <path className={styles.needleBody} d="M180 180L173 78L180 58L187 78Z" />
-                  <circle className={styles.needlePivot} cx="180" cy="180" r="12" />
-                </g>
-
-                <circle className={styles.brandCore} cx="180" cy="180" r="54" />
-                <text className={styles.brandLetter} x="180" y="199" textAnchor="middle">
-                  S
-                </text>
-              </svg>
-            </div>
-
-            <div className={styles.resultPanel} aria-live="polite" data-active={hasSelection ? "true" : "false"}>
-              <span className={styles.resultEyebrow}>{hasSelection ? "الاتجاه الأنسب ليك" : "بوصلة سويد"}</span>
-              <strong data-testid="home-direction-service">
-                {selectedProblem?.serviceKey ?? "اختار المشكلة الأقرب لوضعك"}
-              </strong>
-              <p>{selectedProblem?.solution ?? "هنحوّل وصفك لاتجاه واضح وأول خطوة عملية."}</p>
-              <button type="button" disabled={!selectedProblem} onClick={continueToContact}>
-                {selectedProblem ? "ابدأ أول خطوة" : "اختار مشكلة الأول"}
-                <i className="fas fa-arrow-left" aria-hidden="true" />
-              </button>
-            </div>
-          </div>
-
-          <div className={styles.cardsColumn}>
-            {homepageContent.problems.slice(3).map((problem, index) => {
-              const problemIndex = index + 3;
-
-              return (
-                <ProblemButton
-                  key={problem.title}
-                  index={problemIndex}
-                  problem={problem}
-                  selected={selectedIndex === problemIndex}
-                  onSelect={() => updateSelection({ problem: problem.title, service: problem.serviceKey, source: "problems" })}
-                />
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function DirectionHub({
+  dialAngle,
+  dialStyle,
+  hasSelection,
+  selectedIndex,
+  selectedProblem,
+  onContinue,
+}: {
+  dialAngle: number;
+  dialStyle: CSSProperties;
+  hasSelection: boolean;
+  selectedIndex: number;
+  selectedProblem: (typeof homepageContent.problems)[number] | null;
+  onContinue: () => void;
+}) {
+  return (
+    <div
+      className={styles.directionHub}
+      data-active={hasSelection ? "true" : "false"}
+      data-dial-angle={dialAngle}
+      data-problems-visual
+      data-testid="home-direction-dial"
+      style={dialStyle}
+    >
+      <div className={styles.dialShell}>
+        <svg className={styles.directionDial} viewBox="0 0 360 360" aria-hidden="true">
+          <circle className={styles.dialSurface} cx="180" cy="180" r="158" />
+          <circle className={styles.dialOuterRing} cx="180" cy="180" r="148" />
+          <circle className={styles.dialInnerRing} cx="180" cy="180" r="112" />
+          <circle className={styles.dialCoreRing} cx="180" cy="180" r="72" />
+
+          <path className={styles.dialAxis} d="M180 32V328M32 180H328" />
+          <path className={styles.dialDiagonal} d="M75 75L285 285M285 75L75 285" />
+
+          {dialNodes.map((node, index) => (
+            <g
+              className={`${styles.dialNode} ${selectedIndex === index ? styles.dialNodeActive : ""}`}
+              key={`${node.x}-${node.y}`}
+              transform={`translate(${node.x} ${node.y})`}
+            >
+              <circle r="18" />
+              <text textAnchor="middle" y="4">
+                {String(index + 1).padStart(2, "0")}
+              </text>
+            </g>
+          ))}
+
+          <g className={styles.needle}>
+            <path className={styles.needleShadow} d="M180 183L170 76L180 48L190 76Z" />
+            <path className={styles.needleBody} d="M180 180L173 78L180 58L187 78Z" />
+            <circle className={styles.needlePivot} cx="180" cy="180" r="12" />
+          </g>
+
+          <circle className={styles.brandCore} cx="180" cy="180" r="54" />
+          <text className={styles.brandLetter} x="180" y="199" textAnchor="middle">
+            S
+          </text>
+        </svg>
+      </div>
+
+      <div className={styles.resultPanel} aria-live="polite" data-active={hasSelection ? "true" : "false"}>
+        <span className={styles.resultEyebrow}>{hasSelection ? "الاتجاه الأنسب ليك" : "بوصلة سويد"}</span>
+        <strong data-testid="home-direction-service">
+          {selectedProblem?.serviceKey ?? "اختار المشكلة الأقرب لوضعك"}
+        </strong>
+        <p>{selectedProblem?.solution ?? "هنحوّل وصفك لاتجاه واضح وأول خطوة عملية."}</p>
+        <button type="button" disabled={!selectedProblem} onClick={onContinue}>
+          {selectedProblem ? "ابدأ أول خطوة" : "اختار من القائمة"}
+          <i className="fas fa-arrow-left" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -196,7 +207,12 @@ function ProblemButton({
         <i className={`fas ${problem.icon}`} />
       </span>
       <strong>{problem.title}</strong>
-      {selected ? <span className={styles.selectionBadge}>اختيارك</span> : null}
+      {selected ? (
+        <span className={styles.selectionBadge} aria-hidden="true">
+          <i className="fas fa-check" />
+          <span>اختيارك</span>
+        </span>
+      ) : null}
     </button>
   );
 }

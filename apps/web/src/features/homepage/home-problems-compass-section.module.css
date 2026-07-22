@@ -54,13 +54,13 @@
   display: grid;
   margin-top: clamp(2.25rem, 4.5vw, 4rem);
   grid-template-columns: minmax(0, 1fr) minmax(300px, 0.78fr) minmax(0, 1fr);
-  gap: clamp(1.25rem, 2.8vw, 2.6rem);
+  grid-template-rows: repeat(3, minmax(112px, auto));
+  gap: 0.82rem clamp(1.25rem, 2.8vw, 2.6rem);
   align-items: center;
 }
 
-.cardsColumn {
-  display: grid;
-  gap: 0.82rem;
+.problemList {
+  display: contents;
 }
 
 .problemCard {
@@ -87,10 +87,53 @@
     transform var(--motion-fast);
 }
 
-.problemCard:hover,
+.problemCard:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.problemCard:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.problemCard:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.problemCard:nth-child(4) {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.problemCard:nth-child(5) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.problemCard:nth-child(6) {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .problemCard:hover {
+    border-color: rgba(237, 32, 98, 0.54);
+    background: #fffafd;
+    transform: translateY(-2px);
+  }
+
+  .problemCard:hover .cardIcon {
+    transform: scale(1.04);
+  }
+}
+
 .problemCard:focus-visible {
   border-color: rgba(237, 32, 98, 0.54);
   background: #fffafd;
+  outline: 3px solid rgba(237, 32, 98, 0.25);
+  outline-offset: 4px;
   transform: translateY(-2px);
 }
 
@@ -99,11 +142,6 @@
   background: #fff1f6;
   box-shadow: 0 5px 0 rgba(237, 32, 98, 0.2);
   transform: translateY(-3px);
-}
-
-.problemCard:focus-visible {
-  outline: 3px solid rgba(237, 32, 98, 0.25);
-  outline-offset: 4px;
 }
 
 .cardNumber {
@@ -133,7 +171,6 @@
     transform var(--motion-fast);
 }
 
-.problemCard:hover .cardIcon,
 .problemCard:focus-visible .cardIcon {
   transform: scale(1.04);
 }
@@ -156,6 +193,7 @@
   min-height: 28px;
   align-items: center;
   justify-content: center;
+  gap: 0.38rem;
   border-radius: 999px;
   padding-inline: 0.65rem;
   background: #261b3e;
@@ -165,11 +203,17 @@
   white-space: nowrap;
 }
 
+.selectionBadge i {
+  font-size: 0.62rem;
+}
+
 .directionHub {
   --dial-angle: 0deg;
   position: relative;
   display: grid;
   min-width: 0;
+  grid-column: 2;
+  grid-row: 1 / 4;
   justify-items: center;
   isolation: isolate;
 }
@@ -334,7 +378,7 @@
 .resultPanel p {
   min-height: 1.7em;
   margin: 0;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.76);
   font-size: 0.82rem;
   font-weight: 600;
   line-height: 1.7;
@@ -364,34 +408,69 @@
     transform var(--motion-fast);
 }
 
-.resultPanel button:hover:not(:disabled),
-.resultPanel button:focus-visible:not(:disabled) {
-  background: #ffffff;
-  color: #261b3e;
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .resultPanel button:hover:not(:disabled) {
+    background: #ffffff;
+    color: #261b3e;
+    transform: translateY(-2px);
+  }
 }
 
 .resultPanel button:focus-visible {
+  background: #ffffff;
+  color: #261b3e;
   outline: 3px solid rgba(255, 255, 255, 0.46);
   outline-offset: 3px;
+  transform: translateY(-2px);
 }
 
 .resultPanel button:disabled {
   background: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(255, 255, 255, 0.58);
   cursor: not-allowed;
 }
 
 @media (max-width: 1120px) {
   .problemLayout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto repeat(3, minmax(112px, auto));
   }
 
   .directionHub {
+    width: min(100%, 430px);
     grid-column: 1 / -1;
     grid-row: 1;
-    width: min(100%, 430px);
     margin-inline: auto;
+  }
+
+  .problemCard:nth-child(1) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .problemCard:nth-child(2) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .problemCard:nth-child(3) {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .problemCard:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .problemCard:nth-child(5) {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .problemCard:nth-child(6) {
+    grid-column: 2;
+    grid-row: 4;
   }
 
   .dialShell,
@@ -400,9 +479,9 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 720px), (max-height: 500px) and (max-width: 900px) {
   .section {
-    padding-block: 4.5rem;
+    padding-block: 3.75rem;
   }
 
   .section::before {
@@ -413,75 +492,253 @@
     width: min(100% - 1.25rem, 1320px);
   }
 
+  .heading {
+    max-width: none;
+    text-align: start;
+  }
+
+  .heading h2 {
+    max-width: 12ch;
+    font-size: clamp(2rem, 10vw, 2.55rem);
+    letter-spacing: -0.02em;
+    line-height: 1.14;
+  }
+
+  .heading p {
+    max-width: 38ch;
+    margin: 0.75rem 0 0;
+    font-size: 0.96rem;
+    line-height: 1.75;
+  }
+
   .problemLayout {
     display: flex;
+    margin-top: 1.65rem;
     flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .problemLayout > .cardsColumn:first-child {
-    order: 1;
-  }
-
-  .problemLayout > .cardsColumn:last-child {
-    order: 2;
+    gap: 0.9rem;
   }
 
   .directionHub {
+    display: grid;
     width: 100%;
-    order: 3;
-    margin-top: 1.2rem;
+    min-height: 146px;
+    box-sizing: border-box;
+    grid-template-columns: 112px minmax(0, 1fr);
+    grid-row: auto;
+    grid-column: auto;
+    gap: 0.8rem;
+    align-items: center;
+    justify-items: stretch;
+    order: 1;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 0.75rem;
+    background: #261b3e;
+  }
+
+  .directionHub::before {
+    z-index: 0;
+    inset: auto auto -45% -12%;
+    width: 170px;
+    height: 170px;
+    background: rgba(237, 32, 98, 0.2);
+    filter: blur(32px);
   }
 
   .dialShell {
-    width: min(82vw, 300px);
+    z-index: 1;
+    width: 112px;
+    align-self: center;
+  }
+
+  .directionDial {
+    filter: none;
   }
 
   .resultPanel {
-    width: min(100%, 355px);
+    z-index: 1;
+    width: auto;
+    min-width: 0;
+    align-content: center;
+    gap: 0.18rem;
+    margin: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    text-align: start;
   }
 
-  .cardsColumn {
-    width: 100%;
-    gap: 0.7rem;
+  .resultEyebrow {
+    font-size: 0.66rem;
   }
 
-  .problemCard {
+  .resultPanel strong {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .resultPanel p {
     min-height: 0;
-    grid-template-columns: 1.9rem 2.5rem minmax(0, 1fr) auto;
-    padding: 0.82rem;
+    font-size: 0.74rem;
+    line-height: 1.55;
+  }
+
+  .resultPanel button {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 0.4rem;
+    padding-inline: 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  .problemList {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    order: 2;
+    overflow: hidden;
+    border: 1px solid rgba(38, 27, 62, 0.13);
+    border-radius: 14px;
+    background: #ffffff;
+  }
+
+  .problemCard,
+  .problemCard:nth-child(n) {
+    min-height: 70px;
+    grid-column: auto;
+    grid-row: auto;
+    grid-template-columns: 1.75rem 2.35rem minmax(0, 1fr) auto;
+    gap: 0.58rem;
+    border: 0;
+    border-bottom: 1px solid rgba(38, 27, 62, 0.1);
+    border-radius: 0;
+    padding: 0.72rem;
+    background: #ffffff;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .problemCard:last-child {
+    border-bottom: 0;
+  }
+
+  .problemCard:focus-visible {
+    z-index: 1;
+    background: #fff7fa;
+    outline: 3px solid rgba(237, 32, 98, 0.28);
+    outline-offset: -3px;
+    transform: none;
+  }
+
+  .problemCard:active {
+    background: #fff7fa;
+  }
+
+  .problemCard[data-active="true"] {
+    border-color: rgba(38, 27, 62, 0.1);
+    background: #fff1f6;
+    box-shadow: inset 0 0 0 1px #ed2062;
+    transform: none;
   }
 
   .problemCard strong {
-    font-size: 0.93rem;
-    line-height: 1.62;
+    font-size: 0.91rem;
+    line-height: 1.55;
+  }
+
+  .cardNumber {
+    font-size: 0.7rem;
   }
 
   .cardIcon {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 0.82rem;
   }
 
   .selectionBadge {
-    min-height: 26px;
-    padding-inline: 0.55rem;
-    font-size: 0.65rem;
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    min-height: 28px;
+    padding: 0;
+    background: #ed2062;
+  }
+
+  .selectionBadge span {
+    display: none;
+  }
+
+  .selectionBadge i {
+    font-size: 0.68rem;
   }
 }
 
-@media (max-width: 430px) {
-  .problemCard {
-    grid-template-columns: 1.7rem 2.35rem minmax(0, 1fr);
+@media (max-height: 500px) and (min-width: 721px) and (max-width: 900px) {
+  .directionHub {
+    max-width: 620px;
+    margin-inline: auto;
   }
 
-  .selectionBadge {
-    position: absolute;
-    inset-inline-end: 0.7rem;
-    inset-block-start: -0.55rem;
+  .problemList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .problemCard,
+  .problemCard:nth-child(n) {
+    min-height: 74px;
+  }
+
+  .problemCard:nth-child(odd) {
+    border-inline-end: 1px solid rgba(38, 27, 62, 0.1);
+  }
+
+  .problemCard:nth-child(n + 5) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    width: min(100% - 1rem, 1320px);
+  }
+
+  .directionHub {
+    min-height: 136px;
+    grid-template-columns: 94px minmax(0, 1fr);
+    gap: 0.65rem;
+    padding: 0.65rem;
   }
 
   .dialShell {
-    width: min(88vw, 290px);
+    width: 94px;
+  }
+
+  .resultPanel strong {
+    font-size: 0.94rem;
+  }
+
+  .resultPanel p {
+    font-size: 0.7rem;
+  }
+
+  .problemCard,
+  .problemCard:nth-child(n) {
+    grid-template-columns: 1.55rem 2.15rem minmax(0, 1fr) auto;
+    gap: 0.48rem;
+    padding: 0.66rem 0.6rem;
+  }
+
+  .problemCard strong {
+    font-size: 0.87rem;
+  }
+
+  .cardIcon {
+    width: 34px;
+    height: 34px;
   }
 }
 

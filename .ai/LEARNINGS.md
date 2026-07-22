@@ -92,6 +92,22 @@ Applies to: Homepage diagnostic sections and future uses of SWEED’s direction/
 Behavior change: Prefer branded functional diagrams tied to real state over generic illustrative assets; keep the accessible result outside decorative SVG and respect reduced motion.
 Revisit when: SWEED supplies a final approved brand symbol or the problems list changes from six items.
 
+### Mobile adaptation must change composition, not only scale
+
+Lesson: A desktop diagnostic can remain technically responsive yet still feel poor on a phone when the information order and visual weight are unchanged.
+Evidence: The first mobile direction-dial version had no overflow, but placed six separate cards before a 416px result block and produced a 1287px section. Reordering the result first, consolidating choices into one list, and using a compact horizontal dial reduced the section to about 910px at 390px without hiding content.
+Applies to: Homepage diagnostics, interactive marketing sections, and other desktop-to-phone adaptations.
+Behavior change: Audit mobile hierarchy, thumb flow, and vertical cost independently from width/overflow; recompose when the primary action appears too late.
+Revisit when: Real-device testing or content changes alter row heights or interaction order.
+
+### Same-page navigation needs explicit scrolling with full-screen mobile sheets
+
+Lesson: Closing a full-screen menu and updating the hash does not guarantee that Next.js will scroll to the target, especially when menu state and fixed headers are involved.
+Evidence: The mobile menu initially changed `#services` but left `scrollY=0`. A dedicated home-anchor handler now closes the sheet, updates history, calculates the fixed-header offset, and scrolls the target to about `top=65px`.
+Applies to: Home-page anchor links in the public header and mobile CTA.
+Behavior change: Handle same-page hashes explicitly, preserve modified-click behavior, and verify the destination geometry rather than checking the hash alone.
+Revisit when: Navigation moves to a router-native scroll manager or the fixed-header contract changes.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

@@ -1,12 +1,51 @@
 # Tasks
 
-Updated: 2026-07-23T01:59:08+03:00
+Updated: 2026-07-23T02:43:33+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-011 — Adapt problems and navigation for mobile
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-23-mobile-problems-and-navigation.md`
+Decision: `.ai/decisions/DEC-008-mobile-result-first-diagnostic-and-full-sheet-navigation.md`
+Commit: `77692c6 fix: adapt navigation and problems for mobile`
+
+#### Acceptance Criteria
+
+- [x] Compact direction/result module appears before problem choices on phones.
+- [x] Six problem choices form one coherent touch list with complete approved copy.
+- [x] Selection preserves dial, service, solution, CTA, and contact mappings.
+- [x] Mobile problems section is materially shorter than the 1287px baseline.
+- [x] Mobile header and full-height menu sheet are visually coherent and touch-friendly.
+- [x] Menu preserves seven routes, active state, CTA, Escape/focus behavior, and contained scrolling.
+- [x] 320, 360, 390, landscape, tablet, and desktop checks show no clipping or overflow.
+- [x] Reduced motion, check, build, deployment, HTTP, console, and interaction QA pass.
+
+#### Evidence
+
+- 390px problems section reduced from about `1287px` to about `910px`.
+- Mobile dial/result reduced from about `416px` to about `146px` and now precedes the choices.
+- Six complete problem statements render as 70px touch rows inside one 422px diagnostic surface.
+- 844x390 landscape uses a two-column choice list and reduced the section to about `716px`.
+- 320x700 and 844x390 menus show all routes and the primary CTA without menu overflow.
+- Same-page navigation closes the sheet and positions `#services` at approximately `65px` below the viewport top.
+- Escape restores focus to the menu trigger.
+- Problem 01 and 06 retained their exact dial angles, service mappings, and conversion context.
+- Reduced motion, desktop regression, lazy images, browser console/errors, check, build, service, and public HTTP checks passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Collect stakeholder feedback from real iOS and Android devices; make only platform-specific refinements if evidence requires them.
 
 ### SWEED-010 — Replace compass with interactive direction dial
 

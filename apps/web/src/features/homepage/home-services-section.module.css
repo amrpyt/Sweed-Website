@@ -91,7 +91,7 @@
   font-size: 0.92rem;
   font-weight: 850;
   text-decoration: none;
-  transition: background-color 180ms ease, transform 180ms ease;
+  transition: background-color var(--motion-fast), transform var(--motion-fast);
 }
 
 .allServicesLink:hover {
@@ -132,7 +132,7 @@
   padding: clamp(1rem, 1.8vw, 1.4rem);
   color: #261b3e;
   text-decoration: none;
-  transition: background-color 180ms ease;
+  transition: background-color var(--motion-fast);
 }
 
 .serviceItem:hover {
@@ -168,7 +168,7 @@
 
 .media img {
   object-fit: cover;
-  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--motion-layout);
 }
 
 .serviceItem:hover .media img {
@@ -225,7 +225,11 @@
   border: 1px solid rgba(38, 27, 62, 0.12);
   border-radius: 12px;
   color: #261b3e;
-  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  transition:
+    border-color var(--motion-fast),
+    background-color var(--motion-fast),
+    color var(--motion-fast),
+    transform var(--motion-fast);
 }
 
 .serviceItem:hover .arrow {
@@ -323,11 +327,56 @@
   }
 }
 
+@keyframes service-row-enter {
+  from {
+    opacity: 0.48;
+    transform: translate3d(0, 24px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes service-media-reveal {
+  from {
+    clip-path: inset(10% 0 10% 0 round 12px);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0 round 12px);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .serviceList li {
+    animation: service-row-enter linear both;
+    animation-timeline: view();
+    animation-range: entry 8% cover 30%;
+  }
+
+  .media {
+    animation: service-media-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 4% cover 38%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .allServicesLink,
   .serviceItem,
   .media img,
   .arrow {
+    animation: none;
     transition: none;
+  }
+
+  .serviceList li,
+  .media {
+    animation: none;
+    clip-path: none;
+    opacity: 1;
+    transform: none;
   }
 }

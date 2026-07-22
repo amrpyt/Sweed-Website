@@ -42,28 +42,23 @@
   white-space: nowrap !important;
   transform: translateZ(0) !important;
   transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    color 180ms ease !important;
+    transform var(--motion-fast),
+    border-color var(--motion-fast),
+    box-shadow var(--motion-base),
+    color var(--motion-fast) !important;
 }
 
 .fill {
   position: absolute !important;
   z-index: 0 !important;
-  top: 50% !important;
-  left: var(--brand-action-inset) !important;
-  width: var(--brand-action-icon-size) !important;
-  height: var(--brand-action-icon-size) !important;
+  inset: var(--brand-action-inset) !important;
   border-radius: var(--brand-action-inner-radius) !important;
   background: var(--brand-action-fill) !important;
+  clip-path: inset(0 calc(100% - var(--brand-action-icon-size)) 0 0 round var(--brand-action-inner-radius)) !important;
   opacity: 1 !important;
-  transform: translateY(-50%) !important;
   transition:
-    width 360ms cubic-bezier(0.22, 1, 0.36, 1),
-    height 360ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-radius 360ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 120ms ease !important;
+    clip-path var(--motion-layout),
+    opacity var(--motion-instant) !important;
   pointer-events: none !important;
 }
 
@@ -75,9 +70,7 @@
 
 .actionButton:hover .fill,
 .actionButton:focus-visible .fill {
-  width: calc(100% - (var(--brand-action-inset) * 2)) !important;
-  height: calc(100% - (var(--brand-action-inset) * 2)) !important;
-  border-radius: var(--brand-action-inner-radius) !important;
+  clip-path: inset(0 0 0 0 round var(--brand-action-inner-radius)) !important;
   opacity: 1 !important;
 }
 

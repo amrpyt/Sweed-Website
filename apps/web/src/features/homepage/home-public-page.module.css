@@ -68,6 +68,7 @@
   width: 1px;
   background: rgba(38, 27, 62, 0.05);
   z-index: 1;
+  will-change: transform;
 }
 
 .gridLineLeft {
@@ -104,6 +105,7 @@
   background-size: 16px 16px;
   opacity: 0.6;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .matrixLeft {
@@ -362,6 +364,8 @@
   width: 100%;
   align-items: flex-start;
   justify-content: center;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
 }
 
 .heroMediaTrigger {
@@ -420,7 +424,7 @@
   margin-bottom: 0;
   object-fit: contain;
   object-position: bottom;
-  transition: transform 0.4s ease;
+  transition: transform var(--motion-layout);
 }
 
 .buildingWrapper > [data-beam] {

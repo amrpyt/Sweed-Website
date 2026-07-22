@@ -102,12 +102,20 @@
   --focus-ring: 0 0 0 3px rgba(237, 32, 98, 0.18);
   --focus-ring-offset: 0 0 0 2px var(--color-panel);
   
-  /* Motion & Transitions */
-  --motion-instant: 80ms ease;
-  --motion-fast: 160ms cubic-bezier(0.4, 0, 0.2, 1);
-  --motion-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
-  --motion-slow: 420ms cubic-bezier(0.22, 1, 0.36, 1);
-  --motion-spring: 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* SWEED Controlled Cinematic Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-instant: 100ms var(--ease-out-quart);
+  --motion-fast: 160ms var(--ease-out-quart);
+  --motion-base: 240ms var(--ease-out-quint);
+  --motion-layout: 420ms var(--ease-out-quint);
+  --motion-slow: 620ms var(--ease-out-expo);
+  --motion-hero: 760ms var(--ease-out-expo);
+  --motion-spring: var(--motion-slow);
+  --sweed-scroll-progress: 0;
+  --sweed-scroll-velocity: 0;
+  --sweed-scroll-direction: 0;
   
   /* Z-Index Scale */
   --z-base: 0;

@@ -1,6 +1,7 @@
 "use client";
 
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { BorderBeam } from "border-beam";
@@ -45,63 +46,129 @@ export function HomePublicPage() {
 
   useLayoutEffect(() => {
     const section = heroSectionRef.current;
-    if (!section) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const pyramid = pyramidRef.current;
+    const building = buildingRef.current;
+    if (!section || !pyramid || !building) return;
 
-    // Set initial states
-    gsap.set([gridLineLeftRef.current, gridLineRightRef.current], { scaleY: 0, transformOrigin: "top" });
-    gsap.set([matrixLeftRef.current, matrixRightRef.current], { opacity: 0 });
-    gsap.set(buildingRef.current, { y: 60, opacity: 0 });
-    
-    const redDots = section.querySelectorAll(`.${styles.redDot}`);
-    gsap.set(redDots, { scale: 0 });
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
 
-    const tl = gsap.timeline({ delay: 0.2 });
+    gsap.registerPlugin(ScrollTrigger);
 
-    tl.to([gridLineLeftRef.current, gridLineRightRef.current], {
-      scaleY: 1,
-      duration: 1.2,
-      ease: "power4.out",
-    })
-    .to([matrixLeftRef.current, matrixRightRef.current], {
-      opacity: 0.6,
-      duration: 0.9,
-      ease: "power2.out",
-    }, "-=0.8")
-    .to(redDots, {
-      scale: 1,
-      duration: 0.5,
-      ease: "back.out(1.7)",
-      stagger: 0.15,
-    }, "-=0.6")
-    .to(buildingRef.current, {
-      y: 0,
-      opacity: 1,
-      duration: 1.1,
-      ease: "power3.out",
-    }, "-=0.2");
+    const context = gsap.context(() => {
+      const redDots = section.querySelectorAll(`.${styles.redDot}`);
+      const isDesktop = window.matchMedia("(min-width: 769px)").matches;
 
-    const updatePyramid = () => {
-      const pyramid = pyramidRef.current;
-      if (!pyramid) return;
+      gsap.set([gridLineLeftRef.current, gridLineRightRef.current], {
+        scaleY: 0,
+        transformOrigin: "top",
+      });
+      gsap.set([matrixLeftRef.current, matrixRightRef.current], { opacity: 0 });
+      gsap.set(building, { y: 60, opacity: 0 });
+      gsap.set(redDots, { scale: 0.58, opacity: 0 });
 
-      const rect = section.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height * 0.75)));
-      const phase = progress * 2;
-      const peak = phase <= 1 ? 100 - phase * 100 : 0;
-      const sides = phase <= 1 ? 100 : 100 - (phase - 1) * 100;
-      pyramid.style.clipPath = `polygon(0% 100%, 0% ${sides}%, 50% ${peak}%, 100% ${sides}%, 100% 100%)`;
-    };
+      const intro = gsap.timeline({ delay: 0.16 });
 
-    updatePyramid();
-    window.addEventListener("scroll", updatePyramid, { passive: true });
-    window.addEventListener("resize", updatePyramid);
+      intro
+        .to([gridLineLeftRef.current, gridLineRightRef.current], {
+          scaleY: 1,
+          duration: 0.9,
+          ease: "power4.out",
+        })
+        .to(
+          [matrixLeftRef.current, matrixRightRef.current],
+          {
+            opacity: 0.6,
+            duration: 0.72,
+            ease: "power3.out",
+          },
+          "-=0.62",
+        )
+        .to(
+          redDots,
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.36,
+            ease: "power4.out",
+            stagger: 0.09,
+          },
+          "-=0.48",
+        )
+        .to(
+          building,
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.82,
+            ease: "power4.out",
+          },
+          "-=0.12",
+        );
 
-    return () => {
-      tl.kill();
-      window.removeEventListener("scroll", updatePyramid);
-      window.removeEventListener("resize", updatePyramid);
-    };
+      const scrollTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.55,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      scrollTimeline
+        .to(
+          pyramid,
+          {
+            keyframes: [
+              {
+                clipPath: "polygon(0% 100%, 0% 100%, 50% 0%, 100% 100%, 100% 100%)",
+                duration: 0.52,
+              },
+              {
+                clipPath: "polygon(0% 100%, 0% 0%, 50% 0%, 100% 0%, 100% 100%)",
+                duration: 0.48,
+              },
+            ],
+            ease: "none",
+          },
+          0,
+        )
+        .fromTo(
+          building,
+          { yPercent: 0, scale: 1 },
+          {
+            yPercent: isDesktop ? -7 : -2.5,
+            scale: isDesktop ? 1.028 : 1.01,
+            ease: "none",
+          },
+          0,
+        );
+
+      if (isDesktop) {
+        scrollTimeline
+          .fromTo(
+            matrixLeftRef.current,
+            { xPercent: 0, yPercent: 0 },
+            { xPercent: -2, yPercent: -14, ease: "none" },
+            0,
+          )
+          .fromTo(
+            matrixRightRef.current,
+            { xPercent: 0, yPercent: 0 },
+            { xPercent: 2, yPercent: -10, ease: "none" },
+            0,
+          )
+          .fromTo(
+            [gridLineLeftRef.current, gridLineRightRef.current],
+            { yPercent: 0 },
+            { yPercent: -7, ease: "none" },
+            0,
+          );
+      }
+    }, section);
+
+    return () => context.revert();
   }, []);
 
   return (

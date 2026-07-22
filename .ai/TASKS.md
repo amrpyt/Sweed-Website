@@ -1,6 +1,6 @@
 # Tasks
 
-Updated: 2026-07-22T18:44:13+03:00
+Updated: 2026-07-22T18:47:36+03:00
 
 ## Active
 
@@ -26,7 +26,7 @@ Commits: `3402671`, `022c87d`
 - [x] No overflow at desktop, tablet, and mobile widths.
 - [x] Reduced-motion mode keeps all content visible.
 - [x] Check/build/deployment/browser verification passed.
-- [x] Main branch delivery is included in the requested push operation.
+- [x] Main branch was pushed and synchronized with `origin/main`.
 
 #### Evidence
 
@@ -38,6 +38,7 @@ Commits: `3402671`, `022c87d`
 - Escape closes the menu and returns focus to the trigger.
 - Homepage and internal services route have no horizontal overflow or browser errors.
 - Check and build pass; demo service is active; public URL returns HTTP 200.
+- Push succeeded; post-push divergence was `0 0`.
 
 ### SWEED-002 — Rebuild and integrate homepage process section
 

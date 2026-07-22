@@ -1,12 +1,45 @@
 # Tasks
 
-Updated: 2026-07-22T19:41:50+03:00
+Updated: 2026-07-22T20:14:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-007 — Tighten problems-section CTA spacing
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-07-22-problems-cta-spacing.md`
+Commit: `539cf22 fix: tighten problems CTA spacing`
+
+#### Acceptance Criteria
+
+- [x] Desktop last-card-to-CTA gap is reduced from about 100px to 30–50px.
+- [x] Desktop CTA-to-section-bottom gap is reduced from 112px to roughly 48–72px.
+- [x] CTA does not overlap the lowest problem card.
+- [x] Tablet/mobile CTA remains in natural document flow.
+- [x] No horizontal overflow, broken images, or browser errors.
+- [x] `bun run check` and `bun run build` pass.
+- [x] Demo service and public URL return HTTP 200.
+
+#### Evidence
+
+- 1400px: card-to-CTA gap `41.2px`; bottom gap `56px`.
+- 1181px: card-to-CTA gap `33.7px`; no breakpoint overlap.
+- 390px: natural grid flow, no overlap or overflow.
+- Broken images: 0; browser errors/console: none.
+- Check/build/service/public route verification passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Select the next product task.
 
 ### SWEED-006 — Rebuild header, progress, and replayable scroll motion
 

@@ -60,6 +60,14 @@ Applies to: Shared Reveal, GSAP ScrollTrigger sections, and numeric counters.
 Behavior change: Use `restart none restart reset` for non-scrub ScrollTriggers; cancel existing RAF before counter restart/reset; verify reduced-motion specificity keeps content visible.
 Revisit when: Motion architecture moves to CSS View Timelines.
 
+### Premium motion needs one shared direction, not more effects
+
+Lesson: A Framer/Webflow-like feel comes from shared scroll physics, timing, route flow, and selective depth—not from adding independent fades to every section.
+Evidence: SWEED already had Lenis and GSAP, but the experience was fragmented. After centralizing tokens, route entrance, scroll signals, hero scrub choreography, and list-specific View Timelines, browser QA preserved CLS `0`, LCP about `1.16s`, native mobile scrolling, and reduced-motion visibility.
+Applies to: All SWEED public-site motion work.
+Behavior change: New animation must use the shared quart/quint/expo tokens, stay within the motion budget, preserve natural content flow, and be tested on desktop, mobile, and reduced-motion modes.
+Revisit when: The animation runtime changes or Core Web Vitals regress.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

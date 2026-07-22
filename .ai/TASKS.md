@@ -1,12 +1,54 @@
 # Tasks
 
-Updated: 2026-07-22T20:14:00+03:00
+Updated: 2026-07-22T20:55:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-008 — Build controlled cinematic motion system
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-07-22-controlled-cinematic-motion.md`
+Decision: `.ai/decisions/DEC-005-controlled-cinematic-motion-system.md`
+Commit: `4fcec53 feat: add controlled cinematic motion system`
+
+#### Acceptance Criteria
+
+- [x] Shared motion tokens control page, scroll, and interaction timing.
+- [x] Public route navigation has a short non-blocking entrance.
+- [x] Desktop exposes scroll progress, velocity, and direction signals.
+- [x] Hero scroll choreography uses ScrollTrigger instead of a raw scroll listener.
+- [x] Mobile keeps native scrolling and has no overflow.
+- [x] Reduced-motion mode disables parallax/page entrance and keeps content visible.
+- [x] No touched motion uses bounce or elastic easing.
+- [x] `bun run check` and `bun run build` pass.
+- [x] Demo service/public URL and desktop/mobile browser QA pass.
+
+#### Evidence
+
+- Shared quart/quint/expo motion tokens are available globally.
+- Public routes remount inside a 320–420ms route entrance; completed veil becomes hidden.
+- Desktop Lenis remains active and rAF-throttled scroll progress/velocity/direction signals update.
+- Mobile and reduced-motion environments use native scrolling.
+- Hero media, matrices, grid lines, and pyramid mask use one ScrollTrigger scrub timeline.
+- Services use CSS View Timelines with a visible fallback.
+- CTA fill uses clip-path instead of animated width/height.
+- 1440px, 1024px, and 390px checks show no overflow, broken images, console errors, or browser errors.
+- Reduced-motion mode reports zero route animations and fully visible content.
+- Browser sample: CLS `0`, LCP/FCP about `1.16s`, TTFB about `39ms`.
+- Check/build/service/public route verification passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Select the next product or content task.
 
 ### SWEED-007 — Tighten problems-section CTA spacing
 

@@ -4,7 +4,7 @@ import type { CSSProperties, ElementType, ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./reveal.module.css";
 
-type RevealVariant = "fadeUp" | "hero" | "scaleIn" | "slideStart" | "soft";
+type RevealVariant = "fadeUp" | "hero" | "scaleIn" | "slideStart" | "soft" | "clipUp";
 
 type RevealProps<T extends ElementType = "div"> = {
   as?: T;

@@ -13,15 +13,11 @@ type ChatMessage = {
 const titleId = "sweed-ai-advisor-title";
 const knowledgeBaseHref = "/#faq";
 const contactHref = "/#contact";
-const quickPrompts = [
-  "عايز أعرف أنسب باقة لشركة صغيرة",
-  "محتاج خطة تسويق لمشروع جديد",
-  "إزاي أطور المبيعات عندي؟",
-];
+const quickPrompts = homepageContent.aiSupport.prompts;
 
 const initialMessage: ChatMessage = {
   role: "assistant",
-  content: "اختار الطريقة المناسبة لك: شات AI سريع، أو تذكرة دعم من نموذج التواصل.",
+  content: homepageContent.aiSupport.greeting,
 };
 
 export function AiAdvisorWidget() {
@@ -42,6 +38,17 @@ export function AiAdvisorWidget() {
 
     setError("");
     setDraft("");
+
+    const approvedPrompt = quickPrompts.find((prompt) => prompt.question === trimmed);
+    if (approvedPrompt) {
+      setMessages((current) => [
+        ...current,
+        { role: "user", content: trimmed },
+        { role: "assistant", content: approvedPrompt.answer },
+      ]);
+      return;
+    }
+
     setMessages((current) => [...current, { role: "user", content: trimmed }]);
     setIsLoading(true);
 
@@ -143,7 +150,7 @@ export function AiAdvisorWidget() {
               </div>
             </header>
 
-            <div className={styles.choiceIntro}>الزائر يختار: شات AI مباشر أو تذكرة دعم وواتساب.</div>
+            <div className={styles.choiceIntro}>اسأل عن الخدمات أو الباقات، أو سيب بياناتك عشان الفريق يتواصل معاك.</div>
 
             <details className={styles.choicePanel} open>
               <summary className={styles.choiceSummary} role="button">
@@ -178,8 +185,8 @@ export function AiAdvisorWidget() {
               <div className={styles.quickArea}>
                 <div className={styles.quickPrompts} aria-label="اقتراحات سريعة">
                   {quickPrompts.map((prompt) => (
-                    <button key={prompt} type="button" onClick={() => void sendMessage(prompt)} disabled={isLoading}>
-                      {prompt}
+                    <button key={prompt.question} type="button" onClick={() => void sendMessage(prompt.question)} disabled={isLoading}>
+                      {prompt.question}
                     </button>
                   ))}
                 </div>

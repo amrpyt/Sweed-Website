@@ -4,7 +4,7 @@ import { HomePublicPage } from "@/features/homepage";
 export const metadata: Metadata = {
   title: "سويد | وكالة تسويق وإعلان تبني علامات تقود المستقبل",
   description:
-    "سويد شريكك في الاستراتيجية، الهوية البصرية، التسويق الرقمي، الإعلانات، المحتوى، وتطوير التجارب الرقمية التي تحول الانتباه إلى نمو قابل للقياس.",
+    "سويد للاستشارات الإدارية والتسويقية: بنحدد اتجاه مشروعك بالتحليل والأرقام، ونمشي معاك في التنفيذ لحد ما النتايج تتحسن وتبقى قابلة للقياس.",
   alternates: {
     canonical: "https://sweed.com/",
   },
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: "SWEED",
     title: "سويد | وكالة تسويق وإعلان تبني علامات تقود المستقبل",
     description:
-      "استراتيجية وهوية وتسويق وإعلان وتطوير رقمي في مسار واحد واضح يساعد علامتك تنمو.",
+      "استشارات وهوية وتسويق وتطوير وإنتاج في اتجاه واحد واضح يساعد مشروعك يتحرك وينمو بنتائج قابلة للقياس.",
     images: [
       {
         url: "https://sweed.com/images/hero/custom-image.png",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "سويد | وكالة تسويق وإعلان تبني علامات تقود المستقبل",
-    description: "نخطط ونبني وننفذ تجارب تسويقية ورقمية تدفع علامتك للنمو.",
+    description: "بنحدد الاتجاه، نبني الخطة، ونمشي معاك في التنفيذ والقياس خطوة بخطوة.",
     images: ["https://sweed.com/images/hero/custom-image.png"],
   },
 };

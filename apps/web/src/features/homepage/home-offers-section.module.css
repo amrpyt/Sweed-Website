@@ -242,14 +242,33 @@
 
 .allOffersLink {
   display: flex;
-  justify-content: center;
-  margin-top: 2rem;
+  width: min(100%, 860px);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2rem auto 0;
+  border-radius: 14px;
+  padding: 1rem;
+  background: #f4f1f7;
+}
+
+.allOffersLink p {
+  margin: 0;
+  color: #514a5c;
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.7;
 }
 
 .allOffersLink a {
-  color: #261b3e;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  background: #261b3e;
+  color: #ffffff;
+  font-size: 0.84rem;
   font-weight: 800;
-  text-underline-offset: 0.3rem;
+  text-decoration: none;
 }
 
 @media (width < 980px) {
@@ -275,6 +294,12 @@
   .offerHeader {
     padding-inline-end: 0;
     padding-block-start: 2rem;
+  }
+
+  .allOffersLink {
+    align-items: stretch;
+    flex-direction: column;
+    text-align: center;
   }
 }
 

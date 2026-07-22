@@ -5,27 +5,10 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
 import { homepageContent } from "@/content/homepage";
-import { articles } from "@/content/local-data";
 import styles from "./home-faq-blog-section.module.css";
-
-const dateFormatter = new Intl.DateTimeFormat("ar-EG", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
 
 export function HomeFaqBlogSection() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  const latestArticles = useMemo(
-    () =>
-      [...articles]
-        .sort((first, second) => {
-          const dateDifference = Date.parse(second.publishedAt) - Date.parse(first.publishedAt);
-          return dateDifference || second.order - first.order;
-        })
-        .slice(0, 3),
-    [],
-  );
 
   const faqSchema = useMemo(
     () => ({
@@ -55,8 +38,8 @@ export function HomeFaqBlogSection() {
           <div className={styles.faqLayout}>
             <div className={styles.faqHeading}>
               <p className={styles.eyebrow}>الأسئلة الشائعة</p>
-              <h2 id="home-faq-title">إجابات واضحة قبل ما تاخد قرار التواصل.</h2>
-              <p>فتح سؤال جديد يقفل السؤال السابق تلقائيًا، عشان المحتوى يفضل سريع وسهل القراءة.</p>
+              <h2 id="home-faq-title">أسئلة بنسمعها كتير... وإجاباتنا واضحة</h2>
+              <p>كل إجابة بتقولك اللي هيحصل فعلًا: خطوات، مدة، متابعة، ونطاق واضح من الأول.</p>
               <Link href="/faq">شاهد كل الأسئلة</Link>
             </div>
 
@@ -101,8 +84,9 @@ export function HomeFaqBlogSection() {
         <div className={styles.container}>
           <div className={styles.blogHeading}>
             <div>
-              <p className={styles.eyebrow}>المقالات</p>
-              <h2 id="home-blog-title">أحدث أفكارنا عن التسويق والنمو والتجارب الرقمية.</h2>
+              <p className={styles.eyebrow}>من دفتر البوصلة</p>
+              <h2 id="home-blog-title">مقالات بتفيدك فعلًا</h2>
+              <p>خلاصة خبرتنا في السوق — مكتوبة ببساطة عشان تاخد منها قرار، مش معلومة وخلاص.</p>
             </div>
             <Link href="/articles">
               كل المقالات
@@ -111,12 +95,12 @@ export function HomeFaqBlogSection() {
           </div>
 
           <div className={styles.articlesGrid}>
-            {latestArticles.map((article, index) => (
-              <Reveal className={styles.articleReveal} delay={index * 70} key={article.slug} variant="soft">
+            {homepageContent.articles.map((article, index) => (
+              <Reveal className={styles.articleReveal} delay={index * 100} key={article.title} once variant="soft">
                 <article className={styles.articleCard} data-testid="home-latest-article">
-                  <Link className={styles.articleMedia} href={`/articles/${article.slug}`}>
+                  <Link className={styles.articleMedia} href={article.href ?? "/articles"}>
                     <Image
-                      src={article.seo.image ?? "/images/hero/custom-image.png"}
+                      src={article.image ?? "/images/hero/custom-image.png"}
                       alt={`صورة مقال ${article.title}`}
                       fill
                       loading="lazy"
@@ -126,14 +110,14 @@ export function HomeFaqBlogSection() {
                   </Link>
                   <div className={styles.articleBody}>
                     <div className={styles.articleMeta}>
-                      <time dateTime={article.publishedAt}>{dateFormatter.format(new Date(`${article.publishedAt}T00:00:00Z`))}</time>
-                      <span>{article.readingTime}</span>
+                      <span>{article.meta}</span>
+                      <span>دليل عملي</span>
                     </div>
                     <h3>
-                      <Link href={`/articles/${article.slug}`}>{article.title}</Link>
+                      <Link href={article.href ?? "/articles"}>{article.title}</Link>
                     </h3>
                     <p>{article.summary}</p>
-                    <Link className={styles.readMore} href={`/articles/${article.slug}`}>
+                    <Link className={styles.readMore} href={article.href ?? "/articles"}>
                       اقرأ المقال
                       <i className="fas fa-arrow-left" aria-hidden="true" />
                     </Link>

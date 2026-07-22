@@ -2,17 +2,19 @@ import Link from "next/link";
 import { homepageContent } from "@/content/homepage";
 
 export function LegacyFooter() {
+  const contact = homepageContent.contact;
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: legacyFooterCss }} />
       <footer className="footer sweed-common-footer">
         <div className="footer-content">
-          <div className="footer-section">
+          <div className="footer-section footer-brand">
             <h3>SWEED</h3>
-            <p>نصنع حضورك. نطلق مستقبل عملك عبر التسويق والإعلان والتجارب الرقمية.</p>
+            <p>{homepageContent.footer.description}</p>
             <div className="footer-social">
-              <a href={homepageContent.contact.whatsappHref} target="_blank" rel="noreferrer" aria-label="تواصل مع SWEED عبر واتساب">
-                <i className="fab fa-whatsapp" />
+              <a href={contact.whatsappHref} target="_blank" rel="noreferrer" aria-label="تواصل مع SWEED عبر واتساب">
+                <i className="fab fa-whatsapp" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -26,7 +28,6 @@ export function LegacyFooter() {
               <li><Link href="/#portfolio">أعمالنا</Link></li>
               <li><Link href="/#offers">العروض</Link></li>
               <li><Link href="/#blog">المقالات</Link></li>
-              <li><Link href="/#contact">اتصل بنا</Link></li>
             </ul>
           </div>
 
@@ -34,21 +35,31 @@ export function LegacyFooter() {
             <h3>خدماتنا</h3>
             <ul>
               <li><Link href="/services#consulting">الاستشارات</Link></li>
-              <li><Link href="/services#branding">البراند والهوية</Link></li>
+              <li><Link href="/services#branding">الهوية البصرية</Link></li>
               <li><Link href="/services#digital-marketing">التسويق الرقمي</Link></li>
-              <li><Link href="/services#development">البرمجة والمواقع</Link></li>
+              <li><Link href="/services#development">البرمجة والتطوير</Link></li>
+              <li><Link href="/services#advertising">الدعاية والإعلان</Link></li>
+              <li><Link href="/services#media">إنتاج الميديا</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
-            <h3>تواصل معنا</h3>
-            <p><i className="fas fa-phone" /> <a href="tel:+201068274662" dir="ltr">+20 106 827 4662</a></p>
-            <p><i className="fas fa-envelope" /> <a href="mailto:info@sweed.com">info@sweed.com</a></p>
-            <p><i className="fas fa-map-marker-alt" /> القاهرة، مصر</p>
+            <h3>تواصل معانا</h3>
+            <p><i className="fas fa-phone" aria-hidden="true" /> <a href={`tel:${contact.phone.replace(/\s/g, "")}`} dir="ltr">{contact.phone}</a></p>
+            <p><i className="fas fa-envelope" aria-hidden="true" /> <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+            <p><i className="fas fa-map-marker-alt" aria-hidden="true" /> {contact.location}</p>
+          </div>
+
+          <div className="footer-section">
+            <h3>قانوني</h3>
+            <ul>
+              <li><Link href="/privacy">سياسة الخصوصية</Link></li>
+              <li><Link href="/terms">شروط الاستخدام</Link></li>
+            </ul>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2026 SWEED Marketing & Advertising. جميع الحقوق محفوظة.</p>
+          <p>{homepageContent.footer.rights}</p>
         </div>
       </footer>
     </>
@@ -59,7 +70,7 @@ const legacyFooterCss = `
   .sweed-common-footer {
     background: var(--primary-purple, #261b3e) !important;
     color: var(--white, #ffffff) !important;
-    padding: 4rem 0 1.5rem !important;
+    padding: 4.5rem 0 1.5rem !important;
     margin: 0 !important;
   }
 
@@ -68,13 +79,13 @@ const legacyFooterCss = `
     margin: 0 auto !important;
     padding: 0 2rem !important;
     display: grid !important;
-    grid-template-columns: 1.4fr 1fr 1fr 1.15fr !important;
-    gap: 2.5rem !important;
+    grid-template-columns: minmax(240px, 1.45fr) repeat(4, minmax(140px, 1fr)) !important;
+    gap: 2.25rem !important;
   }
 
   .sweed-common-footer .footer-section h3 {
     color: var(--white, #ffffff) !important;
-    font-size: 1.3rem !important;
+    font-size: 1.15rem !important;
     margin: 0 0 1rem !important;
     font-weight: 800 !important;
   }
@@ -87,12 +98,28 @@ const legacyFooterCss = `
     text-decoration: none !important;
   }
 
+  .sweed-common-footer .footer-brand p {
+    max-width: 38ch !important;
+  }
+
   .sweed-common-footer .footer-section ul {
     list-style: none !important;
     padding: 0 !important;
     margin: 0 !important;
     display: grid !important;
-    gap: 0.55rem !important;
+    gap: 0.45rem !important;
+  }
+
+  .sweed-common-footer .footer-section a:hover,
+  .sweed-common-footer .footer-section a:focus-visible {
+    color: #ffffff !important;
+    text-decoration: underline !important;
+    text-underline-offset: 0.25rem !important;
+  }
+
+  .sweed-common-footer .footer-section a:focus-visible {
+    outline: 2px solid rgba(237, 32, 98, 0.7) !important;
+    outline-offset: 3px !important;
   }
 
   .sweed-common-footer .footer-social {
@@ -102,13 +129,13 @@ const legacyFooterCss = `
   }
 
   .sweed-common-footer .footer-social a {
-    width: 38px !important;
-    height: 38px !important;
+    width: 42px !important;
+    height: 42px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: #ed2062 !important;
     color: var(--white, #ffffff) !important;
   }
 
@@ -118,14 +145,31 @@ const legacyFooterCss = `
     padding: 1.2rem 2rem 0 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
     text-align: center !important;
+  }
+
+  .sweed-common-footer .footer-bottom p {
     color: rgba(255, 255, 255, 0.72) !important;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1100px) {
+    .sweed-common-footer .footer-content {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+
+    .sweed-common-footer .footer-brand {
+      grid-column: 1 / -1 !important;
+    }
+  }
+
+  @media (max-width: 720px) {
     .sweed-common-footer .footer-content {
       grid-template-columns: 1fr !important;
       gap: 1.8rem !important;
       padding: 0 1.25rem !important;
+    }
+
+    .sweed-common-footer .footer-brand {
+      grid-column: auto !important;
     }
   }
 `;

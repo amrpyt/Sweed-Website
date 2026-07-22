@@ -115,7 +115,7 @@
 .metricsBar {
   display: grid;
   margin-top: clamp(2rem, 4vw, 3.5rem);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   overflow: hidden;
   border-radius: 16px;
   background: #261b3e;
@@ -160,7 +160,8 @@
     max-width: 18ch;
   }
 
-  .pointsGrid {
+  .pointsGrid,
+  .metricsBar {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -170,6 +171,14 @@
 
   .point:nth-child(even) {
     border-inline-start: 1px solid rgb(38 27 62 / 0.12);
+  }
+
+  .metric:nth-child(3) {
+    border-inline-start: 0;
+  }
+
+  .metric:nth-child(n + 3) {
+    border-block-start: 1px solid rgb(255 255 255 / 0.18);
   }
 }
 
@@ -193,8 +202,12 @@
     min-height: 112px;
   }
 
-  .metric:not(:first-child) {
+  .metric,
+  .metric:nth-child(3) {
     border-inline-start: 0;
+  }
+
+  .metric:not(:first-child) {
     border-block-start: 1px solid rgb(255 255 255 / 0.18);
   }
 }

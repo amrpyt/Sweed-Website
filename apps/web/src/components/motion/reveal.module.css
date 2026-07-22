@@ -2,7 +2,9 @@
   --reveal-delay: 0ms;
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
+  clip-path: inset(0 round 0);
   transition:
+    clip-path 760ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 720ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -40,6 +42,12 @@
   transform: translate3d(0, 16px, 0);
 }
 
+.reveal[data-motion-ready="true"]:not(.visible).clipUp {
+  clip-path: inset(18% 0 82% 0 round 14px);
+  filter: none;
+  transform: translate3d(0, 18px, 0) scale(0.985);
+}
+
 .visible {
   filter: blur(0);
   opacity: 1;
@@ -49,6 +57,7 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal[data-motion-ready="true"]:not(.visible) {
+    clip-path: none;
     opacity: 1;
     filter: none;
     transform: none;

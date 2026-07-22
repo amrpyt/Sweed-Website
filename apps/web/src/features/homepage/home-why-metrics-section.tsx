@@ -93,17 +93,16 @@ export function HomeWhyMetricsSection() {
       <div className={styles.container}>
         <div className={styles.headingLayout}>
           <div>
-            <p className={styles.eyebrow}>ليه تختار SWEED؟</p>
-            <h2 id="home-why-title">نقفل الفجوة بين شكل البراند والنتيجة اللي محتاج تحققها.</h2>
+            <h2 id="home-why-title">ليه تختار سويد؟</h2>
           </div>
           <p className={styles.intro}>
-            فريق واحد يرتب الرسالة، يبني النظام، ينفذ، ويقيس النتيجة من غير ما تضيع بين موردين منفصلين.
+            في مسافة بين قيمة شغلك الحقيقية... وبين اللي السوق شايفه. شغلتنا إننا نقفل المسافة دي.
           </p>
         </div>
 
         <div className={styles.pointsGrid}>
           {homepageContent.why.map((point, index) => (
-            <Reveal className={styles.point} delay={index * 55} key={point.title} variant="soft">
+            <Reveal className={styles.point} delay={index * 90} key={point.title} once variant="soft">
               <span className={styles.pointIcon} aria-hidden="true">
                 <i className={`fas ${point.icon}`} />
               </span>

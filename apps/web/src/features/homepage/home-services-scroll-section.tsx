@@ -10,13 +10,11 @@ export function HomeServicesScrollSection() {
         <div className={styles.intro}>
           <div className={styles.introInner}>
             <span className={styles.sectionLabel}>خدمات SWEED</span>
-            <h2 id="home-services-title">خدماتنا المتكاملة</h2>
-            <p>
-              نربط الاستراتيجية بالهوية والمحتوى والتقنية؛ عشان كل خطوة تخدم نفس الهدف بدل ما تشتغل كل خدمة في اتجاه مختلف.
-            </p>
-            <span className={styles.scope}>استراتيجية · هوية · تسويق · تطوير · إنتاج</span>
+            <h2 id="home-services-title">خدماتنا... كلها بتشتغل في اتجاه واحد: نمو مشروعك</h2>
+            <p>{homepageContent.servicesIntro}</p>
+            <span className={styles.scope}>استشارات · هوية · تسويق · تطوير · إعلان · ميديا</span>
             <Link className={styles.allServicesLink} href="/services">
-              <span>استعرض كل الخدمات</span>
+              <span>شوف كل الخدمات</span>
               <i aria-hidden="true" className="fas fa-arrow-left" />
             </Link>
           </div>
@@ -55,8 +53,9 @@ export function HomeServicesScrollSection() {
                   <span className={styles.summary}>{service.summary}</span>
                 </span>
 
-                <span className={styles.arrow} aria-hidden="true">
-                  <i className="fas fa-arrow-left" />
+                <span className={styles.actionLabel}>
+                  اعرف التفاصيل
+                  <i className="fas fa-arrow-left" aria-hidden="true" />
                 </span>
               </Link>
             </li>

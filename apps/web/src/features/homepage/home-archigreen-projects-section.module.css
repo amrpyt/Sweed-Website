@@ -48,9 +48,16 @@
 
 .headingAside > p {
   margin: 0;
-  color: rgb(255 255 255 / 0.68);
+  color: rgb(255 255 255 / 0.72);
   font-size: 0.96rem;
   line-height: 1.8;
+}
+
+.headingAside > small {
+  color: rgb(255 255 255 / 0.58);
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.7;
 }
 
 .filters {
@@ -144,17 +151,31 @@
   pointer-events: none;
 }
 
-.categoryTag {
+.categoryTag,
+.verificationTag {
   position: absolute;
-  inset-inline-start: 1rem;
   inset-block-start: 1rem;
   z-index: 2;
   border-radius: 999px;
-  background: rgb(255 255 255 / 0.92);
-  color: #261b3e;
   padding: 0.42rem 0.78rem;
   font-size: 0.8rem;
   font-weight: 850;
+}
+
+.categoryTag {
+  inset-inline-start: 1rem;
+  background: rgb(255 255 255 / 0.92);
+  color: #261b3e;
+}
+
+.verificationTag {
+  inset-inline-end: 1rem;
+  background: #ed2062;
+  color: #ffffff;
+}
+
+.projectCard[data-status="pending"] .verificationTag {
+  background: rgb(255 255 255 / 0.16);
 }
 
 .projectBody {
@@ -196,6 +217,13 @@
   padding-block-end: 0.25rem;
   font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 900;
+}
+
+.result[data-pending="true"] {
+  border-block-end-color: rgb(255 255 255 / 0.28);
+  color: rgb(255 255 255 / 0.64);
+  font-size: 0.88rem;
+  font-weight: 700;
 }
 
 .footerAction {

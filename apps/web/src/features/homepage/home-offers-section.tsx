@@ -15,11 +15,9 @@ export function HomeOffersSection() {
         <div className={styles.headingLayout}>
           <div>
             <p className={styles.eyebrow}>العروض والباقات</p>
-            <h2 id="home-offers-title">اختار نقطة البداية المناسبة لمرحلة مشروعك.</h2>
+            <h2 id="home-offers-title">باقات على مقاس مرحلة مشروعك</h2>
           </div>
-          <p>
-            تفاصيل الأسعار والمحتوى النهائي تُعتمد قبل الإطلاق. الهيكل الحالي يوضح الفرق بين كل باقة وما الذي يحصل عليه العميل.
-          </p>
+          <p>{homepageContent.offersIntro}</p>
         </div>
 
         <div className={styles.offersGrid}>
@@ -27,7 +25,7 @@ export function HomeOffersSection() {
             const isSelected = selection.offer === offer.title;
 
             return (
-              <Reveal className={styles.offerReveal} delay={index * 80} key={offer.title} variant="soft">
+              <Reveal className={styles.offerReveal} delay={index * 100} key={offer.title} once variant="soft">
                 <article
                   className={styles.offerCard}
                   data-featured={offer.featured ? "true" : "false"}
@@ -75,7 +73,8 @@ export function HomeOffersSection() {
         </div>
 
         <div className={styles.allOffersLink}>
-          <Link href="/offers">قارن كل تفاصيل العروض</Link>
+          <p>{homepageContent.offersTail}</p>
+          <Link href="/#contact">احجز استشارة ونحدد مع بعض</Link>
         </div>
       </div>
     </section>

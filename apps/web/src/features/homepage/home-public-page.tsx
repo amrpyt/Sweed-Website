@@ -20,7 +20,6 @@ import { HomeGapSection } from "./home-gap-section";
 import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
 import { HomeOffersSection } from "./home-offers-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
-import { HomeProcessCurtainSection } from "./home-process-curtain-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeVideoDialog } from "./home-video-dialog";
 import { HomeWhyMetricsSection } from "./home-why-metrics-section";
@@ -196,6 +195,10 @@ export function HomePublicPage() {
 
           <div className={styles.container}>
             <div className={styles.heroContent}>
+              <HeroFadeIn className={styles.heroEyebrowWrapper} delay={0.08}>
+                <p className={styles.heroEyebrow}>{homepageContent.hero.eyebrow}</p>
+              </HeroFadeIn>
+
               <HeroTextReveal className={styles.heroH1} delay={0.15}>
                 <span className={styles.h1Line}>
                   <span data-word style={{ display: "inline-block", whiteSpace: "pre" }}>نصنع </span>
@@ -205,17 +208,12 @@ export function HomePublicPage() {
                 </span>
                 <br className={styles.h1Break} />
                 <span className={styles.h1Line}>
-                  <span data-word className={styles.highlightText} style={{ display: "inline-block", whiteSpace: "pre" }}>المستقبل.</span>
+                  <span data-word className={styles.highlightText} style={{ display: "inline-block", whiteSpace: "pre" }}>المستقبل</span>
                 </span>
               </HeroTextReveal>
 
               <HeroFadeIn className={styles.heroSubtitleWrapper} delay={0.25}>
-                <p className={styles.heroSubtitle}>
-                  نحن وكالة تسويق وتصميم علامات تجارية متكاملة.
-                </p>
-                <p className={styles.heroSubtitle}>
-                  نساعد الشركات الطموحة على بناء حضور قوي، وتجربة متكاملة، ونمو مستدام.
-                </p>
+                <p className={styles.heroSubtitle}>{homepageContent.hero.subtitle}</p>
               </HeroFadeIn>
 
               <HeroFadeIn delay={0.35}>
@@ -224,6 +222,10 @@ export function HomePublicPage() {
                     <ActionButton action={action} key={action.label} />
                   ))}
                 </div>
+              </HeroFadeIn>
+
+              <HeroFadeIn className={styles.heroTrustLine} delay={0.44}>
+                <p>{homepageContent.hero.trustLine}</p>
               </HeroFadeIn>
 
               <div className={styles.buildingSection}>
@@ -272,8 +274,6 @@ export function HomePublicPage() {
         <HomeGapSection />
 
         <HomeServicesScrollSection />
-
-        <HomeProcessCurtainSection />
 
         <HomeWhyMetricsSection />
 

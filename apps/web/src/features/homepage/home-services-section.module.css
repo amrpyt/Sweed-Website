@@ -47,10 +47,10 @@
 }
 
 .intro h2 {
-  max-width: 10ch;
+  max-width: 15ch;
   margin: 0;
   color: #261b3e;
-  font-size: clamp(2.6rem, 5vw, 4.8rem);
+  font-size: clamp(2.25rem, 4.2vw, 4.1rem);
   font-weight: 850;
   letter-spacing: -0.035em;
   line-height: 0.98;
@@ -126,7 +126,7 @@
 .serviceItem {
   display: grid;
   min-height: 172px;
-  grid-template-columns: 3rem minmax(150px, 190px) minmax(0, 1fr) 3rem;
+  grid-template-columns: 3rem minmax(150px, 190px) minmax(0, 1fr) minmax(6.5rem, auto);
   gap: clamp(1rem, 2vw, 1.6rem);
   align-items: center;
   padding: clamp(1rem, 1.8vw, 1.4rem);
@@ -217,23 +217,26 @@
   text-wrap: pretty;
 }
 
-.arrow {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  place-items: center;
-  border: 1px solid rgba(38, 27, 62, 0.12);
-  border-radius: 12px;
+.actionLabel {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  padding-inline: 0.8rem;
+  background: #f2eff6;
   color: #261b3e;
+  font-size: 0.82rem;
+  font-weight: 850;
+  white-space: nowrap;
   transition:
-    border-color var(--motion-fast),
     background-color var(--motion-fast),
     color var(--motion-fast),
     transform var(--motion-fast);
 }
 
-.serviceItem:hover .arrow {
-  border-color: #d81958;
+.serviceItem:hover .actionLabel {
   background: #d81958;
   color: #ffffff;
   transform: translateX(-2px);
@@ -254,7 +257,7 @@
   }
 
   .serviceItem {
-    grid-template-columns: 2.5rem minmax(130px, 170px) minmax(0, 1fr) 3rem;
+    grid-template-columns: 2.5rem minmax(130px, 170px) minmax(0, 1fr) minmax(6rem, auto);
   }
 }
 
@@ -278,9 +281,9 @@
   .serviceItem {
     min-height: 0;
     grid-template-areas:
-      "index content arrow"
+      "index content action"
       "media media media";
-    grid-template-columns: 2.2rem minmax(0, 1fr) 44px;
+    grid-template-columns: 2.2rem minmax(0, 1fr) minmax(5.8rem, auto);
     gap: 1rem 0.8rem;
     align-items: start;
     padding: 1rem;
@@ -301,8 +304,11 @@
     gap: 0.6rem;
   }
 
-  .arrow {
-    grid-area: arrow;
+  .actionLabel {
+    grid-area: action;
+    min-height: 40px;
+    padding-inline: 0.65rem;
+    font-size: 0.76rem;
   }
 
   .summary {
@@ -367,7 +373,7 @@
   .allServicesLink,
   .serviceItem,
   .media img,
-  .arrow {
+  .actionLabel {
     animation: none;
     transition: none;
   }

@@ -1,0 +1,74 @@
+.page {
+  background: #f7f8fb;
+  color: #261b3e;
+}
+
+.container {
+  width: min(100% - 2rem, 920px);
+  margin-inline: auto;
+}
+
+.hero {
+  padding-block: clamp(4.5rem, 8vw, 7rem);
+  background: #261b3e;
+  color: #ffffff;
+}
+
+.hero p:first-child {
+  margin: 0 0 0.8rem;
+  color: #ff7ba6;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.hero h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 850;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.hero p:last-child {
+  max-width: 62ch;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.content {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.notice {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #fff1f6;
+  color: #5d2340;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.75;
+}
+
+.content article {
+  padding-block: 1.6rem;
+  border-block-end: 1px solid rgba(38, 27, 62, 0.12);
+}
+
+.content h2 {
+  margin: 0;
+  color: #261b3e;
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+  font-weight: 820;
+}
+
+.content p {
+  max-width: 72ch;
+  margin: 0.75rem 0 0;
+  color: #5b5365;
+  line-height: 1.9;
+  text-wrap: pretty;
+}

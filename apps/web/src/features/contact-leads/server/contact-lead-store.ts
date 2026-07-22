@@ -8,6 +8,9 @@ export type ContactLeadInput = {
   phone: string;
   interest: string;
   message: string;
+  activityType?: string;
+  activityLocation?: string;
+  requestType?: string;
   selectedProblem?: string;
   selectedService?: string;
   selectedOffer?: string;

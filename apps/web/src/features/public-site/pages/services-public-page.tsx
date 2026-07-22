@@ -15,7 +15,7 @@ export function ServicesPublicPage() {
         <LegacyDerivedSection className={aboutStyles.anchorSection} header={page.section.header} id={page.section.id}>
           <div className={styles.grid}>
             {page.services.map((service) => (
-              <article className={styles.card} key={service.slug}>
+              <article className={styles.card} id={service.slug} key={service.slug}>
                 <div className={styles.cardBody}>
                   <p className={styles.eyebrow}>{service.category}</p>
                   <h3>{service.title}</h3>

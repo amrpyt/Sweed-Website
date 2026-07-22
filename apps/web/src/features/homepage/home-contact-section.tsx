@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, type ReactNode, useState } from "react";
 import { homepageContent } from "@/content/homepage";
 import { useHomeConversion } from "./home-conversion-context";
 import styles from "./home-contact-section.module.css";
@@ -8,7 +8,9 @@ import styles from "./home-contact-section.module.css";
 type FormValues = {
   name: string;
   phone: string;
-  interest: string;
+  activityType: string;
+  activityLocation: string;
+  requestType: string;
   message: string;
 };
 
@@ -18,7 +20,9 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
 const initialValues: FormValues = {
   name: "",
   phone: "",
-  interest: "",
+  activityType: "",
+  activityLocation: "",
+  requestType: "",
   message: "",
 };
 
@@ -28,25 +32,19 @@ export function HomeContactSection() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
 
-  const interestOptions = useMemo(
-    () => [
-      ...homepageContent.services.map((service) => ({
-        value: service.href?.split("#")[1] ?? service.title,
-        label: service.title,
-      })),
-      ...homepageContent.offers.map((offer) => ({ value: offer.title, label: offer.title })),
-    ],
-    [],
-  );
-
-  const contextInterest = selection.offer || selection.service || "";
-  const effectiveInterest = values.interest || contextInterest;
+  function updateField<Key extends keyof FormValues>(key: Key, value: FormValues[Key]) {
+    setValues((current) => ({ ...current, [key]: value }));
+    setErrors((current) => ({ ...current, [key]: undefined, form: undefined }));
+    if (submitState !== "idle") setSubmitState("idle");
+  }
 
   function validate(formValues: FormValues) {
     const nextErrors: FormErrors = {};
     if (formValues.name.trim().length < 2) nextErrors.name = "اكتب اسمك بحرفين على الأقل";
-    if (!/^[0-9+()\-\s]{8,40}$/.test(formValues.phone.trim())) nextErrors.phone = "اكتب رقم هاتف صحيح";
-    if (!formValues.interest) nextErrors.interest = "اختر الخدمة أو الباقة الأقرب لك";
+    if (!/^[0-9+()\-\s]{8,40}$/.test(formValues.phone.trim())) nextErrors.phone = "اكتب رقم واتساب صحيح";
+    if (formValues.activityType.trim().length < 2) nextErrors.activityType = "اكتب نوع نشاطك";
+    if (formValues.activityLocation.trim().length < 3) nextErrors.activityLocation = "اكتب عنوان النشاط أو موقعه";
+    if (!formValues.requestType) nextErrors.requestType = "اختار نوع الطلب";
     if (formValues.message.trim().length < 10) nextErrors.message = "اكتب نبذة من 10 أحرف على الأقل";
     return nextErrors;
   }
@@ -54,8 +52,7 @@ export function HomeContactSection() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const submittedForm = new FormData(event.currentTarget);
-    const effectiveValues = { ...values, interest: effectiveInterest };
-    const nextErrors = validate(effectiveValues);
+    const nextErrors = validate(values);
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length) {
@@ -70,7 +67,8 @@ export function HomeContactSection() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...effectiveValues,
+          ...values,
+          interest: selection.offer || selection.service || values.requestType,
           website: submittedForm.get("website"),
           selectedProblem: selection.problem ?? "",
           selectedService: selection.service ?? "",
@@ -101,14 +99,16 @@ export function HomeContactSection() {
         <div className={styles.copyColumn}>
           <p className={styles.eyebrow}>اتصل بنا</p>
           <h2 id="home-contact-title">{homepageContent.contact.title}</h2>
-          <p>{homepageContent.contact.summary}</p>
+          <div className={styles.contactIntro}>
+            {homepageContent.contact.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
 
           <div className={styles.contactMethods}>
-            <a href="tel:+201068274662">
+            <a href={`tel:${homepageContent.contact.phone.replace(/\s/g, "")}`}>
               <i className="fas fa-phone" aria-hidden="true" />
               <span>
                 <small>اتصل بنا</small>
-                <strong dir="ltr">+20 106 827 4662</strong>
+                <strong dir="ltr">{homepageContent.contact.phone}</strong>
               </span>
             </a>
             <a href={homepageContent.contact.whatsappHref} target="_blank" rel="noreferrer">
@@ -140,69 +140,83 @@ export function HomeContactSection() {
 
           <div className={styles.formIntro}>
             <p>احجز استشارتك المجانية</p>
-            <span>املأ البيانات الأساسية وسنراجع طلبك قبل التواصل.</span>
+            <span>سطرين عن مشروعك كفاية عشان نبدأ الحوار من مكان واضح.</span>
           </div>
 
           <div className={styles.fieldsGrid}>
-            <label>
-              <span>الاسم</span>
+            <Field label="اسمك" error={errors.name} errorId="home-contact-name-error">
               <input
                 autoComplete="name"
                 name="name"
                 type="text"
+                placeholder="اكتب اسمك"
                 value={values.name}
                 aria-invalid={Boolean(errors.name)}
                 aria-describedby={errors.name ? "home-contact-name-error" : undefined}
-                onChange={(event) => {
-                  setValues((current) => ({ ...current, name: event.target.value }));
-                  setErrors((current) => ({ ...current, name: undefined, form: undefined }));
-                }}
+                onChange={(event) => updateField("name", event.target.value)}
               />
-              {errors.name ? <small id="home-contact-name-error" role="alert">{errors.name}</small> : null}
-            </label>
+            </Field>
 
-            <label>
-              <span>رقم الموبايل</span>
+            <Field label="رقم الموبايل (واتساب)" error={errors.phone} errorId="home-contact-phone-error">
               <input
                 autoComplete="tel"
                 inputMode="tel"
                 name="phone"
                 type="tel"
                 dir="ltr"
+                placeholder="01xxxxxxxxx"
                 value={values.phone}
                 aria-invalid={Boolean(errors.phone)}
                 aria-describedby={errors.phone ? "home-contact-phone-error" : undefined}
-                onChange={(event) => {
-                  setValues((current) => ({ ...current, phone: event.target.value }));
-                  setErrors((current) => ({ ...current, phone: undefined, form: undefined }));
-                }}
+                onChange={(event) => updateField("phone", event.target.value)}
               />
-              {errors.phone ? <small id="home-contact-phone-error" role="alert">{errors.phone}</small> : null}
-            </label>
+            </Field>
           </div>
 
-          <label>
-            <span>الخدمة أو الباقة</span>
-            <select
-              name="interest"
-              value={effectiveInterest}
-              aria-invalid={Boolean(errors.interest)}
-              aria-describedby={errors.interest ? "home-contact-interest-error" : undefined}
-              onChange={(event) => {
-                setValues((current) => ({ ...current, interest: event.target.value }));
-                setErrors((current) => ({ ...current, interest: undefined, form: undefined }));
-              }}
-            >
-              <option value="">اختر الأقرب لاحتياجك</option>
-              {interestOptions.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
-              ))}
-            </select>
-            {errors.interest ? <small id="home-contact-interest-error" role="alert">{errors.interest}</small> : null}
-          </label>
+          <div className={styles.fieldsGrid}>
+            <Field label="نوع النشاط" error={errors.activityType} errorId="home-contact-activity-error">
+              <input
+                autoComplete="organization-title"
+                name="activityType"
+                type="text"
+                placeholder="نوع نشاطك إيه؟"
+                value={values.activityType}
+                aria-invalid={Boolean(errors.activityType)}
+                aria-describedby={errors.activityType ? "home-contact-activity-error" : undefined}
+                onChange={(event) => updateField("activityType", event.target.value)}
+              />
+            </Field>
 
-          <label>
-            <span>رسالتك</span>
+            <Field label="عنوان النشاط" error={errors.activityLocation} errorId="home-contact-location-error">
+              <input
+                autoComplete="street-address"
+                name="activityLocation"
+                type="text"
+                placeholder="الدولة – المحافظة – المدينة أو المركز"
+                value={values.activityLocation}
+                aria-invalid={Boolean(errors.activityLocation)}
+                aria-describedby={errors.activityLocation ? "home-contact-location-error" : undefined}
+                onChange={(event) => updateField("activityLocation", event.target.value)}
+              />
+            </Field>
+          </div>
+
+          <Field label="محتاج إيه؟" error={errors.requestType} errorId="home-contact-request-error">
+            <select
+              name="requestType"
+              value={values.requestType}
+              aria-invalid={Boolean(errors.requestType)}
+              aria-describedby={errors.requestType ? "home-contact-request-error" : undefined}
+              onChange={(event) => updateField("requestType", event.target.value)}
+            >
+              <option value="">اختار: استشارة / خدمة / باقة</option>
+              <option value="استشارة">استشارة</option>
+              <option value="خدمة">خدمة</option>
+              <option value="باقة">باقة</option>
+            </select>
+          </Field>
+
+          <Field label="احكيلنا عن مشروعك" error={errors.message} errorId="home-contact-message-error">
             <textarea
               name="message"
               rows={4}
@@ -210,26 +224,42 @@ export function HomeContactSection() {
               value={values.message}
               aria-invalid={Boolean(errors.message)}
               aria-describedby={errors.message ? "home-contact-message-error" : undefined}
-              placeholder="اكتب نبذة سريعة عن مشروعك أو التحدي الحالي"
-              onChange={(event) => {
-                setValues((current) => ({ ...current, message: event.target.value }));
-                setErrors((current) => ({ ...current, message: undefined, form: undefined }));
-              }}
+              placeholder="سطرين كفاية: نشاطك إيه، وأكبر تحدي عندك دلوقتي"
+              onChange={(event) => updateField("message", event.target.value)}
             />
-            {errors.message ? <small id="home-contact-message-error" role="alert">{errors.message}</small> : null}
-          </label>
+          </Field>
 
           <button type="submit" disabled={submitState === "submitting"} aria-busy={submitState === "submitting"}>
-            {submitState === "submitting" ? "جاري إرسال الطلب..." : "أرسل طلب الاستشارة"}
+            {submitState === "submitting" ? "جاري إرسال الطلب..." : "ابعت طلبك"}
             <i className="fas fa-arrow-left" aria-hidden="true" />
           </button>
 
           <div className={styles.formStatus} aria-live="polite" data-state={submitState}>
-            {submitState === "success" ? "تم استلام طلبك بنجاح. سنتواصل معك في أقرب وقت." : null}
+            {submitState === "success" ? homepageContent.contact.successMessage : null}
             {submitState === "error" && errors.form ? errors.form : null}
           </div>
         </form>
       </div>
     </section>
+  );
+}
+
+function Field({
+  label,
+  error,
+  errorId,
+  children,
+}: {
+  label: string;
+  error?: string;
+  errorId: string;
+  children: ReactNode;
+}) {
+  return (
+    <label>
+      <span>{label}</span>
+      {children}
+      {error ? <small id={errorId} role="alert">{error}</small> : null}
+    </label>
   );
 }

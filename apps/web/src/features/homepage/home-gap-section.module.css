@@ -54,15 +54,8 @@
   text-align: start;
 }
 
-.phrase span {
-  color: #ed2062;
-  font-size: 0.78rem;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-}
-
 .phrase strong {
-  max-width: 7ch;
+  max-width: 8ch;
   color: #261b3e;
   font-size: clamp(2.4rem, 5.6vw, 5.8rem);
   font-weight: 850;
@@ -80,6 +73,18 @@
   box-shadow: 0 8px 0 rgb(237 32 98 / 0.18);
 }
 
+.northMarker {
+  position: absolute;
+  inset-block-start: 8%;
+  inset-inline-start: 50%;
+  z-index: 3;
+  color: #ffffff;
+  font-family: Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transform: translateX(50%);
+}
+
 .visual::after {
   position: absolute;
   inset: 12%;
@@ -90,8 +95,19 @@
 }
 
 .visual img {
-  object-fit: cover;
+  padding: 12%;
+  filter: brightness(0) invert(1);
+  object-fit: contain;
   object-position: center;
+}
+
+.caption {
+  grid-column: 1 / -1;
+  margin: -0.5rem 0 0;
+  color: #ed2062;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 850;
+  text-align: center;
 }
 
 .srOnly {
@@ -129,6 +145,11 @@
 
   .visual {
     width: min(58vw, 220px);
+  }
+
+  .caption {
+    grid-column: auto;
+    margin-top: 0;
   }
 }
 

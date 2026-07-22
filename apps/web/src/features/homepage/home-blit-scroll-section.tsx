@@ -2,17 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Reveal } from "@/components/motion/reveal";
 import { homepageContent } from "@/content/homepage";
 import { HomeVideoDialog } from "./home-video-dialog";
 import styles from "./home-blit-scroll-section.module.css";
 
 export function HomeBlitScrollSection() {
   const video = homepageContent.hero.media[0];
+  const about = homepageContent.about;
 
   return (
     <section className={styles.section} id="about" aria-labelledby="home-about-title">
       <div className={styles.container}>
-        <div className={styles.mediaColumn}>
+        <Reveal className={styles.mediaColumn} once variant="clipUp">
           <HomeVideoDialog
             title="تعرف على SWEED"
             videoSrc={video.src}
@@ -32,22 +34,29 @@ export function HomeBlitScrollSection() {
               <span className={styles.mediaShade} aria-hidden="true" />
               <span className={styles.mediaCopy}>
                 <small>فيديو تعريفي</small>
-                <strong>شاهد كيف نفكر، نخطط، ونحوّل الفكرة إلى حضور قابل للنمو.</strong>
+                <strong>{about.videoLabel}</strong>
               </span>
             </span>
           </HomeVideoDialog>
-        </div>
+        </Reveal>
 
         <div className={styles.copyColumn}>
-          <p className={styles.sectionLabel}>من نحن</p>
-          <h2 id="home-about-title">فريق يفهم مشروعك قبل ما يقترح عليك أي حل.</h2>
-          <p className={styles.summary}>
-            SWEED وكالة تسويق وإعلان متكاملة تجمع الاستراتيجية، الهوية، المحتوى، الإعلان، والتطوير في مسار واحد واضح.
-          </p>
+          <Reveal once variant="soft">
+            <p className={styles.sectionLabel}>من نحن</p>
+            <h2 id="home-about-title">{about.title}</h2>
+          </Reveal>
+
+          <div className={styles.story}>
+            {about.paragraphs.map((paragraph, index) => (
+              <Reveal delay={80 + index * 70} key={paragraph} once variant="soft">
+                <p>{paragraph}</p>
+              </Reveal>
+            ))}
+          </div>
 
           <ul className={styles.points}>
-            {homepageContent.about.map((point) => (
-              <li key={point.title}>
+            {about.points.map((point, index) => (
+              <Reveal as="li" delay={index * 80} key={point.title} once variant="soft">
                 <span className={styles.pointIcon} aria-hidden="true">
                   <i className={`fas ${point.icon}`} />
                 </span>
@@ -55,12 +64,17 @@ export function HomeBlitScrollSection() {
                   <strong>{point.title}</strong>
                   <small>{point.summary}</small>
                 </span>
-              </li>
+              </Reveal>
             ))}
           </ul>
 
-          <Link className={styles.aboutLink} href="/about">
-            تعرف على سويد
+          <div className={styles.directionStatement}>
+            <p>{about.vision}</p>
+            <p>{about.mission}</p>
+          </div>
+
+          <Link className={styles.aboutLink} href={about.action.href}>
+            {about.action.label}
             <i className="fas fa-arrow-left" aria-hidden="true" />
           </Link>
         </div>

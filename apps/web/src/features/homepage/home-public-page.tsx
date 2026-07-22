@@ -19,6 +19,7 @@ import { HomeGapSection } from "./home-gap-section";
 import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
 import { HomeOffersSection } from "./home-offers-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
+import { HomeProcessCurtainSection } from "./home-process-curtain-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 import { HomeVideoDialog } from "./home-video-dialog";
 import { HomeWhyMetricsSection } from "./home-why-metrics-section";
@@ -204,6 +205,8 @@ export function HomePublicPage() {
         <HomeGapSection />
 
         <HomeServicesScrollSection />
+
+        <HomeProcessCurtainSection />
 
         <HomeWhyMetricsSection />
 

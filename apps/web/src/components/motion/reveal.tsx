@@ -20,7 +20,7 @@ export function Reveal<T extends ElementType = "div">({
   children,
   className,
   delay = 0,
-  once = true,
+  once = false,
   variant = "fadeUp",
 }: RevealProps<T>) {
   const Component = (as ?? "div") as ElementType;

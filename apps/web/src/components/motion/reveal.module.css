@@ -47,7 +47,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .reveal[data-motion-ready="true"]:not(.visible) {
     opacity: 1;
     filter: none;
     transform: none;

@@ -18,37 +18,55 @@ function AnimatedMetric({ metric }: { metric: HomeMetric }) {
     const suffix = metric.value.trim().endsWith("%") ? "%" : "";
     const formatter = new Intl.NumberFormat("ar-EG", { maximumFractionDigits: 0 });
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let frameId = 0;
+
+    const formatValue = (value: number) => `${prefix}${formatter.format(value)}${suffix}`;
+    const stopAnimation = () => {
+      window.cancelAnimationFrame(frameId);
+      frameId = 0;
+    };
 
     const showFinalValue = () => {
-      setDisplayValue(`${prefix}${formatter.format(target)}${suffix}`);
+      stopAnimation();
+      setDisplayValue(formatValue(target));
+    };
+
+    const resetValue = () => {
+      stopAnimation();
+      setDisplayValue("0");
+    };
+
+    const startAnimation = () => {
+      stopAnimation();
+      const startedAt = performance.now();
+      const duration = 1100;
+      setDisplayValue("0");
+
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - startedAt) / duration);
+        const eased = 1 - (1 - progress) ** 3;
+        setDisplayValue(formatValue(Math.round(target * eased)));
+
+        if (progress < 1) {
+          frameId = window.requestAnimationFrame(tick);
+        }
+      };
+
+      frameId = window.requestAnimationFrame(tick);
     };
 
     if (reduceMotion) {
       showFinalValue();
-      return;
+      return stopAnimation;
     }
 
-    let frameId = 0;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-
-        const startedAt = performance.now();
-        const duration = 1100;
-
-        const tick = (now: number) => {
-          const progress = Math.min(1, (now - startedAt) / duration);
-          const eased = 1 - (1 - progress) ** 3;
-          const currentValue = Math.round(target * eased);
-          setDisplayValue(`${prefix}${formatter.format(currentValue)}${suffix}`);
-
-          if (progress < 1) {
-            frameId = window.requestAnimationFrame(tick);
-          }
-        };
-
-        frameId = window.requestAnimationFrame(tick);
+        if (entry.isIntersecting) {
+          startAnimation();
+        } else {
+          resetValue();
+        }
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.18 },
     );
@@ -57,7 +75,7 @@ function AnimatedMetric({ metric }: { metric: HomeMetric }) {
 
     return () => {
       observer.disconnect();
-      window.cancelAnimationFrame(frameId);
+      stopAnimation();
     };
   }, [metric.value]);
 

@@ -56,7 +56,8 @@ export function TextSignalReveal({
           start,
           end: scrub ? "top 42%" : undefined,
           scrub: scrub ? 0.8 : false,
-          once: !scrub,
+          once: false,
+          toggleActions: scrub ? undefined : "restart none restart reset",
         },
       });
 

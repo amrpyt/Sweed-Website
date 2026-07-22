@@ -5,51 +5,76 @@ import { useEffect, useState } from "react";
 type ScrollHeaderVisibilityOptions = {
   disabled?: boolean;
   hideAfter?: number;
-  revealDelta?: number;
+  hideDistance?: number;
+  revealDistance?: number;
+  throttleMs?: number;
 };
 
 export function useScrollHeaderVisibility({
   disabled = false,
   hideAfter = 120,
-  revealDelta = 8,
+  hideDistance = 18,
+  revealDistance = 10,
+  throttleMs = 40,
 }: ScrollHeaderVisibilityOptions = {}) {
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
     if (disabled) return;
 
-    let lastScrollY = window.scrollY;
+    let lastScrollY = Math.max(window.scrollY, 0);
+    let direction: -1 | 0 | 1 = 0;
+    let accumulatedDistance = 0;
     let timeoutId: number | undefined;
 
     const updateVisibility = () => {
-      const currentScrollY = window.scrollY;
+      const currentScrollY = Math.max(window.scrollY, 0);
       const delta = currentScrollY - lastScrollY;
+      const nextDirection: -1 | 0 | 1 = delta > 0 ? 1 : delta < 0 ? -1 : 0;
 
       if (currentScrollY <= hideAfter) {
+        accumulatedDistance = 0;
+        direction = 0;
         setIsHidden(false);
-      } else if (delta > revealDelta) {
-        setIsHidden(true);
-      } else if (delta < -revealDelta) {
-        setIsHidden(false);
+      } else if (nextDirection !== 0) {
+        if (nextDirection !== direction) {
+          direction = nextDirection;
+          accumulatedDistance = 0;
+        }
+
+        accumulatedDistance += Math.abs(delta);
+
+        if (direction === 1 && accumulatedDistance >= hideDistance) {
+          setIsHidden(true);
+          accumulatedDistance = 0;
+        } else if (direction === -1 && accumulatedDistance >= revealDistance) {
+          setIsHidden(false);
+          accumulatedDistance = 0;
+        }
       }
 
-      lastScrollY = Math.max(currentScrollY, 0);
+      lastScrollY = currentScrollY;
       timeoutId = undefined;
     };
 
     const handleScroll = () => {
-      if (timeoutId) return;
-      timeoutId = window.setTimeout(updateVisibility, 40);
+      if (timeoutId !== undefined) return;
+      timeoutId = window.setTimeout(updateVisibility, throttleMs);
     };
+
+    const initialFrameId = window.requestAnimationFrame(() => {
+      setIsHidden(false);
+      updateVisibility();
+    });
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    updateVisibility();
 
     return () => {
+      window.cancelAnimationFrame(initialFrameId);
       window.removeEventListener("scroll", handleScroll);
-      if (timeoutId) window.clearTimeout(timeoutId);
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
     };
-  }, [disabled, hideAfter, revealDelta]);
+  }, [disabled, hideAfter, hideDistance, revealDistance, throttleMs]);
 
   return disabled ? false : isHidden;
 }

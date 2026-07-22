@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { LegacyPageKey } from "./legacy-routes";
 import { defaultNavItems, homeNavItems, isActivePage, primaryNavigationId } from "./legacy-header.config";
+import { useScrollHeaderVisibility } from "./use-scroll-header-visibility";
 import styles from "./legacy-header.module.css";
 
 export function LegacyHeader({ page }: { page: LegacyPageKey }) {
@@ -13,6 +14,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
   const consultationHref = page === "home" ? "/#contact" : "/contact";
+  const isHidden = useScrollHeaderVisibility({ disabled: isOpen });
 
   useEffect(() => {
     if (!isOpen) return;
@@ -46,7 +48,14 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   }, [isOpen]);
 
   return (
-    <header ref={headerRef} className={styles.header} data-testid="sweed-standard-header">
+    <>
+      <div aria-hidden="true" className={styles.headerSpacer} />
+      <header
+        ref={headerRef}
+        className={`${styles.header} ${isHidden ? styles.headerHidden : ""} ${isOpen ? styles.headerMenuOpen : ""}`}
+        data-header-hidden={isHidden ? "true" : "false"}
+        data-testid="sweed-standard-header"
+      >
       <nav aria-label="القائمة الرئيسية" className={styles.nav}>
         <Link className={styles.logo} href="/" aria-label="SWEED الرئيسية" onClick={() => setIsOpen(false)}>
           <Image alt="SWEED" height={80} priority src="/sweed-logo-official.svg" width={300} />
@@ -100,7 +109,8 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           <span />
           <span />
         </button>
-      </nav>
-    </header>
+        </nav>
+      </header>
+    </>
   );
 }

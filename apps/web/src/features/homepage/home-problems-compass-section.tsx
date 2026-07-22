@@ -58,12 +58,12 @@ export function HomeProblemsCompassSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
-          once: true,
+          toggleActions: "restart none restart reset",
         },
       });
 
       timeline
-        .to(compassRef.current, { scale: 1, rotate: 0, opacity: 1, duration: 0.65, ease: "back.out(1.45)" })
+        .to(compassRef.current, { scale: 1, rotate: 0, opacity: 1, duration: 0.65, ease: "power3.out" })
         .to(
           cards,
           isDesktop

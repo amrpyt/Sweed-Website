@@ -1,12 +1,32 @@
+.headerSpacer {
+  width: 100%;
+  height: 77px;
+}
+
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 80;
+  right: 0;
+  left: 0;
+  z-index: var(--z-sticky, 1100);
   width: 100%;
   border-bottom: 1px solid rgba(38, 27, 62, 0.09);
-  background: rgba(255, 255, 255, 0.96);
+  background: #ffffff;
   color: #261b3e;
-  backdrop-filter: blur(14px);
+  transform: translate3d(0, 0, 0);
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 200ms ease;
+  will-change: transform;
+}
+
+.headerHidden {
+  pointer-events: none;
+  transform: translate3d(0, calc(-100% - 4px), 0);
+}
+
+.headerMenuOpen,
+.header:focus-within {
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
 }
 
 .nav {
@@ -183,6 +203,10 @@
 }
 
 @media (max-width: 1080px) {
+  .headerSpacer {
+    height: 71px;
+  }
+
   .nav {
     width: min(100% - 1.5rem, 1280px);
     min-height: 70px;
@@ -277,6 +301,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .header,
   .navList a,
   .desktopCta,
   .mobileCta,

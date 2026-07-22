@@ -36,7 +36,7 @@ export function HomeProcessCurtainSection() {
           scrollTrigger: {
             trigger: intro,
             start: "top 82%",
-            once: true,
+            toggleActions: "restart none restart reset",
           },
         },
       );
@@ -53,7 +53,7 @@ export function HomeProcessCurtainSection() {
             scrollTrigger: {
               trigger: step,
               start: "top 86%",
-              once: true,
+              toggleActions: "restart none restart reset",
             },
           },
         );

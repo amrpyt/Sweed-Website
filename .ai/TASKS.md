@@ -1,6 +1,6 @@
 # Tasks
 
-Updated: 2026-07-22T03:10:00+03:00
+Updated: 2026-07-22T18:44:13+03:00
 
 ## Active
 
@@ -8,39 +8,46 @@ Updated: 2026-07-22T03:10:00+03:00
 
 ## Completed
 
-### SWEED-002 — Rebuild and integrate homepage process section
+### SWEED-005 — Restore navbar and rebuild services section
 
 Status: completed
-Priority: high
-Plan: `.ai/plans/2026-07-22-home-process-section.md`
-Commit: `885103f feat: add homepage process section`
+Priority: critical
+Plan: `.ai/plans/2026-07-22-navbar-and-services-overhaul.md`
+Commits: `3402671`, `022c87d`
 
 #### Acceptance Criteria
 
-- [x] Process section appears after services on the live homepage.
-- [x] All four process steps and durations are visible.
-- [x] No dark section flip or long pinned-scroll behavior remains.
-- [x] Desktop/mobile layouts have no horizontal overflow.
+- [x] Desktop navigation is visible inline without a drawer.
+- [x] Mobile navigation opens below the header instead of from the side.
+- [x] Mobile menu supports Escape, focus return, active states, and 44px touch targets.
+- [x] All six services render in normal document flow.
+- [x] Services use no pinned scroll, absolute panel stack, or horizontal carousel.
+- [x] No duplicate services heading remains.
+- [x] No overflow at desktop, tablet, and mobile widths.
 - [x] Reduced-motion mode keeps all content visible.
-- [x] `bun run check` and `bun run build` pass.
-- [x] Demo service and public URL return HTTP 200.
-- [x] Browser console has no new errors.
+- [x] Check/build/deployment/browser verification passed.
+- [x] Main branch delivery is included in the requested push operation.
 
 #### Evidence
 
-- Section is rendered between services and outcome metrics.
-- Desktop and mobile browser QA passed.
-- Mobile sticky behavior is disabled and all step widths fit the viewport.
-- Reduced-motion nodes remain fully visible with no transforms.
-- Check/build/service/public route verification passed.
+- Audit score improved from `9/20` to `19/20`.
+- Desktop services height reduced from about `2489px` to `1361px`.
+- Desktop list is `730/730px` client/scroll width; mobile is `353/353px`.
+- All six service panels use `position: static`.
+- Mobile navigation links are full-width `366px` with `48px` height at a 390px viewport.
+- Escape closes the menu and returns focus to the trigger.
+- Homepage and internal services route have no horizontal overflow or browser errors.
+- Check and build pass; demo service is active; public URL returns HTTP 200.
+
+### SWEED-002 — Rebuild and integrate homepage process section
+
+Status: completed
+Commit: `885103f`
 
 ### SWEED-001 — Restore browser brand identity
 
 Status: completed
-Plan: `.ai/plans/2026-07-22-brand-assets-and-favicon.md`
 Commits: `6265594`, `32122d0`
-
-- Root favicon metadata, checks, build, deployment, and desktop/mobile verification completed.
 
 ## Backlog
 

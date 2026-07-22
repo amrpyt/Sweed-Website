@@ -68,6 +68,22 @@ Applies to: All SWEED public-site motion work.
 Behavior change: New animation must use the shared quart/quint/expo tokens, stay within the motion budget, preserve natural content flow, and be tested on desktop, mobile, and reduced-motion modes.
 Revisit when: The animation runtime changes or Core Web Vitals regress.
 
+### Portfolio proof must be encoded as data state
+
+Lesson: Visual disclaimers alone are not enough when a content source mixes documented and illustrative case studies; verification status must exist in the content model and tests.
+Evidence: The approved final homepage source explicitly documented one result and marked the remaining examples as format samples. SWEED-009 added `verified`/`pending` states, rendered visible status labels, and tested that pending cards carry no numerical result.
+Applies to: Portfolio cards, testimonials, metrics, and any marketing proof.
+Behavior change: Require source, approval, timeframe, and measurable outcome before publishing a numerical claim; keep pending proof explicitly labeled and non-numeric.
+Revisit when: A new case study is formally documented and approved.
+
+### Public card links need real slug-aware destinations
+
+Lesson: A correct-looking dynamic URL is still broken if the route renders one legacy fixed page for every slug.
+Evidence: `/articles/project-needs-direction` initially opened the correct URL but displayed an unrelated legacy article title. Replacing the legacy wrapper with slug-aware SSG pages fixed both articles and services.
+Applies to: `articles/[slug]`, `services/[slug]`, and future dynamic public content.
+Behavior change: Resolve the requested slug against the content repository, return `notFound()` when absent, generate metadata per item, and include a browser assertion for the destination H1.
+Revisit when: Dynamic content moves from local data to Convex or another CMS.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

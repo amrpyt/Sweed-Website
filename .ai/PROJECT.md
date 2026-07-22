@@ -51,3 +51,6 @@ SWEED is an Arabic-first marketing and advertising agency website for Egyptian f
 - Improve existing UI without replacing the current stack or rebuilding from scratch.
 - Keep copy direct, confident, practical, and free of generic AI marketing language.
 - Use existing official SWEED assets whenever available instead of inventing substitutes.
+- Treat the approved July 2026 homepage content as the public-homepage source of truth until a newer approved delivery replaces it.
+- Never publish invented client names, numerical outcomes, testimonials, or guarantees; only verified proof may appear as factual marketing content.
+- Official contact/social replacements and final media remain external launch inputs and must not be guessed.

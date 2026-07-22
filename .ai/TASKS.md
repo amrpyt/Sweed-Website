@@ -1,12 +1,53 @@
 # Tasks
 
-Updated: 2026-07-22T20:55:00+03:00
+Updated: 2026-07-23T01:04:40+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-009 — Install final homepage content
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-23-homepage-final-content.md`
+Decision: `.ai/decisions/DEC-006-publish-only-verified-case-study-results.md`
+Commit: `271a6a7 feat: install final SWEED homepage content`
+
+#### Acceptance Criteria
+
+- [x] Homepage sections render in the approved final order.
+- [x] Approved copy is present across hero, problems, about, slogan, services, why, portfolio, offers, FAQ, articles, contact, footer, and AI support.
+- [x] Problem cards preserve the approved hidden service mappings and prefill contact context.
+- [x] No unverified portfolio metric is presented as fact.
+- [x] Expanded contact fields and approved success copy work.
+- [x] Motion uses the approved four-family budget and reduced-motion remains complete.
+- [x] Desktop/tablet/mobile show no overflow, clipped Arabic text, broken images, or browser errors.
+- [x] `bun run check`, `bun run build`, service health, and public HTTP verification pass.
+
+#### Evidence
+
+- Approved final order renders from hero through footer; standalone Process section is absent.
+- Counts verified: 6 problems, 6 services, 4 metrics, 3 portfolio cards, 3 offers, 8 FAQs, and 3 latest articles.
+- Problem and offer selections populate the conversion state and hidden contact fields, then focus the contact section.
+- Contact form exposes the six approved required fields and rejects empty submission without a network request.
+- One verified portfolio result is published; two additional cards are explicitly marked `قيد التوثيق` with no numerical claim.
+- AI quick prompts return approved deterministic answers without API loading.
+- Dynamic service/article pages resolve matching slugs and are statically generated.
+- Navigation uses the approved seven-item order; mobile dropdown fits without overflow.
+- 1440, 1024, 768, and 390 browser checks passed with zero console/browser errors and no horizontal overflow.
+- Reduced-motion mode keeps all content visible and disables Lenis/route motion.
+- Browser smoke measured CLS `0` and FCP/LCP about `984ms`.
+
+#### Blockers
+
+- Official replacement contact/social details, final compass artwork, and additional verified case studies are still external content inputs.
+
+#### Next Action
+
+Replace the current contact placeholders and pending portfolio cards only when verified official inputs are delivered.
 
 ### SWEED-008 — Build controlled cinematic motion system
 

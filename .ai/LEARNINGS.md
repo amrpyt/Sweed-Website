@@ -84,6 +84,14 @@ Applies to: `articles/[slug]`, `services/[slug]`, and future dynamic public cont
 Behavior change: Resolve the requested slug against the content repository, return `notFound()` when absent, generate metadata per item, and include a browser assertion for the destination H1.
 Revisit when: Dynamic content moves from local data to Convex or another CMS.
 
+### Brand metaphors work best when they drive interaction
+
+Lesson: A central brand symbol should earn its visual weight through feedback and decision support, not remain a decorative stock illustration.
+Evidence: Replacing the traditional compass image with a six-node SWEED direction dial reduced duplicate choice signals, rotated toward the selected problem, exposed the recommended service/solution, and preserved the contact mapping without new dependencies.
+Applies to: Homepage diagnostic sections and future uses of SWEED’s direction/compass metaphor.
+Behavior change: Prefer branded functional diagrams tied to real state over generic illustrative assets; keep the accessible result outside decorative SVG and respect reduced motion.
+Revisit when: SWEED supplies a final approved brand symbol or the problems list changes from six items.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

@@ -1,12 +1,50 @@
 # Tasks
 
-Updated: 2026-07-23T01:04:40+03:00
+Updated: 2026-07-23T01:59:08+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-010 — Replace compass with interactive direction dial
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-07-23-problems-direction-dial.md`
+Decision: `.ai/decisions/DEC-007-direction-dial-as-diagnostic-ui.md`
+Commit: `0fcd911 feat: add interactive SWEED direction dial`
+
+#### Acceptance Criteria
+
+- [x] Traditional compass image is replaced by a custom SWEED direction dial.
+- [x] Six problem choices map to six visible needle directions.
+- [x] Selected service and solution update visibly and via `aria-live`.
+- [x] Existing problem-to-service contact mappings remain correct.
+- [x] CTA is unavailable before selection and preserves the selected conversion context afterward.
+- [x] Redundant radio/check affordances are removed from problem cards.
+- [x] Desktop/tablet/mobile and reduced-motion states have no overlap, clipping, or overflow.
+- [x] Check, build, service, public route, and browser QA pass.
+
+#### Evidence
+
+- Old compass image count inside the problems section is zero.
+- Six branded SVG nodes and a central `S` mark render without external artwork.
+- Problem 01 rotated to `54deg`; problem 06 rotated to `-126deg`.
+- Result panel updated to `الاستشارات الإدارية`, `التسويق الرقمي`, `البرمجة والتطوير`, and the matching approved solution copy.
+- CTA stayed disabled before selection, then focused contact with the exact problem/service/source mapping.
+- Desktop, 1024px tablet, and 390px mobile checks showed no overflow or clipped cards.
+- Keyboard focus outline is visible; reduced motion keeps the final selected state with effectively zero transition duration.
+- Check/build/service/public URL and browser console/error checks passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Collect stakeholder feedback on the live direction-dial treatment before extending the motif to other sections.
 
 ### SWEED-009 — Install final homepage content
 

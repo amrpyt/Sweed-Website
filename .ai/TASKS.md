@@ -1,6 +1,6 @@
 # Tasks
 
-Updated: 2026-07-22T18:47:36+03:00
+Updated: 2026-07-22T19:41:50+03:00
 
 ## Active
 
@@ -8,37 +8,48 @@ Updated: 2026-07-22T18:47:36+03:00
 
 ## Completed
 
-### SWEED-005 — Restore navbar and rebuild services section
+### SWEED-006 — Rebuild header, progress, and replayable scroll motion
 
 Status: completed
 Priority: critical
-Plan: `.ai/plans/2026-07-22-navbar-and-services-overhaul.md`
-Commits: `3402671`, `022c87d`
+Plan: `.ai/plans/2026-07-22-scroll-system-overhaul.md`
+Commit: `685660d fix: rebuild scroll interaction system`
 
 #### Acceptance Criteria
 
-- [x] Desktop navigation is visible inline without a drawer.
-- [x] Mobile navigation opens below the header instead of from the side.
-- [x] Mobile menu supports Escape, focus return, active states, and 44px touch targets.
-- [x] All six services render in normal document flow.
-- [x] Services use no pinned scroll, absolute panel stack, or horizontal carousel.
-- [x] No duplicate services heading remains.
-- [x] No overflow at desktop, tablet, and mobile widths.
-- [x] Reduced-motion mode keeps all content visible.
-- [x] Check/build/deployment/browser verification passed.
-- [x] Main branch was pushed and synchronized with `origin/main`.
+- [x] Fixed header hides on downward scrolling and returns on upward scrolling.
+- [x] Header remains visible while navigation is open or focused.
+- [x] Progress indicator is visible above the header and tracks the full document.
+- [x] No fixed blur overlay remains at the top of the website.
+- [x] Viewport-triggered animations replay after exit and re-entry.
+- [x] Reduced-motion mode keeps content visible without animation.
+- [x] Desktop/mobile browser checks show no overflow or console errors.
+- [x] `bun run check` and `bun run build` pass.
+- [x] Demo service and public URL return HTTP 200.
 
 #### Evidence
 
-- Audit score improved from `9/20` to `19/20`.
-- Desktop services height reduced from about `2489px` to `1361px`.
-- Desktop list is `730/730px` client/scroll width; mobile is `353/353px`.
-- All six service panels use `position: static`.
-- Mobile navigation links are full-width `366px` with `48px` height at a 390px viewport.
-- Escape closes the menu and returns focus to the trigger.
-- Homepage and internal services route have no horizontal overflow or browser errors.
-- Check and build pass; demo service is active; public URL returns HTTP 200.
-- Push succeeded; post-push divergence was `0 0`.
+- Header is fixed at z-index 1100 and reserves responsive layout space.
+- Downward scroll hid the desktop header to `top=-81`; upward scroll restored `top=0`.
+- Mobile reproduced the same behavior and kept the header visible while its menu was open.
+- Progress sits at z-index 1201, reached intermediate values, and reached `100%` at document end.
+- Global GradualBlur overlay count is zero.
+- Reveal, process, text, and metric animations reset/replay on viewport re-entry.
+- Reduced-motion mode displays all content and final metric values.
+- Check/build/service/public/browser verification passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Select the next product or content task.
+
+### SWEED-005 — Restore navbar and rebuild homepage services
+
+Status: completed
+Commits: `3402671`, `022c87d`, `e32d576`, `80f4a75`
 
 ### SWEED-002 — Rebuild and integrate homepage process section
 

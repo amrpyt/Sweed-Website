@@ -1,6 +1,6 @@
 # Learnings
 
-Updated: 2026-07-22T18:44:13+03:00
+Updated: 2026-07-22T19:41:50+03:00
 
 ## Validated Project Lessons
 
@@ -36,12 +36,39 @@ Applies to: Public SWEED navigation.
 Behavior change: Keep desktop links inline and reserve the menu trigger for responsive widths only.
 Revisit when: Navigation information architecture changes substantially.
 
+### Fixed header needs explicit space and direction hysteresis
+
+Lesson: `position: sticky` was not reliable under the current page/smooth-scroll runtime; a fixed header with a matching spacer and accumulated scroll-direction distance is deterministic and avoids jitter.
+Evidence: Before the fix, the header reported `top=-2500` at `scrollY=2500`. After the fix, downward scroll moved it to `top=-81`, upward scroll restored `top=0`, and the mobile menu kept it visible while open.
+Applies to: Public SWEED header.
+Behavior change: Keep header height and spacer height synchronized at each breakpoint; use transform-only hide/show and accumulated-distance thresholds.
+Revisit when: Lenis is removed or the header height changes.
+
+### Reading progress should not rerender React on every scroll
+
+Lesson: A reading indicator is better driven by a CSS Scroll Progress Timeline with a direct transform fallback than by React state updates plus a transition.
+Evidence: The new indicator stayed above the header at z-index 1201, tracked intermediate progress, and reached 100% at document end without component rerenders.
+Applies to: Global reading progress UI.
+Behavior change: Use CSS `animation-timeline: scroll(root block)` where available; retain throttled imperative ARIA/fallback updates.
+Revisit when: Browser support allows removing the fallback.
+
+### Replayable motion must reset both visual state and work loops
+
+Lesson: Making animations replay requires resetting offscreen state and cancelling active animation frames/tweens, not merely removing `once: true`.
+Evidence: Reveal states cycled true/false/true, process steps reset and replayed through intermediate transforms, and metric counters reset to zero then completed again without concurrent RAF loops.
+Applies to: Shared Reveal, GSAP ScrollTrigger sections, and numeric counters.
+Behavior change: Use `restart none restart reset` for non-scrub ScrollTriggers; cancel existing RAF before counter restart/reset; verify reduced-motion specificity keeps content visible.
+Revisit when: Motion architecture moves to CSS View Timelines.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.
 - Do not report lazy-loaded images as broken solely because `naturalWidth` is zero before their section enters the viewport; verify the asset URL and load after scrolling through the section.
 - Do not use pinned scroll, absolute panel stacks, or hidden horizontal carousels for primary content without a clear user benefit and measured responsive evidence.
 - Do not treat a visually unusual menu as automatically better; route discoverability is the priority.
+- Do not place a fixed decorative blur over navigation or progress UI; it obscures hierarchy and increases paint cost.
+- Do not use React state plus a visual transition for per-scroll progress tracking.
+- Do not change a reveal to replay without testing exit reset, re-entry, reduced motion, and concurrent animation cancellation.
 
 ## Successful Patterns
 
@@ -49,6 +76,7 @@ Revisit when: Navigation information architecture changes substantially.
 - Validate public UI changes at 1280, 1024, 768, and 390 widths, including console errors and horizontal overflow.
 - Test interactive mobile navigation by checking closed/open geometry, Escape behavior, focus return, and touch-target dimensions.
 - Measure before/after DOM geometry instead of relying only on visual impression.
+- Test scroll systems as state transitions: top → down-hidden → up-visible → menu-open → reduced-motion.
 - Stage explicit paths for focused commits when unrelated work exists.
 
 ## Project Gotchas

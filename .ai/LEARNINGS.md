@@ -108,6 +108,14 @@ Applies to: Home-page anchor links in the public header and mobile CTA.
 Behavior change: Handle same-page hashes explicitly, preserve modified-click behavior, and verify the destination geometry rather than checking the hash alone.
 Revisit when: Navigation moves to a router-native scroll manager or the fixed-header contract changes.
 
+### Mobile sheets need bounded geometry and verified outbound links
+
+Lesson: A mobile navigation surface feels native when it is visibly bounded, closes through multiple paths, and only exposes destinations that are real.
+Evidence: Replacing the full-height white menu with a 600px top sheet at 390×844 removed the empty-page feeling, while backdrop close, Escape/focus restoration, focus cycling, and fixed-header anchor positioning all passed. Only repository-verified WhatsApp, phone, and email actions were published.
+Applies to: Public mobile navigation, overlays, quick-contact panels, and future social-profile rows.
+Behavior change: Prefer bounded sheets with explicit backdrop geometry; never guess social URLs, and render profiles from verified content data only.
+Revisit when: Official social links arrive or real iOS Safari testing changes the safe-area/height contract.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

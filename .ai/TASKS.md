@@ -1,12 +1,48 @@
 # Tasks
 
-Updated: 2026-07-23T02:43:33+03:00
+Updated: 2026-07-23T04:55:46+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-012 — Build iOS-style top-sheet navigation
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-23-ios-top-sheet-navigation.md`
+Decision: `.ai/decisions/DEC-009-bounded-top-sheet-and-verified-social-links.md`
+Commit: `091685e feat: add iOS-style mobile top sheet`
+
+#### Acceptance Criteria
+
+- [x] Trigger uses a centered professional bars icon and centered X icon.
+- [x] Mobile menu opens as a bounded top sheet with backdrop and grab handle.
+- [x] Seven routes, active state, CTA, Escape/focus, outside close, and anchor offset remain correct.
+- [x] Verified WhatsApp, phone, and email actions appear; no fake social URL is added.
+- [x] 320, 390, landscape, tablet, and desktop show no overflow or clipping.
+- [x] Reduced motion, check, build, deployment, public HTTP, console, and browser checks pass.
+
+#### Evidence
+
+- Font Awesome Free `fa-bars` and `fa-xmark` are centered inside the 44px trigger.
+- 390×844 sheet is about `359×600px`; 320×700 sheet is about `294×576px` and needs no internal scrolling.
+- 844×390 uses internal sheet scrolling and a two-column navigation layout without horizontal overflow.
+- Backdrop covers the full area below the 65px header and closes the menu when tapped.
+- Escape closes and restores focus; Tab and Shift+Tab stay within the trigger/sheet interaction loop.
+- `#services` navigation closes the sheet and positions the target about `68px` below the viewport top.
+- `السوشيال والتواصل` exposes verified WhatsApp, phone, and email actions.
+- Desktop inline navigation is unchanged; reduced motion, console, browser errors, check, build, service, and public HTTP passed.
+
+#### Blockers
+
+- Official Instagram/Facebook/TikTok profile URLs are still external inputs and were not guessed.
+
+#### Next Action
+
+Collect real-device feedback and add official social profiles through `siteSettings.socialLinks` when supplied.
 
 ### SWEED-011 — Adapt problems and navigation for mobile
 

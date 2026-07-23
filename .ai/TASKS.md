@@ -1,12 +1,70 @@
 # Tasks
 
-Updated: 2026-07-23T12:48:50+03:00
+Updated: 2026-07-23T17:17:22+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-017 — Build complete About page
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-23-full-about-page.md`
+Source: `3- ملف بيانات وتصميم من نحن.docx`
+Commit: `50207ff feat: build complete SWEED about page`
+
+#### Acceptance Criteria
+
+- [x] `/about` renders all approved sections in order with approved copy.
+- [x] Hero, story/video, founder, promise, values, methodology, numbers, team, alliances, partners, testimonials, and CTA are complete.
+- [x] Homepage and About numbers remain synchronized.
+- [x] Placeholder people, logos, alliances, and testimonials are visibly non-verified.
+- [x] Team/testimonial sliders and methodology path work on desktop and mobile.
+- [x] Footer, AI widget, navigation, reduced motion, and accessibility remain intact.
+- [x] Check, focused tests, build, service, HTTP, console, errors, and responsive browser QA pass.
+
+#### Dependencies
+
+- Existing GSAP, Embla, shared video dialog, animated counter, public shell, header, footer, and AI advisor were reused.
+- Official founder/team portraits, partner/alliance logos, and approved testimonials are still external pre-launch inputs.
+
+#### Relevant Files
+
+- `apps/web/src/content/about-page.ts`
+- `apps/web/src/features/public-site/pages/about-public-page.tsx`
+- `apps/web/src/features/public-site/pages/about-public-page.module.css`
+- `apps/web/src/features/public-site/pages/about-page-motion.tsx`
+- `apps/web/src/features/public-site/pages/about-page-carousel.tsx`
+- `apps/web/src/features/public-site/pages/about-page-content.test.ts`
+- `apps/web/src/features/public-site/pages/public-page-shell.tsx`
+- `apps/web/src/app/(marketing)/about/page.tsx`
+- `apps/web/src/content/homepage.ts`
+
+#### Evidence
+
+- DOM order verified across all 12 page sections; the generic legacy About composition is no longer rendered.
+- Hero owns one breadcrumb and uses line-level Arabic-safe GSAP motion without character splitting.
+- Shared story video opens the approved MP4 in the native dialog.
+- Values render `3×2` desktop and `2×3` mobile; numbers render four desktop and `2×2` mobile.
+- Five-stage methodology draws horizontally on desktop and vertically on mobile.
+- Team carousel shows four desktop and card-and-partial phone; testimonials show two desktop and one phone with paused autoplay.
+- Placeholder verification labels appear on four team slots, four alliances, all partner-logo slots, and all testimonial models.
+- Focused content guard tests pass 4/4; check/build/deploy and representative routes pass.
+- 1440, 1024, 390, and 320 checks show no horizontal overflow or broken images.
+- Reduced motion keeps all content visible and disables marquee motion.
+- Console and browser errors are empty; Web Vitals smoke measured CLS `0`.
+
+#### Blockers
+
+- No engineering blocker. Official media and approved proof remain required before final production launch.
+
+#### Next Action
+
+Collect official portraits, logos, alliance names, and written testimonial approvals, then replace only the visibly marked placeholder records.
+
 
 ### SWEED-016 — Make homepage breathing gaps white
 

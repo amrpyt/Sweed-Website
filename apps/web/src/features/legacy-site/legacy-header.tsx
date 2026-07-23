@@ -163,7 +163,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className={styles.navLabel}>{item.label}</span>
-                    <i className={`fas fa-arrow-left ${styles.navArrow}`} aria-hidden="true" />
+                    <span className={styles.navArrow} aria-hidden="true">←</span>
                   </Link>
                 </li>
               );

@@ -140,6 +140,14 @@ Applies to: Homepage section sequencing and future long-form marketing pages.
 Behavior change: Use a shared fluid separation token for section boundaries, then tune internal padding separately for hierarchy.
 Revisit when: A future section intentionally bleeds into its neighbor or page length becomes excessive.
 
+### Font icon utilities can override responsive visibility
+
+Lesson: Hiding a Font Awesome icon through a generic CSS-module class is not reliable when the library’s global display rule loads later in the cascade.
+Evidence: Mobile-only route arrows appeared before every desktop navbar label even though `.navArrow` was grouped under `display: none`; replacing the icon element with a CSS-owned text glyph restored deterministic desktop/mobile visibility.
+Applies to: Responsive navigation affordances and any decorative icon that changes by breakpoint.
+Behavior change: Use a project-owned wrapper/glyph for breakpoint-controlled decoration, or apply a selector with explicit cascade ownership instead of relying on a library icon’s display property.
+Revisit when: Font Awesome is removed or the header icon system is centralized.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

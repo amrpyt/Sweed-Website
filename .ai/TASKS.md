@@ -1,12 +1,45 @@
 # Tasks
 
-Updated: 2026-07-23T06:35:00+03:00
+Updated: 2026-07-23T07:05:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-015 — Clean desktop navbar
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-23-desktop-navbar-cleanup.md`
+Commit: `23119c8 fix: clean desktop navigation arrows`
+
+#### Acceptance Criteria
+
+- [x] Desktop route links show no arrows.
+- [x] Mobile top-sheet links retain one directional arrow.
+- [x] Logo, route list, and CTA align and fit from 1280px through 1700px.
+- [x] Active route remains visually clear.
+- [x] Mobile top sheet behavior and layout remain intact.
+- [x] Check, build, deployment, HTTP, console, errors, and responsive QA pass.
+
+#### Evidence
+
+- Replaced the Font Awesome route-arrow element with a CSS-controlled text glyph.
+- Visible desktop arrow count is zero at 1081, 1280, 1440, 1590, and 1700px.
+- No desktop link overlap or horizontal overflow was found.
+- Mobile 390px top sheet retains seven visible arrows and requires no internal scroll.
+- Escape focus restoration, reduced motion, and same-page `#services` navigation remain correct.
+- Check/build, service readiness, public HTTP, console, and browser error checks passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Collect stakeholder review; no implementation work remains in SWEED-015.
 
 ### SWEED-014 — Clean hero video and homepage rhythm
 

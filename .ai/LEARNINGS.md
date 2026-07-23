@@ -124,6 +124,22 @@ Applies to: Homepage identity, portfolio hero media, and other core marketing vi
 Behavior change: Keep primary media in normal flow with a visible baseline; reserve reveal wrappers for secondary copy and decorative enhancement.
 Revisit when: The shared Reveal component guarantees server-visible output and visual QA confirms no blank intermediate state.
 
+### One interaction should have one dominant affordance
+
+Lesson: Wrapping custom media controls inside a shared interactive component can silently duplicate the same action and make the interface look broken.
+Evidence: The about video combined a custom pink play circle with `HomeVideoDialog`’s own play badge and label. Removing the custom control left one clear trigger while preserving the dialog and MP4 source.
+Applies to: Video cards, modals, buttons with nested controls, and reusable interactive wrappers.
+Behavior change: Before adding custom action chrome inside a reusable trigger, inspect what the wrapper already renders and verify visible affordance counts in the browser.
+Revisit when: `HomeVideoDialog` API changes to support custom trigger chrome explicitly.
+
+### Inter-section rhythm needs a shared page-level token
+
+Lesson: Independent section padding does not guarantee comfortable transitions; a shared page-level separation creates predictable breathing room without editing every module.
+Evidence: SWEED-014 added one fluid direct-section gap measuring 85px at 1700px, 51px at 1024px, and 28px on phones, while preserving each section’s internal composition.
+Applies to: Homepage section sequencing and future long-form marketing pages.
+Behavior change: Use a shared fluid separation token for section boundaries, then tune internal padding separately for hierarchy.
+Revisit when: A future section intentionally bleeds into its neighbor or page length becomes excessive.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

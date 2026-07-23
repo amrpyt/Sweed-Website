@@ -1,12 +1,48 @@
 # Tasks
 
-Updated: 2026-07-23T05:35:00+03:00
+Updated: 2026-07-23T06:35:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-014 — Clean hero video and homepage rhythm
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-23-homepage-rhythm-and-video-cleanup.md`
+Commit: `8e5122d fix: clean homepage video and section rhythm`
+
+#### Acceptance Criteria
+
+- [x] Hero contains no video trigger or play control.
+- [x] Hero building artwork and decorative scroll motion remain visible.
+- [x] About media exposes exactly one play affordance.
+- [x] “مين سويد؟” title scale is balanced across desktop and mobile.
+- [x] Homepage sections have a consistent fluid breathing gap.
+- [x] Desktop/mobile have no overflow, clipping, broken images, or browser errors.
+- [x] Reduced motion, check, build, service, public HTTP, and primary video QA pass.
+
+#### Evidence
+
+- Hero video trigger and play-icon counts are both zero; building artwork remains loaded.
+- Hero GSAP motion still changes the building from scale `1` to `1.028` and moves it upward during scroll.
+- About section has exactly one video trigger and one visible play icon; dialog opens the approved MP4.
+- About title renders without Arabic letter squeezing or overflow from 1700px through 320px.
+- Direct section gaps measure `85px` at 1700px, `51px` at 1024px, and `28px` on phone widths.
+- About play affordance does not overlap media copy at 390px.
+- Full lazy-image checks at 1024px and 320px found no broken images.
+- Reduced motion, check, build, local readiness, public HTTP, console, and browser error checks passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Collect stakeholder feedback from the live spacing rhythm; no implementation work remains in SWEED-014.
 
 ### SWEED-013 — Redesign homepage about section
 

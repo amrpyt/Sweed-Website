@@ -8,16 +8,18 @@ import { SectionHashSync } from "../client/section-hash-sync";
 export function PublicPageShell({
   page,
   sectionIds,
+  showBreadcrumb = true,
   children,
 }: {
   page: LegacyPageKey;
   sectionIds?: string[];
+  showBreadcrumb?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <>
       <LegacyHeader page={page} />
-      <LegacyBreadcrumb page={page} />
+      {showBreadcrumb ? <LegacyBreadcrumb page={page} /> : null}
       {sectionIds?.length ? <SectionHashSync sectionIds={sectionIds} /> : null}
       {children}
       <LegacyFooter />

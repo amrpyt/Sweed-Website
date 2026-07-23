@@ -156,7 +156,7 @@ export const homepageContent = {
     image: "/images/homepage/compass-problems.png",
   },
   stats: [
-    { value: "+16", label: "سنة خبرة في السوق المصري والعربي" },
+    { value: "+15", label: "سنة خبرة في السوق المصري والعربي" },
     { value: "+343", label: "مشروع اتنفذ في قطاعات مختلفة" },
     { value: "+150", label: "عميل كملوا معانا مشاريعهم" },
     { value: "98%", label: "التزام بمواعيد التسليم" },

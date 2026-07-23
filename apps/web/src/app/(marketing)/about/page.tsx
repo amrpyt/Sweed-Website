@@ -1,11 +1,9 @@
+import { aboutPageContent } from "@/content/about-page";
 import { AboutPublicPage } from "@/features/public-site/pages/about-public-page";
-import { getAboutPageModel } from "@/features/public-site";
-
-const aboutPage = getAboutPageModel();
 
 export const metadata = {
-  title: aboutPage.seo.title,
-  description: aboutPage.seo.description,
+  title: aboutPageContent.seo.title,
+  description: aboutPageContent.seo.description,
 };
 
 export default AboutPublicPage;

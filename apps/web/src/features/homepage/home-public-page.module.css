@@ -12,7 +12,7 @@
   --shadow: 0 18px 55px rgba(38, 27, 62, 0.12);
   --home-section-gap: clamp(2.75rem, 5vw, 5.5rem);
   overflow: visible;
-  background: #f3f4f7;
+  background: #ffffff;
   color: var(--ink);
   direction: rtl;
   font-family: var(--font-body);

@@ -1,12 +1,47 @@
 # Tasks
 
-Updated: 2026-07-23T04:55:46+03:00
+Updated: 2026-07-23T05:35:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-013 — Redesign homepage about section
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-23-about-section-redesign.md`
+Commit: `2016dce refactor: rebuild homepage about section`
+
+#### Acceptance Criteria
+
+- [x] Desktop uses the full 1320px composition without a narrow central text block.
+- [x] Video remains visible and interactive without reveal-state dependency.
+- [x] Approved story, principles, vision, mission, and CTA remain complete.
+- [x] Identity, story, proof, and direction have clear visual hierarchy.
+- [x] 1440, 1024, 768, 390, and 320 widths have no clipping or overflow.
+- [x] Reduced motion, check, build, service, public HTTP, console, and browser QA pass.
+- [ ] All local commits are pushed normally and local/remote divergence is 0/0.
+
+#### Evidence
+
+- Desktop content uses the full 1320px container with a 666px media column and 567px copy column at 1440px.
+- Video image loads and the native `تعرف على SWEED` dialog opens with the correct MP4 source.
+- All four story paragraphs, four principles, vision, mission, and CTA remain rendered.
+- 1024px retains two columns; 768px and below stack intentionally.
+- 390px and 320px show no clipping or horizontal overflow.
+- Reduced motion keeps all content visible.
+- Check/build/service/public HTTP and browser console/error checks passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Push the verified local commits and confirm local/remote divergence is 0/0.
 
 ### SWEED-012 — Build iOS-style top-sheet navigation
 

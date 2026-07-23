@@ -116,6 +116,14 @@ Applies to: Public mobile navigation, overlays, quick-contact panels, and future
 Behavior change: Prefer bounded sheets with explicit backdrop geometry; never guess social URLs, and render profiles from verified content data only.
 Revisit when: Official social links arrive or real iOS Safari testing changes the safe-area/height contract.
 
+### Core brand media must not depend on reveal state
+
+Lesson: A primary identity image or video should remain visible in the default document state; reveal motion may enhance it but must not determine whether the section feels complete.
+Evidence: The previous “مين سويد؟” layout wrapped its main video in a clip reveal and could appear as a narrow text-only column in stakeholder screenshots. The rebuilt section keeps the media visible by default and uses the full 1320px composition.
+Applies to: Homepage identity, portfolio hero media, and other core marketing visuals.
+Behavior change: Keep primary media in normal flow with a visible baseline; reserve reveal wrappers for secondary copy and decorative enhancement.
+Revisit when: The shared Reveal component guarantees server-visible output and visual QA confirms no blank intermediate state.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

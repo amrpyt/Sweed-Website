@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import type { LegacyPageKey } from "./legacy-routes";
+import { siteSettings } from "@/content/local-data";
 import { defaultNavItems, homeNavItems, isActivePage, primaryNavigationId } from "./legacy-header.config";
 import { useScrollHeaderVisibility } from "./use-scroll-header-visibility";
 import styles from "./legacy-header.module.css";
@@ -51,10 +52,36 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
     if (!isOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return;
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
 
-      setIsOpen(false);
-      menuButtonRef.current?.focus();
+      if (event.key !== "Tab") return;
+
+      const panel = document.getElementById(primaryNavigationId);
+      const trigger = menuButtonRef.current;
+      if (!panel || !trigger) return;
+
+      const focusable = [
+        trigger,
+        ...Array.from(panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')),
+      ].filter((element) => element.getClientRects().length > 0);
+
+      if (focusable.length === 0) return;
+
+      event.preventDefault();
+      const currentIndex = focusable.indexOf(document.activeElement as HTMLElement);
+      const nextIndex = event.shiftKey
+        ? currentIndex <= 0
+          ? focusable.length - 1
+          : currentIndex - 1
+        : currentIndex < 0 || currentIndex === focusable.length - 1
+          ? 0
+          : currentIndex + 1;
+
+      focusable[nextIndex]?.focus();
     };
 
     const handlePointerDown = (event: PointerEvent) => {
@@ -92,15 +119,32 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           <Image alt="SWEED" height={80} priority src="/sweed-logo-official.svg" width={300} />
         </Link>
 
+        <button
+          aria-hidden="true"
+          aria-label="إغلاق قائمة التنقل"
+          className={`${styles.menuBackdrop} ${isOpen ? styles.menuBackdropOpen : ""}`}
+          tabIndex={-1}
+          type="button"
+          onClick={closeMenuBeforeNavigation}
+        />
+
         <div
-          aria-hidden={!isOpen ? undefined : false}
+          aria-hidden={isOpen ? false : undefined}
+          aria-label={isOpen ? "قائمة التنقل" : undefined}
+          aria-modal={isOpen ? true : undefined}
           className={`${styles.menuPanel} ${isOpen ? styles.menuPanelOpen : ""}`}
           data-open={isOpen ? "true" : "false"}
           id={primaryNavigationId}
+          role={isOpen ? "dialog" : undefined}
         >
+          <span className={styles.sheetHandle} aria-hidden="true" />
+
           <div className={styles.mobileMenuIntro}>
-            <strong>استكشف سويد</strong>
-            <span>الخدمات، الأعمال، والمحتوى اللي يساعد مشروعك يتحرك صح.</span>
+            <div>
+              <strong>استكشف سويد</strong>
+              <span>اختار وجهتك، أو تواصل معانا مباشرة.</span>
+            </div>
+            <span className={styles.sheetStatus}>SWEED</span>
           </div>
 
           <ul className={styles.navList}>
@@ -125,6 +169,37 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
               );
             })}
           </ul>
+
+          <div className={styles.contactBlock} aria-label="وسائل التواصل السريع">
+            <span className={styles.contactTitle}>السوشيال والتواصل</span>
+            <div className={styles.contactActions}>
+              <a href={siteSettings.whatsappUrl} target="_blank" rel="noreferrer" aria-label="تواصل عبر واتساب">
+                <i className="fab fa-whatsapp" aria-hidden="true" />
+                <span>واتساب</span>
+              </a>
+              <a href={`tel:${siteSettings.primaryPhone.replace(/\s+/g, "")}`} aria-label="اتصل بسويد">
+                <i className="fas fa-phone" aria-hidden="true" />
+                <span>اتصال</span>
+              </a>
+              <a href={`mailto:${siteSettings.primaryEmail}`} aria-label="راسل سويد بالبريد الإلكتروني">
+                <i className="fas fa-envelope" aria-hidden="true" />
+                <span>بريد</span>
+              </a>
+            </div>
+          </div>
+
+          {siteSettings.socialLinks?.length ? (
+            <div className={styles.socialBlock} aria-label="حسابات سويد على السوشيال ميديا">
+              <span className={styles.contactTitle}>تابعنا</span>
+              <div className={styles.socialActions}>
+                {siteSettings.socialLinks.map((link) => (
+                  <a href={link.href} key={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           <Link
             className={styles.mobileCta}
@@ -154,9 +229,10 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           type="button"
           onClick={() => setIsOpen((current) => !current)}
         >
-          <span />
-          <span />
-          <span />
+          <span className={styles.menuGlyphs} aria-hidden="true">
+            <i className={`fas fa-bars ${styles.menuGlyph} ${isOpen ? styles.menuGlyphHidden : ""}`} />
+            <i className={`fas fa-xmark ${styles.menuGlyph} ${styles.menuGlyphClose} ${isOpen ? styles.menuGlyphVisible : ""}`} />
+          </span>
         </button>
         </nav>
       </header>

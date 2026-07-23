@@ -46,14 +46,15 @@
 }
 
 .headingBlock h2 {
-  max-width: 11ch;
+  max-width: none;
   margin: 0;
   color: #261b3e;
-  font-size: clamp(3rem, 6.4vw, 6.2rem);
+  font-size: clamp(2.9rem, 5.2vw, 5.2rem);
   font-weight: 850;
-  letter-spacing: -0.035em;
-  line-height: 1.02;
+  letter-spacing: 0;
+  line-height: 1.08;
   text-wrap: balance;
+  white-space: nowrap;
 }
 
 .leadBlock {
@@ -136,30 +137,6 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(20, 12, 34, 0.05) 28%, rgba(20, 12, 34, 0.88) 100%);
-}
-
-.playButton {
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-  z-index: 2;
-  display: grid;
-  width: clamp(58px, 6vw, 78px);
-  aspect-ratio: 1;
-  place-items: center;
-  border-radius: 50%;
-  background: #ed2062;
-  color: #ffffff;
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
-  box-shadow: 0 0 0 12px rgba(237, 32, 98, 0.18);
-  transform: translate(-50%, -50%);
-  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms ease;
-}
-
-.videoTrigger:hover .playButton,
-.videoTrigger:focus-visible .playButton {
-  box-shadow: 0 0 0 16px rgba(237, 32, 98, 0.16);
-  transform: translate(-50%, -50%) scale(1.06);
 }
 
 .mediaCopy {
@@ -420,10 +397,6 @@
     gap: 1.5rem;
   }
 
-  .headingBlock h2 {
-    max-width: 13ch;
-  }
-
   .leadBlock {
     justify-self: stretch;
   }
@@ -456,7 +429,7 @@
   }
 
   .headingBlock h2 {
-    font-size: clamp(2.75rem, 15vw, 4.4rem);
+    font-size: clamp(2.6rem, 13vw, 3.75rem);
   }
 
   .leadBlock p {
@@ -470,11 +443,6 @@
 
   .mediaFrame {
     aspect-ratio: 4 / 3;
-  }
-
-  .playButton {
-    width: 58px;
-    box-shadow: 0 0 0 9px rgba(237, 32, 98, 0.18);
   }
 
   .mediaCopy strong {
@@ -558,7 +526,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .poster,
-  .playButton,
   .aboutLink {
     transition: none;
   }

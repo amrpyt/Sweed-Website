@@ -21,7 +21,6 @@ import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-sectio
 import { HomeOffersSection } from "./home-offers-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
-import { HomeVideoDialog } from "./home-video-dialog";
 import { HomeWhyMetricsSection } from "./home-why-metrics-section";
 import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
@@ -237,26 +236,20 @@ export function HomePublicPage() {
                     <path d="M-100 120 C 150 20, 350 220, 600 120 C 850 20, 1050 220, 1300 120" stroke="rgba(38, 27, 62, 0.04)" strokeWidth="1" fill="none" />
                   </svg>
                   <BorderBeam size="pulse-outside" colorVariant="colorful" strength={0.7}>
-                    <HomeVideoDialog
-                      title="فيديو SWEED التعريفي"
-                      videoSrc={homepageContent.hero.media[0].src}
-                      poster={homepageContent.hero.media[0].poster}
-                      triggerClassName={styles.heroMediaTrigger}
-                      triggerTestId="home-hero-video-trigger"
-                    >
+                    <div className={styles.heroMediaArtwork}>
                       <div className={styles.buildingBeamFrame}>
                         <span className={styles.buildingBeamEdge} aria-hidden="true" />
                         <span className={styles.buildingBeamEdge} aria-hidden="true" />
                         <Image
                           src={homepageContent.hero.media[0].poster}
-                          alt={homepageContent.hero.media[0].alt}
+                          alt="واجهة مبنى SWEED"
                           width={800}
                           height={450}
                           priority
                           className={styles.buildingImg}
                         />
                       </div>
-                    </HomeVideoDialog>
+                    </div>
                   </BorderBeam>
                 </div>
               </div>

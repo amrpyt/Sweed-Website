@@ -51,9 +51,6 @@ export function HomeBlitScrollSection() {
                     className={styles.poster}
                   />
                   <span className={styles.mediaShade} aria-hidden="true" />
-                  <span className={styles.playButton} aria-hidden="true">
-                    <i className="fas fa-play" />
-                  </span>
                   <span className={styles.mediaCopy}>
                     <small>فيديو تعريفي</small>
                     <strong>{about.videoLabel}</strong>

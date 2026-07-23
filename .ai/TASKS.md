@@ -1,12 +1,40 @@
 # Tasks
 
-Updated: 2026-07-23T07:05:00+03:00
+Updated: 2026-07-23T12:48:50+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-016 — Make homepage breathing gaps white
+
+Status: completed
+Priority: high
+Commit: `167fb93 fix: make homepage section gaps white`
+
+#### Acceptance Criteria
+
+- [x] Inter-section breathing gaps use pure white.
+- [x] Existing gap sizes remain unchanged.
+- [x] Desktop and mobile retain no horizontal overflow.
+- [x] Check, build, deployment, HTTP, console, and browser QA pass.
+
+#### Evidence
+
+- Homepage root background changed from `#f3f4f7` to `#ffffff`.
+- Gap background measured as `rgb(255, 255, 255)` across all direct homepage section boundaries.
+- Desktop retained 72px gaps at 1440px; mobile retained 28px gaps at 390px.
+- No browser errors, console errors, or horizontal overflow were found.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Collect stakeholder visual review; no implementation work remains in SWEED-016.
 
 ### SWEED-015 — Clean desktop navbar
 

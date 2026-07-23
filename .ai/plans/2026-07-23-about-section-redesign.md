@@ -39,7 +39,7 @@ Rebuild the homepage about section so it uses the available desktop width, keeps
 - [x] 1440, 1024, 768, 390, and 320 widths show no clipping or overflow.
 - [x] Reduced motion keeps all content visible.
 - [x] Check, build, service, public HTTP, console, and browser QA pass.
-- [ ] All local commits, including the top-sheet work, are pushed to `origin/main` after verification.
+- [x] All local commits, including the top-sheet work, are pushed to `origin/main` after verification.
 
 ## Completion Evidence
 
@@ -50,6 +50,7 @@ Rebuild the homepage about section so it uses the available desktop width, keeps
 - Native `<dialog>` video opens as `تعرف على SWEED` with the correct MP4 source.
 - Reduced motion has no hidden content.
 - Check/build/service/public HTTP and browser console/error checks passed.
+- Normal push advanced `origin/main` from `409c591` to `0f17c31`; post-push divergence was `0/0` before the final delivery-record commit.
 
 ## Risks
 

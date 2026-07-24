@@ -1,12 +1,48 @@
 # Tasks
 
-Updated: 2026-07-23T17:17:22+03:00
+Updated: 2026-07-24T16:30:54+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-018 — Audit and repair public-site links
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-24-site-link-audit.md`
+Commit: `2efb74a fix: route public navigation to live pages`
+
+#### Acceptance Criteria
+
+- [x] Homepage and footer “من نحن” links open `/about`.
+- [x] All rendered internal route links return HTTP 200.
+- [x] Every rendered internal hash points to an existing destination element.
+- [x] Desktop and mobile navigation interactions remain correct.
+- [x] Dynamic service/article slug links resolve correctly.
+- [x] External contact links remain structurally valid.
+- [x] Check, tests, build, deployment, HTTP, console, and browser QA pass.
+
+#### Evidence
+
+- Homepage Navbar “من نحن” now uses `/about`; intentional homepage section links remain unchanged.
+- Shared footer quick links now use `/`, `/about`, `/services`, `/portfolio`, `/offers`, and `/articles`.
+- Focused route-policy tests passed 4/4 and reject `/#about`.
+- Browser crawl covered 23 public pages, including all service and article detail slugs; failed pages: 0.
+- Every rendered internal route returned 200 and every rendered hash target existed.
+- Desktop and mobile clicks opened `/about`; the mobile top sheet closed and the About route became active.
+- WhatsApp, telephone, and email links are structurally valid; no `.example` href is rendered.
+- TypeScript, lint with 0 errors, unit tests, build, service readiness, public HTTP, console, and browser-error checks passed.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Collect stakeholder review; future standalone pages should be added through the shared route configuration rather than duplicated anchor lists.
 
 ### SWEED-017 — Build complete About page
 

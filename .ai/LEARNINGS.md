@@ -148,6 +148,14 @@ Applies to: Responsive navigation affordances and any decorative icon that chang
 Behavior change: Use a project-owned wrapper/glyph for breakpoint-controlled decoration, or apply a selector with explicit cascade ownership instead of relying on a library icon’s display property.
 Revisit when: Font Awesome is removed or the header icon system is centralized.
 
+### Route health and route intent are separate checks
+
+Lesson: A link can return HTTP 200 and still be wrong when it opens a summary section instead of the standalone page the user expects.
+Evidence: Homepage and footer “من نحن” links successfully opened `/#about`, so an HTTP/hash audit reported no failure, but users expected the new full `/about` page. SWEED-018 added an explicit route-policy test and browser click verification.
+Applies to: Shared header/footer navigation, campaign CTAs, and any site that mixes standalone pages with homepage anchors.
+Behavior change: Validate both technical reachability and intended destination semantics; keep route policy in one shared configuration instead of duplicated href lists.
+Revisit when: The public information architecture changes or standalone pages are intentionally collapsed back into homepage sections.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

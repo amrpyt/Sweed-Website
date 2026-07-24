@@ -20,13 +20,15 @@ export const defaultNavItems: NavItem[] = [
 
 export const homeNavItems: NavItem[] = [
   { href: "/#home", label: "الرئيسية", active: "home" },
-  { href: "/#about", label: "من نحن" },
+  { href: "/about", label: "من نحن" },
   { href: "/#services", label: "خدماتنا" },
   { href: "/#portfolio", label: "أعمالنا" },
   { href: "/#offers", label: "العروض" },
   { href: "/#blog", label: "المقالات" },
   { href: "/#contact", label: "اتصل بنا" },
 ];
+
+export const footerQuickLinks: NavItem[] = defaultNavItems.filter((item) => item.active !== "contact");
 
 export function isActivePage(page: LegacyPageKey, active: LegacyPageKey) {
   if (page === "service-detail") return active === "services";

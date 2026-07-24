@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { homepageContent } from "@/content/homepage";
+import { footerQuickLinks } from "./legacy-header.config";
 
 export function LegacyFooter() {
   const contact = homepageContent.contact;
@@ -22,12 +23,11 @@ export function LegacyFooter() {
           <div className="footer-section">
             <h3>روابط سريعة</h3>
             <ul>
-              <li><Link href="/#home">الرئيسية</Link></li>
-              <li><Link href="/#about">من نحن</Link></li>
-              <li><Link href="/#services">خدماتنا</Link></li>
-              <li><Link href="/#portfolio">أعمالنا</Link></li>
-              <li><Link href="/#offers">العروض</Link></li>
-              <li><Link href="/#blog">المقالات</Link></li>
+              {footerQuickLinks.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -6,6 +6,9 @@ import type { ReactNode } from "react";
 import { useLayoutEffect, useRef } from "react";
 import styles from "./about-public-page.module.css";
 
+const METHODOLOGY_STAGE_COUNT = 5;
+const METHODOLOGY_STAGE_POSITIONS = [0, 0.95, 1.9, 2.85, 3.8] as const;
+
 export function AboutPageMotion({ children }: { children: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -15,6 +18,7 @@ export function AboutPageMotion({ children }: { children: ReactNode }) {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const media = gsap.matchMedia();
     const context = gsap.context(() => {
       gsap
         .timeline({ defaults: { ease: "power4.out" } })
@@ -76,38 +80,221 @@ export function AboutPageMotion({ children }: { children: ReactNode }) {
         .from("[data-promise-signature]", { y: 18, autoAlpha: 0, duration: 0.62 }, "-=0.34");
 
       const methodologySection = root.querySelector<HTMLElement>("#methodology");
+      const methodologyPin = root.querySelector<HTMLElement>("[data-methodology-pin]");
+      const methodologyPathWrap = root.querySelector<HTMLElement>(`.${styles.methodologyPathWrap}`);
       const methodologyPaths = Array.from(root.querySelectorAll<SVGPathElement>("[data-methodology-path]"));
       const methodologyNodes = gsap.utils.toArray<HTMLElement>("[data-methodology-node]");
+      const methodologyCurrent = root.querySelector<HTMLElement>("[data-methodology-current]");
+      const methodologyProgress = root.querySelector<HTMLElement>("[data-methodology-progress]");
 
-      if (methodologySection && methodologyPaths.length && methodologyNodes.length) {
-        methodologyPaths.forEach((path) => {
-          const pathLength = path.getTotalLength();
-          gsap.set(path, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
-        });
-        gsap.set(methodologyNodes, { autoAlpha: 0.36, scale: 0.94 });
-
-        const timeline = gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: methodologySection,
-            start: "top 70%",
-            end: "bottom 78%",
-            scrub: 0.5,
-          },
-        });
-
-        timeline.to(methodologyPaths, { strokeDashoffset: 0, duration: 1 });
-        methodologyNodes.forEach((node, index) => {
-          timeline.to(
-            node,
-            { autoAlpha: 1, scale: 1, duration: 0.14, ease: "power2.out" },
-            Math.min(0.84, index * 0.2),
-          );
-        });
+      if (
+        !methodologySection ||
+        !methodologyPin ||
+        !methodologyPathWrap ||
+        methodologyPaths.length === 0 ||
+        methodologyNodes.length !== METHODOLOGY_STAGE_COUNT ||
+        !methodologyCurrent ||
+        !methodologyProgress
+      ) {
+        return;
       }
+
+      ScrollTrigger.saveStyles([
+        methodologyPin,
+        methodologyProgress,
+        ...methodologyPaths,
+        ...methodologyNodes,
+      ]);
+
+      let currentStage = -1;
+
+      const setStageState = (nextStage: number) => {
+        const boundedStage = Math.max(0, Math.min(METHODOLOGY_STAGE_COUNT - 1, nextStage));
+        if (boundedStage === currentStage) return;
+
+        currentStage = boundedStage;
+        methodologyCurrent.textContent = String(boundedStage + 1).padStart(2, "0");
+
+        methodologyNodes.forEach((node, index) => {
+          const state = index < boundedStage ? "completed" : index === boundedStage ? "current" : "future";
+          node.dataset.state = state;
+
+          if (state === "current") {
+            node.setAttribute("aria-current", "step");
+          } else {
+            node.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      const resetStageState = () => {
+        currentStage = -1;
+        methodologyCurrent.textContent = "01";
+        methodologyNodes.forEach((node) => {
+          node.dataset.state = "rest";
+          node.removeAttribute("aria-current");
+        });
+      };
+
+      const preparePaths = () =>
+        methodologyPaths.map((path) => {
+          const length = path.getTotalLength();
+          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+          return { path, length };
+        });
+
+      media.add(
+        {
+          pinned: "(min-width: 821px) and (min-height: 700px)",
+          phone: "(max-width: 820px)",
+          compact: "(min-width: 821px) and (max-height: 699px)",
+        },
+        (mediaContext) => {
+          const conditions = mediaContext.conditions ?? {};
+          const pathData = preparePaths();
+
+          if (conditions.pinned) {
+            setStageState(0);
+            gsap.set(methodologyNodes, {
+              autoAlpha: 0.28,
+              y: 20,
+              scale: 0.965,
+              transformOrigin: "50% 50%",
+            });
+            gsap.set(methodologyNodes[0], { autoAlpha: 1, y: 0, scale: 1 });
+            gsap.set(methodologyProgress, { scaleX: 0.2, transformOrigin: "right center" });
+
+            const clock = { value: 0 };
+            const sequence = gsap.timeline({
+              defaults: { ease: "none" },
+              scrollTrigger: {
+                id: "about-methodology-pinned",
+                trigger: methodologySection,
+                start: "top top+=77",
+                end: () => `+=${Math.round(Math.max(window.innerHeight * 4.2, 2800))}`,
+                pin: methodologyPin,
+                pinSpacing: true,
+                scrub: 0.65,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+              },
+            });
+
+            sequence.eventCallback("onUpdate", () => {
+              const timelineTime = sequence.time();
+              const activeStage = METHODOLOGY_STAGE_POSITIONS.reduce<number>(
+                (latestStage, stagePosition, index) =>
+                  timelineTime >= stagePosition ? index : latestStage,
+                0,
+              );
+              setStageState(activeStage);
+            });
+
+            sequence.to(clock, { value: 1, duration: 5 }, 0);
+            sequence.to(methodologyProgress, { scaleX: 1, duration: 4 }, 0);
+            pathData.forEach(({ path }) => {
+              sequence.to(path, { strokeDashoffset: 0, duration: 4 }, 0);
+            });
+
+            methodologyNodes.slice(1).forEach((node, index) => {
+              const previousNode = methodologyNodes[index];
+              const stagePosition = METHODOLOGY_STAGE_POSITIONS[index + 1];
+
+              sequence
+                .to(
+                  previousNode,
+                  { autoAlpha: 0.68, scale: 0.985, duration: 0.18, ease: "power2.out" },
+                  stagePosition,
+                )
+                .to(
+                  node,
+                  { autoAlpha: 1, y: 0, scale: 1, duration: 0.32, ease: "power3.out" },
+                  stagePosition,
+                );
+            });
+
+            return resetStageState;
+          }
+
+          if (conditions.phone) {
+            setStageState(0);
+            gsap.set(methodologyProgress, { scaleX: 0.2, transformOrigin: "right center" });
+
+            pathData.forEach(({ path }) => {
+              gsap.to(path, {
+                strokeDashoffset: 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: methodologyPathWrap,
+                  start: "top 78%",
+                  end: "bottom 38%",
+                  scrub: 0.45,
+                  invalidateOnRefresh: true,
+                },
+              });
+            });
+
+            gsap.to(methodologyProgress, {
+              scaleX: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: methodologyPathWrap,
+                start: "top 78%",
+                end: "bottom 38%",
+                scrub: 0.45,
+                invalidateOnRefresh: true,
+              },
+            });
+
+            methodologyNodes.forEach((node, index) => {
+              gsap.fromTo(
+                node,
+                { autoAlpha: 0.42, y: 22, scale: 0.98 },
+                {
+                  autoAlpha: 1,
+                  y: 0,
+                  scale: 1,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: node,
+                    start: "top 88%",
+                    end: "top 56%",
+                    scrub: 0.4,
+                    invalidateOnRefresh: true,
+                  },
+                },
+              );
+
+              ScrollTrigger.create({
+                trigger: node,
+                start: "top 58%",
+                end: "bottom 42%",
+                onEnter: () => setStageState(index),
+                onEnterBack: () => setStageState(index),
+                onLeave: () => setStageState(Math.min(METHODOLOGY_STAGE_COUNT - 1, index + 1)),
+                onLeaveBack: () => setStageState(Math.max(0, index - 1)),
+              });
+            });
+
+            return resetStageState;
+          }
+
+          if (conditions.compact) {
+            resetStageState();
+            gsap.set(methodologyNodes, { clearProps: "opacity,visibility,transform" });
+            pathData.forEach(({ path }) => gsap.set(path, { strokeDashoffset: 0 }));
+            gsap.set(methodologyProgress, { scaleX: 1, transformOrigin: "right center" });
+          }
+
+          return resetStageState;
+        },
+      );
     }, root);
 
-    return () => context.revert();
+    return () => {
+      media.revert();
+      context.revert();
+    };
   }, []);
 
   return (

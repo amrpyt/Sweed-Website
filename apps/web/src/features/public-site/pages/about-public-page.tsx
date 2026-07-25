@@ -199,13 +199,26 @@ export function AboutPublicPage() {
           </section>
 
           <section className={`${styles.section} ${styles.methodologySection}`} id="methodology" aria-labelledby="methodology-title">
-            <div className={styles.container}>
-              <SectionHeader title={content.methodology.title} summary={content.methodology.intro} />
+            <div className={`${styles.container} ${styles.methodologyStage}`} data-methodology-pin>
+              <div className={styles.methodologyHeadingRow}>
+                <SectionHeader title={content.methodology.title} summary={content.methodology.intro} />
+
+                <div className={styles.methodologyProgress} aria-hidden="true">
+                  <span>المرحلة الحالية</span>
+                  <strong>
+                    <b data-methodology-current>01</b>
+                    <small>/ 05</small>
+                  </strong>
+                  <i className={styles.methodologyProgressTrack}>
+                    <span data-methodology-progress />
+                  </i>
+                </div>
+              </div>
 
               <div className={styles.methodologyPathWrap}>
                 <svg className={styles.methodologyPathDesktop} viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true">
-                  <path className={styles.methodologyPathBase} d="M 4 12 H 96" />
-                  <path className={styles.methodologyPathProgress} d="M 4 12 H 96" data-methodology-path />
+                  <path className={styles.methodologyPathBase} d="M 96 12 H 4" />
+                  <path className={styles.methodologyPathProgress} d="M 96 12 H 4" data-methodology-path />
                 </svg>
                 <svg className={styles.methodologyPathMobile} viewBox="0 0 20 100" preserveAspectRatio="none" aria-hidden="true">
                   <path className={styles.methodologyPathBase} d="M 10 2 V 98" />
@@ -213,8 +226,13 @@ export function AboutPublicPage() {
                 </svg>
 
                 <ol className={styles.methodologySteps}>
-                  {content.methodology.steps.map((step) => (
-                    <li key={step.number} data-methodology-node>
+                  {content.methodology.steps.map((step, index) => (
+                    <li
+                      key={step.number}
+                      data-methodology-node
+                      data-methodology-index={index}
+                      data-state="rest"
+                    >
                       <span className={styles.methodNode}>{step.number}</span>
                       <h3>{step.title}</h3>
                       <p>{step.description}</p>

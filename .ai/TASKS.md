@@ -1,12 +1,59 @@
 # Tasks
 
-Updated: 2026-07-24T16:30:54+03:00
+Updated: 2026-07-25T16:25:05+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-019 — Animate About methodology as a scroll story
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-25-about-methodology-scroll-story.md`
+Decision: `.ai/decisions/DEC-011-responsive-methodology-scroll-story.md`
+OpenSpec: `openspec/changes/animate-about-methodology-scroll-story/`
+Commit: `091ecd9 feat: add methodology scroll story`
+
+#### Acceptance Criteria
+
+- [x] Desktop pins the methodology stage beneath the fixed header until stage five completes.
+- [x] Path, current stage, completed stages, and progress copy remain synchronized forward and backward.
+- [x] Phone and short-height layouts use natural-flow scroll-linked activation without scroll trapping.
+- [x] Reduced motion exposes all five stages immediately with no pin.
+- [x] Resize and route cleanup leave no duplicate triggers or pin spacers.
+- [x] The `#numbers` section follows naturally after pin release.
+- [x] No overflow, clipped Arabic, broken images, browser errors, or console errors.
+- [x] Check, tests, build, deployment, HTTP, and responsive browser QA pass.
+
+#### Dependencies
+
+- Reused existing GSAP, ScrollTrigger, and global Lenis synchronization.
+- Preserved the semantic ordered list and responsive horizontal/vertical paths.
+
+#### Evidence
+
+- Desktop `1440×900`: pin distance `3780px`; pin stayed at `top: 77px` while active.
+- Stage samples progressed 01 at 12%, 02 at 24%, 03 at 42%, 04 at 62%, and 05 from 78% through pin release.
+- Reverse scrolling returned stage state from 05 through 03, 02, and 01 correctly.
+- Stage five remained active with path progress complete before the pin released into `#numbers`.
+- Tablet `1024×768`: all five cards and CTA remained inside the pinned viewport.
+- Phone `390×844`: no pin spacer; steps activated individually in natural vertical flow from 01→05.
+- Short landscape `844×390`: static compact fallback, no pin, full path, no hidden steps.
+- Reduced motion: no pin, full paths, all nodes visible with no transforms.
+- Responsive resize desktop→mobile→desktop produced methodology pin-spacer counts `1→0→1` with no duplication.
+- Check passed with 0 errors, focused tests passed, production build passed, service active, and public `/about` returned 200.
+- Browser console/errors were empty, horizontal overflow was false, and CLS measured `0`.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Collect stakeholder feel/pace feedback from a real mouse wheel and phone; implementation work is complete.
 
 ### SWEED-018 — Audit and repair public-site links
 

@@ -156,6 +156,14 @@ Applies to: Shared header/footer navigation, campaign CTAs, and any site that mi
 Behavior change: Validate both technical reachability and intended destination semantics; keep route policy in one shared configuration instead of duplicated href lists.
 Revisit when: The public information architecture changes or standalone pages are intentionally collapsed back into homepage sections.
 
+### Scroll stories need capability-based choreography
+
+Lesson: A pinned process sequence should pin only a viewport-fit inner stage; tall phone layouts need natural-flow scroll-linked activation instead of a universal pin.
+Evidence: SWEED-019 pinned the five-stage methodology at `1440×900` and `1024×768`, while `390×844` activated the same semantic list step by step with zero pin spacers. Short landscape and reduced-motion modes remained static and fully visible.
+Applies to: Ordered marketing processes, timelines, and other scroll-driven storytelling sections.
+Behavior change: Use `gsap.matchMedia` to select pinned, natural-flow, compact, and reduced-motion strategies; synchronize semantic stage state to the scrubbed timeline playhead, and verify responsive pin-spacer cleanup.
+Revisit when: The methodology stage count, header height, or section composition changes.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

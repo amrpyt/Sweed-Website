@@ -1,22 +1,5 @@
-import { existsSync } from "node:fs";
-import { join, resolve } from "node:path";
-
-const rootMarkers = ["package.json", "site"];
+import { resolve } from "node:path";
 
 export function getWebAppRoot() {
-  const candidates = [
-    process.env.SWEED_WORKSPACE_ROOT,
-    process.cwd(),
-    join(process.cwd(), "apps", "web"),
-    resolve(process.cwd(), "../.."),
-  ].filter((candidate): candidate is string => Boolean(candidate));
-
-  for (const candidate of candidates) {
-    const root = resolve(candidate);
-    if (rootMarkers.every((marker) => existsSync(join(root, marker)))) {
-      return root;
-    }
-  }
-
-  return process.cwd();
+  return resolve(process.env.SWEED_WORKSPACE_ROOT ?? process.cwd());
 }

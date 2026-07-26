@@ -68,6 +68,50 @@ a {
   text-decoration: none;
 }
 
+.sweed-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.sweed-skip-link {
+  position: fixed;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 50%;
+  z-index: var(--z-toast);
+  min-height: 44px;
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1.15rem;
+  background: var(--color-accent-hover);
+  color: #ffffff;
+  font-weight: 800;
+  text-decoration: none;
+  transform: translate(-50%, calc(-100% - 1rem));
+  transition: transform var(--motion-fast);
+}
+
+.sweed-skip-link:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+  transform: translate(-50%, 0);
+}
+
+.slider-nav,
+.read-more-btn,
+.finder-result a {
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
+.finder-result a {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
 button,
 input,
 textarea,

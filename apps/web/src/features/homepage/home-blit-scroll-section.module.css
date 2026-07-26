@@ -330,7 +330,7 @@
   gap: 0.7rem;
   border-radius: 999px;
   padding-inline: 1.25rem;
-  background: #ed2062;
+  background: var(--color-action, #e2185b);
   color: #ffffff;
   font-weight: 850;
   text-decoration: none;

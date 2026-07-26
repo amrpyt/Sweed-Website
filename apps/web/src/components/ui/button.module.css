@@ -45,12 +45,12 @@
 }
 
 .primary {
-  background: #ed2062;
+  background: var(--color-action, #e2185b);
   color: #ffffff;
 }
 
 .primary:hover {
-  background: #e21857;
+  background: var(--color-action-hover, #c90d4b);
 }
 
 .secondary {

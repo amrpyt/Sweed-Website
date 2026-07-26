@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useCallback, useState, useRef, useEffect, type ReactNode } from "react";
 import styles from "./tooltip.module.css";
 
 type TooltipProps = {
@@ -17,21 +17,7 @@ export function Tooltip({ content, children, position = "top", delay = 200 }: To
   const triggerRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
-  const showTooltip = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsVisible(true);
-      updatePosition();
-    }, delay);
-  };
-
-  const hideTooltip = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setIsVisible(false);
-  };
-
-  const updatePosition = () => {
+  const updatePosition = useCallback(() => {
     if (!triggerRef.current || !tooltipRef.current) return;
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -61,7 +47,21 @@ export function Tooltip({ content, children, position = "top", delay = 200 }: To
     }
 
     setCoords({ x, y });
-  };
+  }, [position]);
+
+  const showTooltip = useCallback(() => {
+    timeoutRef.current = setTimeout(() => {
+      setIsVisible(true);
+      updatePosition();
+    }, delay);
+  }, [delay, updatePosition]);
+
+  const hideTooltip = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setIsVisible(false);
+  }, []);
 
   useEffect(() => {
     if (isVisible) {
@@ -74,7 +74,7 @@ export function Tooltip({ content, children, position = "top", delay = 200 }: To
       window.removeEventListener("scroll", updatePosition);
       window.removeEventListener("resize", updatePosition);
     };
-  }, [isVisible]);
+  }, [isVisible, updatePosition]);
 
   return (
     <>

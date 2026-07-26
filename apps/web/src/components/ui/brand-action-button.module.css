@@ -1,7 +1,7 @@
 .actionButton {
   --brand-action-bg: #261b3e;
   --brand-action-color: #ffffff;
-  --brand-action-fill: #ed2062;
+  --brand-action-fill: var(--color-action, #e2185b);
   --brand-action-fill-color: #ffffff;
   --brand-action-border: #261b3e;
   --brand-action-radius: 16px;
@@ -130,7 +130,7 @@
   --brand-action-bg: #261b3e;
   --brand-action-color: #ffffff;
   --brand-action-border: #261b3e;
-  --brand-action-fill: #ed2062;
+  --brand-action-fill: var(--color-action, #e2185b);
   box-shadow: 0 12px 30px rgba(38, 27, 62, 0.2) !important;
 }
 
@@ -158,7 +158,7 @@
   --brand-action-bg: #ffffff;
   --brand-action-color: var(--primary-purple, #261b3e);
   --brand-action-border: rgba(38, 27, 62, 0.16);
-  --brand-action-fill: #ed2062;
+  --brand-action-fill: var(--color-action, #e2185b);
   box-shadow: 0 10px 26px rgba(38, 27, 62, 0.1) !important;
 }
 

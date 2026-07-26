@@ -1,4 +1,7 @@
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
+
+const workspaceRoot = fileURLToPath(new URL("../..", import.meta.url));
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -56,6 +59,9 @@ if (!isDevelopment) {
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  turbopack: {
+    root: workspaceRoot,
+  },
   images: {
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },

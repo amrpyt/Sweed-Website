@@ -96,7 +96,7 @@
   inset-inline-end: 1.1rem;
   inset-block-start: 1.1rem;
   border-radius: 999px;
-  background: #ed2062;
+  background: var(--color-action, #e2185b);
   color: #ffffff;
   padding: 0.38rem 0.7rem;
   font-size: 0.75rem;
@@ -217,12 +217,12 @@
 }
 
 .offerCard[data-featured="true"] .offerAction {
-  background: #ed2062;
+  background: var(--color-action, #e2185b);
 }
 
 .offerAction:hover,
 .offerAction:focus-visible {
-  background: #ed2062;
+  background: var(--color-action, #e2185b);
 }
 
 .offerCard[data-featured="true"] .offerAction:hover,

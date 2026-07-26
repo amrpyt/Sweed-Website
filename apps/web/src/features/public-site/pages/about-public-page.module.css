@@ -1,5 +1,6 @@
 .page {
   --about-pink: #ed2062;
+  --about-action: #e2185b;
   --about-purple: #261b3e;
   --about-muted: #625a6c;
   --about-surface: #f7f8fb;
@@ -876,7 +877,7 @@
 .primaryAction {
   width: fit-content;
   margin-block-start: 1.75rem;
-  background: var(--about-pink);
+  background: var(--about-action);
   color: #ffffff;
 }
 
@@ -1003,23 +1004,34 @@
 .carouselDots {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.1rem;
 }
 
 .carouselDots button {
-  width: 8px;
-  height: 8px;
+  position: relative;
+  width: 44px;
+  height: 44px;
   border: 0;
-  border-radius: 999px;
   padding: 0;
-  background: rgba(38, 27, 62, 0.2);
+  background: transparent;
   cursor: pointer;
-  transition: width 180ms ease, background-color 180ms ease;
 }
 
-.carouselDots .carouselDotActive {
+.carouselDots button::before {
+  position: absolute;
+  inset: 50% auto auto 50%;
   width: 28px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(38, 27, 62, 0.2);
+  content: "";
+  transform: translate(-50%, -50%) scaleX(0.29);
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.carouselDots .carouselDotActive::before {
   background: var(--about-pink);
+  transform: translate(-50%, -50%) scaleX(1);
 }
 
 .teamCard {
@@ -1293,7 +1305,7 @@
 }
 
 .ctaPrimary {
-  background: var(--about-pink);
+  background: var(--about-action);
   color: #ffffff;
 }
 

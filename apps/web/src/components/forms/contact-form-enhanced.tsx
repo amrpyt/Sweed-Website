@@ -114,7 +114,7 @@ export function ContactFormEnhanced() {
         message: "",
       });
       setTouched({});
-    } catch (error) {
+    } catch {
       showToast({
         type: "error",
         title: "حدث خطأ",

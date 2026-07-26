@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveContactLead, type ContactLeadInput } from "@/features/contact-leads/server/contact-lead-store";
+import { getClientKey, readJsonBody, SlidingWindowRateLimiter } from "@/lib/request-guards";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const maxBodyBytes = 16_384;
-const rateLimitWindowMs = 10 * 60 * 1000;
-const maxRequestsPerWindow = 8;
-const recentRequests = new Map<string, number[]>();
+const contactRateLimiter = new SlidingWindowRateLimiter({
+  maxRequests: 8,
+  windowMs: 10 * 60 * 1_000,
+});
 
 const limits = {
   name: 120,
@@ -25,14 +27,6 @@ const limits = {
 
 function cleanString(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
-}
-
-function isRateLimited(clientKey: string) {
-  const now = Date.now();
-  const recent = (recentRequests.get(clientKey) ?? []).filter((timestamp) => now - timestamp < rateLimitWindowMs);
-  recent.push(now);
-  recentRequests.set(clientKey, recent);
-  return recent.length > maxRequestsPerWindow;
 }
 
 function parseLead(body: unknown): { lead?: ContactLeadInput; errors?: Record<string, string> } {
@@ -64,35 +58,43 @@ function parseLead(body: unknown): { lead?: ContactLeadInput; errors?: Record<st
   return Object.keys(errors).length ? { errors } : { lead };
 }
 
-export async function POST(request: NextRequest) {
-  const contentLength = Number(request.headers.get("content-length") ?? "0");
-  if (Number.isFinite(contentLength) && contentLength > maxBodyBytes) {
-    return NextResponse.json({ ok: false, errors: { form: "حجم الطلب أكبر من المسموح" } }, { status: 413 });
-  }
+function jsonResponse(body: unknown, init?: ResponseInit) {
+  const response = NextResponse.json(body, init);
+  response.headers.set("Cache-Control", "no-store");
+  return response;
+}
 
-  const clientKey = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "unknown";
-  if (isRateLimited(clientKey)) {
-    return NextResponse.json(
+export async function POST(request: NextRequest) {
+  const rateLimit = contactRateLimiter.check(getClientKey(request.headers));
+  if (rateLimit.limited) {
+    return jsonResponse(
       { ok: false, errors: { form: "تم إرسال محاولات كثيرة. انتظر قليلًا ثم جرّب مرة أخرى." } },
-      { status: 429 },
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } },
     );
   }
 
-  let body: unknown;
-
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ ok: false, errors: { form: "تعذر قراءة بيانات الطلب" } }, { status: 400 });
+  const parsedBody = await readJsonBody(request, maxBodyBytes);
+  if (!parsedBody.ok) {
+    return jsonResponse(
+      {
+        ok: false,
+        errors: {
+          form: parsedBody.reason === "too-large" ? "حجم الطلب أكبر من المسموح" : "تعذر قراءة بيانات الطلب",
+        },
+      },
+      { status: parsedBody.reason === "too-large" ? 413 : 400 },
+    );
   }
 
+  const body = parsedBody.value;
+
   if (body && typeof body === "object" && cleanString((body as Record<string, unknown>).website, 200)) {
-    return NextResponse.json({ ok: true, leadId: "accepted", forwarded: false }, { status: 201 });
+    return jsonResponse({ ok: true, leadId: "accepted", forwarded: false }, { status: 201 });
   }
 
   const parsed = parseLead(body);
   if (!parsed.lead) {
-    return NextResponse.json({ ok: false, errors: parsed.errors }, { status: 422 });
+    return jsonResponse({ ok: false, errors: parsed.errors }, { status: 422 });
   }
 
   try {
@@ -101,9 +103,9 @@ export async function POST(request: NextRequest) {
       forwardedFor: request.headers.get("x-forwarded-for")?.split(",")[0]?.trim().slice(0, 80) || undefined,
     });
 
-    return NextResponse.json({ ok: true, leadId: saved.id, forwarded: saved.forwarded }, { status: 201 });
+    return jsonResponse({ ok: true, leadId: saved.id, forwarded: saved.forwarded }, { status: 201 });
   } catch {
-    return NextResponse.json(
+    return jsonResponse(
       { ok: false, errors: { form: "تعذر حفظ الطلب الآن. جرّب مرة أخرى أو استخدم واتساب." } },
       { status: 500 },
     );

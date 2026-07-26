@@ -16,12 +16,16 @@ export function middleware(request: NextRequest) {
   }
 
   if (result.reason === "not-configured") {
-    return new NextResponse("Admin authentication is not configured", { status: 503 });
+    return new NextResponse("Not found", {
+      status: 404,
+      headers: { "Cache-Control": "no-store" },
+    });
   }
 
   return new NextResponse("Authentication required", {
     status: 401,
     headers: {
+      "Cache-Control": "no-store",
       "WWW-Authenticate": 'Basic realm="SWEED Admin", charset="UTF-8"',
     },
   });

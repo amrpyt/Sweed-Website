@@ -206,13 +206,21 @@ const homepageBriefRuntime = `
 
 export function LegacyPage({ page }: { page: LegacyPageKey }) {
   const document = getLegacyPage(page);
+  const bodyHasMainLandmark = /<main\b/i.test(document.bodyHtml);
 
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: document.headHtml }} />
+      <a className="sweed-skip-link" href="#main-content">
+        تخطي إلى المحتوى
+      </a>
       <LegacyHeader page={page} />
       <LegacyBreadcrumb page={page} />
-      <div dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
+      {bodyHasMainLandmark ? (
+        <div dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
+      ) : (
+        <main id="main-content" tabIndex={-1} dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
+      )}
       <LegacyEnhancements page={page} />
       {page === "services" ? <AutomationDemo /> : null}
       <LegacyFooter />

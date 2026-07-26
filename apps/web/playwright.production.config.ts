@@ -1,6 +1,11 @@
+import { existsSync } from "node:fs";
 import { defineConfig, devices } from "@playwright/test";
 
-const productionBaseUrl = process.env.PROD_BASE_URL ?? "https://sweed-website.vercel.app";
+const productionBaseUrl = process.env.PROD_BASE_URL ?? "https://sweed-demo.coderaai.com";
+const systemChromiumPath = "/usr/bin/chromium-browser";
+const chromiumPath =
+  process.env.PLAYWRIGHT_CHROMIUM_PATH ??
+  (existsSync(systemChromiumPath) ? systemChromiumPath : undefined);
 
 export default defineConfig({
   testDir: "./tests/smoke",
@@ -14,6 +19,9 @@ export default defineConfig({
     baseURL: productionBaseUrl,
     screenshot: "only-on-failure",
     trace: "on-first-retry",
+    launchOptions: chromiumPath
+      ? { executablePath: chromiumPath, args: ["--no-sandbox"] }
+      : undefined,
   },
   projects: [
     {

@@ -99,7 +99,7 @@
   border: 0;
   border-radius: var(--radius-full);
   padding: 14px 32px;
-  background: var(--color-accent);
+  background: var(--color-action);
   color: var(--color-accent-contrast);
   cursor: pointer;
   font-weight: 700;
@@ -114,7 +114,7 @@
 }
 
 .submitButton:hover:not(:disabled) {
-  background: var(--color-accent-hover);
+  background: var(--color-action-hover);
   box-shadow:
     0 8px 20px rgba(237, 32, 98, 0.35),
     0 20px 40px rgba(237, 32, 98, 0.25);

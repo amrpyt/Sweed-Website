@@ -2,7 +2,7 @@ import "server-only";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
-import { getWebAppRoot } from "@/lib/web-app-root";
+import { normalizeLegacyAccessibility } from "./legacy-accessibility";
 import { legacyHrefMap, legacyPageFiles, type LegacyPageKey } from "./legacy-routes";
 
 type LegacyScript = {
@@ -19,7 +19,7 @@ export type LegacyPageDocument = {
   scripts: LegacyScript[];
 };
 
-const siteRoot = join(getWebAppRoot(), "site");
+const siteRoot = join(process.cwd(), "site");
 
 function readLegacyFile(page: LegacyPageKey) {
   return readFileSync(join(siteRoot, legacyPageFiles[page]), "utf8");
@@ -107,7 +107,12 @@ function applyHomepageBriefAdjustments(html: string, page: LegacyPageKey) {
 }
 
 function normalizeHtml(html: string, page: LegacyPageKey) {
-  return addSectionAnchors(applyHomepageBriefAdjustments(normalizeLegacyContactDetails(rewriteLegacyLinks(rewriteAssetUrl(html))), page));
+  const normalized = applyHomepageBriefAdjustments(
+    normalizeLegacyContactDetails(rewriteLegacyLinks(rewriteAssetUrl(html))),
+    page,
+  );
+
+  return addSectionAnchors(normalizeLegacyAccessibility(normalized, page));
 }
 
 const sectionAnchorByClass: Record<string, string> = {

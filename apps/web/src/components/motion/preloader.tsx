@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./preloader.module.css";
@@ -31,7 +32,7 @@ export function Preloader() {
 
     // Simulate loading progress
     tl.to(barRef.current, {
-      width: "100%",
+      scaleX: 1,
       duration: 1.4,
       ease: "power3.inOut"
     }, 0); // start at 0s
@@ -87,10 +88,10 @@ export function Preloader() {
       <div className={styles.content}>
         <div ref={textRef} className={styles.hugeLogo} dir="ltr">
           <div ref={leftRef} className={styles.leftHalf}>
-            <img src="/sweed-logo-official.svg" alt="SWEED Left" className={styles.logoImage} />
+            <Image src="/sweed-logo-official.svg" alt="" width={300} height={80} className={styles.logoImage} priority />
           </div>
           <div ref={rightRef} className={styles.rightHalf}>
-            <img src="/sweed-logo-official.svg" alt="SWEED Right" className={styles.logoImage} />
+            <Image src="/sweed-logo-official.svg" alt="" width={300} height={80} className={styles.logoImage} priority />
           </div>
         </div>
       </div>

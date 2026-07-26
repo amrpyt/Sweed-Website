@@ -1,6 +1,7 @@
 .homepage {
   --home-header-offset: 80px;
   --primary-pink: #ed2062;
+  --action-pink: #e2185b;
   --primary-purple: #261b3e;
   --sunset: #ed2062;
   --ink: #261b3e;
@@ -2553,7 +2554,7 @@
   z-index: 9999;
   border-radius: var(--radius-md);
   padding: 12px 24px;
-  background: var(--primary-pink);
+  background: var(--action-pink);
   color: #fff;
   font-weight: 700;
   text-decoration: none;

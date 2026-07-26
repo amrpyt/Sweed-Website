@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import styles from "./lazy-image.module.css";
 
@@ -32,6 +33,7 @@ export function LazyImage({
   const [isInView, setIsInView] = useState(false);
   const [hasError, setHasError] = useState(false);
   const imgRef = useRef<HTMLDivElement>(null);
+  const responsiveSizes = width ? `${width}px` : "(max-width: 768px) 100vw, 50vw";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -76,7 +78,15 @@ export function LazyImage({
       {!isLoaded && !hasError && (
         <div className={styles.placeholder}>
           {placeholder ? (
-            <img src={placeholder} alt="" className={styles.placeholderImage} aria-hidden="true" />
+            <Image
+              fill
+              src={placeholder}
+              alt=""
+              aria-hidden="true"
+              className={styles.placeholderImage}
+              sizes={responsiveSizes}
+              unoptimized={/^https?:\/\//.test(placeholder)}
+            />
           ) : (
             <div className={styles.skeleton} />
           )}
@@ -95,14 +105,16 @@ export function LazyImage({
       )}
 
       {isInView && !hasError && (
-        <img
+        <Image
+          fill
           src={src}
           alt={alt}
           className={`${styles.image} ${isLoaded ? styles.imageLoaded : ""}`}
           style={{ objectFit }}
+          sizes={responsiveSizes}
           onLoad={handleLoad}
           onError={handleError}
-          loading="lazy"
+          unoptimized={/^https?:\/\//.test(src)}
         />
       )}
     </div>

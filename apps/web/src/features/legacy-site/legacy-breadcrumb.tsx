@@ -53,6 +53,10 @@ const legacyBreadcrumbCss = `
   }
 
   .sweed-legacy-breadcrumb a {
+    display: inline-flex !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    align-items: center !important;
     color: var(--primary-purple, #261b3e) !important;
     text-decoration: none !important;
   }

@@ -172,7 +172,7 @@
 
 .blogHeading > a:hover,
 .blogHeading > a:focus-visible {
-  background: #ed2062;
+  background: var(--color-action, #e2185b);
 }
 
 .blogHeading > a:active {

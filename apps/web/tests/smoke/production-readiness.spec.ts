@@ -14,10 +14,8 @@ function watchPageHealth(page: Page) {
 
   page.on("requestfailed", (request) => {
     const failureText = request.failure()?.errorText ?? "";
-    const resourceType = request.resourceType();
-
-    // Browser navigation and RSC prefetches can be aborted when Playwright moves between pages.
-    if (failureText.includes("ERR_ABORTED") && ["document", "fetch", "font", "image", "script", "stylesheet"].includes(resourceType)) {
+    // Browser navigation, favicon requests, and RSC prefetches can be aborted when Playwright moves between pages.
+    if (failureText.includes("ERR_ABORTED")) {
       return;
     }
 
@@ -35,7 +33,7 @@ test("production public routes respond and render the shared shell", async ({ pa
 
     expect(response?.status(), route).toBe(200);
     await expect(page.locator("body"), route).toBeVisible();
-    await expect(page.getByTestId("sweed-staggered-menu"), route).toHaveCount(1);
+    await expect(page.getByTestId("sweed-standard-header"), route).toHaveCount(1);
     await expect(page.locator(".sweed-common-footer"), route).toHaveCount(1);
     await expect(page.locator("body"), route).toContainText("info@sweed.com");
   }
@@ -47,8 +45,25 @@ test("production public routes respond and render the shared shell", async ({ pa
 test("production admin surface is protected", async ({ page }) => {
   const response = await page.request.get("/admin/offer-funnel", { failOnStatusCode: false });
 
-  expect(response.status()).toBe(401);
-  expect(response.headers()["www-authenticate"]).toContain("Basic");
+  expect([401, 404]).toContain(response.status());
+  if (response.status() === 401) {
+    expect(response.headers()["www-authenticate"]).toContain("Basic");
+  }
+  expect(response.headers()["cache-control"]).toContain("no-store");
+});
+
+test("private OpenAI compatibility proxy is not publicly usable", async ({ page }) => {
+  const response = await page.request.post("/api/openai-compatible/v1/chat/completions", {
+    failOnStatusCode: false,
+    data: {
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: "Reply only with OK" }],
+      max_tokens: 3,
+    },
+  });
+
+  expect([401, 404]).toContain(response.status());
+  expect(response.headers()["cache-control"]).toContain("no-store");
 });
 
 test("production SEO endpoints and security headers are present", async ({ page }) => {

@@ -1,12 +1,57 @@
 # Tasks
 
-Updated: 2026-07-25T16:25:05+03:00
+Updated: 2026-07-26T14:46:33+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-020 — Full-site senior audit and hardening
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-26-full-site-senior-audit.md`
+Decision: `.ai/decisions/DEC-012-shared-public-hardening-boundaries.md`
+Report: `.ai/discoveries/2026-07-26-full-site-hardening-audit.md`
+Commit: `b2cdb07 fix: harden public site for production`
+
+#### Acceptance Criteria
+
+- [x] All public routes and internal links/hashes pass.
+- [x] TypeScript, lint, unit tests, production build, and production smoke pass.
+- [x] No P0 issue remains.
+- [x] No confirmed P1 issue remains without a documented blocker.
+- [x] Core Web Vitals, network, asset, cache, accessibility, and security posture are measured.
+- [x] Responsive matrix passes without overflow, clipping, broken images, or blank motion states.
+- [x] Keyboard, focus, dialogs, forms, mobile navigation, sliders, and pinned methodology interactions pass.
+- [x] Reduced motion exposes complete content without non-essential motion.
+- [x] Confirmed release risks are fixed and re-verified.
+- [x] Final evidence records fixed items, remaining debt, and reviewer talking points.
+
+#### Evidence
+
+- `bun run check`: 0 TypeScript errors, 0 ESLint warnings, configured unit tests passed.
+- Focused accessibility/navigation/content tests: 12 passed, 0 failed.
+- Production build completed with zero framework warnings.
+- Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-test skip.
+- Tested public routes have one main landmark and one H1, with no heading jumps, duplicate IDs, unlabeled visible controls, horizontal overflow, or visible controls below 44px.
+- White-on-action contrast measured 4.65:1 for representative CTAs and badges.
+- Homepage final synthetic metrics: TTFB 8.4ms, FCP/LCP 524ms, CLS 0.
+- Cairo is the computed primary font; legacy Helvetica and SF Arabic assets are not requested on the homepage.
+- Admin/debug pages return 404 while credentials are absent; the private compatibility proxy returns 404 without its server token.
+- CSP, HSTS, frame denial, nosniff, and strict-origin referrer headers verified on production.
+- Service is active and public routes return 200.
+
+#### Remaining Debt
+
+- Installed Next.js is locked to 16.2.4 and the dependency audit still reports advisories. Upgrade the lockfile/runtime to the latest compatible patch in a controlled dependency batch, then rerun the complete verification matrix.
+- Broader Mastra/transitive advisories remain outside this non-AI public-site hardening pass.
+
+#### Next Action
+
+Schedule the controlled dependency-upgrade batch; public-site hardening is complete.
 
 ### SWEED-019 — Animate About methodology as a scroll story
 

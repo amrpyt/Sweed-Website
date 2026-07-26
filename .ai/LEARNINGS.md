@@ -164,6 +164,30 @@ Applies to: Ordered marketing processes, timelines, and other scroll-driven stor
 Behavior change: Use `gsap.matchMedia` to select pinned, natural-flow, compact, and reduced-motion strategies; synchronize semantic stage state to the scrubbed timeline playhead, and verify responsive pin-spacer cleanup.
 Revisit when: The methodology stage count, header height, or section composition changes.
 
+### Legacy accessibility repairs belong at the composition boundary
+
+Lesson: When multiple public pages are composed from copied legacy HTML, semantic repairs should be centralized in one pure, tested transform instead of patched independently in every source file.
+Evidence: SWEED-020 repaired main landmarks, heading order, labels, pagination/slider names, and stable skip destinations across Articles, Products, Portfolio, and Offers through `normalizeLegacyAccessibility`; browser QA then reported no unlabeled visible controls or heading jumps.
+Applies to: Legacy HTML composition, migrations, imported CMS fragments, and any server-rendered markup normalization layer.
+Behavior change: Fix recurring markup contracts at the shared boundary, add signature-level tests, and keep route components responsible for landmarks and navigation focus.
+Revisit when: The remaining legacy routes are migrated to semantic React components.
+
+### Brand identity color and action color may need separate tokens
+
+Lesson: A brand color that works for decorative identity use may not meet contrast for normal-size white text; create an action-role token instead of globally mutating the identity palette.
+Evidence: SWEED pink `#ed2062` measured about 4.21:1 with white, while the action token `#e2185b` measured 4.65:1 on representative CTAs and badges without changing decorative brand elements.
+Applies to: CTA buttons, small badges, form submits, and text-bearing interactive states.
+Behavior change: Verify contrast on the actual foreground/background pair and map accessible colors by semantic role, not by a single universal brand token.
+Revisit when: Official brand colors or typography sizes change.
+
+### Production smoke tests should assert contracts, not implementation accidents
+
+Lesson: End-to-end smoke tests become brittle when they assert stale component-specific selectors or treat normal navigation aborts as outages.
+Evidence: SWEED-020 changed the production suite to assert the real shared header/footer and ignore only `ERR_ABORTED` cancellations caused by rapid route navigation; the deployed desktop/mobile suite then passed 11 tests with zero failures.
+Applies to: Production Playwright smoke tests and shared-shell health checks.
+Behavior change: Assert user-visible/public contracts and genuine network failures; keep implementation selectors only when they are an intentional stable test API.
+Revisit when: The shared shell or browser navigation strategy changes.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.
@@ -185,6 +209,5 @@ Revisit when: The methodology stage count, header height, or section composition
 
 ## Project Gotchas
 
-- Next.js currently warns that it inferred `/home/amr/devspace-src` as the workspace root because another `package-lock.json` exists above the repository.
-- The build also reports a pre-existing NFT tracing warning through `legacy-assets/[file]/route.ts` and `web-app-root.ts`; the build still succeeds.
+- The installed Next.js runtime and `bun.lock` remain pinned to `16.2.4` even though the manifest range permits a newer compatible patch; dependency closure requires a controlled lockfile/install batch followed by the complete regression matrix.
 - The existing PNG logo is a 4000x1860 wordmark, not a dedicated square Apple touch icon.

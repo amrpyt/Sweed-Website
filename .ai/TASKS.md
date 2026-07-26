@@ -39,7 +39,7 @@ Commit: `b2cdb07 fix: harden public site for production`
 - Tested public routes have one main landmark and one H1, with no heading jumps, duplicate IDs, unlabeled visible controls, horizontal overflow, or visible controls below 44px.
 - White-on-action contrast measured 4.65:1 for representative CTAs and badges.
 - Homepage final synthetic metrics: TTFB 8.4ms, FCP/LCP 524ms, CLS 0.
-- Cairo is the computed primary font; legacy Helvetica and SF Arabic assets are not requested on the homepage.
+- The stakeholder-approved `SWEED Helvetica Arabic` font is restored as the computed primary font on desktop and mobile; Cairo and SF Arabic remain fallbacks.
 - Admin/debug pages return 404 while credentials are absent; the private compatibility proxy returns 404 without its server token.
 - CSP, HSTS, frame denial, nosniff, and strict-origin referrer headers verified on production.
 - Service is active and public routes return 200.

@@ -82,7 +82,7 @@ Run a production-grade senior engineering audit across the complete SWEED public
 - Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-test skip.
 - Browser matrix: no overflow, duplicate IDs, unlabeled visible controls, missing main landmarks, heading jumps, or sub-44px visible controls on tested public routes.
 - Final homepage synthetic measurement: TTFB 8.4ms, FCP/LCP 524ms, CLS 0.
-- Cairo is the computed primary font; legacy Helvetica and SF Arabic files are no longer requested on the homepage.
+- The stakeholder-approved `SWEED Helvetica Arabic` font is restored as the computed primary font, with Cairo and SF Arabic retained only as fallbacks.
 - White-on-action-pink contrast measured 4.65:1 for representative CTAs and badges.
 - Production admin/debug surfaces return 404 when credentials are not configured; the private compatibility proxy returns 404 without its server token.
 - Security headers include CSP, HSTS, frame denial, nosniff, and strict-origin referrer policy.

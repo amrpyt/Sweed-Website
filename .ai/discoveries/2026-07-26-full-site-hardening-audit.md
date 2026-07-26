@@ -33,7 +33,7 @@ Final audit health: **18/20 — Excellent, with dependency patching remaining**.
 - Added `--color-action` and used an accessible action pink for white-text CTAs; representative contrast is 4.65:1.
 - Removed all ESLint warnings by converting reusable images to `next/image`, correcting hook dependencies, and removing dead variables.
 - Replaced layout-driving progress/dot animations with transform-based animation.
-- Reduced Cairo weights and made Cairo the actual primary font; the homepage no longer requests Helvetica or SF Arabic files.
+- Reduced fallback Cairo weights while preserving the stakeholder-approved `SWEED Helvetica Arabic` as the actual primary public font.
 - Configured Turbopack root and statically scoped legacy file reads; production build now has zero warnings.
 - Repaired the production Playwright runner to use system Chromium and assert the real shared header contract.
 - Added reusable bounded-body and sliding-window request guards and corresponding tests.

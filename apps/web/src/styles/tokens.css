@@ -58,8 +58,8 @@
   --container-wide: min(1600px, calc(100vw - 32px));
   
   /* Typography */
-  --font-body: var(--font-cairo, "Cairo"), "Cairo", "SWEED Helvetica Arabic", "SF Arabic", Arial, sans-serif;
-  --font-display: var(--font-cairo, "Cairo"), "Cairo", "SWEED Helvetica Arabic", "SF Arabic", Arial, sans-serif;
+  --font-body: "SWEED Helvetica Arabic", var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
+  --font-display: "SWEED Helvetica Arabic", var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
   --font-weight-body: 500;
   --font-weight-medium: 600;
   --font-weight-strong: 700;

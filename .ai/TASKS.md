@@ -1,12 +1,47 @@
 # Tasks
 
-Updated: 2026-07-26T14:46:33+03:00
+Updated: 2026-07-26T17:30:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-021 — SWEED Visual System v2
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-26-sweed-visual-system-v2.md`
+
+#### Acceptance Criteria
+
+- [x] Semantic typography roles exist for display, page title, section title, card title, lead, body, small text, and labels.
+- [x] Semantic spacing roles exist for compact/default/feature sections and content grouping.
+- [x] Shared control heights, page gutters, content measures, and shape roles exist.
+- [x] Shared Section and Button primitives consume the system.
+- [x] Homepage hero, problems, services, why, portfolio, offers, FAQ/blog, and contact consume the system.
+- [x] `DESIGN.md` documents enforcement rules and responsive behavior.
+- [x] Check, build, deployment, HTTP, console, and four-viewport QA pass.
+
+#### Evidence
+
+- `bun run check`: passed.
+- `bun run build`: passed; 29 routes generated.
+- `sweed-demo.service`: active; public homepage returns HTTP 200.
+- No document-level horizontal overflow at 1440×900, 1024×768, 390×844, or 320×568.
+- Homepage exposes exactly one visible H1.
+- Browser console and page errors are empty.
+- Major public headings now use shared semantic roles; desktop computed font-size variants reduced from 29 to 27 without blind global replacement.
+
+#### Remaining Debt
+
+- Small legacy/detail typography values remain in specialized UI and should be migrated when those components are next touched.
+
+#### Next Action
+
+Keep all new public UI inside the semantic visual roles and reject new arbitrary heading, section-spacing, card-radius, or control-size values.
+
 
 ### SWEED-020 — Full-site senior audit and hardening
 

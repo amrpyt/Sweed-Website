@@ -11,7 +11,7 @@
   --soft-pink: #fff2f7;
   --line: rgba(38, 27, 62, 0.11);
   --shadow: 0 18px 55px rgba(38, 27, 62, 0.12);
-  --home-section-gap: clamp(2.75rem, 5vw, 5.5rem);
+  --home-section-gap: var(--section-space-compact);
   overflow: visible;
   background: #ffffff;
   color: var(--ink);
@@ -48,7 +48,7 @@
 }
 
 .container {
-  width: min(100% - 2rem, 1400px);
+  width: min(100% - (var(--page-gutter) * 2), 1400px);
   margin-inline: auto;
 }
 
@@ -63,7 +63,7 @@
   overflow: hidden;
   background: #fafafa;
   color: #261b3e;
-  padding-block: 4rem 0;
+  padding-block: var(--section-space-compact) 0;
 }
 
 .gridLineLeft,
@@ -133,14 +133,14 @@
 }
 
 .heroEyebrowWrapper {
-  margin-bottom: 1.2rem;
+  margin-bottom: var(--space-5);
 }
 
 .heroEyebrow {
   margin: 0;
   color: #d81958;
-  font-size: clamp(0.88rem, 1.1vw, 1rem);
-  font-weight: 800;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-strong);
   letter-spacing: 0;
 }
 
@@ -151,11 +151,11 @@
 }
 
 .heroH1 {
-  max-width: 1100px;
-  margin: 0 auto 2.2rem;
-  font-size: clamp(2.9rem, 5.5vw, 5.35rem);
-  font-weight: 600;
-  line-height: 1.05;
+  max-width: 18ch;
+  margin: 0 auto var(--space-8);
+  font-size: var(--type-display-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--type-display-leading);
   letter-spacing: 0;
   color: #261b3e;
   text-align: center;
@@ -175,39 +175,39 @@
 }
 
 .heroSubtitleWrapper {
-  max-width: min(92vw, 920px);
+  max-width: min(92vw, var(--measure-lead));
   margin-inline: auto;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-12);
 }
 
 .heroSubtitle {
   margin: 0;
   margin-bottom: 0.4rem;
   color: #6d6e70;
-  font-size: clamp(1.12rem, 1.5vw, 1.4rem);
-  line-height: 1.8;
-  font-weight: 450;
+  font-size: var(--type-lead-size);
+  line-height: var(--type-body-leading);
+  font-weight: var(--font-weight-body);
 }
 
 .heroActions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
+  gap: var(--content-gap-loose);
   z-index: 10;
   position: relative;
 }
 
 .heroTrustLine {
-  margin-top: 1.15rem;
+  margin-top: var(--space-5);
 }
 
 .heroTrustLine p {
   margin: 0;
   color: rgba(38, 27, 62, 0.68);
-  font-size: clamp(0.78rem, 1vw, 0.9rem);
-  font-weight: 700;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
   line-height: 1.7;
   text-align: center;
 }

@@ -2,7 +2,7 @@
   position: relative;
   z-index: 6;
   min-height: calc(100svh - 80px);
-  padding: clamp(4.5rem, 7vw, 6rem) clamp(1rem, 2.5vw, 2.75rem);
+  padding: var(--section-space-default) var(--page-gutter);
   background: #261b3e;
   color: #1f1735;
   isolation: isolate;
@@ -100,24 +100,24 @@
 .copyPane {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  gap: clamp(1.25rem, 2vw, 2rem);
+  gap: var(--content-gap-loose);
   padding: clamp(2rem, 5vw, 5rem);
   direction: rtl;
 }
 
 .kicker {
   color: #ed2062;
-  font-size: 0.92rem;
-  font-weight: 900;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .copyPane h2 {
   max-width: 42rem;
   margin: 0;
   color: #1f1735;
-  font-size: clamp(3rem, 5vw, 5.6rem);
-  font-weight: 900;
-  line-height: 1.03;
+  font-size: var(--type-section-title-size);
+  font-weight: var(--font-weight-display);
+  line-height: var(--type-title-leading);
   letter-spacing: 0;
 }
 
@@ -147,9 +147,9 @@
   max-width: 42rem;
   margin: 0;
   color: #1f1735;
-  font-size: clamp(2.4rem, 4vw, 4.9rem);
-  font-weight: 900;
-  line-height: 1.05;
+  font-size: var(--type-card-title-size);
+  font-weight: var(--font-weight-display);
+  line-height: var(--type-title-leading);
   letter-spacing: 0;
 }
 
@@ -159,8 +159,8 @@
   margin: 0;
   padding: 0;
   color: #303030;
-  font-size: clamp(1rem, 1.35vw, 1.28rem);
-  line-height: 1.65;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
   list-style: none;
 }
 

@@ -2,11 +2,11 @@
   position: relative;
   background: #faf8fb;
   color: #261b3e;
-  padding: clamp(5rem, 9vw, 9rem) 0;
+  padding-block: var(--section-space-feature);
 }
 
 .container {
-  width: min(100% - 2rem, 1240px);
+  width: min(100% - (var(--page-gutter) * 2), 1240px);
   margin-inline: auto;
 }
 
@@ -26,26 +26,26 @@
   background: rgb(237 32 98 / 0.1);
   color: #ed2062;
   padding: 0.42rem 0.82rem;
-  font-size: 0.88rem;
-  font-weight: 850;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .headingLayout h2 {
   max-width: 15ch;
   margin: 0;
   color: #261b3e;
-  font-size: clamp(2.35rem, 5vw, 5rem);
-  font-weight: 850;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-size: var(--type-section-title-size);
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.02em;
+  line-height: var(--type-title-leading);
   text-wrap: balance;
 }
 
 .intro {
   margin: 0;
   color: #625b6d;
-  font-size: clamp(1rem, 1.4vw, 1.16rem);
-  line-height: 1.9;
+  font-size: var(--type-lead-size);
+  line-height: var(--type-body-leading);
   text-wrap: pretty;
 }
 

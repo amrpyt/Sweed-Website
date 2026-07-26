@@ -47,9 +47,6 @@
   --radius-xl: 20px;
   --radius-2xl: 24px;
   --radius-full: 9999px;
-  --shape-control: 999px;
-  --shape-card: 24px;
-  --shape-panel: 32px;
   
   /* Container Widths */
   --container: min(1120px, calc(100vw - 32px));
@@ -60,12 +57,29 @@
   /* Typography */
   --font-body: "SWEED Helvetica Arabic", var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
   --font-display: "SWEED Helvetica Arabic", var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
+  --font-weight-regular: 400;
   --font-weight-body: 500;
   --font-weight-medium: 600;
   --font-weight-strong: 700;
-  --font-weight-display: 900;
+  --font-weight-display: 800;
+
+  /* Semantic typography roles: use these in page and component CSS. */
+  --type-display-size: clamp(3rem, 5.4vw, 5rem);
+  --type-page-title-size: clamp(2.75rem, 4.8vw, 4rem);
+  --type-section-title-size: clamp(2.25rem, 3.8vw, 3.5rem);
+  --type-card-title-size: clamp(1.35rem, 1.8vw, 2rem);
+  --type-lead-size: clamp(1.125rem, 1.2vw, 1.35rem);
+  --type-body-size: 1rem;
+  --type-small-size: 0.875rem;
+  --type-label-size: 0.8125rem;
+  --type-display-leading: 1.08;
+  --type-title-leading: 1.14;
+  --type-body-leading: 1.75;
+  --measure-heading: 18ch;
+  --measure-lead: 62ch;
+  --measure-body: 70ch;
   
-  /* Font Sizes */
+  /* Legacy value aliases. Prefer semantic typography roles above. */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-md: 1rem;
@@ -84,7 +98,7 @@
   --leading-body: 1.8;
   --leading-relaxed: 1.75;
   
-  /* Spacing Scale */
+  /* Spacing Scale: 4pt foundation */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -100,6 +114,27 @@
   --space-32: 8rem;
   --space-40: 10rem;
   --space-48: 12rem;
+
+  /* Semantic layout and rhythm roles */
+  --page-gutter: clamp(1rem, 3vw, 2rem);
+  --content-gap-tight: var(--space-2);
+  --content-gap-default: var(--space-4);
+  --content-gap-loose: var(--space-6);
+  --section-space-compact: clamp(3.5rem, 6vw, 5rem);
+  --section-space-default: clamp(4.5rem, 8vw, 7rem);
+  --section-space-feature: clamp(5.5rem, 10vw, 9rem);
+  --section-header-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  --section-content-gap: clamp(2.5rem, 5vw, 4.5rem);
+  --control-height-sm: 44px;
+  --control-height-md: 48px;
+  --control-height-lg: 52px;
+  --control-padding-inline: clamp(1rem, 2vw, 1.5rem);
+
+  /* Semantic shape roles */
+  --shape-control: var(--radius-lg);
+  --shape-card: var(--radius-md);
+  --shape-feature: var(--radius-lg);
+  --shape-panel: var(--radius-xl);
   
   /* Focus Ring */
   --focus-ring: 0 0 0 3px rgba(237, 32, 98, 0.18);

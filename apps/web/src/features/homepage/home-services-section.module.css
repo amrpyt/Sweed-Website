@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  padding-block: clamp(5rem, 9vw, 8.5rem);
+  padding-block: var(--section-space-feature);
   overflow: clip;
   background: #f7f8fb;
   color: #261b3e;
@@ -19,10 +19,10 @@
 
 .container {
   display: grid;
-  width: min(100% - 2rem, 1220px);
+  width: min(100% - (var(--page-gutter) * 2), 1220px);
   margin-inline: auto;
   grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(2.5rem, 6vw, 6rem);
+  gap: var(--section-content-gap);
   align-items: start;
 }
 
@@ -35,25 +35,25 @@
   position: sticky;
   top: 6.5rem;
   display: grid;
-  gap: 1.15rem;
+  gap: var(--section-header-gap);
   align-content: start;
 }
 
 .sectionLabel {
   width: fit-content;
   color: #d81958;
-  font-size: 0.9rem;
-  font-weight: 850;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .intro h2 {
   max-width: 15ch;
   margin: 0;
   color: #261b3e;
-  font-size: clamp(2.25rem, 4.2vw, 4.1rem);
-  font-weight: 850;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  font-size: var(--type-section-title-size);
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.02em;
+  line-height: var(--type-title-leading);
   text-wrap: balance;
 }
 
@@ -61,9 +61,9 @@
   max-width: 38rem;
   margin: 0;
   color: rgba(38, 27, 62, 0.76);
-  font-size: clamp(1rem, 1.25vw, 1.16rem);
-  font-weight: 500;
-  line-height: 1.85;
+  font-size: var(--type-lead-size);
+  font-weight: var(--font-weight-body);
+  line-height: var(--type-body-leading);
   text-wrap: pretty;
 }
 
@@ -79,17 +79,17 @@
 .allServicesLink {
   display: inline-flex;
   width: fit-content;
-  min-height: 48px;
+  min-height: var(--control-height-md);
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  margin-top: 0.35rem;
-  border-radius: 12px;
-  padding-inline: 1.05rem;
+  gap: var(--content-gap-tight);
+  margin-top: var(--space-1);
+  border-radius: var(--shape-control);
+  padding-inline: var(--control-padding-inline);
   background: #261b3e;
   color: #ffffff;
-  font-size: 0.92rem;
-  font-weight: 850;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
   text-decoration: none;
   transition: background-color var(--motion-fast), transform var(--motion-fast);
 }

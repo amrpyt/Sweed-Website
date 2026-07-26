@@ -12,11 +12,13 @@
 
 .headingLayout {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-  align-items: end;
-  gap: clamp(2rem, 6vw, 6rem);
+  max-width: var(--content-measure-wide);
+  margin-inline: auto;
+  justify-items: center;
+  gap: var(--section-header-gap);
   padding-block-end: clamp(2rem, 4vw, 3rem);
   border-block-end: 1px solid rgb(38 27 62 / 0.14);
+  text-align: center;
 }
 
 .eyebrow {
@@ -31,8 +33,8 @@
 }
 
 .headingLayout h2 {
-  max-width: 15ch;
-  margin: 0;
+  max-width: 18ch;
+  margin: 0 auto;
   color: #261b3e;
   font-size: var(--type-section-title-size);
   font-weight: var(--font-weight-display);
@@ -42,7 +44,8 @@
 }
 
 .intro {
-  margin: 0;
+  max-width: var(--content-measure);
+  margin: 0 auto;
   color: #625b6d;
   font-size: var(--type-lead-size);
   line-height: var(--type-body-leading);

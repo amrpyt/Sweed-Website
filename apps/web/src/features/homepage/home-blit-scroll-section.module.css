@@ -22,11 +22,13 @@
 
 .sectionHeader {
   display: grid;
-  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
-  gap: clamp(2rem, 7vw, 7rem);
-  align-items: end;
+  max-width: var(--content-measure-wide);
+  margin-inline: auto;
+  justify-items: center;
+  gap: var(--section-header-gap);
   border-block-end: 1px solid rgba(38, 27, 62, 0.13);
   padding-block-end: clamp(2rem, 4vw, 3.25rem);
+  text-align: center;
 }
 
 .headingBlock,
@@ -36,7 +38,7 @@
 
 .sectionLabel {
   width: fit-content;
-  margin: 0 0 1rem;
+  margin: 0 auto 1rem;
   border-radius: 999px;
   padding: 0.42rem 0.8rem;
   background: rgba(237, 32, 98, 0.1);
@@ -46,26 +48,27 @@
 }
 
 .headingBlock h2 {
-  max-width: none;
-  margin: 0;
+  max-width: 18ch;
+  margin: 0 auto;
   color: #261b3e;
   font-size: clamp(2.9rem, 5.2vw, 5.2rem);
   font-weight: 850;
   letter-spacing: 0;
   line-height: 1.08;
   text-wrap: balance;
-  white-space: nowrap;
 }
 
 .leadBlock {
   display: grid;
-  max-width: 48rem;
-  justify-self: end;
+  max-width: var(--content-measure);
+  margin-inline: auto;
+  justify-items: center;
   gap: 0.8rem;
 }
 
 .leadBlock > span {
   width: fit-content;
+  margin-inline: auto;
   border-block-end: 2px solid #ed2062;
   padding-block-end: 0.35rem;
   color: #ed2062;
@@ -362,8 +365,7 @@
 
 @media (max-width: 1040px) {
   .sectionHeader {
-    grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
-    gap: 2.5rem;
+    gap: var(--section-header-gap);
   }
 
   .storyGrid {
@@ -393,12 +395,11 @@
   }
 
   .sectionHeader {
-    align-items: start;
     gap: 1.5rem;
   }
 
   .leadBlock {
-    justify-self: stretch;
+    justify-self: center;
   }
 
   .storyGrid {

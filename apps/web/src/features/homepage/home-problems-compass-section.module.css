@@ -493,12 +493,14 @@
   }
 
   .heading {
-    max-width: none;
-    text-align: start;
+    max-width: var(--content-measure-wide);
+    margin-inline: auto;
+    text-align: center;
   }
 
   .heading h2 {
-    max-width: 12ch;
+    max-width: 15ch;
+    margin-inline: auto;
     font-size: clamp(2rem, 10vw, 2.55rem);
     letter-spacing: -0.02em;
     line-height: 1.14;
@@ -506,7 +508,7 @@
 
   .heading p {
     max-width: 38ch;
-    margin: 0.75rem 0 0;
+    margin: 0.75rem auto 0;
     font-size: 0.96rem;
     line-height: 1.75;
   }

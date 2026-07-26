@@ -21,7 +21,6 @@
   display: grid;
   width: min(100% - (var(--page-gutter) * 2), 1220px);
   margin-inline: auto;
-  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
   gap: var(--section-content-gap);
   align-items: start;
 }
@@ -32,23 +31,26 @@
 }
 
 .introInner {
-  position: sticky;
-  top: 6.5rem;
   display: grid;
+  max-width: var(--content-measure-wide);
+  margin-inline: auto;
   gap: var(--section-header-gap);
+  justify-items: center;
   align-content: start;
+  text-align: center;
 }
 
 .sectionLabel {
   width: fit-content;
+  margin-inline: auto;
   color: #d81958;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
 }
 
 .intro h2 {
-  max-width: 15ch;
-  margin: 0;
+  max-width: 18ch;
+  margin: 0 auto;
   color: #261b3e;
   font-size: var(--type-section-title-size);
   font-weight: var(--font-weight-display);
@@ -58,8 +60,8 @@
 }
 
 .intro p {
-  max-width: 38rem;
-  margin: 0;
+  max-width: var(--content-measure);
+  margin: 0 auto;
   color: rgba(38, 27, 62, 0.76);
   font-size: var(--type-lead-size);
   font-weight: var(--font-weight-body);
@@ -70,6 +72,7 @@
 .scope {
   display: block;
   max-width: 34rem;
+  margin-inline: auto;
   color: rgba(38, 27, 62, 0.58);
   font-size: 0.86rem;
   font-weight: 750;

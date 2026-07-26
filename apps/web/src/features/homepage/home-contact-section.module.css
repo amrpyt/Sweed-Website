@@ -22,20 +22,24 @@
   position: relative;
   z-index: 1;
   display: grid;
-  width: min(100% - (var(--page-gutter) * 2), 1240px);
+  width: min(100% - (var(--page-gutter) * 2), 1040px);
   margin-inline: auto;
-  grid-template-columns: minmax(0, 0.82fr) minmax(440px, 1.18fr);
   align-items: start;
-  gap: clamp(2.5rem, 7vw, 7rem);
+  gap: var(--section-content-gap);
 }
 
 .copyColumn {
+  display: grid;
+  max-width: var(--content-measure-wide);
+  margin-inline: auto;
+  justify-items: center;
   padding-block-start: 0.8rem;
+  text-align: center;
 }
 
 .eyebrow {
   width: fit-content;
-  margin: 0 0 1rem;
+  margin: 0 auto 1rem;
   border-radius: 999px;
   background: var(--color-action, #e2185b);
   color: #ffffff;
@@ -45,8 +49,8 @@
 }
 
 .copyColumn h2 {
-  max-width: 10ch;
-  margin: 0;
+  max-width: 16ch;
+  margin: 0 auto;
   color: #ffffff;
   font-size: var(--type-page-title-size);
   font-weight: var(--font-weight-display);
@@ -57,8 +61,8 @@
 
 .contactIntro {
   display: grid;
-  max-width: 54ch;
-  margin-top: var(--section-header-gap);
+  max-width: var(--content-measure);
+  margin: var(--section-header-gap) auto 0;
   gap: var(--content-gap-tight);
 }
 
@@ -73,7 +77,8 @@
 
 .contactMethods {
   display: grid;
-  margin-top: clamp(2rem, 4vw, 3rem);
+  width: min(100%, 42rem);
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
   gap: 0;
   border-block-start: 1px solid rgb(255 255 255 / 0.18);
 }

@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: var(--stack-lg);
 }
 
 .card {
@@ -9,11 +9,11 @@
   min-height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: var(--stack-lg);
   border: 1px solid rgba(38, 27, 62, 0.08);
-  border-radius: 24px;
+  border-radius: var(--shape-feature);
   background: var(--sweed-white, #ffffff);
-  padding: 1.5rem;
+  padding: var(--card-padding);
   box-shadow: 0 18px 45px rgba(38, 27, 62, 0.08);
 }
 
@@ -24,22 +24,22 @@
 }
 
 .eyebrow {
-  margin: 0 0 0.75rem;
+  margin: 0 0 var(--stack-sm);
   color: var(--sweed-accent-pink, #ff2f68);
   font-size: 0.85rem;
   font-weight: 800;
 }
 
 .summary {
-  margin: 0.9rem 0 0;
+  margin: var(--stack-md) 0 0;
   color: var(--sweed-dark-silver, #6d6e70);
   line-height: 1.8;
 }
 
 .outcomes {
   display: grid;
-  gap: 0.55rem;
-  margin: 1.2rem 0 0;
+  gap: var(--stack-sm);
+  margin: var(--stack-lg) 0 0;
   padding: 0 1rem 0 0;
   color: var(--sweed-primary-purple, #261b3e);
   line-height: 1.8;
@@ -51,10 +51,11 @@
   justify-content: center;
   width: fit-content;
   min-width: 138px;
+  min-height: var(--control-height-md);
   border-radius: 999px;
   background: var(--sweed-primary-purple, #261b3e);
   color: var(--sweed-white, #ffffff);
-  padding: 0.8rem 1.2rem;
+  padding: var(--control-padding-block) var(--control-padding-inline);
   font-weight: 700;
   text-decoration: none;
   transition:

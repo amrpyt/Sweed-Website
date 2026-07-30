@@ -1,6 +1,6 @@
 .list {
   display: grid;
-  gap: 1rem;
+  gap: var(--stack-md);
 }
 
 .answer {

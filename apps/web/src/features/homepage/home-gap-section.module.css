@@ -6,7 +6,7 @@
   overflow: hidden;
   background: #f7f8fb;
   color: #261b3e;
-  padding: clamp(3rem, 6vw, 5rem) 0;
+  padding-block: var(--section-space-compact);
 }
 
 .section::before,
@@ -35,17 +35,17 @@
   position: relative;
   z-index: 1;
   display: grid;
-  width: min(100% - 2rem, 1240px);
+  width: min(100% - (var(--page-gutter) * 2), 1240px);
   margin-inline: auto;
   grid-template-columns: minmax(0, 1fr) clamp(180px, 22vw, 280px) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(1.5rem, 5vw, 5rem);
+  gap: clamp(var(--cds-spacing-06), 5vw, var(--cds-spacing-11));
 }
 
 .phrase {
   display: grid;
   justify-items: end;
-  gap: 0.45rem;
+  gap: var(--stack-xs);
   text-align: end;
 }
 
@@ -114,7 +114,7 @@
   position: absolute;
   width: 1px;
   height: 1px;
-  margin: -1px;
+  margin: -1px; /* spacing-exception: visually-hidden accessibility pattern */
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -123,13 +123,13 @@
 @media (width < 760px) {
   .section {
     min-height: auto;
-    padding-block: 4rem;
+    padding-block: var(--section-space-compact);
   }
 
   .container {
     grid-template-columns: 1fr;
     justify-items: center;
-    gap: 1.6rem;
+    gap: var(--stack-lg);
   }
 
   .phrase,

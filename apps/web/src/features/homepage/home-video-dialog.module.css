@@ -50,7 +50,7 @@
   border-radius: 999px;
   background: rgb(255 255 255 / 0.94);
   color: #261b3e;
-  padding: 0.55rem 0.9rem;
+  padding: var(--cds-spacing-03) var(--cds-spacing-05);
   font-size: 0.86rem;
   font-weight: 800;
   white-space: nowrap;
@@ -83,8 +83,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.1rem;
+  gap: var(--stack-md);
+  padding: var(--panel-padding);
 }
 
 .dialogHeader h2 {

@@ -1,9 +1,9 @@
 :global(html) {
-  scroll-padding-top: 88px;
+  scroll-padding-top: var(--cds-spacing-12);
 }
 
 :global(section[id]) {
-  scroll-margin-top: 88px;
+  scroll-margin-top: var(--cds-spacing-12);
 }
 
 .root {
@@ -34,7 +34,7 @@
   margin-inline: auto;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: var(--stack-lg);
 }
 
 .logo,
@@ -46,7 +46,7 @@
 .headerControls {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--inline-sm);
 }
 
 .headerAction {
@@ -57,7 +57,7 @@
   border-radius: 999px;
   background: var(--staggered-accent);
   color: #ffffff;
-  padding-inline: 20px;
+  padding-inline: var(--control-padding-inline);
   font-size: 0.94rem;
   font-weight: 900;
   text-decoration: none;
@@ -76,9 +76,9 @@
 
 .logo {
   display: inline-flex;
-  min-height: 44px;
+  min-height: var(--control-height-md);
   align-items: center;
-  gap: 10px;
+  gap: var(--inline-sm);
   color: var(--color-accent-strong);
   text-decoration: none;
 }
@@ -101,14 +101,14 @@
 .toggle {
   position: relative;
   display: inline-flex;
-  min-height: 44px;
+  min-height: var(--control-height-md);
   align-items: center;
-  gap: 10px;
+  gap: var(--inline-sm);
   border: 1px solid color-mix(in srgb, var(--color-accent-strong) 18%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-panel) 90%, transparent);
   color: var(--color-accent-strong);
-  padding: 0 16px;
+  padding-inline: var(--control-padding-inline);
   font: inherit;
   font-weight: 800;
   line-height: 1;
@@ -228,7 +228,7 @@
   overflow-y: auto;
   background: var(--color-panel);
   color: var(--color-accent-strong);
-  padding: clamp(112px, 15vh, 144px) clamp(28px, 4vw, 56px) 36px;
+  padding: clamp(var(--cds-spacing-12), 15vh, var(--cds-spacing-13)) clamp(var(--cds-spacing-07), 4vw, var(--cds-spacing-10)) var(--cds-spacing-08);
   visibility: hidden;
   pointer-events: none;
   overscroll-behavior: contain;
@@ -246,7 +246,7 @@
   min-height: 100%;
   flex: 1;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--stack-xl);
 }
 
 .list,
@@ -259,7 +259,7 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 1.1vh, 12px);
+  gap: clamp(var(--cds-spacing-02), 1.1vh, var(--cds-spacing-04));
 }
 
 .itemWrap {
@@ -273,7 +273,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
-  gap: 18px;
+  gap: var(--stack-lg);
   color: var(--color-accent-strong);
   padding-block: 2px;
   text-decoration: none;
@@ -315,7 +315,7 @@
 .socials {
   margin-block-start: auto;
   border-block-start: 1px solid color-mix(in srgb, var(--color-accent-strong) 14%, transparent);
-  padding-block-start: 22px;
+  padding-block-start: var(--stack-lg);
 }
 
 .socialTitle {
@@ -329,7 +329,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px 20px;
+  gap: var(--stack-sm) var(--inline-lg);
 }
 
 .socialLink {
@@ -380,14 +380,14 @@
   }
 
   .headerAction {
-    min-height: 44px;
-    padding-inline: 14px;
+    min-height: var(--control-height-md);
+    padding-inline: var(--control-padding-inline);
     font-size: 0.82rem;
   }
 
   .toggle {
-    min-height: 44px;
-    padding-inline: 14px;
+    min-height: var(--control-height-md);
+    padding-inline: var(--control-padding-inline);
   }
 
   .preLayers,
@@ -396,7 +396,7 @@
   }
 
   .panel {
-    padding: 98px max(22px, env(safe-area-inset-left)) max(28px, env(safe-area-inset-bottom));
+    padding: var(--cds-spacing-12) max(var(--cds-spacing-06), env(safe-area-inset-left)) max(var(--cds-spacing-07), env(safe-area-inset-bottom));
   }
 
   .itemLabel {
@@ -406,7 +406,7 @@
 
 @media (height < 760px) {
   .panel {
-    padding-block-start: 92px;
+    padding-block-start: var(--cds-spacing-12);
   }
 
   .list {

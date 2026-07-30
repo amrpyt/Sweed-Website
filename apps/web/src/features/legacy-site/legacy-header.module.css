@@ -36,7 +36,7 @@
   min-height: 76px;
   margin-inline: auto;
   align-items: center;
-  gap: clamp(0.85rem, 1.5vw, 1.5rem);
+  gap: clamp(var(--stack-md), 1.5vw, var(--stack-lg));
 }
 
 .logo {
@@ -44,7 +44,7 @@
   min-height: 48px;
   flex: 0 0 auto;
   align-items: center;
-  padding-block: 0.35rem;
+  padding-block: var(--stack-xs);
 }
 
 .logo img {
@@ -72,7 +72,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.18rem, 0.42vw, 0.5rem);
+  gap: clamp(var(--stack-2xs), 0.42vw, var(--stack-xs));
   margin: 0;
   padding: 0;
   list-style: none;
@@ -89,7 +89,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  padding-inline: clamp(0.55rem, 0.78vw, 0.9rem);
+  padding-inline: clamp(var(--stack-xs), 0.78vw, var(--stack-md));
   color: rgba(38, 27, 62, 0.76);
   font-size: clamp(0.84rem, 0.86vw, 0.96rem);
   font-weight: 700;
@@ -137,8 +137,8 @@
 .mobileCta {
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
-  border-radius: 12px;
+  gap: var(--inline-sm);
+  border-radius: var(--shape-control);
   background: #261b3e;
   color: #ffffff;
   font-weight: 800;
@@ -355,7 +355,7 @@
     width: 42px;
     height: 4px;
     flex: 0 0 auto;
-    margin: 0.05rem auto 0.45rem;
+    margin: 0 auto var(--stack-xs);
     border-radius: 999px;
     background: rgba(38, 27, 62, 0.17);
   }
@@ -364,14 +364,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.8rem;
-    padding: 0.15rem 0.25rem 0.75rem;
+    gap: var(--stack-md);
+    padding: var(--stack-2xs) var(--stack-2xs) var(--stack-sm);
   }
 
   .mobileMenuIntro > div {
     display: grid;
     min-width: 0;
-    gap: 0.18rem;
+    gap: var(--stack-2xs);
   }
 
   .mobileMenuIntro strong {
@@ -396,7 +396,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    padding-inline: 0.62rem;
+    padding-inline: var(--inline-sm);
     background: #fff0f5;
     color: #c4144c;
     font-size: 0.65rem;
@@ -425,11 +425,11 @@
     min-height: 48px;
     box-sizing: border-box;
     grid-template-columns: 1.8rem minmax(0, 1fr) 1.6rem;
-    gap: 0.65rem;
+    gap: var(--inline-sm);
     align-items: center;
     justify-content: stretch;
-    border-radius: 10px;
-    padding-inline: 0.65rem;
+    border-radius: var(--shape-control);
+    padding-inline: var(--inline-sm);
     color: #42394f;
     font-size: 0.94rem;
     text-align: start;
@@ -487,8 +487,8 @@
   .contactBlock,
   .socialBlock {
     display: grid;
-    gap: 0.45rem;
-    margin-top: 0.7rem;
+    gap: var(--stack-xs);
+    margin-top: var(--stack-sm);
   }
 
   .contactTitle {
@@ -501,7 +501,7 @@
   .contactActions {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.45rem;
+    gap: var(--stack-xs);
   }
 
   .contactActions a {
@@ -509,7 +509,7 @@
     min-height: 58px;
     place-items: center;
     align-content: center;
-    gap: 0.28rem;
+    gap: var(--stack-2xs);
     border-radius: 12px;
     background: #f7f8fb;
     color: #261b3e;
@@ -541,7 +541,7 @@
   .socialActions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: var(--stack-xs);
   }
 
   .socialActions a {
@@ -571,8 +571,8 @@
 @media (max-width: 360px) {
   .menuPanel {
     right: max(0.35rem, env(safe-area-inset-right));
-    left: max(0.35rem, env(safe-area-inset-left));
-    padding-inline: 0.55rem;
+    left: max(var(--stack-xs), env(safe-area-inset-left));
+    padding-inline: var(--inline-sm);
   }
 
   .mobileMenuIntro strong {
@@ -584,7 +584,7 @@
   }
 
   .navList a {
-    min-height: 46px;
+    min-height: var(--control-height-md);
     font-size: 0.88rem;
   }
 
@@ -597,15 +597,15 @@
 @media (max-height: 640px) and (max-width: 1080px) {
   .menuPanel {
     max-height: calc(100dvh - 77px);
-    padding-top: 0.4rem;
+    padding-top: var(--stack-xs);
   }
 
   .sheetHandle {
-    margin-bottom: 0.3rem;
+    margin-bottom: var(--stack-2xs);
   }
 
   .mobileMenuIntro {
-    padding-bottom: 0.45rem;
+    padding-bottom: var(--stack-xs);
   }
 
   .mobileMenuIntro span:not(.sheetStatus) {

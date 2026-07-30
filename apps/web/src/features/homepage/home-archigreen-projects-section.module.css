@@ -2,7 +2,7 @@
   position: relative;
   background: #261b3e;
   color: #ffffff;
-  padding: clamp(5rem, 9vw, 9rem) 0;
+  padding-block: var(--section-space-feature);
 }
 
 .container {
@@ -16,7 +16,7 @@
   margin-inline: auto;
   justify-items: center;
   gap: var(--section-header-gap);
-  padding-block-end: clamp(2rem, 4vw, 3.5rem);
+  padding-block-end: clamp(var(--cds-spacing-07), 4vw, var(--cds-spacing-09));
   border-block-end: 1px solid rgb(255 255 255 / 0.18);
   text-align: center;
 }
@@ -27,7 +27,7 @@
   border-radius: 999px;
   background: var(--color-action, #e2185b);
   color: #ffffff;
-  padding: 0.42rem 0.82rem;
+  padding: var(--cds-spacing-03) var(--cds-spacing-04);
   font-size: 0.88rem;
   font-weight: 850;
 }
@@ -48,7 +48,7 @@
   max-width: var(--content-measure);
   margin-inline: auto;
   justify-items: center;
-  gap: 1rem;
+  gap: var(--stack-md);
 }
 
 .headingAside > p {
@@ -68,7 +68,7 @@
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: var(--stack-sm);
 }
 
 .filterButton {
@@ -77,7 +77,7 @@
   border-radius: 999px;
   background: transparent;
   color: #ffffff;
-  padding-inline: 0.95rem;
+  padding-inline: var(--control-padding-inline);
   font: inherit;
   font-size: 0.85rem;
   font-weight: 750;
@@ -106,7 +106,7 @@
 
 .projectsGrid {
   display: grid;
-  margin-top: clamp(2rem, 4vw, 3.5rem);
+  margin-top: clamp(var(--cds-spacing-07), 4vw, var(--cds-spacing-09));
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1rem, 2.5vw, 2rem);
 }
@@ -162,7 +162,7 @@
   inset-block-start: 1rem;
   z-index: 2;
   border-radius: 999px;
-  padding: 0.42rem 0.78rem;
+  padding: var(--cds-spacing-03) var(--cds-spacing-04);
   font-size: 0.8rem;
   font-weight: 850;
 }
@@ -185,15 +185,15 @@
 
 .projectBody {
   display: grid;
-  gap: 0.8rem;
-  padding: clamp(1.25rem, 2.5vw, 2rem);
+  gap: var(--stack-md);
+  padding: var(--card-padding);
 }
 
 .projectMeta {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--stack-md);
   color: rgb(255 255 255 / 0.56);
   font-size: 0.78rem;
   font-weight: 700;
@@ -216,7 +216,7 @@
 
 .result {
   width: fit-content;
-  margin-top: 0.35rem;
+  margin-top: var(--stack-xs);
   border-block-end: 2px solid #ed2062;
   color: #ffffff;
   padding-block-end: 0.25rem;
@@ -239,13 +239,13 @@
 
 .footerAction a {
   display: inline-flex;
-  min-height: 50px;
+  min-height: var(--control-height-md);
   align-items: center;
-  gap: 0.7rem;
+  gap: var(--inline-sm);
   border-radius: 999px;
   background: #ffffff;
   color: #261b3e;
-  padding-inline: 1.25rem;
+  padding-inline: var(--control-padding-inline);
   font-weight: 850;
   text-decoration: none;
   transition:
@@ -276,7 +276,7 @@
   }
 
   .headingLayout {
-    gap: 1.5rem;
+    gap: var(--stack-lg);
   }
 
   .headingLayout h2 {
@@ -286,7 +286,7 @@
 
 @media (width < 620px) {
   .section {
-    padding-block: 4.5rem;
+    padding-block: var(--section-space-compact);
   }
 
   .projectMedia {

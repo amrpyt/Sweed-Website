@@ -22,14 +22,14 @@
   margin-inline: auto;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 24px;
-  padding-block: 10px;
+  gap: var(--inline-lg);
+  padding-block: var(--stack-xs);
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--inline-sm);
   color: var(--color-ink);
   font-weight: 900;
 }
@@ -44,13 +44,13 @@
 .desktopNav {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: var(--inline-xs);
 }
 
 .navLink {
   border-radius: var(--radius-sm);
   color: var(--color-muted);
-  padding: 10px 12px;
+  padding: var(--stack-xs) var(--inline-sm);
   font-weight: 700;
   transition:
     background 180ms ease,
@@ -66,12 +66,12 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--inline-sm);
 }
 
 .compact .inner {
   min-height: 56px;
-  padding-block: 6px;
+  padding-block: var(--cds-spacing-02);
 }
 
 .compact .logoImage {
@@ -80,7 +80,7 @@
 }
 
 .compact .navLink {
-  padding: 6px 10px;
+  padding: var(--cds-spacing-02) var(--inline-sm);
 }
 
 @media (width < 900px) {

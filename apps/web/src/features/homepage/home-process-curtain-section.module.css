@@ -20,26 +20,26 @@
 
 .shell {
   display: grid;
-  width: min(100% - 2rem, 1220px);
+  width: min(100% - (var(--page-gutter) * 2), 1220px);
   margin-inline: auto;
   grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr);
-  gap: clamp(3rem, 7vw, 7rem);
+  gap: clamp(var(--cds-spacing-09), 7vw, var(--cds-spacing-12));
   align-items: start;
-  padding-block: clamp(6rem, 11vw, 10rem);
+  padding-block: var(--section-space-feature);
 }
 
 .intro {
   position: sticky;
   top: clamp(6rem, 12vh, 8rem);
   display: grid;
-  gap: 1.25rem;
+  gap: var(--stack-lg);
 }
 
 .label {
   display: inline-flex;
   width: fit-content;
   align-items: center;
-  gap: 0.65rem;
+  gap: var(--inline-sm);
   color: #ed2062;
   font-size: 0.9rem;
   font-weight: 800;
@@ -84,10 +84,10 @@
   position: relative;
   display: grid;
   grid-template-columns: 4.7rem minmax(0, 1fr) auto;
-  gap: clamp(1rem, 2.5vw, 2rem);
+  gap: clamp(var(--cds-spacing-05), 2.5vw, var(--cds-spacing-07));
   align-items: start;
   border-top: 1px solid rgba(38, 27, 62, 0.14);
-  padding-block: clamp(1.8rem, 4vw, 3rem);
+  padding-block: clamp(var(--cds-spacing-06), 4vw, var(--cds-spacing-09));
 }
 
 .step:last-child {
@@ -105,12 +105,12 @@
 
 .stepContent {
   display: grid;
-  gap: 0.85rem;
+  gap: var(--stack-md);
 }
 
 .stepHeading {
   display: flex;
-  gap: 0.9rem;
+  gap: var(--inline-md);
   align-items: center;
 }
 
@@ -148,7 +148,7 @@
 .duration {
   align-self: center;
   border-radius: 999px;
-  padding: 0.55rem 0.8rem;
+  padding: var(--cds-spacing-03) var(--cds-spacing-04);
   background: #ffffff;
   color: #6d6e70;
   font-size: 0.76rem;
@@ -160,7 +160,7 @@
 @media (max-width: 900px) {
   .shell {
     grid-template-columns: 1fr;
-    gap: 3.5rem;
+    gap: var(--section-content-gap);
   }
 
   .intro {
@@ -174,13 +174,13 @@
 
 @media (max-width: 620px) {
   .shell {
-    width: min(100% - 1.25rem, 1220px);
-    padding-block: 5rem;
+    width: min(100% - (var(--page-gutter) * 2), 1220px);
+    padding-block: var(--section-space-compact);
   }
 
   .step {
     grid-template-columns: 3.2rem minmax(0, 1fr);
-    gap: 0.9rem;
+    gap: var(--stack-md);
   }
 
   .index {
@@ -191,7 +191,7 @@
     grid-column: 2;
     justify-self: start;
     align-self: auto;
-    margin-top: 0.15rem;
+    margin-top: var(--stack-2xs);
   }
 
   .stepHeading {

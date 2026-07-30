@@ -1,7 +1,7 @@
 .section {
   background: #faf8fb;
   color: #261b3e;
-  padding-block: var(--section-space-feature);
+  padding-block: var(--section-space-default);
 }
 
 .container {
@@ -26,7 +26,7 @@
   border-radius: 999px;
   background: rgb(237 32 98 / 0.1);
   color: #ed2062;
-  padding: 0.42rem 0.82rem;
+  padding: var(--cds-spacing-03) var(--cds-spacing-04);
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
 }
@@ -72,7 +72,7 @@
   border: 1px solid rgb(38 27 62 / 0.14);
   border-radius: 16px;
   background: #ffffff;
-  padding: clamp(1.25rem, 2.4vw, 2rem);
+  padding: var(--card-padding);
   box-shadow: 0 5px 0 rgb(38 27 62 / 0.07);
   transition:
     border-color 200ms ease,
@@ -101,7 +101,7 @@
   border-radius: 999px;
   background: var(--color-action, #e2185b);
   color: #ffffff;
-  padding: 0.38rem 0.7rem;
+  padding: var(--cds-spacing-02) var(--cds-spacing-04);
   font-size: 0.75rem;
   font-weight: 850;
 }
@@ -109,7 +109,7 @@
 .offerHeader {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: var(--stack-md);
   padding-inline-end: 5rem;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .offerHeader p {
-  margin: 0 0 0.2rem;
+  margin: 0 0 var(--stack-2xs);
   color: #7a7282;
   font-size: 0.76rem;
   font-weight: 750;
@@ -158,7 +158,7 @@
 
 .summary {
   min-height: 3.7em;
-  margin: 1.4rem 0 0;
+  margin: var(--stack-lg) 0 0;
   color: #696171;
   font-size: 0.92rem;
   line-height: 1.75;
@@ -166,7 +166,7 @@
 
 .items {
   display: grid;
-  margin: 1.5rem 0 0;
+  margin: var(--stack-lg) 0 0;
   padding: 0;
   gap: 0;
   list-style: none;
@@ -180,9 +180,9 @@
 .items li {
   display: flex;
   align-items: flex-start;
-  gap: 0.7rem;
+  gap: var(--inline-sm);
   border-block-end: 1px solid rgb(38 27 62 / 0.12);
-  padding-block: 0.9rem;
+  padding-block: var(--stack-md);
   color: #40374d;
   font-size: 0.88rem;
   line-height: 1.55;
@@ -194,7 +194,7 @@
 }
 
 .items i {
-  margin-top: 0.2rem;
+  margin-top: var(--stack-2xs);
   color: #ed2062;
 }
 
@@ -203,7 +203,7 @@
   min-height: 50px;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
+  gap: var(--inline-sm);
   margin-top: auto;
   border: 0;
   border-radius: 999px;
@@ -248,10 +248,10 @@
   width: min(100%, 860px);
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  margin: 2rem auto 0;
-  border-radius: 14px;
-  padding: 1rem;
+  gap: var(--stack-md);
+  margin: var(--stack-xl) auto 0;
+  border-radius: var(--shape-card);
+  padding: var(--card-padding);
   background: #f4f1f7;
 }
 
@@ -266,7 +266,7 @@
 .allOffersLink a {
   flex: 0 0 auto;
   border-radius: 10px;
-  padding: 0.7rem 0.9rem;
+  padding: var(--cds-spacing-04) var(--cds-spacing-05);
   background: #261b3e;
   color: #ffffff;
   font-size: 0.84rem;
@@ -281,7 +281,7 @@
   }
 
   .headingLayout {
-    gap: 1.4rem;
+    gap: var(--stack-lg);
   }
 
   .offerCard {
@@ -291,7 +291,7 @@
 
 @media (width < 620px) {
   .section {
-    padding-block: 4.5rem;
+    padding-block: var(--section-space-compact);
   }
 
   .offerHeader {

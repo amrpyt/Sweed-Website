@@ -2,7 +2,7 @@
   position: relative;
   background: #faf8fb;
   color: #261b3e;
-  padding-block: var(--section-space-feature);
+  padding-block: var(--section-space-default);
 }
 
 .container {
@@ -27,7 +27,7 @@
   border-radius: 999px;
   background: rgb(237 32 98 / 0.1);
   color: #ed2062;
-  padding: 0.42rem 0.82rem;
+  padding: var(--cds-spacing-03) var(--cds-spacing-04);
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
 }
@@ -63,9 +63,9 @@
   display: flex;
   min-width: 0;
   align-items: flex-start;
-  gap: 0.9rem;
+  gap: var(--stack-md);
   border-block-end: 1px solid rgb(38 27 62 / 0.12);
-  padding: 1.25rem 1rem;
+  padding: var(--stack-lg) var(--stack-md);
   transition:
     background-color 180ms ease,
     color 180ms ease;
@@ -101,7 +101,7 @@
 
 .point > span:last-child {
   display: grid;
-  gap: 0.28rem;
+  gap: var(--stack-2xs);
 }
 
 .point strong {
@@ -117,7 +117,7 @@
 
 .metricsBar {
   display: grid;
-  margin-top: clamp(2rem, 4vw, 3.5rem);
+  margin-top: clamp(var(--cds-spacing-07), 4vw, var(--cds-spacing-09));
   grid-template-columns: repeat(4, minmax(0, 1fr));
   overflow: hidden;
   border-radius: 16px;
@@ -129,8 +129,8 @@
   display: grid;
   min-height: 132px;
   place-content: center;
-  gap: 0.35rem;
-  padding: 1.2rem;
+  gap: var(--stack-xs);
+  padding: var(--card-padding);
   text-align: center;
 }
 
@@ -156,7 +156,7 @@
 @media (width < 900px) {
   .headingLayout {
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    gap: var(--stack-lg);
   }
 
   .headingLayout h2 {
@@ -187,7 +187,7 @@
 
 @media (width < 620px) {
   .section {
-    padding-block: 4.5rem;
+    padding-block: var(--section-space-compact);
   }
 
   .pointsGrid,

@@ -9,8 +9,8 @@
   width: var(--container);
   margin-inline: auto;
   grid-template-columns: 1fr auto;
-  gap: 32px;
-  padding-block: 40px;
+  gap: var(--stack-xl);
+  padding-block: var(--cds-spacing-08);
 }
 
 .logo {
@@ -20,7 +20,7 @@
 
 .copy {
   max-width: 460px;
-  margin: 12px 0 0;
+  margin: var(--stack-sm) 0 0;
   color: rgb(255 255 255 / 72%);
   line-height: 1.8;
 }
@@ -30,7 +30,7 @@
   flex-wrap: wrap;
   align-content: start;
   justify-content: end;
-  gap: 14px 18px;
+  gap: var(--stack-sm) var(--inline-lg);
   color: rgb(255 255 255 / 76%);
   font-weight: 700;
 }

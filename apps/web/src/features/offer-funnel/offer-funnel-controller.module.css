@@ -4,7 +4,7 @@
   z-index: 1400;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: var(--panel-padding);
   background: rgba(22, 16, 36, 0.48);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -25,8 +25,8 @@
   z-index: 1;
   width: min(520px, 100%);
   pointer-events: auto;
-  border-radius: 28px;
-  padding: 22px 22px 20px;
+  border-radius: var(--shape-panel);
+  padding: var(--panel-padding);
   background:
     radial-gradient(circle at top right, color-mix(in srgb, var(--color-accent) 18%, transparent), transparent 45%),
     linear-gradient(145deg, rgba(38, 27, 62, 0.98), rgba(78, 27, 69, 0.98));
@@ -36,7 +36,7 @@
 }
 
 .eyebrow {
-  margin: 0 0 10px;
+  margin: 0 0 var(--stack-sm);
   font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.72);
 }
@@ -56,8 +56,8 @@
 .sectionTag {
   display: inline-flex;
   align-items: center;
-  margin-top: 14px;
-  padding: 8px 12px;
+  margin-top: var(--stack-md);
+  padding: var(--stack-xs) var(--inline-sm);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
   font-size: 0.9rem;
@@ -65,17 +65,17 @@
 
 .actions {
   display: flex;
-  gap: 10px;
+  gap: var(--inline-sm);
   flex-wrap: wrap;
-  margin-top: 18px;
+  margin-top: var(--stack-lg);
 }
 
 .primary,
 .secondary {
-  min-height: 52px;
+  min-height: var(--control-height-lg);
   border: 1px solid transparent;
-  border-radius: 0;
-  padding: 0 1.8rem;
+  border-radius: var(--shape-control);
+  padding-inline: var(--control-padding-inline);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1;
@@ -124,13 +124,13 @@
 
 @media (max-width: 640px) {
   .shell {
-    padding: 18px;
+    padding: var(--stack-lg);
   }
 
   .card {
     width: 100%;
-    border-radius: 24px;
-    padding: 18px;
+    border-radius: var(--shape-panel);
+    padding: var(--panel-padding);
   }
 
   .actions {

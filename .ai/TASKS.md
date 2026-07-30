@@ -1,12 +1,47 @@
 # Tasks
 
-Updated: 2026-07-26T17:30:00+03:00
+Updated: 2026-07-30T12:40:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-022 — Carbon spacing system consolidation
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-07-30-carbon-spacing-system.md`
+OpenSpec: `openspec/changes/adopt-carbon-spacing-system/`
+
+#### Acceptance Criteria
+
+- [x] Public spacing uses IBM Carbon's 2x Grid as the raw scale.
+- [x] Semantic stack, inline, section, card, panel, control, and tooltip roles exist.
+- [x] Shared UI, homepage, About, public pages, AI advisor, navigation, and offer popup consume the system.
+- [x] Unused homepage CSS and conflicting legacy media rules are removed.
+- [x] Parent layouts own gaps and components own internal padding.
+- [x] Automated spacing enforcement is part of `bun run check`.
+- [x] Responsive, reduced-motion, overflow, target-size, build, and browser checks pass.
+
+#### Evidence
+
+- `bun run design:spacing`: passed across 56 public CSS files.
+- Arbitrary public margin/padding/gap violations reduced from 291 to 0.
+- Homepage CSS reduced from roughly 2,800 lines/125 declared classes to roughly 480 lines covering the 29 classes actually used.
+- `bun run check`: passed; 6 unit tests passed.
+- `bun run build`: passed; 29 routes generated.
+- Twelve representative routes passed at 1024×768, 390×844, and 320×568 with no horizontal overflow, unnamed visible controls, or structural heading/landmark failures.
+- Final 320px checks: zero visible interaction targets below 44px.
+- Reduced-motion About page exposes all five methodology steps.
+- Demo service is active and public homepage returns HTTP 200.
+- Browser console and page errors are empty.
+
+#### Boundaries
+
+- SWEED keeps its own identity and components; Carbon runtime components/themes were not installed.
+- The isolated `midu-clone` experiment and private offer-funnel admin settings are intentionally outside public enforcement.
 
 ### SWEED-021 — SWEED Visual System v2
 

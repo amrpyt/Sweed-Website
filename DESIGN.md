@@ -11,8 +11,9 @@ SWEED is a marketing and consulting agency website for Egyptian and Arab busines
 - React and Next.js remain the implementation layer.
 - Existing accessible UI primitives remain in place.
 - SWEED semantic tokens in `apps/web/src/styles/tokens.css` are the source of truth.
-- Do not add another full design system on top of the project.
-- Open Props and Utopia may be used as references, not as competing runtime themes.
+- IBM Carbon's open 2x Grid is the spatial backbone; SWEED keeps its own brand, components, typography, and interaction language.
+- Do not add Carbon components or another full visual theme merely to obtain spacing.
+- Other systems may be used as references, not as competing runtime themes.
 
 ## Brand
 
@@ -49,18 +50,22 @@ Do not add fractional local weights such as `520`, `680`, `820`, or `850`.
 
 ## Spacing and Rhythm
 
-The spacing foundation uses a 4pt scale. Prefer semantic roles:
+The raw spatial scale is IBM Carbon's 2x Grid:
 
-- `--content-gap-tight`: closely related siblings.
-- `--content-gap-default`: normal component internals.
-- `--content-gap-loose`: separate groups inside one section.
-- `--section-space-compact`: short supporting sections.
-- `--section-space-default`: standard page sections.
-- `--section-space-feature`: major narrative or conversion sections.
-- `--section-header-gap`: title-to-description relationship.
+`2, 4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 160px`
+
+Raw scale tokens are `--cds-spacing-01` through `--cds-spacing-13`. Components should consume semantic roles instead of raw values:
+
+- `--stack-2xs` through `--stack-2xl`: vertical relationships.
+- `--inline-xs` through `--inline-lg`: horizontal relationships.
+- `--card-padding` and `--panel-padding`: component-owned internal space.
+- `--content-gap-tight/default/loose`: content grouping.
+- `--section-space-compact/default/feature`: page rhythm.
+- `--section-header-gap` and `--section-description-gap`: heading relationships.
 - `--section-content-gap`: header-to-main-content separation.
+- `--control-*` and `--tooltip-*`: controls and floating UI.
 
-Sections must not all use the same vertical padding. Rhythm comes from deliberate compact, default, and feature spacing.
+Parent layouts own gaps between components. Components own only their internal padding. Sections must not all use the same vertical padding; compact, default, and feature spacing create rhythm without arbitrary values.
 
 ## Containers and Responsive Layout
 
@@ -112,14 +117,17 @@ New page and component CSS must not introduce:
 - page containers with hard-coded mobile gutters;
 - interactive targets smaller than 44px.
 
-Fine-grained values are allowed for illustrations, motion geometry, and optical corrections when they do not define reusable UI structure.
+Fine-grained values are allowed for illustrations, motion geometry, and optical corrections when they do not define reusable UI structure. Any margin, padding, or gap exception requires an inline `spacing-exception:` comment explaining the reason.
+
+`bun run design:spacing` enforces the Carbon scale across public CSS. It intentionally excludes the isolated `midu-clone` experiment and the private offer-funnel admin settings surface.
 
 ## Verification
 
 Every visual-system change must pass:
 
-1. `bun run check`
-2. `bun run build`
+1. `bun run design:spacing`
+2. `bun run check`
+3. `bun run build`
 3. Desktop review at 1440×900
 4. Tablet review at 1024×768
 5. Mobile review at 390×844 and 320×568

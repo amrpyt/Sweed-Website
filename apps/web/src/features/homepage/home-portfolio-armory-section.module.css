@@ -131,7 +131,7 @@
   inset: 0;
   display: grid;
   align-content: end;
-  gap: clamp(1.2rem, 2vw, 1.8rem);
+  gap: clamp(var(--cds-spacing-06), 2vw, var(--cds-spacing-07));
 }
 
 .meta {
@@ -155,7 +155,7 @@
 
 .panel ul {
   display: grid;
-  gap: 1rem;
+  gap: var(--stack-md);
   margin: 0;
   padding: 0;
   color: #303030;
@@ -166,7 +166,7 @@
 
 .panel li {
   position: relative;
-  padding-inline-end: 1.55rem;
+  padding-inline-end: var(--cds-spacing-06);
 }
 
 .panel li::before {
@@ -208,7 +208,7 @@
 
 @media (max-width: 900px) {
   .section {
-    padding: 1rem;
+    padding: var(--stack-md);
   }
 
   .shell {
@@ -228,6 +228,6 @@
 
   .copyPane {
     min-height: 32rem;
-    padding: 2rem 1.5rem;
+    padding: var(--stack-xl) var(--stack-lg);
   }
 }

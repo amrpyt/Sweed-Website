@@ -73,11 +73,14 @@
   --type-small-size: 0.875rem;
   --type-label-size: 0.8125rem;
   --type-display-leading: 1.08;
-  --type-title-leading: 1.14;
+  --type-title-leading: 1.16;
+  --type-lead-leading: 1.65;
   --type-body-leading: 1.75;
+  --type-small-leading: 1.6;
+  --paragraph-gap: var(--cds-spacing-05);
   --measure-heading: 18ch;
-  --measure-lead: 62ch;
-  --measure-body: 70ch;
+  --measure-lead: 60ch;
+  --measure-body: 68ch;
   
   /* Legacy value aliases. Prefer semantic typography roles above. */
   --text-xs: 0.75rem;
@@ -98,37 +101,71 @@
   --leading-body: 1.8;
   --leading-relaxed: 1.75;
   
-  /* Spacing Scale: 4pt foundation */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
+  /* IBM Carbon 2x Grid spacing scale — the only raw spatial scale. */
+  --cds-spacing-01: 0.125rem; /* 2px */
+  --cds-spacing-02: 0.25rem; /* 4px */
+  --cds-spacing-03: 0.5rem; /* 8px */
+  --cds-spacing-04: 0.75rem; /* 12px */
+  --cds-spacing-05: 1rem; /* 16px */
+  --cds-spacing-06: 1.5rem; /* 24px */
+  --cds-spacing-07: 2rem; /* 32px */
+  --cds-spacing-08: 2.5rem; /* 40px */
+  --cds-spacing-09: 3rem; /* 48px */
+  --cds-spacing-10: 4rem; /* 64px */
+  --cds-spacing-11: 5rem; /* 80px */
+  --cds-spacing-12: 6rem; /* 96px */
+  --cds-spacing-13: 10rem; /* 160px */
+
+  /* Backwards-compatible aliases. New CSS should use semantic roles below. */
+  --space-1: var(--cds-spacing-02);
+  --space-2: var(--cds-spacing-03);
+  --space-3: var(--cds-spacing-04);
+  --space-4: var(--cds-spacing-05);
+  --space-5: var(--cds-spacing-06);
+  --space-6: var(--cds-spacing-06);
+  --space-8: var(--cds-spacing-07);
+  --space-10: var(--cds-spacing-08);
+  --space-12: var(--cds-spacing-09);
+  --space-16: var(--cds-spacing-10);
+  --space-20: var(--cds-spacing-11);
+  --space-24: var(--cds-spacing-12);
   --space-32: 8rem;
-  --space-40: 10rem;
+  --space-40: var(--cds-spacing-13);
   --space-48: 12rem;
 
-  /* Semantic layout and rhythm roles */
-  --page-gutter: clamp(1rem, 3vw, 2rem);
-  --content-gap-tight: var(--space-2);
-  --content-gap-default: var(--space-4);
-  --content-gap-loose: var(--space-6);
-  --section-space-compact: clamp(3.5rem, 6vw, 5rem);
-  --section-space-default: clamp(4.5rem, 8vw, 7rem);
-  --section-space-feature: clamp(5.5rem, 10vw, 9rem);
-  --section-header-gap: clamp(0.75rem, 1.5vw, 1.25rem);
-  --section-content-gap: clamp(2.5rem, 5vw, 4.5rem);
-  --control-height-sm: 44px;
-  --control-height-md: 48px;
-  --control-height-lg: 52px;
-  --control-padding-inline: clamp(1rem, 2vw, 1.5rem);
+  /* Semantic spatial roles. Components own internal space; parents own layout gaps. */
+  --page-gutter: clamp(var(--cds-spacing-05), 3vw, var(--cds-spacing-07));
+  --layout-gutter: clamp(var(--cds-spacing-05), 2.5vw, var(--cds-spacing-06));
+  --stack-2xs: var(--cds-spacing-02);
+  --stack-xs: var(--cds-spacing-03);
+  --stack-sm: var(--cds-spacing-04);
+  --stack-md: var(--cds-spacing-05);
+  --stack-lg: var(--cds-spacing-06);
+  --stack-xl: var(--cds-spacing-07);
+  --stack-2xl: var(--cds-spacing-09);
+  --inline-xs: var(--cds-spacing-03);
+  --inline-sm: var(--cds-spacing-04);
+  --inline-md: var(--cds-spacing-05);
+  --inline-lg: var(--cds-spacing-06);
+  --content-gap-tight: var(--stack-xs);
+  --content-gap-default: var(--stack-md);
+  --content-gap-loose: var(--stack-lg);
+  --section-space-compact: clamp(var(--cds-spacing-09), 6vw, var(--cds-spacing-11));
+  --section-space-default: clamp(var(--cds-spacing-10), 8vw, var(--cds-spacing-12));
+  --section-space-feature: clamp(var(--cds-spacing-11), 10vw, var(--cds-spacing-13));
+  --section-header-gap: var(--stack-md);
+  --section-description-gap: var(--stack-sm);
+  --section-content-gap: clamp(var(--cds-spacing-07), 5vw, var(--cds-spacing-11));
+  --card-padding: clamp(var(--cds-spacing-05), 2vw, var(--cds-spacing-06));
+  --panel-padding: clamp(var(--cds-spacing-06), 3vw, var(--cds-spacing-07));
+  --control-height-sm: 2.75rem;
+  --control-height-md: 3rem;
+  --control-height-lg: 4rem;
+  --control-padding-block: var(--cds-spacing-03);
+  --control-padding-inline: var(--cds-spacing-05);
+  --tooltip-padding-block: var(--cds-spacing-03);
+  --tooltip-padding-inline: var(--cds-spacing-05);
+  --tooltip-offset: var(--cds-spacing-02);
 
   /* Semantic shape roles */
   --shape-control: var(--radius-lg);

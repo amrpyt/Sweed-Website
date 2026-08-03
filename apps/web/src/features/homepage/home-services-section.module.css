@@ -73,10 +73,10 @@
   display: block;
   max-width: 34rem;
   margin-inline: auto;
-  color: rgba(38, 27, 62, 0.58);
-  font-size: 0.86rem;
-  font-weight: 750;
-  line-height: 1.8;
+  color: rgba(38, 27, 62, 0.68);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--type-small-leading);
 }
 
 .allServicesLink {
@@ -145,9 +145,9 @@
 .index {
   align-self: start;
   padding-top: var(--stack-2xs);
-  color: rgba(38, 27, 62, 0.42);
-  font-size: 0.82rem;
-  font-weight: 850;
+  color: rgba(38, 27, 62, 0.52);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
@@ -205,8 +205,8 @@
 
 .titleLine strong {
   color: #261b3e;
-  font-size: clamp(1.16rem, 1.55vw, 1.5rem);
-  font-weight: 850;
+  font-size: clamp(1.125rem, 1.45vw, 1.4rem);
+  font-weight: var(--font-weight-display);
   line-height: 1.35;
   text-wrap: balance;
 }
@@ -222,7 +222,7 @@
 
 .actionLabel {
   display: inline-flex;
-  min-height: 44px;
+  min-height: var(--control-height-md);
   align-items: center;
   justify-content: center;
   gap: var(--inline-xs);
@@ -230,8 +230,8 @@
   padding-inline: var(--inline-sm);
   background: #f2eff6;
   color: #261b3e;
-  font-size: 0.82rem;
-  font-weight: 850;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
   white-space: nowrap;
   transition:
     background-color var(--motion-fast),
@@ -274,7 +274,7 @@
   }
 
   .intro h2 {
-    font-size: clamp(2.45rem, 12vw, 3.5rem);
+    font-size: var(--type-section-title-size);
   }
 
   .serviceList {
@@ -309,14 +309,14 @@
 
   .actionLabel {
     grid-area: action;
-    min-height: 40px;
+    min-height: var(--control-height-md);
     padding-inline: var(--inline-sm);
-    font-size: 0.76rem;
+    font-size: var(--type-small-size);
   }
 
   .summary {
-    font-size: 0.9rem;
-    line-height: 1.65;
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-leading);
   }
 }
 

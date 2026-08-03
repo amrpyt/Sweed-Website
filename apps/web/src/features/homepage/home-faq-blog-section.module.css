@@ -32,13 +32,11 @@
 
 .eyebrow {
   width: fit-content;
-  margin: 0 auto 1rem;
-  border-radius: 999px;
-  background: rgb(237 32 98 / 0.1);
-  color: #ed2062;
-  padding: var(--cds-spacing-03) var(--cds-spacing-04);
+  margin: 0 auto var(--stack-md);
+  color: #d81958;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
+  line-height: var(--type-small-leading);
 }
 
 .faqHeading h2,
@@ -68,7 +66,7 @@
   display: inline-flex;
   margin-top: var(--stack-lg);
   color: #ed2062;
-  font-weight: 850;
+  font-weight: var(--font-weight-strong);
   text-underline-offset: 0.3rem;
 }
 
@@ -97,7 +95,7 @@
   padding-block: var(--stack-md);
   font: inherit;
   font-size: clamp(1.05rem, 1.7vw, 1.35rem);
-  font-weight: 820;
+  font-weight: var(--font-weight-display);
   text-align: start;
   cursor: pointer;
 }
@@ -110,7 +108,7 @@
   border-radius: 999px;
   background: #261b3e;
   color: #ffffff;
-  font-size: 0.8rem;
+  font-size: var(--type-small-size);
   transition:
     background-color 180ms ease,
     transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -169,7 +167,7 @@
   background: #261b3e;
   color: #ffffff;
   padding-inline: var(--control-padding-inline);
-  font-weight: 850;
+  font-weight: var(--font-weight-strong);
   text-decoration: none;
   transition:
     background-color 180ms ease,
@@ -244,8 +242,8 @@
   background: rgb(255 255 255 / 0.94);
   color: #261b3e;
   padding: var(--cds-spacing-02) var(--cds-spacing-04);
-  font-size: 0.75rem;
-  font-weight: 850;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .articleBody {
@@ -260,9 +258,9 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--stack-md);
-  color: #7b7383;
-  font-size: 0.75rem;
-  font-weight: 700;
+  color: #625b6c;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .articleBody h3 {
@@ -278,9 +276,9 @@
 
 .articleBody p {
   margin: var(--stack-sm) 0 0;
-  color: #6d6e70;
-  font-size: 0.88rem;
-  line-height: 1.75;
+  color: #5f5868;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
 }
 
 .readMore {
@@ -289,9 +287,9 @@
   align-items: center;
   gap: var(--inline-sm);
   margin-top: auto;
-  color: #ed2062;
-  font-size: 0.86rem;
-  font-weight: 850;
+  color: #d81958;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
   text-decoration: none;
 }
 

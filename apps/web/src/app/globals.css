@@ -124,6 +124,17 @@ select {
   color: var(--color-accent-contrast);
 }
 
+/* Legacy public pages inherit the current readability floor until migrated to typed React. */
+.portfolio-grid :where(.card-category, .tag, .result-label),
+.blog-grid :where(.views-badge span, .article-meta span, .tag, .article-excerpt, .read-more-btn),
+.sidebar :where(.category-count, .popular-post-date span, .tag-cloud-item),
+.specialized-badge,
+.timer-label,
+.service-hero :where(.tag),
+.service-intro :where(.tag) {
+  font-size: var(--type-small-size) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

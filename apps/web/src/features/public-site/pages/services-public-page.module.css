@@ -26,8 +26,8 @@
 .eyebrow {
   margin: 0 0 var(--stack-sm);
   color: var(--sweed-accent-pink, #ff2f68);
-  font-size: 0.85rem;
-  font-weight: 800;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .summary {

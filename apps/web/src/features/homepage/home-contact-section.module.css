@@ -39,20 +39,18 @@
 
 .eyebrow {
   width: fit-content;
-  margin: 0 auto 1rem;
-  border-radius: 999px;
-  background: var(--color-action, #e2185b);
-  color: #ffffff;
-  padding: var(--cds-spacing-03) var(--cds-spacing-04);
+  margin: 0 auto var(--stack-md);
+  color: #ff8ab2;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
+  line-height: var(--type-small-leading);
 }
 
 .copyColumn h2 {
   max-width: 16ch;
   margin: 0 auto;
   color: #ffffff;
-  font-size: var(--type-page-title-size);
+  font-size: var(--type-section-title-size);
   font-weight: var(--font-weight-display);
   letter-spacing: -0.02em;
   line-height: var(--type-title-leading);
@@ -109,8 +107,8 @@
 }
 
 .contactMethods small {
-  color: rgb(255 255 255 / 0.58);
-  font-size: 0.75rem;
+  color: rgb(255 255 255 / 0.72);
+  font-size: var(--type-small-size);
 }
 
 .contactMethods strong {
@@ -140,8 +138,8 @@
 }
 
 .contextSummary span {
-  color: rgb(255 255 255 / 0.6);
-  font-size: 0.78rem;
+  color: rgb(255 255 255 / 0.72);
+  font-size: var(--type-small-size);
 }
 
 .contextSummary strong {
@@ -178,14 +176,14 @@
 .formIntro p {
   margin: 0;
   color: #261b3e;
-  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
-  font-weight: 850;
+  font-size: var(--type-card-title-size);
+  font-weight: var(--font-weight-display);
 }
 
 .formIntro span {
-  color: #6d6e70;
-  font-size: 0.82rem;
-  line-height: 1.6;
+  color: #5f5868;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
 }
 
 .fieldsGrid {
@@ -198,8 +196,8 @@
   display: grid;
   gap: var(--stack-xs);
   color: #261b3e;
-  font-size: 0.84rem;
-  font-weight: 800;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .form input,
@@ -212,7 +210,7 @@
   color: #261b3e;
   padding: var(--control-padding-block) var(--control-padding-inline);
   font: inherit;
-  font-size: 0.92rem;
+  font-size: var(--type-body-size);
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease;
@@ -249,8 +247,8 @@
 
 .form label > small {
   color: #b3261e;
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .form > button {
@@ -265,7 +263,7 @@
   color: #ffffff;
   padding-inline: var(--control-padding-inline);
   font: inherit;
-  font-weight: 880;
+  font-weight: var(--font-weight-display);
   cursor: pointer;
   transition:
     background-color 180ms ease,
@@ -293,9 +291,9 @@
 
 .formStatus {
   min-height: 1.5em;
-  color: #6d6e70;
-  font-size: 0.82rem;
-  font-weight: 750;
+  color: #5f5868;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
   text-align: center;
 }
 

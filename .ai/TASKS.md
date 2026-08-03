@@ -1,12 +1,39 @@
 # Tasks
 
-Updated: 2026-07-30T12:40:00+03:00
+Updated: 2026-08-03T18:35:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-023 — Impeccable public-site polish
+
+Status: completed
+Priority: high
+Critique: `.impeccable/critique/2026-08-03T15-35-00Z__sweed-demo-coderaai-com.md`
+
+#### Acceptance Criteria
+
+- [x] Homepage section-title hierarchy uses one semantic scale.
+- [x] Repeated pill-style section labels are reduced where they created generic scaffolding.
+- [x] Homepage typography uses only approved weights.
+- [x] Public readable text is at least 14px on mobile.
+- [x] Public interactive controls are at least 44px on mobile.
+- [x] Legacy Portfolio, Articles, Offers, breadcrumbs, service detail, and About metadata inherit the readability baseline.
+- [x] Check, build, deployment, console, and responsive QA pass.
+
+#### Evidence
+
+- Homepage computed weights reduced from 14 variants to `400 / 500 / 600 / 700 / 800`.
+- Homepage section H2 values are consistently 48.96px/800 on desktop and 34px/800 on mobile.
+- Twelve public routes passed at 1440×900, 390×844, and 320×568.
+- At 390px and 320px: zero horizontal overflow, zero visible readable text below 14px, zero visible controls below 44px, one H1, and one main landmark per tested route.
+- `bun run check`: passed; 6 unit tests passed.
+- `bun run build`: passed; 29 routes generated.
+- Demo service is active and public homepage returns HTTP 200.
+- Browser console and page errors are empty.
 
 ### SWEED-022 — Carbon spacing system consolidation
 

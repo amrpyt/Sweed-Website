@@ -22,13 +22,11 @@
 
 .eyebrow {
   width: fit-content;
-  margin: 0 auto 1rem;
-  border-radius: 999px;
-  background: rgb(237 32 98 / 0.1);
-  color: #ed2062;
-  padding: var(--cds-spacing-03) var(--cds-spacing-04);
+  margin: 0 auto var(--stack-md);
+  color: #d81958;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
+  line-height: var(--type-small-leading);
 }
 
 .headingLayout h2 {
@@ -102,8 +100,8 @@
   background: var(--color-action, #e2185b);
   color: #ffffff;
   padding: var(--cds-spacing-02) var(--cds-spacing-04);
-  font-size: 0.75rem;
-  font-weight: 850;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .offerHeader {
@@ -135,15 +133,15 @@
 .offerHeader p {
   margin: 0 0 var(--stack-2xs);
   color: #7a7282;
-  font-size: 0.76rem;
-  font-weight: 750;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .offerHeader h3 {
   margin: 0;
   color: #261b3e;
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
-  font-weight: 850;
+  font-size: var(--type-card-title-size);
+  font-weight: var(--font-weight-display);
   line-height: 1.2;
 }
 
@@ -211,8 +209,8 @@
   color: #ffffff;
   padding-inline: 1rem;
   font: inherit;
-  font-size: 0.9rem;
-  font-weight: 850;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
   cursor: pointer;
   transition:
     background-color 180ms ease,
@@ -258,8 +256,8 @@
 .allOffersLink p {
   margin: 0;
   color: #514a5c;
-  font-size: 0.9rem;
-  font-weight: 650;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-medium);
   line-height: 1.7;
 }
 
@@ -269,8 +267,8 @@
   padding: var(--cds-spacing-04) var(--cds-spacing-05);
   background: #261b3e;
   color: #ffffff;
-  font-size: 0.84rem;
-  font-weight: 800;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
   text-decoration: none;
 }
 

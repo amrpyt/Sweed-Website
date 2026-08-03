@@ -112,9 +112,9 @@
   align-items: center;
   gap: var(--inline-sm);
   margin-block-end: var(--stack-xl);
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.86rem;
-  font-weight: 750;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .heroBreadcrumb a {
@@ -169,7 +169,7 @@
 
 .heroCompass {
   display: inline-flex;
-  min-height: 46px;
+  min-height: var(--control-height-md);
   align-items: center;
   gap: var(--inline-sm);
   margin-block-start: var(--stack-xl);
@@ -177,8 +177,8 @@
   border-radius: 999px;
   padding-inline: var(--inline-sm) var(--inline-md);
   color: #ffffff;
-  font-size: 0.86rem;
-  font-weight: 800;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .heroCompassRing {
@@ -299,8 +299,8 @@
 
 .storyParagraphs article > span {
   color: var(--about-pink);
-  font-size: 0.82rem;
-  font-weight: 900;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .storyParagraphs p,
@@ -352,8 +352,8 @@
 
 .timelineYear {
   color: var(--about-pink);
-  font-size: 0.82rem;
-  font-weight: 900;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .timeline strong {
@@ -426,15 +426,15 @@
   inset-inline: 1rem;
   inset-block-end: 1rem;
   display: flex;
-  min-height: 46px;
+  min-height: var(--control-height-md);
   align-items: center;
   justify-content: center;
   gap: var(--inline-sm);
   border-radius: var(--shape-control);
   background: rgba(255, 255, 255, 0.94);
   color: var(--about-purple);
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .portraitStatus i {
@@ -495,7 +495,7 @@
 
 .founderSignature small {
   color: var(--about-muted);
-  font-size: 0.8rem;
+  font-size: var(--type-small-size);
 }
 
 .promiseSection {
@@ -572,8 +572,8 @@
 
 .directionCard > span {
   color: var(--about-pink);
-  font-size: 0.82rem;
-  font-weight: 900;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .directionCard p {
@@ -611,9 +611,9 @@
   position: absolute;
   inset-block-start: 1rem;
   inset-inline-end: 1rem;
-  color: rgba(38, 27, 62, 0.26);
-  font-size: 0.72rem;
-  font-weight: 900;
+  color: rgba(38, 27, 62, 0.42);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .valueItem > i {
@@ -675,8 +675,8 @@
 
 .methodologyProgress > span {
   color: var(--about-muted);
-  font-size: 0.72rem;
-  font-weight: 850;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .methodologyProgress strong {
@@ -696,8 +696,8 @@
 
 .methodologyProgress small {
   color: var(--about-muted);
-  font-size: 0.85rem;
-  font-weight: 800;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .methodologyProgressTrack {
@@ -797,8 +797,8 @@
   border-radius: 50%;
   background: var(--about-purple);
   color: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 900;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
   box-shadow: 0 0 0 1px rgba(38, 27, 62, 0.16);
   transition:
     background-color 240ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -830,8 +830,8 @@
 .methodologySteps p {
   margin: 0;
   color: var(--about-muted);
-  font-size: 0.86rem;
-  line-height: 1.75;
+  font-size: var(--type-small-size);
+  line-height: var(--type-body-leading);
 }
 
 .deliverable {
@@ -853,14 +853,14 @@
 
 .deliverable span {
   color: var(--about-pink);
-  font-size: 0.68rem;
-  font-weight: 900;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .deliverable strong {
   color: var(--about-purple);
-  font-size: 0.8rem;
-  line-height: 1.6;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
 }
 
 .primaryAction,
@@ -938,10 +938,10 @@
 .numbersGrid p {
   max-width: 24ch;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.84rem;
-  font-weight: 650;
-  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--type-small-leading);
 }
 
 .teamSection {
@@ -1064,9 +1064,9 @@
 }
 
 .teamPortrait small {
-  color: rgba(255, 255, 255, 0.64);
-  font-size: 0.72rem;
-  font-weight: 750;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .teamCardCopy {
@@ -1083,8 +1083,8 @@
   align-items: center;
   border-radius: 999px;
   padding-inline: var(--inline-sm);
-  font-size: 0.64rem;
-  font-weight: 900;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .placeholderBadge {
@@ -1106,15 +1106,15 @@
 
 .teamCardCopy > strong {
   color: var(--about-pink);
-  font-size: 0.8rem;
-  line-height: 1.6;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
 }
 
 .teamCard p {
   margin: 0;
   color: var(--about-muted);
-  font-size: 0.84rem;
-  line-height: 1.75;
+  font-size: var(--type-small-size);
+  line-height: var(--type-body-leading);
 }
 
 .alliancesSection {
@@ -1158,8 +1158,8 @@
 .alliancesGrid p {
   margin: 0;
   color: var(--about-muted);
-  font-size: 0.88rem;
-  line-height: 1.8;
+  font-size: var(--type-small-size);
+  line-height: var(--type-body-leading);
 }
 
 .partnersSection {
@@ -1194,10 +1194,10 @@
   justify-content: center;
   gap: var(--inline-sm);
   border-inline-end: 1px solid var(--about-line);
-  color: rgba(38, 27, 62, 0.42);
+  color: rgba(38, 27, 62, 0.58);
   filter: grayscale(1);
-  font-size: 0.78rem;
-  font-weight: 850;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
   transition: color 180ms ease, filter 180ms ease, background-color 180ms ease;
 }
 
@@ -1237,8 +1237,8 @@
 .stars {
   display: inline-flex;
   gap: var(--stack-2xs);
-  color: rgba(237, 32, 98, 0.34);
-  font-size: 0.72rem;
+  color: rgba(237, 32, 98, 0.54);
+  font-size: var(--type-small-size);
 }
 
 .testimonialCard blockquote {
@@ -1264,8 +1264,8 @@
 
 .testimonialCard footer span {
   color: var(--about-muted);
-  font-size: 0.75rem;
-  line-height: 1.6;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
 }
 
 .ctaSection {
@@ -1349,7 +1349,7 @@
   }
 
   .methodologySteps p {
-    font-size: 0.82rem;
+    font-size: var(--type-small-size);
   }
 
   .carouselSlide {
@@ -1399,8 +1399,8 @@
   }
 
   .methodologySteps p {
-    font-size: 0.78rem;
-    line-height: 1.6;
+    font-size: var(--type-small-size);
+    line-height: var(--type-small-leading);
   }
 
   .deliverable {
@@ -1630,7 +1630,7 @@
   }
 
   .timelineYear {
-    font-size: 0.75rem;
+    font-size: var(--type-small-size);
   }
 
   .founderCopy h2 {
@@ -1668,8 +1668,8 @@
   }
 
   .valueItem p {
-    font-size: 0.78rem;
-    line-height: 1.7;
+    font-size: var(--type-small-size);
+    line-height: var(--type-small-leading);
   }
 
   .methodologySteps {
@@ -1702,7 +1702,7 @@
   }
 
   .numbersGrid p {
-    font-size: 0.72rem;
+    font-size: var(--type-small-size);
   }
 
   .carouselSlide {
@@ -1737,7 +1737,7 @@
   }
 
   .alliancesGrid p {
-    font-size: 0.76rem;
+    font-size: var(--type-small-size);
   }
 
   .partnerTrack > span {

@@ -51,8 +51,8 @@
   background: rgb(255 255 255 / 0.94);
   color: #261b3e;
   padding: var(--cds-spacing-03) var(--cds-spacing-05);
-  font-size: 0.86rem;
-  font-weight: 800;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
   white-space: nowrap;
   transform: translateX(-50%);
 }
@@ -140,7 +140,7 @@
   }
 
   .playLabel {
-    font-size: 0.78rem;
+    font-size: var(--type-small-size);
   }
 }
 

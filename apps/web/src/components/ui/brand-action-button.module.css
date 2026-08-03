@@ -16,7 +16,7 @@
   --brand-action-label-shift: 0;
   --brand-action-icon-offset-x: 0;
   --brand-action-icon-offset-y: 0;
-  --brand-action-font-weight: 750;
+  --brand-action-font-weight: var(--font-weight-strong);
   --brand-action-inner-radius: calc(var(--brand-action-radius) - var(--brand-action-inset));
   position: relative !important;
   display: grid !important;

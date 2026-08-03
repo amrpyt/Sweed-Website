@@ -4,9 +4,12 @@
 }
 
 .summary {
+  display: flex;
+  min-height: var(--control-height-md);
+  align-items: center;
   cursor: pointer;
   color: var(--color-ink);
-  font-weight: 800;
+  font-weight: var(--font-weight-display);
 }
 
 .summary:focus-visible {

@@ -43,15 +43,15 @@
   padding: var(--cds-spacing-02) var(--cds-spacing-04);
   background: var(--color-action, #e2185b);
   color: #ffffff;
-  font-size: 0.84rem;
-  font-weight: 850;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .hero h1 {
   margin: 0;
   color: #ffffff;
-  font-size: clamp(2.5rem, 5.5vw, 5.4rem);
-  font-weight: 860;
+  font-size: var(--type-page-title-size);
+  font-weight: var(--font-weight-display);
   line-height: 1.08;
   text-wrap: balance;
 }
@@ -76,9 +76,9 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   padding: var(--cds-spacing-03) var(--cds-spacing-04);
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.78rem;
-  font-weight: 750;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .media {
@@ -116,7 +116,7 @@
   margin: 0;
   color: #261b3e;
   font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 850;
+  font-weight: var(--font-weight-display);
   line-height: 1.2;
 }
 
@@ -136,7 +136,7 @@
   padding-inline: var(--control-padding-inline);
   background: var(--color-action, #e2185b);
   color: #ffffff;
-  font-weight: 850;
+  font-weight: var(--font-weight-strong);
   text-decoration: none;
 }
 
@@ -156,7 +156,7 @@
   margin: 0;
   color: #261b3e;
   font-size: clamp(1.3rem, 2.4vw, 1.8rem);
-  font-weight: 820;
+  font-weight: var(--font-weight-display);
   line-height: 1.35;
 }
 

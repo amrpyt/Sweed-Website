@@ -76,7 +76,7 @@ const legacyBreadcrumbCss = `
   @media (max-width: 768px) {
     .sweed-legacy-breadcrumb .breadcrumb-content {
       padding: 0.75rem 1rem !important;
-      font-size: 0.85rem !important;
+      font-size: var(--type-small-size, 0.875rem) !important;
     }
   }
 `;

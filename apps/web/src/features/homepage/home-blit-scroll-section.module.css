@@ -42,19 +42,17 @@
 .sectionLabel {
   width: fit-content;
   margin: 0 auto var(--stack-md);
-  border-radius: 999px;
-  padding: var(--cds-spacing-03) var(--cds-spacing-04);
-  background: rgba(237, 32, 98, 0.1);
   color: #c4144c;
-  font-size: 0.82rem;
-  font-weight: 850;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--type-small-leading);
 }
 
 .introBlock h2 {
   max-width: 18ch;
   margin: 0;
   color: #261b3e;
-  font-size: clamp(2.4rem, 11vw, 3.75rem);
+  font-size: var(--type-section-title-size);
   font-weight: var(--font-weight-display);
   letter-spacing: 0;
   line-height: var(--type-title-leading);
@@ -152,15 +150,15 @@
 }
 
 .mediaCopy small {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.82rem;
-  font-weight: 750;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
 }
 
 .mediaCopy strong {
   color: #ffffff;
   font-size: clamp(1.05rem, 1.8vw, 1.45rem);
-  font-weight: 850;
+  font-weight: var(--font-weight-display);
   line-height: 1.55;
   text-wrap: balance;
 }
@@ -187,14 +185,14 @@
 .mediaMeta strong {
   color: #ffffff;
   font-size: clamp(1.05rem, 1.7vw, 1.35rem);
-  font-weight: 850;
+  font-weight: var(--font-weight-display);
   line-height: 1.4;
 }
 
 .mediaMeta small {
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.78rem;
-  font-weight: 650;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-medium);
 }
 
 .copyColumn {
@@ -211,7 +209,7 @@
   margin: 0;
   color: #514a5c;
   font-size: clamp(1rem, 1.15vw, 1.1rem);
-  font-weight: 520;
+  font-weight: var(--font-weight-body);
   line-height: 1.95;
   text-wrap: pretty;
 }
@@ -221,7 +219,7 @@
   padding-block: var(--stack-lg);
   color: #261b3e !important;
   font-size: clamp(1.08rem, 1.45vw, 1.25rem) !important;
-  font-weight: 750 !important;
+  font-weight: var(--font-weight-strong) !important;
   line-height: 1.85 !important;
 }
 
@@ -246,9 +244,9 @@
 
 .pointIndex {
   padding-block-start: var(--stack-xs);
-  color: rgba(38, 27, 62, 0.36);
-  font-size: 0.7rem;
-  font-weight: 900;
+  color: rgba(38, 27, 62, 0.48);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
   font-variant-numeric: tabular-nums;
 }
 
@@ -272,16 +270,16 @@
 
 .points strong {
   color: #261b3e;
-  font-size: 0.98rem;
-  font-weight: 850;
+  font-size: var(--type-body-size);
+  font-weight: var(--font-weight-strong);
   line-height: 1.55;
 }
 
 .points small {
-  color: #66606f;
-  font-size: 0.82rem;
-  font-weight: 560;
-  line-height: 1.6;
+  color: #5f5868;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-body);
+  line-height: 1.65;
 }
 
 .directionBand {
@@ -308,16 +306,16 @@
 }
 
 .directionStatement span {
-  color: #ff8ab2;
-  font-size: 0.78rem;
-  font-weight: 900;
+  color: #ff9abb;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-display);
 }
 
 .directionStatement p {
   margin: 0;
   color: #ffffff;
   font-size: clamp(0.95rem, 1.25vw, 1.1rem);
-  font-weight: 680;
+  font-weight: var(--font-weight-medium);
   line-height: 1.8;
   text-wrap: pretty;
 }
@@ -332,7 +330,7 @@
   padding-inline: var(--control-padding-inline);
   background: var(--color-action, #e2185b);
   color: #ffffff;
-  font-weight: 850;
+  font-weight: var(--font-weight-strong);
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 180ms ease, transform 180ms ease;

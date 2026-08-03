@@ -69,12 +69,15 @@ Parent layouts own gaps between components. Components own only their internal p
 
 ## Containers and Responsive Layout
 
+- Mobile-first is mandatory: base CSS targets 320–390px layouts; larger layouts are progressive enhancements.
+- New responsive rules use `@media (min-width: ...)` or container queries. Do not add new `max-width` breakpoints.
 - Page gutters use `--page-gutter`.
 - Reading copy should stay within `--measure-body`.
 - Lead copy should stay within `--measure-lead`.
 - Major headings should stay within `--measure-heading` where composition allows.
 - Use container queries for reusable components whose layout depends on available component width.
 - Use viewport breakpoints for page-level structural changes.
+- Components must remain in normal document flow; badges, labels, and metadata must not be positioned over headings.
 - Minimum interactive target: `44px × 44px`.
 - No horizontal overflow at 320px and above.
 
@@ -126,10 +129,11 @@ Fine-grained values are allowed for illustrations, motion geometry, and optical 
 Every visual-system change must pass:
 
 1. `bun run design:spacing`
-2. `bun run check`
-3. `bun run build`
-3. Desktop review at 1440×900
-4. Tablet review at 1024×768
-5. Mobile review at 390×844 and 320×568
-6. Overflow, clipping, focus, console, and reduced-motion checks
-7. Visual comparison for affected sections
+2. `bun run design:mobile-first`
+3. `bun run check`
+4. `bun run build`
+5. Desktop review at 1440×900
+6. Tablet review at 1024×768
+7. Mobile review at 390×844 and 320×568
+8. Overflow, clipping, focus, console, and reduced-motion checks
+9. Visual comparison for affected sections

@@ -20,14 +20,11 @@ export function HomeBlitScrollSection() {
     <section className={styles.section} id="about" aria-labelledby="home-about-title">
       <div className={styles.container}>
         <header className={styles.sectionHeader}>
-          <Reveal className={styles.headingBlock} once variant="soft">
+          <Reveal className={styles.introBlock} once variant="soft">
             <p className={styles.sectionLabel}>من نحن</p>
             <h2 id="home-about-title">{about.title}</h2>
-          </Reveal>
-
-          <Reveal className={styles.leadBlock} once variant="soft">
-            <span aria-hidden="true">من 2011</span>
-            <p>{lead}</p>
+            <p className={styles.experienceLabel}>من 2011</p>
+            <p className={styles.lead}>{lead}</p>
           </Reveal>
         </header>
 

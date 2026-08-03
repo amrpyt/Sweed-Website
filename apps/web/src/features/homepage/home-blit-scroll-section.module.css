@@ -31,9 +31,12 @@
   text-align: center;
 }
 
-.headingBlock,
-.leadBlock {
+.introBlock {
+  display: grid;
   min-width: 0;
+  justify-items: center;
+  gap: var(--stack-md);
+  text-align: center;
 }
 
 .sectionLabel {
@@ -47,41 +50,35 @@
   font-weight: 850;
 }
 
-.headingBlock h2 {
+.introBlock h2 {
   max-width: 18ch;
-  margin: 0 auto;
+  margin: 0;
   color: #261b3e;
-  font-size: clamp(2.9rem, 5.2vw, 5.2rem);
-  font-weight: 850;
+  font-size: clamp(2.4rem, 11vw, 3.75rem);
+  font-weight: var(--font-weight-display);
   letter-spacing: 0;
-  line-height: 1.08;
+  line-height: var(--type-title-leading);
   text-wrap: balance;
 }
 
-.leadBlock {
-  display: grid;
-  max-width: var(--content-measure);
-  margin-inline: auto;
-  justify-items: center;
-  gap: var(--stack-md);
-}
-
-.leadBlock > span {
+.experienceLabel {
   width: fit-content;
-  margin-inline: auto;
+  margin: 0;
   border-block-end: 2px solid #ed2062;
   padding-block-end: var(--cds-spacing-02);
   color: #ed2062;
-  font-size: 0.82rem;
-  font-weight: 900;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-strong);
+  line-height: 1.5;
 }
 
-.leadBlock p {
+.lead {
+  max-width: var(--content-measure);
   margin: 0;
   color: #3f374b;
-  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
-  font-weight: 700;
-  line-height: 1.75;
+  font-size: var(--type-lead-size);
+  font-weight: var(--font-weight-body);
+  line-height: var(--type-body-leading);
   text-wrap: pretty;
 }
 
@@ -356,6 +353,12 @@
   outline-offset: 4px;
 }
 
+@media (min-width: 621px) {
+  .introBlock h2 {
+    font-size: var(--type-section-title-size);
+  }
+}
+
 @media (min-width: 1050px) and (min-height: 760px) {
   .mediaColumn {
     position: sticky;
@@ -398,10 +401,6 @@
     gap: var(--stack-lg);
   }
 
-  .leadBlock {
-    justify-self: center;
-  }
-
   .storyGrid {
     gap: var(--stack-xl);
     direction: rtl;
@@ -427,15 +426,6 @@
 
   .sectionHeader {
     padding-block-end: var(--stack-xl);
-  }
-
-  .headingBlock h2 {
-    font-size: clamp(2.6rem, 13vw, 3.75rem);
-  }
-
-  .leadBlock p {
-    font-size: 1.05rem;
-    line-height: 1.8;
   }
 
   .storyGrid {

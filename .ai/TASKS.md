@@ -1,10 +1,36 @@
 # Tasks
 
-Updated: 2026-08-03T18:35:00+03:00
+Updated: 2026-08-04T15:30:00+03:00
 
 ## Active
 
-- None.
+### SWEED-024 — Rebuild public pages from executive briefs
+
+Status: design review
+Priority: critical
+Design: `docs/superpowers/specs/2026-08-04-public-page-executive-rebuild-design.md`
+OpenSpec: `openspec/changes/rebuild-public-pages-from-executive-briefs/`
+Implementation plan: pending written-spec approval
+
+#### Scope
+
+- Rebuild Services, Software Development, Portfolio, Offers, Articles, Article Detail, and Contact.
+- Translate uploaded briefs into modular React and typed content.
+- Preserve the SWEED visual system, Carbon spacing, mobile-first rules, accessibility, and current backend behavior.
+- Implement and commit one route phase at a time.
+
+#### Acceptance Criteria
+
+- [x] Source precedence and route ownership are explicit.
+- [x] Architecture, mobile-first rules, state handling, SEO, and verification gates are documented.
+- [ ] Stakeholder approves the written design specification.
+- [ ] A detailed implementation plan is written and linked.
+- [ ] Each route phase passes focused code and browser verification.
+- [ ] The final public-site matrix passes and the demo is deployed.
+
+#### Next Action
+
+Get written-spec approval, then create the detailed implementation plan.
 
 ## Completed
 

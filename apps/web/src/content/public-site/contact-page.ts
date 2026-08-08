@@ -1,53 +1,35 @@
+import { siteSettings } from "@/content/local-data";
 import type { ContactPageSource } from "@/features/public-site/page-composers/types";
 
 export const contactPageSource: ContactPageSource = {
   seo: {
-    title: "تواصل معنا - SWEED",
-    description: "طرق التواصل مع SWEED، نموذج الاستشارة، والأسئلة السريعة قبل بدء المشروع.",
+    title: "تواصل معنا | SWEED",
+    description: "تواصل مع SWEED عبر الهاتف أو واتساب أو البريد الإلكتروني، أو أرسل تفاصيل مشروعك من نموذج التواصل.",
   },
-  breadcrumb: "اتصل بنا",
+  breadcrumb: "تواصل معنا",
   hero: {
-    eyebrow: "تواصل معنا",
-    title: "ابدأ الحديث بالطريقة التي تناسبك",
-    summary: "سواء تحتاج استشارة سريعة أو تريد عرضًا أوضح للخدمات، سنجمع احتياجك في نموذج بسيط ونرتب الخطوة التالية.",
-    stats: [
-      { value: "أقل من ساعة", label: "متوسط الرد" },
-      { value: "6 أيام", label: "أيام العمل" },
-      { value: "مجانية", label: "الاستشارة الأولى" },
-    ],
+    eyebrow: "اتصل بنا",
+    title: "تواصل معنا",
+    summary: "نحن هنا لنستمع إليك ونساعدك في تحقيق أهدافك. تواصل معنا بالطريقة التي تناسبك، أو اكتب تفاصيل مشروعك في النموذج.",
   },
   form: {
     id: "contact-form",
-    title: "أرسل طلبك الآن",
-    summary: "اكتب بياناتك والخدمات التي تهمك وسنعود إليك برسالة أو مكالمة مرتبة.",
-    submitLabel: "أرسل الطلب",
-    notesLabel: "نبذة سريعة عن احتياجك",
+    title: "أرسل لنا رسالة",
+    summary: "اكتب بياناتك والخدمة المطلوبة ورسالتك، وسيقوم فريقنا بمراجعة الطلب وترتيب الخطوة التالية.",
+    submitLabel: "إرسال الرسالة",
+    notesLabel: "رسالتك",
   },
   sections: [
     {
       id: "contact-info",
       header: {
-        title: "بيانات التواصل",
-        summary: "لو تفضل التواصل المباشر، هذه أسرع القنوات المتاحة الآن.",
+        title: "معلومات التواصل",
+        summary: "لو تفضل التواصل المباشر، استخدم بيانات SWEED الحالية الموثقة.",
       },
       items: [
-        { title: "الهاتف", summary: "01068274662" },
-        { title: "البريد الإلكتروني", summary: "info@sweed.com" },
-        { title: "واتساب", summary: "https://wa.me/201068274662" },
-        { title: "مواعيد العمل", summary: "السبت - الخميس: 9:00 ص - 6:00 م" },
-      ],
-    },
-    {
-      id: "quick-faq",
-      tone: "alt",
-      header: {
-        title: "أسئلة سريعة قبل التواصل",
-        summary: "أكثر ما يسأله العملاء قبل إرسال الطلب الأول.",
-      },
-      items: [
-        { title: "متى يتم الرد؟", summary: "غالبًا خلال أقل من ساعة في أوقات العمل." },
-        { title: "هل يمكن البدء بمشروع صغير؟", summary: "نعم، ونرشح المسار المناسب حسب المرحلة الحالية." },
-        { title: "هل الاستشارة الأولى مجانية؟", summary: "نعم، الهدف منها فهم الاحتياج وتحديد البداية." },
+        { title: "المبيعات", summary: siteSettings.primaryPhone },
+        { title: "واتساب", summary: siteSettings.whatsappUrl },
+        { title: "البريد الإلكتروني", summary: siteSettings.primaryEmail },
       ],
     },
   ],

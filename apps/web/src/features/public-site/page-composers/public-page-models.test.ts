@@ -65,7 +65,7 @@ describe("public-site page composers", () => {
   test("builds the contact page model with a real contact form anchor and service options", () => {
     const page = getContactPageModel();
 
-    expect(page.seo.title).toBe("تواصل معنا - SWEED");
+    expect(page.seo.title).toBe("تواصل معنا | SWEED");
     expect(page.form.id).toBe("contact-form");
     expect(page.form.elementId).toBe("contact-inquiry-form");
     expect(page.form.serviceOptions.map((option) => option.value)).toEqual([
@@ -76,6 +76,8 @@ describe("public-site page composers", () => {
       "advertising",
       "media",
     ]);
-    expect(page.sections.map((section) => section.id)).toEqual(["contact-info", "quick-faq"]);
+    expect(page.sections.map((section) => section.id)).toEqual(["contact-info"]);
+    expect(JSON.stringify(page)).not.toContain("ساعات العمل");
+    expect(JSON.stringify(page)).not.toContain("24/7");
   });
 });

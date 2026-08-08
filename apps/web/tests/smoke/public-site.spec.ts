@@ -142,6 +142,69 @@ test("article detail preserves reading order, sharing, and structured data", asy
   expect(overflow).toBe(false);
 });
 
+test("contact route preserves conversion context and submits to the real lead contract", async ({ page }) => {
+  let submittedLead: Record<string, unknown> | undefined;
+  await page.route("**/api/contact-leads", async (route) => {
+    submittedLead = route.request().postDataJSON() as Record<string, unknown>;
+    await route.fulfill({
+      status: 201,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true, leadId: "contact-test", forwarded: false }),
+    });
+  });
+
+  await page.goto("/contact?source=offers-quiz&service=consulting&package=partnership");
+  const form = page.getByTestId("contact-inquiry-form");
+  await expect(form.locator('select[name="service"]')).toHaveValue("consulting");
+  await expect(form).toContainText("partnership");
+
+  await form.locator('input[name="name"]').fill("أحمد اختبار");
+  await form.locator('input[name="phone"]').fill("01068274662");
+  await form.locator('textarea[name="notes"]').fill("محتاج نراجع اتجاه المشروع ونحدد أول خطوة قابلة للتنفيذ.");
+  await form.getByRole("button", { name: "إرسال الرسالة" }).click();
+
+  await expect(form).toContainText("تم إرسال رسالتك بنجاح");
+  expect(submittedLead).toMatchObject({
+    name: "أحمد اختبار",
+    phone: "01068274662",
+    interest: "consulting",
+    source: "offers-quiz",
+    selectedService: "consulting",
+    selectedOffer: "partnership",
+    website: "",
+  });
+});
+
+test("contact route exposes field errors before sending invalid data", async ({ page }) => {
+  await page.goto("/contact");
+  const form = page.getByTestId("contact-inquiry-form");
+  await form.getByRole("button", { name: "إرسال الرسالة" }).click();
+
+  await expect(form.getByText("اكتب اسمك بحرفين على الأقل")).toBeVisible();
+  await expect(form.getByText("اكتب رقم هاتف صحيح")).toBeVisible();
+  await expect(form.getByText("اختر الخدمة الأقرب لاحتياجك")).toBeVisible();
+  await expect(form.getByText("اكتب نبذة من 10 أحرف على الأقل")).toBeVisible();
+});
+
+test("contact route shows server submission failures", async ({ page }) => {
+  await page.route("**/api/contact-leads", async (route) => {
+    await route.fulfill({
+      status: 500,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: false, errors: { form: "تعذر حفظ الطلب الآن. جرّب مرة أخرى أو استخدم واتساب." } }),
+    });
+  });
+
+  await page.goto("/contact?service=branding");
+  const form = page.getByTestId("contact-inquiry-form");
+  await form.locator('input[name="name"]').fill("أحمد اختبار");
+  await form.locator('input[name="phone"]').fill("01068274662");
+  await form.locator('textarea[name="notes"]').fill("محتاج أراجع البراند والرسالة قبل ما أبدأ التنفيذ.");
+  await form.getByRole("button", { name: "إرسال الرسالة" }).click();
+
+  await expect(form.getByText("تعذر حفظ الطلب الآن. جرّب مرة أخرى أو استخدم واتساب.")).toBeVisible();
+});
+
 test("react homepage renders key content and stable anchors", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");

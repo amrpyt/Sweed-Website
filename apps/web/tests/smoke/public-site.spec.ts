@@ -99,6 +99,27 @@ test("offers route recommends a path and keeps comparison accessible", async ({ 
   expect(overflow).toBe(false);
 });
 
+test("articles route searches and filters the real knowledge library", async ({ page }) => {
+  await page.goto("/articles");
+
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("قرار واحد صح");
+  const search = page.getByPlaceholder("اكتب المشكلة أو الموضوع اللي بتدور عليه");
+  await search.fill("ميزانية");
+  await expect(page.getByTestId("knowledge-results")).toContainText("5 أرقام لازم تتابعها قبل ما تزود ميزانية التسويق");
+
+  await search.fill("");
+  await page.getByRole("button", { name: "براند وهوية" }).click();
+  await expect(page.getByTestId("knowledge-article-card")).toHaveCount(1);
+  await expect(page.getByTestId("knowledge-results")).toContainText("قبل ما تطلق البراند");
+
+  await page.getByRole("button", { name: "مسح الفلاتر" }).click();
+  await search.fill("موضوع غير موجود إطلاقًا");
+  await expect(page.getByText("ملقيناش مقال بنفس الكلمات. جرّب كلمة أقصر أو اختار تصنيف قريب من موضوعك.")).toBeVisible();
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("react homepage renders key content and stable anchors", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");

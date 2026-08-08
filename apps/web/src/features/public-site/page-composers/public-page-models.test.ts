@@ -28,8 +28,8 @@ describe("public-site page composers", () => {
   test("builds the services page model from sorted service entities", () => {
     const page = getServicesPageModel();
 
-    expect(page.seo.title).toBe("خدماتنا المتكاملة - SWEED");
-    expect(page.hero.title).toBe("خدماتنا المتكاملة");
+    expect(page.seo.title).toBe("خدمات SWEED المتكاملة");
+    expect(page.hero.title).toBe("مش كل مشكلة محتاجة نفس الخدمة");
     expect(page.section.id).toBe("services");
     expect(page.services.map((service) => service.slug)).toEqual([
       "consulting",
@@ -47,8 +47,8 @@ describe("public-site page composers", () => {
   test("builds the articles page model with a featured article", () => {
     const page = getArticlesPageModel();
 
-    expect(page.seo.title).toBe("مدونة SWEED");
-    expect(page.section.id).toBe("articles");
+    expect(page.seo.title).toBe("مقالات وأدلة SWEED");
+    expect(page.section.id).toBe("latest");
     expect(page.articles[0]?.slug).toBe("how-to-choose-marketing-package");
     expect(page.featuredArticle?.slug).toBe("how-to-choose-marketing-package");
   });

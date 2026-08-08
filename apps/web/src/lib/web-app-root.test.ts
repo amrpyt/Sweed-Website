@@ -4,7 +4,7 @@ import { getWebAppRoot } from "./web-app-root";
 
 describe("getWebAppRoot", () => {
   test("resolves the web app root that owns the legacy site files", () => {
-    expect(getWebAppRoot().replaceAll("\\", "/")).toEndWith("SWEED-Website/apps/web");
+    expect(getWebAppRoot().replaceAll("\\", "/")).toEndWith("/apps/web");
   });
 
   test("honors an explicit workspace root override", () => {

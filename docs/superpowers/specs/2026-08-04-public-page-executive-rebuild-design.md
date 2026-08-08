@@ -1,7 +1,7 @@
 # SWEED public-page executive rebuild
 
 Date: 2026-08-04
-Status: approved direction, pending written-spec review
+Status: approved for implementation
 Task: SWEED-024
 
 ## Goal

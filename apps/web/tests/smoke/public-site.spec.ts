@@ -73,6 +73,32 @@ test("portfolio route keeps all proof narratives visible", async ({ page }) => {
   expect(overflow).toBe(false);
 });
 
+test("offers route recommends a path and keeps comparison accessible", async ({ page }) => {
+  await page.goto("/offers");
+
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("كل مشروع محتاج بداية صح");
+  await page.getByRole("button", { name: "قرارات واتجاه" }).click();
+  await page.getByRole("button", { name: "قائم ومحتاج نمو" }).click();
+  await page.getByRole("button", { name: "الآن" }).click();
+
+  const result = page.getByRole("status");
+  await expect(result).toContainText("الاستشارات والتطوير");
+  await expect(result).toContainText("شراكة الوصول");
+  await expect(result.getByRole("link", { name: "اطلب تشخيص يثبت الاختيار" })).toHaveAttribute("href", /service=consulting.*package=partnership/);
+
+  const compareButton = result.getByRole("button", { name: "قارن الباقات" });
+  await compareButton.click();
+  const dialog = page.getByRole("dialog", { name: "مقارنة الباقات الشاملة" });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole("button", { name: "إغلاق المقارنة" })).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(compareButton).toBeFocused();
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("react homepage renders key content and stable anchors", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");

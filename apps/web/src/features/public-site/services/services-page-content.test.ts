@@ -2,7 +2,8 @@ import { describe, expect, test } from "bun:test";
 import { servicesPageSource } from "@/content/public-site/services-page";
 
 describe("services executive source", () => {
-  test("keeps the approved six-service journey in order", () => {
+  test("keeps the approved six-service journey and executive copy in order", () => {
+    expect(servicesPageSource.hero.title).toBe("مش كل مشكلة محتاجة نفس الخدمة");
     expect(servicesPageSource.services.map((item) => item.id)).toEqual([
       "consulting",
       "branding",
@@ -10,6 +11,14 @@ describe("services executive source", () => {
       "development",
       "advertising",
       "media",
+    ]);
+    expect(servicesPageSource.services.map((item) => item.title)).toEqual([
+      "الاستشارات الإدارية والتسويقية",
+      "التصميم والهوية البصرية",
+      "التسويق الرقمي",
+      "البرمجة والتطوير",
+      "الدعاية والإعلان",
+      "إنتاج المحتوى والميديا",
     ]);
   });
 

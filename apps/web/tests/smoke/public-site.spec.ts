@@ -120,6 +120,28 @@ test("articles route searches and filters the real knowledge library", async ({ 
   expect(overflow).toBe(false);
 });
 
+test("article detail preserves reading order, sharing, and structured data", async ({ page }) => {
+  await page.goto("/articles/project-needs-direction");
+
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("مشروعك مش محتاج مجهود أكتر... محتاج اتجاه أوضح");
+  await expect(page.locator("main")).toHaveCount(1);
+  await expect(page.getByRole("link", { name: "شارك عبر واتساب" })).toHaveAttribute("href", /wa\.me/);
+  await expect(page.getByRole("link", { name: "شارك على LinkedIn" })).toHaveAttribute("href", /linkedin\.com/);
+  await expect(page.getByRole("link", { name: /الاستشارات الإدارية والتسويقية/ })).toHaveAttribute("href", "/services/consulting");
+
+  const bodyHeadings = await page.locator('[data-testid="article-body"] h2').allTextContents();
+  expect(bodyHeadings).toEqual(["المجهود مش دايمًا هو المشكلة", "ابدأ بتثبيت الوجهة"]);
+
+  const jsonLd = JSON.parse((await page.locator('script[type="application/ld+json"][data-article-schema]').textContent()) ?? "{}");
+  expect(jsonLd["@type"]).toBe("Article");
+  expect(jsonLd.url).toBe("https://sweed.com/articles/project-needs-direction");
+
+  const textAlignment = await page.locator('[data-testid="article-body"] p').first().evaluate((element) => getComputedStyle(element).textAlign);
+  expect(textAlignment).not.toBe("justify");
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("react homepage renders key content and stable anchors", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");

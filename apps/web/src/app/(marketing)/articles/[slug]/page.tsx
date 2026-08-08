@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { articles } from "@/content/local-data";
 import { ArticleDetailPublicPage } from "@/features/public-site/pages/article-detail-public-page";
+import { createPageMetadata } from "@/lib/seo";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -17,14 +18,19 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
   if (!article) return {};
 
-  return {
+  const metadata = createPageMetadata({
     title: `${article.seo.title} | SWEED`,
     description: article.seo.description,
+    path: `/articles/${article.slug}`,
+    image: article.seo.image,
+  });
+
+  return {
+    ...metadata,
     openGraph: {
+      ...metadata.openGraph,
       type: "article",
-      title: article.seo.title,
-      description: article.seo.description,
-      images: article.seo.image ? [article.seo.image] : undefined,
+      publishedTime: article.publishedAt,
     },
   };
 }
@@ -35,5 +41,5 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   if (!article) notFound();
 
-  return <ArticleDetailPublicPage article={article} />;
+  return <ArticleDetailPublicPage article={article} allArticles={articles} />;
 }

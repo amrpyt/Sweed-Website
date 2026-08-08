@@ -27,7 +27,7 @@ test("services route renders the executive decision journey", async ({ page }) =
   await expect(page.getByRole("heading", { level: 1 })).toContainText("مش كل مشكلة محتاجة نفس الخدمة");
   await expect(page.locator("main")).toHaveCount(1);
   await expect(page.locator("main section[id]")).toHaveCount(8);
-  await expect(page.locator("#development").getByRole("link", { name: /البرمجة والتطوير/ })).toHaveAttribute(
+  await expect(page.locator("#development").getByRole("link", { name: "استكشف حلول التطوير" })).toHaveAttribute(
     "href",
     "/services/software-development",
   );

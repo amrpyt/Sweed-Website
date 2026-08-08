@@ -11,7 +11,10 @@ type ServicePageProps = {
 };
 
 export function generateStaticParams() {
-  return [...services.map((service) => ({ slug: service.slug })), { slug: "software-development" }];
+  return [
+    ...services.filter((service) => service.slug !== "development").map((service) => ({ slug: service.slug })),
+    { slug: "software-development" },
+  ];
 }
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {

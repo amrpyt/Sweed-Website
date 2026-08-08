@@ -10,7 +10,7 @@
     "mastra:server:deploy": "mastra server deploy",
     "build": "next build",
     "start": "next start --hostname 0.0.0.0 --port 3000",
-    "unit": "bun test src/**/*.test.ts",
+    "unit": "bun test src",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src next.config.ts eslint.config.mjs",
     "smoke": "playwright test",

@@ -66,6 +66,15 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/services/development",
+        destination: "/services/software-development",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

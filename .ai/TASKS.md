@@ -1,23 +1,28 @@
 # Tasks
 
-Updated: 2026-08-08T20:10:00+03:00
+Updated: 2026-08-08T20:58:00+03:00
 
 ## Active
 
+- None.
+
+## Completed
+
 ### SWEED-024 — Rebuild public pages from executive briefs
 
-Status: implementation ready
+Status: completed
 Priority: critical
 Design: `docs/superpowers/specs/2026-08-04-public-page-executive-rebuild-design.md`
 OpenSpec: `openspec/changes/rebuild-public-pages-from-executive-briefs/`
 Implementation plan: `docs/superpowers/plans/2026-08-08-public-page-executive-rebuild.md`
+Final commit: `c77bcf1 chore: finalize public page release gate`
 
 #### Scope
 
-- Rebuild Services, Software Development, Portfolio, Offers, Articles, Article Detail, and Contact.
-- Translate uploaded briefs into modular React and typed content.
-- Preserve the SWEED visual system, Carbon spacing, mobile-first rules, accessibility, and current backend behavior.
-- Implement and commit one route phase at a time.
+- Rebuilt Services, Software Development, Portfolio, Offers, Articles, Article Detail, and Contact.
+- Translated approved briefs into modular React and typed content without copying standalone HTML into runtime.
+- Preserved the SWEED visual system, Carbon spacing, mobile-first rules, accessibility, and current backend behavior.
+- Implemented and committed each route phase independently.
 
 #### Acceptance Criteria
 
@@ -25,14 +30,20 @@ Implementation plan: `docs/superpowers/plans/2026-08-08-public-page-executive-re
 - [x] Architecture, mobile-first rules, state handling, SEO, and verification gates are documented.
 - [x] Stakeholder approves the written design specification.
 - [x] A detailed implementation plan is written and linked.
-- [ ] Each route phase passes focused code and browser verification.
-- [ ] The final public-site matrix passes and the demo is deployed.
+- [x] Each route phase passes focused code and browser verification.
+- [x] The final public-site matrix passes and the demo is deployed.
 
-#### Next Action
+#### Evidence
 
-Execute Task 1 from the approved implementation plan in an isolated worktree, then review and commit before Task 2.
+- `bun run check`: passed with 91 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards.
+- `bun run build`: passed with 29 generated routes.
+- Rebuilt-route Playwright regression: 20/20 passed on desktop and mobile.
+- Production readiness: 11 passed with 1 intentional mobile visual skip.
+- Public visual matrix at 1440x900 and 320x568: zero overflow, broken images, small controls, small text, console errors, or page errors on seven rebuilt routes.
+- `/services/development` returns HTTP 308 to `/services/software-development`.
+- Demo service is active and every rebuilt public route returns HTTP 200.
+- No Git push was performed.
 
-## Completed
 
 ### SWEED-023 — Impeccable public-site polish
 

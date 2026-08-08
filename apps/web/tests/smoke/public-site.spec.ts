@@ -54,6 +54,25 @@ test("legacy development route redirects permanently to software development", a
   await expect(page).toHaveURL(/\/services\/software-development$/);
 });
 
+test("portfolio route keeps all proof narratives visible", async ({ page }) => {
+  await page.goto("/portfolio");
+
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("هنوريك عملناه إزاي");
+  for (const id of ["consulting", "branding", "marketing", "media", "advertising", "digital"]) {
+    await expect(page.locator(`#${id}`)).toHaveCount(1);
+  }
+  await expect(page.locator('[data-proof-state="pending"]')).toHaveCount(14);
+  await expect(page.getByRole("navigation", { name: "فلترة الأعمال حسب الخدمة" })).toBeVisible();
+
+  const before = await page.locator("#media").count();
+  await page.getByRole("link", { name: "محتوى مرئي" }).first().click();
+  await expect(page).toHaveURL(/#media$/);
+  expect(await page.locator("#media").count()).toBe(before);
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("react homepage renders key content and stable anchors", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");

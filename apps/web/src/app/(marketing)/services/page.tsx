@@ -1,11 +1,11 @@
-import { ServicesPublicPage } from "@/features/public-site/pages/services-public-page";
-import { getServicesPageModel } from "@/features/public-site";
+import { servicesPageSource } from "@/content/public-site/services-page";
+import { ServicesExecutivePage } from "@/features/public-site/services/services-executive-page";
+import { createPageMetadata } from "@/lib/seo";
 
-const servicesPage = getServicesPageModel();
+export const metadata = createPageMetadata({
+  title: servicesPageSource.seo.title,
+  description: servicesPageSource.seo.description,
+  path: "/services",
+});
 
-export const metadata = {
-  title: servicesPage.seo.title,
-  description: servicesPage.seo.description,
-};
-
-export default ServicesPublicPage;
+export default ServicesExecutivePage;

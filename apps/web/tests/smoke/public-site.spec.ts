@@ -21,6 +21,22 @@ test("public routes render shared shell", async ({ page }) => {
   }
 });
 
+test("services route renders the executive decision journey", async ({ page }) => {
+  await page.goto("/services");
+
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("مش كل مشكلة محتاجة نفس الخدمة");
+  await expect(page.locator("main")).toHaveCount(1);
+  await expect(page.locator("main section[id]")).toHaveCount(8);
+  await expect(page.locator("#development").getByRole("link", { name: /البرمجة والتطوير/ })).toHaveAttribute(
+    "href",
+    "/services/software-development",
+  );
+  await expect(page.getByRole("navigation", { name: "خريطة خدمات SWEED" })).toBeVisible();
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("react homepage renders key content and stable anchors", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");

@@ -37,6 +37,23 @@ test("services route renders the executive decision journey", async ({ page }) =
   expect(overflow).toBe(false);
 });
 
+test("software development route is canonical and interactive", async ({ page }) => {
+  await page.goto("/services/software-development");
+
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("نظام يشيل شغلك ويكبر معاك");
+  await page.getByRole("button", { name: /التشغيل/ }).first().click();
+  await expect(page.getByRole("status")).toContainText("أتمتة وتكامل");
+  await expect(page.locator("main")).toHaveCount(1);
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
+test("legacy development route redirects permanently to software development", async ({ page }) => {
+  await page.goto("/services/development");
+  await expect(page).toHaveURL(/\/services\/software-development$/);
+});
+
 test("react homepage renders key content and stable anchors", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("body")).toContainText("نصنع العلامات التي تقود المستقبل");

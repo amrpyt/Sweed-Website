@@ -135,6 +135,15 @@ export type Product = {
   cta?: LinkTarget;
 };
 
+export type ProofState = "verified" | "pending";
+
+export type PortfolioProof = {
+  state: ProofState;
+  label: string;
+  summary?: string;
+  metric?: string;
+};
+
 export type PortfolioItem = {
   slug: string;
   title: string;
@@ -147,6 +156,7 @@ export type PortfolioItem = {
   order: number;
   category?: string;
   metrics?: StatItem[];
+  proof?: PortfolioProof;
 };
 
 export type Article = {

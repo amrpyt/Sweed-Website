@@ -1,5 +1,15 @@
 import { describe, expect, test } from "bun:test";
+import { getCanonicalServiceSlug, getServiceDetailHref } from "../shared/service-route";
 import { publicSiteContentRepository } from "./public-site-content-repository";
+
+describe("service public routing", () => {
+  test("maps the development service to the canonical software-development route", () => {
+    expect(getCanonicalServiceSlug("software-development")).toBe("software-development");
+    expect(getCanonicalServiceSlug("development")).toBe("software-development");
+    expect(getServiceDetailHref("development")).toBe("/services/software-development");
+    expect(getCanonicalServiceSlug("unknown")).toBeNull();
+  });
+});
 
 describe("public-site content repository", () => {
   test("returns shared shell data with production contact details", () => {
@@ -15,7 +25,14 @@ describe("public-site content repository", () => {
     const source = publicSiteContentRepository.getServicesPageSource();
 
     expect(source.section.id).toBe("services");
-    expect(source.services.map((service) => service.slug)).toEqual(["digital-marketing", "websites", "ai-automation"]);
+    expect(source.services.map((service) => service.slug)).toEqual([
+      "consulting",
+      "branding",
+      "digital-marketing",
+      "development",
+      "advertising",
+      "media",
+    ]);
     expect(source.cta.primaryAction.href).toBe("/contact");
   });
 });

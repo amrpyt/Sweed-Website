@@ -32,6 +32,10 @@ export type AboutPageModel = {
   cta: CTAContent;
 };
 
+export type PublicServiceModel = Service & {
+  detailHref: string;
+};
+
 export type ServicesPageModel = {
   seo: SeoMeta;
   breadcrumb: string;
@@ -40,7 +44,7 @@ export type ServicesPageModel = {
     id: string;
     header: SectionHeaderContent;
   };
-  services: Service[];
+  services: PublicServiceModel[];
   cta: CTAContent;
 };
 

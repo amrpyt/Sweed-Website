@@ -31,7 +31,17 @@ describe("public-site page composers", () => {
     expect(page.seo.title).toBe("خدماتنا المتكاملة - SWEED");
     expect(page.hero.title).toBe("خدماتنا المتكاملة");
     expect(page.section.id).toBe("services");
-    expect(page.services.map((service) => service.slug)).toEqual(["digital-marketing", "websites", "ai-automation"]);
+    expect(page.services.map((service) => service.slug)).toEqual([
+      "consulting",
+      "branding",
+      "digital-marketing",
+      "development",
+      "advertising",
+      "media",
+    ]);
+    expect(page.services.find((service) => service.slug === "development")?.detailHref).toBe(
+      "/services/software-development",
+    );
   });
 
   test("builds the articles page model with a featured article", () => {
@@ -58,7 +68,14 @@ describe("public-site page composers", () => {
     expect(page.seo.title).toBe("تواصل معنا - SWEED");
     expect(page.form.id).toBe("contact-form");
     expect(page.form.elementId).toBe("contact-inquiry-form");
-    expect(page.form.serviceOptions.map((option) => option.value)).toEqual(["digital-marketing", "websites", "ai-automation"]);
+    expect(page.form.serviceOptions.map((option) => option.value)).toEqual([
+      "consulting",
+      "branding",
+      "digital-marketing",
+      "development",
+      "advertising",
+      "media",
+    ]);
     expect(page.sections.map((section) => section.id)).toEqual(["contact-info", "quick-faq"]);
   });
 });

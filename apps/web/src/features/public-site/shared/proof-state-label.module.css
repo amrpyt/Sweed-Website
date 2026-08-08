@@ -1,0 +1,24 @@
+.label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: var(--control-height-sm);
+  padding-block: var(--stack-2xs);
+  padding-inline: var(--inline-sm);
+  color: var(--color-muted);
+  background: var(--color-soft);
+  border-radius: var(--shape-control);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--type-small-leading);
+}
+
+.label[data-proof-state="verified"] {
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-success) 14%, var(--color-panel));
+}
+
+.label[data-proof-state="pending"] {
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-warning) 16%, var(--color-panel));
+}

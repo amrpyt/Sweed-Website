@@ -12,13 +12,15 @@ import type {
   ContactPageSource,
   ContactServiceOption,
   FaqPageSource,
+  PublicServiceModel,
   PublicSiteShellData,
   ServicesPageSource,
 } from "@/features/public-site/page-composers/types";
-import type { Article, IconTextItem, Service } from "@/content/types";
+import type { Article, IconTextItem } from "@/content/types";
+import { getServiceDetailHref } from "@/features/public-site/shared/service-route";
 
 export type ServicesPageRepositoryData = ServicesPageSource & {
-  services: Service[];
+  services: PublicServiceModel[];
 };
 
 export type ArticlesPageRepositoryData = ArticlesPageSource & {
@@ -58,7 +60,10 @@ export const publicSiteContentRepository = {
   getServicesPageSource(): ServicesPageRepositoryData {
     return {
       ...servicesPageSource,
-      services: contentRepository.getServices(),
+      services: contentRepository.getServices().map((service) => ({
+        ...service,
+        detailHref: getServiceDetailHref(service.slug),
+      })),
     };
   },
 

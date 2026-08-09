@@ -5,9 +5,6 @@
   --primary-purple: #261b3e;
   --ink: #261b3e;
   --muted: #6d6e70;
-  --section-space-compact: clamp(var(--cds-spacing-09), 5vw, var(--cds-spacing-11));
-  --section-space-default: clamp(var(--cds-spacing-10), 6vw, var(--cds-spacing-12));
-  --section-space-feature: clamp(var(--cds-spacing-11), 7vw, var(--cds-spacing-12));
   --home-content-max: 77.5rem;
   --home-disclosure-peek: var(--cds-spacing-06);
   overflow: visible;

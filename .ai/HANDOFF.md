@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-09T03:26:00+03:00
+Updated: 2026-08-09T11:45:00+03:00
 
 ## Read First
 
@@ -15,6 +15,14 @@ Updated: 2026-08-09T03:26:00+03:00
 
 ## What Changed
 
+- SWEED-027 `/better-typography` public UI pass is complete and deployed.
+- Homepage readable type variants dropped from 15 desktop / 17 mobile to seven-or-fewer semantic sizes at each audited width.
+- Readable mobile copy now has a 14px floor and visible editable fields use 16px.
+- H1/H2 hierarchy is stable through 320px; body measure is 65ch with normalized semantic leading.
+- Headings use balanced wrapping, paragraphs use pretty wrapping, and long labels can break safely under text enlargement.
+- The homepage slogan remains one line at normal 320px but reflows safely at enlarged user text sizes.
+- The Helvetica Arabic local font is confirmed static Regular and its `@font-face` metadata no longer advertises an invalid 400–900 range.
+- Root font smoothing, selection styling, and underline metrics were added.
 - SWEED-026 `/better-layout` homepage structure pass is complete and deployed.
 - Major homepage sections now share one 77.5rem content shell and centered heading axis.
 - Decorative header/section lines were removed where whitespace already communicates grouping.
@@ -46,6 +54,16 @@ Updated: 2026-08-09T03:26:00+03:00
 
 ## Verification
 
+- SWEED-027 `bun run check`: passed with 95 tests plus TypeScript, ESLint, spacing, and mobile-first checks; legacy max-width query count is 34/40.
+- SWEED-027 production build passed with 29 routes.
+- Better-typography plus existing homepage focused Playwright: 6/6 passed across desktop and mobile.
+- Public HTTPS: desktop readable type sizes = 7; 390px = 7; 320px = 7; readable text below 14px = 0.
+- Public HTTPS hierarchy: H1 77.76px vs max H2 64px desktop; H1 40px vs max H2 34px at 390px/320px.
+- All visible homepage and Contact editable controls are 16px on mobile.
+- Normal 320px slogan is one line; 200% text-size check at 390px has zero clipped readable elements and zero page overflow.
+- `document.fonts.check` confirms SWEED Helvetica Arabic is loaded.
+- Production readiness after SWEED-027: 11 passed, 1 intentional mobile visual checkpoint skip.
+- Public console and page-error logs are empty.
 - `bun run check`: passed with 95 tests plus TypeScript, ESLint, spacing, and mobile-first checks; legacy max-width queries improved from 38 to 35.
 - `/better-layout` focused changed-surface Playwright: 4/4 passed across desktop and mobile.
 - On 390px, Services dropped from ~3333px to 2000px, Offers from ~2038px to 1018px, Articles from ~2031px to 842px.
@@ -83,4 +101,4 @@ Updated: 2026-08-09T03:26:00+03:00
 
 ## Resume From Here
 
-Open the deployed homepage for stakeholder feedback. Preserve the 77.5rem alignment axis, mobile content-priority rules, visible-peek horizontal disclosure, manual portfolio carousel, single-line slogan, and modular oversized footer. For future changes, rerun `bun run check`, `bun run build`, focused Playwright, and public browser QA before deployment.
+Open the deployed public UI for stakeholder feedback. Preserve the semantic typography roles, 14px readable floor, 16px mobile editable-control floor, 65ch body measure, text-resize-safe wrapping, 77.5rem alignment axis, visible-peek disclosure, and modular footer. For future changes, rerun `bun run check`, `bun run build`, focused Playwright, text-resize QA, and public browser QA before deployment.

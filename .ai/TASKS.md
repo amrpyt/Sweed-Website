@@ -1,12 +1,47 @@
 # Tasks
 
-Updated: 2026-08-09T02:49:00+03:00
+Updated: 2026-08-09T11:45:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-027 — Better-typography public UI pass
+
+Status: completed
+Priority: high
+Plan: `docs/superpowers/plans/2026-08-09-better-typography-public-ui.md`
+OpenSpec: `openspec/changes/apply-better-typography/`
+Implementation commit: `ce407ad refactor: apply better-typography to public UI`
+
+#### Scope
+
+- Applied the installed `better-typography` skill to the SWEED public typography system and homepage.
+- Consolidated readable homepage typography onto semantic display, page-title, section-title, card-title, UI-title, statement, lead, body, small, and label roles.
+- Normalized title/card/body/small leading and reduced the body reading measure to 65ch.
+- Removed readable one-off homepage sizes while keeping intentional icon and metric display sizes separate.
+- Enforced a 14px readable mobile floor and 16px visible editable-control floor.
+- Added resize-safe wrapping for CTA labels, article/offer content, and the one-line slogan.
+- Corrected the static Helvetica Arabic font-face weight metadata and added root rendering/selection/underline details.
+- Added a Playwright contract for semantic-size count, hierarchy, wrapping, readable floor, editable-control floor, and overflow.
+
+#### Evidence
+
+- Computed homepage readable sizes reduced from 15 desktop / 17 mobile variants to 7 desktop and 7-or-fewer mobile variants.
+- Readable homepage text below 14px reduced from 2 elements to 0.
+- H1 remains above section hierarchy: 77.76px vs max H2 64px desktop; 40px vs 34px at 390px and 320px.
+- All visible homepage and Contact editable controls render at 16px on mobile.
+- 320px slogan remains a single line with zero internal/page overflow.
+- At 200% user text size on 390px, readable content has zero horizontal clipping and the page has zero horizontal overflow.
+- `bun run check`: 95/95 tests plus TypeScript, ESLint, spacing, and mobile-first guards passed; legacy max-width count is 34/40.
+- Production build passed with 29 routes.
+- Better-typography + existing homepage focused Playwright: 6/6 passed desktop/mobile.
+- Production readiness: 11 passed, 1 intentional mobile visual checkpoint skip.
+- Public HTTPS browser console and page-error logs are empty.
+- `sweed-demo.service` is active; public homepage and Contact return HTTP 200.
+- No Git push was performed.
 
 ### SWEED-026 — Better-layout homepage structure pass
 

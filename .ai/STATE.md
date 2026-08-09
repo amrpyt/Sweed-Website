@@ -1,15 +1,15 @@
 # Current State
 
-Updated: 2026-08-09T03:26:00+03:00
+Updated: 2026-08-09T11:45:00+03:00
 Git branch: main
-Git HEAD: 7ff3569
+Git HEAD: ce407ad
 Active Task: None
 Active Plan: None
-Status: SWEED-026 better-layout homepage pass completed and deployed to demo
+Status: SWEED-027 better-typography public UI pass completed and deployed to demo
 
 ## Current Goal
 
-Keep the rebuilt public pages and homepage on the SWEED visual system, Carbon spacing contract, mobile-first rules, and the shared alignment/progressive-disclosure system established by SWEED-026.
+Keep the rebuilt public pages and homepage on the SWEED visual system, Carbon spacing contract, mobile-first rules, shared alignment system, and semantic typography baseline established by SWEED-027.
 
 ## In Progress
 
@@ -17,6 +17,14 @@ None.
 
 ## Completed Recently
 
+- Applied `/better-typography` to the public UI and homepage semantic type system.
+- Reduced homepage readable computed font sizes from 15 desktop / 17 mobile variants to 7 desktop / 7-or-fewer mobile variants.
+- Eliminated readable homepage text below 14px and kept all visible editable controls at 16px on mobile.
+- Established semantic UI-title and statement roles plus normalized display/title/card/body/small line heights.
+- Reduced body reading measure to 65ch and preserved `text-wrap: balance` for headings and `pretty` for paragraphs.
+- Corrected the local Helvetica Arabic `@font-face` metadata from a fake `400–900` range to its verified static Regular weight.
+- Added font smoothing, selection styling, underline metrics, and resize-safe long-label wrapping.
+- Verified the homepage at 200% text size with zero clipped readable elements and zero horizontal page overflow.
 - Applied `/better-layout` to homepage grouping, shared alignment, mobile content priority, responsive disclosure, and RTL-safe breakpoints.
 - Standardized major homepage content shells around one 77.5rem alignment system.
 - Re-centered Services, Why SWEED, Portfolio, Offers, and Articles headings on one page axis.
@@ -56,6 +64,17 @@ None.
 
 ## Verification
 
+- SWEED-027 `bun run check`: passed with 95 tests, TypeScript, ESLint, spacing guard, and mobile-first guard; legacy max-width query count is 34/40.
+- SWEED-027 production build: passed with 29 routes.
+- Better-typography + existing homepage focused Playwright: 6/6 passed across desktop and mobile.
+- Public HTTPS typography: desktop readable sizes reduced to 7; 390px uses 7; 320px uses 7 including the fluid 14.24px statement size; no readable text below 14px.
+- Public HTTPS hierarchy: H1 is 77.76px vs max H2 64px desktop, and 40px vs max H2 34px at 390/320.
+- All visible homepage and Contact editable fields are 16px on mobile.
+- Public 320px slogan remains one line with no internal/page overflow; at 200% text size it reflows safely.
+- Public 200% text-size check at 390px: zero clipped readable elements and zero horizontal page overflow.
+- Verified `SWEED Helvetica Arabic` is loaded; source font is a static Regular TrueType face and CSS metadata now reflects that.
+- Public browser console and page-error logs are empty.
+- Production readiness after SWEED-027: 11 passed, 1 intentional mobile visual checkpoint skip.
 - `bun run check`: passed with 95 tests, TypeScript, ESLint, spacing guard, and mobile-first guard; legacy max-width query count improved from 38 to 35.
 - `/better-layout` focused Playwright contracts: 4/4 passed across desktop and mobile.
 - Public HTTPS at 1440, 1024, 390, and 320: audited section heading centers have 0px alignment delta; zero page overflow and broken images.
@@ -82,4 +101,4 @@ None.
 
 ## Next Exact Action
 
-Review the deployed homepage visually. Preserve the shared 77.5rem alignment axis, mobile content-priority rules, discoverable horizontal tracks, manual portfolio carousel, and modular footer. Do not push until explicitly requested.
+Review the deployed typography visually. Preserve the semantic type roles, 14px readable floor, 16px mobile editable-control floor, 65ch body measure, resize-safe wrapping, shared 77.5rem alignment axis, and mobile-first layout rules. Do not push until explicitly requested.

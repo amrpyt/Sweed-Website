@@ -77,7 +77,7 @@ Section rhythm is mobile-first and snaps to the 8px grid rather than producing a
 
 Typical adjacent gaps therefore land around `112–144px` on mobile, `144–176px` on tablet, and `176–224px` on desktop for the normal compact/default/feature combinations used by SWEED. This is the public-site breathing-room baseline: major marketing sections should read as distinct moments rather than one dense continuous block.
 
-Use `compact` only for short transitional bands, `default` for normal content sections, and `feature` for major narrative/CTA moments. A section that is `default` or `feature` must not be downgraded to `compact` only because the viewport is narrow; responsive spacing is already encoded in the tokens. The eyebrow/title/description stack uses 24px semantic spacing, with 16px for closely related description relationships. Do not add extra inter-section margins on top of these tiers.
+Use `compact` only for short transitional bands, `default` for normal content sections, and `feature` for major narrative/CTA moments. A section that is `default` or `feature` must not be downgraded to `compact` only because the viewport is narrow; responsive spacing is already encoded in the tokens. The eyebrow/title/description stack uses 24px semantic spacing, with 16px for closely related description relationships. Major section headers must hand off to their primary content with `--section-content-gap`, now `48–96px` (`clamp(48px, 6vw, 96px)`). Repeated marketing cards/rows should normally use `24–32px` group gaps instead of UI-dense 8–16px spacing; smaller gaps remain appropriate only inside one tightly related card/content cluster. Do not add extra inter-section margins on top of these tiers.
 
 ## Containers and Responsive Layout
 

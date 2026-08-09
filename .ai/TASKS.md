@@ -1,12 +1,38 @@
 # Tasks
 
-Updated: 2026-08-09T15:32:00+03:00
+Updated: 2026-08-09T16:10:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-034 — Loosen homepage internal rhythm
+
+Status: completed
+Priority: high
+Implementation commits: `8ec9867 fix: loosen homepage internal rhythm`, `0ac7fc4 fix: preserve mobile internal breathing room`, `4638714 test: stabilize homepage rhythm verification`
+
+#### Scope
+
+- Measured live inside-section relationships with agent-browser after outer section spacing was already expanded.
+- Increased the semantic header-to-primary-content gap from `clamp(32px, 5vw, 80px)` to `clamp(48px, 6vw, 96px)`.
+- Expanded Services row spacing, Portfolio header-to-project spacing, Offers/Blog card spacing, Why points-to-metrics spacing, and About header-to-story spacing.
+- Kept FAQ rows at a comfortable rendered height while increasing their vertical padding and stabilized the Playwright measurement against hydration timing.
+- Added focused internal-rhythm regression coverage without changing public typography.
+
+#### Evidence
+
+- `bun run check`: 95/95 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Production build passed with 29 routes.
+- Focused public HTTPS outer + internal rhythm Playwright: 4/4 across desktop/mobile.
+- Agent-browser desktop: About/Services/Why/Portfolio/Offers/FAQ/Blog major header-to-content relationships = 86.4px; Services rows = 32px; Offers/Blog card gaps = 32px; FAQ row = 96px.
+- Agent-browser mobile: major header-to-content relationships = 48px; Services rows = 24px; Offers/Blog card gaps = 32px; FAQ row = 88px.
+- Full-page screenshots captured at 1440 and 390 with zero horizontal overflow.
+- Typography remained `SWEED Helvetica Arabic`; no font-family/font-size/font-weight/line-height changes were introduced.
+- Production readiness: 11 passed, 1 intentional mobile visual checkpoint skip.
+- No Git push was performed.
 
 ### SWEED-033 — Expand public section breathing room
 

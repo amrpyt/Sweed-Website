@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-09T15:32:00+03:00
+Updated: 2026-08-09T16:10:00+03:00
 
 ## Read First
 
@@ -15,6 +15,12 @@ Updated: 2026-08-09T15:32:00+03:00
 
 ## What Changed
 
+- SWEED-034 homepage internal breathing-room pass is complete and deployed.
+- Agent-browser showed outer section gaps were already healthy, but inside-section rhythm was still dense in Services, Portfolio, Offers, Why, Blog, FAQ, and About.
+- `--section-content-gap` is now `clamp(48px, 6vw, 96px)`; live desktop major header-to-content gaps resolve to 86.4px and mobile to 48px.
+- Services row gaps are 32px desktop / 24px mobile; Portfolio header→projects is 86.4px / 48px; Offers/Blog card gaps are 32px; Offers cards→CTA is 48px; FAQ rows render 96px desktop / 88px mobile.
+- Final outer + internal rhythm Playwright passed 4/4 and production readiness passed 11 with 1 intentional mobile visual skip.
+- Public typography remained untouched and continues to use `SWEED Helvetica Arabic`.
 - SWEED-033 public section breathing-room baseline is complete and deployed.
 - Global section edge tiers are now 48/64/80px mobile, 64/80/96px tablet, and 80/96/128px desktop for compact/default/feature.
 - Problems, About, Why, and Contact no longer downgrade to `compact` on mobile; FAQ and Blog are `default`; Slogan remains the compact transition.

@@ -1,11 +1,11 @@
 # Current State
 
-Updated: 2026-08-09T15:32:00+03:00
+Updated: 2026-08-09T16:10:00+03:00
 Git branch: main
-Git HEAD: 7c534b4
+Git HEAD: 4638714
 Active Task: None
 Active Plan: None
-Status: SWEED-033 public section breathing-room baseline completed and deployed to demo
+Status: SWEED-034 homepage internal breathing-room pass completed and deployed to demo
 
 ## Current Goal
 
@@ -17,6 +17,12 @@ None.
 
 ## Completed Recently
 
+- Added a homepage internal-rhythm baseline after agent-browser measurements showed outer section spacing was healthy but several inside-section relationships remained UI-dense.
+- Increased `--section-content-gap` to `clamp(48px, 6vw, 96px)`; desktop live measurements now show 86.4px between major headers and primary content, while mobile resolves to 48px.
+- Increased Services row gaps from 12/16px to 32px desktop and 24px mobile; Portfolio header→projects from 32px to 86.4px desktop / 48px mobile; Offers/Blog card gaps to 32px; Offers cards→CTA to 48px; Why points→metrics to the semantic section-content gap.
+- About header→story now measures 86.4px desktop and 48px mobile. FAQ question rows render at 96px desktop and 88px mobile with 24px vertical padding.
+- Final agent-browser full-page screenshots were captured at 1440 and 390, with zero horizontal overflow and `SWEED Helvetica Arabic` unchanged.
+- Focused outer + internal rhythm Playwright passed 4/4 across desktop/mobile; production readiness passed 11 with 1 intentional mobile visual-checkpoint skip.
 - Expanded the global public section breathing baseline to 48/64/80px mobile, 64/80/96px tablet, and 80/96/128px desktop edge contributions for compact/default/feature sections.
 - Removed mobile-only downgrades that forced Problems, About, Why, and Contact to `compact`; their semantic tier now persists across viewports while the token values themselves scale down mobile-first.
 - Promoted homepage FAQ and Blog from `compact` to `default`; Slogan remains the intentional compact transition.

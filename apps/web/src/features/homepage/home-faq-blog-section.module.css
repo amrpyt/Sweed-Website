@@ -1,7 +1,7 @@
 .faqSection,
 .blogSection {
   color: #261b3e;
-  padding-block: var(--section-space-compact);
+  padding-block: var(--section-space-default);
 }
 
 .faqSection {
@@ -10,7 +10,6 @@
 
 .blogSection {
   background: #ffffff;
-  padding-block: var(--section-space-compact);
 }
 
 .container {
@@ -345,10 +344,6 @@
 }
 
 @media (min-width: 38.75rem) {
-  .faqSection {
-    padding-block: var(--section-space-default);
-  }
-
   .faqPanel {
     padding-inline-start: var(--cds-spacing-10);
   }

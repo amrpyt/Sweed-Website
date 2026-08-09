@@ -469,11 +469,6 @@
 }
 
 @media (max-width: 720px), (max-height: 500px) and (max-width: 900px) {
-  .section {
-    padding-block: var(--section-space-compact);
-  }
-
-
   .container {
     width: min(100% - (var(--page-gutter) * 2), var(--home-content-max, 77.5rem));
   }

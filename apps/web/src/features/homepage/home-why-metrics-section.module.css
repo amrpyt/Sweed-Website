@@ -172,10 +172,6 @@
 }
 
 @media (width < 620px) {
-  .section {
-    padding-block: var(--section-space-compact);
-  }
-
   .pointsGrid,
   .metricsBar {
     grid-template-columns: 1fr;

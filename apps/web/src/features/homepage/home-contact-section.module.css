@@ -316,10 +316,6 @@
 }
 
 @media (width < 620px) {
-  .section {
-    padding-block: var(--section-space-compact);
-  }
-
   .fieldsGrid {
     grid-template-columns: 1fr;
   }

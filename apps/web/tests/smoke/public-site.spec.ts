@@ -312,25 +312,41 @@ test("homepage section rhythm uses the responsive semantic tiers", async ({ page
 
   const viewportWidth = page.viewportSize()?.width ?? 0;
   const expected = viewportWidth >= 1200
-    ? { compact: 64, default: 80, feature: 96, sloganToServices: 144 }
+    ? { compact: 80, default: 96, feature: 128 }
     : viewportWidth >= 768
-      ? { compact: 48, default: 64, feature: 80, sloganToServices: 112 }
-      : { compact: 40, default: 48, feature: 64, sloganToServices: 88 };
+      ? { compact: 64, default: 80, feature: 96 }
+      : { compact: 48, default: 64, feature: 80 };
 
   const padding = async (selector: string) =>
     page.locator(selector).evaluate((element) => parseFloat(getComputedStyle(element).paddingBlockStart));
 
-  expect(await padding("#slogan")).toBe(expected.compact);
-  expect(await padding("#services")).toBe(expected.default);
-  expect(await padding("#portfolio")).toBe(expected.feature);
+  const sectionTiers = [
+    ["#problems", expected.feature],
+    ["#about", expected.default],
+    ["#slogan", expected.compact],
+    ["#services", expected.default],
+    ["#sweed-why", expected.default],
+    ["#portfolio", expected.feature],
+    ["#offers", expected.default],
+    ["#faq", expected.default],
+    ["#blog", expected.default],
+    ["#contact", expected.feature],
+  ] as const;
 
-  const sloganToServicesGap = await page.evaluate(() => {
-    const sloganContainer = document.querySelector<HTMLElement>("#slogan > div");
-    const servicesContainer = document.querySelector<HTMLElement>("#services > div");
-    if (!sloganContainer || !servicesContainer) return -1;
-    return Math.round(servicesContainer.getBoundingClientRect().top - sloganContainer.getBoundingClientRect().bottom);
-  });
-  expect(sloganToServicesGap).toBe(expected.sloganToServices);
+  for (const [selector, expectedPadding] of sectionTiers) {
+    expect(await padding(selector)).toBe(expectedPadding);
+  }
+
+  const contentGap = async (from: string, to: string) => page.evaluate(([fromSelector, toSelector]) => {
+    const fromContainer = document.querySelector<HTMLElement>(`${fromSelector} > div`);
+    const toContainer = document.querySelector<HTMLElement>(`${toSelector} > div`);
+    if (!fromContainer || !toContainer) return -1;
+    return Math.round(toContainer.getBoundingClientRect().top - fromContainer.getBoundingClientRect().bottom);
+  }, [from, to]);
+
+  expect(await contentGap("#slogan", "#services")).toBe(expected.compact + expected.default);
+  expect(await contentGap("#offers", "#faq")).toBe(expected.default * 2);
+  expect(await contentGap("#faq", "#blog")).toBe(expected.default * 2);
 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
   expect(overflow).toBe(false);

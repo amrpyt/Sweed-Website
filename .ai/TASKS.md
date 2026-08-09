@@ -1,12 +1,38 @@
 # Tasks
 
-Updated: 2026-08-09T13:15:00+03:00
+Updated: 2026-08-09T13:37:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-030 — Section rhythm double-spacing correction
+
+Status: completed
+Priority: high
+Plan: `docs/superpowers/plans/2026-08-09-section-rhythm-correction.md`
+Implementation commit: `e7a5399 fix: prevent doubled section spacing`
+
+#### Scope
+
+- Corrected the previous rhythm implementation after live review showed full target gap values were applied to both top and bottom section padding.
+- Kept the same content-to-content rhythm targets while halving each section edge contribution.
+- Mobile section edge tiers are now 32/40/48px, tablet 40/48/64px, desktop 48/64/80px.
+- Updated `DESIGN.md` to explicitly define section rhythm as target content-to-content spacing rather than duplicated per-edge padding.
+- Updated Playwright coverage to assert both edge values and the actual Slogan-to-Services content gap.
+
+#### Evidence
+
+- Spacing guard, mobile-first guard, TypeScript, ESLint, and 95/95 unit tests passed.
+- Production build passed with 29 routes.
+- Focused better-layout + section-rhythm Playwright: 4/4 passed.
+- Public HTTPS Slogan-to-Services gap is 112px at 1440 and 72px at 390/320.
+- Public HTTPS has zero horizontal overflow at 1440, 390, and 320; browser console/page errors are empty.
+- Production readiness: 11 passed, 1 intentional mobile visual checkpoint skip.
+- `sweed-demo.service` is active and public homepage returns HTTP 200.
+- No Git push was performed.
 
 ### SWEED-029 — Responsive section rhythm system
 

@@ -1,11 +1,11 @@
 # Current State
 
-Updated: 2026-08-09T13:15:00+03:00
+Updated: 2026-08-09T13:37:00+03:00
 Git branch: main
-Git HEAD: 28e9a7f
+Git HEAD: e7a5399
 Active Task: None
 Active Plan: None
-Status: SWEED-029 responsive section rhythm system completed and deployed to demo
+Status: SWEED-030 section rhythm double-spacing correction completed and deployed to demo
 
 ## Current Goal
 
@@ -17,8 +17,10 @@ None.
 
 ## Completed Recently
 
+- Corrected SWEED-029 after live visual review showed the target inter-section gap had been applied as full padding on both section edges, doubling whitespace between adjacent content groups.
+- Section gap targets remain 64/80/96px mobile, 80/96/128px tablet, and 96/128/160px desktop, but each section now contributes roughly half per edge: 32/40/48px mobile, 40/48/64px tablet, 48/64/80px desktop.
+- Public slogan-to-Services content gap now measures 112px at 1440 and 72px at 390/320 instead of roughly double those values.
 - Reworked the public-site section rhythm from fluid clamps to exact 8px-grid semantic tiers researched against Carbon, Atlassian, Material 3, and Polaris layout guidance.
-- New section tiers are 64/80/96px on mobile, 80/96/128px on tablet, and 96/128/160px on desktop for compact/default/feature sections.
 - Increased section heading-stack spacing to 24px and closely related description spacing to 16px.
 - The global token change now drives homepage and rebuilt public routes without local inter-section margin patches.
 - Added a Playwright contract that verifies compact/default/feature padding values and overflow across desktop/mobile projects.

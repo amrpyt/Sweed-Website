@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-09T13:15:00+03:00
+Updated: 2026-08-09T13:37:00+03:00
 
 ## Read First
 
@@ -15,8 +15,12 @@ Updated: 2026-08-09T13:15:00+03:00
 
 ## What Changed
 
+- SWEED-030 section-rhythm double-spacing correction is complete and deployed.
+- The previous pass incorrectly applied full target gaps to both section edges; section tokens now represent half-edge contributions so adjacent sections produce the intended total whitespace.
+- Section edge tiers are 32/40/48px mobile, 40/48/64px tablet, and 48/64/80px desktop while total content-to-content targets remain 64/80/96, 80/96/128, and 96/128/160 respectively.
+- Public Slogan-to-Services content gap now measures 112px desktop and 72px mobile, with zero horizontal overflow.
 - SWEED-029 responsive section-rhythm system is complete and deployed.
-- Global compact/default/feature section spacing now snaps to exact 8px-grid values: 64/80/96px mobile, 80/96/128px tablet, 96/128/160px desktop.
+- Global compact/default/feature section rhythm targets remain 64/80/96px mobile, 80/96/128px tablet, 96/128/160px desktop.
 - Section header grouping is 24px and closely related description spacing is 16px.
 - `DESIGN.md` documents the new contract and Playwright verifies the three rhythm tiers.
 - SWEED-028 homepage spacing/slogan regression fix is complete and deployed.

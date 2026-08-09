@@ -409,7 +409,7 @@
   }
 
   .storyGrid {
-    margin-top: var(--stack-xl);
+    margin-top: var(--section-content-gap);
   }
 
   .mediaFrame {

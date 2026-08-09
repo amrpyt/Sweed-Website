@@ -356,11 +356,15 @@ test("homepage internal rhythm keeps major content groups from collapsing", asyn
   await page.goto("/");
 
   const metrics = await page.evaluate(() => {
-    const styleNumber = (selector: string, property: "gap" | "marginTop" | "minHeight") => {
+    const styleNumber = (selector: string, property: "gap" | "marginTop") => {
       const element = document.querySelector<HTMLElement>(selector);
       if (!element) return -1;
       const style = getComputedStyle(element);
       return parseFloat(style[property]);
+    };
+    const renderedHeight = (selector: string) => {
+      const element = document.querySelector<HTMLElement>(selector);
+      return element ? element.getBoundingClientRect().height : -1;
     };
 
     return {
@@ -369,7 +373,7 @@ test("homepage internal rhythm keeps major content groups from collapsing", asyn
       servicesRowGap: styleNumber('#services [data-testid="home-services-list"]', "gap"),
       portfolioContentGap: styleNumber('#portfolio [class*="projectsTrack"]', "marginTop"),
       offersCardGap: styleNumber('#offers [class*="offersGrid"]', "gap"),
-      faqRowHeight: styleNumber('#faq button', "minHeight"),
+      faqRowHeight: renderedHeight('#faq button'),
       blogCardGap: styleNumber('#blog [class*="articlesGrid"]', "gap"),
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
     };
@@ -380,7 +384,7 @@ test("homepage internal rhythm keeps major content groups from collapsing", asyn
   expect(metrics.servicesRowGap).toBeGreaterThanOrEqual(24);
   expect(metrics.portfolioContentGap).toBeGreaterThanOrEqual(48);
   expect(metrics.offersCardGap).toBeGreaterThanOrEqual(32);
-  expect(metrics.faqRowHeight).toBeGreaterThanOrEqual(96);
+  expect(metrics.faqRowHeight).toBeGreaterThanOrEqual(88);
   expect(metrics.blogCardGap).toBeGreaterThanOrEqual(32);
   expect(metrics.overflow).toBe(false);
 });

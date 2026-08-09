@@ -67,15 +67,15 @@ Raw scale tokens are `--cds-spacing-01` through `--cds-spacing-13`. Components s
 
 Parent layouts own gaps between components. Components own only their internal padding. Sections must not all use the same vertical padding; compact, default, and feature spacing create rhythm without arbitrary values.
 
-Section rhythm is mobile-first and snaps to the 8px grid rather than producing arbitrary fluid values. The values below are **target content-to-content gaps between adjacent sections**, not padding to apply twice:
+Section rhythm is mobile-first and snaps to the 8px grid rather than producing arbitrary fluid values. `--section-space-compact/default/feature` represent each section's **edge contribution**, so the visible content-to-content gap is the sum of the two adjacent section edges.
 
-| Viewport | Compact gap | Default gap | Feature gap |
+| Viewport | Compact edge | Default edge | Feature edge |
 | --- | ---: | ---: | ---: |
-| Mobile (<768px) | 64px | 80px | 96px |
-| Tablet (>=768px) | 80px | 96px | 128px |
-| Desktop (>=1200px) | 96px | 128px | 160px |
+| Mobile (<768px) | 40px | 48px | 64px |
+| Tablet (>=768px) | 48px | 64px | 80px |
+| Desktop (>=1200px) | 64px | 80px | 96px |
 
-Each section contributes roughly half of that rhythm on each edge through `--section-space-compact/default/feature`: mobile `32/40/48px`, tablet `40/48/64px`, desktop `48/64/80px`. This prevents two adjacent sections from accidentally doubling a 128px target into 256px of dead space.
+Typical adjacent gaps therefore land around `88–112px` on mobile, `112–144px` on tablet, and `144–176px` on desktop for the normal compact/default/feature combinations used by SWEED. This gives large Arabic headings breathing room without returning to the previous 224–256px dead-space regression.
 
 Use `compact` only for short transitional bands, `default` for normal content sections, and `feature` for major narrative/CTA moments. The eyebrow/title/description stack uses 24px semantic spacing, with 16px for closely related description relationships. Do not add extra inter-section margins on top of these tiers.
 

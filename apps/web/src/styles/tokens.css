@@ -154,9 +154,9 @@
   --content-gap-tight: var(--stack-xs);
   --content-gap-default: var(--stack-md);
   --content-gap-loose: var(--stack-lg);
-  --section-space-compact: var(--cds-spacing-07);
-  --section-space-default: var(--cds-spacing-08);
-  --section-space-feature: var(--cds-spacing-09);
+  --section-space-compact: var(--cds-spacing-08);
+  --section-space-default: var(--cds-spacing-09);
+  --section-space-feature: var(--cds-spacing-10);
   --section-header-gap: var(--stack-lg);
   --section-description-gap: var(--stack-md);
   --section-content-gap: clamp(var(--cds-spacing-07), 5vw, var(--cds-spacing-11));
@@ -209,16 +209,16 @@
 
 @media (min-width: 48rem) {
   :root {
-    --section-space-compact: var(--cds-spacing-08);
-    --section-space-default: var(--cds-spacing-09);
-    --section-space-feature: var(--cds-spacing-10);
+    --section-space-compact: var(--cds-spacing-09);
+    --section-space-default: var(--cds-spacing-10);
+    --section-space-feature: var(--cds-spacing-11);
   }
 }
 
 @media (min-width: 75rem) {
   :root {
-    --section-space-compact: var(--cds-spacing-09);
-    --section-space-default: var(--cds-spacing-10);
-    --section-space-feature: var(--cds-spacing-11);
+    --section-space-compact: var(--cds-spacing-10);
+    --section-space-default: var(--cds-spacing-11);
+    --section-space-feature: var(--cds-spacing-12);
   }
 }

@@ -312,10 +312,10 @@ test("homepage section rhythm uses the responsive semantic tiers", async ({ page
 
   const viewportWidth = page.viewportSize()?.width ?? 0;
   const expected = viewportWidth >= 1200
-    ? { compact: 48, default: 64, feature: 80, sloganToServices: 112 }
+    ? { compact: 64, default: 80, feature: 96, sloganToServices: 144 }
     : viewportWidth >= 768
-      ? { compact: 40, default: 48, feature: 64, sloganToServices: 88 }
-      : { compact: 32, default: 40, feature: 48, sloganToServices: 72 };
+      ? { compact: 48, default: 64, feature: 80, sloganToServices: 112 }
+      : { compact: 40, default: 48, feature: 64, sloganToServices: 88 };
 
   const padding = async (selector: string) =>
     page.locator(selector).evaluate((element) => parseFloat(getComputedStyle(element).paddingBlockStart));

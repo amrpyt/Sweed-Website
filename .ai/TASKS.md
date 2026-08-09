@@ -1,12 +1,40 @@
 # Tasks
 
-Updated: 2026-08-09T13:02:00+03:00
+Updated: 2026-08-09T13:15:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-029 — Responsive section rhythm system
+
+Status: completed
+Priority: high
+Plan: `docs/superpowers/plans/2026-08-09-section-rhythm-system.md`
+Implementation commit: `28e9a7f refactor: expand responsive section rhythm`
+
+#### Scope
+
+- Researched Carbon, Atlassian, Material 3, and Polaris layout/spacing guidance from official sources.
+- Replaced fluid section-spacing clamps with exact mobile-first 8px-grid semantic tiers.
+- Set compact/default/feature spacing to 64/80/96px mobile, 80/96/128px tablet, and 96/128/160px desktop.
+- Increased section header grouping to 24px and closely related description spacing to 16px.
+- Applied the change through global semantic tokens rather than route-specific margin patches.
+- Documented the rhythm contract in `DESIGN.md` and added a Playwright regression for the three section tiers.
+
+#### Evidence
+
+- 95/95 unit tests passed with TypeScript, ESLint, spacing guard, and mobile-first guard.
+- Production build passed with 29 routes.
+- Focused section-rhythm + better-layout Playwright: 4/4 desktop/mobile.
+- 1440/1024/390/320 resolve to the intended section tiers with zero homepage horizontal overflow.
+- `/`, `/services`, `/portfolio`, `/articles`, and `/contact` have zero horizontal overflow in desktop/mobile browser QA.
+- Production readiness: 11 passed, 1 intentional mobile visual checkpoint skip.
+- Public browser console and page-error logs are empty.
+- `sweed-demo.service` is active; public homepage returns HTTP 200.
+- No Git push was performed.
 
 ### SWEED-028 — Homepage spacing and slogan regression fix
 

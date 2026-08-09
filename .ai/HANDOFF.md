@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-09T13:02:00+03:00
+Updated: 2026-08-09T13:15:00+03:00
 
 ## Read First
 
@@ -15,6 +15,10 @@ Updated: 2026-08-09T13:02:00+03:00
 
 ## What Changed
 
+- SWEED-029 responsive section-rhythm system is complete and deployed.
+- Global compact/default/feature section spacing now snaps to exact 8px-grid values: 64/80/96px mobile, 80/96/128px tablet, 96/128/160px desktop.
+- Section header grouping is 24px and closely related description spacing is 16px.
+- `DESIGN.md` documents the new contract and Playwright verifies the three rhythm tiers.
 - SWEED-028 homepage spacing/slogan regression fix is complete and deployed.
 - Removed the homepage-only compressed spacing overrides; homepage sections inherit the shared Carbon compact/default/feature spacing tiers again.
 - Restored the direction slogan to the previous fluid one-line composition and isolated its nowrap behavior from the global balanced-heading rule without `!important`.
@@ -57,6 +61,12 @@ Updated: 2026-08-09T13:02:00+03:00
 
 ## Verification
 
+- SWEED-029 code gates: 95 tests plus TypeScript, ESLint, spacing, and mobile-first checks passed; legacy max-width query count remains 34/40.
+- SWEED-029 production build passed with 29 routes.
+- Focused section-rhythm + better-layout Playwright: 4/4 desktop/mobile.
+- Public HTTPS at 1440/1024/390/320 resolves to 96/128/160, 80/96/128, and 64/80/96 section tiers as designed, with zero horizontal overflow.
+- Representative `/services`, `/portfolio`, `/articles`, and `/contact` route QA has zero horizontal overflow.
+- Production readiness after SWEED-029: 11 passed, 1 intentional mobile visual checkpoint skip; console/page-error logs are empty.
 - SWEED-028 full check: 95 tests plus TypeScript, ESLint, spacing, and mobile-first checks passed.
 - SWEED-028 production build passed with 29 routes.
 - Public HTTPS at 1440/390/320: slogan is nowrap, has no internal overflow, and page horizontal overflow is zero.

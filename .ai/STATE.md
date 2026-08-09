@@ -1,11 +1,11 @@
 # Current State
 
-Updated: 2026-08-09T13:02:00+03:00
+Updated: 2026-08-09T13:15:00+03:00
 Git branch: main
-Git HEAD: e6c5565
+Git HEAD: 28e9a7f
 Active Task: None
 Active Plan: None
-Status: SWEED-028 homepage spacing and slogan regression fix completed and deployed to demo
+Status: SWEED-029 responsive section rhythm system completed and deployed to demo
 
 ## Current Goal
 
@@ -17,6 +17,11 @@ None.
 
 ## Completed Recently
 
+- Reworked the public-site section rhythm from fluid clamps to exact 8px-grid semantic tiers researched against Carbon, Atlassian, Material 3, and Polaris layout guidance.
+- New section tiers are 64/80/96px on mobile, 80/96/128px on tablet, and 96/128/160px on desktop for compact/default/feature sections.
+- Increased section heading-stack spacing to 24px and closely related description spacing to 16px.
+- The global token change now drives homepage and rebuilt public routes without local inter-section margin patches.
+- Added a Playwright contract that verifies compact/default/feature padding values and overflow across desktop/mobile projects.
 - Restored the homepage direction slogan to the pre-typography fluid one-line composition and isolated its wrapping behavior from the global heading balance rule.
 - Removed the homepage-only compressed section-spacing overrides so the homepage inherits the shared Carbon compact/default/feature tiers again.
 - Verified public desktop spacing at 80px compact, 96px default, and 144px feature; mobile keeps the established 48/64/80 progression.
@@ -67,6 +72,12 @@ None.
 
 ## Verification
 
+- SWEED-029 code gates: 95/95 unit tests plus TypeScript, ESLint, spacing guard, and mobile-first guard passed; legacy max-width query count remains 34/40.
+- SWEED-029 production build passed with 29 routes.
+- Focused section-rhythm + better-layout Playwright: 4/4 passed across desktop and mobile.
+- Public HTTPS section tiers resolve exactly to 96/128/160px at 1440, 80/96/128px at 1024, and 64/80/96px at 390/320.
+- Representative public routes `/`, `/services`, `/portfolio`, `/articles`, and `/contact` have zero horizontal overflow at desktop/mobile audit widths.
+- Production readiness after SWEED-029: 11 passed, 1 intentional mobile visual checkpoint skip; browser console/page errors are empty.
 - SWEED-028 `bun run check`: passed with 95 tests, TypeScript, ESLint, spacing guard, and mobile-first guard.
 - SWEED-028 production build: passed with 29 routes.
 - Public HTTPS at 1440/390/320: slogan is `nowrap`, internal width equals available width, and page horizontal overflow is zero.

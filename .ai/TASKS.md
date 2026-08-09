@@ -1,12 +1,38 @@
 # Tasks
 
-Updated: 2026-08-09T15:00:00+03:00
+Updated: 2026-08-09T15:32:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-033 — Expand public section breathing room
+
+Status: completed
+Priority: high
+Implementation commit: `7c534b4 fix: give homepage sections more breathing room`
+
+#### Scope
+
+- Increased global compact/default/feature section edge contributions to 48/64/80px mobile, 64/80/96px tablet, and 80/96/128px desktop.
+- Removed mobile-only `compact` downgrades from Problems, About, Why, and Contact so semantic section importance survives responsive layouts.
+- Promoted homepage FAQ and Blog to the `default` tier while preserving Slogan as the intentional compact transition band.
+- Expanded the Playwright section-rhythm contract to cover all homepage tiers and representative adjacent content gaps.
+- Updated `DESIGN.md` so normal/feature sections cannot be downgraded merely because the viewport is narrow.
+
+#### Evidence
+
+- `bun run check`: 95/95 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Production build passed with 29 routes.
+- Focused public HTTPS Playwright rhythm test: 2/2 desktop/mobile passed using the configured server Chrome executable.
+- Agent-browser desktop gaps: Problems→About 224px, About→Slogan 176px, Slogan→Services 176px, Services→Why 192px, Why→Portfolio 224px, Portfolio→Offers 224px, Blog→Contact 224px.
+- Agent-browser mobile gaps: 144px, 112px, 112px, 128px, 144px, 144px, and 144px for the same representative sequence.
+- Public Services, Portfolio, Articles, and Contact had zero horizontal overflow at desktop and mobile widths.
+- Typography diff guard found zero font-family/font-weight/font-size/line-height changes.
+- `sweed-demo.service` is active and the public homepage returns HTTP 200.
+- No Git push was performed.
 
 ### SWEED-032 — Restore pre-typography visual system
 

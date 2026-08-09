@@ -1,11 +1,11 @@
 # Current State
 
-Updated: 2026-08-09T15:00:00+03:00
+Updated: 2026-08-09T15:32:00+03:00
 Git branch: main
-Git HEAD: f8cf2b2
+Git HEAD: 7c534b4
 Active Task: None
 Active Plan: None
-Status: SWEED-032 typography rollback completed and deployed to demo
+Status: SWEED-033 public section breathing-room baseline completed and deployed to demo
 
 ## Current Goal
 
@@ -17,6 +17,13 @@ None.
 
 ## Completed Recently
 
+- Expanded the global public section breathing baseline to 48/64/80px mobile, 64/80/96px tablet, and 80/96/128px desktop edge contributions for compact/default/feature sections.
+- Removed mobile-only downgrades that forced Problems, About, Why, and Contact to `compact`; their semantic tier now persists across viewports while the token values themselves scale down mobile-first.
+- Promoted homepage FAQ and Blog from `compact` to `default`; Slogan remains the intentional compact transition.
+- Agent-browser measured deployed desktop content gaps of 176–224px across major homepage boundaries and 112–144px on mobile with zero horizontal overflow.
+- Agent-browser screenshots were captured for the full homepage and key Services/FAQ/Slogan sections on desktop/mobile after deployment.
+- Focused Playwright section-rhythm coverage passed 2/2 against public HTTPS using the server Chromium path; Services/Portfolio/Articles/Contact also passed desktop/mobile overflow checks.
+- Public typography remained untouched during SWEED-033; diff guard showed no font-family, font-weight, font-size, or line-height changes.
 - Rolled back the SWEED-027 better-typography implementation and all later font-family/weight experiments while preserving subsequent spacing/layout work.
 - Restored `SWEED Helvetica Arabic` as both body and display family and restored the exact pre-typography component typography values for the files touched by `ce407ad`.
 - Removed the typography Playwright contract that enforced the rejected semantic-scale/weight behavior; section-rhythm coverage remains intact.

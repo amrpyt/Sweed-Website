@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-09T15:00:00+03:00
+Updated: 2026-08-09T15:32:00+03:00
 
 ## Read First
 
@@ -15,6 +15,12 @@ Updated: 2026-08-09T15:00:00+03:00
 
 ## What Changed
 
+- SWEED-033 public section breathing-room baseline is complete and deployed.
+- Global section edge tiers are now 48/64/80px mobile, 64/80/96px tablet, and 80/96/128px desktop for compact/default/feature.
+- Problems, About, Why, and Contact no longer downgrade to `compact` on mobile; FAQ and Blog are `default`; Slogan remains the compact transition.
+- Public homepage content gaps now land around 176–224px on desktop and 112–144px on mobile across the major section boundaries measured with agent-browser.
+- Focused section-rhythm Playwright passed 2/2 against public HTTPS, and Services/Portfolio/Articles/Contact have zero desktop/mobile horizontal overflow.
+- SWEED typography was not changed during this spacing pass; keep `SWEED Helvetica Arabic` unless explicitly requested otherwise.
 - SWEED-032 typography rollback is complete and deployed.
 - The `better-typography` implementation and later font-family/weight experiments were reverted; the public UI is back on the original `SWEED Helvetica Arabic` typography while later spacing/layout work remains.
 - Ten typography-only files match the pre-`ce407ad` versions exactly; shared files retain only later section-rhythm/slogan-layout differences.

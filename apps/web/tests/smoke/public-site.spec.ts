@@ -307,6 +307,27 @@ test("homepage better-layout contracts keep alignment and mobile disclosure stab
   expect(overflow).toBe(false);
 });
 
+test("homepage section rhythm uses the responsive semantic tiers", async ({ page }) => {
+  await page.goto("/");
+
+  const viewportWidth = page.viewportSize()?.width ?? 0;
+  const expected = viewportWidth >= 1200
+    ? { compact: 96, default: 128, feature: 160 }
+    : viewportWidth >= 768
+      ? { compact: 80, default: 96, feature: 128 }
+      : { compact: 64, default: 80, feature: 96 };
+
+  const padding = async (selector: string) =>
+    page.locator(selector).evaluate((element) => parseFloat(getComputedStyle(element).paddingBlockStart));
+
+  expect(await padding("#slogan")).toBe(expected.compact);
+  expect(await padding("#services")).toBe(expected.default);
+  expect(await padding("#portfolio")).toBe(expected.feature);
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("homepage typography stays on the semantic scale", async ({ page }) => {
   await page.goto("/");
 

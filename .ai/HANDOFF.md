@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-09T11:45:00+03:00
+Updated: 2026-08-09T13:02:00+03:00
 
 ## Read First
 
@@ -15,6 +15,9 @@ Updated: 2026-08-09T11:45:00+03:00
 
 ## What Changed
 
+- SWEED-028 homepage spacing/slogan regression fix is complete and deployed.
+- Removed the homepage-only compressed spacing overrides; homepage sections inherit the shared Carbon compact/default/feature spacing tiers again.
+- Restored the direction slogan to the previous fluid one-line composition and isolated its nowrap behavior from the global balanced-heading rule without `!important`.
 - SWEED-027 `/better-typography` public UI pass is complete and deployed.
 - Homepage readable type variants dropped from 15 desktop / 17 mobile to seven-or-fewer semantic sizes at each audited width.
 - Readable mobile copy now has a 14px floor and visible editable fields use 16px.
@@ -54,6 +57,11 @@ Updated: 2026-08-09T11:45:00+03:00
 
 ## Verification
 
+- SWEED-028 full check: 95 tests plus TypeScript, ESLint, spacing, and mobile-first checks passed.
+- SWEED-028 production build passed with 29 routes.
+- Public HTTPS at 1440/390/320: slogan is nowrap, has no internal overflow, and page horizontal overflow is zero.
+- Desktop spacing resolves to 80px compact, 96px default, and 144px feature tiers; mobile remains 48/64/80.
+- Production readiness after SWEED-028: 11 passed, 1 intentional mobile visual checkpoint skip.
 - SWEED-027 `bun run check`: passed with 95 tests plus TypeScript, ESLint, spacing, and mobile-first checks; legacy max-width query count is 34/40.
 - SWEED-027 production build passed with 29 routes.
 - Better-typography plus existing homepage focused Playwright: 6/6 passed across desktop and mobile.

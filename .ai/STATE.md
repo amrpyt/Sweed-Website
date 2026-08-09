@@ -1,11 +1,11 @@
 # Current State
 
-Updated: 2026-08-09T11:45:00+03:00
+Updated: 2026-08-09T13:02:00+03:00
 Git branch: main
-Git HEAD: ce407ad
+Git HEAD: e6c5565
 Active Task: None
 Active Plan: None
-Status: SWEED-027 better-typography public UI pass completed and deployed to demo
+Status: SWEED-028 homepage spacing and slogan regression fix completed and deployed to demo
 
 ## Current Goal
 
@@ -17,6 +17,9 @@ None.
 
 ## Completed Recently
 
+- Restored the homepage direction slogan to the pre-typography fluid one-line composition and isolated its wrapping behavior from the global heading balance rule.
+- Removed the homepage-only compressed section-spacing overrides so the homepage inherits the shared Carbon compact/default/feature tiers again.
+- Verified public desktop spacing at 80px compact, 96px default, and 144px feature; mobile keeps the established 48/64/80 progression.
 - Applied `/better-typography` to the public UI and homepage semantic type system.
 - Reduced homepage readable computed font sizes from 15 desktop / 17 mobile variants to 7 desktop / 7-or-fewer mobile variants.
 - Eliminated readable homepage text below 14px and kept all visible editable controls at 16px on mobile.
@@ -64,6 +67,11 @@ None.
 
 ## Verification
 
+- SWEED-028 `bun run check`: passed with 95 tests, TypeScript, ESLint, spacing guard, and mobile-first guard.
+- SWEED-028 production build: passed with 29 routes.
+- Public HTTPS at 1440/390/320: slogan is `nowrap`, internal width equals available width, and page horizontal overflow is zero.
+- Public HTTPS desktop: About and Services render 96px top/bottom padding; slogan renders 80px top/bottom padding; feature sections retain 144px rhythm.
+- Production readiness after SWEED-028: 11 passed, 1 intentional mobile visual checkpoint skip.
 - SWEED-027 `bun run check`: passed with 95 tests, TypeScript, ESLint, spacing guard, and mobile-first guard; legacy max-width query count is 34/40.
 - SWEED-027 production build: passed with 29 routes.
 - Better-typography + existing homepage focused Playwright: 6/6 passed across desktop and mobile.

@@ -1,12 +1,36 @@
 # Tasks
 
-Updated: 2026-08-09T11:45:00+03:00
+Updated: 2026-08-09T13:02:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-028 — Homepage spacing and slogan regression fix
+
+Status: completed
+Priority: high
+Implementation commits: `b0ccd7e`, `f388c27`, `fad3c17`, `e6c5565`
+
+#### Scope
+
+- Restored the direction slogan styling that regressed during the typography pass.
+- Preserved the one-line desktop/mobile slogan composition without `!important` by making the component selector outrank the global heading wrapping rule.
+- Removed the homepage-only compressed spacing variables so homepage sections inherit the shared Carbon spacing tiers.
+- Kept the fix local to homepage composition; no global public-page spacing tokens were changed.
+
+#### Evidence
+
+- `bun run check`: 95/95 tests plus TypeScript, ESLint, spacing guard, and mobile-first guard passed.
+- Production build passed with 29 routes.
+- Public HTTPS slogan is `nowrap` at 1440, 390, and 320 with no internal or page horizontal overflow.
+- Public desktop section padding now resolves to 80px compact, 96px default, and 144px feature tiers.
+- Mobile keeps the existing 48px compact, 64px default, and 80px feature progression.
+- Production readiness: 11 passed, 1 intentional mobile visual checkpoint skip.
+- `sweed-demo.service` is active and public homepage returns HTTP 200.
+- No Git push was performed.
 
 ### SWEED-027 — Better-typography public UI pass
 

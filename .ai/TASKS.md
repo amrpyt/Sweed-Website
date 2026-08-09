@@ -1,12 +1,51 @@
 # Tasks
 
-Updated: 2026-08-08T20:58:00+03:00
+Updated: 2026-08-09T02:49:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-025 — Homepage rhythm, work carousel, slogan band, and footer polish
+
+Status: completed
+Priority: high
+Plan: `docs/superpowers/plans/2026-08-09-homepage-rhythm-carousel-footer.md`
+OpenSpec: `openspec/changes/polish-homepage-rhythm-carousel-footer/`
+Final implementation commit: `be91ab1 feat: add oversized SWEED footer wordmark`
+
+#### Scope
+
+- Removed the stray diagonal hero beam over the building artwork.
+- Tightened homepage-only macro spacing without changing global design tokens.
+- Converted the homepage selected-work grid into a manual horizontal scroll-snap carousel with accessible previous/next controls and no autoplay.
+- Rebuilt the SWEED slogan into one horizontal band from 320px upward.
+- Tightened the homepage article-header composition.
+- Rebuilt the shared public footer as a CSS Module and added an oversized English SWEED wordmark at the visual end.
+
+#### Acceptance Criteria
+
+- [x] Hero artwork has no crossing decorative beam.
+- [x] Homepage section rhythm uses the existing Carbon scale with smaller macro jumps.
+- [x] Selected work is one horizontal manual carousel with keyboard-accessible controls and reduced-motion fallback.
+- [x] Slogan remains one horizontal line at 320px without page overflow.
+- [x] Footer remains shared, functional, modular, and ends with the oversized SWEED wordmark.
+- [x] Full code, browser, production, and deployment gates pass.
+
+#### Evidence
+
+- Homepage portfolio desktop height reduced from 1948px to 965px.
+- Slogan desktop height reduced from 534px to 279px and stays one line at 320px.
+- Homepage blog section reduced from 1006px to 918px on desktop; header composition is 192px high.
+- `bun run check`: passed with 95 tests, TypeScript, ESLint, Carbon spacing, and mobile-first guards.
+- Production build: passed with 29 generated routes.
+- Focused Playwright visual-contract test: 2/2 passed on desktop and mobile.
+- Production readiness: 11 passed, 1 intentional mobile visual checkpoint skip.
+- Public 1440px and 320px checks: zero page overflow, broken images, hero beams, undersized footer links, console errors, or page errors.
+- `sweed-demo.service` is active; public homepage, About, and Services return HTTP 200.
+- No Git push was performed.
 
 ### SWEED-024 — Rebuild public pages from executive briefs
 

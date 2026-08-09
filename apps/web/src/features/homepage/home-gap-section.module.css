@@ -25,17 +25,15 @@
   gap: clamp(var(--cds-spacing-01), 1vw, var(--cds-spacing-05));
   margin: 0;
   color: #261b3e;
-  font-size: clamp(0.875rem, 4.45vw, 4.4rem);
+  font-size: var(--type-statement-size);
   font-weight: var(--font-weight-display);
   letter-spacing: -0.04em;
   line-height: 1;
-  white-space: nowrap;
 }
 
 .phrase {
   min-width: 0;
   text-align: end;
-  white-space: nowrap;
 }
 
 .phraseEnd {
@@ -65,7 +63,7 @@
 
 .compassMark span {
   font-family: var(--font-body);
-  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  font-size: var(--type-small-size);
   font-weight: var(--font-weight-strong);
   letter-spacing: 0.04em;
 }

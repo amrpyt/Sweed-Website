@@ -35,6 +35,10 @@
   text-wrap: pretty;
 }
 
+.homepage :where(h1, h2, h3, p, small, label, button, a) {
+  overflow-wrap: break-word;
+}
+
 /* Every section owns its padding. No hidden inter-section margin. */
 .homepage > section + section {
   margin-block-start: 0;
@@ -346,7 +350,7 @@
   .heroH1 {
     max-width: 100%;
     margin-block-end: var(--stack-lg);
-    font-size: clamp(2.15rem, 10vw, 3rem);
+    font-size: var(--type-page-title-size);
   }
 
   .h1Break {
@@ -389,16 +393,6 @@
 
   .waveSvg {
     display: none;
-  }
-}
-
-@media (max-width: 22.5rem) {
-  .heroH1 {
-    font-size: 2rem;
-  }
-
-  .heroSubtitle {
-    font-size: 1rem;
   }
 }
 

@@ -153,7 +153,7 @@
   color: #261b3e;
   font-size: var(--type-card-title-size);
   font-weight: var(--font-weight-display);
-  line-height: 1.2;
+  line-height: var(--type-card-title-leading);
 }
 
 .offerCard[data-featured="true"] .offerHeader p,
@@ -168,8 +168,8 @@
 .summary {
   margin: var(--stack-lg) 0 0;
   color: #696171;
-  font-size: 0.92rem;
-  line-height: 1.75;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
 }
 
 .items {
@@ -186,8 +186,8 @@
   gap: var(--inline-sm);
   padding-block: var(--stack-xs);
   color: #40374d;
-  font-size: 0.88rem;
-  line-height: 1.55;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
 }
 
 .offerCard[data-featured="true"] .items li {
@@ -263,7 +263,7 @@
   color: #514a5c;
   font-size: var(--type-small-size);
   font-weight: var(--font-weight-medium);
-  line-height: 1.7;
+  line-height: var(--type-small-leading);
 }
 
 .allOffersLink a {

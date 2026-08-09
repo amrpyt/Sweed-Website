@@ -233,6 +233,30 @@ test("react homepage renders key content and stable anchors", async ({ page }) =
   await expect(homepageSections.evaluateAll((sections) => sections.map((section) => section.id))).resolves.toEqual(expectedSectionOrder);
 });
 
+test("homepage portfolio, slogan, and footer keep the new visual contracts", async ({ page }) => {
+  await page.goto("/");
+
+  const carousel = page.getByRole("region", { name: "أعمال SWEED المختارة" });
+  await expect(carousel).toBeVisible();
+  await expect(carousel.locator("[data-carousel-slide]")).toHaveCount(3);
+  expect(await carousel.evaluate((element) => getComputedStyle(element).gridAutoFlow)).toBe("column");
+
+  await page.getByRole("button", { name: "المشروع التالي" }).click();
+  await expect(carousel.locator('[data-carousel-slide][data-active="true"]')).toHaveAttribute("data-carousel-index", "1");
+
+  const slogan = page.locator("#home-slogan-title");
+  await expect(slogan).toBeVisible();
+  expect(await slogan.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+  expect(await page.locator('[class*="buildingBeamEdge"]').count()).toBe(0);
+
+  const footerWordmark = page.locator('footer a[aria-label="SWEED - الرئيسية"]');
+  await expect(footerWordmark).toBeVisible();
+  await expect(footerWordmark).toContainText("SWEED");
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("home staggered navigation points to homepage section anchors in the requested order", async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("sweed-menu-button").click();

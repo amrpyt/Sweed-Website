@@ -354,6 +354,7 @@ test("homepage section rhythm uses the responsive semantic tiers", async ({ page
 
 test("homepage internal rhythm keeps major content groups from collapsing", async ({ page }) => {
   await page.goto("/");
+  await expect(page.locator("#faq button").first()).toBeVisible();
 
   const metrics = await page.evaluate(() => {
     const styleNumber = (selector: string, property: "gap" | "marginTop") => {

@@ -312,10 +312,10 @@ test("homepage section rhythm uses the responsive semantic tiers", async ({ page
 
   const viewportWidth = page.viewportSize()?.width ?? 0;
   const expected = viewportWidth >= 1200
-    ? { compact: 96, default: 128, feature: 160 }
+    ? { compact: 48, default: 64, feature: 80, sloganToServices: 112 }
     : viewportWidth >= 768
-      ? { compact: 80, default: 96, feature: 128 }
-      : { compact: 64, default: 80, feature: 96 };
+      ? { compact: 40, default: 48, feature: 64, sloganToServices: 88 }
+      : { compact: 32, default: 40, feature: 48, sloganToServices: 72 };
 
   const padding = async (selector: string) =>
     page.locator(selector).evaluate((element) => parseFloat(getComputedStyle(element).paddingBlockStart));
@@ -323,6 +323,14 @@ test("homepage section rhythm uses the responsive semantic tiers", async ({ page
   expect(await padding("#slogan")).toBe(expected.compact);
   expect(await padding("#services")).toBe(expected.default);
   expect(await padding("#portfolio")).toBe(expected.feature);
+
+  const sloganToServicesGap = await page.evaluate(() => {
+    const sloganContainer = document.querySelector<HTMLElement>("#slogan > div");
+    const servicesContainer = document.querySelector<HTMLElement>("#services > div");
+    if (!sloganContainer || !servicesContainer) return -1;
+    return Math.round(servicesContainer.getBoundingClientRect().top - sloganContainer.getBoundingClientRect().bottom);
+  });
+  expect(sloganToServicesGap).toBe(expected.sloganToServices);
 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
   expect(overflow).toBe(false);

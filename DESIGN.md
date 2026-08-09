@@ -67,13 +67,15 @@ Raw scale tokens are `--cds-spacing-01` through `--cds-spacing-13`. Components s
 
 Parent layouts own gaps between components. Components own only their internal padding. Sections must not all use the same vertical padding; compact, default, and feature spacing create rhythm without arbitrary values.
 
-Section rhythm is mobile-first and snaps to the 8px grid rather than producing arbitrary fluid values:
+Section rhythm is mobile-first and snaps to the 8px grid rather than producing arbitrary fluid values. The values below are **target content-to-content gaps between adjacent sections**, not padding to apply twice:
 
-| Viewport | Compact | Default | Feature |
+| Viewport | Compact gap | Default gap | Feature gap |
 | --- | ---: | ---: | ---: |
 | Mobile (<768px) | 64px | 80px | 96px |
 | Tablet (>=768px) | 80px | 96px | 128px |
 | Desktop (>=1200px) | 96px | 128px | 160px |
+
+Each section contributes roughly half of that rhythm on each edge through `--section-space-compact/default/feature`: mobile `32/40/48px`, tablet `40/48/64px`, desktop `48/64/80px`. This prevents two adjacent sections from accidentally doubling a 128px target into 256px of dead space.
 
 Use `compact` only for short transitional bands, `default` for normal content sections, and `feature` for major narrative/CTA moments. The eyebrow/title/description stack uses 24px semantic spacing, with 16px for closely related description relationships. Do not add extra inter-section margins on top of these tiers.
 

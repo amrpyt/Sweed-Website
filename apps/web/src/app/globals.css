@@ -8,31 +8,20 @@
   font-family: "SWEED Helvetica Arabic";
   src: url("/fonts/helvetica-arabic.ttf") format("truetype");
   font-display: swap;
-  font-style: normal;
-  font-weight: 400;
+  font-weight: 400 900;
 }
 
 @font-face {
   font-family: "SF Arabic";
   src: url("/fonts/sf-arabic-regular.ttf") format("truetype");
   font-display: swap;
-  font-style: normal;
   font-weight: 400;
-}
-
-@font-face {
-  font-family: "SF Arabic";
-  src: url("/fonts/sf-arabic-medium.ttf") format("truetype");
-  font-display: swap;
-  font-style: normal;
-  font-weight: 500;
 }
 
 @font-face {
   font-family: "SF Arabic";
   src: url("/fonts/sf-arabic-heavy.ttf") format("truetype");
   font-display: swap;
-  font-style: normal;
   font-weight: 700;
 }
 
@@ -48,8 +37,6 @@ html {
   scroll-behavior: smooth;
   scroll-padding-block-start: 96px;
   scroll-padding-top: 96px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -79,14 +66,6 @@ small {
 a {
   color: inherit;
   text-decoration: none;
-  text-decoration-skip-ink: auto;
-  text-decoration-thickness: from-font;
-  text-underline-position: from-font;
-}
-
-::selection {
-  background: rgb(237 32 98 / 22%);
-  color: var(--sweed-primary-purple);
 }
 
 .sweed-visually-hidden {

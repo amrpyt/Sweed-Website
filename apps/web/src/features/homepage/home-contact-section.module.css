@@ -113,8 +113,7 @@
 
 .contactMethods strong {
   color: #ffffff;
-  font-size: var(--type-body-size);
-  line-height: var(--type-body-leading);
+  font-size: 0.94rem;
 }
 
 .contactMethods a:hover strong,
@@ -225,7 +224,7 @@
 .form textarea {
   min-height: 120px;
   resize: vertical;
-  line-height: var(--type-body-leading);
+  line-height: 1.65;
 }
 
 .form input::placeholder,

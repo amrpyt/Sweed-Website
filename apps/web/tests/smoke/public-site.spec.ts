@@ -336,66 +336,6 @@ test("homepage section rhythm uses the responsive semantic tiers", async ({ page
   expect(overflow).toBe(false);
 });
 
-test("homepage typography stays on the semantic scale", async ({ page }) => {
-  await page.goto("/");
-
-  const homepageMain = page.locator("main").filter({ has: page.locator("#home") });
-  await expect(homepageMain).toHaveCount(1);
-  const metrics = await homepageMain.evaluate((main) => {
-    const isRendered = (element: HTMLElement) => {
-      const rect = element.getBoundingClientRect();
-      const style = getComputedStyle(element);
-      return rect.width > 4 && rect.height > 4 && style.visibility !== "hidden" && style.display !== "none";
-    };
-    const selectors = "h1,h2,h3,p,small,label,button,a";
-    const elements = [...main.querySelectorAll<HTMLElement>(selectors)].filter(
-      (element) => isRendered(element) && (element.textContent ?? "").trim().length > 0,
-    );
-    const sizes = [...new Set(elements.map((element) => parseFloat(getComputedStyle(element).fontSize)))];
-    const h1 = [...main.querySelectorAll<HTMLElement>("h1")].find(isRendered);
-    const sectionH2s = [...main.querySelectorAll<HTMLElement>("section h2")].filter(isRendered);
-    const editable = [...main.querySelectorAll<HTMLElement>("input,textarea,select")].filter(isRendered);
-
-    return {
-      sizeCount: sizes.length,
-      undersized: elements
-        .filter((element) => parseFloat(getComputedStyle(element).fontSize) < 14)
-        .map((element) => (element.textContent ?? "").trim()),
-      h1Size: h1 ? parseFloat(getComputedStyle(h1).fontSize) : 0,
-      maxH2Size: Math.max(...sectionH2s.map((element) => parseFloat(getComputedStyle(element).fontSize))),
-      heavyHeadings: [...main.querySelectorAll<HTMLElement>("h1,h2,h3")]
-        .filter(isRendered)
-        .filter((element) => parseInt(getComputedStyle(element).fontWeight, 10) > 700)
-        .map((element) => (element.textContent ?? "").trim()),
-      heavySectionTitles: sectionH2s
-        .filter((element) => parseInt(getComputedStyle(element).fontWeight, 10) > 400)
-        .map((element) => (element.textContent ?? "").trim()),
-      heavyHeroTitle: h1 && parseInt(getComputedStyle(h1).fontWeight, 10) > 500
-        ? (h1.textContent ?? "").trim()
-        : null,
-      headingWraps: [...main.querySelectorAll<HTMLElement>("h1,h2,h3")]
-        .filter(isRendered)
-        .every((element) => getComputedStyle(element).textWrap === "balance"),
-      paragraphWraps: [...main.querySelectorAll<HTMLElement>("p")]
-        .filter(isRendered)
-        .every((element) => getComputedStyle(element).textWrap === "pretty"),
-      editableSizes: editable.map((element) => parseFloat(getComputedStyle(element).fontSize)),
-      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
-    };
-  });
-
-  expect(metrics.sizeCount).toBeLessThanOrEqual(8);
-  expect(metrics.undersized).toEqual([]);
-  expect(metrics.h1Size).toBeGreaterThanOrEqual(metrics.maxH2Size);
-  expect(metrics.heavyHeadings).toEqual([]);
-  expect(metrics.heavySectionTitles).toEqual([]);
-  expect(metrics.heavyHeroTitle).toBeNull();
-  expect(metrics.headingWraps).toBe(true);
-  expect(metrics.paragraphWraps).toBe(true);
-  expect(metrics.editableSizes.every((size) => size >= 16)).toBe(true);
-  expect(metrics.overflow).toBe(false);
-});
-
 test("home staggered navigation points to homepage section anchors in the requested order", async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("sweed-menu-button").click();

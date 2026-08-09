@@ -230,7 +230,7 @@
   color: #ffffff;
   font-size: var(--type-card-title-size);
   font-weight: var(--font-weight-display);
-  line-height: var(--type-card-title-leading);
+  line-height: 1.25;
   text-wrap: balance;
 }
 
@@ -249,9 +249,9 @@
   border-block-end: 2px solid #ed2062;
   color: #ffffff;
   padding-block-end: var(--cds-spacing-02);
-  font-size: var(--type-ui-title-size);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: var(--font-weight-display);
-  line-height: var(--type-ui-title-leading);
+  line-height: 1.5;
 }
 
 .result[data-pending="true"] {

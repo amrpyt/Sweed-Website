@@ -17,8 +17,6 @@
   background: var(--color-panel);
   color: var(--color-text);
   padding: var(--control-padding-block) var(--control-padding-inline);
-  font-size: var(--type-body-size);
-  line-height: var(--type-body-leading);
 }
 
 .textarea {
@@ -34,14 +32,12 @@
 
 .helper {
   color: var(--color-muted);
-  font-size: var(--type-small-size);
-  line-height: var(--type-small-leading);
+  font-size: 0.875rem;
 }
 
 .error {
   color: #b42318;
-  font-size: var(--type-small-size);
-  font-weight: var(--font-weight-strong);
-  line-height: var(--type-small-leading);
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 

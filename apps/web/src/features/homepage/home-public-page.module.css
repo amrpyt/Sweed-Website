@@ -24,17 +24,12 @@
 
 .homepage :where(h1, h2, h3) {
   color: var(--ink);
-  font-family: var(--font-display);
   text-wrap: balance;
 }
 
 .homepage :where(p) {
   color: var(--muted);
   text-wrap: pretty;
-}
-
-.homepage :where(h1, h2, h3, p, small, label, button, a) {
-  overflow-wrap: break-word;
 }
 
 /* Every section owns its padding. No hidden inter-section margin. */
@@ -348,7 +343,7 @@
   .heroH1 {
     max-width: 100%;
     margin-block-end: var(--stack-lg);
-    font-size: var(--type-page-title-size);
+    font-size: clamp(2.15rem, 10vw, 3rem);
   }
 
   .h1Break {
@@ -391,6 +386,16 @@
 
   .waveSvg {
     display: none;
+  }
+}
+
+@media (max-width: 22.5rem) {
+  .heroH1 {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
   }
 }
 

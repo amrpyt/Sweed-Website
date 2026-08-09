@@ -173,7 +173,7 @@
   --brand-action-inset: var(--cds-spacing-03);
   --brand-action-min-width: 15.5rem;
   --brand-action-min-height: var(--control-height-lg);
-  --brand-action-font-size: var(--type-body-size);
+  --brand-action-font-size: 1.03rem;
   --brand-action-gap: var(--inline-sm);
   --brand-action-label-shift: 0;
   --brand-action-icon-offset-x: 0;
@@ -184,7 +184,7 @@
   --brand-action-inset: var(--cds-spacing-03);
   --brand-action-min-width: 9.75rem;
   --brand-action-min-height: var(--control-height-md);
-  --brand-action-font-size: var(--type-small-size);
+  --brand-action-font-size: 0.9rem;
   --brand-action-gap: 0.5rem;
   --brand-action-label-shift: 0;
   --brand-action-icon-offset-x: 0;
@@ -204,7 +204,7 @@
   --brand-action-icon-size: var(--cds-spacing-07);
   --brand-action-min-width: 10.375rem;
   --brand-action-min-height: var(--control-height-md);
-  --brand-action-font-size: var(--type-small-size);
+  --brand-action-font-size: 0.9rem;
 }
 
 @media (max-width: 480px) {
@@ -214,19 +214,8 @@
     --brand-action-gap: var(--inline-sm);
     --brand-action-pad-start: var(--inline-md);
     --brand-action-pad-end: var(--inline-sm);
-    --brand-action-font-size: var(--type-small-size);
+    --brand-action-font-size: 0.9rem;
     min-width: 0 !important;
     width: 100% !important;
-  }
-
-  .hero {
-    --brand-action-font-size: var(--type-body-size);
-    line-height: var(--type-ui-title-leading) !important;
-  }
-
-  .hero .label {
-    line-height: inherit !important;
-    overflow-wrap: break-word;
-    white-space: normal !important;
   }
 }

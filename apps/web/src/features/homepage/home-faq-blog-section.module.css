@@ -95,9 +95,8 @@
   color: #261b3e;
   padding-block: var(--stack-md);
   font: inherit;
-  font-size: var(--type-ui-title-size);
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
   font-weight: var(--font-weight-display);
-  line-height: var(--type-ui-title-leading);
   text-align: start;
   cursor: pointer;
 }
@@ -139,8 +138,8 @@
 .faqPanel p {
   margin: 0;
   color: #6d6e70;
-  font-size: var(--type-body-size);
-  line-height: var(--type-body-leading);
+  font-size: 0.94rem;
+  line-height: 1.85;
 }
 
 .blogHeading {
@@ -299,8 +298,8 @@
 
 .articleBody h3 {
   margin: var(--stack-md) 0 0;
-  font-size: var(--type-card-title-size);
-  line-height: var(--type-card-title-leading);
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  line-height: 1.4;
 }
 
 .articleBody h3 a {

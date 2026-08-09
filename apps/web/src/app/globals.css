@@ -16,13 +16,23 @@
   font-family: "SF Arabic";
   src: url("/fonts/sf-arabic-regular.ttf") format("truetype");
   font-display: swap;
+  font-style: normal;
   font-weight: 400;
+}
+
+@font-face {
+  font-family: "SF Arabic";
+  src: url("/fonts/sf-arabic-medium.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
 }
 
 @font-face {
   font-family: "SF Arabic";
   src: url("/fonts/sf-arabic-heavy.ttf") format("truetype");
   font-display: swap;
+  font-style: normal;
   font-weight: 700;
 }
 

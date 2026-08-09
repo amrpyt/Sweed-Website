@@ -1,11 +1,11 @@
 # Current State
 
-Updated: 2026-08-09T13:37:00+03:00
+Updated: 2026-08-09T13:47:00+03:00
 Git branch: main
-Git HEAD: e7a5399
+Git HEAD: 6ac5e86
 Active Task: None
 Active Plan: None
-Status: SWEED-030 section rhythm double-spacing correction completed and deployed to demo
+Status: SWEED-031 section breathing-room visual refinement completed and deployed to demo
 
 ## Current Goal
 
@@ -17,6 +17,9 @@ None.
 
 ## Completed Recently
 
+- Used agent-browser screenshots on the live demo at desktop/mobile to verify the section rhythm visually instead of relying on token values alone.
+- Increased semantic section edge contributions to 40/48/64px mobile, 48/64/80px tablet, and 64/80/96px desktop after the 32/40/48 and 48/64/80 edge sets still felt visually cramped around large Arabic headings.
+- Public live content gaps now measure 144px for About→Slogan and Slogan→Services at 1440; 80px and 88px respectively at 390/320 with zero horizontal overflow.
 - Corrected SWEED-029 after live visual review showed the target inter-section gap had been applied as full padding on both section edges, doubling whitespace between adjacent content groups.
 - Section gap targets remain 64/80/96px mobile, 80/96/128px tablet, and 96/128/160px desktop, but each section now contributes roughly half per edge: 32/40/48px mobile, 40/48/64px tablet, 48/64/80px desktop.
 - Public slogan-to-Services content gap now measures 112px at 1440 and 72px at 390/320 instead of roughly double those values.

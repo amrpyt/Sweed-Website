@@ -1,12 +1,37 @@
 # Tasks
 
-Updated: 2026-08-09T13:37:00+03:00
+Updated: 2026-08-09T13:47:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-031 — Section breathing-room visual refinement
+
+Status: completed
+Priority: high
+Implementation commit: `6ac5e86 fix: increase section breathing room`
+
+#### Scope
+
+- Used agent-browser screenshots of the deployed homepage at desktop and mobile before changing spacing.
+- Verified that the corrected 112px desktop About/Slogan/Services gaps still looked too compressed for the page's large Arabic display typography.
+- Increased semantic edge tiers to 40/48/64px mobile, 48/64/80px tablet, and 64/80/96px desktop using the existing Carbon spacing scale.
+- Updated the design contract and Playwright rhythm assertions.
+- Captured new local and public HTTPS screenshots after the change.
+
+#### Evidence
+
+- `bun run check`: 95/95 tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Production build passed with 29 routes.
+- Focused better-layout + section-rhythm Playwright: 4/4 passed.
+- Public HTTPS at 1440: About→Slogan = 144px and Slogan→Services = 144px.
+- Public HTTPS at 390/320: About→Slogan = 80px and Slogan→Services = 88px.
+- No horizontal overflow, console errors, or page errors in the final agent-browser pass.
+- `sweed-demo.service` is active and public homepage returns HTTP 200.
+- No Git push was performed.
 
 ### SWEED-030 — Section rhythm double-spacing correction
 

@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-09T13:37:00+03:00
+Updated: 2026-08-09T13:47:00+03:00
 
 ## Read First
 
@@ -15,6 +15,10 @@ Updated: 2026-08-09T13:37:00+03:00
 
 ## What Changed
 
+- SWEED-031 section breathing-room visual refinement is complete and deployed.
+- Agent-browser screenshots were captured before and after the change on desktop and mobile, and the final public HTTPS pass was re-captured after deployment.
+- Section edge tiers are now 40/48/64px mobile, 48/64/80px tablet, and 64/80/96px desktop.
+- Public live gaps now measure 144px for About→Slogan and Slogan→Services at 1440, and 80px / 88px respectively at 390/320 with zero horizontal overflow.
 - SWEED-030 section-rhythm double-spacing correction is complete and deployed.
 - The previous pass incorrectly applied full target gaps to both section edges; section tokens now represent half-edge contributions so adjacent sections produce the intended total whitespace.
 - Section edge tiers are 32/40/48px mobile, 40/48/64px tablet, and 48/64/80px desktop while total content-to-content targets remain 64/80/96, 80/96/128, and 96/128/160 respectively.

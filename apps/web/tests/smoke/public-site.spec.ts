@@ -367,6 +367,9 @@ test("homepage typography stays on the semantic scale", async ({ page }) => {
         .filter(isRendered)
         .filter((element) => parseInt(getComputedStyle(element).fontWeight, 10) > 700)
         .map((element) => (element.textContent ?? "").trim()),
+      heavySectionTitles: sectionH2s
+        .filter((element) => parseInt(getComputedStyle(element).fontWeight, 10) > 600)
+        .map((element) => (element.textContent ?? "").trim()),
       headingWraps: [...main.querySelectorAll<HTMLElement>("h1,h2,h3")]
         .filter(isRendered)
         .every((element) => getComputedStyle(element).textWrap === "balance"),
@@ -382,6 +385,7 @@ test("homepage typography stays on the semantic scale", async ({ page }) => {
   expect(metrics.undersized).toEqual([]);
   expect(metrics.h1Size).toBeGreaterThanOrEqual(metrics.maxH2Size);
   expect(metrics.heavyHeadings).toEqual([]);
+  expect(metrics.heavySectionTitles).toEqual([]);
   expect(metrics.headingWraps).toBe(true);
   expect(metrics.paragraphWraps).toBe(true);
   expect(metrics.editableSizes.every((size) => size >= 16)).toBe(true);

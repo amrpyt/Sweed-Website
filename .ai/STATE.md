@@ -1,15 +1,15 @@
 # Current State
 
-Updated: 2026-08-09T13:47:00+03:00
+Updated: 2026-08-09T15:00:00+03:00
 Git branch: main
-Git HEAD: 6ac5e86
+Git HEAD: f8cf2b2
 Active Task: None
 Active Plan: None
-Status: SWEED-031 section breathing-room visual refinement completed and deployed to demo
+Status: SWEED-032 typography rollback completed and deployed to demo
 
 ## Current Goal
 
-Keep the rebuilt public pages and homepage on the SWEED visual system, Carbon spacing contract, mobile-first rules, shared alignment system, and semantic typography baseline established by SWEED-027.
+Keep the rebuilt public pages and homepage on the SWEED visual system, Carbon spacing contract, mobile-first rules, shared alignment system, and the original SWEED Helvetica Arabic typography. Do not change the public font family without an explicit user request.
 
 ## In Progress
 
@@ -17,6 +17,10 @@ None.
 
 ## Completed Recently
 
+- Rolled back the SWEED-027 better-typography implementation and all later font-family/weight experiments while preserving subsequent spacing/layout work.
+- Restored `SWEED Helvetica Arabic` as both body and display family and restored the exact pre-typography component typography values for the files touched by `ce407ad`.
+- Removed the typography Playwright contract that enforced the rejected semantic-scale/weight behavior; section-rhythm coverage remains intact.
+- Agent-browser verified the deployed HTTPS homepage uses `SWEED Helvetica Arabic` for H1/H2/H3 on desktop/mobile with zero horizontal overflow.
 - Used agent-browser screenshots on the live demo at desktop/mobile to verify the section rhythm visually instead of relying on token values alone.
 - Increased semantic section edge contributions to 40/48/64px mobile, 48/64/80px tablet, and 64/80/96px desktop after the 32/40/48 and 48/64/80 edge sets still felt visually cramped around large Arabic headings.
 - Public live content gaps now measure 144px for About→Slogan and Slogan→Services at 1440; 80px and 88px respectively at 390/320 with zero horizontal overflow.

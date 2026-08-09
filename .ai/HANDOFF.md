@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-09T13:47:00+03:00
+Updated: 2026-08-09T15:00:00+03:00
 
 ## Read First
 
@@ -15,6 +15,10 @@ Updated: 2026-08-09T13:47:00+03:00
 
 ## What Changed
 
+- SWEED-032 typography rollback is complete and deployed.
+- The `better-typography` implementation and later font-family/weight experiments were reverted; the public UI is back on the original `SWEED Helvetica Arabic` typography while later spacing/layout work remains.
+- Ten typography-only files match the pre-`ce407ad` versions exactly; shared files retain only later section-rhythm/slogan-layout differences.
+- Do not replace the SWEED public font family or remap display headings to SF Arabic without an explicit user request.
 - SWEED-031 section breathing-room visual refinement is complete and deployed.
 - Agent-browser screenshots were captured before and after the change on desktop and mobile, and the final public HTTPS pass was re-captured after deployment.
 - Section edge tiers are now 40/48/64px mobile, 48/64/80px tablet, and 64/80/96px desktop.

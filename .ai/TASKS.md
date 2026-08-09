@@ -1,12 +1,35 @@
 # Tasks
 
-Updated: 2026-08-09T13:47:00+03:00
+Updated: 2026-08-09T15:00:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-032 — Restore pre-typography visual system
+
+Status: completed
+Priority: high
+Implementation commit: `f8cf2b2 revert: restore pre-typography visual system`
+
+#### Scope
+
+- Reverted the public typography changes introduced by `ce407ad refactor: apply better-typography to public UI` and all later font-family/weight experiments.
+- Restored `SWEED Helvetica Arabic` as the body/display family and restored the original pre-typography sizes, weights, line-heights, CTA typography, field typography, FAQ/article typography, and mobile overrides.
+- Preserved later section-rhythm, slogan-layout, carousel, footer, and mobile-layout work.
+- Removed the typography Playwright contract that enforced the rejected typography pass.
+
+#### Evidence
+
+- Ten typography-only source files match `ce407ad^` exactly after the rollback.
+- `bun run check`: 95/95 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Production build passed with 29 routes.
+- Agent-browser on public HTTPS verified H1/H2/H3 use `SWEED Helvetica Arabic` on desktop and mobile with zero horizontal overflow.
+- Production readiness: 11 passed, 1 intentional mobile visual checkpoint skip.
+- `sweed-demo.service` restarted on the rollback build and public homepage returns HTTP 200.
+- No Git push was performed.
 
 ### SWEED-031 — Section breathing-room visual refinement
 

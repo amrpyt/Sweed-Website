@@ -1,7 +1,7 @@
 .faqSection,
 .blogSection {
   color: #261b3e;
-  padding-block: var(--section-space-default);
+  padding-block: var(--section-space-compact);
 }
 
 .faqSection {
@@ -14,7 +14,7 @@
 }
 
 .container {
-  width: min(100% - (var(--page-gutter) * 2), 1240px);
+  width: min(100% - (var(--page-gutter) * 2), var(--home-content-max, 77.5rem));
   margin-inline: auto;
 }
 
@@ -131,7 +131,8 @@
 }
 
 .faqPanel {
-  padding: 0 var(--cds-spacing-10) var(--stack-lg) 0;
+  padding-block: 0 var(--stack-lg);
+  padding-inline-start: 0;
 }
 
 .faqPanel p {
@@ -143,34 +144,33 @@
 
 .blogHeading {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  max-width: none;
+  max-width: var(--content-measure-wide);
   margin-inline: auto;
-  align-items: end;
-  gap: var(--content-gap-loose);
-  padding-block-end: var(--stack-xl);
-  border-block-end: 1px solid rgb(38 27 62 / 0.14);
-  text-align: start;
+  justify-items: center;
+  gap: var(--section-header-gap);
+  text-align: center;
 }
 
 .blogHeading > div {
   display: grid;
   max-width: var(--measure-lead);
+  justify-items: center;
   gap: var(--stack-sm);
+  text-align: center;
 }
 
 .blogHeading .eyebrow {
-  margin: 0;
+  margin: 0 auto;
 }
 
 .blogHeading h2 {
   max-width: 18ch;
-  margin-inline: 0;
+  margin-inline: auto;
 }
 
 .blogHeading > div > p:not(.eyebrow) {
   max-width: var(--measure-body);
-  margin: 0;
+  margin: 0 auto;
   color: #625b6c;
   font-size: var(--type-body-size);
   line-height: var(--type-body-leading);
@@ -178,7 +178,7 @@
 
 .blogHeading > a {
   display: inline-flex;
-  justify-self: end;
+  justify-self: center;
   min-height: 48px;
   flex: 0 0 auto;
   align-items: center;
@@ -210,17 +210,30 @@
 
 .articlesGrid {
   display: grid;
-  margin-top: clamp(var(--cds-spacing-07), 4vw, var(--cds-spacing-09));
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-auto-flow: column;
+  grid-auto-columns: calc(100% - var(--stack-2xl));
+  margin-top: var(--section-content-gap);
+  gap: var(--stack-lg);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+}
+
+.articlesGrid::-webkit-scrollbar {
+  display: none;
 }
 
 .articleReveal {
   min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .articleCard {
+  display: flex;
   height: 100%;
+  flex-direction: column;
   overflow: hidden;
   border: 1px solid rgb(38 27 62 / 0.13);
   border-radius: 16px;
@@ -239,7 +252,7 @@
 .articleMedia {
   position: relative;
   display: block;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #261b3e;
 }
@@ -268,7 +281,7 @@
 
 .articleBody {
   display: flex;
-  min-height: 285px;
+  flex: 1;
   flex-direction: column;
   padding: var(--card-padding);
 }
@@ -321,38 +334,27 @@
   text-underline-offset: 0.28rem;
 }
 
-@media (width < 920px) {
-  .faqLayout,
+@media (min-width: 58rem) {
   .articlesGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .faqHeading {
-    position: static;
-  }
-
-  .blogHeading {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-
-  .blogHeading > a {
-    justify-self: start;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+    scroll-snap-type: none;
   }
 }
 
-@media (width < 620px) {
-  .faqSection,
-  .blogSection {
-    padding-block: var(--section-space-compact);
+@media (min-width: 38.75rem) {
+  .faqSection {
+    padding-block: var(--section-space-default);
   }
 
   .faqPanel {
-    padding-inline-end: 0;
+    padding-inline-start: var(--cds-spacing-10);
   }
 
   .articleMedia {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
   }
 }
 

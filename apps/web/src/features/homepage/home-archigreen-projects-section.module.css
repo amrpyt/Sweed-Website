@@ -7,26 +7,29 @@
 }
 
 .container {
-  width: min(100% - (var(--page-gutter) * 2), 80rem);
+  width: min(100% - (var(--page-gutter) * 2), var(--home-content-max, 77.5rem));
   margin-inline: auto;
 }
 
 .headingLayout {
   display: grid;
-  gap: var(--content-gap-loose);
-  padding-block-end: var(--stack-xl);
-  border-block-end: 1px solid rgb(255 255 255 / 16%);
+  justify-items: center;
+  gap: var(--stack-xl);
+  text-align: center;
 }
 
 .headingCopy {
   display: grid;
   max-width: var(--measure-lead);
+  margin-inline: auto;
+  justify-items: center;
   gap: var(--stack-sm);
+  text-align: center;
 }
 
 .kicker {
   width: fit-content;
-  margin: 0;
+  margin: 0 auto;
   color: #ff8ab2;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
@@ -35,7 +38,7 @@
 
 .headingCopy h2 {
   max-width: 18ch;
-  margin: 0;
+  margin: 0 auto;
   color: #ffffff;
   font-size: var(--type-section-title-size);
   font-weight: var(--font-weight-display);
@@ -46,7 +49,7 @@
 
 .headingCopy > p:not(.kicker) {
   max-width: var(--measure-lead);
-  margin: 0;
+  margin: 0 auto;
   color: rgb(255 255 255 / 82%);
   font-size: var(--type-body-size);
   line-height: var(--type-body-leading);
@@ -54,6 +57,7 @@
 
 .headingCopy > small {
   max-width: var(--measure-body);
+  margin-inline: auto;
   color: rgb(255 255 255 / 68%);
   font-size: var(--type-small-size);
   font-weight: var(--font-weight-medium);
@@ -64,6 +68,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: var(--stack-md);
 }
 
@@ -257,15 +262,6 @@
 }
 
 @media (min-width: 48rem) {
-  .headingLayout {
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-  }
-
-  .headingActions {
-    justify-content: end;
-  }
-
   .projectsTrack {
     grid-auto-columns: min(88%, 68rem);
   }

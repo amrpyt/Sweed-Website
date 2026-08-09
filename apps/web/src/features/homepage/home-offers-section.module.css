@@ -5,7 +5,7 @@
 }
 
 .container {
-  width: min(100% - (var(--page-gutter) * 2), 1240px);
+  width: min(100% - (var(--page-gutter) * 2), var(--home-content-max, 77.5rem));
   margin-inline: auto;
 }
 
@@ -15,8 +15,6 @@
   margin-inline: auto;
   justify-items: center;
   gap: var(--section-header-gap);
-  padding-block-end: clamp(2rem, 4vw, 3rem);
-  border-block-end: 1px solid rgb(38 27 62 / 0.14);
   text-align: center;
 }
 
@@ -50,21 +48,31 @@
 
 .offersGrid {
   display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(100% - var(--stack-2xl));
   margin-top: var(--section-content-gap);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: var(--stack-lg);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+}
+
+.offersGrid::-webkit-scrollbar {
+  display: none;
 }
 
 .offerReveal {
   min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .offerCard {
   position: relative;
   display: flex;
   height: 100%;
-  min-height: 520px;
   flex-direction: column;
   overflow: hidden;
   border: 1px solid rgb(38 27 62 / 0.14);
@@ -108,7 +116,10 @@
   display: flex;
   align-items: center;
   gap: var(--stack-md);
-  padding-inline-end: 5rem;
+}
+
+.offerCard[data-featured="true"] .offerHeader {
+  padding-block-start: var(--stack-xl);
 }
 
 .offerIcon {
@@ -155,7 +166,6 @@
 }
 
 .summary {
-  min-height: 3.7em;
   margin: var(--stack-lg) 0 0;
   color: #696171;
   font-size: 0.92rem;
@@ -166,28 +176,21 @@
   display: grid;
   margin: var(--stack-lg) 0 0;
   padding: 0;
-  gap: 0;
+  gap: var(--stack-sm);
   list-style: none;
-  border-block-start: 1px solid rgb(38 27 62 / 0.12);
-}
-
-.offerCard[data-featured="true"] .items {
-  border-color: rgb(255 255 255 / 0.18);
 }
 
 .items li {
   display: flex;
   align-items: flex-start;
   gap: var(--inline-sm);
-  border-block-end: 1px solid rgb(38 27 62 / 0.12);
-  padding-block: var(--stack-md);
+  padding-block: var(--stack-xs);
   color: #40374d;
   font-size: 0.88rem;
   line-height: 1.55;
 }
 
 .offerCard[data-featured="true"] .items li {
-  border-color: rgb(255 255 255 / 0.18);
   color: rgb(255 255 255 / 0.84);
 }
 
@@ -244,13 +247,15 @@
 .allOffersLink {
   display: flex;
   width: min(100%, 860px);
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: space-between;
   gap: var(--stack-md);
   margin: var(--stack-xl) auto 0;
   border-radius: var(--shape-card);
   padding: var(--card-padding);
   background: #f4f1f7;
+  text-align: center;
 }
 
 .allOffersLink p {
@@ -272,35 +277,26 @@
   text-decoration: none;
 }
 
-@media (width < 980px) {
-  .headingLayout,
-  .offersGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .headingLayout {
-    gap: var(--stack-lg);
-  }
-
-  .offerCard {
-    min-height: auto;
+@media (min-width: 48rem) {
+  .allOffersLink {
+    flex-direction: row;
+    align-items: center;
+    text-align: start;
   }
 }
 
-@media (width < 620px) {
-  .section {
-    padding-block: var(--section-space-compact);
+@media (min-width: 62rem) {
+  .offersGrid {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+    scroll-snap-type: none;
   }
 
-  .offerHeader {
-    padding-inline-end: 0;
-    padding-block-start: 2rem;
-  }
-
-  .allOffersLink {
-    align-items: stretch;
-    flex-direction: column;
-    text-align: center;
+  .offerCard[data-featured="true"] .offerHeader {
+    padding-block-start: 0;
+    padding-inline-end: 5rem;
   }
 }
 

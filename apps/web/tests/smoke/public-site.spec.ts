@@ -257,6 +257,56 @@ test("homepage portfolio, slogan, and footer keep the new visual contracts", asy
   expect(overflow).toBe(false);
 });
 
+test("homepage better-layout contracts keep alignment and mobile disclosure stable", async ({ page }) => {
+  await page.goto("/");
+
+  const centeredSectionIds = ["services", "sweed-why", "portfolio", "offers", "blog"];
+  for (const id of centeredSectionIds) {
+    const delta = await page.locator(`#${id} h2`).first().evaluate((heading) => {
+      const rect = heading.getBoundingClientRect();
+      return Math.abs(rect.left + rect.width / 2 - document.documentElement.clientWidth / 2);
+    });
+    expect(delta).toBeLessThanOrEqual(1);
+  }
+
+  await expect(page.getByTestId("home-service-panel")).toHaveCount(6);
+
+  const viewportWidth = page.viewportSize()?.width ?? 0;
+  const serviceMedia = page.locator('#services [class*="media"]');
+  const offersTrack = page.locator('#offers [class*="offersGrid"]');
+  const articlesTrack = page.locator('#blog [class*="articlesGrid"]');
+
+  if (viewportWidth < 720) {
+    expect(await serviceMedia.evaluateAll((elements) => elements.filter((element) => getComputedStyle(element).display !== "none").length)).toBe(0);
+
+    for (const track of [offersTrack, articlesTrack]) {
+      const disclosure = await track.evaluate((element) => {
+        const children = Array.from(element.children);
+        const trackRect = element.getBoundingClientRect();
+        const secondRect = children[1]?.getBoundingClientRect();
+        if (!secondRect) return { overflow: false, peek: 0 };
+        const direction = getComputedStyle(element).direction;
+        const peek = direction === "rtl" ? secondRect.right - trackRect.left : trackRect.right - secondRect.left;
+        return {
+          overflow: element.scrollWidth > element.clientWidth,
+          peek: Math.round(Math.max(0, peek)),
+        };
+      });
+
+      expect(disclosure.overflow).toBe(true);
+      expect(disclosure.peek).toBeGreaterThanOrEqual(16);
+      expect(disclosure.peek).toBeLessThanOrEqual(32);
+    }
+  } else if (viewportWidth >= 1024) {
+    expect(await serviceMedia.evaluateAll((elements) => elements.filter((element) => getComputedStyle(element).display !== "none").length)).toBe(6);
+    expect(await offersTrack.evaluate((element) => element.scrollWidth === element.clientWidth)).toBe(true);
+    expect(await articlesTrack.evaluate((element) => element.scrollWidth === element.clientWidth)).toBe(true);
+  }
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+});
+
 test("home staggered navigation points to homepage section anchors in the requested order", async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("sweed-menu-button").click();

@@ -6,7 +6,7 @@
 }
 
 .container {
-  width: min(100% - (var(--page-gutter) * 2), 1240px);
+  width: min(100% - (var(--page-gutter) * 2), var(--home-content-max, 77.5rem));
   margin-inline: auto;
 }
 
@@ -16,8 +16,6 @@
   margin-inline: auto;
   justify-items: center;
   gap: var(--section-header-gap);
-  padding-block-end: clamp(2rem, 4vw, 3rem);
-  border-block-end: 1px solid rgb(38 27 62 / 0.14);
   text-align: center;
 }
 
@@ -53,8 +51,8 @@
 .pointsGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
-  border-block-start: 1px solid rgb(38 27 62 / 0.12);
+  margin-top: var(--section-content-gap);
+  gap: var(--stack-lg);
 }
 
 .point {
@@ -62,16 +60,13 @@
   min-width: 0;
   align-items: flex-start;
   gap: var(--stack-md);
-  border-block-end: 1px solid rgb(38 27 62 / 0.12);
+  border-radius: var(--shape-card);
   padding: var(--stack-lg) var(--stack-md);
   transition:
     background-color 180ms ease,
     color 180ms ease;
 }
 
-.point:not(:nth-child(3n + 1)) {
-  border-inline-start: 1px solid rgb(38 27 62 / 0.12);
-}
 
 .point:hover {
   background: #ffffff;
@@ -166,13 +161,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .point:not(:nth-child(3n + 1)) {
-    border-inline-start: 0;
-  }
-
-  .point:nth-child(even) {
-    border-inline-start: 1px solid rgb(38 27 62 / 0.12);
-  }
 
   .metric:nth-child(3) {
     border-inline-start: 0;
@@ -193,9 +181,7 @@
     grid-template-columns: 1fr;
   }
 
-  .point,
-  .point:nth-child(even) {
-    border-inline-start: 0;
+  .point {
     padding-inline: 0;
   }
 

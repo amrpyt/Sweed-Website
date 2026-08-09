@@ -6,16 +6,6 @@
   padding-block: var(--section-space-compact);
 }
 
-.section::before {
-  position: absolute;
-  inset-inline: 0;
-  inset-block-start: 50%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgb(38 27 62 / 12%) 18%, rgb(38 27 62 / 12%) 82%, transparent);
-  content: "";
-  pointer-events: none;
-}
-
 .container {
   position: relative;
   z-index: 1;

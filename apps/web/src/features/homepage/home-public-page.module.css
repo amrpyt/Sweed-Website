@@ -5,6 +5,9 @@
   --primary-purple: #261b3e;
   --ink: #261b3e;
   --muted: #6d6e70;
+  --section-space-compact: clamp(var(--cds-spacing-09), 5vw, var(--cds-spacing-11));
+  --section-space-default: clamp(var(--cds-spacing-10), 6vw, var(--cds-spacing-12));
+  --section-space-feature: clamp(var(--cds-spacing-11), 7vw, var(--cds-spacing-12));
   overflow: visible;
   background: #ffffff;
   color: var(--ink);
@@ -227,39 +230,6 @@
   isolation: isolate;
 }
 
-.buildingBeamEdge {
-  position: absolute;
-  inset-block-start: 8.6%;
-  inset-inline-start: 50%;
-  z-index: 4;
-  width: 56%;
-  height: var(--cds-spacing-01);
-  overflow: hidden;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgb(237 32 98 / 0%), rgb(237 32 98 / 85%) 36%, rgb(38 27 62 / 72%) 76%, rgb(38 27 62 / 0%));
-  pointer-events: none;
-  transform-origin: 0 50%;
-  animation: buildingEdgeBeam 2.3s ease-in-out infinite;
-}
-
-.buildingBeamEdge::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 80%), transparent);
-  content: "";
-  transform: translateX(-100%);
-  animation: buildingEdgeWave 2.8s ease-in-out infinite;
-}
-
-.buildingBeamEdge:first-child {
-  transform: rotate(149deg);
-}
-
-.buildingBeamEdge:nth-child(2) {
-  transform: rotate(31deg);
-  animation-delay: -1.15s;
-}
-
 .buildingImg {
   position: relative;
   z-index: 2;
@@ -343,28 +313,6 @@
 
 .skipLink:focus {
   inset-block-start: var(--stack-md);
-}
-
-@keyframes buildingEdgeBeam {
-  0%,
-  100% {
-    opacity: 0.42;
-  }
-
-  50% {
-    opacity: 0.9;
-  }
-}
-
-@keyframes buildingEdgeWave {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  55%,
-  100% {
-    transform: translateX(100%);
-  }
 }
 
 @media (max-width: 48rem) {
@@ -455,11 +403,6 @@
 @media (prefers-reduced-motion: reduce) {
   .homepage {
     scroll-behavior: auto;
-  }
-
-  .buildingBeamEdge,
-  .buildingBeamEdge::after {
-    animation: none;
   }
 
   .buildingImg,

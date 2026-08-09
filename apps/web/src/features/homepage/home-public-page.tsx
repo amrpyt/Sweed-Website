@@ -238,8 +238,6 @@ export function HomePublicPage() {
                   <BorderBeam size="pulse-outside" colorVariant="colorful" strength={0.7}>
                     <div className={styles.heroMediaArtwork}>
                       <div className={styles.buildingBeamFrame}>
-                        <span className={styles.buildingBeamEdge} aria-hidden="true" />
-                        <span className={styles.buildingBeamEdge} aria-hidden="true" />
                         <Image
                           src={homepageContent.hero.media[0].poster}
                           alt="واجهة مبنى SWEED"

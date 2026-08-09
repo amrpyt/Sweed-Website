@@ -8,6 +8,42 @@ Updated: 2026-08-09T02:49:00+03:00
 
 ## Completed
 
+### SWEED-026 — Better-layout homepage structure pass
+
+Status: completed
+Priority: high
+Plan: `docs/superpowers/plans/2026-08-09-better-layout-homepage.md`
+OpenSpec: `openspec/changes/apply-better-layout-homepage/`
+Implementation commit: `7ff3569 refactor: apply better-layout to homepage`
+
+#### Scope
+
+- Applied the official `/better-layout` principles to homepage grouping, alignment, reading order, breakpoints, RTL safety, and progressive disclosure.
+- Standardized major homepage content shells around one 77.5rem alignment system while keeping narrow reading measures inside it.
+- Re-centered Services, Why SWEED, Portfolio, Offers, and Articles intros on one axis.
+- Removed decorative section/header separator rules where spacing already communicates grouping.
+- Simplified Why SWEED point grouping from a rule-heavy grid to whitespace-led blocks.
+- Made Services mobile-first: all six titles, summaries, and CTAs remain visible; repeated imagery and indices return only when the content fits.
+- Made Offers and Articles horizontal snap tracks on narrow screens with a visible next-item peek; desktop restores three columns.
+- Removed fixed card/summary height assumptions from Offers and Articles.
+
+#### Evidence
+
+- At 390px, Services height reduced from about 3333px to 2000px, Offers from about 2038px to 1018px, and Articles from about 2031px to 842px.
+- Offers and Articles expose a measured ~24px next-item peek on 390px and 320px.
+- All five audited section H2 centers have 0px delta from the page content center on public HTTPS.
+- Mobile-first guard improved legacy max-width queries from 38 to 35.
+- `bun run check`: passed with 95 unit tests, TypeScript, ESLint, spacing, and mobile-first guards.
+- Production build: passed with 29 generated routes.
+- Focused changed-surface Playwright: 4/4 passed across desktop and mobile.
+- 1440, 1024, 390, and 320 public checks: zero horizontal overflow, broken images, console errors, or page errors.
+- Effective 200% zoom-width stress: no overflow and DOM reading order preserved.
+- Reduced motion: all reveal content visible and scrollers fall back to automatic behavior.
+- Production readiness: 11 passed, 1 intentional mobile visual checkpoint skip.
+- `sweed-demo.service` is active and public homepage returns HTTP 200.
+- Known test debt: the broad legacy homepage Playwright subset still contains stale copy/selectors from pre-rebuild versions; the focused current-layout contracts pass.
+- No Git push was performed.
+
 ### SWEED-025 — Homepage rhythm, work carousel, slogan band, and footer polish
 
 Status: completed

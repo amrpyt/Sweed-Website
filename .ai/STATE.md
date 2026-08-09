@@ -1,15 +1,15 @@
 # Current State
 
-Updated: 2026-08-09T02:49:00+03:00
+Updated: 2026-08-09T03:26:00+03:00
 Git branch: main
-Git HEAD: be91ab1
+Git HEAD: 7ff3569
 Active Task: None
 Active Plan: None
-Status: SWEED-025 homepage visual polish completed and deployed to demo
+Status: SWEED-026 better-layout homepage pass completed and deployed to demo
 
 ## Current Goal
 
-Keep the rebuilt public pages and homepage on the SWEED visual system, Carbon spacing contract, mobile-first implementation rules, and the tighter homepage rhythm established by SWEED-025.
+Keep the rebuilt public pages and homepage on the SWEED visual system, Carbon spacing contract, mobile-first rules, and the shared alignment/progressive-disclosure system established by SWEED-026.
 
 ## In Progress
 
@@ -17,6 +17,13 @@ None.
 
 ## Completed Recently
 
+- Applied `/better-layout` to homepage grouping, shared alignment, mobile content priority, responsive disclosure, and RTL-safe breakpoints.
+- Standardized major homepage content shells around one 77.5rem alignment system.
+- Re-centered Services, Why SWEED, Portfolio, Offers, and Articles headings on one page axis.
+- Removed decorative separator rules where spacing carries the hierarchy better.
+- Reduced mobile Services depth by removing repeated secondary imagery below its content-fit breakpoint while preserving all six service texts/actions.
+- Converted Offers and Articles into mobile horizontal snap tracks with a visible ~24px next-item peek and desktop multi-column restoration.
+- Removed fixed summary/card height assumptions from the repeated offer/article layouts.
 - Removed the diagonal hero beam that crossed the building artwork.
 - Tightened homepage-only macro spacing using the existing Carbon token scale.
 - Converted homepage selected work into a manual, accessible horizontal carousel with scroll snap and no autoplay.
@@ -49,6 +56,15 @@ None.
 
 ## Verification
 
+- `bun run check`: passed with 95 tests, TypeScript, ESLint, spacing guard, and mobile-first guard; legacy max-width query count improved from 38 to 35.
+- `/better-layout` focused Playwright contracts: 4/4 passed across desktop and mobile.
+- Public HTTPS at 1440, 1024, 390, and 320: audited section heading centers have 0px alignment delta; zero page overflow and broken images.
+- At 390px, Services reduced from ~3333px to 2000px, Offers from ~2038px to 1018px, Articles from ~2031px to 842px.
+- Offers and Articles expose ~24px next-item peeking on narrow screens and restore non-scrolling 3-column layouts on desktop.
+- Effective 200% zoom-width stress: no horizontal overflow; service/offer/article DOM reading order preserved.
+- Reduced-motion stress: all reveal content visible and scrollers remain usable.
+- Production readiness after deployment: 11 passed, 1 intentional mobile visual checkpoint skip.
+- Known test debt: the broad legacy homepage Playwright subset contains stale assertions from earlier rebuilds; current changed-surface regression is green.
 - `bun run check`: passed with 95 tests, TypeScript, ESLint, spacing guard, and mobile-first guard.
 - Homepage focused Playwright contract: 2/2 passed on desktop and mobile.
 - Homepage portfolio desktop height reduced from 1948px to 965px.
@@ -66,4 +82,4 @@ None.
 
 ## Next Exact Action
 
-Review the deployed homepage visually. Preserve the manual-carousel, single-line slogan, shared modular footer, and homepage-local spacing cadence in future edits. Do not push until explicitly requested.
+Review the deployed homepage visually. Preserve the shared 77.5rem alignment axis, mobile content-priority rules, discoverable horizontal tracks, manual portfolio carousel, and modular footer. Do not push until explicitly requested.

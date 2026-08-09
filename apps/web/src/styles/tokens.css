@@ -61,7 +61,7 @@
   --font-weight-body: 500;
   --font-weight-medium: 600;
   --font-weight-strong: 700;
-  --font-weight-display: 800;
+  --font-weight-display: 700;
 
   /* Semantic typography roles: use these in page and component CSS. */
   --type-display-size: clamp(3rem, 5.4vw, 5rem);

@@ -85,14 +85,14 @@
 .faqItem button {
   display: grid;
   width: 100%;
-  min-height: 88px;
+  min-height: var(--cds-spacing-12);
   grid-template-columns: minmax(0, 1fr) 44px;
   align-items: center;
   gap: var(--stack-md);
   border: 0;
   background: transparent;
   color: #261b3e;
-  padding-block: var(--stack-md);
+  padding-block: var(--stack-lg);
   font: inherit;
   font-size: clamp(1.05rem, 1.7vw, 1.35rem);
   font-weight: var(--font-weight-display);
@@ -212,7 +212,7 @@
   grid-auto-flow: column;
   grid-auto-columns: calc(100% - var(--stack-2xl));
   margin-top: var(--section-content-gap);
-  gap: var(--stack-lg);
+  gap: var(--stack-xl);
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
@@ -296,7 +296,7 @@
 }
 
 .articleBody h3 {
-  margin: var(--stack-md) 0 0;
+  margin: var(--stack-lg) 0 0;
   font-size: clamp(1.2rem, 1.8vw, 1.55rem);
   line-height: 1.4;
 }
@@ -307,7 +307,7 @@
 }
 
 .articleBody p {
-  margin: var(--stack-sm) 0 0;
+  margin: var(--stack-md) 0 0;
   color: #5f5868;
   font-size: var(--type-body-size);
   line-height: var(--type-body-leading);

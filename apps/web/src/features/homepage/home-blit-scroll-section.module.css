@@ -25,7 +25,7 @@
   display: grid;
   min-width: 0;
   justify-items: center;
-  gap: var(--stack-md);
+  gap: var(--stack-lg);
   text-align: center;
 }
 
@@ -75,7 +75,7 @@
   grid-template-columns: minmax(0, 1.08fr) minmax(400px, 0.92fr);
   gap: clamp(var(--cds-spacing-08), 6vw, var(--cds-spacing-12));
   align-items: start;
-  margin-top: clamp(var(--cds-spacing-07), 4vw, var(--cds-spacing-09));
+  margin-top: var(--section-content-gap);
   direction: ltr;
 }
 

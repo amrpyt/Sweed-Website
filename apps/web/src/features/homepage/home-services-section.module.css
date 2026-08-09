@@ -107,7 +107,7 @@
   display: grid;
   margin: 0;
   padding: 0;
-  gap: var(--stack-md);
+  gap: var(--stack-lg);
   list-style: none;
 }
 
@@ -152,7 +152,7 @@
   display: grid;
   min-width: 0;
   grid-area: content;
-  gap: var(--stack-sm);
+  gap: var(--stack-md);
 }
 
 .titleLine {
@@ -221,7 +221,7 @@
 
 @media (min-width: 45rem) {
   .serviceList {
-    gap: var(--stack-sm);
+    gap: var(--stack-xl);
   }
 
   .serviceItem {

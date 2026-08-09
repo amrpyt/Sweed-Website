@@ -352,6 +352,39 @@ test("homepage section rhythm uses the responsive semantic tiers", async ({ page
   expect(overflow).toBe(false);
 });
 
+test("homepage internal rhythm keeps major content groups from collapsing", async ({ page }) => {
+  await page.goto("/");
+
+  const metrics = await page.evaluate(() => {
+    const styleNumber = (selector: string, property: "gap" | "marginTop" | "minHeight") => {
+      const element = document.querySelector<HTMLElement>(selector);
+      if (!element) return -1;
+      const style = getComputedStyle(element);
+      return parseFloat(style[property]);
+    };
+
+    return {
+      aboutStoryGap: styleNumber('#about [class*="storyGrid"]', "marginTop"),
+      servicesGroupGap: styleNumber('#services > div', "gap"),
+      servicesRowGap: styleNumber('#services [data-testid="home-services-list"]', "gap"),
+      portfolioContentGap: styleNumber('#portfolio [class*="projectsTrack"]', "marginTop"),
+      offersCardGap: styleNumber('#offers [class*="offersGrid"]', "gap"),
+      faqRowHeight: styleNumber('#faq button', "minHeight"),
+      blogCardGap: styleNumber('#blog [class*="articlesGrid"]', "gap"),
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    };
+  });
+
+  expect(metrics.aboutStoryGap).toBeGreaterThanOrEqual(48);
+  expect(metrics.servicesGroupGap).toBeGreaterThanOrEqual(48);
+  expect(metrics.servicesRowGap).toBeGreaterThanOrEqual(24);
+  expect(metrics.portfolioContentGap).toBeGreaterThanOrEqual(48);
+  expect(metrics.offersCardGap).toBeGreaterThanOrEqual(32);
+  expect(metrics.faqRowHeight).toBeGreaterThanOrEqual(96);
+  expect(metrics.blogCardGap).toBeGreaterThanOrEqual(32);
+  expect(metrics.overflow).toBe(false);
+});
+
 test("home staggered navigation points to homepage section anchors in the requested order", async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("sweed-menu-button").click();

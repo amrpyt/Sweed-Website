@@ -52,7 +52,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: var(--section-content-gap);
-  gap: var(--stack-lg);
+  gap: var(--stack-xl);
 }
 
 .point {
@@ -94,7 +94,7 @@
 
 .point > span:last-child {
   display: grid;
-  gap: var(--stack-2xs);
+  gap: var(--stack-xs);
 }
 
 .point strong {
@@ -110,7 +110,7 @@
 
 .metricsBar {
   display: grid;
-  margin-top: clamp(var(--cds-spacing-07), 4vw, var(--cds-spacing-09));
+  margin-top: var(--section-content-gap);
   grid-template-columns: repeat(4, minmax(0, 1fr));
   overflow: hidden;
   border-radius: 16px;

@@ -52,7 +52,7 @@
   grid-auto-columns: calc(100% - var(--stack-2xl));
   margin-top: var(--section-content-gap);
   align-items: stretch;
-  gap: var(--stack-lg);
+  gap: var(--stack-xl);
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
@@ -176,7 +176,7 @@
   display: grid;
   margin: var(--stack-lg) 0 0;
   padding: 0;
-  gap: var(--stack-sm);
+  gap: var(--stack-md);
   list-style: none;
 }
 
@@ -251,7 +251,7 @@
   align-items: stretch;
   justify-content: space-between;
   gap: var(--stack-md);
-  margin: var(--stack-xl) auto 0;
+  margin: var(--stack-2xl) auto 0;
   border-radius: var(--shape-card);
   padding: var(--card-padding);
   background: #f4f1f7;

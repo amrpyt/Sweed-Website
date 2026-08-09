@@ -155,7 +155,7 @@
   --section-space-feature: var(--cds-spacing-11);
   --section-header-gap: var(--stack-lg);
   --section-description-gap: var(--stack-md);
-  --section-content-gap: clamp(var(--cds-spacing-07), 5vw, var(--cds-spacing-11));
+  --section-content-gap: clamp(var(--cds-spacing-09), 6vw, var(--cds-spacing-12));
   --card-padding: clamp(var(--cds-spacing-05), 2vw, var(--cds-spacing-06));
   --panel-padding: clamp(var(--cds-spacing-06), 3vw, var(--cds-spacing-07));
   --control-height-sm: 2.75rem;

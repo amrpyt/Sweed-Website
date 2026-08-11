@@ -1,10 +1,58 @@
 # Tasks
 
-Updated: 2026-08-09T16:10:00+03:00
+Updated: 2026-08-12T02:47:14+03:00
 
 ## Active
 
+### SWEED-035 — Restore uploaded HTML page fidelity
+
+Status: in-progress
+Priority: critical
+Plan: `.ai/plans/2026-08-12-reference-html-fidelity-restoration.md`
+Spec: `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-design.md`
+
+#### Acceptance Criteria
+
+- [ ] Services raw HTML matches the approved uploaded SHA-256 fingerprint.
+- [ ] Portfolio raw HTML matches the approved uploaded SHA-256 fingerprint.
+- [ ] Offers raw HTML matches the approved uploaded SHA-256 fingerprint.
+- [ ] `/services`, `/portfolio`, and `/offers` render the uploaded reference page bodies instead of the SWEED-024 React reinterpretations.
+- [ ] Shared header, footer, and AI advisor remain, with no duplicate reference navbar, footer, or breadcrumb.
+- [ ] Reference SVG, CSS, GSAP, ScrollTrigger, quiz, filter, tab, drawer, and overlay behavior stays intact.
+- [ ] Reference styles do not change the shared shell typography or footer styling.
+- [ ] Check, focused tests, production build, service restart, and public HTTP verification pass.
+- [ ] Browser QA passes at desktop, tablet, 390px, and 320px with no overflow, broken assets, console errors, or blank reduced-motion content.
+- [ ] Articles is not claimed as HTML-identical until an Articles HTML reference is supplied.
+
+#### Dependencies
+
+- Uploaded Services, Portfolio, and Offers executive HTML files.
+- Existing `LegacyPage` parser/runtime and shared SWEED shell.
+- Managed `agent-browser` runtime for visual and interaction QA.
+
+#### Relevant Systems
+
+- `apps/web/site/pages/services.html`
+- `apps/web/site/pages/portfolio.html`
+- `apps/web/site/pages/offers.html`
+- `apps/web/src/features/legacy-site`
+- `apps/web/src/app/(marketing)/services/page.tsx`
+- `apps/web/src/app/(marketing)/portfolio/page.tsx`
+- `apps/web/src/app/(marketing)/offers/page.tsx`
+
+#### Evidence
+
+- User explicitly rejected the React reinterpretation and requested the uploaded HTML pages as-is.
+- Current raw page hashes differ from all three newly uploaded references.
+- The previous SWEED-024 spec explicitly translated the references into new React layouts, which is now superseded for these routes.
+
+#### Blockers
+
 - None.
+
+#### Next Action
+
+Copy the approved raw HTML sources exactly, add reference renderer isolation, then restore the three routes and verify visual fidelity.
 
 ## Completed
 

@@ -1,19 +1,21 @@
 # Current State
 
-Updated: 2026-08-09T16:10:00+03:00
+Updated: 2026-08-12T02:47:14+03:00
 Git branch: main
-Git HEAD: 4638714
-Active Task: None
-Active Plan: None
-Status: SWEED-034 homepage internal breathing-room pass completed and deployed to demo
+Git HEAD: a4bebad5d3dab0aab5d9fd043ae10210a2166a5a
+Active Task: SWEED-035
+Active Plan: `.ai/plans/2026-08-12-reference-html-fidelity-restoration.md`
+Status: restoring uploaded HTML fidelity for Services, Portfolio, and Offers
 
 ## Current Goal
 
-Keep the rebuilt public pages and homepage on the SWEED visual system, Carbon spacing contract, mobile-first rules, shared alignment system, and the original SWEED Helvetica Arabic typography. Do not change the public font family without an explicit user request.
+Restore `/services`, `/portfolio`, and `/offers` to the uploaded executive HTML page bodies, including their original visual assets, CSS, GSAP motion, and interactions. Keep the current shared SWEED header, footer, AI widget, routes, and shell typography outside the reference body.
 
 ## In Progress
 
-None.
+- The new fidelity spec is locked and supersedes SWEED-024 for the three HTML-backed routes only.
+- Raw uploaded HTML fingerprints are recorded for exact source verification.
+- Articles stays on its current implementation in this batch because the user supplied a DOCX but no Articles HTML reference.
 
 ## Completed Recently
 

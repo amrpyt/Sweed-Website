@@ -1,15 +1,15 @@
 # Current State
 
-Updated: 2026-08-12T03:35:52+03:00
+Updated: 2026-08-12T10:15:00+03:00
 Git branch: main
-Git HEAD: cfe12dac52846f6d2b94bd079935de6ad6be01d5
+Application commit: cc1b55f
 Active Task: None
 Active Plan: None
-Status: SWEED-035 reference HTML fidelity restoration completed and deployed
+Status: SWEED-036 reference-page identity alignment completed and deployed
 
 ## Current Goal
 
-Keep `/services`, `/portfolio`, and `/offers` faithful to the approved uploaded executive HTML references. Do not reinterpret or modernize those page bodies without explicit user approval. Keep the current shared SWEED shell and original SWEED Helvetica Arabic typography outside the isolated reference bodies.
+Keep `/services`, `/portfolio`, and `/offers` structurally and behaviorally faithful to the approved executable HTML references while making them feel native to the current SWEED website through the shared SWEED Helvetica Arabic typography and live `#261b3e` / `#ed2062` palette.
 
 ## In Progress
 
@@ -17,36 +17,33 @@ None.
 
 ## Completed Recently
 
-- Restored Services, Portfolio, and Offers from the exact uploaded executable HTML sources rather than the prior SWEED-024 React reinterpretations.
-- Added SHA-256 source-fidelity tests for all three uploads.
-- Added an isolated `reference` LegacyPage presentation that removes only duplicate reference chrome and scopes broad reference CSS under `.sweed-reference-page`.
-- Preserved the shared current header, footer, AI advisor, routes, and shell typography.
-- Added deterministic sequential loading for GSAP, ScrollTrigger, SplitText, and the reference inline choreography; inline declarations are isolated for Next client navigation.
-- Fixed the duplicate Admin Cairo `next/font` invocation that caused a build-time Google font 404; Admin now inherits the root font.
-- Kept Articles unchanged because the current upload contains an Articles DOCX but no executable Articles HTML.
+- Added a runtime-only SWEED theme bridge to the reference presentation.
+- Preserved exact uploaded source bytes and SHA-256 fidelity checks.
+- Replaced runtime Cairo/IBM Plex reference typography with the same `SWEED Helvetica Arabic` stack used by the homepage.
+- Normalized reference purple, pink, muted, line, and surface roles to the current homepage identity.
+- Removed reference Google Fonts links so unused Cairo/IBM assets are not requested.
+- Applied the same palette normalization to inline SVG and GSAP animation color literals.
+- Ensured headings inherit section color so dark reference heroes keep white H1 text while light sections keep SWEED dark-purple text.
+- Kept all reference layout, SVG geometry, GSAP choreography, ScrollTrigger behavior, filters, tabs, quiz, drawers, comparison overlay, and responsive structure unchanged.
 
 ## Verification
 
-- Exact decoded hashes pass:
-  - Services `ee21eca6b83d2b3774b127ce3be5a1512d5b2b07a0b9ea315f2abe6ea6008662`
-  - Portfolio `bfcc2e73fda056cf0103472438a3d93c998bf0f51c04999d83cc009a64fba240`
-  - Offers `6aeb87c77f01f475936352a966c00de6f412d12380e56e74e41803183d1ebfde`
-- `bun run check`: 108/108 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Exact source hashes still pass for Services, Portfolio, and Offers.
+- Focused reference tests: 11 passed.
+- `bun run check`: 110/110 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
 - Production build: passed with 29 routes.
 - Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-checkpoint skip.
-- `sweed-demo.service`: active.
-- `/services`, `/portfolio`, `/offers`, and `/articles`: HTTP 200.
-- Fresh browser motion: Services 76 ScrollTriggers + SplitText, Portfolio 71, Offers 42.
-- Client navigation Offers → Portfolio → Services: clean 42 → 71 → 76 trigger lifecycle, no console/page errors.
-- Services sticky map, Portfolio filters/tabs, and Offers quiz/comparison/tabs/drawers were exercised successfully.
-- 1024×768, 390×844, and 320×568 matrices: zero horizontal overflow and zero broken images.
-- Reduced motion: zero hidden `.reveal` nodes.
-- Final screenshots: `/var/tmp/agent-browser/artifacts/sweed-reference/`.
+- Homepage browser baseline: `SWEED Helvetica Arabic`, purple `#261b3e`, pink `#ed2062`, muted `#6d6e70`, surface `#f7f8fb`.
+- Services, Portfolio, and Offers compute the same font/purple/pink identity on desktop, 390×844, and 320×568.
+- Reference Google Fonts requests: 0.
+- Motion lifecycle remains Services 76, Portfolio 71, Offers 42 ScrollTriggers.
+- No horizontal overflow on tested desktop/mobile routes.
+- No page or console errors in final reference-page checks.
+- `sweed-demo.service`: active; all three public routes return HTTP 200.
 
 ## Remaining
 
-- `/articles` cannot be claimed as HTML-identical until the executable Articles HTML reference is supplied.
-- Stakeholder review can compare the deployed reference pages against the delivered HTML.
+- `/articles` remains outside HTML-level fidelity because no executable Articles HTML reference was supplied in the relevant batch.
 - Push to GitHub only when explicitly requested.
 
 ## Blockers
@@ -55,4 +52,4 @@ None.
 
 ## Next Exact Action
 
-When a new executable reference is supplied, fingerprint it first, record whether it is a fidelity target, then integrate only through the isolated reference boundary. Otherwise preserve the current deployed page bodies.
+Preserve the current reference layouts and runtime theme bridge. Any future reference-page change should classify whether it affects structure/motion fidelity or only shared SWEED identity before implementation.

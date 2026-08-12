@@ -1,12 +1,40 @@
 # Tasks
 
-Updated: 2026-08-12T03:35:52+03:00
+Updated: 2026-08-12T10:15:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-036 — Align reference pages with homepage identity
+
+Status: completed
+Priority: high
+Implementation commit: `cc1b55f fix: align reference pages with SWEED identity`
+Decision: `.ai/decisions/DEC-014-reference-fidelity-with-sweed-theme-bridge.md`
+
+#### Scope
+
+- Kept the uploaded Services, Portfolio, and Offers layout, SVG, GSAP, ScrollTrigger, and interactions unchanged.
+- Added a runtime-only SWEED theme bridge over the reference presentation.
+- Replaced reference Cairo/IBM Plex typography with the same `SWEED Helvetica Arabic` stack used by the homepage.
+- Normalized the reference purple/pink/muted/surface palette to the homepage identity tokens: `#261b3e`, `#ed2062`, `#6d6e70`, and `#f7f8fb`/`#f8f9fa`.
+- Removed reference Google Fonts requests because those fonts are no longer used.
+- The uploaded source bytes and SHA-256 fingerprints remain unchanged.
+
+#### Verification
+
+- Focused reference tests: 11 passed, including exact source hashes and theme bridge assertions.
+- `bun run check`: 110/110 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Production build passed with 29 routes.
+- Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-checkpoint skip.
+- Browser baseline confirmed the homepage uses `SWEED Helvetica Arabic`, `#261b3e`, `#ed2062`, `#6d6e70`, and `#f7f8fb`.
+- Services, Portfolio, and Offers computed the same font, purple, and pink values on desktop, 390px, and 320px.
+- No Google Fonts resources loaded on the three reference pages.
+- GSAP lifecycle remained Services 76, Portfolio 71, Offers 42 ScrollTriggers.
+- No horizontal overflow or browser errors on tested reference routes.
 
 ### SWEED-035 — Restore uploaded HTML page fidelity
 

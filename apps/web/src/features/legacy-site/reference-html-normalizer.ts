@@ -23,6 +23,10 @@ export function guardReferenceScript(content: string) {
   );
 }
 
+export function wrapReferenceInlineScript(content: string) {
+  return `(() => {\n${content}\n})();`;
+}
+
 function scopeReferenceCss(css: string): string {
   let output = "";
   let cursor = 0;

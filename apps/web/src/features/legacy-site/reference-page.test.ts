@@ -4,6 +4,7 @@ import {
   guardReferenceScript,
   scopeReferenceHeadHtml,
   stripReferenceChrome,
+  wrapReferenceInlineScript,
 } from "./reference-html-normalizer";
 
 const heroMarkers = {
@@ -46,5 +47,13 @@ describe("reference page integration normalization", () => {
     const guarded = guardReferenceScript(script);
 
     expect(guarded).toContain("document.getElementById('nav')?.classList.toggle");
+  });
+
+  test("isolates inline reference declarations across Next route transitions", () => {
+    const wrapped = wrapReferenceInlineScript("const reduced = false; let lastY = 0;");
+
+    expect(wrapped).toStartWith("(() => {");
+    expect(wrapped).toContain("const reduced = false; let lastY = 0;");
+    expect(wrapped).toEndWith("\n})();");
   });
 });

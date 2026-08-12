@@ -7,6 +7,7 @@ import { LegacyFooter } from "./legacy-footer";
 import { getLegacyPage, type LegacyPresentation } from "./legacy-html";
 import { LegacyHeader } from "./legacy-header";
 import type { LegacyPageKey } from "./legacy-routes";
+import { ReferenceScripts } from "./reference-scripts";
 
 const homepageBriefRuntime = `
 (() => {
@@ -241,14 +242,18 @@ export function LegacyPage({
       {isReference ? null : <OfferFunnelController page={page} />}
       <AiAdvisorWidget />
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
-      {document.scripts.map((script) =>
-        script.src ? (
-          <Script id={script.id} key={script.id} src={script.src} strategy="afterInteractive" type={script.type} />
-        ) : (
-          <Script id={script.id} key={script.id} strategy="afterInteractive" type={script.type}>
-            {script.content}
-          </Script>
-        ),
+      {isReference ? (
+        <ReferenceScripts scripts={document.scripts} />
+      ) : (
+        document.scripts.map((script) =>
+          script.src ? (
+            <Script id={script.id} key={script.id} src={script.src} strategy="afterInteractive" type={script.type} />
+          ) : (
+            <Script id={script.id} key={script.id} strategy="afterInteractive" type={script.type}>
+              {script.content}
+            </Script>
+          ),
+        )
       )}
     </>
   );

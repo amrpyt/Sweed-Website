@@ -4,7 +4,7 @@ import { OfferFunnelController } from "@/features/offer-funnel";
 import { LegacyBreadcrumb } from "./legacy-breadcrumb";
 import { LegacyEnhancements } from "./legacy-enhancements";
 import { LegacyFooter } from "./legacy-footer";
-import { getLegacyPage } from "./legacy-html";
+import { getLegacyPage, type LegacyPresentation } from "./legacy-html";
 import { LegacyHeader } from "./legacy-header";
 import type { LegacyPageKey } from "./legacy-routes";
 
@@ -204,8 +204,15 @@ const homepageBriefRuntime = `
 })();
 `;
 
-export function LegacyPage({ page }: { page: LegacyPageKey }) {
-  const document = getLegacyPage(page);
+export function LegacyPage({
+  page,
+  presentation = "legacy",
+}: {
+  page: LegacyPageKey;
+  presentation?: LegacyPresentation;
+}) {
+  const isReference = presentation === "reference";
+  const document = getLegacyPage(page, { presentation });
   const bodyHasMainLandmark = /<main\b/i.test(document.bodyHtml);
 
   return (
@@ -215,16 +222,23 @@ export function LegacyPage({ page }: { page: LegacyPageKey }) {
         تخطي إلى المحتوى
       </a>
       <LegacyHeader page={page} />
-      <LegacyBreadcrumb page={page} />
-      {bodyHasMainLandmark ? (
+      {isReference ? null : <LegacyBreadcrumb page={page} />}
+      {isReference ? (
+        <main
+          className="sweed-reference-page"
+          id="main-content"
+          tabIndex={-1}
+          dangerouslySetInnerHTML={{ __html: document.bodyHtml }}
+        />
+      ) : bodyHasMainLandmark ? (
         <div dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
       ) : (
         <main id="main-content" tabIndex={-1} dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
       )}
-      <LegacyEnhancements page={page} />
-      {page === "services" ? <AutomationDemo /> : null}
+      {isReference ? null : <LegacyEnhancements page={page} />}
+      {!isReference && page === "services" ? <AutomationDemo /> : null}
       <LegacyFooter />
-      <OfferFunnelController page={page} />
+      {isReference ? null : <OfferFunnelController page={page} />}
       <AiAdvisorWidget />
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
       {document.scripts.map((script) =>

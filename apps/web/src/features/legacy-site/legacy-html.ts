@@ -3,6 +3,12 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
 import { normalizeLegacyAccessibility } from "./legacy-accessibility";
+import {
+  guardReferenceScript,
+  scopeReferenceHeadHtml,
+  stripReferenceChrome,
+} from "./reference-html-normalizer";
+import { getReferenceHtml, hasReferenceHtml } from "./reference-html-sources";
 import { legacyHrefMap, legacyPageFiles, type LegacyPageKey } from "./legacy-routes";
 
 type LegacyScript = {
@@ -19,10 +25,27 @@ export type LegacyPageDocument = {
   scripts: LegacyScript[];
 };
 
+export type LegacyPresentation = "legacy" | "reference";
+
+type LegacyPageOptions = {
+  presentation?: LegacyPresentation;
+};
+
 const siteRoot = join(process.cwd(), "site");
 
 function readLegacyFile(page: LegacyPageKey) {
   return readFileSync(join(siteRoot, legacyPageFiles[page]), "utf8");
+}
+
+function readPageSource(page: LegacyPageKey, presentation: LegacyPresentation) {
+  if (presentation === "reference") {
+    if (!hasReferenceHtml(page)) {
+      throw new Error(`No approved reference HTML exists for legacy page: ${page}`);
+    }
+    return getReferenceHtml(page);
+  }
+
+  return readLegacyFile(page);
 }
 
 function extractFirst(pattern: RegExp, html: string) {
@@ -113,6 +136,10 @@ function normalizeHtml(html: string, page: LegacyPageKey) {
   );
 
   return addSectionAnchors(normalizeLegacyAccessibility(normalized, page));
+}
+
+function normalizeReferenceHtml(html: string) {
+  return normalizeLegacyContactDetails(rewriteLegacyLinks(rewriteAssetUrl(html)));
 }
 
 const sectionAnchorByClass: Record<string, string> = {
@@ -214,7 +241,7 @@ function removeLegacyChrome(html: string) {
     .replace(/\s*<!-- MOBILE STICKY CTA -->[\s\S]*?(?=<!--|$)/gi, "");
 }
 
-function extractScripts(html: string, page: LegacyPageKey) {
+function extractScripts(html: string, page: LegacyPageKey, presentation: LegacyPresentation = "legacy") {
   const scripts: LegacyScript[] = [];
   let index = 0;
   const withoutScripts = html.replace(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi, (_match, attrs: string, content: string) => {
@@ -227,7 +254,7 @@ function extractScripts(html: string, page: LegacyPageKey) {
       id: `legacy-${page}-${index++}`,
       src: src ? rewriteAssetUrl(src) : undefined,
       type,
-      content: src ? undefined : content,
+      content: src ? undefined : presentation === "reference" ? guardReferenceScript(content) : content,
     });
     return "";
   });
@@ -235,17 +262,27 @@ function extractScripts(html: string, page: LegacyPageKey) {
   return { scripts, html: withoutScripts };
 }
 
-export function getLegacyPage(page: LegacyPageKey): LegacyPageDocument {
-  const raw = readLegacyFile(page);
+export function getLegacyPage(page: LegacyPageKey, options: LegacyPageOptions = {}): LegacyPageDocument {
+  const presentation = options.presentation ?? "legacy";
+  const raw = readPageSource(page, presentation);
   const title = extractFirst(/<title>([\s\S]*?)<\/title>/i, raw).trim() || "SWEED";
   const head = extractFirst(/<head[^>]*>([\s\S]*?)<\/head>/i, raw);
   const body = extractFirst(/<body[^>]*>([\s\S]*?)<\/body>/i, raw);
-  const bodyWithoutChrome = removeLegacyChrome(body);
-  const { html: bodyWithoutScripts, scripts } = extractScripts(bodyWithoutChrome, page);
+  const bodyWithoutChrome = presentation === "reference" ? stripReferenceChrome(body) : removeLegacyChrome(body);
+  const { html: bodyWithoutScripts, scripts } = extractScripts(bodyWithoutChrome, page, presentation);
   const headAssets = head
     .replace(/<title>[\s\S]*?<\/title>/gi, "")
     .replace(/<meta[^>]+>/gi, "")
     .trim();
+
+  if (presentation === "reference") {
+    return {
+      title,
+      headHtml: scopeReferenceHeadHtml(normalizeReferenceHtml(headAssets)),
+      bodyHtml: normalizeReferenceHtml(bodyWithoutScripts),
+      scripts,
+    };
+  }
 
   return {
     title,

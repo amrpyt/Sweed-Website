@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { getReferenceHtml, type ReferenceHtmlPage } from "./reference-html-sources";
 import {
+  applySweedReferenceTheme,
   guardReferenceScript,
   scopeReferenceHeadHtml,
   stripReferenceChrome,
@@ -40,6 +41,33 @@ describe("reference page integration normalization", () => {
     expect(scoped).toContain(".sweed-reference-page .btn");
     expect(scoped).not.toMatch(/(?:^|})\s*body\s*\{/m);
     expect(scoped).not.toMatch(/(?:^|})\s*footer\s*\{/m);
+  });
+
+  test("bridges reference typography and brand colors to the homepage identity", () => {
+    const source = getReferenceHtml("services");
+    const head = extract(/<head[^>]*>([\s\S]*?)<\/head>/i, source);
+    const scoped = scopeReferenceHeadHtml(head);
+    const normalized = scoped.toLowerCase();
+
+    expect(scoped).toContain('data-sweed-reference-theme="true"');
+    expect(scoped).toContain('"SWEED Helvetica Arabic"');
+    expect(normalized).toContain("#ed2062");
+    expect(normalized).toContain("#261b3e");
+    expect(normalized).not.toContain("#d6246e");
+    expect(normalized).not.toContain("#241238");
+    expect(scoped).not.toContain("fonts.googleapis.com");
+    expect(scoped).not.toContain("IBM Plex Sans Arabic");
+    expect(scoped).toContain('.sweed-reference-page h6 {\n  color: inherit;');
+  });
+
+  test("themes inline SVG and animation colors without changing source bytes", () => {
+    const themed = applySweedReferenceTheme(
+      '<polygon fill="#D6246E"/><div style="color:#FF7BAC">x</div><script>const c = "#D6246E";</script>',
+    );
+
+    expect(themed).toContain('#ed2062');
+    expect(themed).not.toContain('#D6246E');
+    expect(themed).not.toContain('#FF7BAC');
   });
 
   test("guards reference navbar access after duplicate navbar removal", () => {

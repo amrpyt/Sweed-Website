@@ -1,4 +1,69 @@
 const referenceScope = ".sweed-reference-page";
+const sweedReferenceFontStack =
+  '"SWEED Helvetica Arabic",var(--font-cairo,"Cairo"),"Cairo","SF Arabic",Arial,sans-serif';
+
+const sweedReferenceColorMap = new Map<string, string>([
+  ["#241238", "#261b3e"],
+  ["#3b2160", "#261b3e"],
+  ["#4e2b7e", "#261b3e"],
+  ["#180b28", "#261b3e"],
+  ["#14091f", "#261b3e"],
+  ["#2a1745", "#261b3e"],
+  ["#3a1e5e", "#261b3e"],
+  ["#2b2437", "#261b3e"],
+  ["#d6246e", "#ed2062"],
+  ["#ff7bac", "#ed2062"],
+  ["#8b87a0", "#6d6e70"],
+  ["#faf9fc", "#f8f9fa"],
+  ["#efeaf7", "#f7f8fb"],
+  ["#eee9f5", "#d9dee8"],
+  ["#e4def0", "#d9dee8"],
+  ["#d9d2e8", "#d9dee8"],
+  ["#c9c4d8", "#6d6e70"],
+  ["#f1edf8", "#eef4f3"],
+]);
+
+const sweedReferenceThemeCss = `
+<style data-sweed-reference-theme="true">
+${referenceScope} {
+  --purple-900: #261b3e;
+  --purple-700: #261b3e;
+  --purple-100: #f7f8fb;
+  --fuchsia: #ed2062;
+  --silver: #6d6e70;
+  --ink: #261b3e;
+  --white: #ffffff;
+  --bg: #f8f9fa;
+  --font-display: ${sweedReferenceFontStack};
+  --font-body: ${sweedReferenceFontStack};
+  font-family: ${sweedReferenceFontStack};
+}
+${referenceScope} h1,
+${referenceScope} h2,
+${referenceScope} h3,
+${referenceScope} h4,
+${referenceScope} h5,
+${referenceScope} h6 {
+  color: inherit;
+}
+${referenceScope} button,
+${referenceScope} input,
+${referenceScope} select,
+${referenceScope} textarea {
+  font-family: inherit;
+}
+</style>`;
+
+export function applySweedReferenceTheme(input: string) {
+  let output = input.replace(/#[0-9a-f]{6}\b/gi, (color) => sweedReferenceColorMap.get(color.toLowerCase()) ?? color);
+
+  output = output
+    .replace(/rgba\(59\s*,\s*33\s*,\s*96\s*,/gi, "rgba(38,27,62,")
+    .replace(/'IBM Plex Sans Arabic'\s*,\s*sans-serif/gi, sweedReferenceFontStack)
+    .replace(/'Cairo'\s*,\s*sans-serif/gi, sweedReferenceFontStack);
+
+  return output;
+}
 
 export function stripReferenceChrome(html: string) {
   return html
@@ -10,10 +75,17 @@ export function stripReferenceChrome(html: string) {
 }
 
 export function scopeReferenceHeadHtml(headHtml: string) {
-  return headHtml.replace(
+  const withoutReferenceFonts = headHtml.replace(
+    /<link\b[^>]*href=["']https:\/\/fonts\.googleapis\.com[^>]*>\s*/gi,
+    "",
+  );
+  const themedHead = applySweedReferenceTheme(withoutReferenceFonts);
+  const scopedHead = themedHead.replace(
     /<style\b([^>]*)>([^]*?)<\/style>/gi,
     (_match, attrs: string, css: string) => `<style${attrs}>${scopeReferenceCss(css)}</style>`,
   );
+
+  return `${scopedHead}\n${sweedReferenceThemeCss}`;
 }
 
 export function guardReferenceScript(content: string) {

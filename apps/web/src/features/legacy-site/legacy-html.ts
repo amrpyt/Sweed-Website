@@ -4,6 +4,7 @@ import { join } from "node:path";
 import type { Metadata } from "next";
 import { normalizeLegacyAccessibility } from "./legacy-accessibility";
 import {
+  applySweedReferenceTheme,
   guardReferenceScript,
   scopeReferenceHeadHtml,
   stripReferenceChrome,
@@ -254,7 +255,8 @@ function extractScripts(html: string, page: LegacyPageKey, presentation: LegacyP
       id: `legacy-${page}-${index++}`,
       src: src ? rewriteAssetUrl(src) : undefined,
       type,
-      content: src ? undefined : presentation === "reference" ? guardReferenceScript(content) : content,
+      content:
+        src ? undefined : presentation === "reference" ? guardReferenceScript(applySweedReferenceTheme(content)) : content,
     });
     return "";
   });
@@ -279,7 +281,7 @@ export function getLegacyPage(page: LegacyPageKey, options: LegacyPageOptions = 
     return {
       title,
       headHtml: scopeReferenceHeadHtml(normalizeReferenceHtml(headAssets)),
-      bodyHtml: normalizeReferenceHtml(bodyWithoutScripts),
+      bodyHtml: applySweedReferenceTheme(normalizeReferenceHtml(bodyWithoutScripts)),
       scripts,
     };
   }

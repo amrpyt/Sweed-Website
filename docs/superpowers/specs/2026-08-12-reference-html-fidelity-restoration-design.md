@@ -29,7 +29,7 @@ Do not use the previous React rebuild as a reason to change the reference compos
 | `/portfolio` | `5- صفحة أعمالنا  سويد  المحتوى والتصميم التنفيذي.html` | `bfcc2e73fda056cf0103472438a3d93c998bf0f51c04999d83cc009a64fba240` |
 | `/offers` | `6- صفحة العروض والباقات  سويد  المحتوى والتصميم التنفيذي.html` | `6aeb87c77f01f475936352a966c00de6f412d12380e56e74e41803183d1ebfde` |
 
-The repository copy of each source must keep this exact fingerprint before runtime normalization.
+Store the uploaded bytes as deterministic gzip plus Base64 chunks in a server-side reference source module. The decoded bytes must keep these exact fingerprints before runtime normalization. This storage encoding is not a visual or content transformation.
 
 ## Fidelity boundary
 
@@ -78,7 +78,9 @@ No other visual restyling is allowed in this batch.
 
 ## Runtime architecture
 
-Keep the raw reference HTML under the existing `apps/web/site/pages` path so the source remains inspectable and hash-testable.
+Keep the existing `apps/web/site/pages` files unchanged as the default legacy sources and rollback path.
+
+Store the newly uploaded references in a focused server-side source module as deterministic gzip plus Base64 chunks. Decode them to the exact original bytes only when `presentation="reference"` requests one of the three approved routes. Hash tests must run against those decoded bytes.
 
 Render the three routes through the existing server-side legacy document parser, but add an explicit `reference` presentation mode.
 
@@ -124,7 +126,7 @@ Keep `/about`, `/contact`, the homepage, service detail routes, and article deta
 
 ## Tests
 
-Add source-fidelity tests that fail if any of the three raw HTML files drift from the approved SHA-256 fingerprints.
+Add source-fidelity tests that fail if any decoded approved reference drifts from its SHA-256 fingerprint. The old `site/pages` files are not the reference source for these three routes.
 
 Add renderer tests for the reference mode:
 

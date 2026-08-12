@@ -14,13 +14,14 @@ Restore `/services`, `/portfolio`, and `/offers` to the newly uploaded executive
 - Current `main` HEAD is `a4bebad` and the working tree was clean at task start.
 - SWEED-024 replaced the HTML-backed route bodies with React executive composers.
 - The current raw files under `apps/web/site/pages` do not match the new uploaded references.
-- The uploaded reference SHA-256 values are recorded in the detailed spec.
+- The uploaded reference SHA-256 values are recorded in the detailed spec and will be asserted against decoded exact bytes.
 - Articles has an uploaded DOCX but no uploaded HTML source in this batch.
 
 ## Scope
 
-- Replace the three raw route source files with the uploaded HTML bytes.
-- Add a reference presentation mode to the legacy renderer.
+- Store the three uploaded HTML sources as deterministic gzip plus Base64 chunks in a server-side reference source module.
+- Decode and hash the exact uploaded bytes before any runtime normalization.
+- Add a reference presentation mode to the legacy renderer while keeping the old `site/pages` files unchanged for rollback.
 - Restore the three route bodies to that renderer.
 - Prevent reference CSS and chrome from leaking into the shared shell.
 - Add hash and renderer regression tests.
@@ -35,9 +36,9 @@ Restore `/services`, `/portfolio`, and `/offers` to the newly uploaded executive
 
 ## Acceptance criteria
 
-- [ ] Raw Services HTML hash equals `ee21eca6b83d2b3774b127ce3be5a1512d5b2b07a0b9ea315f2abe6ea6008662`.
-- [ ] Raw Portfolio HTML hash equals `bfcc2e73fda056cf0103472438a3d93c998bf0f51c04999d83cc009a64fba240`.
-- [ ] Raw Offers HTML hash equals `6aeb87c77f01f475936352a966c00de6f412d12380e56e74e41803183d1ebfde`.
+- [ ] Decoded Services reference hash equals `ee21eca6b83d2b3774b127ce3be5a1512d5b2b07a0b9ea315f2abe6ea6008662`.
+- [ ] Decoded Portfolio reference hash equals `bfcc2e73fda056cf0103472438a3d93c998bf0f51c04999d83cc009a64fba240`.
+- [ ] Decoded Offers reference hash equals `6aeb87c77f01f475936352a966c00de6f412d12380e56e74e41803183d1ebfde`.
 - [ ] `/services`, `/portfolio`, and `/offers` use reference presentation.
 - [ ] Each page has one shared header, one footer, and no duplicate inline reference navbar.
 - [ ] Reference hero/sections/GSAP interactions remain present.

@@ -4,7 +4,7 @@
 
 **Goal:** Restore `/services`, `/portfolio`, and `/offers` to the exact newly uploaded HTML reference bodies while keeping the current shared SWEED shell.
 
-**Architecture:** Keep the approved raw HTML bytes in `apps/web/site/pages` and render them through the existing server-side legacy parser. Add a dedicated `reference` presentation path that strips only reference chrome, scopes broad shell-leaking CSS selectors, keeps the extracted reference scripts, and skips old runtime enhancement layers that would alter the page body.
+**Architecture:** Store the approved uploaded HTML bytes as deterministic gzip plus Base64 chunks in a server-side source module and decode them exactly for the `reference` presentation path. Keep the existing `apps/web/site/pages` files unchanged as the default legacy sources and rollback path. The reference renderer strips only reference chrome, scopes broad shell-leaking CSS selectors, keeps the extracted reference scripts, and skips old runtime enhancement layers that would alter the page body.
 
 **Tech Stack:** Next.js App Router, React Server Components, Bun tests, GSAP/ScrollTrigger from the reference HTML, existing LegacyPage shell, agent-browser.
 
@@ -19,17 +19,15 @@
 
 ---
 
-### Task 1: Install exact uploaded HTML sources and lock their fingerprints
+### Task 1: Install exact uploaded reference sources and lock their fingerprints
 
 **Files:**
-- Replace: `apps/web/site/pages/services.html`
-- Replace: `apps/web/site/pages/portfolio.html`
-- Replace: `apps/web/site/pages/offers.html`
+- Create: `apps/web/src/features/legacy-site/reference-html-sources.ts`
 - Create: `apps/web/src/features/legacy-site/reference-html-fidelity.test.ts`
 
 **Interfaces:**
 - Consumes: uploaded raw HTML bytes.
-- Produces: exact on-disk source files consumed by `getLegacyPage`.
+- Produces: `hasReferenceHtml(page)`, `getReferenceHtmlBuffer(page)`, and `getReferenceHtml(page)` from deterministic gzip plus Base64 source chunks.
 
 - [ ] **Step 1: Write the failing fingerprint test**
 
@@ -53,21 +51,23 @@ PATH=/home/amr/.bun/bin:$PATH bun test apps/web/src/features/legacy-site/referen
 
 Expected: all three fingerprint assertions fail.
 
-- [ ] **Step 3: Replace each raw source with the exact uploaded HTML content**
+- [ ] **Step 3: Store each uploaded source as deterministic gzip plus Base64 chunks**
 
-Use the uploaded Services HTML for `services.html`, Portfolio HTML for `portfolio.html`, and Offers HTML for `offers.html`. Do not reformat the source.
+Create `reference-html-sources.ts`. Keep the encoded chunks as data only. Decode with `Buffer.from(chunks.join(""), "base64")` and `gunzipSync`. Return the decoded `Buffer` unchanged for fingerprinting and convert it to UTF-8 only for HTML parsing.
+
+Keep the existing `apps/web/site/pages/*.html` files unchanged as the default legacy sources and rollback path.
 
 - [ ] **Step 4: Verify exact fingerprints**
 
-Run the focused test again and also run `sha256sum` on all three files.
+Run the focused test again.
 
-Expected: all three hashes match the approved values exactly.
+Expected: all three decoded sources match the approved values exactly.
 
-- [ ] **Step 5: Commit the raw source restoration**
+- [ ] **Step 5: Commit the exact reference source storage**
 
 ```bash
-git add apps/web/site/pages/services.html apps/web/site/pages/portfolio.html apps/web/site/pages/offers.html apps/web/src/features/legacy-site/reference-html-fidelity.test.ts
-git commit -m "fix: restore uploaded reference HTML sources"
+git add apps/web/src/features/legacy-site/reference-html-sources.ts apps/web/src/features/legacy-site/reference-html-fidelity.test.ts
+git commit -m "fix: preserve uploaded reference HTML sources"
 ```
 
 ---
@@ -114,14 +114,15 @@ Add a `LegacyPresentation` type and an optional presentation argument to `getLeg
 
 For `reference` mode only:
 
-1. Strip `<nav class="nav" ...>...</nav>` from the extracted body.
-2. Strip the reference footer.
-3. Do not run `normalizeLegacyAccessibility` or `addSectionAnchors` on the reference body.
-4. Continue safe internal-link, asset, and contact rewrites.
-5. Rewrite the reference CSS `body` selector to `.sweed-reference-page`.
-6. Rewrite generic `footer` selectors so they cannot target `LegacyFooter`.
-7. Leave all reference component declarations, SVG styles, media queries, keyframes, and timings unchanged.
-8. Extract and preserve the exact reference scripts.
+1. Read the decoded approved source from `getReferenceHtml(page)` instead of `site/pages`.
+2. Strip `<nav class="nav" ...>...</nav>` from the extracted body.
+3. Strip the reference footer.
+4. Do not run `normalizeLegacyAccessibility` or `addSectionAnchors` on the reference body.
+5. Continue safe internal-link, asset, and contact rewrites.
+6. Rewrite the reference CSS `body` selector to `.sweed-reference-page`.
+7. Rewrite generic `footer` selectors so they cannot target `LegacyFooter`.
+8. Leave all reference component declarations, SVG styles, media queries, keyframes, and timings unchanged.
+9. Extract and preserve the exact reference scripts, except for narrow guards required when a script targets the stripped reference navbar or footer.
 
 Keep the default legacy parser path byte-for-byte compatible with its current behavior after normalization.
 

@@ -14,7 +14,8 @@ Restore `/services`, `/portfolio`, and `/offers` to the uploaded executive HTML 
 ## In Progress
 
 - The new fidelity spec is locked and supersedes SWEED-024 for the three HTML-backed routes only.
-- Raw uploaded HTML fingerprints are recorded for exact source verification.
+- Uploaded HTML fingerprints are recorded for exact verification after deterministic gzip plus Base64 storage and decode.
+- Existing `site/pages` files remain untouched as the legacy rollback path; reference mode will read decoded uploaded bytes instead.
 - Articles stays on its current implementation in this batch because the user supplied a DOCX but no Articles HTML reference.
 
 ## Completed Recently

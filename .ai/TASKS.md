@@ -13,9 +13,9 @@ Spec: `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-des
 
 #### Acceptance Criteria
 
-- [ ] Services raw HTML matches the approved uploaded SHA-256 fingerprint.
-- [ ] Portfolio raw HTML matches the approved uploaded SHA-256 fingerprint.
-- [ ] Offers raw HTML matches the approved uploaded SHA-256 fingerprint.
+- [ ] Decoded Services reference matches the approved uploaded SHA-256 fingerprint.
+- [ ] Decoded Portfolio reference matches the approved uploaded SHA-256 fingerprint.
+- [ ] Decoded Offers reference matches the approved uploaded SHA-256 fingerprint.
 - [ ] `/services`, `/portfolio`, and `/offers` render the uploaded reference page bodies instead of the SWEED-024 React reinterpretations.
 - [ ] Shared header, footer, and AI advisor remain, with no duplicate reference navbar, footer, or breadcrumb.
 - [ ] Reference SVG, CSS, GSAP, ScrollTrigger, quiz, filter, tab, drawer, and overlay behavior stays intact.
@@ -52,7 +52,7 @@ Spec: `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-des
 
 #### Next Action
 
-Copy the approved raw HTML sources exactly, add reference renderer isolation, then restore the three routes and verify visual fidelity.
+Store the approved uploaded bytes as deterministic gzip plus Base64 chunks, verify decoded SHA-256 fingerprints, then add reference renderer isolation and restore the three routes.
 
 ## Completed
 

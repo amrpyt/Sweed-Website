@@ -1,5 +1,5 @@
 import { servicesPageSource } from "@/content/public-site/services-page";
-import { ServicesExecutivePage } from "@/features/public-site/services/services-executive-page";
+import { LegacyPage } from "@/features/legacy-site";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -8,4 +8,6 @@ export const metadata = createPageMetadata({
   path: "/services",
 });
 
-export default ServicesExecutivePage;
+export default function ServicesPage() {
+  return <LegacyPage page="services" presentation="reference" />;
+}

@@ -1,60 +1,54 @@
 # Tasks
 
-Updated: 2026-08-12T02:47:14+03:00
+Updated: 2026-08-12T03:35:52+03:00
 
 ## Active
 
+- None.
+
+## Completed
+
 ### SWEED-035 — Restore uploaded HTML page fidelity
 
-Status: in-progress
+Status: completed
 Priority: critical
 Plan: `.ai/plans/2026-08-12-reference-html-fidelity-restoration.md`
 Spec: `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-design.md`
+Implementation commits: `577204b`, `76adbbe`, `a531ce0`, `f0f5cfd`, `cfe12da`
 
 #### Acceptance Criteria
 
-- [ ] Decoded Services reference matches the approved uploaded SHA-256 fingerprint.
-- [ ] Decoded Portfolio reference matches the approved uploaded SHA-256 fingerprint.
-- [ ] Decoded Offers reference matches the approved uploaded SHA-256 fingerprint.
-- [ ] `/services`, `/portfolio`, and `/offers` render the uploaded reference page bodies instead of the SWEED-024 React reinterpretations.
-- [ ] Shared header, footer, and AI advisor remain, with no duplicate reference navbar, footer, or breadcrumb.
-- [ ] Reference SVG, CSS, GSAP, ScrollTrigger, quiz, filter, tab, drawer, and overlay behavior stays intact.
-- [ ] Reference styles do not change the shared shell typography or footer styling.
-- [ ] Check, focused tests, production build, service restart, and public HTTP verification pass.
-- [ ] Browser QA passes at desktop, tablet, 390px, and 320px with no overflow, broken assets, console errors, or blank reduced-motion content.
-- [ ] Articles is not claimed as HTML-identical until an Articles HTML reference is supplied.
-
-#### Dependencies
-
-- Uploaded Services, Portfolio, and Offers executive HTML files.
-- Existing `LegacyPage` parser/runtime and shared SWEED shell.
-- Managed `agent-browser` runtime for visual and interaction QA.
-
-#### Relevant Systems
-
-- `apps/web/site/pages/services.html`
-- `apps/web/site/pages/portfolio.html`
-- `apps/web/site/pages/offers.html`
-- `apps/web/src/features/legacy-site`
-- `apps/web/src/app/(marketing)/services/page.tsx`
-- `apps/web/src/app/(marketing)/portfolio/page.tsx`
-- `apps/web/src/app/(marketing)/offers/page.tsx`
+- [x] Decoded Services reference matches the approved uploaded SHA-256 fingerprint.
+- [x] Decoded Portfolio reference matches the approved uploaded SHA-256 fingerprint.
+- [x] Decoded Offers reference matches the approved uploaded SHA-256 fingerprint.
+- [x] `/services`, `/portfolio`, and `/offers` render the uploaded reference page bodies instead of the SWEED-024 React reinterpretations.
+- [x] Shared header, footer, and AI advisor remain, with no duplicate reference navbar, footer, or breadcrumb.
+- [x] Reference SVG, CSS, GSAP, ScrollTrigger, quiz, filter, tab, drawer, and overlay behavior stays intact.
+- [x] Reference styles do not change shared-shell typography or footer styling.
+- [x] Check, focused tests, production build, service restart, and public HTTP verification pass.
+- [x] Browser QA passes at desktop, tablet, 390px, and 320px with no overflow, broken assets, console errors, or blank reduced-motion content.
+- [x] Articles is not claimed as HTML-identical until an Articles HTML reference is supplied.
 
 #### Evidence
 
-- User explicitly rejected the React reinterpretation and requested the uploaded HTML pages as-is.
-- Current raw page hashes differ from all three newly uploaded references.
-- The previous SWEED-024 spec explicitly translated the references into new React layouts, which is now superseded for these routes.
+- Exact decoded SHA-256: Services `ee21eca6…8662`, Portfolio `bfcc2e73…a240`, Offers `6aeb87c7…bfde`.
+- `bun run check`: 108/108 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Production build passed with 29 routes.
+- Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-checkpoint skip.
+- Fresh browser sessions: Services 76 ScrollTriggers + SplitText, Portfolio 71 ScrollTriggers, Offers 42 ScrollTriggers.
+- Client navigation Offers → Portfolio → Services resets to 42 → 71 → 76 triggers with no console/page errors.
+- Offers quiz completed through all three steps; comparison overlay, service tabs, and package drawers worked.
+- Portfolio filter, marketing tabs, film tabs, and sector panels worked.
+- Services sticky map navigated and activated the Branding section correctly.
+- 1024×768, 390×844, and 320×568 matrices had zero horizontal overflow on all three routes.
+- Reduced motion left 0 hidden `.reveal` elements on all three routes.
+- Final desktop/mobile screenshots stored under `/var/tmp/agent-browser/artifacts/sweed-reference/`.
+- Public routes return HTTP 200 and `sweed-demo.service` is active.
 
-#### Blockers
+#### Remaining Boundary
 
-- None.
+- `/articles` remains the current knowledge-center implementation because this upload batch includes an Articles DOCX but no Articles HTML reference.
 
-#### Next Action
-
-Store the approved uploaded bytes as deterministic gzip plus Base64 chunks, verify decoded SHA-256 fingerprints, then add reference renderer isolation and restore the three routes.
-
-## Completed
 
 ### SWEED-034 — Loosen homepage internal rhythm
 

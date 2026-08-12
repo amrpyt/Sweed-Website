@@ -51,6 +51,8 @@ SWEED is an Arabic-first marketing and advertising agency website for Egyptian f
 - Improve existing UI without replacing the current stack or rebuilding from scratch.
 - Keep copy direct, confident, practical, and free of generic AI marketing language.
 - Use existing official SWEED assets whenever available instead of inventing substitutes.
+- When the user supplies an executive HTML reference and asks for it as-is, treat that HTML as the fidelity source for layout, assets, CSS, motion, and interactions; do not reinterpret or modernize it without explicit approval.
+- The approved 2026-08-12 Services, Portfolio, and Offers HTML uploads are the current fidelity sources for `/services`, `/portfolio`, and `/offers` until newer approved references replace them.
 - Treat the approved July 2026 homepage content as the public-homepage source of truth until a newer approved delivery replaces it.
 - Treat `3- ملف بيانات وتصميم من نحن.docx` as the `/about` content and structure source of truth until a newer approved delivery replaces it.
 - Never publish invented client names, numerical outcomes, testimonials, alliance identities, partner logos, or guarantees; only verified proof may appear as factual marketing content.

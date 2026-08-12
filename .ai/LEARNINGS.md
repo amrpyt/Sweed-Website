@@ -188,6 +188,22 @@ Applies to: Production Playwright smoke tests and shared-shell health checks.
 Behavior change: Assert user-visible/public contracts and genuine network failures; keep implementation selectors only when they are an intentional stable test API.
 Revisit when: The shared shell or browser navigation strategy changes.
 
+### An executable HTML delivery can be the spec, not inspiration
+
+Lesson: When the stakeholder supplies a complete executable HTML page and asks for it as-is, preserve its markup, CSS, SVGs, motion, and interactions instead of translating the brief into a new visual composition.
+Evidence: SWEED-035 restored the uploaded Services, Portfolio, and Offers references after the earlier React reinterpretations were rejected. SHA-256 tests lock the exact uploaded bytes, while browser QA confirms 76/71/42 reference ScrollTriggers and the original route interactions.
+Applies to: Executive HTML handoffs, design prototypes intended for direct reproduction, and migrations into shared application shells.
+Behavior change: Ask whether executable references are fidelity targets before redesigning; when they are, isolate the integration seam and keep source fidelity testable.
+Revisit when: The user explicitly approves a redesign or a pixel/motion-faithful React port.
+
+### CDN choreography needs deterministic sequencing inside client-routed shells
+
+Lesson: Page-level `next/script` strategies do not automatically reproduce vanilla HTML's sequential script semantics across client-routed pages.
+Evidence: Portfolio intermittently had `window.gsap` undefined when page-level CDN scripts used `beforeInteractive`, while Offers happened to work. A small sequencer now loads GSAP → plugins → inline choreography in order and wraps inline declarations in an IIFE; client navigation Offers → Portfolio → Services resets trigger counts cleanly without redeclaration errors.
+Applies to: Imported standalone HTML that relies on global CDN libraries and inline classic scripts inside Next.js or another SPA shell.
+Behavior change: Preserve dependency order explicitly, isolate inline lexical scope, and clean up route-created scroll triggers on unmount.
+Revisit when: These reference pages are migrated to bundled module imports or native React motion code with verified fidelity.
+
 ## Recurring Mistakes to Avoid
 
 - Do not infer deployment health from a successful build or `systemctl is-active` alone; wait for HTTP readiness.

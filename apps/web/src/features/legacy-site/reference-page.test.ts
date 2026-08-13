@@ -60,6 +60,30 @@ describe("reference page integration normalization", () => {
     expect(scoped).toContain('.sweed-reference-page h6 {\n  color: inherit;');
   });
 
+  test("bridges reference controls to the shared SWEED button system", () => {
+    const source = getReferenceHtml("offers");
+    const head = extract(/<head[^>]*>([\s\S]*?)<\/head>/i, source);
+    const scoped = scopeReferenceHeadHtml(head);
+
+    expect(scoped).toContain("--sweed-button-primary-bg: #261b3e;");
+    expect(scoped).toContain("--sweed-button-accent: #ed2062;");
+    expect(scoped).toContain("border-radius: var(--shape-control);");
+    expect(scoped).toContain("min-height: var(--control-height-md);");
+    expect(scoped).toContain(`${referenceButtonSelector(".btn-primary")} {`);
+    expect(scoped).toContain(`${referenceButtonSelector(".btn-ghost")} {`);
+    expect(scoped).toContain(referenceButtonSelector(".f-btn"));
+    expect(scoped).toContain(referenceButtonSelector(".mkt-tab"));
+    expect(scoped).toContain(`${referenceButtonSelector(".film-tab")} {`);
+    expect(scoped).toContain(referenceButtonSelector(".sec-chip"));
+    expect(scoped).toContain(referenceButtonSelector(".q-opt"));
+    expect(scoped).toContain(referenceButtonSelector(".st-btn"));
+    expect(scoped).toContain(`${referenceButtonSelector(".drawer-btn")} {`);
+    expect(scoped).toContain(`${referenceButtonSelector(".q-skip")} {`);
+    expect(scoped).toContain(`${referenceButtonSelector(".ov-close")} {`);
+    expect(scoped).toContain(":focus-visible");
+    expect(scoped).toContain("@media (prefers-reduced-motion: reduce)");
+  });
+
   test("themes inline SVG and animation colors without changing source bytes", () => {
     const themed = applySweedReferenceTheme(
       '<polygon fill="#D6246E"/><div style="color:#FF7BAC">x</div><script>const c = "#D6246E";</script>',
@@ -85,3 +109,7 @@ describe("reference page integration normalization", () => {
     expect(wrapped).toEndWith("\n})();");
   });
 });
+
+function referenceButtonSelector(selector: string) {
+  return `.sweed-reference-page ${selector}`;
+}

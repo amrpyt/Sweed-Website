@@ -1,12 +1,49 @@
 # Tasks
 
-Updated: 2026-08-12T10:15:00+03:00
+Updated: 2026-08-13T21:05:00+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-037 — Unify reference-page button system
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-08-13-reference-button-system-unification.md`
+Implementation commit: `fix: unify SWEED button system across public pages`
+
+#### Acceptance Criteria
+
+- [x] Reference Theme Bridge defines scoped primary CTA, secondary/ghost, and choice/filter/tab control families using the incumbent SWEED homepage button language.
+- [x] Primary CTAs use purple base, white text, pink hover/focus accent, shared control radius, SWEED font, and at least 48px minimum height.
+- [x] Secondary controls remain light/transparent with purple or context-safe white text and restrained border/accent states.
+- [x] Choice/filter/tab controls remain compact, have at least 44px targets, clear inactive/active states, SWEED typography, and pink focus-visible treatment.
+- [x] Reference source SHA-256 fidelity tests remain unchanged and pass.
+- [x] Services sticky navigation and CTA links still work.
+- [x] Portfolio filters, marketing tabs, film tabs, sector chips, and CTAs still work.
+- [x] Offers quiz, comparison overlay, service tabs, drawers, package selection CTAs, sticky selection, and final form stepper still work.
+- [x] Desktop 1440×900 and mobile 390×844 / 320×568 have no horizontal overflow, loaded broken assets, console errors, or page errors.
+- [x] GSAP and ScrollTrigger remain available with animation lifecycle intact.
+- [x] Focused tests, `bun run check`, `bun run build`, service restart/readiness, and production Playwright smoke pass.
+- [x] Exactly one implementation commit is created and no push is performed.
+
+#### Verification
+
+- Focused fidelity/reference suite: 12 passed, 0 failed.
+- `bun run check`: 111 passed, 0 failed, plus TypeScript, ESLint, spacing, and mobile-first guards.
+- Production build: 29 routes, passed.
+- Impeccable detector: no findings on the changed reference Theme Bridge files.
+- Browser QA: homepage + Services + Portfolio + Offers checked at 1440×900, 390×844, and 320×568; screenshots stored in `/var/tmp/agent-browser/artifacts/sweed-buttons/`.
+- Button metrics: primary CTAs 48px minimum on reference pages, choice controls 44px minimum, shared 16px control radius, SWEED font, weight 700, purple base, white text, pink focus/interaction accent.
+- Services: sticky map navigated to `#branding`; CTA hrefs remained valid; ScrollTrigger count 76.
+- Portfolio: filters, marketing tabs, film tabs, and sector chips changed active content correctly; ScrollTrigger count 71.
+- Offers: three-step quiz reached recommendation, comparison overlay opened/closed, service tabs switched panels, drawer toggled, package selection updated sticky CTA, final form reached step 4; ScrollTrigger count 42.
+- Reduced motion: no hidden `.reveal` content and button/control transitions reduced.
+- Public HTTP: `/`, `/services`, `/portfolio`, `/offers` all returned 200 after service restart.
+- Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-checkpoint skip.
 
 ### SWEED-036 — Align reference pages with homepage identity
 

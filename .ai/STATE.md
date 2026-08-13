@@ -1,15 +1,15 @@
 # Current State
 
-Updated: 2026-08-12T10:15:00+03:00
+Updated: 2026-08-13T21:05:00+03:00
 Git branch: main
-Application commit: cc1b55f
+Application commit: `fix: unify SWEED button system across public pages`
 Active Task: None
 Active Plan: None
-Status: SWEED-036 reference-page identity alignment completed and deployed
+Status: SWEED-037 button-system unification completed, deployed, and verified
 
 ## Current Goal
 
-Keep `/services`, `/portfolio`, and `/offers` structurally and behaviorally faithful to the approved executable HTML references while making them feel native to the current SWEED website through the shared SWEED Helvetica Arabic typography and live `#261b3e` / `#ed2062` palette.
+Preserve the unified SWEED identity and button system across the homepage and reference pages without changing the approved reference HTML structure, motion, or interactions.
 
 ## In Progress
 
@@ -17,6 +17,11 @@ None.
 
 ## Completed Recently
 
+- Added a scoped reference button Theme Bridge derived from the homepage `BrandActionButton` language.
+- Unified primary CTAs to purple base / white text / pink interaction accent with 48px minimum height and shared `--shape-control` radius.
+- Unified secondary/ghost controls without flattening dark-context hierarchy.
+- Unified filters, tabs, chips, quiz options, drawers, skip controls, and comparison close controls with 44px minimum targets and consistent selected/focus states.
+- Preserved reference HTML bytes, layout, SVGs, GSAP choreography, and all existing interaction code.
 - Added a runtime-only SWEED theme bridge to the reference presentation.
 - Preserved exact uploaded source bytes and SHA-256 fidelity checks.
 - Replaced runtime Cairo/IBM Plex reference typography with the same `SWEED Helvetica Arabic` stack used by the homepage.
@@ -29,17 +34,19 @@ None.
 ## Verification
 
 - Exact source hashes still pass for Services, Portfolio, and Offers.
-- Focused reference tests: 11 passed.
-- `bun run check`: 110/110 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Focused fidelity/reference tests: 12 passed.
+- `bun run check`: 111/111 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
 - Production build: passed with 29 routes.
 - Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-checkpoint skip.
-- Homepage browser baseline: `SWEED Helvetica Arabic`, purple `#261b3e`, pink `#ed2062`, muted `#6d6e70`, surface `#f7f8fb`.
-- Services, Portfolio, and Offers compute the same font/purple/pink identity on desktop, 390×844, and 320×568.
+- Homepage and reference-page controls compute the same SWEED typography, 16px control radius, purple base, and pink interaction language.
+- Reference primary CTAs compute at 48px minimum; choice controls compute at 44px minimum.
+- Browser QA passed at 1440×900, 390×844, and 320×568 with zero horizontal overflow.
+- Services sticky navigation, Portfolio filter/tab/chip interactions, and Offers quiz/comparison/tab/drawer/package/form interactions passed.
 - Reference Google Fonts requests: 0.
 - Motion lifecycle remains Services 76, Portfolio 71, Offers 42 ScrollTriggers.
-- No horizontal overflow on tested desktop/mobile routes.
 - No page or console errors in final reference-page checks.
-- `sweed-demo.service`: active; all three public routes return HTTP 200.
+- Reduced motion leaves no hidden `.reveal` content.
+- `sweed-demo.service`: active; `/`, `/services`, `/portfolio`, and `/offers` return HTTP 200.
 
 ## Remaining
 
@@ -52,4 +59,4 @@ None.
 
 ## Next Exact Action
 
-Preserve the current reference layouts and runtime theme bridge. Any future reference-page change should classify whether it affects structure/motion fidelity or only shared SWEED identity before implementation.
+Preserve the reference-page fidelity boundary. Future visual changes to these routes should stay in runtime integration/theme layers unless the user explicitly approves a source/layout change.

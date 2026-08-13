@@ -1,3 +1,5 @@
+import { getSweedReferenceButtonThemeCss } from "./reference-button-theme";
+
 const referenceScope = ".sweed-reference-page";
 const sweedReferenceFontStack =
   '"SWEED Helvetica Arabic",var(--font-cairo,"Cairo"),"Cairo","SF Arabic",Arial,sans-serif';
@@ -52,6 +54,7 @@ ${referenceScope} select,
 ${referenceScope} textarea {
   font-family: inherit;
 }
+${getSweedReferenceButtonThemeCss(referenceScope)}
 </style>`;
 
 export function applySweedReferenceTheme(input: string) {

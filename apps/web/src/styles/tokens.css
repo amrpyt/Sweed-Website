@@ -163,6 +163,10 @@
   --control-height-lg: 4rem;
   --control-padding-block: var(--cds-spacing-03);
   --control-padding-inline: var(--cds-spacing-05);
+  --control-text-leading: 1;
+  --control-text-optical-shift: 3px;
+  --control-padding-block-start: calc(var(--control-padding-block) - var(--control-text-optical-shift));
+  --control-padding-block-end: calc(var(--control-padding-block) + var(--control-text-optical-shift));
   --tooltip-padding-block: var(--cds-spacing-03);
   --tooltip-padding-inline: var(--cds-spacing-05);
   --tooltip-offset: var(--cds-spacing-02);

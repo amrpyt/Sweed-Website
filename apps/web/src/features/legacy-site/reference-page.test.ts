@@ -69,6 +69,9 @@ describe("reference page integration normalization", () => {
     expect(scoped).toContain("--sweed-button-accent: #ed2062;");
     expect(scoped).toContain("border-radius: var(--shape-control);");
     expect(scoped).toContain("min-height: var(--control-height-md);");
+    expect(scoped).toContain("line-height: var(--control-text-leading);");
+    expect(scoped).toContain("padding-block-start: var(--control-padding-block-start);");
+    expect(scoped).toContain("padding-block-end: var(--control-padding-block-end);");
     expect(scoped).toContain(`${referenceButtonSelector(".btn-primary")} {`);
     expect(scoped).toContain(`${referenceButtonSelector(".btn-ghost")} {`);
     expect(scoped).toContain(referenceButtonSelector(".f-btn"));

@@ -1,12 +1,43 @@
 # Tasks
 
-Updated: 2026-08-13T21:05:00+03:00
+Updated: 2026-08-14T17:50:25+03:00
 
 ## Active
 
 - None.
 
 ## Completed
+
+### SWEED-038 — Optical-center Arabic button labels
+
+Status: completed
+Priority: high
+Implementation commit: `fix: optically center Arabic button labels`
+
+#### Acceptance Criteria
+
+- [x] Shared SWEED controls define one Arabic optical-centering contract instead of per-button nudges.
+- [x] Reference CTAs, filters, tabs, quiz options, service tabs, drawers, and skip controls use the shared line-height and optical block padding.
+- [x] Homepage/shared `BrandActionButton` labels use the same optical correction while icons remain independently centered.
+- [x] Compact/mobile `BrandActionButton` icon geometry fits inside the 48px control instead of overflowing its grid row.
+- [x] Services reference CTA visual text center is within 1px of the button center on 390px mobile.
+- [x] Homepage primary CTA visual text center is within 1px of the button center on 390px mobile.
+- [x] 320px and 390px browser checks show zero horizontal overflow on Homepage, Services, Portfolio, and Offers.
+- [x] Reference HTML SHA-256 fidelity remains unchanged.
+- [x] Focused tests, `bun run check`, production build, service restart/readiness, and production Playwright smoke pass.
+- [x] Exactly one implementation commit is created and no push is performed.
+
+#### Verification
+
+- Focused optical/fidelity/reference suite: 14 passed, 0 failed.
+- `bun run check`: 113 passed, 0 failed, plus TypeScript, ESLint, spacing, and mobile-first guards.
+- Production build: 29 routes, passed.
+- Impeccable detector: no findings on changed implementation/test files.
+- Browser measurement: Services CTA visual offset `+0.5px`; homepage primary CTA visual offset `-0.5px` from geometric center.
+- Browser computed controls: reference primary `48px`, choice controls `44px`, `line-height: 1`, optical block padding `5px 11px`.
+- Homepage mobile brand action: 48px control, 28px icon fully contained, label fully contained, `translateY(-3px)` optical correction.
+- Public HTTP: `/`, `/services`, `/portfolio`, `/offers` all returned 200; `sweed-demo.service` active.
+- Production Playwright final rerun: 11 passed, 0 failed, 1 intentional mobile visual-checkpoint skip. The immediately preceding run had three transient 404 console messages during rapid post-restart navigation; a targeted mobile 404 sweep found none and the clean rerun passed.
 
 ### SWEED-037 — Unify reference-page button system
 

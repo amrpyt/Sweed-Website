@@ -16,11 +16,13 @@ ${referenceScope} .btn {
   border-width: 1px;
   border-style: solid;
   border-radius: var(--shape-control);
-  padding: var(--control-padding-block) var(--inline-lg);
+  padding-block-start: var(--control-padding-block-start);
+  padding-block-end: var(--control-padding-block-end);
+  padding-inline: var(--inline-lg);
   font-family: var(--font-body);
   font-size: var(--type-body-size);
   font-weight: var(--font-weight-strong);
-  line-height: 1.2;
+  line-height: var(--control-text-leading);
   transition:
     transform var(--motion-fast),
     border-color var(--motion-fast),
@@ -84,13 +86,15 @@ ${referenceScope} .st-btn {
   min-height: var(--control-height-sm);
   border: 1px solid var(--sweed-button-choice-border);
   border-radius: var(--shape-control);
-  padding: var(--control-padding-block) var(--control-padding-inline);
+  padding-block-start: var(--control-padding-block-start);
+  padding-block-end: var(--control-padding-block-end);
+  padding-inline: var(--control-padding-inline);
   background: #ffffff;
   color: #6d6e70;
   font-family: var(--font-body);
   font-size: var(--type-small-size);
   font-weight: var(--font-weight-strong);
-  line-height: 1.2;
+  line-height: var(--control-text-leading);
   transition:
     border-color var(--motion-fast),
     background-color var(--motion-fast),
@@ -120,13 +124,15 @@ ${referenceScope} .film-tab {
   min-height: var(--control-height-sm);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--shape-control);
-  padding: var(--control-padding-block) var(--control-padding-inline);
+  padding-block-start: var(--control-padding-block-start);
+  padding-block-end: var(--control-padding-block-end);
+  padding-inline: var(--control-padding-inline);
   background: transparent;
   color: rgba(255, 255, 255, 0.78);
   font-family: var(--font-body);
   font-size: var(--type-small-size);
   font-weight: var(--font-weight-strong);
-  line-height: 1.2;
+  line-height: var(--control-text-leading);
   transition:
     border-color var(--motion-fast),
     background-color var(--motion-fast),
@@ -147,10 +153,13 @@ ${referenceScope} .drawer-btn {
   min-height: var(--control-height-sm);
   align-items: center;
   border-radius: var(--shape-control);
+  padding-block-start: var(--control-padding-block-start);
+  padding-block-end: var(--control-padding-block-end);
   padding-inline: var(--inline-xs);
   color: #261b3e;
   font-family: var(--font-body);
   font-weight: var(--font-weight-strong);
+  line-height: var(--control-text-leading);
   transition:
     background-color var(--motion-fast),
     color var(--motion-fast);
@@ -167,8 +176,11 @@ ${referenceScope} .q-skip {
   justify-content: center;
   margin-inline: auto;
   border-radius: var(--shape-control);
+  padding-block-start: var(--control-padding-block-start);
+  padding-block-end: var(--control-padding-block-end);
   padding-inline: var(--inline-xs);
   font-family: var(--font-body);
+  line-height: var(--control-text-leading);
   transition:
     background-color var(--motion-fast),
     color var(--motion-fast);

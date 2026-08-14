@@ -5,8 +5,8 @@
   --brand-action-fill-color: #ffffff;
   --brand-action-border: #261b3e;
   --brand-action-radius: var(--shape-control);
-  --brand-action-inset: var(--cds-spacing-03);
-  --brand-action-icon-size: var(--control-height-sm);
+  --brand-action-inset: var(--cds-spacing-02);
+  --brand-action-icon-size: var(--cds-spacing-07);
   --brand-action-gap: var(--inline-sm);
   --brand-action-pad-start: 0;
   --brand-action-pad-end: 0;
@@ -37,7 +37,7 @@
   font-family: var(--font-body) !important;
   font-size: var(--brand-action-font-size) !important;
   font-weight: var(--brand-action-font-weight) !important;
-  line-height: 1 !important;
+  line-height: var(--control-text-leading) !important;
   text-decoration: none !important;
   white-space: nowrap !important;
   transform: translateZ(0) !important;
@@ -96,14 +96,14 @@
   background: transparent !important;
   color: var(--brand-action-fill-color) !important;
   font-size: 0.88rem !important;
-  line-height: 1 !important;
+  line-height: var(--control-text-leading) !important;
   pointer-events: none !important;
 }
 
 .iconBox > i,
 .iconBox > svg {
   display: inline-block !important;
-  line-height: 1 !important;
+  line-height: var(--control-text-leading) !important;
   transform: translate(var(--brand-action-icon-offset-x, 0), var(--brand-action-icon-offset-y, 0)) !important;
 }
 
@@ -119,10 +119,10 @@
   color: currentColor !important;
   direction: rtl !important;
   font-size: inherit !important;
-  line-height: 1 !important;
+  line-height: var(--control-text-leading) !important;
   text-align: center !important;
   white-space: nowrap !important;
-  transform: translateX(var(--brand-action-label-shift)) !important;
+  transform: translate(var(--brand-action-label-shift), calc(-1 * var(--control-text-optical-shift))) !important;
   pointer-events: none !important;
 }
 
@@ -181,7 +181,7 @@
 
 .nav {
   --brand-action-icon-size: var(--cds-spacing-07);
-  --brand-action-inset: var(--cds-spacing-03);
+  --brand-action-inset: var(--cds-spacing-02);
   --brand-action-min-width: 9.75rem;
   --brand-action-min-height: var(--control-height-md);
   --brand-action-font-size: 0.9rem;
@@ -210,7 +210,8 @@
 @media (max-width: 480px) {
   .actionButton {
     --brand-action-min-height: var(--control-height-md);
-    --brand-action-icon-size: var(--control-height-sm);
+    --brand-action-icon-size: calc(var(--cds-spacing-07) - var(--cds-spacing-02));
+    --brand-action-inset: var(--cds-spacing-03);
     --brand-action-gap: var(--inline-sm);
     --brand-action-pad-start: var(--inline-md);
     --brand-action-pad-end: var(--inline-sm);

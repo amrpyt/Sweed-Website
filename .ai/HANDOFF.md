@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-18T17:07:00+03:00
+Updated: 2026-08-18T17:29:00+03:00
 
 ## Read First
 
@@ -14,7 +14,8 @@ Updated: 2026-08-18T17:07:00+03:00
 ## Current Public Contract
 
 - `/crm-ai-demo` is a standalone frontend-only preview of the future SWEED CRM + AI Agent product. It intentionally uses deterministic browser-local data and actions and is not connected to Convex or another backend.
-- The CRM demo supports lead selection, pipeline movement, lead/activity context, AI analysis, local WhatsApp drafting, and reset. Keep these interactions working if it is later surfaced from Services.
+- The CRM demo supports lead selection, explicit social acquisition sources, a unified social inbox, AI lead classification, deterministic AI social replies, pipeline movement, lead/activity context, AI analysis, local WhatsApp drafting, and reset. Keep these interactions working if it is later surfaced from Services.
+- CRM source/brand icons must come from established icon libraries. The current implementation uses Lucide for UI icons and Font Awesome for Instagram/Facebook/TikTok/WhatsApp; do not replace them with hand-authored SVGs.
 - `/services`, `/portfolio`, and `/offers` use the exact approved executable HTML references as their structure/motion/interaction source.
 - Their runtime typography and brand palette intentionally match the homepage: `SWEED Helvetica Arabic`, `#261b3e`, `#ed2062`, `#6d6e70`, and current light surfaces.
 - Their runtime buttons now follow the homepage SWEED control language through a scoped Theme Bridge: purple primary, light/contextual secondary, compact choice controls, shared radius, touch targets, pink focus/interaction accents.
@@ -27,14 +28,18 @@ Updated: 2026-08-18T17:07:00+03:00
 
 ## Latest Application Change
 
-`499f40d feat: add CRM AI agent interactive demo`
+`d2d03a0 feat: add social inbox AI replies to CRM demo`
 
 The standalone CRM demo now:
 - lives at `/crm-ai-demo` and is `noindex` while it remains a product preview;
 - uses SWEED purple/pink and the existing semantic control/motion tokens;
 - keeps all state in the browser with no backend dependency;
 - exposes a three-column product workspace on desktop and task tabs on mobile;
-- lets the AI Agent analyze the current lead, draft a WhatsApp follow-up, and update the simulated CRM stage;
+- shows each lead's source as Instagram, Facebook, TikTok, Website, or referral in both the pipeline and the active record;
+- uses Lucide UI icons plus Font Awesome social-brand icons and contains no hand-authored SVG/path markup in the CRM feature;
+- includes a Unified Social Inbox in the AI panel with the current inbound message, source identity, and AI intent label;
+- lets the AI Agent reply to the active social message, append the outbound reply to the thread, and add the event to CRM activity;
+- still lets the AI Agent analyze the current lead, draft a WhatsApp follow-up, and update the simulated CRM stage;
 - respects reduced motion and maintains 44px+ interaction targets.
 
 The current control system now:
@@ -57,6 +62,15 @@ The current control system now:
 
 ## Verification
 
+- SWEED-041 focused CRM tests: 6 passed, 0 failed after an observed red TDD state for the two new behaviors.
+- Impeccable detector: no findings on changed CRM implementation/test files.
+- Local source/icon QA confirmed Font Awesome Brands rendering for Instagram/Facebook/TikTok and no hand-authored SVG/path markup.
+- Clean-worktree `bun run check`: 127 passed, 0 failed.
+- Clean-worktree production build passed and generated `/crm-ai-demo` as a static route.
+- Build `WScFr0dDGdEVVO22nNNMZ` deployed; `sweed-demo.service` active; `/crm-ai-demo` HTTP 200 locally/publicly.
+- Public desktop/mobile QA: zero horizontal overflow, zero broken images, no page errors; 390px and 320px layouts stayed within viewport bounds.
+- Public AI reply flow passed for the Instagram lead: outbound reply rendered, replied-state feedback appeared, and the CRM timeline logged `AI Agent رد على Instagram`.
+- Reduced-motion public QA reported no active animations.
 - SWEED-040 focused tests: 4 passed, 0 failed.
 - Clean-worktree `bun run check`: 121 passed, 0 failed.
 - Clean-worktree production build passed and included `/crm-ai-demo` as a static route.

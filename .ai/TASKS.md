@@ -1,29 +1,45 @@
 # Tasks
 
-Updated: 2026-08-18T17:07:00+03:00
+Updated: 2026-08-18T17:29:00+03:00
 
 ## Active
 
+None.
+
+## Completed
+
 ### SWEED-041 — CRM social inbox + AI replies
 
-Status: in progress
+Status: completed
 Priority: high
 Plan: `.ai/plans/2026-08-18-crm-social-inbox-agent-pass.md`
+Implementation commit: `d2d03a0 feat: add social inbox AI replies to CRM demo`
 
 #### Acceptance Criteria
 
-- [ ] No new hand-authored SVG artwork is added; social/channel visuals come from established icon libraries already available to the app.
-- [ ] Every demo lead has an explicit acquisition source and it is visible in pipeline and lead context.
-- [ ] Instagram, Facebook, TikTok, website, and referral sources are represented cleanly and consistently.
-- [ ] The AI Agent has a unified social conversation surface tied to the active lead.
-- [ ] The Agent can classify the active lead and send a deterministic simulated reply to the latest inbound message.
-- [ ] AI replies update local conversation/activity state only; no backend/API dependency is introduced.
-- [ ] Existing analyze/draft/advance/reset flows continue to work.
-- [ ] Desktop/mobile layouts remain overflow-free and reduced-motion remains valid.
-- [ ] Focused tests, clean full check, build, deployment, and public browser QA pass.
-- [ ] Changes are committed and not pushed.
+- [x] No new hand-authored SVG artwork is added; social/channel visuals come from established icon libraries already available to the app.
+- [x] Every demo lead has an explicit acquisition source and it is visible in pipeline and lead context.
+- [x] Instagram, Facebook, TikTok, website, and referral sources are represented cleanly and consistently.
+- [x] The AI Agent has a unified social conversation surface tied to the active lead.
+- [x] The Agent can classify the active lead and send a deterministic simulated reply to the latest inbound message.
+- [x] AI replies update local conversation/activity state only; no backend/API dependency is introduced.
+- [x] Existing analyze/draft/advance/reset flows continue to work.
+- [x] Desktop/mobile layouts remain overflow-free and reduced-motion remains valid.
+- [x] Focused tests, clean full check, build, deployment, and public browser QA pass.
+- [x] Changes are committed and not pushed.
 
-## Completed
+#### Verification
+
+- TDD: source-metadata and AI-social-reply tests failed before implementation, then the focused CRM suite passed 6/6.
+- No `<svg>` or `<path>` markup exists in the CRM demo TSX files; UI icons come from Lucide and social brands from Font Awesome.
+- Impeccable detector returned no findings on the changed CRM files.
+- Clean-worktree `bun run check`: 127 passed, 0 failed.
+- Production build passed and generated `/crm-ai-demo` as a static route.
+- Desktop/mobile browser QA passed at 1440×900, 390×844, and 320×568 with zero horizontal overflow; no clipped controls at 320px.
+- Reduced-motion disabled all active animation while preserving the reply action.
+- Clean build `WScFr0dDGdEVVO22nNNMZ` deployed; service active; local/public `/crm-ai-demo` return HTTP 200.
+- Public interaction passed: Instagram lead selection, AI reply insertion, replied-state feedback, and CRM activity insertion.
+- No public page errors; brand icons load with the Font Awesome Brands font.
 
 ### SWEED-040 — CRM + AI Agent interactive demo
 

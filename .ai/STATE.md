@@ -1,24 +1,28 @@
 # Current State
 
-Updated: 2026-08-18T17:07:00+03:00
+Updated: 2026-08-18T17:29:00+03:00
 Git branch: main
-Git HEAD: `499f40d9ce5192cd7156b28c771b382f203cf5ae`
-Application commit: `feat: add CRM AI agent interactive demo`
-Active Task: SWEED-041 — CRM social inbox + AI replies
-Active Plan: `.ai/plans/2026-08-18-crm-social-inbox-agent-pass.md`
-Status: CRM demo refinement in progress: cleaner icon system, explicit social sources, and AI social replies
+Git HEAD: `d2d03a028d6111403aa6b8f62e2123fc2623473f`
+Application commit: `feat: add social inbox AI replies to CRM demo`
+Active Task: None
+Active Plan: None
+Status: SWEED-041 CRM social inbox + AI replies completed, deployed, and verified
 
 ## Current Goal
 
-Refine `/crm-ai-demo` so lead acquisition sources are immediately visible and the AI Agent can classify and reply to incoming social conversations while staying frontend-only.
+Preserve the completed `/crm-ai-demo` social-source and AI-reply experience until it is intentionally surfaced from the Services page.
 
 ## In Progress
 
-- Replacing generic channel visuals with existing icon-library assets only; no hand-authored SVGs.
-- Adding explicit social-source metadata and a unified AI-assisted inbox to the CRM demo.
+None.
 
 ## Completed Recently
 
+- Replaced generic CRM channel affordances with Lucide UI icons and Font Awesome brand icons; no hand-authored SVG/path markup was added.
+- Added explicit lead acquisition metadata for Instagram, Facebook, TikTok, website, and referral sources and surfaced it in the pipeline and active lead context.
+- Added a Unified Social Inbox inside the SWEED AI Agent panel with source-aware inbound messages and AI intent classification.
+- Added deterministic AI social replies that append an outbound Agent message to the active thread and record the reply in CRM activity.
+- Preserved the existing analyze, WhatsApp draft, pipeline advance, reset, keyboard-focus, and reduced-motion flows.
 - Installed all 12 official `remotion-dev/skills` into project agent skills and reviewed `remotion-best-practices`.
 - Added `/crm-ai-demo` as an isolated modular React/Next product demo with no backend/API dependency.
 - Added deterministic local CRM state for lead selection, pipeline stages, scores, values, activity, and reset.
@@ -50,6 +54,17 @@ Refine `/crm-ai-demo` so lead acquisition sources are immediately visible and th
 
 ## Verification
 
+- SWEED-041 TDD cycle: the two new source/reply reducer tests failed before implementation, then the focused suite passed 6/6.
+- Impeccable detector reported no findings on the changed CRM implementation/test files.
+- Local browser QA: Font Awesome brand glyphs loaded as `Font Awesome 6 Brands`; Instagram/Facebook/TikTok/Website source labels rendered with zero horizontal overflow.
+- Local 1440×900, 390×844, and 320×568 checks had zero horizontal overflow; 320px had no clipped interactive controls and keyboard focus showed a 2px visible outline.
+- Reduced-motion emulation reported no active animations while the AI reply action remained usable.
+- Clean-worktree `bun run check`: 127 passed, 0 failed, including TypeScript, ESLint, spacing, and mobile-first guards.
+- Clean-worktree production build passed and generated `/crm-ai-demo` as a static route.
+- Deployed clean build ID `WScFr0dDGdEVVO22nNNMZ`; `sweed-demo.service` is active and `/crm-ai-demo` returns HTTP 200 locally and publicly.
+- Public desktop QA confirmed Instagram/Facebook/TikTok/Website sources and Font Awesome brand icons; public 390px/320px QA had zero horizontal overflow and no broken images.
+- Public interaction QA passed: selected the Instagram lead, AI reply appeared inside the social thread, button changed to the replied state, and `AI Agent رد على Instagram` was added to activity.
+- Public reduced-motion QA had zero active animations and no page errors.
 - SWEED-040 focused reducer tests: 4 passed, 0 failed.
 - Clean-worktree `bun run check`: 121 passed, 0 failed, including TypeScript, ESLint, spacing, and mobile-first guards.
 - Clean-worktree production build: passed; `/crm-ai-demo` generated as a static route.
@@ -99,4 +114,4 @@ None.
 
 ## Next Exact Action
 
-When product positioning is approved, surface `/crm-ai-demo` from the Services page without adding backend dependencies to the demo itself.
+Keep `/crm-ai-demo` standalone until the Services-page product entry is explicitly requested; preserve the frontend-only demo boundary.

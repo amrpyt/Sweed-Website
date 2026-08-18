@@ -105,6 +105,7 @@
 .carouselStage {
   position: relative;
   margin-block-start: var(--section-content-gap);
+  padding-block-start: calc(var(--control-height-md) + var(--stack-md));
 }
 
 .projectsViewport {
@@ -113,9 +114,9 @@
   touch-action: pan-y pinch-zoom;
 }
 
-.carouselNavButton {
+ .carouselNavButton {
   position: absolute;
-  top: 50%;
+  top: 0;
   z-index: 3;
   display: inline-grid;
   width: var(--control-height-md);
@@ -129,7 +130,7 @@
   font: inherit;
   cursor: pointer;
   box-shadow: 0 10px 24px rgb(23 16 37 / 24%);
-  transform: translateY(-50%);
+  transform: none;
   transition:
     background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -148,11 +149,11 @@
 .carouselNavButton:focus-visible {
   border-color: #ed2062;
   background: #ed2062;
-  transform: translateY(-50%) scale(1.04);
+  transform: scale(1.04);
 }
 
 .carouselNavButton:active {
-  transform: translateY(-50%) scale(0.96);
+  transform: scale(0.96);
 }
 
 .carouselNavButton:focus-visible {
@@ -162,7 +163,7 @@
 
 .projectsTrack {
   display: flex;
-  gap: var(--stack-lg);
+  gap: var(--stack-xl);
   backface-visibility: hidden;
 }
 
@@ -279,10 +280,10 @@
 }
 
 .result[data-pending="true"] {
-  border-block-end-color: #d8ccd2;
-  color: #766d79;
-  font-size: var(--type-small-size);
-  font-weight: var(--font-weight-strong);
+  border-block-end-color: #ed2062;
+  color: #261b3e;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: var(--font-weight-display);
 }
 
 @media (min-width: 48rem) {
@@ -304,12 +305,8 @@
 }
 
 @media (min-width: 70rem) {
-  .projectsTrack {
-    gap: var(--stack-xl);
-  }
-
   .projectCard {
-    flex-basis: 50%;
+    flex: 0 0 calc((100% - var(--stack-xl)) / 2);
   }
 }
 

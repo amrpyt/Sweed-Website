@@ -40,8 +40,8 @@ export function HomeOffersSection() {
                       <i className={`fas ${offer.icon}`} />
                     </span>
                     <div>
-                      <p>{offer.meta}</p>
                       <h3>{offer.title}</h3>
+                      <p>{offer.meta}</p>
                     </div>
                   </div>
 

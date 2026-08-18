@@ -22,9 +22,20 @@ const emptyValues: ContactInquiryValues = {
   notes: "",
 };
 
-export function ContactInquiryForm({ form }: { form: ContactFormModel }) {
+export function ContactInquiryForm({
+  form,
+  defaultService,
+  source = "contact-page",
+}: {
+  form: ContactFormModel;
+  defaultService?: string;
+  source?: string;
+}) {
   const searchParams = useSearchParams();
-  const initialState = useMemo(() => getInitialState(form, searchParams), [form, searchParams]);
+  const initialState = useMemo(
+    () => getInitialState(form, searchParams, { defaultService, source }),
+    [defaultService, form, searchParams, source],
+  );
   const [values, setValues] = useState<ContactInquiryValues>(initialState.values);
   const [errors, setErrors] = useState<ContactInquiryErrors>({});
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
@@ -195,17 +206,22 @@ function Field({
   );
 }
 
-function getInitialState(form: ContactFormModel, searchParams: URLSearchParams) {
+function getInitialState(
+  form: ContactFormModel,
+  searchParams: URLSearchParams,
+  defaults: { defaultService?: string; source: string },
+) {
   const requestedService =
     searchParams.get("service") ??
     searchParams.get("selectedService") ??
     searchParams.get("services")?.split(",")[0]?.trim() ??
+    defaults.defaultService ??
     "";
   const normalizedService = requestedService === "software-development" ? "development" : requestedService;
   const service = form.serviceOptions.some((option) => option.value === normalizedService) ? normalizedService : "";
   const selectedOffer = searchParams.get("package") ?? searchParams.get("offer") ?? searchParams.get("selectedOffer") ?? "";
   const context: ContactInquiryContext = {
-    source: searchParams.get("source") ?? "contact-page",
+    source: searchParams.get("source") ?? defaults.source,
     selectedService: service || undefined,
     selectedOffer: selectedOffer || undefined,
   };

@@ -147,7 +147,7 @@ export const homepageContent = {
     caption: "معًا ستصل",
     image: "/images/homepage/compass-problems.png",
   },
-  stats: [] satisfies HomeMetric[],
+  stats: [] as HomeMetric[],
   why: [
     {
       title: "بنحلل قبل ما ننصح",

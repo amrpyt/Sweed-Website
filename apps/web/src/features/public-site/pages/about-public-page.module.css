@@ -863,40 +863,6 @@
   line-height: var(--type-small-leading);
 }
 
-.primaryAction,
-.ctaPrimary,
-.ctaSecondary {
-  display: inline-flex;
-  min-height: var(--control-height-md);
-  align-items: center;
-  justify-content: center;
-  gap: var(--inline-sm);
-  border-radius: var(--shape-control);
-  padding-inline: var(--control-padding-inline);
-  font-weight: 850;
-  text-decoration: none;
-  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
-}
-
-.primaryAction {
-  width: fit-content;
-  margin-block-start: var(--stack-xl);
-  background: var(--about-action);
-  color: #ffffff;
-}
-
-.primaryAction:hover,
-.primaryAction:focus-visible,
-.ctaPrimary:hover,
-.ctaPrimary:focus-visible,
-.ctaSecondary:hover,
-.ctaSecondary:focus-visible {
-  transform: translateY(-2px);
-}
-
-.primaryAction:focus-visible,
-.ctaPrimary:focus-visible,
-.ctaSecondary:focus-visible,
 .carouselArrows button:focus-visible,
 .carouselDots button:focus-visible {
   outline: 3px solid rgba(237, 32, 98, 0.3);
@@ -1308,22 +1274,6 @@
   justify-content: flex-end;
 }
 
-.ctaPrimary {
-  background: var(--about-action);
-  color: #ffffff;
-}
-
-.ctaSecondary {
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  color: #ffffff;
-}
-
-.ctaSecondary:hover,
-.ctaSecondary:focus-visible {
-  background: #ffffff;
-  color: var(--about-purple);
-}
-
 .srOnly {
   position: absolute;
   width: 1px;
@@ -1407,10 +1357,6 @@
     padding-block-start: var(--stack-xs);
   }
 
-  .primaryAction {
-    min-height: var(--control-height-md);
-    margin-block-start: var(--stack-lg);
-  }
 }
 
 @media (min-width: 821px) and (max-height: 699px) {
@@ -1685,13 +1631,6 @@
     inset-inline-start: 4px;
   }
 
-  .primaryAction,
-  .ctaPrimary,
-  .ctaSecondary {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
   .numbersGrid article {
     min-height: 130px;
     padding: var(--stack-md) var(--stack-sm);
@@ -1814,9 +1753,6 @@
   }
 
   .videoPoster,
-  .primaryAction,
-  .ctaPrimary,
-  .ctaSecondary,
   .carouselArrows button,
   .carouselDots button,
   .partnerTrack {

@@ -189,7 +189,6 @@ export function OfferFunnelController({ page }: { page: string }) {
         <span className={styles.sectionTag}>القسم الحالي: {popup.sectionLabel}</span>
         <div className={styles.actions}>
           <ButtonLink
-            className={styles.primary}
             href="/contact#contact-form"
             size="compact"
             onClick={() => {

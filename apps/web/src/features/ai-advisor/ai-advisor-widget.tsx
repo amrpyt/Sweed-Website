@@ -2,6 +2,7 @@
 
 import { FormEvent, useId, useState } from "react";
 import { Bot, MessageCircle, SendHorizonal } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { homepageContent } from "@/content/homepage";
 import styles from "./ai-advisor.module.css";
 
@@ -262,9 +263,9 @@ export function AiAdvisorWidget() {
                   required
                   rows={3}
                 />
-                <button type="submit" disabled={ticketState === "submitting"}>
+                <Button type="submit" size="compact" disabled={ticketState === "submitting"}>
                   {ticketState === "submitting" ? "جاري الإرسال..." : "إرسال التذكرة"}
-                </button>
+                </Button>
                 <p aria-live="polite" data-ticket-state={ticketState}>{ticketMessage}</p>
               </form>
             </details>

@@ -144,10 +144,10 @@ export function AboutPublicPage() {
                 <p>{content.cta.summary}</p>
               </div>
               <div className={styles.ctaActions}>
-                <ButtonLink className={styles.ctaPrimary} href={content.cta.primary.href}>
+                <ButtonLink href={content.cta.primary.href}>
                   {content.cta.primary.label}
                 </ButtonLink>
-                <ButtonLink className={styles.ctaSecondary} href={content.cta.secondary.href} variant="secondary">
+                <ButtonLink href={content.cta.secondary.href} variant="secondary">
                   {content.cta.secondary.label}
                 </ButtonLink>
               </div>

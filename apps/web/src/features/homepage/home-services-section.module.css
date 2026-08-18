@@ -58,25 +58,6 @@
   line-height: var(--type-small-leading);
 }
 
-.allServicesLink {
-  display: inline-flex;
-  width: fit-content;
-  min-height: var(--control-height-md);
-  align-items: center;
-  justify-content: center;
-  gap: var(--content-gap-tight);
-  border-radius: var(--shape-control);
-  padding-inline: var(--control-padding-inline);
-  background: #261b3e;
-  color: #ffffff;
-  font-size: var(--type-small-size);
-  font-weight: var(--font-weight-strong);
-  text-decoration: none;
-  transition:
-    background-color var(--motion-fast),
-    transform var(--motion-fast);
-}
-
 .servicesContent {
   display: grid;
   gap: var(--stack-2xl);
@@ -87,16 +68,6 @@
   justify-content: center;
 }
 
-.allServicesLink:hover,
-.allServicesLink:focus-visible {
-  background: #d81958;
-}
-
-.allServicesLink:active {
-  transform: scale(0.98);
-}
-
-.allServicesLink:focus-visible,
 .serviceItem:focus-visible {
   outline: 3px solid rgb(237 32 98 / 25%);
   outline-offset: var(--cds-spacing-02);
@@ -371,7 +342,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .allServicesLink,
   .serviceItem,
   .media img,
   .actionLabel {

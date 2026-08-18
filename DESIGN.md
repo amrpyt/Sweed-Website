@@ -104,6 +104,21 @@ Use `compact` only for short transitional bands, `default` for normal content se
 
 Buttons use shared control heights and inline padding tokens. Do not create one-off button sizing inside individual sections unless the interaction genuinely requires it.
 
+### Canonical Action Buttons
+
+All public CTA-style actions use the shared SWEED action-button system (`Button`, `ButtonLink`, or the underlying `BrandActionButton` mechanism). Page and feature CSS may control placement and available width, but must not repaint the action surface, border, fill, shadow, focus treatment, or interaction states.
+
+- **Primary:** deep SWEED purple `#261b3e`, white label/icon, with the inset SWEED action-pink fill expanding across the control on hover or keyboard focus.
+- **Secondary:** white surface, deep-purple label and border language, with the deep-purple inset fill interaction.
+- **Light:** white surface and deep-purple label with the pink fill interaction when a lighter contextual action is needed.
+- Standard/compact actions use the shared 48px control height; hero actions use 64px. All use `--shape-control` (16px).
+- Arabic labels keep the shared 3px optical correction while the icon remains geometrically centered.
+- Hover/focus lifts by 2px, active returns to `scale(0.99)`, keyboard focus uses the 3px SWEED pink outline, and disabled state keeps the shared reduced-opacity treatment.
+- `prefers-reduced-motion: reduce` removes action transitions and transform motion without changing visibility or hierarchy.
+- Pills remain reserved for tags, status, filters, tabs, selectors, and other purpose-specific compact controls. Those controls do **not** become marketing CTAs merely because they are clickable.
+
+The semantic `--action-*` tokens in `apps/web/src/styles/tokens.css` are the source of truth for the canonical action palette, borders, fill colors, focus outline, and shadows.
+
 ## Component Rules
 
 - Use shared `Section` and `SectionHeader` for standard marketing compositions.

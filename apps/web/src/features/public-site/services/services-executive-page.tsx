@@ -66,7 +66,7 @@ export function ServicesExecutivePage() {
               <h2>{servicesPageSource.finalCta.title}</h2>
               <p>{servicesPageSource.finalCta.summary}</p>
             </div>
-            <ButtonLink className={styles.primaryAction} href={servicesPageSource.finalCta.primaryAction.href}>
+            <ButtonLink href={servicesPageSource.finalCta.primaryAction.href}>
               {servicesPageSource.finalCta.primaryAction.label}
             </ButtonLink>
           </div>
@@ -97,7 +97,7 @@ function ServiceJourneySection({ service }: { service: ExecutiveServiceSource })
             </ul>
           </div>
           <p className={styles.success}>{service.successIndicator}</p>
-          <ButtonLink className={styles.serviceAction} href={service.href} size="compact">
+          <ButtonLink href={service.href} size="compact">
             {service.actionLabel}
           </ButtonLink>
         </div>

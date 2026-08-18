@@ -46,7 +46,7 @@ export function OffersExecutivePage() {
                 <PackageCard packageSource={pack} key={pack.id} />
               ))}
             </div>
-            <PackageComparisonButton comparison={integratedComparison} label="قارن الباقات الشاملة" className={styles.compareAction} />
+            <PackageComparisonButton comparison={integratedComparison} label="قارن الباقات الشاملة" />
           </div>
         </section>
 
@@ -111,7 +111,7 @@ function ServicePackageGroup({ group, index }: { group: OfferServiceGroupSource;
             <PackageCard packageSource={pack} key={pack.id} />
           ))}
         </div>
-        <PackageComparisonButton comparison={comparison} className={styles.compareAction} />
+        <PackageComparisonButton comparison={comparison} />
       </div>
     </section>
   );

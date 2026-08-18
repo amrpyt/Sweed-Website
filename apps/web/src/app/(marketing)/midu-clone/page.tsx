@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ButtonLink } from "@/components/ui/button";
 import styles from "./midu-clone.module.css";
 
 export const metadata: Metadata = {
@@ -190,9 +191,7 @@ export default function MiduClonePage() {
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <a className={styles.navCta} href="#contact">
-          Get in touch <ArrowIcon />
-        </a>
+        <ButtonLink href="#contact" size="compact">Get in touch</ButtonLink>
       </header>
 
       <section className={styles.hero} id="top" aria-labelledby="hero-title">
@@ -208,9 +207,7 @@ export default function MiduClonePage() {
             <p>
               We craft interfaces, websites, and brand systems that help ambitious teams explain their value fast and launch with confidence.
             </p>
-            <a className={styles.heroAction} href="#pricing">
-              Explore plans <ArrowIcon />
-            </a>
+            <ButtonLink href="#pricing" size="hero">Explore plans</ButtonLink>
           </div>
         </div>
         <div className={styles.heroVisual} aria-hidden="true">
@@ -335,7 +332,7 @@ export default function MiduClonePage() {
                   <li key={point}>{point}</li>
                 ))}
               </ul>
-              <a href="#contact">Select plan</a>
+              <ButtonLink href="#contact" size="compact">Select plan</ButtonLink>
             </article>
           ))}
         </div>
@@ -364,7 +361,7 @@ export default function MiduClonePage() {
           <span>London / Cairo</span>
           <h2>Design for teams ready to become sharper than their category.</h2>
         </div>
-        <a href="mailto:hello@sweed.example">Get in touch <ArrowIcon /></a>
+        <ButtonLink href="mailto:hello@sweed.example" size="compact">Get in touch</ButtonLink>
         <p>2026 SWEED Studio. Reference rebuild for internal review.</p>
       </footer>
     </main>

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 import { useMemo, useState } from "react";
 import { offersPageSource } from "@/content/public-site/offers-page";
 import { PackageComparisonButton } from "./package-comparison";
@@ -63,13 +63,15 @@ export function NeedsSelector() {
           <strong>المستوى الأقرب: {recommendation.packageLabel}</strong>
           <span>{recommendation.note}</span>
           <div className={styles.actions}>
-            <a href={`#package-${recommendation.packageId}`}>شوف تفاصيل الترشيح</a>
-            <PackageComparisonButton comparison={comparison} label="قارن الباقات" className={styles.compareButton} />
-            <Link
+            <ButtonLink href={`#package-${recommendation.packageId}`} size="compact">شوف تفاصيل الترشيح</ButtonLink>
+            <PackageComparisonButton comparison={comparison} label="قارن الباقات" />
+            <ButtonLink
               href={`/contact?source=offers-quiz&service=${encodeURIComponent(recommendation.serviceId)}&package=${encodeURIComponent(recommendation.packageId)}&timing=${encodeURIComponent(answers.timing ?? "")}`}
+              size="compact"
+              variant="secondary"
             >
               اطلب تشخيص يثبت الاختيار
-            </Link>
+            </ButtonLink>
           </div>
           <button className={styles.restart} type="button" onClick={restart}>
             غيّر إجاباتك

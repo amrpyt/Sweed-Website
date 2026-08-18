@@ -31,7 +31,6 @@ export function PublicPageHero({
             <div className={styles.actions}>
               {actions.map((action) => (
                 <ButtonLink
-                  className={styles.action}
                   href={action.href}
                   key={`${action.href}-${action.label}`}
                   size="hero"

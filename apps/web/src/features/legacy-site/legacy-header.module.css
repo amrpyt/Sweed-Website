@@ -105,8 +105,6 @@
 }
 
 .navList a:focus-visible,
-.desktopCta:focus-visible,
-.mobileCta:focus-visible,
 .menuButton:focus-visible,
 .logo:focus-visible,
 .contactActions a:focus-visible,
@@ -610,8 +608,6 @@
   .header,
   .navList a,
   .navArrow,
-  .desktopCta,
-  .mobileCta,
   .menuButton,
   .menuGlyph,
   .menuBackdrop,

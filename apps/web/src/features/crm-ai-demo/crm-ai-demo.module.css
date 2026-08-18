@@ -154,8 +154,7 @@
 }
 
 .scenarioNav button,
-.resetButton,
-.primaryAction {
+.resetButton {
   font: inherit;
   cursor: pointer;
 }
@@ -448,30 +447,8 @@
   font-size: var(--type-lead-size);
 }
 
-.primaryAction {
-  width: 100%;
-  min-height: var(--control-height-md);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--inline-xs);
-  border: 0;
-  border-radius: var(--shape-control);
-  background: var(--sweed-primary-purple);
-  color: white;
-  padding: var(--control-padding-block-start) var(--control-padding-inline) var(--control-padding-block-end);
-  font-weight: var(--font-weight-strong);
-  transition: background-color var(--motion-fast), transform var(--motion-fast);
-}
-
-.primaryAction:hover:not(:disabled) {
-  transform: translateY(-1px);
-  background: var(--sweed-primary-pink);
-}
-
-.primaryAction:disabled {
-  cursor: wait;
-  opacity: 0.68;
+.chatPrimaryAction {
+  width: 100% !important;
 }
 
 .systemPane {
@@ -721,8 +698,7 @@
 
 .brand:focus-visible,
 .scenarioNav button:focus-visible,
-.resetButton:focus-visible,
-.primaryAction:focus-visible {
+.resetButton:focus-visible {
   outline: 2px solid var(--sweed-primary-pink);
   outline-offset: 3px;
 }
@@ -785,9 +761,9 @@
     align-items: center;
   }
 
-  .primaryAction {
-    width: auto;
-    min-width: 190px;
+  .chatPrimaryAction {
+    width: auto !important;
+    min-width: 190px !important;
   }
 
   .valueStrip {
@@ -818,13 +794,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scenarioNav button,
-  .primaryAction {
+  .scenarioNav button {
     transition: none;
   }
 
-  .scenarioNav button:hover:not(:disabled),
-  .primaryAction:hover:not(:disabled) {
+  .scenarioNav button:hover:not(:disabled) {
     transform: none;
   }
 

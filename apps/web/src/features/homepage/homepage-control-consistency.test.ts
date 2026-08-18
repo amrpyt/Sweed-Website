@@ -33,24 +33,18 @@ describe("homepage control consistency", () => {
     expect(focusCss).not.toContain("border-radius:");
   });
 
-  test("uses the shared control radius for homepage CTA-style actions", () => {
-    const about = readSource("home-blit-scroll-section.module.css");
-    const offers = readSource("home-offers-section.module.css");
-    const faqBlog = readSource("home-faq-blog-section.module.css");
-    const contact = readSource("home-contact-section.module.css");
+  test("routes homepage CTA-style actions through the canonical shared button mechanism", () => {
+    const sources = [
+      readSource("home-blit-scroll-section.tsx"),
+      readSource("home-offers-section.tsx"),
+      readSource("home-faq-blog-section.tsx"),
+      readSource("home-contact-section.tsx"),
+    ];
 
-    expect(about).toContain(".aboutLink {\n  display: inline-flex;\n  min-height: var(--control-height-md);");
-    expect(about).toContain("border-radius: var(--shape-control);");
-
-    expect(offers).toContain(".offerAction {");
-    expect(offers).toContain(".allOffersLink a {");
-    expect(offers.match(/border-radius: var\(--shape-control\);/g)?.length ?? 0).toBeGreaterThanOrEqual(2);
-
-    expect(faqBlog).toContain(".blogHeading > a {");
-    expect(faqBlog).toContain("border-radius: var(--shape-control);");
-
-    expect(contact).toContain(".form > button {");
-    expect(contact).toContain("border-radius: var(--shape-control);");
+    for (const source of sources) {
+      expect(source).toContain("getBrandActionButtonClassName");
+      expect(source).toContain("BrandActionButtonContent");
+    }
   });
 
   test("keeps mobile problem options as individual rounded cards", () => {

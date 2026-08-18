@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { Button, ButtonLink } from "@/components/ui/button";
 import { articlesPageSource, type KnowledgeArticle, type KnowledgeCategoryId, type KnowledgeContentType } from "@/content/public-site/articles-page";
 import { StickyChipStrip } from "@/features/public-site/shared/sticky-chip-strip";
 import { filterArticles, type ArticleBrowserFilters } from "./article-browser-logic";
@@ -106,7 +107,7 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
             <div className={styles.empty} data-testid="knowledge-results">
               <h3>ملقيناش نتيجة مطابقة</h3>
               <p>ملقيناش مقال بنفس الكلمات. جرّب كلمة أقصر أو اختار تصنيف قريب من موضوعك.</p>
-              <button type="button" onClick={clearFilters}>ارجع لكل المقالات</button>
+              <Button type="button" size="compact" onClick={clearFilters}>ارجع لكل المقالات</Button>
             </div>
           )}
         </div>
@@ -131,7 +132,7 @@ function FeaturedArticle({ article }: { article: KnowledgeArticle }) {
           <span>{formatDate(article.publishedAt)}</span>
           <span>{article.readingTime}</span>
         </div>
-        <Link href={`/articles/${article.slug}`}>اقرأ المقال</Link>
+        <ButtonLink href={`/articles/${article.slug}`} size="compact">اقرأ المقال</ButtonLink>
       </div>
     </article>
   );

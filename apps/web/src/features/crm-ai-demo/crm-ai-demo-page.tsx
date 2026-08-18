@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  ArrowLeft,
   BotMessageSquare,
   Check,
   CircleCheck,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useReducer } from "react";
+import { Button } from "@/components/ui/button";
 import {
   demoReducer,
   initialDemoState,
@@ -155,16 +155,16 @@ export function CrmAiDemoPage() {
                 <span>{actionHelper(state.stage)}</span>
                 <strong>{actionTitle(state.stage)}</strong>
               </div>
-              <button
+              <Button
                 type="button"
-                className={styles.primaryAction}
+                className={styles.chatPrimaryAction}
+                size="compact"
+                icon={state.stage === "crm" ? <RotateCcw size={18} /> : state.stage === "reply" ? <Database size={18} /> : <Sparkles size={18} />}
                 disabled={state.agentMode === "thinking"}
                 onClick={handlePrimaryAction}
               >
-                {state.stage === "crm" ? <RotateCcw size={18} /> : state.stage === "reply" ? <Database size={18} /> : <Sparkles size={18} />}
-                <span>{actionButtonLabel(state.stage, state.agentMode)}</span>
-                {state.stage !== "crm" && <ArrowLeft size={17} />}
-              </button>
+                {actionButtonLabel(state.stage, state.agentMode)}
+              </Button>
             </footer>
           </article>
 

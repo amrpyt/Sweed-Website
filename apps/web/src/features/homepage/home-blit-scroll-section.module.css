@@ -299,37 +299,6 @@
   text-wrap: pretty;
 }
 
-.aboutLink {
-  display: inline-flex;
-  min-height: var(--control-height-md);
-  align-items: center;
-  justify-content: center;
-  gap: var(--inline-sm);
-  border-radius: var(--shape-control);
-  padding-inline: var(--control-padding-inline);
-  background: var(--color-action, #e2185b);
-  color: #ffffff;
-  font-weight: var(--font-weight-strong);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color 180ms ease, transform 180ms ease;
-}
-
-.aboutLink:hover,
-.aboutLink:focus-visible {
-  background: #ffffff;
-  color: #261b3e;
-}
-
-.aboutLink:active {
-  transform: scale(0.98);
-}
-
-.aboutLink:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.34);
-  outline-offset: 4px;
-}
-
 @media (min-width: 621px) {
   .introBlock h2 {
     font-size: var(--type-section-title-size);

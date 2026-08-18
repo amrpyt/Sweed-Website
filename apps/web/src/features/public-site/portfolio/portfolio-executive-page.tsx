@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
 import { portfolioPageSource, type PortfolioGroupSource, type PortfolioProjectSource } from "@/content/public-site/portfolio-page";
 import { PublicPageShell } from "@/features/public-site/pages/public-page-shell";
@@ -92,7 +91,7 @@ function PortfolioNarrativeGroup({ group, index }: { group: PortfolioGroupSource
           ))}
         </div>
         {group.serviceHref && group.serviceAction ? (
-          <ButtonLink className={styles.serviceLink} href={group.serviceHref} size="compact">
+          <ButtonLink href={group.serviceHref} size="compact">
             {group.serviceAction}
           </ButtonLink>
         ) : null}
@@ -129,9 +128,9 @@ function ProjectStory({ project, featured }: { project: PortfolioProjectSource; 
       </ul>
       {project.proof.metric ? <strong className={styles.metric}>{project.proof.metric}</strong> : null}
       {project.href ? (
-        <Link className={styles.projectLink} href={project.href}>
+        <ButtonLink href={project.href} size="compact">
           افتح المشروع
-        </Link>
+        </ButtonLink>
       ) : null}
     </article>
   );

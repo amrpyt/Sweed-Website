@@ -84,7 +84,6 @@
 .composer button:focus-visible,
 .ticketForm input:focus-visible,
 .ticketForm textarea:focus-visible,
-.ticketForm button:focus-visible,
 .error button:focus-visible,
 .error a:focus-visible {
   outline: 3px solid rgba(233, 30, 99, 0.25);
@@ -324,17 +323,6 @@
   color: #241f35;
   font: inherit;
   padding: var(--control-padding-block) var(--control-padding-inline);
-}
-
-.ticketForm button {
-  min-height: var(--control-height-sm);
-  border: 0;
-  border-radius: 14px;
-  background: #341836;
-  color: #fff;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 900;
 }
 
 .messages {
@@ -781,7 +769,6 @@
   .utilityButton,
   .error button,
   .error a,
-  .ticketForm button,
   .composer button,
   .composer button svg,
   .typingDots span {

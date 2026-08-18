@@ -25,11 +25,14 @@ describe("canonical SWEED action button system", () => {
 
   test("keeps the approved purple primary and white secondary hierarchy", () => {
     const css = readSource("brand-action-button.module.css");
+    const tokens = readSource("../../styles/tokens.css");
 
-    expect(css).toContain("--brand-action-bg: #261b3e;");
-    expect(css).toContain("--brand-action-fill: var(--color-action, #e2185b);");
-    expect(css).toContain("--brand-action-bg: #ffffff;");
-    expect(css).toContain("--brand-action-border: rgba(38, 27, 62, 0.16);");
+    expect(tokens).toContain("--action-primary-bg: var(--sweed-primary-purple);");
+    expect(tokens).toContain("--action-primary-fill: var(--sweed-action-pink);");
+    expect(tokens).toContain("--action-secondary-bg: var(--sweed-white);");
+    expect(tokens).toContain("--action-secondary-border: rgba(38, 27, 62, 0.16);");
+    expect(css).toContain("--brand-action-bg: var(--action-primary-bg);");
+    expect(css).toContain("--brand-action-bg: var(--action-secondary-bg);");
   });
 
   test("uses the canonical action component in shared public heroes and site chrome", () => {

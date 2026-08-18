@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { CtaPanel, LegacyDerivedHero, LegacyDerivedSection } from "@/components/sections";
+import { ButtonLink } from "@/components/ui/button";
 import { getServicesPageModel } from "../page-composers/public-page-models";
 import { PublicPageShell } from "./public-page-shell";
 import aboutStyles from "./about-public-page.module.css";
@@ -26,9 +26,9 @@ export function ServicesPublicPage() {
                     ))}
                   </ul>
                 </div>
-                <Link className={styles.link} href={service.detailHref}>
+                <ButtonLink href={service.detailHref} size="compact">
                   ناقش خدمة {service.title}
-                </Link>
+                </ButtonLink>
               </article>
             ))}
           </div>

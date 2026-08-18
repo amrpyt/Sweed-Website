@@ -51,7 +51,7 @@ export function BrandActionArrowIcon() {
 export function BrandActionButtonContent({ children, icon = <BrandActionArrowIcon /> }: { children: ReactNode; icon?: ReactNode }) {
   return (
     <>
-      <span aria-hidden="true" className={styles.fill} />
+      <span aria-hidden="true" className={styles.fill} data-sweed-action-fill="true" />
       <span className={styles.iconBox}>{icon}</span>
       <span className={styles.label}>{children}</span>
     </>

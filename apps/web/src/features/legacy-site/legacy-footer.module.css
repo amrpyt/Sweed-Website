@@ -223,8 +223,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .whatsappAction,
-  .whatsappAction span,
   .linkGroup a,
   .contactGroup a,
   .wordmark {

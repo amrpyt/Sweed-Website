@@ -16,7 +16,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
-  const consultationHref = "/contact";
+  const catalogHref = "/sweed-company-catalog.pdf";
   const isHidden = useScrollHeaderVisibility({ disabled: isOpen });
 
   const closeMenuBeforeNavigation = () => {
@@ -204,19 +204,19 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
 
           <Link
             className={getBrandActionButtonClassName({ className: styles.mobileCta, size: "nav" })}
-            href={consultationHref}
+            href={catalogHref} download="SWEED-Company-Catalog.pdf"
             onClick={(event) => handleNavigationClick(event, consultationHref)}
           >
-            <BrandActionButtonContent>احجز استشارتك المجانية</BrandActionButtonContent>
+            <BrandActionButtonContent>تحميل الكتالوج</BrandActionButtonContent>
           </Link>
         </div>
 
         <Link
           className={getBrandActionButtonClassName({ className: styles.desktopCta, size: "nav" })}
-          href={consultationHref}
+          href={catalogHref} download="SWEED-Company-Catalog.pdf"
           onClick={(event) => handleNavigationClick(event, consultationHref)}
         >
-          <BrandActionButtonContent>احجز استشارتك المجانية</BrandActionButtonContent>
+          <BrandActionButtonContent>تحميل الكتالوج</BrandActionButtonContent>
         </Link>
 
         <button

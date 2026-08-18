@@ -1,12 +1,46 @@
 # Tasks
 
-Updated: 2026-08-14T17:50:25+03:00
+Updated: 2026-08-18T16:36:00+03:00
 
 ## Active
 
-- None.
+None.
 
 ## Completed
+
+### SWEED-039 — Homepage visual consistency pass
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-08-18-homepage-visual-consistency-pass.md`
+Implementation commit: `fix: unify homepage control geometry`
+
+#### Acceptance Criteria
+
+- [x] Header primary CTA uses the shared 48px control height, `--shape-control`, shared strong weight, and SWEED focus/interaction language.
+- [x] Homepage CTA-style actions no longer use unrelated full-pill or 10px radii when they represent the same Primary/Secondary action hierarchy.
+- [x] Pills remain only for semantic badges/tags/statuses or intentionally compact utility controls.
+- [x] Mobile Problem Selector options retain individual card shape instead of zero-radius table rows.
+- [x] Existing Arabic optical-centering contract remains intact.
+- [x] No Services/Portfolio/Offers reference HTML source bytes change; fidelity tests remain green.
+- [x] 1440x900, 1024x768, 390x844, and 320x568 browser QA has no horizontal overflow, console/page errors, or broken interactions.
+- [x] Problem Selector selection, header navigation/CTA, and homepage CTA links still work.
+- [x] Reduced-motion behavior remains correct.
+- [x] Focused tests, `bun run check`, `bun run build`, service readiness, and production Playwright smoke pass.
+- [x] One logical implementation commit is created; no push is performed.
+
+#### Verification
+
+- Focused homepage/fidelity/reference suite: 18 passed, 0 failed.
+- `bun run check`: 117 passed, 0 failed, plus TypeScript, ESLint, spacing, and mobile-first guards.
+- Production build: 29 routes, passed.
+- Browser QA passed at 1440×900, 1024×768, 390×844, and 320×568 with no horizontal overflow or page/console errors.
+- Desktop CTAs compute to 48px height and the shared 16px control radius; strong actions use weight 700.
+- Mobile Problem Selector cards retain 12px radius and explicit separated borders; selected state uses the SWEED pink accent and `aria-pressed=true`.
+- Reduced-motion keeps all six Problem Selector choices visible and leaves reference reveal content visible.
+- Reference motion lifecycle remains Services 76 / Portfolio 71 / Offers 42 ScrollTriggers across final browser checks.
+- `sweed-demo.service` is active; `/`, `/services`, `/portfolio`, and `/offers` return 200 locally and publicly.
+- Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-checkpoint skip.
 
 ### SWEED-038 — Optical-center Arabic button labels
 

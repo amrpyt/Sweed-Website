@@ -316,7 +316,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--inline-sm);
-  border-radius: 999px;
+  border-radius: var(--shape-control);
   padding-inline: var(--control-padding-inline);
   background: var(--color-action, #e2185b);
   color: #ffffff;

@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-14T17:50:25+03:00
+Updated: 2026-08-18T16:40:00+03:00
 
 ## Read First
 
@@ -20,12 +20,19 @@ Updated: 2026-08-14T17:50:25+03:00
 - Do not reintroduce reference Cairo/IBM Plex or the old `#241238` / `#D6246E` identity unless explicitly requested.
 - Do not redesign or modernize the page compositions without explicit approval.
 - Shared header, footer, AI advisor, routing, and Next runtime stay current.
+- Homepage primary CTA-style actions now use the same 48px control height, 16px `--shape-control` radius, strong 700 weight, and SWEED focus language. Text actions remain text actions; semantic badges/tags and icon utilities may remain pill/circular.
+- Mobile Problem Selector options remain individual 12px-radius cards with separated borders and a pink selected state; do not collapse them back into zero-radius table rows.
 
 ## Latest Application Change
 
-`fix: optically center Arabic button labels`
+`fix: unify homepage control geometry`
 
 The current control system now:
+- normalizes the shared desktop/mobile header CTA to the 48px control contract and keeps the Arabic label optically centered independently from its icon;
+- scopes the homepage mobile 44px touch floor with zero specificity so it cannot override component-specific 48px CTA sizing;
+- preserves component radius during `focus-visible` instead of forcing a smaller focus-only radius;
+- uses `--shape-control` for About, Offers, Blog, and Contact CTA-style actions while preserving semantic pills and text actions;
+- keeps mobile Problem Selector choices as separated rounded cards rather than one square-row list;
 - defines one semantic optical-centering contract in `tokens.css`;
 - keeps shared brand-action icons geometrically centered while moving only the Arabic label by the optical correction;
 - keeps compact/mobile brand-action icon geometry inside the 48px control;
@@ -40,6 +47,18 @@ The current control system now:
 
 ## Verification
 
+- Focused homepage/fidelity/reference tests: 18 passed, 0 failed.
+- `bun run check`: 117/117 tests plus type/lint/design guards passed.
+- Production build: 29 routes, passed. Final deploy was built while `sweed-demo.service` was stopped, verified `apps/web/.next/BUILD_ID`, then started cleanly.
+- Homepage CTA metrics: 48px height, 16px radius, weight 700 for Header/About/Offers/Blog/Contact primary actions at the tested widths.
+- Mobile Problem Selector: individual 12px-radius cards at 390px and 320px, pink active border/background, `aria-pressed=true` after selection.
+- Browser QA: 1440×900, 1024×768, 390×844, and 320×568; no horizontal overflow, broken loaded images, console errors, or page errors in final checks.
+- Reference GSAP/ScrollTrigger lifecycle remains 76 / 71 / 42 for Services / Portfolio / Offers, with zero overflow at 1440px, 390px, and 320px.
+- Reduced motion leaves homepage problem choices and reference reveal content visible.
+- Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual skip.
+- Service active; `/`, `/services`, `/portfolio`, and `/offers` return HTTP 200 locally and publicly.
+
+Previous optical-centering verification remains valid:
 - Focused optical/fidelity/reference tests: 14 passed.
 - `bun run check`: 113/113 tests plus type/lint/design guards passed.
 - Production build: 29 routes, passed.
@@ -53,6 +72,10 @@ The current control system now:
 - GSAP remains Services 76 / Portfolio 71 / Offers 42 ScrollTriggers.
 - Google Fonts requests on the three reference pages: 0.
 - Service active; public routes HTTP 200.
+
+## Deployment Note
+
+- With Next 16, do not run `next build` against the same `.next` directory while `sweed-demo.service` is actively serving it. Stop the service first, build, verify `.next/BUILD_ID`, then start the service. A concurrent build/restart race was observed and recovered during SWEED-039.
 
 ## Remaining Boundary
 

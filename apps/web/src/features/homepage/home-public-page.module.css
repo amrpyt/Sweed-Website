@@ -285,7 +285,6 @@
 
 .homepage a:focus-visible,
 .homepage button:focus-visible {
-  border-radius: var(--radius-xs);
   outline: 3px solid rgb(237 32 98 / 50%);
   outline-offset: 3px;
 }
@@ -319,8 +318,7 @@
     --home-header-offset: 4.875rem;
   }
 
-  .homepage a,
-  .homepage button {
+  :where(.homepage) :where(a, button) {
     min-width: 2.75rem;
     min-height: 2.75rem;
   }

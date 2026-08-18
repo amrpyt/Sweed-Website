@@ -141,7 +141,8 @@
   border-radius: var(--shape-control);
   background: #261b3e;
   color: #ffffff;
-  font-weight: 800;
+  font-weight: var(--font-weight-strong);
+  line-height: var(--control-text-leading);
   text-decoration: none;
   transition: background-color 180ms ease, transform 180ms ease;
 }
@@ -149,10 +150,16 @@
 .desktopCta {
   display: inline-flex;
   min-width: 148px;
-  min-height: 46px;
+  min-height: var(--control-height-md);
   flex: 0 0 auto;
   padding-inline: 1rem;
   font-size: 0.9rem;
+}
+
+.desktopCta span,
+.mobileCta span {
+  display: inline-block;
+  transform: translateY(calc(-1 * var(--control-text-optical-shift)));
 }
 
 .desktopCta:hover,
@@ -559,7 +566,7 @@
 
   .mobileCta {
     display: flex;
-    min-height: 52px;
+    min-height: var(--control-height-md);
     flex: 0 0 auto;
     margin-top: 0.75rem;
     padding-inline: 1rem;

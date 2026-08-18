@@ -201,13 +201,13 @@
 
 .offerAction {
   display: inline-flex;
-  min-height: 50px;
+  min-height: var(--control-height-md);
   align-items: center;
   justify-content: center;
   gap: var(--inline-sm);
   margin-top: auto;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--shape-control);
   background: #261b3e;
   color: #ffffff;
   padding-inline: 1rem;
@@ -267,13 +267,18 @@
 }
 
 .allOffersLink a {
+  display: inline-flex;
+  min-height: var(--control-height-md);
   flex: 0 0 auto;
-  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--shape-control);
   padding: var(--cds-spacing-04) var(--cds-spacing-05);
   background: #261b3e;
   color: #ffffff;
   font-size: var(--type-small-size);
-  font-weight: var(--font-weight-display);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--control-text-leading);
   text-decoration: none;
 }
 

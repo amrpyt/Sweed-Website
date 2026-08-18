@@ -182,7 +182,7 @@
   flex: 0 0 auto;
   align-items: center;
   gap: var(--inline-sm);
-  border-radius: 999px;
+  border-radius: var(--shape-control);
   background: #261b3e;
   color: #ffffff;
   padding-inline: var(--control-padding-inline);

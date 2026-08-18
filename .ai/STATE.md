@@ -1,15 +1,16 @@
 # Current State
 
-Updated: 2026-08-14T17:50:25+03:00
+Updated: 2026-08-18T16:36:00+03:00
 Git branch: main
-Application commit: `fix: optically center Arabic button labels`
+Git HEAD: `a9297d0cad7276f659b4e4db711306cbf6e9fcb4`
+Application commit: `fix: unify homepage control geometry`
 Active Task: None
 Active Plan: None
-Status: SWEED-038 Arabic button optical-centering fix completed, deployed, and verified
+Status: SWEED-039 homepage visual consistency pass completed, deployed, and verified
 
 ## Current Goal
 
-Preserve the unified SWEED identity and optically centered Arabic control typography across the homepage and reference pages without changing the approved reference HTML structure, motion, or interactions.
+Close the remaining homepage/header control-shape drift and preserve individual rounded Problem Selector cards on mobile while keeping the existing layout, content, interactions, and reference-page fidelity boundary intact.
 
 ## In Progress
 
@@ -17,6 +18,11 @@ None.
 
 ## Completed Recently
 
+- Normalized remaining homepage CTA-style actions and shared header CTAs to the 48px `--shape-control` geometry and strong SWEED type weight.
+- Preserved semantic pills while removing unrelated full-pill/10px CTA radii from the About, Offers, Blog, and Contact actions.
+- Kept mobile Problem Selector choices as separated rounded cards with a clear SWEED pink selected state instead of square table rows.
+- Removed the homepage focus rule that visually overrode component-specific control radii.
+- Scoped the mobile touch-target floor with zero-specificity selectors so component control geometry remains authoritative.
 - Added semantic control typography tokens for `line-height: 1` and a measured 3px Arabic optical correction.
 - Reference CTAs and compact choice controls now use asymmetric semantic block padding so visible Arabic glyphs sit at the visual center of their 48px/44px controls.
 - Shared `BrandActionButton` keeps its icon geometrically centered while shifting only the Arabic label optically upward.
@@ -37,6 +43,17 @@ None.
 
 ## Verification
 
+- SWEED-039 focused homepage/fidelity/reference suite: 18 passed, 0 failed.
+- `bun run check`: 117/117 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
+- Production build: passed with 29 routes.
+- Browser QA: 1440×900, 1024×768, 390×844, and 320×568 passed with no horizontal overflow or page/console errors.
+- Header/About/services/blog CTA measurements: 48px height, 16px shared control radius, 700 strong weight where applicable.
+- Mobile Problem Selector cards: 12px card radius with 1px border; selected state uses SWEED pink border/background and `aria-pressed=true`.
+- Reduced-motion media leaves all six Problem Selector options visible; reference reveal content also remains visible.
+- Production Playwright: 11 passed, 0 failed, 1 intentional mobile visual-checkpoint skip.
+- `sweed-demo.service`: active; `/`, `/services`, `/portfolio`, and `/offers` return HTTP 200 locally and publicly.
+- Final reference motion lifecycle remains Services 76 / Portfolio 71 / Offers 42 ScrollTriggers at desktop and mobile widths.
+- Deployment note: stop `sweed-demo.service` before rebuilding `.next`, then start it after `BUILD_ID` exists. Building while the running Next 16 process is serving the same `.next` can race with systemd restarts and leave an incomplete production build.
 - Browser pixel measurement: Services CTA `+0.5px` and homepage primary CTA `-0.5px` from geometric center, improved from the previously observed ~`+4.5px` and ~`+7px` visual offsets.
 - Homepage 320px: 48px action button, 28px icon fully contained, label fully contained, zero horizontal overflow.
 - Services 320px: 48px CTA with `16px` line-height and `5px/11px` optical block padding; zero overflow.
@@ -67,4 +84,4 @@ None.
 
 ## Next Exact Action
 
-Preserve the reference-page fidelity boundary and the shared optical-centering tokens. Future visual changes to these routes should stay in runtime integration/theme layers unless the user explicitly approves a source/layout change.
+Preserve the unified homepage/header control hierarchy and reference-page fidelity boundary. The next visual pass should target mobile page density/performance rather than introducing new control variants.

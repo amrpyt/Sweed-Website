@@ -253,17 +253,17 @@
 
 .form > button {
   display: inline-flex;
-  min-height: 52px;
+  min-height: var(--control-height-md);
   align-items: center;
   justify-content: center;
   gap: var(--inline-sm);
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--shape-control);
   background: var(--color-action, #e2185b);
   color: #ffffff;
   padding-inline: var(--control-padding-inline);
   font: inherit;
-  font-weight: var(--font-weight-display);
+  font-weight: var(--font-weight-strong);
   cursor: pointer;
   transition:
     background-color 180ms ease,

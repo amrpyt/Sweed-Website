@@ -579,11 +579,9 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+    gap: var(--stack-xs);
     order: 2;
-    overflow: hidden;
-    border: 1px solid rgba(38, 27, 62, 0.13);
-    border-radius: var(--shape-card);
-    background: #ffffff;
+    overflow: visible;
   }
 
   .problemCard,
@@ -593,17 +591,12 @@
     grid-row: auto;
     grid-template-columns: 1.75rem 2.35rem minmax(0, 1fr) auto;
     gap: var(--stack-sm);
-    border: 0;
-    border-bottom: 1px solid rgba(38, 27, 62, 0.1);
-    border-radius: 0;
+    border: 1px solid rgba(38, 27, 62, 0.13);
+    border-radius: var(--shape-card);
     padding: var(--stack-sm);
     background: #ffffff;
     box-shadow: none;
     transform: none;
-  }
-
-  .problemCard:last-child {
-    border-bottom: 0;
   }
 
   .problemCard:focus-visible {
@@ -619,7 +612,7 @@
   }
 
   .problemCard[data-active="true"] {
-    border-color: rgba(38, 27, 62, 0.1);
+    border-color: #ed2062;
     background: #fff1f6;
     box-shadow: inset 0 0 0 1px #ed2062;
     transform: none;

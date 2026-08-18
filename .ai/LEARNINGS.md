@@ -4,6 +4,14 @@ Updated: 2026-08-18T17:50:14+03:00
 
 ## Validated Project Lessons
 
+### Preserve the approved button hierarchy when changing shared identity tokens
+
+Lesson: A palette cleanup must not invert the established CTA hierarchy merely because the same brand colors remain present.
+Evidence: On 2026-08-18, `999fd13` changed the canonical SWEED primary CTA from deep purple to pink and the secondary from white to transparent; the user immediately identified the resulting controls as a visual regression. `b7b94c8` restored the prior hierarchy and browser QA confirmed it across public routes.
+Applies to: `BrandActionButton`, shared headers/heroes, homepage CTAs, modular public pages, and any theme bridge that maps reference CTAs onto the shared system.
+Behavior change: Keep deep purple as the canonical primary surface, white as the canonical secondary/light surface, and pink as the interaction/fill accent unless an explicit approved redesign changes that contract. Token refactors must be checked against rendered primary and secondary controls before deployment.
+Revisit when: The project owner explicitly approves a different CTA hierarchy.
+
 ### Copied Next builds must inherit the service user
 
 Lesson: A valid clean `.next` build can still fail at runtime if it is copied from a root-owned worktree without restoring service ownership.

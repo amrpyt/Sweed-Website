@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-18T19:06:00+03:00
+Updated: 2026-08-18T19:55:00+03:00
 
 ## Read First
 
@@ -12,6 +12,11 @@ Updated: 2026-08-18T19:06:00+03:00
 - `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-design.md`
 
 ## Current Public Contract
+
+- The canonical shared CTA hierarchy is again the approved pre-v4 look: deep-purple `#261b3e` primary surface with white label, white secondary/light surface with purple label/border, and SWEED pink used as the expanding interaction/focus accent. Do not invert these surfaces during token/palette cleanup without explicit approval.
+- Keep the existing `BrandActionButton` mechanism: 16px control radius, shared hero-style expanding fill, measured Arabic optical label shift, contained icon geometry, visible focus outline, disabled state, and reduced-motion fallback.
+- Button restoration implementation is `b7b94c8 fix: restore approved button hierarchy`; the regression came from `999fd13` at 2026-08-18 18:49 +03:00.
+- The public demo is currently running clean build `TZjk3K73aZ9mWKGXfKoXV` produced from `b7b94c8`. Branch HEAD later advanced to `b3665b3 feat: polish homepage sections`; that concurrent SWEED-044 commit was intentionally not mixed into the button-repair deployment and still needs its own final verification/deployment.
 
 - `/crm-ai-demo` is a standalone frontend-only preview of the future SWEED CRM + AI Agent product. It intentionally uses deterministic browser-local data and actions and is not connected to Convex or another backend.
 - The CRM demo is now a guided visitor-facing story rather than an internal dashboard: pick Instagram/Facebook/TikTok, read the inbound message, run the AI reply, then write the result into the CRM.
@@ -61,6 +66,12 @@ The current control system now:
 - injects a dedicated scoped button theme without changing reference markup or source bytes.
 
 ## Verification
+
+- SWEED-045 button restoration: TDD red state observed before the fix; focused suite then passed 15/15.
+- Clean `b7b94c8` verification: spacing/mobile/type/lint guards passed, 134 tests passed, production build passed.
+- Public button build `TZjk3K73aZ9mWKGXfKoXV`: service active; `/`, `/services`, `/portfolio`, `/offers` return HTTP 200.
+- Agent-browser verified desktop and mobile primary/secondary colors, completed pink hover fill, 3px pink focus outline, 16px radius, Arabic optical centering, zero document overflow, zero broken images, and no browser errors at 1440×900, 390×844, and 320×568.
+- No push was performed for SWEED-045.
 
 - SWEED-043 guided-demo tests: 5 passed after an observed red TDD state.
 - Latest committed-main check at `98e88a4`: 133 passed, 0 failed, plus TypeScript, ESLint, spacing, and mobile-first guards.

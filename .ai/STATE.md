@@ -1,25 +1,29 @@
 # Current State
 
-Updated: 2026-08-18T19:34:00+03:00
+Updated: 2026-08-18T19:55:00+03:00
 Git branch: main
-Git HEAD: `a44993f`
-Application commit: `refactor: use modular public service routes`
-Active Task: SWEED-045
-Active Plan: `.ai/plans/2026-08-18-restore-approved-button-look.md`
-Status: SWEED-045 in progress — restoring the approved button appearance after a v4 visual regression
+Git HEAD: `b3665b3`
+Application commit: `feat: polish homepage sections`
+Active Task: SWEED-044
+Active Plan: `.ai/plans/2026-08-18-homepage-about-services-portfolio-polish.md`
+Status: SWEED-044 in progress — implementation committed; final verification/deployment remains
 
 ## Current Goal
 
-Restore the approved purple-primary / white-secondary button appearance without undoing the shared hero fill mechanism or disturbing unrelated in-progress route/homepage work.
+Resume SWEED-044 homepage verification/deployment after completing the button visual-regression repair, without disturbing the remaining SWEED-042 route work.
 
 ## In Progress
 
-- Root cause confirmed in `999fd13`: canonical button palette/shadows changed at 18:49 +03:00.
-- Add a focused regression assertion, restore only the visual values, then verify/deploy with browser QA.
-- SWEED-044 and SWEED-042 remain in progress but are temporarily paused; their dirty files must be preserved.
+- SWEED-044 implementation is committed in `b3665b3`; its final check/build/public QA/deployment still needs reconciliation against the currently deployed clean build.
+- SWEED-042 remains in progress; preserve its remaining dirty reference-service files and normalizer work.
 
 ## Completed Recently
 
+- Restored the approved shared button hierarchy in `b7b94c8`: deep-purple primary CTAs, white secondary/light CTAs, and the existing pink hero-fill interaction remain canonical.
+- Confirmed root cause was `999fd13` at 2026-08-18 18:49 +03:00, which inverted the canonical primary/secondary surfaces; the regression is now protected by a focused test.
+- SWEED-045 TDD observed the new regression test fail first, then the focused button/reference suite passed 15/15; a clean worktree check passed 134 tests and the production build completed successfully.
+- Deployed clean build `TZjk3K73aZ9mWKGXfKoXV` from `b7b94c8`; service is active and `/`, `/services`, `/portfolio`, and `/offers` all return HTTP 200 publicly.
+- Public button QA confirmed purple `rgb(38, 27, 62)` primaries, white secondaries, 16px control radius, working pink fill hover, 3px visible focus ring, zero page overflow/broken images at 1440px, 390px, and 320px, and no browser errors.
 - Rebuilt `/crm-ai-demo` as a guided visitor-facing product story instead of an internal CRM dashboard; the visible flow is now social message → AI reply → CRM update.
 - Reduced the demo to three selectable acquisition scenarios (Instagram, Facebook, TikTok) and one dominant action at each stage: `شغّل الـAI Agent` → `حدّث الـCRM` → `ابدأ من الأول`.
 - Kept the guided demo frontend-only and deterministic, with semantic page structure, explicit source identity, library-provided icons, keyboard focus, and reduced-motion support.

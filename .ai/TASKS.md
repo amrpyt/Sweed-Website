@@ -1,33 +1,8 @@
 # Tasks
 
-Updated: 2026-08-18T19:34:00+03:00
+Updated: 2026-08-18T19:55:00+03:00
 
 ## Active
-
-### SWEED-045 — Restore approved button look
-
-Status: in-progress
-Priority: critical
-Plan: `.ai/plans/2026-08-18-restore-approved-button-look.md`
-
-#### Acceptance Criteria
-
-- [ ] Canonical primary CTA is restored to deep purple with the pink fill interaction.
-- [ ] Canonical secondary/light CTA is restored to a white surface with the approved border/shadow treatment.
-- [ ] Existing hero fill animation, Arabic optical centering, focus state, disabled state, and reduced-motion behavior remain intact.
-- [ ] Reference-page CTAs use the same restored visual hierarchy without editing source HTML.
-- [ ] Product purchase CTAs that already match the older hierarchy remain unchanged.
-- [ ] Focused tests, full check/build, deployment health, and desktop/mobile browser QA pass.
-- [ ] Unrelated SWEED-042/SWEED-044 dirty files remain untouched by the fix commit.
-
-#### Evidence
-
-- Git blame identifies `999fd13` (2026-08-18 18:49 +03:00) as the commit that changed the canonical primary from purple to pink and the secondary from white to transparent.
-- Current uncommitted reference-theme changes mirror that newer palette and are not required for the shared interaction mechanism.
-
-#### Next Action
-
-Add and run a failing regression assertion for the approved purple/white hierarchy.
 
 ### SWEED-044 — Homepage About, Services, and Portfolio polish
 
@@ -87,6 +62,33 @@ Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 - [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
+
+### SWEED-045 — Restore approved button look
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-08-18-restore-approved-button-look.md`
+Implementation commit: `b7b94c8 fix: restore approved button hierarchy`
+
+#### Acceptance Criteria
+
+- [x] Canonical primary CTA is restored to deep purple with the pink fill interaction.
+- [x] Canonical secondary/light CTA is restored to a white surface with the approved border/shadow treatment.
+- [x] Existing hero fill animation, Arabic optical centering, focus state, disabled state, and reduced-motion behavior remain intact.
+- [x] Reference-page CTA theme remains on the approved purple/white hierarchy without editing source HTML.
+- [x] Product purchase CTAs that already matched the older hierarchy remain unchanged.
+- [x] Focused tests, clean full check/build, deployment health, and desktop/mobile browser QA pass.
+- [x] Unrelated SWEED-042/SWEED-044 implementation files were excluded from the fix commit and clean deployment build.
+
+#### Evidence
+
+- Git blame identified `999fd13` (2026-08-18 18:49 +03:00) as the visual regression that changed the canonical primary from purple to pink and the secondary from white to transparent.
+- TDD red state: focused button/reference run failed 2 tests before the visual rollback.
+- Focused green state: 15 passed, 0 failed.
+- Clean worktree verification at `b7b94c8`: spacing/mobile/type/lint passed; 134 tests passed; Next production build passed.
+- Deployed build ID `TZjk3K73aZ9mWKGXfKoXV`; service active; public `/`, `/services`, `/portfolio`, `/offers` returned 200.
+- Agent-browser desktop/mobile QA: primary `rgb(38, 27, 62)`, secondary `rgb(255, 255, 255)`, pink fill animation completes on hover, focus ring is 3px pink, zero document horizontal overflow and zero broken images at 1440×900, 390×844, and 320×568; no browser errors.
+- No push performed.
 
 ### SWEED-043 — Guided CRM demo redesign
 

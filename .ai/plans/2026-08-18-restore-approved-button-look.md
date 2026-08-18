@@ -2,7 +2,7 @@
 
 ID: SWEED-045
 Created: 2026-08-18
-Status: active
+Status: completed
 
 ## Goal
 
@@ -32,3 +32,11 @@ Restore the approved pre-v4 button appearance while preserving the shared hero-s
 ## Rollback
 
 Revert only the SWEED-045 commit; do not revert the site-wide button mechanism commits.
+
+## Verification
+
+- Regression test observed failing before the fix, then focused button/reference tests passed 15/15.
+- Clean worktree `bun run check`: 134 passed, 0 failed plus spacing, mobile-first, typecheck, and lint guards.
+- Clean production build completed successfully.
+- Clean build ID `TZjk3K73aZ9mWKGXfKoXV` deployed with `amr:amr` ownership; `sweed-demo.service` active and public root/services/portfolio/offers returned 200.
+- Agent-browser verified the approved purple primary, white secondary, pink expanding fill, 16px control radius, 3px focus outline, Arabic optical offset, zero horizontal document overflow, zero broken images, and zero browser errors on desktop and mobile.

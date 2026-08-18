@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import type { ContactFormModel } from "../page-composers/types";
 import {
   buildContactLeadPayload,
@@ -154,9 +155,9 @@ export function ContactInquiryForm({ form }: { form: ContactFormModel }) {
       </div>
 
       <div className={styles.formActions}>
-        <button type="submit" disabled={submitState === "submitting"} aria-busy={submitState === "submitting"}>
+        <Button type="submit" size="compact" disabled={submitState === "submitting"} aria-busy={submitState === "submitting"}>
           {submitState === "submitting" ? "جاري إرسال الرسالة..." : form.submitLabel}
-        </button>
+        </Button>
         {initialState.context.selectedOffer ? (
           <p className={styles.contextNote}>هنحتفظ بسياق الباقة اللي اخترتها: {initialState.context.selectedOffer}</p>
         ) : null}

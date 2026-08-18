@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import { homepageContent } from "@/content/homepage";
 import styles from "./home-services-section.module.css";
 
@@ -13,9 +14,11 @@ export function HomeServicesScrollSection() {
             <h2 id="home-services-title">خدماتنا... كلها بتشتغل في اتجاه واحد: نمو مشروعك</h2>
             <p>{homepageContent.servicesIntro}</p>
             <span className={styles.scope}>استشارات · هوية · تسويق · تطوير · إعلان · ميديا</span>
-            <Link className={styles.allServicesLink} href="/services">
-              <span>شوف كل الخدمات</span>
-              <i aria-hidden="true" className="fas fa-arrow-left" />
+            <Link
+              className={getBrandActionButtonClassName({ className: styles.allServicesLink, size: "compact" })}
+              href="/services"
+            >
+              <BrandActionButtonContent>شوف كل الخدمات</BrandActionButtonContent>
             </Link>
           </div>
         </div>

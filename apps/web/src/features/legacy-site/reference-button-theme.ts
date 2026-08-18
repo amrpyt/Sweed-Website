@@ -6,31 +6,49 @@ ${referenceScope} {
   --sweed-button-secondary-bg: #ffffff;
   --sweed-button-secondary-border: rgba(38, 27, 62, 0.18);
   --sweed-button-choice-border: #d9dee8;
+  --sweed-action-inset: var(--cds-spacing-02);
+  --sweed-action-icon-size: var(--cds-spacing-07);
+  --sweed-action-gap: var(--inline-sm);
+  --sweed-action-inner-radius: calc(var(--shape-control) - var(--sweed-action-inset));
 }
 
 ${referenceScope} .btn {
-  display: inline-flex;
+  --sweed-action-bg: var(--sweed-button-primary-bg);
+  --sweed-action-color: #ffffff;
+  --sweed-action-fill: var(--color-action, #e2185b);
+  --sweed-action-fill-color: #ffffff;
+  --sweed-action-border: var(--sweed-button-primary-bg);
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--sweed-action-icon-size) minmax(0, 1fr);
+  column-gap: var(--sweed-action-gap);
   min-height: var(--control-height-md);
   align-items: center;
-  justify-content: center;
-  border-width: 1px;
-  border-style: solid;
+  overflow: hidden;
+  border: 1px solid var(--sweed-action-border);
   border-radius: var(--shape-control);
-  padding-block-start: var(--control-padding-block-start);
-  padding-block-end: var(--control-padding-block-end);
-  padding-inline: var(--inline-lg);
+  padding: var(--sweed-action-inset) calc(var(--sweed-action-inset) + var(--inline-md)) var(--sweed-action-inset) var(--sweed-action-inset);
+  background: var(--sweed-action-bg);
+  color: var(--sweed-action-color);
+  box-sizing: border-box;
+  cursor: pointer;
+  direction: ltr;
   font-family: var(--font-body);
   font-size: var(--type-body-size);
   font-weight: var(--font-weight-strong);
   line-height: var(--control-text-leading);
+  text-decoration: none;
+  white-space: nowrap;
+  transform: translateZ(0);
   transition:
     transform var(--motion-fast),
     border-color var(--motion-fast),
-    background-color var(--motion-fast),
     color var(--motion-fast),
     box-shadow var(--motion-base);
 }
-${referenceScope} .btn:hover {
+${referenceScope} .btn:hover,
+${referenceScope} .btn:focus-visible {
+  color: var(--sweed-action-fill-color);
   transform: translateY(-2px);
 }
 ${referenceScope} .btn:active {
@@ -38,44 +56,92 @@ ${referenceScope} .btn:active {
 }
 ${referenceScope} .btn.btn-sm {
   min-height: var(--control-height-md);
-  padding-inline: var(--inline-md);
   font-size: var(--type-small-size);
 }
+${referenceScope} .btn .sweed-action-fill {
+  position: absolute;
+  z-index: 0;
+  inset: var(--sweed-action-inset);
+  border-radius: var(--sweed-action-inner-radius);
+  background: var(--sweed-action-fill);
+  clip-path: inset(0 calc(100% - var(--sweed-action-icon-size)) 0 0 round var(--sweed-action-inner-radius));
+  opacity: 1;
+  transition:
+    clip-path var(--motion-layout),
+    opacity var(--motion-instant);
+  pointer-events: none;
+}
+${referenceScope} .btn:hover .sweed-action-fill,
+${referenceScope} .btn:focus-visible .sweed-action-fill {
+  clip-path: inset(0 0 0 0 round var(--sweed-action-inner-radius));
+}
+${referenceScope} .btn .sweed-action-icon {
+  position: relative;
+  z-index: 3;
+  display: inline-grid;
+  grid-column: 1;
+  place-items: center;
+  width: var(--sweed-action-icon-size);
+  height: var(--sweed-action-icon-size);
+  border-radius: var(--sweed-action-inner-radius);
+  color: var(--sweed-action-fill-color);
+  pointer-events: none;
+}
+${referenceScope} .btn .sweed-action-icon svg {
+  display: inline-block;
+}
+${referenceScope} .btn .sweed-action-label {
+  position: relative;
+  z-index: 2;
+  grid-column: 2;
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  color: currentColor;
+  direction: rtl;
+  line-height: var(--control-text-leading);
+  text-align: center;
+  white-space: nowrap;
+  transform: translateY(calc(-1 * var(--control-text-optical-shift)));
+  pointer-events: none;
+}
 ${referenceScope} .btn-primary {
-  border-color: var(--sweed-button-primary-bg);
-  background: var(--sweed-button-primary-bg);
-  color: #ffffff;
+  --sweed-action-bg: var(--sweed-button-primary-bg);
+  --sweed-action-color: #ffffff;
+  --sweed-action-fill: var(--color-action, #e2185b);
+  --sweed-action-border: var(--sweed-button-primary-bg);
   box-shadow: 0 12px 30px rgba(38, 27, 62, 0.18);
 }
 ${referenceScope} .btn-primary:hover,
 ${referenceScope} .btn-primary:focus-visible {
   border-color: var(--sweed-button-accent);
-  background: var(--sweed-button-accent);
-  color: #ffffff;
   box-shadow: 0 16px 36px rgba(237, 32, 98, 0.2);
 }
 ${referenceScope} .btn-ghost {
-  border-color: var(--sweed-button-secondary-border);
-  background: var(--sweed-button-secondary-bg);
-  color: #261b3e;
-  box-shadow: none;
+  --sweed-action-bg: var(--sweed-button-secondary-bg);
+  --sweed-action-color: #261b3e;
+  --sweed-action-fill: #261b3e;
+  --sweed-action-border: var(--sweed-button-secondary-border);
+  box-shadow: 0 10px 26px rgba(38, 27, 62, 0.1);
 }
 ${referenceScope} .btn-ghost:hover,
 ${referenceScope} .btn-ghost:focus-visible {
-  border-color: var(--sweed-button-accent);
-  background: rgba(237, 32, 98, 0.08);
-  color: var(--sweed-button-accent);
+  border-color: #261b3e;
+  box-shadow: 0 16px 36px rgba(38, 27, 62, 0.16);
 }
 ${referenceScope} .btn-ghost.light {
-  border-color: rgba(255, 255, 255, 0.42);
-  background: transparent;
-  color: #ffffff;
+  --sweed-action-bg: #ffffff;
+  --sweed-action-color: #261b3e;
+  --sweed-action-fill: #261b3e;
+  --sweed-action-border: rgba(255, 255, 255, 0.72);
+  color: #261b3e !important;
 }
 ${referenceScope} .btn-ghost.light:hover,
 ${referenceScope} .btn-ghost.light:focus-visible {
-  border-color: var(--sweed-button-accent);
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  border-color: #ffffff;
+  color: #ffffff !important;
 }
 
 ${referenceScope} .f-btn,
@@ -235,6 +301,9 @@ ${referenceScope} .faq-q:focus-visible {
   ${referenceScope} .drawer-btn,
   ${referenceScope} .q-skip,
   ${referenceScope} .ov-close {
+    transition: none;
+  }
+  ${referenceScope} .btn .sweed-action-fill {
     transition: none;
   }
   ${referenceScope} .btn:hover,

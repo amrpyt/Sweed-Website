@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import { homepageContent } from "@/content/homepage";
 import { footerQuickLinks } from "./legacy-header.config";
 import styles from "./legacy-footer.module.css";
@@ -24,9 +25,13 @@ export function LegacyFooter() {
               SWEED
             </Link>
             <p>{homepageContent.footer.description}</p>
-            <a className={styles.whatsappAction} href={contact.whatsappHref} target="_blank" rel="noreferrer">
-              تواصل عبر واتساب
-              <span aria-hidden="true">↗</span>
+            <a
+              className={getBrandActionButtonClassName({ className: styles.whatsappAction, size: "compact", variant: "secondary" })}
+              href={contact.whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <BrandActionButtonContent>تواصل عبر واتساب</BrandActionButtonContent>
             </a>
           </div>
 

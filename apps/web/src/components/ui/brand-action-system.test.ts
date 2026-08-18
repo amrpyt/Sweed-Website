@@ -1,0 +1,57 @@
+import { describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { decorateReferenceActionButtons } from "../../features/legacy-site/reference-html-normalizer";
+
+function readSource(path: string) {
+  return readFileSync(join(import.meta.dir, path), "utf8");
+}
+
+describe("canonical SWEED action button system", () => {
+  test("keeps the homepage hero fill mechanism as the canonical interaction", () => {
+    const css = readSource("brand-action-button.module.css");
+
+    expect(css).toContain("clip-path: inset(0 calc(100% - var(--brand-action-icon-size)) 0 0 round var(--brand-action-inner-radius))");
+    expect(css).toContain(".actionButton:hover .fill");
+    expect(css).toContain("clip-path: inset(0 0 0 0 round var(--brand-action-inner-radius))");
+    expect(css).toContain("transform: translateY(-2px)");
+    expect(css).toContain("transform: translateY(0) scale(0.99)");
+  });
+
+  test("uses the canonical action component in shared public heroes and site chrome", () => {
+    const publicHero = readSource("../../features/public-site/shared/public-page-hero.tsx");
+    const header = readSource("../../features/legacy-site/legacy-header.tsx");
+    const footer = readSource("../../features/legacy-site/legacy-footer.tsx");
+
+    expect(publicHero).toContain("ButtonLink");
+    expect(publicHero).toContain('size="hero"');
+    expect(header).toContain("BrandActionButtonContent");
+    expect(header).toContain("getBrandActionButtonClassName");
+    expect(footer).toContain("BrandActionButtonContent");
+  });
+
+  test("uses the same canonical mechanism for homepage CTA actions", () => {
+    const about = readSource("../../features/homepage/home-blit-scroll-section.tsx");
+    const services = readSource("../../features/homepage/home-services-scroll-section.tsx");
+    const offers = readSource("../../features/homepage/home-offers-section.tsx");
+    const blog = readSource("../../features/homepage/home-faq-blog-section.tsx");
+    const contact = readSource("../../features/homepage/home-contact-section.tsx");
+
+    for (const source of [about, services, offers, blog, contact]) {
+      expect(source).toContain("BrandActionButtonContent");
+    }
+  });
+
+  test("bridges reference-page CTAs to the hero fill mechanism without editing source HTML", () => {
+    const cssBridge = readSource("../../features/legacy-site/reference-button-theme.ts");
+    const decorated = decorateReferenceActionButtons('<a class="btn btn-primary" href="#cta">ابدأ الآن</a>');
+
+    expect(decorated).toContain('class="sweed-action-fill"');
+    expect(decorated).toContain('class="sweed-action-icon"');
+    expect(decorated).toContain('class="sweed-action-label">ابدأ الآن</span>');
+    expect(cssBridge).toContain(".btn .sweed-action-fill");
+    expect(cssBridge).toContain("clip-path: inset(0 calc(100% - var(--sweed-action-icon-size)) 0 0 round var(--sweed-action-inner-radius));");
+    expect(cssBridge).toContain(".btn:hover .sweed-action-fill");
+    expect(cssBridge).toContain("clip-path: inset(0 0 0 0 round var(--sweed-action-inner-radius));");
+  });
+});

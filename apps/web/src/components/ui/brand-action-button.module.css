@@ -78,6 +78,18 @@
   transform: translateY(0) scale(0.99) !important;
 }
 
+.actionButton:disabled,
+.actionButton[aria-disabled="true"] {
+  cursor: not-allowed !important;
+  opacity: 0.56 !important;
+  transform: none !important;
+}
+
+.actionButton:disabled .fill,
+.actionButton[aria-disabled="true"] .fill {
+  clip-path: inset(0 calc(100% - var(--brand-action-icon-size)) 0 0 round var(--brand-action-inner-radius)) !important;
+}
+
 .actionButton:focus-visible {
   outline: 3px solid rgba(237, 32, 98, 0.28) !important;
   outline-offset: 3px !important;
@@ -218,5 +230,18 @@
     --brand-action-font-size: 0.9rem;
     min-width: 0 !important;
     width: 100% !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionButton,
+  .fill {
+    transition: none !important;
+  }
+
+  .actionButton:hover,
+  .actionButton:focus-visible,
+  .actionButton:active {
+    transform: none !important;
   }
 }

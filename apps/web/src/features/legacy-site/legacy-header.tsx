@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import type { LegacyPageKey } from "./legacy-routes";
 import { siteSettings } from "@/content/local-data";
 import { defaultNavItems, homeNavItems, isActivePage, primaryNavigationId } from "./legacy-header.config";
@@ -202,22 +203,20 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           ) : null}
 
           <Link
-            className={styles.mobileCta}
+            className={getBrandActionButtonClassName({ className: styles.mobileCta, size: "nav" })}
             href={consultationHref}
             onClick={(event) => handleNavigationClick(event, consultationHref)}
           >
-            <span>ابدأ مشروعك</span>
-            <i aria-hidden="true" className="fas fa-arrow-left" />
+            <BrandActionButtonContent>ابدأ مشروعك</BrandActionButtonContent>
           </Link>
         </div>
 
         <Link
-          className={styles.desktopCta}
+          className={getBrandActionButtonClassName({ className: styles.desktopCta, size: "nav" })}
           href={consultationHref}
           onClick={(event) => handleNavigationClick(event, consultationHref)}
         >
-          <span>{page === "home" ? "دعنا نبدأ" : "احجز استشارة"}</span>
-          <i aria-hidden="true" className="fas fa-arrow-left" />
+          <BrandActionButtonContent>{page === "home" ? "دعنا نبدأ" : "احجز استشارة"}</BrandActionButtonContent>
         </Link>
 
         <button

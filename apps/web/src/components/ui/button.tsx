@@ -3,6 +3,7 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "reac
 import {
   BrandActionButtonContent,
   getBrandActionButtonClassName,
+  type BrandActionButtonSize,
   type BrandActionButtonVariant,
 } from "./brand-action-button";
 
@@ -11,6 +12,7 @@ type ButtonVariant = "primary" | "secondary" | "ghost";
 type BaseProps = {
   children: ReactNode;
   variant?: ButtonVariant;
+  size?: BrandActionButtonSize;
   className?: string;
 };
 
@@ -29,9 +31,9 @@ function variantToBrandVariant(variant: ButtonVariant): BrandActionButtonVariant
   return variant;
 }
 
-export function Button({ children, variant = "primary", className = "", ...props }: ButtonProps) {
+export function Button({ children, variant = "primary", size = "default", className = "", ...props }: ButtonProps) {
   return (
-    <button className={getBrandActionButtonClassName({ className, variant: variantToBrandVariant(variant) })} {...props}>
+    <button className={getBrandActionButtonClassName({ className, size, variant: variantToBrandVariant(variant) })} {...props}>
       <BrandActionButtonContent>{children}</BrandActionButtonContent>
     </button>
   );
@@ -40,12 +42,13 @@ export function Button({ children, variant = "primary", className = "", ...props
 export function ButtonLink({
   children,
   variant = "primary",
+  size = "default",
   className = "",
   href,
   ...props
 }: LinkButtonProps) {
   return (
-    <Link className={getBrandActionButtonClassName({ className, variant: variantToBrandVariant(variant) })} href={href} {...props}>
+    <Link className={getBrandActionButtonClassName({ className, size, variant: variantToBrandVariant(variant) })} href={href} {...props}>
       <BrandActionButtonContent>{children}</BrandActionButtonContent>
     </Link>
   );

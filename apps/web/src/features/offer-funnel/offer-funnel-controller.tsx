@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ButtonLink } from "@/components/ui/button";
 import type { OfferFunnelSettings } from "./contracts";
 import { renderOfferTemplate } from "./contracts";
 import styles from "./offer-funnel-controller.module.css";
@@ -187,16 +188,17 @@ export function OfferFunnelController({ page }: { page: string }) {
         <p className={styles.body}>{message}</p>
         <span className={styles.sectionTag}>القسم الحالي: {popup.sectionLabel}</span>
         <div className={styles.actions}>
-          <a
+          <ButtonLink
             className={styles.primary}
             href="/contact#contact-form"
+            size="compact"
             onClick={() => {
               markCooldown(window.localStorage, popupKey);
               setPopup(null);
             }}
           >
             {popupConfig.ctaLabel}
-          </a>
+          </ButtonLink>
           <button
             className={styles.secondary}
             type="button"

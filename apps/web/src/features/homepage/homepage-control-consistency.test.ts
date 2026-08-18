@@ -8,12 +8,17 @@ function readSource(path: string) {
 
 describe("homepage control consistency", () => {
   test("keeps the shared header CTA on the SWEED control geometry", () => {
-    const css = readSource("../../features/legacy-site/legacy-header.module.css");
+    const header = readSource("../../features/legacy-site/legacy-header.tsx");
+    const headerCss = readSource("../../features/legacy-site/legacy-header.module.css");
+    const actionCss = readSource("../../components/ui/brand-action-button.module.css");
 
-    expect(css).toContain("min-height: var(--control-height-md);");
-    expect(css).toContain("font-weight: var(--font-weight-strong);");
-    expect(css).toContain("transform: translateY(calc(-1 * var(--control-text-optical-shift)));");
-    expect(css).not.toContain(".mobileCta {\n    display: flex;\n    min-height: 52px;");
+    expect(header).toContain("BrandActionButtonContent");
+    expect(header).toContain("getBrandActionButtonClassName");
+    expect(header).toContain('size: "nav"');
+    expect(actionCss).toContain("--brand-action-font-weight: var(--font-weight-strong);");
+    expect(actionCss).toContain("--brand-action-min-height: var(--control-height-md);");
+    expect(actionCss).toContain("transform: translate(var(--brand-action-label-shift), calc(-1 * var(--control-text-optical-shift)))");
+    expect(headerCss).not.toContain(".mobileCta {\n    display: flex;\n    min-height: 52px;");
   });
 
   test("keeps the mobile touch floor from overriding component control sizes or shapes", () => {

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import { homepageContent } from "@/content/homepage";
 import styles from "./home-faq-blog-section.module.css";
 
@@ -40,7 +41,12 @@ export function HomeFaqBlogSection() {
               <p className={styles.eyebrow}>الأسئلة الشائعة</p>
               <h2 id="home-faq-title">أسئلة بنسمعها كتير... وإجاباتنا واضحة</h2>
               <p>كل إجابة بتقولك اللي هيحصل فعلًا: خطوات، مدة، متابعة، ونطاق واضح من الأول.</p>
-              <Link href="/faq">شاهد كل الأسئلة</Link>
+              <Link
+                className={getBrandActionButtonClassName({ size: "compact", variant: "secondary" })}
+                href="/faq"
+              >
+                <BrandActionButtonContent>شاهد كل الأسئلة</BrandActionButtonContent>
+              </Link>
             </div>
 
             <div className={styles.accordion}>
@@ -88,9 +94,8 @@ export function HomeFaqBlogSection() {
               <h2 id="home-blog-title">مقالات بتفيدك فعلًا</h2>
               <p>خلاصة خبرتنا في السوق — مكتوبة ببساطة عشان تاخد منها قرار، مش معلومة وخلاص.</p>
             </div>
-            <Link href="/articles">
-              كل المقالات
-              <i className="fas fa-arrow-left" aria-hidden="true" />
+            <Link className={getBrandActionButtonClassName({ size: "compact" })} href="/articles">
+              <BrandActionButtonContent>كل المقالات</BrandActionButtonContent>
             </Link>
           </div>
 

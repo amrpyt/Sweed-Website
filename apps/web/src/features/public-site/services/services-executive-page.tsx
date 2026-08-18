@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 import { servicesPageSource, type ExecutiveServiceSource } from "@/content/public-site/services-page";
 import { PublicPageShell } from "@/features/public-site/pages/public-page-shell";
 import { PublicPageHero } from "@/features/public-site/shared/public-page-hero";
@@ -66,9 +66,9 @@ export function ServicesExecutivePage() {
               <h2>{servicesPageSource.finalCta.title}</h2>
               <p>{servicesPageSource.finalCta.summary}</p>
             </div>
-            <Link className={styles.primaryAction} href={servicesPageSource.finalCta.primaryAction.href}>
+            <ButtonLink className={styles.primaryAction} href={servicesPageSource.finalCta.primaryAction.href}>
               {servicesPageSource.finalCta.primaryAction.label}
-            </Link>
+            </ButtonLink>
           </div>
         </section>
       </main>
@@ -97,9 +97,9 @@ function ServiceJourneySection({ service }: { service: ExecutiveServiceSource })
             </ul>
           </div>
           <p className={styles.success}>{service.successIndicator}</p>
-          <Link className={styles.serviceAction} href={service.href}>
+          <ButtonLink className={styles.serviceAction} href={service.href} size="compact">
             {service.actionLabel}
-          </Link>
+          </ButtonLink>
         </div>
       </div>
     </section>

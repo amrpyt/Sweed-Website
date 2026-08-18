@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 import { softwareDevelopmentPageSource } from "@/content/public-site/software-development-page";
 import { PublicPageShell } from "@/features/public-site/pages/public-page-shell";
 import { PublicPageHero } from "@/features/public-site/shared/public-page-hero";
@@ -92,7 +92,9 @@ export function SoftwareDevelopmentPage() {
                     ))}
                   </ul>
                   <small>{useCase.note}</small>
-                  <Link href={`/contact?source=software-development&path=${useCase.id}`}>ابدأ بهذا المسار</Link>
+                  <ButtonLink href={`/contact?source=software-development&path=${useCase.id}`} size="compact">
+                    ابدأ بهذا المسار
+                  </ButtonLink>
                 </article>
               ))}
             </div>
@@ -151,9 +153,9 @@ export function SoftwareDevelopmentPage() {
             </div>
             <div className={styles.ctaActions}>
               {softwareDevelopmentPageSource.finalCta.actions.map((action) => (
-                <Link data-variant={action.variant} href={action.href} key={action.href}>
+                <ButtonLink href={action.href} key={action.href} variant={action.variant}>
                   {action.label}
-                </Link>
+                </ButtonLink>
               ))}
             </div>
           </div>

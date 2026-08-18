@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { normalizeLegacyAccessibility } from "./legacy-accessibility";
 import {
   applySweedReferenceTheme,
+  decorateReferenceActionButtons,
   guardReferenceScript,
   scopeReferenceHeadHtml,
   stripReferenceChrome,
@@ -281,7 +282,7 @@ export function getLegacyPage(page: LegacyPageKey, options: LegacyPageOptions = 
     return {
       title,
       headHtml: scopeReferenceHeadHtml(normalizeReferenceHtml(headAssets)),
-      bodyHtml: applySweedReferenceTheme(normalizeReferenceHtml(bodyWithoutScripts)),
+      bodyHtml: decorateReferenceActionButtons(applySweedReferenceTheme(normalizeReferenceHtml(bodyWithoutScripts))),
       scripts,
     };
   }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 import { portfolioPageSource, type PortfolioGroupSource, type PortfolioProjectSource } from "@/content/public-site/portfolio-page";
 import { PublicPageShell } from "@/features/public-site/pages/public-page-shell";
 import { ProofStateLabel } from "@/features/public-site/shared/proof-state-label";
@@ -68,9 +69,9 @@ export function PortfolioExecutivePage() {
             </div>
             <div className={styles.ctaActions}>
               {portfolioPageSource.finalCta.actions.map((action) => (
-                <Link data-variant={action.variant} href={action.href} key={action.href}>
+                <ButtonLink href={action.href} key={action.href} variant={action.variant}>
                   {action.label}
-                </Link>
+                </ButtonLink>
               ))}
             </div>
           </div>
@@ -91,9 +92,9 @@ function PortfolioNarrativeGroup({ group, index }: { group: PortfolioGroupSource
           ))}
         </div>
         {group.serviceHref && group.serviceAction ? (
-          <Link className={styles.serviceLink} href={group.serviceHref}>
+          <ButtonLink className={styles.serviceLink} href={group.serviceHref} size="compact">
             {group.serviceAction}
-          </Link>
+          </ButtonLink>
         ) : null}
       </div>
     </section>

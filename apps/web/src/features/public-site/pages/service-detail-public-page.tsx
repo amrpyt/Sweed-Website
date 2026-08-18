@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 import type { Service } from "@/content/types";
 import { PublicPageShell } from "./public-page-shell";
 import styles from "./content-detail-public-page.module.css";
@@ -44,10 +44,7 @@ export function ServiceDetailPublicPage({ service }: { service: Service }) {
             <aside className={styles.aside}>
               <h2>بنبدأ من السبب الحقيقي</h2>
               <p>{service.summary}</p>
-              <Link href="/#contact">
-                ناقش الخدمة مع الفريق
-                <i className="fas fa-arrow-left" aria-hidden="true" />
-              </Link>
+              <ButtonLink href="/#contact" size="compact">ناقش الخدمة مع الفريق</ButtonLink>
             </aside>
 
             <div className={styles.sections}>

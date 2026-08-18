@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import { homepageContent } from "@/content/homepage";
 import styles from "./home-archigreen-projects-section.module.css";
 
@@ -70,7 +71,9 @@ export function HomeArchigreenProjectsSection() {
                 <span aria-hidden="true">←</span>
               </button>
             </div>
-            <Link href="/portfolio">شاهد كل الأعمال</Link>
+            <Link className={getBrandActionButtonClassName({ size: "compact", variant: "secondary" })} href="/portfolio">
+              <BrandActionButtonContent>شاهد كل الأعمال</BrandActionButtonContent>
+            </Link>
           </div>
         </div>
 

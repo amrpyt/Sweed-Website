@@ -77,6 +77,17 @@ export function stripReferenceChrome(html: string) {
     .replace(/\s*<footer\b[^>]*>[^]*?<\/footer>\s*(?=(?:<script\b|$))/i, "");
 }
 
+export function decorateReferenceActionButtons(input: string) {
+  return input.replace(
+    /<(a|button)\b([^>]*\bclass=["'][^"']*\bbtn\b[^"']*["'][^>]*)>([^]*?)<\/\1>/gi,
+    (match, tag: string, attributes: string, content: string) => {
+      if (content.includes('class="sweed-action-fill"')) return match;
+
+      return `<${tag}${attributes}><span aria-hidden="true" class="sweed-action-fill"></span><span aria-hidden="true" class="sweed-action-icon"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.75" viewBox="0 0 24 24" width="18"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></span><span class="sweed-action-label">${content}</span></${tag}>`;
+    },
+  );
+}
+
 export function scopeReferenceHeadHtml(headHtml: string) {
   const withoutReferenceFonts = headHtml.replace(
     /<link\b[^>]*href=["']https:\/\/fonts\.googleapis\.com[^>]*>\s*/gi,

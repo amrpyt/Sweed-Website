@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 import type { Article } from "@/content/types";
 import { articlesPageSource } from "@/content/public-site/articles-page";
 import { createArticleJsonLd, getArticleDetailModel } from "./article-detail-model";
@@ -85,7 +86,9 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
                 <p>لو محتاج تطبق الفكرة</p>
                 <h2>{model.relatedService.title}</h2>
                 <span>{model.relatedService.summary}</span>
-                <Link href={model.relatedService.href}>اعرف خدمة {model.relatedService.title}</Link>
+                <ButtonLink href={model.relatedService.href} size="compact">
+                  اعرف خدمة {model.relatedService.title}
+                </ButtonLink>
               </div>
             </aside>
           </div>
@@ -118,7 +121,9 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
             </div>
             <div className={styles.ctaActions}>
               {articlesPageSource.finalCta.actions.map((action) => (
-                <Link data-variant={action.variant} href={action.href} key={action.href}>{action.label}</Link>
+                <ButtonLink href={action.href} key={action.href} variant={action.variant}>
+                  {action.label}
+                </ButtonLink>
               ))}
             </div>
           </div>

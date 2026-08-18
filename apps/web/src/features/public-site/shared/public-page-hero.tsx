@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { ButtonLink } from "@/components/ui/button";
 import type { LinkTarget } from "@/content/types";
 import styles from "./public-page-hero.module.css";
 
@@ -30,14 +30,15 @@ export function PublicPageHero({
           {actions.length > 0 ? (
             <div className={styles.actions}>
               {actions.map((action) => (
-                <Link
+                <ButtonLink
                   className={styles.action}
-                  data-variant={action.variant ?? "primary"}
                   href={action.href}
                   key={`${action.href}-${action.label}`}
+                  size="hero"
+                  variant={action.variant ?? "primary"}
                 >
                   {action.label}
-                </Link>
+                </ButtonLink>
               ))}
             </div>
           ) : null}

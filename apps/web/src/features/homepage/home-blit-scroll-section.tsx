@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/motion/reveal";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import { homepageContent } from "@/content/homepage";
 import { HomeVideoDialog } from "./home-video-dialog";
 import styles from "./home-blit-scroll-section.module.css";
@@ -105,9 +106,11 @@ export function HomeBlitScrollSection() {
             <span>رسالتنا</span>
             <p>{removeStatementLabel(about.mission)}</p>
           </div>
-          <Link className={styles.aboutLink} href={about.action.href}>
-            {about.action.label}
-            <i className="fas fa-arrow-left" aria-hidden="true" />
+          <Link
+            className={getBrandActionButtonClassName({ className: styles.aboutLink, size: "compact" })}
+            href={about.action.href}
+          >
+            <BrandActionButtonContent>{about.action.label}</BrandActionButtonContent>
           </Link>
         </Reveal>
       </div>

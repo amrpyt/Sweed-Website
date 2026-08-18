@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { AccordionItem } from "@/components/ui/accordion";
+import { ButtonLink } from "@/components/ui/button";
 import { offersPageSource, type OfferPackageSource, type OfferServiceGroupSource } from "@/content/public-site/offers-page";
 import { PublicPageShell } from "@/features/public-site/pages/public-page-shell";
 import { PublicPageHero } from "@/features/public-site/shared/public-page-hero";
@@ -87,9 +87,9 @@ export function OffersExecutivePage() {
             </div>
             <div className={styles.ctaActions}>
               {offersPageSource.finalCta.actions.map((action) => (
-                <Link data-variant={action.variant} href={action.href} key={action.href}>
+                <ButtonLink href={action.href} key={action.href} variant={action.variant}>
                   {action.label}
-                </Link>
+                </ButtonLink>
               ))}
             </div>
           </div>
@@ -131,7 +131,7 @@ function PackageCard({ packageSource }: { packageSource: OfferPackageSource }) {
           <li key={feature}>{feature}</li>
         ))}
       </ul>
-      <Link href={packageSource.href}>{packageSource.actionLabel}</Link>
+      <ButtonLink href={packageSource.href} size="compact">{packageSource.actionLabel}</ButtonLink>
     </article>
   );
 }

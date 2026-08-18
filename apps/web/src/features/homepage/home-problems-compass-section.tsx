@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { CSSProperties } from "react";
 import { useLayoutEffect, useRef } from "react";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import { homepageContent } from "@/content/homepage";
 import { useHomeConversion } from "./home-conversion-context";
 import styles from "./home-problems-compass-section.module.css";
@@ -170,9 +171,15 @@ function DirectionHub({
           {selectedProblem?.serviceKey ?? "اختار المشكلة الأقرب لوضعك"}
         </strong>
         <p>{selectedProblem?.solution ?? "هنحوّل وصفك لاتجاه واضح وأول خطوة عملية."}</p>
-        <button type="button" disabled={!selectedProblem} onClick={onContinue}>
-          {selectedProblem ? "ابدأ أول خطوة" : "اختار من القائمة"}
-          <i className="fas fa-arrow-left" aria-hidden="true" />
+        <button
+          className={getBrandActionButtonClassName({ size: "compact" })}
+          type="button"
+          disabled={!selectedProblem}
+          onClick={onContinue}
+        >
+          <BrandActionButtonContent>
+            {selectedProblem ? "ابدأ أول خطوة" : "اختار من القائمة"}
+          </BrandActionButtonContent>
         </button>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 import { articlesPageSource, getKnowledgeArticles, type KnowledgeArticle } from "@/content/public-site/articles-page";
 import { getArticlesPageModel } from "@/features/public-site";
 import { PublicPageShell } from "@/features/public-site/pages/public-page-shell";
@@ -72,7 +73,9 @@ export function ArticlesExecutivePage() {
               <h2>{articlesPageSource.relationship.title}</h2>
               <p>{articlesPageSource.relationship.summary}</p>
             </div>
-            <Link href={articlesPageSource.relationship.action.href}>{articlesPageSource.relationship.action.label}</Link>
+            <ButtonLink href={articlesPageSource.relationship.action.href} size="compact" variant="secondary">
+              {articlesPageSource.relationship.action.label}
+            </ButtonLink>
           </div>
         </section>
 
@@ -84,7 +87,9 @@ export function ArticlesExecutivePage() {
             </div>
             <div className={styles.actions}>
               {articlesPageSource.finalCta.actions.map((action) => (
-                <Link data-variant={action.variant} href={action.href} key={action.href}>{action.label}</Link>
+                <ButtonLink href={action.href} key={action.href} variant={action.variant}>
+                  {action.label}
+                </ButtonLink>
               ))}
             </div>
           </div>

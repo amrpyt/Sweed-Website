@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { getReferenceHtml, type ReferenceHtmlPage } from "./reference-html-sources";
 import {
   applySweedReferenceTheme,
+  decorateReferenceActionButtons,
   guardReferenceScript,
   scopeReferenceHeadHtml,
   stripReferenceChrome,
@@ -67,9 +68,14 @@ describe("reference page integration normalization", () => {
 
     expect(scoped).toContain("--sweed-button-primary-bg: #261b3e;");
     expect(scoped).toContain("--sweed-button-accent: #ed2062;");
+    expect(scoped).toContain("--sweed-action-icon-size: var(--cds-spacing-07);");
     expect(scoped).toContain("border-radius: var(--shape-control);");
     expect(scoped).toContain("min-height: var(--control-height-md);");
     expect(scoped).toContain("line-height: var(--control-text-leading);");
+    expect(scoped).toContain("clip-path: inset(0 calc(100% - var(--sweed-action-icon-size)) 0 0 round var(--sweed-action-inner-radius));");
+    expect(scoped).toContain("clip-path: inset(0 0 0 0 round var(--sweed-action-inner-radius));");
+    expect(scoped).toContain("color: #261b3e !important;");
+    expect(scoped).toContain("color: #ffffff !important;");
     expect(scoped).toContain("padding-block-start: var(--control-padding-block-start);");
     expect(scoped).toContain("padding-block-end: var(--control-padding-block-end);");
     expect(scoped).toContain(`${referenceButtonSelector(".btn-primary")} {`);
@@ -85,6 +91,11 @@ describe("reference page integration normalization", () => {
     expect(scoped).toContain(`${referenceButtonSelector(".ov-close")} {`);
     expect(scoped).toContain(":focus-visible");
     expect(scoped).toContain("@media (prefers-reduced-motion: reduce)");
+
+    const decorated = decorateReferenceActionButtons('<button class="btn btn-primary">احجز استشارتك</button>');
+    expect(decorated).toContain('class="sweed-action-fill"');
+    expect(decorated).toContain('class="sweed-action-icon"');
+    expect(decorated).toContain('class="sweed-action-label">احجز استشارتك</span>');
   });
 
   test("themes inline SVG and animation colors without changing source bytes", () => {

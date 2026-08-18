@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, type ReactNode, useState } from "react";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import { homepageContent } from "@/content/homepage";
 import { useHomeConversion } from "./home-conversion-context";
 import styles from "./home-contact-section.module.css";
@@ -229,9 +230,15 @@ export function HomeContactSection() {
             />
           </Field>
 
-          <button type="submit" disabled={submitState === "submitting"} aria-busy={submitState === "submitting"}>
-            {submitState === "submitting" ? "جاري إرسال الطلب..." : "ابعت طلبك"}
-            <i className="fas fa-arrow-left" aria-hidden="true" />
+          <button
+            className={getBrandActionButtonClassName({ size: "compact" })}
+            type="submit"
+            disabled={submitState === "submitting"}
+            aria-busy={submitState === "submitting"}
+          >
+            <BrandActionButtonContent>
+              {submitState === "submitting" ? "جاري إرسال الطلب..." : "ابعت طلبك"}
+            </BrandActionButtonContent>
           </button>
 
           <div className={styles.formStatus} aria-live="polite" data-state={submitState}>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedCounter } from "@/components/enhanced/animated-counter";
+import { ButtonLink } from "@/components/ui/button";
 import { aboutPageContent, type AboutMetric } from "@/content/about-page";
 import { homepageContent } from "@/content/homepage";
 import { HomeVideoDialog } from "@/features/homepage/home-video-dialog";
@@ -245,10 +246,9 @@ export function AboutPublicPage() {
                 </ol>
               </div>
 
-              <Link className={styles.primaryAction} href={content.methodology.action.href}>
+              <ButtonLink className={styles.primaryAction} href={content.methodology.action.href} size="compact">
                 {content.methodology.action.label}
-                <i className="fas fa-arrow-left" aria-hidden="true" />
-              </Link>
+              </ButtonLink>
             </div>
           </section>
 
@@ -368,13 +368,12 @@ export function AboutPublicPage() {
                 <p>{content.cta.summary}</p>
               </div>
               <div className={styles.ctaActions}>
-                <Link className={styles.ctaPrimary} href={content.cta.primary.href}>
+                <ButtonLink className={styles.ctaPrimary} href={content.cta.primary.href}>
                   {content.cta.primary.label}
-                  <i className="fas fa-arrow-left" aria-hidden="true" />
-                </Link>
-                <Link className={styles.ctaSecondary} href={content.cta.secondary.href}>
+                </ButtonLink>
+                <ButtonLink className={styles.ctaSecondary} href={content.cta.secondary.href} variant="secondary">
                   {content.cta.secondary.label}
-                </Link>
+                </ButtonLink>
               </div>
             </div>
           </section>

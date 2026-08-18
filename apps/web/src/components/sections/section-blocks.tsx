@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Reveal } from "@/components/motion/reveal";
+import { ButtonLink } from "@/components/ui/button";
 import type { CTAContent, HeroContent, IconTextItem, SectionHeaderContent, StatItem } from "@/content/types";
 import styles from "./section-blocks.module.css";
 
@@ -24,9 +24,9 @@ export function LegacyDerivedHero({
           {content.actions?.length ? (
             <div className={styles.actions}>
               {content.actions.map((action) => (
-                <Link href={action.href} key={action.href}>
+                <ButtonLink href={action.href} key={action.href} size="hero" variant={action.variant ?? "primary"}>
                   {action.label}
-                </Link>
+                </ButtonLink>
               ))}
             </div>
           ) : null}
@@ -111,7 +111,7 @@ export function CtaPanel({ content }: { content: CTAContent }) {
     <Reveal className={styles.cta} variant="scaleIn">
       <h2>{content.title}</h2>
       <p>{content.summary}</p>
-      <Link href={content.primaryAction.href}>{content.primaryAction.label}</Link>
+      <ButtonLink href={content.primaryAction.href}>{content.primaryAction.label}</ButtonLink>
     </Reveal>
   );
 }

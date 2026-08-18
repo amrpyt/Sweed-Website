@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 import type { OfferComparisonSource } from "@/content/public-site/offers-page";
 import styles from "./package-comparison.module.css";
 
@@ -134,9 +135,9 @@ export function PackageComparisonButton({
 
   return (
     <>
-      <button className={className} type="button" onClick={() => setOpen(true)}>
+      <Button className={className} size="compact" type="button" onClick={() => setOpen(true)}>
         {label}
-      </button>
+      </Button>
       <PackageComparison comparison={comparison} open={open} onClose={() => setOpen(false)} />
     </>
   );

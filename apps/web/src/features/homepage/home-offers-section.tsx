@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Reveal } from "@/components/motion/reveal";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import { homepageContent } from "@/content/homepage";
 import { useHomeConversion } from "./home-conversion-context";
 import styles from "./home-offers-section.module.css";
@@ -56,15 +57,14 @@ export function HomeOffersSection() {
                   </ul>
 
                   <button
-                    className={styles.offerAction}
+                    className={getBrandActionButtonClassName({ className: styles.offerAction, size: "compact" })}
                     type="button"
                     aria-pressed={isSelected}
                     onClick={() => {
                       selectAndFocusContact({ offer: offer.title, source: "offers" });
                     }}
                   >
-                    {offer.ctaLabel ?? "اطلب الباقة"}
-                    <i className="fas fa-arrow-left" aria-hidden="true" />
+                    <BrandActionButtonContent>{offer.ctaLabel ?? "اطلب الباقة"}</BrandActionButtonContent>
                   </button>
                 </article>
               </Reveal>
@@ -74,7 +74,12 @@ export function HomeOffersSection() {
 
         <div className={styles.allOffersLink}>
           <p>{homepageContent.offersTail}</p>
-          <Link href="/#contact">احجز استشارة ونحدد مع بعض</Link>
+          <Link
+            className={getBrandActionButtonClassName({ size: "compact" })}
+            href="/#contact"
+          >
+            <BrandActionButtonContent>احجز استشارة ونحدد مع بعض</BrandActionButtonContent>
+          </Link>
         </div>
       </div>
     </section>

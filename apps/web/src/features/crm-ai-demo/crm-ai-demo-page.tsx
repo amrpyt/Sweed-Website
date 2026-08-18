@@ -3,27 +3,28 @@
 import {
   Activity,
   ArrowLeft,
-  Bot,
+  Banknote,
+  BotMessageSquare,
   Check,
   ChevronDown,
-  CircleDollarSign,
+  CircleUserRound,
   Clock3,
   Command,
-  MessageCircle,
-  Phone,
-  RefreshCcw,
+  MessageSquareText,
+  PhoneCall,
+  RotateCcw,
   Search,
   Send,
   Sparkles,
   Target,
   TrendingUp,
-  UserRound,
-  UsersRound,
   WandSparkles,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useReducer, useState } from "react";
 import { demoReducer, initialDemoState, stageLabel, type LeadStage } from "./demo-state";
+import { SocialInbox } from "./social-inbox";
+import { SourceIcon } from "./source-icon";
 import styles from "./crm-ai-demo.module.css";
 
 const stages: LeadStage[] = ["new", "qualified", "proposal", "won"];
@@ -38,6 +39,7 @@ export function CrmAiDemoPage() {
   const [state, dispatch] = useReducer(demoReducer, initialDemoState);
   const [mobileView, setMobileView] = useState<"pipeline" | "lead" | "agent">("pipeline");
   const selectedLead = state.leads.find((lead) => lead.id === state.selectedLeadId) ?? state.leads[0];
+  const selectedThread = state.conversations[selectedLead.id] ?? [];
 
   const metrics = useMemo(() => {
     const openValue = state.leads
@@ -53,7 +55,7 @@ export function CrmAiDemoPage() {
     };
   }, [state.leads]);
 
-  const runAgentAction = (type: "analyze" | "draft" | "advance") => {
+  const runAgentAction = (type: "analyze" | "draft" | "reply" | "advance") => {
     dispatch({ type: "thinking" });
     window.setTimeout(() => dispatch({ type }), 620);
   };
@@ -89,9 +91,12 @@ export function CrmAiDemoPage() {
               <kbd>⌘ K</kbd>
             </button>
             <button className={styles.iconButton} type="button" onClick={() => dispatch({ type: "reset" })} aria-label="إعادة ضبط الديمو">
-              <RefreshCcw size={18} />
+              <RotateCcw size={18} />
             </button>
-            <div className={styles.avatar} aria-label="المستخدم الحالي: مريم">م</div>
+            <div className={styles.userChip} aria-label="المستخدم الحالي: مريم">
+              <CircleUserRound size={20} />
+              <span>مريم</span>
+            </div>
           </div>
         </header>
 
@@ -114,7 +119,7 @@ export function CrmAiDemoPage() {
             </div>
 
             <div className={styles.metricsRow}>
-              <Metric icon={<CircleDollarSign size={17} />} label="Pipeline" value={compactMoney(metrics.pipeline)} />
+              <Metric icon={<Banknote size={17} />} label="Pipeline" value={compactMoney(metrics.pipeline)} />
               <Metric icon={<Target size={17} />} label="جاهزين" value={`${metrics.qualified}`} />
               <Metric icon={<TrendingUp size={17} />} label="Score" value={`${metrics.averageScore}`} />
             </div>
@@ -144,6 +149,10 @@ export function CrmAiDemoPage() {
                           <span className={styles.leadIdentity}>
                             <strong>{lead.name}</strong>
                             <small>{lead.company}</small>
+                            <span className={styles.leadSource}>
+                              <SourceIcon source={lead.source} size={13} />
+                              <small>{lead.sourceLabel}</small>
+                            </span>
                           </span>
                           <span className={styles.leadScore}>{lead.score}</span>
                         </button>
@@ -162,17 +171,23 @@ export function CrmAiDemoPage() {
                   <span className={styles.metaLabel}>{selectedLead.company}</span>
                   <h2>{selectedLead.name}</h2>
                   <div className={styles.contactLine}>
-                    <span><Phone size={14} />{selectedLead.phone}</span>
-                    <span><UserRound size={14} />{selectedLead.owner}</span>
+                    <span><PhoneCall size={14} />{selectedLead.phone}</span>
+                    <span><CircleUserRound size={14} />{selectedLead.owner}</span>
+                  </div>
+                  <div className={styles.sourceContext}>
+                    <span className={`${styles.sourceIcon} ${styles[`source_${selectedLead.source}`]}`}>
+                      <SourceIcon source={selectedLead.source} size={15} />
+                    </span>
+                    <span><strong>{selectedLead.sourceLabel}</strong><small>{selectedLead.sourceHandle}</small></span>
                   </div>
                 </div>
               </div>
               <div className={styles.detailActions}>
                 <button className={styles.secondaryButton} type="button">
-                  <Phone size={17} /> اتصال
+                  <PhoneCall size={17} /> اتصال
                 </button>
                 <button className={styles.primaryButton} type="button" onClick={() => runAgentAction("draft")}>
-                  <MessageCircle size={17} /> واتساب
+                  <i className="fa-brands fa-whatsapp" aria-hidden="true" /> واتساب
                 </button>
               </div>
             </div>
@@ -192,8 +207,8 @@ export function CrmAiDemoPage() {
             </div>
 
             <div className={styles.infoGrid}>
-              <Info label="قيمة الفرصة" value={money.format(selectedLead.value)} icon={<CircleDollarSign size={17} />} />
-              <Info label="المصدر" value={selectedLead.channel} icon={<UsersRound size={17} />} />
+              <Info label="قيمة الفرصة" value={money.format(selectedLead.value)} icon={<Banknote size={17} />} />
+              <Info label="المصدر" value={`${selectedLead.sourceLabel} · ${selectedLead.sourceHandle}`} icon={<SourceIcon source={selectedLead.source} size={17} />} />
               <Info label="آخر تواصل" value={selectedLead.lastTouch} icon={<Clock3 size={17} />} />
               <Info label="الخطوة الجاية" value={selectedLead.nextAction} icon={<ArrowLeft size={17} />} />
             </div>
@@ -230,7 +245,7 @@ export function CrmAiDemoPage() {
           >
             <div className={styles.agentHeader}>
               <div className={styles.agentIdentity}>
-                <span className={styles.agentOrb}><Bot size={19} /></span>
+                <span className={styles.agentOrb}><BotMessageSquare size={19} /></span>
                 <div>
                   <strong>SWEED AI Agent</strong>
                   <span><i /> متصل بالـCRM</span>
@@ -242,8 +257,16 @@ export function CrmAiDemoPage() {
             <div className={styles.agentContext}>
               <span>السياق الحالي</span>
               <strong>{selectedLead.name}</strong>
-              <small>{selectedLead.company} · {stageLabel(selectedLead.stage)}</small>
+              <small>{selectedLead.company} · {selectedLead.sourceLabel} · {stageLabel(selectedLead.stage)}</small>
             </div>
+
+            <SocialInbox
+              lead={selectedLead}
+              messages={selectedThread}
+              thinking={state.agentMode === "thinking"}
+              replied={selectedThread.some((message) => message.sender === "agent")}
+              onReply={() => runAgentAction("reply")}
+            />
 
             <div className={styles.agentConversation} aria-live="polite">
               <div className={styles.agentMessage}>
@@ -271,7 +294,7 @@ export function CrmAiDemoPage() {
               />
               <AgentAction
                 done={state.completedActions.includes("draft")}
-                icon={<MessageCircle size={18} />}
+                icon={<i className="fa-brands fa-whatsapp" aria-hidden="true" />}
                 title="جهّز متابعة واتساب"
                 description="رسالة مبنية على آخر تفاعل"
                 onClick={() => runAgentAction("draft")}
@@ -287,10 +310,10 @@ export function CrmAiDemoPage() {
 
             <div className={styles.agentComposer}>
               <div>
-                <Sparkles size={16} />
-                <span>اسأل عن العميل الحالي...</span>
+                <MessageSquareText size={16} />
+                <span>رد على الرسالة الحالية بالـAI...</span>
               </div>
-              <button type="button" aria-label="إرسال" onClick={() => runAgentAction("analyze")}>
+              <button type="button" aria-label="إرسال رد بالذكاء الاصطناعي" onClick={() => runAgentAction("reply")}>
                 <Send size={16} />
               </button>
             </div>
@@ -326,8 +349,8 @@ function MobileTab({ active, onClick, children }: { active: boolean; onClick: ()
 }
 
 function activityIcon(kind: "message" | "call" | "agent" | "stage") {
-  if (kind === "message") return <MessageCircle size={15} />;
-  if (kind === "call") return <Phone size={15} />;
+  if (kind === "message") return <MessageSquareText size={15} />;
+  if (kind === "call") return <PhoneCall size={15} />;
   if (kind === "stage") return <TrendingUp size={15} />;
   return <Sparkles size={15} />;
 }

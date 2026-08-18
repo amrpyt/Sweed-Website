@@ -4,7 +4,24 @@ Updated: 2026-08-18T17:07:00+03:00
 
 ## Active
 
-None.
+### SWEED-041 — CRM social inbox + AI replies
+
+Status: in progress
+Priority: high
+Plan: `.ai/plans/2026-08-18-crm-social-inbox-agent-pass.md`
+
+#### Acceptance Criteria
+
+- [ ] No new hand-authored SVG artwork is added; social/channel visuals come from established icon libraries already available to the app.
+- [ ] Every demo lead has an explicit acquisition source and it is visible in pipeline and lead context.
+- [ ] Instagram, Facebook, TikTok, website, and referral sources are represented cleanly and consistently.
+- [ ] The AI Agent has a unified social conversation surface tied to the active lead.
+- [ ] The Agent can classify the active lead and send a deterministic simulated reply to the latest inbound message.
+- [ ] AI replies update local conversation/activity state only; no backend/API dependency is introduced.
+- [ ] Existing analyze/draft/advance/reset flows continue to work.
+- [ ] Desktop/mobile layouts remain overflow-free and reduced-motion remains valid.
+- [ ] Focused tests, clean full check, build, deployment, and public browser QA pass.
+- [ ] Changes are committed and not pushed.
 
 ## Completed
 

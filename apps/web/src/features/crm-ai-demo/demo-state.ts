@@ -1,10 +1,13 @@
 export type LeadStage = "new" | "qualified" | "proposal" | "won";
+export type LeadSource = "instagram" | "facebook" | "tiktok" | "website" | "referral";
 
 export type DemoLead = {
   id: string;
   name: string;
   company: string;
-  channel: string;
+  source: LeadSource;
+  sourceLabel: string;
+  sourceHandle: string;
   stage: LeadStage;
   score: number;
   value: number;
@@ -13,6 +16,15 @@ export type DemoLead = {
   lastTouch: string;
   nextAction: string;
   insight: string;
+};
+
+export type DemoConversationMessage = {
+  id: string;
+  direction: "inbound" | "outbound";
+  sender: "lead" | "agent";
+  source: LeadSource;
+  text: string;
+  time: string;
 };
 
 export type DemoActivity = {
@@ -26,6 +38,7 @@ export type DemoActivity = {
 export type DemoState = {
   selectedLeadId: string;
   leads: DemoLead[];
+  conversations: Record<string, DemoConversationMessage[]>;
   activities: DemoActivity[];
   agentMode: "idle" | "thinking" | "ready";
   agentMessage: string;
@@ -42,7 +55,9 @@ export const initialDemoState: DemoState = {
       id: "lead-1",
       name: "عمر خالد",
       company: "NOVA Clinics",
-      channel: "حملة Meta",
+      source: "facebook",
+      sourceLabel: "Facebook",
+      sourceHandle: "Lead Ad · NOVA Clinics",
       stage: "qualified",
       score: 91,
       value: 84000,
@@ -56,7 +71,9 @@ export const initialDemoState: DemoState = {
       id: "lead-2",
       name: "سارة عادل",
       company: "Grain House",
-      channel: "Instagram DM",
+      source: "instagram",
+      sourceLabel: "Instagram",
+      sourceHandle: "@grainhouse.eg",
       stage: "new",
       score: 76,
       value: 52000,
@@ -70,7 +87,9 @@ export const initialDemoState: DemoState = {
       id: "lead-3",
       name: "يوسف سامح",
       company: "Kite Logistics",
-      channel: "إحالة",
+      source: "referral",
+      sourceLabel: "إحالة",
+      sourceHandle: "عميل حالي",
       stage: "proposal",
       score: 88,
       value: 126000,
@@ -84,7 +103,9 @@ export const initialDemoState: DemoState = {
       id: "lead-4",
       name: "دينا وائل",
       company: "Forma Home",
-      channel: "الموقع",
+      source: "website",
+      sourceLabel: "Website",
+      sourceHandle: "sweed.com/contact",
       stage: "won",
       score: 96,
       value: 68000,
@@ -98,7 +119,9 @@ export const initialDemoState: DemoState = {
       id: "lead-5",
       name: "كريم فؤاد",
       company: "Volt Auto Care",
-      channel: "Google Ads",
+      source: "tiktok",
+      sourceLabel: "TikTok",
+      sourceHandle: "Lead Form · Auto Care",
       stage: "new",
       score: 63,
       value: 39000,
@@ -109,6 +132,58 @@ export const initialDemoState: DemoState = {
       insight: "ملأ النموذج ولم يرد على أول اتصال. مصدر الحملة عالي النية الشرائية.",
     },
   ],
+  conversations: {
+    "lead-1": [
+      {
+        id: "message-lead-1-1",
+        direction: "inbound",
+        sender: "lead",
+        source: "facebook",
+        text: "شوفت الإعلان. محتاجين نجهز إطلاق الفرع الجديد قبل أول الشهر، نقدر نبدأ إمتى؟",
+        time: "12:42",
+      },
+    ],
+    "lead-2": [
+      {
+        id: "message-lead-2-1",
+        direction: "inbound",
+        sender: "lead",
+        source: "instagram",
+        text: "محتاجين حد يمسك إدارة السوشيال وإنتاج المحتوى. الباقات عندكم بتبدأ من إيه؟",
+        time: "12:31",
+      },
+    ],
+    "lead-3": [
+      {
+        id: "message-lead-3-1",
+        direction: "inbound",
+        sender: "lead",
+        source: "referral",
+        text: "العرض مناسب، بس محتاجين نرتب تقسيم الدفعات قبل الاعتماد.",
+        time: "أمس",
+      },
+    ],
+    "lead-4": [
+      {
+        id: "message-lead-4-1",
+        direction: "inbound",
+        sender: "lead",
+        source: "website",
+        text: "تم اعتماد الباقة. ابعتولي خطوات البداية والمطلوب من الفريق عندنا.",
+        time: "11:10",
+      },
+    ],
+    "lead-5": [
+      {
+        id: "message-lead-5-1",
+        direction: "inbound",
+        sender: "lead",
+        source: "tiktok",
+        text: "شفت الفيديو وعايز أعرف لو تقدروا تزودوا الحجوزات للفرع عندنا.",
+        time: "10:18",
+      },
+    ],
+  },
   activities: [
     {
       id: "activity-1",
@@ -139,6 +214,7 @@ export type DemoAction =
   | { type: "thinking" }
   | { type: "analyze" }
   | { type: "draft" }
+  | { type: "reply" }
   | { type: "advance" }
   | { type: "reset" };
 
@@ -187,6 +263,42 @@ export function demoReducer(state: DemoState, action: DemoAction): DemoState {
     };
   }
 
+  if (action.type === "reply") {
+    const replyText = socialReplyFor(lead);
+    const replyId = `reply-${lead.id}`;
+    const currentThread = state.conversations[lead.id] ?? [];
+    return {
+      ...state,
+      agentMode: "ready",
+      agentMessage: `تم الرد على ${lead.name} عبر ${lead.sourceLabel}. الرسالة اتضافت للمحادثة وسجل النشاط.`,
+      completedActions: [...new Set([...state.completedActions, "reply"])],
+      conversations: {
+        ...state.conversations,
+        [lead.id]: [
+          ...currentThread.filter((message) => message.id !== replyId),
+          {
+            id: replyId,
+            direction: "outbound",
+            sender: "agent",
+            source: lead.source,
+            text: replyText,
+            time: "الآن",
+          },
+        ],
+      },
+      activities: [
+        {
+          id: `social-reply-${lead.id}`,
+          kind: "agent",
+          title: `AI Agent رد على ${lead.sourceLabel}`,
+          detail: replyText,
+          time: "الآن",
+        },
+        ...state.activities.filter((item) => item.id !== `social-reply-${lead.id}`),
+      ],
+    };
+  }
+
   if (action.type === "advance") {
     const nextStage: Record<LeadStage, LeadStage> = {
       new: "qualified",
@@ -229,5 +341,16 @@ export function stageLabel(stage: LeadStage) {
     proposal: "عرض سعر",
     won: "تم التعاقد",
   }[stage];
+}
+
+function socialReplyFor(lead: DemoLead) {
+  const replies: Record<LeadSource, string> = {
+    instagram: `أهلًا ${lead.name} 👋 طبعًا. إدارة السوشيال وإنتاج المحتوى بيتحددوا حسب حجم النشر والتصوير المطلوب. أقدر أسألك سؤالين سريعين وأرشح لك أنسب نطاق؟`,
+    facebook: `أهلًا ${lead.name}. نقدر نرتب الخطة على موعد افتتاح الفرع ونحدد أولويات الإطلاق من دلوقتي. أبعت لك تصور البداية والخطوات المطلوبة؟`,
+    tiktok: `أهلًا ${lead.name} 👋 نقدر نربط المحتوى والحملات بهدف الحجوزات بدل المشاهدات فقط. ابعت لي موقع الفرع والخدمة الأعلى أولوية ونبني عليها التصور.`,
+    website: `أهلًا ${lead.name}. تم تسجيل طلبك، والخطوة الجاية تجهيز onboarding والمتطلبات عشان نبدأ بدون تعطيل. هبعت لك القائمة مرتبة الآن.`,
+    referral: `أهلًا ${lead.name}. تمام، نقدر نراجع تقسيم الدفعات ونثبت الجدول قبل اعتماد العرض. هجهز لك الاختيارات بشكل واضح ونراجعها سوا.`,
+  };
+  return replies[lead.source];
 }
 

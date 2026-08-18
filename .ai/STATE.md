@@ -4,17 +4,18 @@ Updated: 2026-08-18T17:07:00+03:00
 Git branch: main
 Git HEAD: `499f40d9ce5192cd7156b28c771b382f203cf5ae`
 Application commit: `feat: add CRM AI agent interactive demo`
-Active Task: None
-Active Plan: None
-Status: SWEED-040 completed, deployed, and verified
+Active Task: SWEED-041 — CRM social inbox + AI replies
+Active Plan: `.ai/plans/2026-08-18-crm-social-inbox-agent-pass.md`
+Status: CRM demo refinement in progress: cleaner icon system, explicit social sources, and AI social replies
 
 ## Current Goal
 
-Preserve the completed standalone CRM + AI Agent demo at `/crm-ai-demo` until it is intentionally surfaced from the Services page.
+Refine `/crm-ai-demo` so lead acquisition sources are immediately visible and the AI Agent can classify and reply to incoming social conversations while staying frontend-only.
 
 ## In Progress
 
-None.
+- Replacing generic channel visuals with existing icon-library assets only; no hand-authored SVGs.
+- Adding explicit social-source metadata and a unified AI-assisted inbox to the CRM demo.
 
 ## Completed Recently
 

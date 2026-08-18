@@ -1,5 +1,5 @@
 import { offersPageSource } from "@/content/public-site/offers-page";
-import { LegacyPage } from "@/features/legacy-site";
+import { OffersExecutivePage } from "@/features/public-site/offers/offers-executive-page";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -9,5 +9,5 @@ export const metadata = createPageMetadata({
 });
 
 export default function OffersPage() {
-  return <LegacyPage page="offers" presentation="reference" />;
+  return <OffersExecutivePage />;
 }

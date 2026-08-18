@@ -7,15 +7,24 @@ function readRoute(route: string) {
   return readFileSync(new URL(`${route}/page.tsx`, marketingRoot), "utf8");
 }
 
-describe("uploaded reference route contract", () => {
-  for (const route of ["services", "portfolio", "offers"] as const) {
-    test(`${route} renders the approved reference presentation`, () => {
-      const source = readRoute(route);
+describe("final v4 route contract", () => {
+  test("services renders the modular public implementation", () => {
+    const source = readRoute("services");
+    expect(source).toContain("ServicesPublicPage");
+    expect(source).not.toContain("LegacyPage");
+  });
 
-      expect(source).toContain('import { LegacyPage } from "@/features/legacy-site"');
-      expect(source).toContain(`<LegacyPage page="${route}" presentation="reference" />`);
-    });
-  }
+  test("portfolio renders the modular executive implementation", () => {
+    const source = readRoute("portfolio");
+    expect(source).toContain("PortfolioExecutivePage");
+    expect(source).not.toContain("LegacyPage");
+  });
+
+  test("offers renders the modular executive implementation", () => {
+    const source = readRoute("offers");
+    expect(source).toContain("OffersExecutivePage");
+    expect(source).not.toContain("LegacyPage");
+  });
 
   test("articles stays on the current knowledge-center implementation", () => {
     const source = readRoute("articles");

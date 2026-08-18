@@ -26,8 +26,8 @@ export function ServicesPublicPage() {
                     ))}
                   </ul>
                 </div>
-                <Link className={styles.link} href={`/services/${service.slug}`}>
-                  اعرف المزيد
+                <Link className={styles.link} href={service.detailHref}>
+                  ناقش خدمة {service.title}
                 </Link>
               </article>
             ))}

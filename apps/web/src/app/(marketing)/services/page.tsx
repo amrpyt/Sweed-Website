@@ -1,5 +1,5 @@
 import { servicesPageSource } from "@/content/public-site/services-page";
-import { LegacyPage } from "@/features/legacy-site";
+import { ServicesPublicPage } from "@/features/public-site/pages/services-public-page";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -9,5 +9,5 @@ export const metadata = createPageMetadata({
 });
 
 export default function ServicesPage() {
-  return <LegacyPage page="services" presentation="reference" />;
+  return <ServicesPublicPage />;
 }

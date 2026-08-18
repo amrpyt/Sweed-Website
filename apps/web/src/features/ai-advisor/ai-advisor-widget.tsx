@@ -11,8 +11,8 @@ type ChatMessage = {
 };
 
 const titleId = "sweed-ai-advisor-title";
-const knowledgeBaseHref = "/#faq";
-const contactHref = "/#contact";
+const knowledgeBaseHref = "/faq";
+const contactHref = "/contact";
 const quickPrompts = homepageContent.aiSupport.prompts;
 
 const initialMessage: ChatMessage = {
@@ -130,7 +130,7 @@ export function AiAdvisorWidget() {
     <aside className={styles.root} aria-label="SWEED support center">
       <div className={styles.stack}>
         <details className={styles.supportDetails}>
-          <summary className={styles.launcher} role="button" aria-label="Open AI advisor">
+          <summary className={styles.launcher} role="button" aria-label="افتح مساعد سويد الذكي">
             <span className={styles.launcherIcon}>
               <MessageCircle aria-hidden size={22} />
               <span className={styles.launcherPulse} aria-hidden />
@@ -232,6 +232,9 @@ export function AiAdvisorWidget() {
               </div>
 
               <form className={styles.ticketForm} data-testid="sweed-support-ticket-form" onSubmit={handleTicketSubmit}>
+                <p>
+                  بإرسال بياناتك إنت بتوافق إن فريق سويد يتواصل معاك بخصوص طلبك. راجع <a href="/privacy">سياسة الخصوصية</a>.
+                </p>
                 <div className={styles.ticketGrid}>
                   <input
                     aria-label="اسم صاحب التذكرة"

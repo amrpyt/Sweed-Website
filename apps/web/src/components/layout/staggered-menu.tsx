@@ -565,10 +565,10 @@ export function StaggeredMenu({
             <Link
               className={styles.headerAction}
               data-testid="sweed-header-contact-action"
-              href="/#contact"
+              href="/contact"
               onClick={() => closeMenu(false)}
             >
-              دعنا نبدأ
+              احجز استشارتك المجانية
             </Link>
 
             <button

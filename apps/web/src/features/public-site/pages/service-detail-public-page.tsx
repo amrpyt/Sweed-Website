@@ -3,6 +3,15 @@ import type { Service } from "@/content/types";
 import { PublicPageShell } from "./public-page-shell";
 import styles from "./content-detail-public-page.module.css";
 
+const processDeliverables: Record<string, readonly string[]> = {
+  consulting: ["تقرير تشخيص", "خريطة قرار", "خطة أولويات ولوحة مؤشرات", "جدول متابعة"],
+  branding: ["وثيقة تموضع", "دليل رسائل ونبرة", "هوية بصرية", "دليل استخدام وقوالب تطبيق"],
+  "digital-marketing": ["خطة قنوات", "هيكل حملات", "إعداد تتبع وقياس", "تقرير أداء دوري وتقويم تحسين"],
+  development: ["وثيقة متطلبات", "خريطة شاشات", "النظام نفسه", "اختبارات تسليم ودليل تشغيل"],
+  advertising: ["خطة مواقع ورسالة", "مقايسة خامات", "ملف تصميمات جاهزة للطباعة", "تنفيذ ميداني موثق بالصور"],
+  media: ["خطة محتوى", "سكربتات", "مواد مصورة", "مونتاج نهائي وملفات جاهزة للنشر بالمقاسات"],
+};
+
 export function ServiceDetailPublicPage({ service }: { service: Service }) {
   return (
     <PublicPageShell page="service-detail">
@@ -44,14 +53,18 @@ export function ServiceDetailPublicPage({ service }: { service: Service }) {
             <aside className={styles.aside}>
               <h2>بنبدأ من السبب الحقيقي</h2>
               <p>{service.summary}</p>
-              <ButtonLink href="/#contact" size="compact">ناقش الخدمة مع الفريق</ButtonLink>
+              <ButtonLink href={`/contact?service=${service.slug}&source=service-detail`} size="compact">
+                ناقش خدمة {service.title}
+              </ButtonLink>
             </aside>
 
             <div className={styles.sections}>
               {service.process.map((step, index) => (
                 <article key={step}>
                   <h3>{String(index + 1).padStart(2, "0")} — {step}</h3>
-                  <p>بنحدد مخرجات الخطوة ومؤشرها قبل الانتقال للخطوة اللي بعدها.</p>
+                  <p>
+                    <strong>المخرج:</strong> {processDeliverables[service.slug]?.[index] ?? service.outcomes[index]}
+                  </p>
                 </article>
               ))}
             </div>

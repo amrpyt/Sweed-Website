@@ -222,7 +222,7 @@ export const aboutPageContent = {
         deliverable: "تقرير أداء بمؤشرات واضحة",
       },
     ] satisfies AboutMethodologyStep[],
-    action: { label: "ابدأ باستشارة مجانية", href: "/#contact" },
+    action: { label: "احجز استشارتك المجانية", href: "/contact?source=about" },
   },
   numbers: [
     { value: 15, prefix: "+", label: "سنة خبرة في السوق المصري والعربي من 2011" },
@@ -360,7 +360,7 @@ export const aboutPageContent = {
     title: "عرفت مين إحنا... تحب نتعرف على مشروعك؟",
     summary:
       "احجز استشارتك المجانية — هنسمعك، نفهم وضعك، ونقولك بصراحة تبدأ منين.",
-    primary: { label: "احجز استشارتك المجانية", href: "/#contact" },
+    primary: { label: "احجز استشارتك المجانية", href: "/contact?source=about-final" },
     secondary: { label: "شاهد أعمالنا", href: "/#portfolio" },
   },
 } as const;

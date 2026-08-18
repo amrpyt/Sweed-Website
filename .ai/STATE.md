@@ -4,17 +4,17 @@ Updated: 2026-08-18T17:50:14+03:00
 Git branch: main
 Git HEAD: `392342e`
 Application commit: `feat: add social inbox AI replies to CRM demo`
-Active Task: None
-Active Plan: None
-Status: SWEED-041 completed; 2026-08-18 demo 502 incident recovered and verified
+Active Task: SWEED-042
+Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
+Status: SWEED-042 in progress — executing final v4 public-site hardening
 
 ## Current Goal
 
-Preserve the completed `/crm-ai-demo` social-source and AI-reply experience until it is intentionally surfaced from the Services page.
+Execute the 2026-08-18 final v4 SWEED website delivery spec in priority order without rebuilding the site from scratch, while preserving the completed `/crm-ai-demo` experience.
 
 ## In Progress
 
-None.
+- Close code-resolvable P0 defects first, then shared system and page-level v4 requirements.
 
 ## Completed Recently
 

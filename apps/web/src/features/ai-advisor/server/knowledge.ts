@@ -17,42 +17,42 @@ export function buildSweedKnowledge(): SweedKnowledge {
   return {
     brand: "SWEED",
     summary:
-      "SWEED helps companies build stronger digital presence through marketing, websites, visual identity, content, advertising campaigns, AI automation, and business support.",
+      "SWEED شركة استشارات إدارية وتسويقية وتنفيذ متكامل تساعد الشركات على التشخيص وتحديد الأولويات ثم التنفيذ والقياس.",
     services: [
       {
-        title: "التسويق الرقمي",
+        title: "التسويق الرقمي وإدارة الحملات",
         details: "إدارة حملات وإعلانات ومحتوى لزيادة الظهور وجذب العملاء.",
-        url: "/services#services",
+        url: "/services/digital-marketing",
       },
       {
-        title: "تصميم وبرمجة المواقع",
+        title: "المواقع والأنظمة والحلول الرقمية",
         details: "مواقع تعريفية وتجارية وتجارب رقمية مناسبة لهوية النشاط.",
-        url: "/services#services",
+        url: "/services/software-development",
       },
       {
-        title: "الهوية البصرية والتصميم",
+        title: "بناء البراند والهوية البصرية",
         details: "شعارات، مواد إعلانية، وتصميمات سوشيال ميديا متناسقة.",
-        url: "/services#services",
+        url: "/services/branding",
       },
       {
         title: "الذكاء الاصطناعي والأتمتة",
         details: "مساعدات ذكية وسيناريوهات أتمتة لتسريع الردود وفرز العملاء وتوجيههم.",
-        url: "/services#ai-automation-demo",
+        url: "/crm-ai-demo",
       },
     ],
     packages: [
       {
-        title: "باقة البداية",
+        title: "انطلاقة",
         details: "مناسبة لمن يريد حضور رقمي واضح وبداية منظمة.",
         url: "/offers#offers",
       },
       {
-        title: "باقة النمو",
+        title: "نمو",
         details: "مناسبة لمن يريد حملات ومحتوى ومتابعة لتحويل الزيارات إلى فرص.",
         url: "/offers#offers",
       },
       {
-        title: "باقة التوسع",
+        title: "تحول رقمي",
         details: "مناسبة للشركات التي تحتاج موقع، تسويق، أتمتة، ومتابعة أعمق.",
         url: "/offers#offers",
       },
@@ -61,18 +61,18 @@ export function buildSweedKnowledge(): SweedKnowledge {
       {
         question: "كيف أختار الخدمة المناسبة؟",
         answer: "نبدأ بفهم هدفك: حضور، عملاء محتملين، مبيعات، أو أتمتة. بعدها نرشح مسار واضح.",
-        url: "/#faq",
+        url: "/faq",
       },
       {
         question: "هل الأسعار ثابتة؟",
         answer: "التكلفة تعتمد على نطاق العمل، لذلك أي رقم نهائي يحتاج تأكيد من فريق SWEED.",
-        url: "/#contact",
+        url: "/contact",
       },
     ],
     contact: {
       phone: "01068274662",
       email: "info@sweed.com",
-      url: "/#contact",
+      url: "/contact",
     },
   };
 }

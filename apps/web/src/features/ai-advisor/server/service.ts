@@ -4,7 +4,7 @@ import type { AdvisorRequest, AdvisorResponse } from "../contracts";
 import { createSweedAdvisorAgent, hasAdvisorModelConfig } from "./agent";
 import { recordAdvisorDebugEvent } from "./debug-store";
 
-const CONTACT_HREF = "/#contact";
+const CONTACT_HREF = "/contact";
 const FALLBACK_MESSAGE = "احكي لنا هدفك بشكل مختصر وسنرتب لك نقطة بداية واضحة.";
 
 function buildLocalFallback(message: string): AdvisorResponse {
@@ -13,9 +13,9 @@ function buildLocalFallback(message: string): AdvisorResponse {
   if (/(?:موقع|ويب|برمجة|تطوير|landing|website)/i.test(normalizedMessage)) {
     return {
       message: "ابدأ بتحديد الخدمة الأساسية، الجمهور، والخطوة التي تريد من الزائر تنفيذها. بعدها نبني هيكل الموقع ومسار التحويل قبل التصميم.",
-      recommendation: "خدمة البرمجة والتطوير",
-      cta: { label: "احجز جلسة تحديد نطاق", href: CONTACT_HREF },
-      references: ["/services#development", CONTACT_HREF],
+      recommendation: "خدمة المواقع والأنظمة والحلول الرقمية",
+      cta: { label: "ناقش خدمة المواقع والأنظمة والحلول الرقمية", href: CONTACT_HREF },
+      references: ["/services/software-development", CONTACT_HREF],
       fallback: true,
     };
   }
@@ -23,9 +23,9 @@ function buildLocalFallback(message: string): AdvisorResponse {
   if (/(?:تسويق|إعلان|اعلان|مبيعات|عملاء|حملة|campaign|marketing)/i.test(normalizedMessage)) {
     return {
       message: "لمشروع جديد، الأفضل نبدأ بتحديد العرض والجمهور والهدف القابل للقياس، ثم نختبر حملة صغيرة قبل زيادة الميزانية.",
-      recommendation: "باقة النمو أو استشارة تسويقية",
+      recommendation: "باقة نمو أو الاستشارات الإدارية والتسويقية",
       cta: { label: "احجز استشارتك المجانية", href: CONTACT_HREF },
-      references: ["/#offers", "/services#consulting", CONTACT_HREF],
+      references: ["/offers", "/services/consulting", CONTACT_HREF],
       fallback: true,
     };
   }
@@ -33,9 +33,9 @@ function buildLocalFallback(message: string): AdvisorResponse {
   if (/(?:براند|هوية|شعار|لوجو|branding|brand)/i.test(normalizedMessage)) {
     return {
       message: "قبل الشعار، نحدد تموضع العلامة ورسالتها وشخصيتها. ده يخلي الهوية البصرية مبنية على قرار تجاري واضح مش ذوق فقط.",
-      recommendation: "خدمة التصميم والهوية البصرية",
-      cta: { label: "ناقش هوية مشروعك", href: CONTACT_HREF },
-      references: ["/services#branding", CONTACT_HREF],
+      recommendation: "خدمة بناء البراند والهوية البصرية",
+      cta: { label: "ناقش خدمة بناء البراند والهوية البصرية", href: CONTACT_HREF },
+      references: ["/services/branding", CONTACT_HREF],
       fallback: true,
     };
   }
@@ -45,7 +45,7 @@ function buildLocalFallback(message: string): AdvisorResponse {
       message: "ابدأ بمهمة متكررة وواضحة يمكن قياس وقتها وأخطائها. نبني لها سيناريو تجريبي قبل ربطها بأنظمة الشركة.",
       recommendation: "حل رقمي مخصص أو باقة التحول الرقمي",
       cta: { label: "اعرض علينا السيناريو", href: CONTACT_HREF },
-      references: ["/#offers", CONTACT_HREF],
+      references: ["/offers", CONTACT_HREF],
       fallback: true,
     };
   }
@@ -140,9 +140,11 @@ export function sanitizeAdvisorText(text: string) {
     .replace(/(?<!@)\b(?:www\.)?sweed(?:[a-z0-9-]+)?\.[a-z]{2,}(?=\/)/gi, "")
     .replace(/(?<!@)\bhttps?:\/\/(?:www\.)?sweed(?:[a-z0-9-]+)?\.[a-z]{2,}\b/gi, "")
     .replace(/(?<!@)\b(?:www\.)?sweed(?:[a-z0-9-]+)?\.[a-z]{2,}\b/gi, "")
-    .replace(/\/(?:scale|starter|growth|packages|package|business-starter|small-business)(?=[\s).,!?]|$)/gi, "/offers#offers")
-    .replace(/\/(?:social-media|digital-marketing|marketing|branding|brand|website|websites|[a-z0-9-]*website[a-z0-9-]*)(?=[\s).,!?]|$)/gi, "/services#services")
-    .replace(/\/(?:automation|ai-automation|demo|[a-z0-9-]*ai[a-z0-9-]*|[a-z0-9-]*automation[a-z0-9-]*)(?=[\s).,!?]|$)/gi, "/services#ai-automation-demo")
+    .replace(/\/(?:scale|starter|growth|packages|package|business-starter|small-business)(?=[\s).,!?]|$)/gi, "/offers")
+    .replace(/\/(?:social-media|digital-marketing|marketing)(?=[\s).,!?]|$)/gi, "/services/digital-marketing")
+    .replace(/\/(?:branding|brand)(?=[\s).,!?]|$)/gi, "/services/branding")
+    .replace(/\/(?:website|websites|[a-z0-9-]*website[a-z0-9-]*)(?=[\s).,!?]|$)/gi, "/services/software-development")
+    .replace(/\/(?:automation|ai-automation|demo|[a-z0-9-]*ai[a-z0-9-]*|[a-z0-9-]*automation[a-z0-9-]*)(?=[\s).,!?]|$)/gi, "/crm-ai-demo")
     .replace(/<\/((?:[a-z0-9-]+\/)?[a-z0-9-]+#[a-z0-9-]+)>/gi, "/$1")
     .replace(/<((?:\/|#)[^>\s]+)>/g, "$1")
     .replace(/\]\((\/[^)\s]+)\)/g, "]($1)");
@@ -174,7 +176,7 @@ function responseFromText(text: string, fallback: boolean): AdvisorResponse {
       label: "تواصل مع SWEED",
       href: CONTACT_HREF,
     },
-    references: ["/#services", "/#offers", CONTACT_HREF],
+    references: ["/services", "/offers", CONTACT_HREF],
     fallback,
   };
 }

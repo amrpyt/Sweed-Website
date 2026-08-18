@@ -18,7 +18,7 @@ describe("askSweedAdvisor", () => {
     });
 
     expect(response.fallback).toBe(false);
-    expect(response.cta.href).toBe("/#contact");
+    expect(response.cta.href).toBe("/contact");
   });
 
   test("returns a useful local recommendation when no model provider is configured", async () => {
@@ -32,8 +32,8 @@ describe("askSweedAdvisor", () => {
 
     expect(response.fallback).toBe(true);
     expect(response.message).toContain("تحديد العرض والجمهور");
-    expect(response.recommendation).toContain("باقة النمو");
-    expect(response.cta.href).toBe("/#contact");
+    expect(response.recommendation).toContain("باقة نمو");
+    expect(response.cta.href).toBe("/contact");
   });
 });
 
@@ -114,8 +114,8 @@ describe("sanitizeAdvisorText", () => {
   test("normalizes invented SWEED-like bare domains to supported routes", async () => {
     const { sanitizeAdvisorText } = await import("./service");
 
-    expect(sanitizeAdvisorText("start: sweedbot.com/packages")).toBe("start: /offers#offers");
-    expect(sanitizeAdvisorText("start: https://sweed.swiss/business-starter")).toBe("start: /offers#offers");
+    expect(sanitizeAdvisorText("start: sweedbot.com/packages")).toBe("start: /offers");
+    expect(sanitizeAdvisorText("start: https://sweed.swiss/business-starter")).toBe("start: /offers");
     expect(sanitizeAdvisorText("email info@sweed.com for details")).toBe("email info@sweed.com for details");
   });
 
@@ -129,10 +129,10 @@ describe("sanitizeAdvisorText", () => {
   test("removes unsupported internal routes invented by the model", async () => {
     const { sanitizeAdvisorText } = await import("./service");
 
-    expect(sanitizeAdvisorText("start here: /scale")).toBe("start here: /offers#offers");
-    expect(sanitizeAdvisorText("read more: /social-media")).toBe("read more: /services#services");
-    expect(sanitizeAdvisorText("try it: /demo")).toBe("try it: /services#ai-automation-demo");
-    expect(sanitizeAdvisorText("launch: /website-ai-launch")).toBe("launch: /services#services");
+    expect(sanitizeAdvisorText("start here: /scale")).toBe("start here: /offers");
+    expect(sanitizeAdvisorText("read more: /social-media")).toBe("read more: /services/digital-marketing");
+    expect(sanitizeAdvisorText("try it: /demo")).toBe("try it: /crm-ai-demo");
+    expect(sanitizeAdvisorText("launch: /website-ai-launch")).toBe("launch: /services/software-development");
   });
 
   test("adds pricing confirmation when the visitor asks for a price and the model omits it", async () => {
@@ -152,6 +152,6 @@ describe("sanitizeAdvisorText", () => {
   test("normalizes angle-wrapped internal routes from model output", async () => {
     const { sanitizeAdvisorText } = await import("./service");
 
-    expect(sanitizeAdvisorText("contact us at </contact#contact-form>.")).toBe("contact us at /#contact.");
+    expect(sanitizeAdvisorText("contact us at </contact#contact-form>.")).toBe("contact us at /contact.");
   });
 });

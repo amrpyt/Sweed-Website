@@ -25,7 +25,7 @@ export const homeNavItems: NavItem[] = [
   { href: "/#portfolio", label: "أعمالنا" },
   { href: "/#offers", label: "العروض" },
   { href: "/#blog", label: "المقالات" },
-  { href: "/#contact", label: "اتصل بنا" },
+  { href: "/contact", label: "اتصل بنا" },
 ];
 
 export const footerQuickLinks: NavItem[] = defaultNavItems.filter((item) => item.active !== "contact");

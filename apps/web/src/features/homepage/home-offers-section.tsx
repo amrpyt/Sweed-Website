@@ -76,9 +76,9 @@ export function HomeOffersSection() {
           <p>{homepageContent.offersTail}</p>
           <Link
             className={getBrandActionButtonClassName({ size: "compact" })}
-            href="/#contact"
+            href="/contact?source=home-offers"
           >
-            <BrandActionButtonContent>احجز استشارة ونحدد مع بعض</BrandActionButtonContent>
+            <BrandActionButtonContent>احجز استشارتك المجانية</BrandActionButtonContent>
           </Link>
         </div>
       </div>

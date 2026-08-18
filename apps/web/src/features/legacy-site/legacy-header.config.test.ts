@@ -23,7 +23,7 @@ describe("public navigation route policy", () => {
       "/#portfolio",
       "/#offers",
       "/#blog",
-      "/#contact",
+      "/contact",
     ]);
   });
 

@@ -130,10 +130,9 @@ export function HomeContactSection() {
         </div>
 
         <form className={styles.form} data-testid="home-contact-form" noValidate onSubmit={handleSubmit}>
-          <label className={styles.honeypot} aria-hidden="true">
-            <span>اترك هذا الحقل فارغًا</span>
-            <input name="website" type="text" tabIndex={-1} autoComplete="off" />
-          </label>
+          <div className={styles.honeypot} aria-hidden="true">
+            <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          </div>
           <input type="hidden" name="selectedProblem" value={selection.problem ?? ""} readOnly />
           <input type="hidden" name="selectedService" value={selection.service ?? ""} readOnly />
           <input type="hidden" name="selectedOffer" value={selection.offer ?? ""} readOnly />

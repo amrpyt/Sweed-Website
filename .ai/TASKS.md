@@ -4,7 +4,22 @@ Updated: 2026-08-18T17:29:00+03:00
 
 ## Active
 
-None.
+### SWEED-042 — Final v4 public-site hardening
+
+Status: in progress
+Priority: critical
+Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
+
+#### Acceptance Criteria
+
+- [ ] Code-resolvable SW-03 through SW-15 P0 defects are closed or safely hidden when blocked by an external decision.
+- [ ] SW-01, SW-35, and SW-36 shared tokens/button/motion rules are applied without regressing existing optical centering.
+- [ ] SW-16 through SW-34 shared header/footer/form/advisor requirements are reconciled with the current modular React implementation.
+- [ ] Public service/package names, metadata, contact details, and canonical domain match the v4 source of truth.
+- [ ] Five shallow service detail pages no longer render the repeated placeholder process copy and follow the approved compact service structure.
+- [ ] Homepage/about/services/portfolio/offers/articles/FAQ/legal/404 surfaces are compressed/hardened where the current modular source permits.
+- [ ] Required accessibility, mobile, reduced-motion, SEO/schema, and analytics contracts are covered by tests/QA.
+- [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
 

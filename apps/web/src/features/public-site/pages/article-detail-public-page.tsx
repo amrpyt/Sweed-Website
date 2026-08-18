@@ -35,7 +35,7 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
             <nav className={styles.breadcrumb} aria-label="مسار المقال">
               <Link href="/articles">المقالات</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">{article.category}</span>
+              <span aria-current="page">{article.title}</span>
             </nav>
 
             <div className={styles.heroCopy}>

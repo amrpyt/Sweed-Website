@@ -78,10 +78,9 @@ export function ContactInquiryForm({ form }: { form: ContactFormModel }) {
 
   return (
     <form className={styles.formCard} id={form.elementId} noValidate onSubmit={handleSubmit} data-testid="contact-inquiry-form">
-      <label className={styles.honeypot} aria-hidden="true">
-        <span>اترك هذا الحقل فارغًا</span>
-        <input name="website" type="text" tabIndex={-1} autoComplete="off" />
-      </label>
+      <div className={styles.honeypot} aria-hidden="true">
+        <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      </div>
 
       <div className={styles.formHeader}>
         <h2 id="contact-form-title">{form.title}</h2>

@@ -16,7 +16,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
-  const consultationHref = page === "home" ? "/#contact" : "/contact";
+  const consultationHref = "/contact";
   const isHidden = useScrollHeaderVisibility({ disabled: isOpen });
 
   const closeMenuBeforeNavigation = () => {
@@ -207,7 +207,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
             href={consultationHref}
             onClick={(event) => handleNavigationClick(event, consultationHref)}
           >
-            <BrandActionButtonContent>ابدأ مشروعك</BrandActionButtonContent>
+            <BrandActionButtonContent>احجز استشارتك المجانية</BrandActionButtonContent>
           </Link>
         </div>
 
@@ -216,7 +216,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           href={consultationHref}
           onClick={(event) => handleNavigationClick(event, consultationHref)}
         >
-          <BrandActionButtonContent>{page === "home" ? "دعنا نبدأ" : "احجز استشارة"}</BrandActionButtonContent>
+          <BrandActionButtonContent>احجز استشارتك المجانية</BrandActionButtonContent>
         </Link>
 
         <button

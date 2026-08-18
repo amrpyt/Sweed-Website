@@ -5,12 +5,12 @@ import { footerQuickLinks } from "./legacy-header.config";
 import styles from "./legacy-footer.module.css";
 
 const serviceLinks = [
-  { href: "/services#consulting", label: "الاستشارات" },
-  { href: "/services#branding", label: "الهوية البصرية" },
-  { href: "/services#digital-marketing", label: "التسويق الرقمي" },
-  { href: "/services#development", label: "البرمجة والتطوير" },
-  { href: "/services#advertising", label: "الدعاية والإعلان" },
-  { href: "/services#media", label: "إنتاج الميديا" },
+  { href: "/services/consulting", label: "الاستشارات الإدارية والتسويقية" },
+  { href: "/services/branding", label: "بناء البراند والهوية البصرية" },
+  { href: "/services/digital-marketing", label: "التسويق الرقمي وإدارة الحملات" },
+  { href: "/services/software-development", label: "المواقع والأنظمة والحلول الرقمية" },
+  { href: "/services/advertising", label: "الدعاية والإعلان" },
+  { href: "/services/media", label: "إنتاج المحتوى والميديا" },
 ] as const;
 
 export function LegacyFooter() {
@@ -56,6 +56,7 @@ export function LegacyFooter() {
 
             <address className={styles.contactGroup}>
               <p className={styles.groupTitle}>تواصل معانا</p>
+              <Link href="/contact">صفحة التواصل</Link>
               <a href={`tel:${contact.phone.replace(/\s/g, "")}`} dir="ltr">
                 {contact.phone}
               </a>

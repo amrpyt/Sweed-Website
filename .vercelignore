@@ -22,3 +22,5 @@ v3
 *.log
 .env*
 tsconfig.tsbuildinfo
+apps/web/public/__qa/
+apps/web/public/__visual-qa/

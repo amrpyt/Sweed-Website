@@ -18,6 +18,8 @@ playwright-report/
 !.env.example
 .vercel
 .artifacts/
+apps/web/public/__qa/
+apps/web/public/__visual-qa/
 .codex-dev.*
 .agents/skills/convex*/
 .claude/

@@ -1,9 +1,9 @@
 .actionButton {
-  --brand-action-bg: var(--sweed-primary-pink);
-  --brand-action-color: var(--sweed-white);
-  --brand-action-fill: var(--sweed-primary-purple);
-  --brand-action-fill-color: var(--sweed-white);
-  --brand-action-border: var(--sweed-primary-pink);
+  --brand-action-bg: #261b3e;
+  --brand-action-color: #ffffff;
+  --brand-action-fill: var(--color-action, #e2185b);
+  --brand-action-fill-color: #ffffff;
+  --brand-action-border: #261b3e;
   --brand-action-radius: var(--shape-control);
   --brand-action-inset: var(--cds-spacing-02);
   --brand-action-icon-size: var(--cds-spacing-07);
@@ -91,7 +91,7 @@
 }
 
 .actionButton:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--sweed-primary-pink) 28%, transparent) !important;
+  outline: 3px solid rgba(237, 32, 98, 0.28) !important;
   outline-offset: 3px !important;
 }
 
@@ -139,45 +139,45 @@
 }
 
 .primary {
-  --brand-action-bg: var(--sweed-primary-pink);
-  --brand-action-color: var(--sweed-white);
-  --brand-action-border: var(--sweed-primary-pink);
-  --brand-action-fill: var(--sweed-primary-purple);
-  box-shadow: var(--shadow-sm) !important;
+  --brand-action-bg: #261b3e;
+  --brand-action-color: #ffffff;
+  --brand-action-border: #261b3e;
+  --brand-action-fill: var(--color-action, #e2185b);
+  box-shadow: 0 12px 30px rgba(38, 27, 62, 0.2) !important;
 }
 
 .primary:hover,
 .primary:focus-visible {
-  border-color: var(--sweed-primary-purple) !important;
-  box-shadow: var(--shadow-md) !important;
+  border-color: #ed2062 !important;
+  box-shadow: 0 18px 42px rgba(237, 32, 98, 0.22) !important;
 }
 
 .secondary {
-  --brand-action-bg: transparent;
-  --brand-action-color: var(--sweed-primary-purple);
-  --brand-action-border: var(--sweed-primary-purple);
-  --brand-action-fill: var(--sweed-primary-purple);
-  box-shadow: none !important;
+  --brand-action-bg: #ffffff;
+  --brand-action-color: #261b3e;
+  --brand-action-border: rgba(38, 27, 62, 0.16);
+  --brand-action-fill: #261b3e;
+  box-shadow: 0 10px 26px rgba(38, 27, 62, 0.1) !important;
 }
 
 .secondary:hover,
 .secondary:focus-visible {
-  border-color: var(--sweed-primary-purple) !important;
-  box-shadow: var(--shadow-xs) !important;
+  border-color: #261b3e !important;
+  box-shadow: 0 16px 36px rgba(38, 27, 62, 0.16) !important;
 }
 
 .light {
-  --brand-action-bg: transparent;
-  --brand-action-color: var(--sweed-primary-purple);
-  --brand-action-border: var(--sweed-primary-purple);
-  --brand-action-fill: var(--sweed-primary-purple);
-  box-shadow: none !important;
+  --brand-action-bg: #ffffff;
+  --brand-action-color: var(--primary-purple, #261b3e);
+  --brand-action-border: rgba(38, 27, 62, 0.16);
+  --brand-action-fill: var(--color-action, #e2185b);
+  box-shadow: 0 10px 26px rgba(38, 27, 62, 0.1) !important;
 }
 
 .light:hover,
 .light:focus-visible {
-  border-color: var(--sweed-primary-purple) !important;
-  box-shadow: var(--shadow-xs) !important;
+  border-color: #ed2062 !important;
+  box-shadow: 0 16px 36px rgba(237, 32, 98, 0.16) !important;
 }
 
 .hero {

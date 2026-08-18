@@ -23,6 +23,15 @@ describe("canonical SWEED action button system", () => {
     expect(css).toContain("transform: translateY(0) scale(0.99)");
   });
 
+  test("keeps the approved purple primary and white secondary hierarchy", () => {
+    const css = readSource("brand-action-button.module.css");
+
+    expect(css).toContain("--brand-action-bg: #261b3e;");
+    expect(css).toContain("--brand-action-fill: var(--color-action, #e2185b);");
+    expect(css).toContain("--brand-action-bg: #ffffff;");
+    expect(css).toContain("--brand-action-border: rgba(38, 27, 62, 0.16);");
+  });
+
   test("uses the canonical action component in shared public heroes and site chrome", () => {
     const publicHero = readSource("../../features/public-site/shared/public-page-hero.tsx");
     const header = readSource("../../features/legacy-site/legacy-header.tsx");

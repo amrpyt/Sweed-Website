@@ -7,7 +7,7 @@
   display: grid;
   justify-items: start;
   direction: rtl;
-  font-family: "Cairo", Arial, sans-serif;
+  font-family: var(--font-body);
   transition: opacity 160ms ease, visibility 160ms ease;
 }
 

@@ -2,7 +2,7 @@ import { getSweedReferenceButtonThemeCss } from "./reference-button-theme";
 
 const referenceScope = ".sweed-reference-page";
 const sweedReferenceFontStack =
-  '"SWEED Helvetica Arabic",var(--font-cairo,"Cairo"),"Cairo","SF Arabic",Arial,sans-serif';
+  '"SWEED Helvetica Arabic","SF Arabic",Arial,sans-serif';
 
 const sweedReferenceColorMap = new Map<string, string>([
   ["#241238", "#261b3e"],

@@ -6,10 +6,10 @@ describe("homepage content", () => {
     expect(homepageContent.hero.title).toBe("نصنع العلامات التي تقود المستقبل");
     expect(homepageContent.hero.actions.some((action) => action.label === "شاهد أعمالنا")).toBe(true);
     expect(homepageContent.problems).toHaveLength(6);
-    expect(homepageContent.about.points).toHaveLength(4);
-    expect(homepageContent.why).toHaveLength(6);
-    expect(homepageContent.stats).toHaveLength(4);
-    expect(homepageContent.faq).toHaveLength(8);
+    expect(homepageContent.about.points).toHaveLength(3);
+    expect(homepageContent.why).toHaveLength(4);
+    expect(homepageContent.stats).toHaveLength(0);
+    expect(homepageContent.faq).toHaveLength(5);
     expect(homepageContent.articles).toHaveLength(3);
   });
 
@@ -17,10 +17,10 @@ describe("homepage content", () => {
     expect(homepageContent.problems.map((problem) => problem.serviceKey)).toEqual([
       "الاستشارات الإدارية",
       "التسويق الرقمي",
-      "التصميم والهوية البصرية",
+      "بناء البراند والهوية البصرية",
       "الاستشارات التسويقية",
       "الدعاية والإعلان",
-      "البرمجة والتطوير",
+      "المواقع والأنظمة والحلول الرقمية",
     ]);
   });
 

@@ -3,12 +3,11 @@
   --sweed-primary-purple: #261b3e;
   --sweed-primary-pink: #ed2062;
   --sweed-action-pink: #e2185b;
-  --sweed-sunset-orange: #261b3e;
   --sweed-light-bg: #f8f9fa;
   --sweed-dark-silver: #6d6e70;
   --sweed-white: #ffffff;
-  --sweed-gradient-primary: linear-gradient(135deg, var(--sweed-primary-pink), var(--sweed-primary-purple));
-  --sweed-gradient-warm: linear-gradient(135deg, var(--sweed-primary-pink), var(--sweed-sunset-orange));
+  --sweed-gradient-primary: var(--sweed-primary-purple);
+  --sweed-gradient-warm: var(--sweed-primary-purple);
   
   /* Semantic Colors */
   --color-surface: #f7f8fb;
@@ -55,8 +54,8 @@
   --container-wide: min(1600px, calc(100vw - 32px));
   
   /* Typography */
-  --font-body: "SWEED Helvetica Arabic", var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
-  --font-display: "SWEED Helvetica Arabic", var(--font-cairo, "Cairo"), "Cairo", "SF Arabic", Arial, sans-serif;
+  --font-body: "SWEED Helvetica Arabic", "SF Arabic", Arial, sans-serif;
+  --font-display: "SWEED Helvetica Arabic", "SF Arabic", Arial, sans-serif;
   --font-weight-regular: 400;
   --font-weight-body: 500;
   --font-weight-medium: 600;

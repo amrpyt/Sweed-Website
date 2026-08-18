@@ -79,8 +79,12 @@ export function stripReferenceChrome(html: string) {
 
 export function decorateReferenceActionButtons(input: string) {
   return input.replace(
-    /<(a|button)\b([^>]*\bclass=["'][^"']*\bbtn\b[^"']*["'][^>]*)>([^]*?)<\/\1>/gi,
+    /<(a|button)\b([^>]*)>([^]*?)<\/\1>/gi,
     (match, tag: string, attributes: string, content: string) => {
+      const className = /\bclass=["']([^"']*)["']/i.exec(attributes)?.[1] ?? "";
+      const classTokens = className.trim().split(/\s+/).filter(Boolean);
+
+      if (!classTokens.includes("btn")) return match;
       if (content.includes('class="sweed-action-fill"')) return match;
 
       return `<${tag}${attributes}><span aria-hidden="true" class="sweed-action-fill"></span><span aria-hidden="true" class="sweed-action-icon"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.75" viewBox="0 0 24 24" width="18"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></span><span class="sweed-action-label">${content}</span></${tag}>`;

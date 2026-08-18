@@ -96,6 +96,11 @@ describe("reference page integration normalization", () => {
     expect(decorated).toContain('class="sweed-action-fill"');
     expect(decorated).toContain('class="sweed-action-icon"');
     expect(decorated).toContain('class="sweed-action-label">احجز استشارتك</span>');
+
+    const choices = decorateReferenceActionButtons(
+      '<button class="f-btn">فلتر</button><button class="st-btn">خدمة</button><button class="drawer-btn">التفاصيل</button>',
+    );
+    expect(choices).not.toContain('class="sweed-action-fill"');
   });
 
   test("themes inline SVG and animation colors without changing source bytes", () => {

@@ -58,6 +58,11 @@ describe("canonical SWEED action button system", () => {
     expect(cssBridge).toContain("clip-path: inset(0 calc(100% - var(--sweed-action-icon-size)) 0 0 round var(--sweed-action-inner-radius));");
     expect(cssBridge).toContain(".btn:hover .sweed-action-fill");
     expect(cssBridge).toContain("clip-path: inset(0 0 0 0 round var(--sweed-action-inner-radius));");
+
+    const choiceControls = decorateReferenceActionButtons(
+      '<button class="f-btn">فلتر</button><button class="st-btn">خدمة</button><button class="drawer-btn">التفاصيل</button>',
+    );
+    expect(choiceControls).not.toContain('class="sweed-action-fill"');
   });
 
   test("keeps legacy product purchase CTAs on the hero mechanism without turning tabs into CTAs", () => {

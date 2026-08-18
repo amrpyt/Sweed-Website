@@ -1,7 +1,7 @@
 export function getSweedReferenceButtonThemeCss(referenceScope: string) {
   return `
 ${referenceScope} {
-  --sweed-button-primary-bg: #ed2062;
+  --sweed-button-primary-bg: #261b3e;
   --sweed-button-accent: #ed2062;
   --sweed-button-secondary-bg: #ffffff;
   --sweed-button-secondary-border: rgba(38, 27, 62, 0.18);
@@ -15,7 +15,7 @@ ${referenceScope} {
 ${referenceScope} .btn {
   --sweed-action-bg: var(--sweed-button-primary-bg);
   --sweed-action-color: #ffffff;
-  --sweed-action-fill: #261b3e;
+  --sweed-action-fill: var(--color-action, #e2185b);
   --sweed-action-fill-color: #ffffff;
   --sweed-action-border: var(--sweed-button-primary-bg);
   position: relative;
@@ -110,26 +110,26 @@ ${referenceScope} .btn .sweed-action-label {
 ${referenceScope} .btn-primary {
   --sweed-action-bg: var(--sweed-button-primary-bg);
   --sweed-action-color: #ffffff;
-  --sweed-action-fill: #261b3e;
+  --sweed-action-fill: var(--color-action, #e2185b);
   --sweed-action-border: var(--sweed-button-primary-bg);
-  box-shadow: 0 12px 30px rgba(237, 32, 98, 0.18);
+  box-shadow: 0 12px 30px rgba(38, 27, 62, 0.18);
 }
 ${referenceScope} .btn-primary:hover,
 ${referenceScope} .btn-primary:focus-visible {
-  border-color: #261b3e;
-  box-shadow: 0 16px 36px rgba(38, 27, 62, 0.18);
+  border-color: var(--sweed-button-accent);
+  box-shadow: 0 16px 36px rgba(237, 32, 98, 0.2);
 }
 ${referenceScope} .btn-ghost {
-  --sweed-action-bg: transparent;
+  --sweed-action-bg: var(--sweed-button-secondary-bg);
   --sweed-action-color: #261b3e;
   --sweed-action-fill: #261b3e;
-  --sweed-action-border: #261b3e;
-  box-shadow: none;
+  --sweed-action-border: var(--sweed-button-secondary-border);
+  box-shadow: 0 10px 26px rgba(38, 27, 62, 0.1);
 }
 ${referenceScope} .btn-ghost:hover,
 ${referenceScope} .btn-ghost:focus-visible {
   border-color: #261b3e;
-  box-shadow: 0 10px 26px rgba(38, 27, 62, 0.1);
+  box-shadow: 0 16px 36px rgba(38, 27, 62, 0.16);
 }
 ${referenceScope} .btn-ghost.light {
   --sweed-action-bg: #ffffff;

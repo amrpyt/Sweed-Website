@@ -1,24 +1,29 @@
 # Current State
 
-Updated: 2026-08-18T16:50:00+03:00
+Updated: 2026-08-18T17:07:00+03:00
 Git branch: main
-Git HEAD: `9cb25c2e0bd621f273ec07d0016ea9d41d377328`
-Application commit: `fix: unify homepage control geometry`
-Active Task: SWEED-040 — CRM + AI Agent interactive demo
-Active Plan: `.ai/plans/2026-08-18-crm-ai-agent-interactive-demo.md`
-Status: Remotion Agent Skills installed; standalone CRM + AI Agent frontend demo in progress
+Git HEAD: `499f40d9ce5192cd7156b28c771b382f203cf5ae`
+Application commit: `feat: add CRM AI agent interactive demo`
+Active Task: None
+Active Plan: None
+Status: SWEED-040 completed, deployed, and verified
 
 ## Current Goal
 
-Build an impressive standalone, frontend-only SWEED CRM + AI Agent demo page that can later be surfaced from Services without introducing backend dependencies.
+Preserve the completed standalone CRM + AI Agent demo at `/crm-ai-demo` until it is intentionally surfaced from the Services page.
 
 ## In Progress
 
-- Installed the official `remotion-dev/skills` package into project agent skills and reviewed `remotion-best-practices`.
-- Designing and implementing the standalone CRM + AI Agent demo route in modular React/Next.
+None.
 
 ## Completed Recently
 
+- Installed all 12 official `remotion-dev/skills` into project agent skills and reviewed `remotion-best-practices`.
+- Added `/crm-ai-demo` as an isolated modular React/Next product demo with no backend/API dependency.
+- Added deterministic local CRM state for lead selection, pipeline stages, scores, values, activity, and reset.
+- Added a local SWEED AI Agent demo that analyzes a lead, drafts WhatsApp follow-up copy, and advances simulated CRM stages.
+- Added task-first responsive layouts: three-column product workspace on desktop and Pipeline / Lead / AI Agent tabs on mobile.
+- Kept SWEED purple/pink identity, semantic control geometry, visible focus states, and explicit reduced-motion behavior.
 - Normalized remaining homepage CTA-style actions and shared header CTAs to the 48px `--shape-control` geometry and strong SWEED type weight.
 - Preserved semantic pills while removing unrelated full-pill/10px CTA radii from the About, Offers, Blog, and Contact actions.
 - Kept mobile Problem Selector choices as separated rounded cards with a clear SWEED pink selected state instead of square table rows.
@@ -44,6 +49,14 @@ Build an impressive standalone, frontend-only SWEED CRM + AI Agent demo page tha
 
 ## Verification
 
+- SWEED-040 focused reducer tests: 4 passed, 0 failed.
+- Clean-worktree `bun run check`: 121 passed, 0 failed, including TypeScript, ESLint, spacing, and mobile-first guards.
+- Clean-worktree production build: passed; `/crm-ai-demo` generated as a static route.
+- Local browser QA: 1440×900, 1024×768, 390×844, and 320×568 all had zero horizontal overflow and zero broken images.
+- Primary interaction QA passed: lead selection, AI analysis, activity insertion, pipeline stage update, WhatsApp draft path, and reset behavior.
+- Reduced-motion browser emulation reported `prefers-reduced-motion: reduce`; thinking-dot animation computed to `none` while the action still completed.
+- Production deploy used the clean build from commit `499f40d`; `sweed-demo.service` is active and `/crm-ai-demo` returns HTTP 200 locally and publicly.
+- Public browser QA passed at 1440×900 and 390×844 with zero horizontal overflow, zero broken images, no page errors, and working lead-selection/AI-analysis interaction.
 - SWEED-039 focused homepage/fidelity/reference suite: 18 passed, 0 failed.
 - `bun run check`: 117/117 unit tests plus TypeScript, ESLint, spacing, and mobile-first guards passed.
 - Production build: passed with 29 routes.
@@ -85,4 +98,4 @@ None.
 
 ## Next Exact Action
 
-Preserve the unified homepage/header control hierarchy and reference-page fidelity boundary. The next visual pass should target mobile page density/performance rather than introducing new control variants.
+When product positioning is approved, surface `/crm-ai-demo` from the Services page without adding backend dependencies to the demo itself.

@@ -1,29 +1,44 @@
 # Tasks
 
-Updated: 2026-08-18T16:50:00+03:00
+Updated: 2026-08-18T17:07:00+03:00
 
 ## Active
 
+None.
+
+## Completed
+
 ### SWEED-040 — CRM + AI Agent interactive demo
 
-Status: in progress
+Status: completed
 Priority: high
 Plan: `.ai/plans/2026-08-18-crm-ai-agent-interactive-demo.md`
+Implementation commit: `499f40d feat: add CRM AI agent interactive demo`
+Skills commit: `757d12d chore: install Remotion agent skills`
 
 #### Acceptance Criteria
 
-- [ ] Official `remotion-dev/skills` are installed and `remotion-best-practices` has been reviewed.
-- [ ] A standalone modular Next route presents a convincing SWEED CRM + AI Agent product demo.
-- [ ] The demo is completely frontend-only with deterministic local data and no backend/API dependency.
-- [ ] Lead selection, pipeline state, activity, AI analysis, AI action, and reset flows are interactive.
-- [ ] SWEED typography, `#261b3e`, `#ed2062`, control geometry, focus language, and semantic spacing are preserved.
-- [ ] Motion is state-driven, restrained, and has a reduced-motion fallback.
-- [ ] Desktop, tablet, 390px mobile, and 320px mobile layouts have no horizontal overflow.
-- [ ] Keyboard focus and primary controls remain usable.
-- [ ] Focused tests, `bun run check`, production build, service deployment, and browser QA pass.
-- [ ] Changes are committed in logical commits and not pushed.
+- [x] Official `remotion-dev/skills` are installed and `remotion-best-practices` has been reviewed.
+- [x] A standalone modular Next route presents a convincing SWEED CRM + AI Agent product demo.
+- [x] The demo is completely frontend-only with deterministic local data and no backend/API dependency.
+- [x] Lead selection, pipeline state, activity, AI analysis, AI action, and reset flows are interactive.
+- [x] SWEED typography, `#261b3e`, `#ed2062`, control geometry, focus language, and semantic spacing are preserved.
+- [x] Motion is state-driven, restrained, and has a reduced-motion fallback.
+- [x] Desktop, tablet, 390px mobile, and 320px mobile layouts have no horizontal overflow.
+- [x] Keyboard focus and primary controls remain usable.
+- [x] Focused tests, `bun run check`, production build, service deployment, and browser QA pass.
+- [x] Changes are committed in logical commits and not pushed.
 
-## Completed
+#### Verification
+
+- Focused CRM reducer tests: 4 passed, 0 failed.
+- Clean-worktree `bun run check`: 121 passed, 0 failed.
+- Production build passed and generated `/crm-ai-demo` as a static route.
+- Browser QA passed at 1440×900, 1024×768, 390×844, and 320×568 with zero horizontal overflow and zero broken images.
+- Lead selection, AI analysis, activity insertion, stage advancement, mobile Agent tab, and reset flows passed.
+- Reduced-motion emulation disabled thinking-dot animation while preserving completion.
+- `sweed-demo.service` active; `/crm-ai-demo` HTTP 200 locally and publicly.
+- Public desktop/mobile browser QA passed with no page errors.
 
 ### SWEED-039 — Homepage visual consistency pass
 

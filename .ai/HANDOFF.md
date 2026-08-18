@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-18T16:40:00+03:00
+Updated: 2026-08-18T17:07:00+03:00
 
 ## Read First
 
@@ -13,6 +13,8 @@ Updated: 2026-08-18T16:40:00+03:00
 
 ## Current Public Contract
 
+- `/crm-ai-demo` is a standalone frontend-only preview of the future SWEED CRM + AI Agent product. It intentionally uses deterministic browser-local data and actions and is not connected to Convex or another backend.
+- The CRM demo supports lead selection, pipeline movement, lead/activity context, AI analysis, local WhatsApp drafting, and reset. Keep these interactions working if it is later surfaced from Services.
 - `/services`, `/portfolio`, and `/offers` use the exact approved executable HTML references as their structure/motion/interaction source.
 - Their runtime typography and brand palette intentionally match the homepage: `SWEED Helvetica Arabic`, `#261b3e`, `#ed2062`, `#6d6e70`, and current light surfaces.
 - Their runtime buttons now follow the homepage SWEED control language through a scoped Theme Bridge: purple primary, light/contextual secondary, compact choice controls, shared radius, touch targets, pink focus/interaction accents.
@@ -25,7 +27,15 @@ Updated: 2026-08-18T16:40:00+03:00
 
 ## Latest Application Change
 
-`fix: unify homepage control geometry`
+`499f40d feat: add CRM AI agent interactive demo`
+
+The standalone CRM demo now:
+- lives at `/crm-ai-demo` and is `noindex` while it remains a product preview;
+- uses SWEED purple/pink and the existing semantic control/motion tokens;
+- keeps all state in the browser with no backend dependency;
+- exposes a three-column product workspace on desktop and task tabs on mobile;
+- lets the AI Agent analyze the current lead, draft a WhatsApp follow-up, and update the simulated CRM stage;
+- respects reduced motion and maintains 44px+ interaction targets.
 
 The current control system now:
 - normalizes the shared desktop/mobile header CTA to the 48px control contract and keeps the Arabic label optically centered independently from its icon;
@@ -47,6 +57,12 @@ The current control system now:
 
 ## Verification
 
+- SWEED-040 focused tests: 4 passed, 0 failed.
+- Clean-worktree `bun run check`: 121 passed, 0 failed.
+- Clean-worktree production build passed and included `/crm-ai-demo` as a static route.
+- Browser QA: 1440×900, 1024×768, 390×844, and 320×568 with zero horizontal overflow or broken images; primary CRM/Agent interactions passed.
+- Reduced-motion emulation disabled thinking-dot animation while retaining interaction completion.
+- Production service is active and `/crm-ai-demo` returns HTTP 200 locally and publicly; public desktop/mobile interaction QA passed.
 - Focused homepage/fidelity/reference tests: 18 passed, 0 failed.
 - `bun run check`: 117/117 tests plus type/lint/design guards passed.
 - Production build: 29 routes, passed. Final deploy was built while `sweed-demo.service` was stopped, verified `apps/web/.next/BUILD_ID`, then started cleanly.
@@ -79,5 +95,6 @@ Previous optical-centering verification remains valid:
 
 ## Remaining Boundary
 
+- The CRM + AI Agent route is intentionally standalone for now; add its Services-page entry only as a follow-up.
 - Articles is not an executable-HTML fidelity route in the current reference batch.
 - Do not push without explicit user approval.

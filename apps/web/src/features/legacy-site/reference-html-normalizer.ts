@@ -22,7 +22,36 @@ const sweedReferenceColorMap = new Map<string, string>([
   ["#e4def0", "#d9dee8"],
   ["#d9d2e8", "#d9dee8"],
   ["#c9c4d8", "#6d6e70"],
-  ["#f1edf8", "#eef4f3"],
+  ["#f1edf8", "#f7f8fb"],
+  ["#160a24", "#261b3e"],
+  ["#31184f", "#261b3e"],
+  ["#33195a", "#261b3e"],
+  ["#1d0e2e", "#261b3e"],
+  ["#120818", "#261b3e"],
+  ["#0e0614", "#261b3e"],
+  ["#2a1240", "#261b3e"],
+  ["#160b24", "#261b3e"],
+  ["#150922", "#261b3e"],
+  ["#2e1648", "#261b3e"],
+  ["#1a0c2c", "#261b3e"],
+  ["#5a2f8f", "#261b3e"],
+  ["#6c43a8", "#261b3e"],
+  ["#6b21a8", "#261b3e"],
+  ["#8b2e5e", "#ed2062"],
+  ["#4ade80", "#ed2062"],
+  ["#1e7a46", "#ed2062"],
+  ["#fca5a5", "#ed2062"],
+  ["#b0472b", "#ed2062"],
+  ["#2b6cb0", "#261b3e"],
+  ["#0f766e", "#261b3e"],
+  ["#f2f9f4", "#f8f9fa"],
+  ["#cbe7d4", "#d9dee8"],
+  ["#fcf3f6", "#f8f9fa"],
+  ["#f3d3e0", "#f7f8fb"],
+  ["#e0d6ee", "#d9dee8"],
+  ["#f1eef7", "#f7f8fb"],
+  ["#e4dbf2", "#d9dee8"],
+  ["#f3effa", "#f7f8fb"],
 ]);
 
 const sweedReferenceThemeCss = `
@@ -107,10 +136,16 @@ export function scopeReferenceHeadHtml(headHtml: string) {
 }
 
 export function guardReferenceScript(content: string) {
-  return content.replace(
+  const guarded = content.replace(
     /document\.getElementById\((['"])nav\1\)\.classList/g,
     "document.getElementById($1nav$1)?.classList",
   );
+
+  const domReadyWrapper = /^\s*document\.addEventListener\(\s*(['"])DOMContentLoaded\1\s*,\s*function\s*\(\)\s*\{([\s\S]*)\}\s*\)\s*;?\s*$/i.exec(
+    guarded,
+  );
+
+  return domReadyWrapper?.[2] ?? guarded;
 }
 
 export function wrapReferenceInlineScript(content: string) {

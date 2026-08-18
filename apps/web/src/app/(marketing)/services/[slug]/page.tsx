@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { services } from "@/content/local-data";
-import { softwareDevelopmentPageSource } from "@/content/public-site/software-development-page";
+import {
+  getServiceReferenceDocument,
+  serviceReferenceSlugs,
+  type ServiceReferenceSlug,
+} from "@/features/legacy-site/service-reference-html";
 import { ServiceDetailPublicPage } from "@/features/public-site/pages/service-detail-public-page";
-import { SoftwareDevelopmentPage } from "@/features/public-site/software-development/software-development-page";
+import { ServiceReferencePage } from "@/features/public-site/pages/service-reference-page";
 import { createPageMetadata } from "@/lib/seo";
 
 type ServicePageProps = {
@@ -17,13 +21,18 @@ export function generateStaticParams() {
   ];
 }
 
+function isServiceReferenceSlug(slug: string): slug is ServiceReferenceSlug {
+  return serviceReferenceSlugs.includes(slug as ServiceReferenceSlug);
+}
+
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const { slug } = await params;
-  if (slug === "software-development") {
+  if (isServiceReferenceSlug(slug)) {
+    const document = getServiceReferenceDocument(slug);
     return createPageMetadata({
-      title: softwareDevelopmentPageSource.seo.title,
-      description: softwareDevelopmentPageSource.seo.description,
-      path: "/services/software-development",
+      title: document.title || "SWEED",
+      description: document.description || undefined,
+      path: `/services/${slug}`,
     });
   }
 
@@ -44,8 +53,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
     permanentRedirect("/services/software-development");
   }
 
-  if (slug === "software-development") {
-    return <SoftwareDevelopmentPage />;
+  if (isServiceReferenceSlug(slug)) {
+    return <ServiceReferencePage slug={slug} />;
   }
 
   const service = services.find((item) => item.slug === slug);

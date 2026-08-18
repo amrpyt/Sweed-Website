@@ -136,6 +136,11 @@ export const homepageContent = {
         summary: "بنفضل معاك بعد التسليم مش قبله وبس.",
         icon: "fa-headset",
       },
+      {
+        title: "بنحوّل القرار لخطة تنفيذ",
+        summary: "بنرتّب الأولويات ونحدد الخطوة الجاية عشان التنفيذ يفضل واضح.",
+        icon: "fa-route",
+      },
     ] satisfies HomeCard[],
     vision: "رؤيتنا: نكون البوصلة اللي كل صاحب مشروع في مصر والوطن العربي يثق فيها عشان يوصل لوجهته.",
     mission: "رسالتنا: نحدد لأصحاب المشاريع الاتجاه الصح، ونمشي معاهم في التنفيذ لحد ما يوصلوا لأهدافهم.",
@@ -317,7 +322,7 @@ export const homepageContent = {
       summary: "صور وفيديوهات ومحتوى بيحكي قصة براندك صح — إنتاج مدروس بيخدم الحملة، مش لقطات حلوة وخلاص.",
       icon: "fa-video",
       href: "/services/media",
-      image: "/images/portfolio/blit-scroll-effect-demo-poster.png",
+      image: "/images/hero/businessman-laptop-standing.jpg",
     },
   ] satisfies HomeCard[],
   process: [

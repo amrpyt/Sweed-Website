@@ -116,7 +116,7 @@
 
 .offerHeader {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--stack-md);
 }
 
@@ -140,11 +140,13 @@
 }
 
 .offerHeader > div {
+  display: grid;
   min-width: 0;
+  gap: var(--stack-2xs);
 }
 
 .offerHeader p {
-  margin: 0 0 var(--stack-2xs);
+  margin: 0;
   color: #7a7282;
   font-size: var(--type-small-size);
   font-weight: var(--font-weight-strong);
@@ -160,7 +162,7 @@
 
 .offerCard[data-featured="true"] .offerHeader p,
 .offerCard[data-featured="true"] .summary {
-  color: rgb(255 255 255 / 0.66);
+  color: rgb(255 255 255 / 0.72);
 }
 
 .offerCard[data-featured="true"] .offerHeader h3 {
@@ -203,6 +205,20 @@
 
 .offerAction {
   margin-top: auto;
+}
+
+.offerCard[data-featured="true"] .offerAction {
+  --brand-action-bg: #ffffff;
+  --brand-action-color: #261b3e;
+  --brand-action-border: #ffffff;
+  --brand-action-fill: #ffffff;
+  --brand-action-fill-color: #261b3e;
+  box-shadow: 0 10px 24px rgb(10 6 19 / 18%) !important;
+}
+
+.offerCard[data-featured="true"] .offerAction:hover .iconBox,
+.offerCard[data-featured="true"] .offerAction:focus-visible .iconBox {
+  color: #7d2944 !important;
 }
 
 .allOffersLink {

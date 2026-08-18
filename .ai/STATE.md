@@ -1,12 +1,21 @@
 # Current State
 
-Updated: 2026-08-18T22:04:00+03:00
+Updated: 2026-08-18T22:24:00+03:00
 Git branch: main
-Git HEAD: `512229d`
-Application commit: `fix: remove oversized homepage section gap`
+Git HEAD: `7f4d1ae`
+Application commit: `fix: harden service reference rendering`
 Active Task: SWEED-042
 Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 Status: SWEED-049 complete and deployed — SWEED-042 resumed
+
+## Delivery Update
+
+- Pushed `main` to GitHub through `7f4d1ae`; the branch is synchronized with `origin/main`.
+- Created Vercel project `sweed-website` and deployed production successfully.
+- Production alias: `https://sweed-website-seven.vercel.app`.
+- Verified HTTP 200 for `/`, `/services`, `/portfolio`, and `/crm-ai-demo`.
+- Automatic GitHub→Vercel linking is not active because the Vercel account has no GitHub Login Connection configured.
+- Vercel currently has no project environment variables configured; static/public routes build and serve successfully.
 
 ## Current Goal
 

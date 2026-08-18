@@ -1,6 +1,15 @@
 # Handoff
 
-Updated: 2026-08-18T22:04:00+03:00
+Updated: 2026-08-18T22:24:00+03:00
+
+## Vercel Delivery
+
+- GitHub `main` is pushed through `7f4d1ae`.
+- Vercel project: `sweed-website`.
+- Production alias: `https://sweed-website-seven.vercel.app`.
+- Deployment `dpl_8oG4LYKbnLzeLrbybiKHjniMVYhC` reached READY and representative public routes returned HTTP 200.
+- The Vercel account must add a GitHub Login Connection before `vercel git connect` can enable automatic deployments from `amrpyt/Sweed-Website`.
+- No Vercel environment variables are configured yet; do not assume AI/admin/backend integrations are production-configured there.
 
 ## Read First
 

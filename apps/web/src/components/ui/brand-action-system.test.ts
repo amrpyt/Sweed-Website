@@ -1,6 +1,11 @@
 import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  decorateLegacyProductActionButtons,
+  guardLegacyProductRuntimeScript,
+  legacyProductActionRuntime,
+} from "../../features/legacy-site/legacy-product-action-theme";
 import { decorateReferenceActionButtons } from "../../features/legacy-site/reference-html-normalizer";
 
 function readSource(path: string) {
@@ -53,5 +58,31 @@ describe("canonical SWEED action button system", () => {
     expect(cssBridge).toContain("clip-path: inset(0 calc(100% - var(--sweed-action-icon-size)) 0 0 round var(--sweed-action-inner-radius));");
     expect(cssBridge).toContain(".btn:hover .sweed-action-fill");
     expect(cssBridge).toContain("clip-path: inset(0 0 0 0 round var(--sweed-action-inner-radius));");
+  });
+
+  test("keeps legacy product purchase CTAs on the hero mechanism without turning tabs into CTAs", () => {
+    const cssBridge = readSource("../../features/legacy-site/legacy-product-action-theme.ts");
+    const legacyPage = readSource("../../features/legacy-site/legacy-page.tsx");
+    const decorated = decorateLegacyProductActionButtons(
+      '<button class="product-btn"><i class="fas fa-shopping-cart"></i><span>اطلب الآن</span></button>',
+    );
+
+    expect(decorated).toContain('class="sweed-action-fill"');
+    expect(decorated).toContain('class="sweed-action-icon"');
+    expect(decorated).toContain('class="sweed-action-label">اطلب الآن</span>');
+    expect(decorated).toContain('<path d="M7 17L17 7"></path>');
+    expect(cssBridge).toContain(".sweed-legacy-page-products .sweed-action-fill");
+    expect(cssBridge).toContain("clip-path: inset(0 calc(100% - var(--legacy-action-icon-size)) 0 0 round var(--legacy-action-inner-radius));");
+    expect(cssBridge).toContain("clip-path: inset(0 0 0 0 round var(--legacy-action-inner-radius));");
+    expect(cssBridge).not.toContain(".tab-btn");
+    expect(legacyPage).toContain("sweed-legacy-page-${page}");
+    expect(legacyPage).toContain("legacyProductActionRuntime");
+    expect(legacyPage).toContain('page === "products" && !script.src');
+    expect(legacyPage).toContain("dangerouslySetInnerHTML={{ __html: script.content ?? \"\" }}");
+    expect(legacyProductActionRuntime).toContain("MutationObserver");
+    expect(legacyProductActionRuntime).toContain(".product-btn, .help-btn");
+
+    const guarded = guardLegacyProductRuntimeScript("header.style.transform = 'translateY(-100%)';");
+    expect(guarded).toBe("if (header) header.style.transform = 'translateY(-100%)';");
   });
 });

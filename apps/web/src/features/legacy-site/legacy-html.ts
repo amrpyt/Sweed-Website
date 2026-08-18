@@ -11,6 +11,11 @@ import {
   stripReferenceChrome,
 } from "./reference-html-normalizer";
 import { getReferenceHtml, hasReferenceHtml } from "./reference-html-sources";
+import {
+  decorateLegacyProductActionButtons,
+  getLegacyProductActionThemeCss,
+  guardLegacyProductRuntimeScript,
+} from "./legacy-product-action-theme";
 import { legacyHrefMap, legacyPageFiles, type LegacyPageKey } from "./legacy-routes";
 
 type LegacyScript = {
@@ -239,8 +244,8 @@ function removeLegacyChrome(html: string) {
     .replace(/^\s*<\/div>\s*/i, "")
     .replace(/\s*<!-- FOOTER -->[\s\S]*?<footer class="footer"[\s\S]*?<\/footer>/i, "")
     .replace(/\s*<footer class="footer"[\s\S]*?<\/footer>/i, "")
-    .replace(/\s*<!-- WHATSAPP(?: FLOAT(?:ING)? BUTTON| FLOAT BUTTON| BUTTON)? -->[\s\S]*?(?=<!--|$)/gi, "")
-    .replace(/\s*<!-- MOBILE STICKY CTA -->[\s\S]*?(?=<!--|$)/gi, "");
+    .replace(/\s*<!-- WHATSAPP(?: FLOAT(?:ING)? BUTTON| FLOAT BUTTON| BUTTON)? -->[\s\S]*?(?=<!--|<script\b|$)/gi, "")
+    .replace(/\s*<!-- MOBILE STICKY CTA -->[\s\S]*?(?=<!--|<script\b|$)/gi, "");
 }
 
 function extractScripts(html: string, page: LegacyPageKey, presentation: LegacyPresentation = "legacy") {
@@ -257,7 +262,13 @@ function extractScripts(html: string, page: LegacyPageKey, presentation: LegacyP
       src: src ? rewriteAssetUrl(src) : undefined,
       type,
       content:
-        src ? undefined : presentation === "reference" ? guardReferenceScript(applySweedReferenceTheme(content)) : content,
+        src
+          ? undefined
+          : presentation === "reference"
+            ? guardReferenceScript(applySweedReferenceTheme(content))
+            : page === "products"
+              ? guardLegacyProductRuntimeScript(content)
+              : content,
     });
     return "";
   });
@@ -289,8 +300,11 @@ export function getLegacyPage(page: LegacyPageKey, options: LegacyPageOptions = 
 
   return {
     title,
-    headHtml: normalizeHtml(headAssets, page),
-    bodyHtml: normalizeHtml(bodyWithoutScripts, page),
+    headHtml: `${normalizeHtml(headAssets, page)}${page === "products" ? getLegacyProductActionThemeCss() : ""}`,
+    bodyHtml:
+      page === "products"
+        ? decorateLegacyProductActionButtons(normalizeHtml(bodyWithoutScripts, page))
+        : normalizeHtml(bodyWithoutScripts, page),
     scripts,
   };
 }

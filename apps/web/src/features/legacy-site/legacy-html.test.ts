@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { normalizeLegacyAccessibility } from "./legacy-accessibility";
+import { join } from "node:path";
 
 function readLegacyPage(file: string) {
   return readFileSync(new URL(`../../../site/pages/${file}`, import.meta.url), "utf8");
@@ -44,5 +45,13 @@ describe("legacy page accessibility normalization", () => {
     const body = normalizeLegacyAccessibility(readLegacyPage("portfolio.html"), "portfolio");
 
     expect(body).toContain('<h2 class="sweed-visually-hidden">مشروعات مختارة</h2>');
+  });
+});
+
+describe("legacy page integration guards", () => {
+  test("keeps trailing legacy scripts when stripping floating chrome", () => {
+    const source = readFileSync(join(import.meta.dir, "legacy-html.ts"), "utf8");
+
+    expect(source).toContain('(?=<!--|<script\\b|$)');
   });
 });

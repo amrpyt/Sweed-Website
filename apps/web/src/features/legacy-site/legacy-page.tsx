@@ -6,6 +6,7 @@ import { LegacyEnhancements } from "./legacy-enhancements";
 import { LegacyFooter } from "./legacy-footer";
 import { getLegacyPage, type LegacyPresentation } from "./legacy-html";
 import { LegacyHeader } from "./legacy-header";
+import { legacyProductActionRuntime } from "./legacy-product-action-theme";
 import type { LegacyPageKey } from "./legacy-routes";
 import { ReferenceScripts } from "./reference-scripts";
 
@@ -215,6 +216,7 @@ export function LegacyPage({
   const isReference = presentation === "reference";
   const document = getLegacyPage(page, { presentation });
   const bodyHasMainLandmark = /<main\b/i.test(document.bodyHtml);
+  const legacyBodyClassName = `sweed-legacy-page sweed-legacy-page-${page}`;
 
   return (
     <>
@@ -232,9 +234,9 @@ export function LegacyPage({
           dangerouslySetInnerHTML={{ __html: document.bodyHtml }}
         />
       ) : bodyHasMainLandmark ? (
-        <div dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
+        <div className={legacyBodyClassName} dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
       ) : (
-        <main id="main-content" tabIndex={-1} dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
+        <main className={legacyBodyClassName} id="main-content" tabIndex={-1} dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
       )}
       {isReference ? null : <LegacyEnhancements page={page} />}
       {!isReference && page === "services" ? <AutomationDemo /> : null}
@@ -242,11 +244,21 @@ export function LegacyPage({
       {isReference ? null : <OfferFunnelController page={page} />}
       <AiAdvisorWidget />
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
+      {!isReference && page === "products" ? (
+        <script id="sweed-product-action-runtime" dangerouslySetInnerHTML={{ __html: legacyProductActionRuntime }} />
+      ) : null}
       {isReference ? (
         <ReferenceScripts scripts={document.scripts} />
       ) : (
         document.scripts.map((script) =>
-          script.src ? (
+          page === "products" && !script.src ? (
+            <script
+              dangerouslySetInnerHTML={{ __html: script.content ?? "" }}
+              id={script.id}
+              key={script.id}
+              type={script.type}
+            />
+          ) : script.src ? (
             <Script id={script.id} key={script.id} src={script.src} strategy="afterInteractive" type={script.type} />
           ) : (
             <Script id={script.id} key={script.id} strategy="afterInteractive" type={script.type}>

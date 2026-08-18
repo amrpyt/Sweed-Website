@@ -205,7 +205,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           <Link
             className={getBrandActionButtonClassName({ className: styles.mobileCta, size: "nav" })}
             href={catalogHref} download="SWEED-Company-Catalog.pdf"
-            onClick={(event) => handleNavigationClick(event, consultationHref)}
+            onClick={(event) => handleNavigationClick(event, catalogHref)}
           >
             <BrandActionButtonContent>تحميل الكتالوج</BrandActionButtonContent>
           </Link>
@@ -214,7 +214,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
         <Link
           className={getBrandActionButtonClassName({ className: styles.desktopCta, size: "nav" })}
           href={catalogHref} download="SWEED-Company-Catalog.pdf"
-          onClick={(event) => handleNavigationClick(event, consultationHref)}
+          onClick={(event) => handleNavigationClick(event, catalogHref)}
         >
           <BrandActionButtonContent>تحميل الكتالوج</BrandActionButtonContent>
         </Link>

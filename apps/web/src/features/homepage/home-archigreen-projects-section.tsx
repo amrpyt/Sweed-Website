@@ -108,7 +108,6 @@ export function HomeArchigreenProjectsSection() {
             <p className={styles.kicker}>{homepageContent.portfolioHead.label}</p>
             <h2 id="home-portfolio-title">{homepageContent.portfolioHead.title}</h2>
             <p>{homepageContent.portfolioHead.description}</p>
-            <small>بننشر الأرقام الموثقة فقط. دراسات الحالة الأخرى بتظهر بوضوح كـ«قيد التوثيق» لحد اعتمادها.</small>
           </div>
 
         </div>

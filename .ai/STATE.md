@@ -1,20 +1,21 @@
 # Current State
 
-Updated: 2026-08-18T16:36:00+03:00
+Updated: 2026-08-18T16:50:00+03:00
 Git branch: main
-Git HEAD: `a9297d0cad7276f659b4e4db711306cbf6e9fcb4`
+Git HEAD: `9cb25c2e0bd621f273ec07d0016ea9d41d377328`
 Application commit: `fix: unify homepage control geometry`
-Active Task: None
-Active Plan: None
-Status: SWEED-039 homepage visual consistency pass completed, deployed, and verified
+Active Task: SWEED-040 — CRM + AI Agent interactive demo
+Active Plan: `.ai/plans/2026-08-18-crm-ai-agent-interactive-demo.md`
+Status: Remotion Agent Skills installed; standalone CRM + AI Agent frontend demo in progress
 
 ## Current Goal
 
-Close the remaining homepage/header control-shape drift and preserve individual rounded Problem Selector cards on mobile while keeping the existing layout, content, interactions, and reference-page fidelity boundary intact.
+Build an impressive standalone, frontend-only SWEED CRM + AI Agent demo page that can later be surfaced from Services without introducing backend dependencies.
 
 ## In Progress
 
-None.
+- Installed the official `remotion-dev/skills` package into project agent skills and reviewed `remotion-best-practices`.
+- Designing and implementing the standalone CRM + AI Agent demo route in modular React/Next.
 
 ## Completed Recently
 

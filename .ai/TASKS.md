@@ -1,10 +1,27 @@
 # Tasks
 
-Updated: 2026-08-18T16:36:00+03:00
+Updated: 2026-08-18T16:50:00+03:00
 
 ## Active
 
-None.
+### SWEED-040 — CRM + AI Agent interactive demo
+
+Status: in progress
+Priority: high
+Plan: `.ai/plans/2026-08-18-crm-ai-agent-interactive-demo.md`
+
+#### Acceptance Criteria
+
+- [ ] Official `remotion-dev/skills` are installed and `remotion-best-practices` has been reviewed.
+- [ ] A standalone modular Next route presents a convincing SWEED CRM + AI Agent product demo.
+- [ ] The demo is completely frontend-only with deterministic local data and no backend/API dependency.
+- [ ] Lead selection, pipeline state, activity, AI analysis, AI action, and reset flows are interactive.
+- [ ] SWEED typography, `#261b3e`, `#ed2062`, control geometry, focus language, and semantic spacing are preserved.
+- [ ] Motion is state-driven, restrained, and has a reduced-motion fallback.
+- [ ] Desktop, tablet, 390px mobile, and 320px mobile layouts have no horizontal overflow.
+- [ ] Keyboard focus and primary controls remain usable.
+- [ ] Focused tests, `bun run check`, production build, service deployment, and browser QA pass.
+- [ ] Changes are committed in logical commits and not pushed.
 
 ## Completed
 

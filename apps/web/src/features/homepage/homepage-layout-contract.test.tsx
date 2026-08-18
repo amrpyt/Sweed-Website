@@ -3,7 +3,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { homepageContent } from "@/content/homepage";
 import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
 import { HomeBlitScrollSection } from "./home-blit-scroll-section";
-import { HomeGapSection } from "./home-gap-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
 
 describe("homepage layout contract", () => {
@@ -14,12 +13,8 @@ describe("homepage layout contract", () => {
     expect(html).not.toContain(">من 2011</p>");
   });
 
-  test("keeps the slogan centered without the compass letter marker", () => {
-    const html = renderToStaticMarkup(<HomeGapSection />);
-
-    expect(html).toContain(homepageContent.slogan.start);
-    expect(html).toContain(homepageContent.slogan.end);
-    expect(html).not.toContain(">N</span>");
+  test("moves the direction promise into the hero subtitle", () => {
+    expect(homepageContent.hero.subtitle).toBe("نحدد لك الاتجاه، ونلتزم معك بالوصول — معًا ستصل.");
   });
 
   test("renders Services copy compactly and leaves the all-services CTA until the end", () => {
@@ -38,5 +33,6 @@ describe("homepage layout contract", () => {
     expect(html).toContain('aria-label="المشروع التالي"');
     expect(html).not.toContain("إيقاف الحركة التلقائية");
     expect(homepageContent.portfolio.every((project) => html.includes(project.title))).toBe(true);
+    expect(html.indexOf("شاهد كل الأعمال")).toBeGreaterThan(html.lastIndexOf('data-testid="home-portfolio-card"'));
   });
 });

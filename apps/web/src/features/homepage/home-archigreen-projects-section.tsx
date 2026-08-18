@@ -111,11 +111,6 @@ export function HomeArchigreenProjectsSection() {
             <small>بننشر الأرقام الموثقة فقط. دراسات الحالة الأخرى بتظهر بوضوح كـ«قيد التوثيق» لحد اعتمادها.</small>
           </div>
 
-          <div className={styles.headingActions}>
-            <Link className={getBrandActionButtonClassName({ size: "compact", variant: "secondary" })} href="/portfolio">
-              <BrandActionButtonContent>شاهد كل الأعمال</BrandActionButtonContent>
-            </Link>
-          </div>
         </div>
 
         <div
@@ -195,6 +190,12 @@ export function HomeArchigreenProjectsSection() {
           >
             <i className="fas fa-arrow-left" aria-hidden="true" />
           </button>
+        </div>
+
+        <div className={styles.headingActions}>
+          <Link className={getBrandActionButtonClassName({ size: "compact", variant: "secondary" })} href="/portfolio">
+            <BrandActionButtonContent>شاهد كل الأعمال</BrandActionButtonContent>
+          </Link>
         </div>
       </div>
     </section>

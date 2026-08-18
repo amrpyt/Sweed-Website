@@ -16,7 +16,6 @@ import { HomeBlitScrollSection } from "./home-blit-scroll-section";
 import { HomeContactSection } from "./home-contact-section";
 import { HomeConversionProvider, HomeConversionStateMarker } from "./home-conversion-context";
 import { HomeFaqBlogSection } from "./home-faq-blog-section";
-import { HomeGapSection } from "./home-gap-section";
 import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
 import { HomeOffersSection } from "./home-offers-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
@@ -262,9 +261,15 @@ export function HomePublicPage() {
 
         <HomeBlitScrollSection />
 
-        <HomeGapSection />
-
         <HomeServicesScrollSection />
+
+        <div className={styles.sectionDivider} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
 
         <HomeWhyMetricsSection />
 

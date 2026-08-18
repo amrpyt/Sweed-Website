@@ -37,7 +37,7 @@ export const homepageContent = {
   hero: {
     eyebrow: "سويد للاستشارات الإدارية والتسويقية",
     title: "نصنع العلامات التي تقود المستقبل",
-    subtitle: "نفهم وضع مشروعك، نحدد الأولويات بالبيانات، وننفذ معاك بخطة ومؤشرات واضحة.",
+    subtitle: "نحدد لك الاتجاه، ونلتزم معك بالوصول — معًا ستصل.",
     trustLine: "خبرة من 2011 · اتجاه واضح · متابعة مستمرة",
     actions: [
       { label: "احجز استشارتك المجانية", href: "/contact?source=home-hero", icon: "fa-calendar-check", variant: "primary" },
@@ -201,7 +201,7 @@ export const homepageContent = {
       verification: "verified",
     },
     {
-      title: "دراسة حالة — قطاع المطاعم",
+      title: "قطاع المطاعم",
       summary:
         "نموذج الصيغة النهائية لدراسة حالة في التسعير وتجربة العميل. اسم العميل والنتيجة الرقمية يضافان بعد اكتمال التوثيق والموافقة.",
       icon: "fa-utensils",

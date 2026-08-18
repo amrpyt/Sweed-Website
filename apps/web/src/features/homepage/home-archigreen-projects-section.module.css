@@ -72,23 +72,21 @@
   gap: var(--stack-md);
 }
 
-.carouselControls {
-  display: flex;
-  gap: var(--inline-sm);
-}
-
-.carouselControls button {
-  display: inline-grid;
-  width: var(--control-height-md);
-  height: var(--control-height-md);
-  flex: 0 0 var(--control-height-md);
-  place-items: center;
+.motionToggle {
+  display: inline-flex;
+  min-height: var(--control-height-md);
+  align-items: center;
+  justify-content: center;
+  gap: var(--inline-xs);
   border: 1px solid rgb(255 255 255 / 24%);
-  border-radius: 50%;
+  border-radius: var(--shape-control);
+  padding-inline: var(--control-padding-inline);
   background: rgb(255 255 255 / 6%);
   color: #ffffff;
   font: inherit;
-  font-size: var(--type-card-title-size);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--control-text-leading);
   cursor: pointer;
   transition:
     background-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -96,18 +94,17 @@
     transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.carouselControls button:hover,
-.carouselControls button:focus-visible {
+.motionToggle:hover,
+.motionToggle:focus-visible {
   border-color: var(--color-action, #e2185b);
   background: var(--color-action, #e2185b);
-  transform: translateY(calc(var(--cds-spacing-01) * -1));
 }
 
-.carouselControls button:active {
+.motionToggle:active {
   transform: scale(0.96);
 }
 
-.carouselControls button:focus-visible,
+.motionToggle:focus-visible,
 .headingActions > a:focus-visible {
   outline: 3px solid rgb(237 32 98 / 38%);
   outline-offset: var(--cds-spacing-02);
@@ -134,29 +131,25 @@
   text-decoration-color: currentColor;
 }
 
-.projectsTrack {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
-  gap: var(--stack-lg);
+.projectsViewport {
   margin-block-start: var(--section-content-gap);
-  overflow-x: auto;
+  overflow: hidden;
   overscroll-behavior-inline: contain;
-  scroll-behavior: smooth;
-  scroll-snap-type: inline mandatory;
-  scrollbar-width: none;
+  touch-action: pan-y pinch-zoom;
 }
 
-.projectsTrack::-webkit-scrollbar {
-  display: none;
+.projectsTrack {
+  display: flex;
+  gap: var(--stack-lg);
+  backface-visibility: hidden;
 }
 
 .projectCard {
-  display: grid;
+  display: flex;
+  flex: 0 0 88%;
   min-width: 0;
+  flex-direction: column;
   overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   border: 1px solid rgb(255 255 255 / 14%);
   border-radius: var(--shape-feature);
   background: rgb(255 255 255 / 6%);
@@ -166,14 +159,9 @@
     transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.projectCard[data-active="true"] {
-  border-color: rgb(237 32 98 / 58%);
-  background: rgb(255 255 255 / 8%);
-}
-
 .projectMedia {
   position: relative;
-  min-height: clamp(15rem, 72vw, 24rem);
+  min-height: 15rem;
   margin: 0;
   overflow: hidden;
   background: #171025;
@@ -184,8 +172,7 @@
   transition: transform 640ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.projectCard:hover .projectMedia img,
-.projectCard[data-active="true"] .projectMedia img {
+.projectCard:hover .projectMedia img {
   transform: scale(1.025);
 }
 
@@ -262,36 +249,50 @@
 }
 
 @media (min-width: 48rem) {
-  .projectsTrack {
-    grid-auto-columns: min(88%, 68rem);
-  }
-
   .projectCard {
-    grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr);
+    flex-basis: 56%;
   }
 
   .projectMedia {
-    min-height: 30rem;
+    min-height: 18rem;
   }
 }
 
 @media (min-width: 70rem) {
   .projectsTrack {
-    grid-auto-columns: min(80%, 68rem);
     gap: var(--stack-xl);
   }
 
-  .projectMedia {
-    min-height: 32rem;
+  .projectCard {
+    flex-basis: 36%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .projectsTrack {
-    scroll-behavior: auto;
+  .projectsViewport {
+    overflow-x: auto;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    touch-action: auto;
   }
 
-  .carouselControls button,
+  .projectsViewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projectsTrack {
+    transform: none !important;
+  }
+
+  .projectCard {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .motionToggle {
+    display: none;
+  }
+
   .headingActions > a,
   .projectCard,
   .projectMedia img {

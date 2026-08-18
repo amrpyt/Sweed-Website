@@ -1,0 +1,40 @@
+import { describe, expect, test } from "bun:test";
+import { renderToStaticMarkup } from "react-dom/server";
+import { homepageContent } from "@/content/homepage";
+import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
+import { HomeBlitScrollSection } from "./home-blit-scroll-section";
+import { HomeGapSection } from "./home-gap-section";
+import { HomeServicesScrollSection } from "./home-services-scroll-section";
+
+describe("homepage layout contract", () => {
+  test("keeps 2011 inside the About narrative instead of a standalone row", () => {
+    const html = renderToStaticMarkup(<HomeBlitScrollSection />);
+
+    expect(html).toContain("السوق المصري والعربي من 2011");
+    expect(html).not.toContain(">من 2011</p>");
+  });
+
+  test("keeps the slogan centered without the compass letter marker", () => {
+    const html = renderToStaticMarkup(<HomeGapSection />);
+
+    expect(html).toContain(homepageContent.slogan.start);
+    expect(html).toContain(homepageContent.slogan.end);
+    expect(html).not.toContain(">N</span>");
+  });
+
+  test("renders Services copy compactly and leaves the all-services CTA until the end", () => {
+    const html = renderToStaticMarkup(<HomeServicesScrollSection />);
+    const lastServiceTitle = homepageContent.services.at(-1)?.title;
+
+    expect(lastServiceTitle).toBeTruthy();
+    expect(html).not.toContain(homepageContent.servicesIntro);
+    expect(html.indexOf("شوف كل الخدمات")).toBeGreaterThan(html.indexOf(lastServiceTitle ?? ""));
+  });
+
+  test("gives the auto-moving portfolio strip an explicit pause control", () => {
+    const html = renderToStaticMarkup(<HomeArchigreenProjectsSection />);
+
+    expect(html).toContain("إيقاف الحركة التلقائية");
+    expect(homepageContent.portfolio.every((project) => html.includes(project.title))).toBe(true);
+  });
+});

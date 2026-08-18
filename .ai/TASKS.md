@@ -1,8 +1,73 @@
 # Tasks
 
-Updated: 2026-08-18T19:06:00+03:00
+Updated: 2026-08-18T19:34:00+03:00
 
 ## Active
+
+### SWEED-045 — Restore approved button look
+
+Status: in-progress
+Priority: critical
+Plan: `.ai/plans/2026-08-18-restore-approved-button-look.md`
+
+#### Acceptance Criteria
+
+- [ ] Canonical primary CTA is restored to deep purple with the pink fill interaction.
+- [ ] Canonical secondary/light CTA is restored to a white surface with the approved border/shadow treatment.
+- [ ] Existing hero fill animation, Arabic optical centering, focus state, disabled state, and reduced-motion behavior remain intact.
+- [ ] Reference-page CTAs use the same restored visual hierarchy without editing source HTML.
+- [ ] Product purchase CTAs that already match the older hierarchy remain unchanged.
+- [ ] Focused tests, full check/build, deployment health, and desktop/mobile browser QA pass.
+- [ ] Unrelated SWEED-042/SWEED-044 dirty files remain untouched by the fix commit.
+
+#### Evidence
+
+- Git blame identifies `999fd13` (2026-08-18 18:49 +03:00) as the commit that changed the canonical primary from purple to pink and the secondary from white to transparent.
+- Current uncommitted reference-theme changes mirror that newer palette and are not required for the shared interaction mechanism.
+
+#### Next Action
+
+Add and run a failing regression assertion for the approved purple/white hierarchy.
+
+### SWEED-044 — Homepage About, Services, and Portfolio polish
+
+Status: in-progress
+Priority: high
+Plan: `.ai/plans/2026-08-18-homepage-about-services-portfolio-polish.md`
+
+#### Acceptance Criteria
+
+- [ ] Homepage About has no standalone `من 2011` row; the date remains naturally inside the approved company paragraph.
+- [ ] The slogan statement is visually centered without the circular `N` compass mark.
+- [ ] Services long intro is not rendered; `شوف كل الخدمات` appears after the service cards.
+- [ ] Services render as two columns on desktop while mobile/tablet remain readable and overflow-free.
+- [ ] The Services heading stays on one line at wide desktop widths without clipping.
+- [ ] Selected Work runs as a continuous horizontal auto-strip with pause/resume and hover/focus pause behavior.
+- [ ] Reduced motion disables portfolio autoplay and leaves content manually reachable.
+- [ ] Focused tests, full check/build, deployment health, and public desktop/mobile browser QA pass.
+- [ ] Only SWEED-044 files are committed; no push is performed.
+
+#### Dependencies
+
+- Preserve unrelated in-progress SWEED-042 dirty route files.
+
+#### Relevant Files and Systems
+
+- `apps/web/src/features/homepage/*`
+- `/`
+- `sweed-demo.service`
+
+#### Evidence
+
+- Pending implementation and verification.
+
+#### Blockers
+
+- None.
+
+#### Next Action
+
+Add render-contract tests and observe the intended red state before changing homepage production code.
 
 ### SWEED-042 — Final v4 public-site hardening
 

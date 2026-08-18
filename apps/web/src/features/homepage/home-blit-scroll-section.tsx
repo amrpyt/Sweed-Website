@@ -24,7 +24,6 @@ export function HomeBlitScrollSection() {
           <Reveal className={styles.introBlock} once variant="soft">
             <p className={styles.sectionLabel}>من نحن</p>
             <h2 id="home-about-title">{about.title}</h2>
-            <p className={styles.experienceLabel}>من 2011</p>
             <p className={styles.lead}>{lead}</p>
           </Reveal>
         </header>

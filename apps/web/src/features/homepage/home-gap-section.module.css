@@ -19,56 +19,24 @@
 }
 
 .section .statement {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: clamp(var(--cds-spacing-01), 1vw, var(--cds-spacing-05));
+  justify-content: center;
+  gap: var(--inline-lg);
   margin: 0;
   color: #261b3e;
-  font-size: clamp(0.875rem, 4.45vw, 4.4rem);
+  font-size: var(--type-page-title-size);
   font-weight: var(--font-weight-display);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  white-space: nowrap;
-  text-wrap: nowrap;
+  letter-spacing: -0.02em;
+  line-height: var(--type-title-leading);
+  text-align: center;
+  text-wrap: balance;
 }
 
 .phrase {
   min-width: 0;
-  text-align: end;
-  white-space: nowrap;
-}
-
-.phraseEnd {
-  text-align: start;
-}
-
-.compassMark {
-  position: relative;
-  display: inline-grid;
-  width: clamp(var(--cds-spacing-06), 5.5vw, var(--cds-spacing-11));
-  aspect-ratio: 1;
-  place-items: center;
-  border-radius: 50%;
-  background: #261b3e;
-  color: #ffffff;
-  box-shadow: 0 var(--cds-spacing-02) 0 rgb(237 32 98 / 20%);
-}
-
-.compassMark::before {
-  position: absolute;
-  inset-block-start: var(--cds-spacing-03);
-  width: 1px;
-  height: var(--cds-spacing-03);
-  background: #ed2062;
-  content: "";
-}
-
-.compassMark span {
-  font-family: var(--font-body);
-  font-size: clamp(0.8rem, 1.4vw, 1rem);
-  font-weight: var(--font-weight-strong);
-  letter-spacing: 0.04em;
+  text-align: center;
 }
 
 .caption {
@@ -85,13 +53,13 @@
     gap: var(--stack-lg);
   }
 
+  .section .statement {
+    flex-wrap: nowrap;
+    gap: var(--stack-xl);
+  }
+
   .caption {
     font-size: var(--type-lead-size);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .compassMark {
-    box-shadow: none;
-  }
-}

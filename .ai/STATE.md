@@ -1,20 +1,22 @@
 # Current State
 
-Updated: 2026-08-18T19:06:00+03:00
+Updated: 2026-08-18T19:34:00+03:00
 Git branch: main
-Git HEAD: `98e88a4`
-Application commit: `refactor: compress about proof sections`
-Active Task: SWEED-042
-Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
-Status: SWEED-042 in progress — executing final v4 public-site hardening
+Git HEAD: `a44993f`
+Application commit: `refactor: use modular public service routes`
+Active Task: SWEED-045
+Active Plan: `.ai/plans/2026-08-18-restore-approved-button-look.md`
+Status: SWEED-045 in progress — restoring the approved button appearance after a v4 visual regression
 
 ## Current Goal
 
-Execute the 2026-08-18 final v4 SWEED website delivery spec in priority order without rebuilding the site from scratch, while preserving the completed `/crm-ai-demo` experience.
+Restore the approved purple-primary / white-secondary button appearance without undoing the shared hero fill mechanism or disturbing unrelated in-progress route/homepage work.
 
 ## In Progress
 
-- Close code-resolvable P0 defects first, then shared system and page-level v4 requirements.
+- Root cause confirmed in `999fd13`: canonical button palette/shadows changed at 18:49 +03:00.
+- Add a focused regression assertion, restore only the visual values, then verify/deploy with browser QA.
+- SWEED-044 and SWEED-042 remain in progress but are temporarily paused; their dirty files must be preserved.
 
 ## Completed Recently
 
@@ -121,6 +123,8 @@ Execute the 2026-08-18 final v4 SWEED website delivery spec in priority order wi
 
 ## Remaining
 
+- Complete SWEED-044 implementation, tests, build, deploy, and browser QA.
+- Resume SWEED-042 from its existing plan after this homepage task is complete.
 - `/articles` remains outside HTML-level fidelity because no executable Articles HTML reference was supplied in the relevant batch.
 - Push to GitHub only when explicitly requested.
 
@@ -130,4 +134,4 @@ None.
 
 ## Next Exact Action
 
-Keep `/crm-ai-demo` standalone until the Services-page product entry is explicitly requested; preserve the frontend-only demo boundary.
+Add and run the SWEED-044 homepage render-contract tests before editing production homepage sections.

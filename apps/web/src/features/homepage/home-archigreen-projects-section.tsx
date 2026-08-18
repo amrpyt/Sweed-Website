@@ -1,5 +1,7 @@
 "use client";
 
+import EmblaCarousel from "embla-carousel";
+import AutoScroll, { type AutoScrollType } from "embla-carousel-auto-scroll";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -8,47 +10,95 @@ import { homepageContent } from "@/content/homepage";
 import styles from "./home-archigreen-projects-section.module.css";
 
 export function HomeArchigreenProjectsSection() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const autoScrollRef = useRef<AutoScrollType | null>(null);
+  const mouseInsideRef = useRef(false);
+  const focusInsideRef = useRef(false);
+  const userPausedRef = useRef(false);
+  const [userPaused, setUserPaused] = useState(false);
   const projects = homepageContent.portfolio;
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const slides = Array.from(track.querySelectorAll<HTMLElement>("[data-carousel-slide]"));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (!visible) return;
-        const index = Number((visible.target as HTMLElement).dataset.carouselIndex);
-        if (Number.isFinite(index)) setActiveIndex(index);
-      },
-      { root: track, threshold: [0.45, 0.65, 0.85] },
-    );
-
-    slides.forEach((slide) => observer.observe(slide));
-    return () => observer.disconnect();
-  }, []);
-
-  const goToProject = (index: number) => {
-    const track = trackRef.current;
-    if (!track || projects.length === 0) return;
-
-    const normalizedIndex = (index + projects.length) % projects.length;
-    const slide = track.querySelector<HTMLElement>(`[data-carousel-index="${normalizedIndex}"]`);
-    if (!slide) return;
+    const viewport = viewportRef.current;
+    if (!viewport) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    slide.scrollIntoView({
-      behavior: reduceMotion ? "auto" : "smooth",
-      block: "nearest",
-      inline: "start",
+    if (reduceMotion) return;
+
+    const autoScroll = AutoScroll({
+      direction: "forward",
+      playOnInit: true,
+      speed: 0.7,
+      startDelay: 700,
+      stopOnFocusIn: false,
+      stopOnInteraction: true,
+      stopOnMouseEnter: false,
     });
-    setActiveIndex(normalizedIndex);
+    const embla = EmblaCarousel(
+      viewport,
+      {
+        align: "start",
+        direction: "rtl",
+        dragFree: true,
+        loop: true,
+      },
+      [autoScroll],
+    );
+
+    autoScrollRef.current = autoScroll;
+
+    return () => {
+      autoScrollRef.current = null;
+      embla.destroy();
+    };
+  }, []);
+
+  const stopAutoScroll = () => {
+    autoScrollRef.current?.stop();
+  };
+
+  const resumeAutoScroll = () => {
+    if (userPausedRef.current || mouseInsideRef.current || focusInsideRef.current) return;
+    autoScrollRef.current?.play(0);
+  };
+
+  const toggleAutoScroll = () => {
+    const autoScroll = autoScrollRef.current;
+    if (!autoScroll) return;
+
+    if (userPausedRef.current) {
+      userPausedRef.current = false;
+      setUserPaused(false);
+      resumeAutoScroll();
+      return;
+    }
+
+    userPausedRef.current = true;
+    setUserPaused(true);
+    autoScroll.stop();
+  };
+
+  const handleMouseEnter = () => {
+    mouseInsideRef.current = true;
+    stopAutoScroll();
+  };
+
+  const handleMouseLeave = () => {
+    mouseInsideRef.current = false;
+    resumeAutoScroll();
+  };
+
+  const handleFocusCapture = () => {
+    focusInsideRef.current = true;
+    stopAutoScroll();
+  };
+
+  const handleBlurCapture = (event: React.FocusEvent<HTMLDivElement>) => {
+    const viewport = viewportRef.current;
+    if (viewport?.contains(event.relatedTarget as Node | null)) return;
+
+    focusInsideRef.current = false;
+    resumeAutoScroll();
   };
 
   return (
@@ -63,14 +113,16 @@ export function HomeArchigreenProjectsSection() {
           </div>
 
           <div className={styles.headingActions}>
-            <div className={styles.carouselControls} role="group" aria-label="التنقل بين الأعمال المختارة">
-              <button type="button" aria-label="المشروع السابق" onClick={() => goToProject(activeIndex - 1)}>
-                <span aria-hidden="true">→</span>
-              </button>
-              <button type="button" aria-label="المشروع التالي" onClick={() => goToProject(activeIndex + 1)}>
-                <span aria-hidden="true">←</span>
-              </button>
-            </div>
+            <button
+              type="button"
+              className={styles.motionToggle}
+              data-testid="home-portfolio-motion-toggle"
+              aria-pressed={userPaused}
+              onClick={toggleAutoScroll}
+            >
+              <i className={`fas ${userPaused ? "fa-play" : "fa-pause"}`} aria-hidden="true" />
+              <span>{userPaused ? "تشغيل الحركة التلقائية" : "إيقاف الحركة التلقائية"}</span>
+            </button>
             <Link className={getBrandActionButtonClassName({ size: "compact", variant: "secondary" })} href="/portfolio">
               <BrandActionButtonContent>شاهد كل الأعمال</BrandActionButtonContent>
             </Link>
@@ -78,50 +130,58 @@ export function HomeArchigreenProjectsSection() {
         </div>
 
         <div
-          ref={trackRef}
-          className={styles.projectsTrack}
+          ref={viewportRef}
+          className={styles.projectsViewport}
+          data-testid="home-portfolio-viewport"
           role="region"
           aria-roledescription="carousel"
           aria-label="أعمال SWEED المختارة"
+          aria-live="off"
+          onBlurCapture={handleBlurCapture}
+          onFocusCapture={handleFocusCapture}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onPointerUp={resumeAutoScroll}
         >
-          {projects.map((project, index) => (
-            <article
-              className={styles.projectCard}
-              data-active={activeIndex === index ? "true" : "false"}
-              data-carousel-index={index}
-              data-carousel-slide
-              data-status={project.verification}
-              data-testid="home-portfolio-card"
-              key={project.title}
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`${index + 1} من ${projects.length}: ${project.title}`}
-            >
-              <figure className={styles.projectMedia}>
-                <Image
-                  src={project.image ?? "/images/hero/custom-image.png"}
-                  alt={`عرض بصري لمشروع ${project.title}`}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1100px) 72vw, 58vw"
-                />
-              </figure>
+          <div className={styles.projectsTrack} data-testid="home-portfolio-track">
+            {projects.map((project, index) => (
+              <article
+                className={styles.projectCard}
+                data-carousel-index={index}
+                data-carousel-slide
+                data-status={project.verification}
+                data-testid="home-portfolio-card"
+                key={project.title}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${index + 1} من ${projects.length}: ${project.title}`}
+              >
+                <figure className={styles.projectMedia}>
+                  <Image
+                    src={project.image ?? "/images/hero/custom-image.png"}
+                    alt={`عرض بصري لمشروع ${project.title}`}
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 640px) 88vw, (max-width: 1100px) 56vw, 36vw"
+                  />
+                </figure>
 
-              <div className={styles.projectBody}>
-                <div className={styles.projectMeta}>
-                  <span>{project.category}</span>
-                  <span className={styles.proofState} data-status={project.verification}>
-                    {project.verification === "verified" ? "نتيجة موثقة" : "قيد التوثيق"}
-                  </span>
+                <div className={styles.projectBody}>
+                  <div className={styles.projectMeta}>
+                    <span>{project.category}</span>
+                    <span className={styles.proofState} data-status={project.verification}>
+                      {project.verification === "verified" ? "نتيجة موثقة" : "قيد التوثيق"}
+                    </span>
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.summary}</p>
+                  <strong className={styles.result} data-pending={project.verification === "pending" ? "true" : "false"}>
+                    {project.result}
+                  </strong>
                 </div>
-                <h3>{project.title}</h3>
-                <p>{project.summary}</p>
-                <strong className={styles.result} data-pending={project.verification === "pending" ? "true" : "false"}>
-                  {project.result}
-                </strong>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

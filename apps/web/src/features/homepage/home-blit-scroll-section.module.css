@@ -49,17 +49,6 @@
   text-wrap: balance;
 }
 
-.experienceLabel {
-  width: fit-content;
-  margin: 0;
-  border-block-end: 2px solid #ed2062;
-  padding-block-end: var(--cds-spacing-02);
-  color: #ed2062;
-  font-size: var(--type-label-size);
-  font-weight: var(--font-weight-strong);
-  line-height: 1.5;
-}
-
 .lead {
   max-width: var(--content-measure);
   margin: 0;

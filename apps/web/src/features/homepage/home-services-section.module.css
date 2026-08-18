@@ -48,16 +48,6 @@
   text-wrap: balance;
 }
 
-.intro p {
-  max-width: var(--content-measure);
-  margin: 0 auto;
-  color: rgb(38 27 62 / 76%);
-  font-size: var(--type-lead-size);
-  font-weight: var(--font-weight-body);
-  line-height: var(--type-body-leading);
-  text-wrap: pretty;
-}
-
 .scope {
   display: block;
   max-width: 34rem;
@@ -75,7 +65,6 @@
   align-items: center;
   justify-content: center;
   gap: var(--content-gap-tight);
-  margin-block-start: var(--stack-xs);
   border-radius: var(--shape-control);
   padding-inline: var(--control-padding-inline);
   background: #261b3e;
@@ -86,6 +75,16 @@
   transition:
     background-color var(--motion-fast),
     transform var(--motion-fast);
+}
+
+.servicesContent {
+  display: grid;
+  gap: var(--stack-2xl);
+}
+
+.servicesFooter {
+  display: flex;
+  justify-content: center;
 }
 
 .allServicesLink:hover,
@@ -291,8 +290,49 @@
 }
 
 @media (min-width: 64rem) {
+  .serviceList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--stack-xl);
+  }
+
+  .serviceList > li {
+    height: 100%;
+  }
+
   .serviceItem {
-    grid-template-columns: 3rem minmax(9.5rem, 11.875rem) minmax(0, 1fr) minmax(6.5rem, auto);
+    height: 100%;
+    grid-template-areas:
+      "media content"
+      "media action";
+    grid-template-columns: minmax(9rem, 10rem) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: var(--stack-lg);
+  }
+
+  .index {
+    display: none;
+  }
+
+  .media {
+    min-height: 15rem;
+    align-self: stretch;
+    aspect-ratio: auto;
+  }
+
+  .content {
+    align-content: start;
+  }
+
+  .actionLabel {
+    justify-self: start;
+  }
+}
+
+@media (min-width: 75rem) {
+  .intro h2 {
+    max-width: none;
+    white-space: nowrap;
   }
 }
 

@@ -4,14 +4,14 @@ import { homepageContent } from "@/content/homepage";
 import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-section";
 
 describe("homepage portfolio carousel", () => {
-  test("renders a manually controlled accessible carousel without autoplay", () => {
+  test("renders an accessible auto-moving carousel with an explicit motion control", () => {
     const html = renderToStaticMarkup(<HomeArchigreenProjectsSection />);
 
     expect(html).toContain('aria-roledescription="carousel"');
-    expect(html).toContain('aria-label="المشروع السابق"');
-    expect(html).toContain('aria-label="المشروع التالي"');
+    expect(html).toContain('data-testid="home-portfolio-motion-toggle"');
+    expect(html).toContain("إيقاف الحركة التلقائية");
+    expect(html).toContain('aria-live="off"');
     expect((html.match(/data-carousel-slide="true"/g) ?? [])).toHaveLength(homepageContent.portfolio.length);
-    expect(html).not.toContain("autoplay");
   });
 
   test("keeps verified and pending proof states visible in the track", () => {

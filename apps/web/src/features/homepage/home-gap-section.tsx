@@ -11,9 +11,6 @@ export function HomeGapSection() {
         <Reveal className={styles.reveal} once variant="soft">
           <h2 className={styles.statement} id="home-slogan-title">
             <span className={styles.phrase}>{slogan.start}</span>
-            <span className={styles.compassMark} aria-hidden="true">
-              <span>N</span>
-            </span>
             <span className={`${styles.phrase} ${styles.phraseEnd}`}>{slogan.end}</span>
           </h2>
           <p className={styles.caption}>{slogan.caption}</p>

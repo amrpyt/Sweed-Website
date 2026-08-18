@@ -20,7 +20,8 @@
 
 .headingCopy {
   display: grid;
-  max-width: var(--measure-lead);
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
   justify-items: center;
   gap: var(--stack-md);
@@ -37,7 +38,7 @@
 }
 
 .headingCopy h2 {
-  max-width: 18ch;
+  max-width: none;
   margin: 0 auto;
   color: #ffffff;
   font-size: var(--type-section-title-size);
@@ -48,7 +49,8 @@
 }
 
 .headingCopy > p:not(.kicker) {
-  max-width: var(--measure-lead);
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   color: rgb(255 255 255 / 82%);
   font-size: var(--type-body-size);
@@ -56,7 +58,8 @@
 }
 
 .headingCopy > small {
-  max-width: var(--measure-body);
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
   color: rgb(255 255 255 / 68%);
   font-size: var(--type-small-size);
@@ -72,39 +75,6 @@
   gap: var(--stack-md);
 }
 
-.motionToggle {
-  display: inline-flex;
-  min-height: var(--control-height-md);
-  align-items: center;
-  justify-content: center;
-  gap: var(--inline-xs);
-  border: 1px solid rgb(255 255 255 / 24%);
-  border-radius: var(--shape-control);
-  padding-inline: var(--control-padding-inline);
-  background: rgb(255 255 255 / 6%);
-  color: #ffffff;
-  font: inherit;
-  font-size: var(--type-small-size);
-  font-weight: var(--font-weight-strong);
-  line-height: var(--control-text-leading);
-  cursor: pointer;
-  transition:
-    background-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.motionToggle:hover,
-.motionToggle:focus-visible {
-  border-color: var(--color-action, #e2185b);
-  background: var(--color-action, #e2185b);
-}
-
-.motionToggle:active {
-  transform: scale(0.96);
-}
-
-.motionToggle:focus-visible,
 .headingActions > a:focus-visible {
   outline: 3px solid rgb(237 32 98 / 38%);
   outline-offset: var(--cds-spacing-02);
@@ -131,11 +101,62 @@
   text-decoration-color: currentColor;
 }
 
-.projectsViewport {
+.carouselStage {
+  position: relative;
   margin-block-start: var(--section-content-gap);
+}
+
+.projectsViewport {
   overflow: hidden;
   overscroll-behavior-inline: contain;
   touch-action: pan-y pinch-zoom;
+}
+
+.carouselNavButton {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: inline-grid;
+  width: var(--control-height-md);
+  min-width: var(--control-height-md);
+  height: var(--control-height-md);
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: var(--shape-control);
+  background: rgb(38 27 62 / 84%);
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgb(23 16 37 / 24%);
+  transform: translateY(-50%);
+  transition:
+    background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.carouselPrevious {
+  right: var(--stack-xs);
+}
+
+.carouselNext {
+  left: var(--stack-xs);
+}
+
+.carouselNavButton:hover,
+.carouselNavButton:focus-visible {
+  border-color: #ed2062;
+  background: #ed2062;
+  transform: translateY(-50%) scale(1.04);
+}
+
+.carouselNavButton:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.carouselNavButton:focus-visible {
+  outline: 3px solid rgb(237 32 98 / 38%);
+  outline-offset: var(--cds-spacing-02);
 }
 
 .projectsTrack {
@@ -249,6 +270,14 @@
 }
 
 @media (min-width: 48rem) {
+  .carouselPrevious {
+    right: var(--stack-md);
+  }
+
+  .carouselNext {
+    left: var(--stack-md);
+  }
+
   .projectCard {
     flex-basis: 56%;
   }
@@ -289,11 +318,12 @@
     scroll-snap-stop: always;
   }
 
-  .motionToggle {
+  .carouselNavButton {
     display: none;
   }
 
   .headingActions > a,
+  .carouselNavButton,
   .projectCard,
   .projectMedia img {
     transition: none;

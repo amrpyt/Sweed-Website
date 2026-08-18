@@ -104,23 +104,6 @@ export function HomeContactSection() {
             {homepageContent.contact.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
 
-          <div className={styles.contactMethods}>
-            <a href={`tel:${homepageContent.contact.phone.replace(/\s/g, "")}`}>
-              <i className="fas fa-phone" aria-hidden="true" />
-              <span>
-                <small>اتصل بنا</small>
-                <strong dir="ltr">{homepageContent.contact.phone}</strong>
-              </span>
-            </a>
-            <a href={homepageContent.contact.whatsappHref} target="_blank" rel="noreferrer">
-              <i className="fab fa-whatsapp" aria-hidden="true" />
-              <span>
-                <small>واتساب</small>
-                <strong>ابدأ محادثة مباشرة</strong>
-              </span>
-            </a>
-          </div>
-
           {selection.problem || selection.offer ? (
             <div className={styles.contextSummary} data-testid="home-contact-context-summary">
               <span>هنكمل معاك من حيث بدأت:</span>

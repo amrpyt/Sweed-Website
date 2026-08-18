@@ -7,7 +7,9 @@ describe("homepage content", () => {
     expect(homepageContent.hero.actions.some((action) => action.label === "شاهد أعمالنا")).toBe(true);
     expect(homepageContent.problems).toHaveLength(6);
     expect(homepageContent.about.points).toHaveLength(3);
-    expect(homepageContent.why).toHaveLength(4);
+    expect(homepageContent.why).toHaveLength(6);
+    expect(homepageContent.why.map((item) => item.title)).toContain("شراكة مش خدمة");
+    expect(homepageContent.why.map((item) => item.title)).toContain("التزام بالمواعيد");
     expect(homepageContent.stats).toHaveLength(0);
     expect(homepageContent.faq).toHaveLength(5);
     expect(homepageContent.articles).toHaveLength(3);

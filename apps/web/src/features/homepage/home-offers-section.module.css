@@ -11,7 +11,8 @@
 
 .headingLayout {
   display: grid;
-  max-width: var(--content-measure-wide);
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
   justify-items: center;
   gap: var(--section-header-gap);
@@ -28,7 +29,7 @@
 }
 
 .headingLayout h2 {
-  max-width: 18ch;
+  max-width: none;
   margin: 0 auto;
   color: #261b3e;
   font-size: var(--type-section-title-size);
@@ -39,7 +40,8 @@
 }
 
 .headingLayout > p {
-  max-width: var(--content-measure);
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   color: #686071;
   font-size: var(--type-body-size);

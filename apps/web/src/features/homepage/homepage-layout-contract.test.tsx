@@ -31,10 +31,12 @@ describe("homepage layout contract", () => {
     expect(html.indexOf("شوف كل الخدمات")).toBeGreaterThan(html.indexOf(lastServiceTitle ?? ""));
   });
 
-  test("gives the auto-moving portfolio strip an explicit pause control", () => {
+  test("keeps the auto-moving portfolio strip controllable with previous and next arrows", () => {
     const html = renderToStaticMarkup(<HomeArchigreenProjectsSection />);
 
-    expect(html).toContain("إيقاف الحركة التلقائية");
+    expect(html).toContain('aria-label="المشروع السابق"');
+    expect(html).toContain('aria-label="المشروع التالي"');
+    expect(html).not.toContain("إيقاف الحركة التلقائية");
     expect(homepageContent.portfolio.every((project) => html.includes(project.title))).toBe(true);
   });
 });

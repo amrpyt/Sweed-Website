@@ -37,6 +37,7 @@
   margin-inline: auto;
   align-items: center;
   gap: clamp(var(--stack-md), 1.5vw, var(--stack-lg));
+  direction: rtl;
 }
 
 .logo {
@@ -44,6 +45,7 @@
   min-height: 48px;
   flex: 0 0 auto;
   align-items: center;
+  order: 3;
   padding-block: var(--stack-xs);
 }
 
@@ -56,6 +58,7 @@
 .menuPanel {
   min-width: 0;
   flex: 1 1 auto;
+  order: 2;
 }
 
 .menuBackdrop,
@@ -134,6 +137,11 @@
 .desktopCta,
 .mobileCta {
   flex: 0 0 auto;
+}
+
+.desktopCta,
+.menuButton {
+  order: 1;
 }
 
 .desktopCta {

@@ -41,12 +41,6 @@ export function HomeFaqBlogSection() {
               <p className={styles.eyebrow}>الأسئلة الشائعة</p>
               <h2 id="home-faq-title">أسئلة بنسمعها كتير... وإجاباتنا واضحة</h2>
               <p>كل إجابة بتقولك اللي هيحصل فعلًا: خطوات، مدة، متابعة، ونطاق واضح من الأول.</p>
-              <Link
-                className={getBrandActionButtonClassName({ size: "compact", variant: "secondary" })}
-                href="/faq"
-              >
-                <BrandActionButtonContent>شاهد كل الأسئلة</BrandActionButtonContent>
-              </Link>
             </div>
 
             <div className={styles.accordion}>

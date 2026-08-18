@@ -30,7 +30,8 @@
 
 .copyColumn {
   display: grid;
-  max-width: var(--content-measure-wide);
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
   justify-items: center;
   padding-block-start: var(--stack-sm);
@@ -47,7 +48,7 @@
 }
 
 .copyColumn h2 {
-  max-width: 16ch;
+  max-width: none;
   margin: 0 auto;
   color: #ffffff;
   font-size: var(--type-section-title-size);
@@ -59,7 +60,8 @@
 
 .contactIntro {
   display: grid;
-  max-width: var(--content-measure);
+  width: 100%;
+  max-width: none;
   margin: var(--section-header-gap) auto 0;
   gap: var(--content-gap-tight);
 }
@@ -71,60 +73,6 @@
   font-weight: var(--font-weight-body);
   line-height: var(--type-body-leading);
   text-wrap: pretty;
-}
-
-.contactMethods {
-  display: grid;
-  width: min(100%, 42rem);
-  margin: clamp(2rem, 4vw, 3rem) auto 0;
-  gap: 0;
-  border-block-start: 1px solid rgb(255 255 255 / 0.18);
-}
-
-.contactMethods a {
-  display: flex;
-  align-items: center;
-  gap: var(--inline-md);
-  border-block-end: 1px solid rgb(255 255 255 / 0.18);
-  color: #ffffff;
-  padding-block: 1rem;
-  text-decoration: none;
-}
-
-.contactMethods > a > i {
-  display: inline-grid;
-  width: 42px;
-  aspect-ratio: 1;
-  flex: 0 0 42px;
-  place-items: center;
-  border-radius: 12px;
-  background: #ed2062;
-}
-
-.contactMethods a > span {
-  display: grid;
-  gap: var(--stack-2xs);
-}
-
-.contactMethods small {
-  color: rgb(255 255 255 / 0.72);
-  font-size: var(--type-small-size);
-}
-
-.contactMethods strong {
-  color: #ffffff;
-  font-size: 0.94rem;
-}
-
-.contactMethods a:hover strong,
-.contactMethods a:focus-visible strong {
-  text-decoration: underline;
-  text-underline-offset: 0.28rem;
-}
-
-.contactMethods a:focus-visible {
-  outline: 3px solid rgb(237 32 98 / 0.36);
-  outline-offset: 4px;
 }
 
 .contextSummary {

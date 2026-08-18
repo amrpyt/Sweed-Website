@@ -290,6 +290,11 @@
 }
 
 @media (min-width: 64rem) {
+  .intro h2 {
+    max-width: none;
+    white-space: nowrap;
+  }
+
   .serviceList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--stack-xl);
@@ -326,13 +331,6 @@
 
   .actionLabel {
     justify-self: start;
-  }
-}
-
-@media (min-width: 75rem) {
-  .intro h2 {
-    max-width: none;
-    white-space: nowrap;
   }
 }
 

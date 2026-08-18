@@ -1,12 +1,12 @@
 # Current State
 
-Updated: 2026-08-18T17:29:00+03:00
+Updated: 2026-08-18T17:50:14+03:00
 Git branch: main
-Git HEAD: `d2d03a028d6111403aa6b8f62e2123fc2623473f`
+Git HEAD: `392342e`
 Application commit: `feat: add social inbox AI replies to CRM demo`
 Active Task: None
 Active Plan: None
-Status: SWEED-041 CRM social inbox + AI replies completed, deployed, and verified
+Status: SWEED-041 completed; 2026-08-18 demo 502 incident recovered and verified
 
 ## Current Goal
 
@@ -18,6 +18,9 @@ None.
 
 ## Completed Recently
 
+- Recovered a public HTTP 502 outage caused by the deployed `apps/web/.next` tree being owned by `root:root` while `sweed-demo.service` runs as `amr`; Next image-cache writes failed with `EACCES`.
+- Restored the deployed build ownership recursively to `amr:amr` after the concurrent build finished, then verified the service, local/public root, and local/public CRM route all returned HTTP 200.
+- Browser recovery QA loaded `/crm-ai-demo` to `document.readyState === "complete"` with zero broken images, zero horizontal overflow, no browser errors, and no fresh image-cache permission errors in service logs.
 - Replaced generic CRM channel affordances with Lucide UI icons and Font Awesome brand icons; no hand-authored SVG/path markup was added.
 - Added explicit lead acquisition metadata for Instagram, Facebook, TikTok, website, and referral sources and surfaced it in the pipeline and active lead context.
 - Added a Unified Social Inbox inside the SWEED AI Agent panel with source-aware inbound messages and AI intent classification.
@@ -54,6 +57,8 @@ None.
 
 ## Verification
 
+- 2026-08-18 502 recovery: `sweed-demo.service` active on `127.0.0.1:3010`; `/` and `/crm-ai-demo` return 200 locally and publicly after `.next` ownership repair.
+- Post-recovery browser QA: CRM demo title loaded, ready state complete, broken images 0, horizontal overflow 0, browser errors 0, and no fresh `EACCES`/image-cache errors in the service journal.
 - SWEED-041 TDD cycle: the two new source/reply reducer tests failed before implementation, then the focused suite passed 6/6.
 - Impeccable detector reported no findings on the changed CRM implementation/test files.
 - Local browser QA: Font Awesome brand glyphs loaded as `Font Awesome 6 Brands`; Instagram/Facebook/TikTok/Website source labels rendered with zero horizontal overflow.

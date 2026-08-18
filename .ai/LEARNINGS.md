@@ -1,8 +1,16 @@
 # Learnings
 
-Updated: 2026-07-22T19:41:50+03:00
+Updated: 2026-08-18T17:50:14+03:00
 
 ## Validated Project Lessons
+
+### Copied Next builds must inherit the service user
+
+Lesson: A valid clean `.next` build can still fail at runtime if it is copied from a root-owned worktree without restoring service ownership.
+Evidence: On 2026-08-18, the public demo returned 502 during a deployment window and Next logged repeated `EACCES` failures creating `.next/cache/images`; the deployed `.next` tree was `root:root` while `sweed-demo.service` runs as `amr`.
+Applies to: Every SWEED deployment that copies a prebuilt `.next` directory into `/home/amr/devspace-src/SWEED-Website/apps/web/.next`.
+Behavior change: After copying the clean build and before starting the service, run `chown -R amr:amr apps/web/.next`, verify no non-`amr` entries remain, then start the service and browser-load a route that exercises image caching.
+Revisit when: Deployment moves to immutable artifacts or the systemd service user changes.
 
 ### Wait for HTTP readiness after service restart
 

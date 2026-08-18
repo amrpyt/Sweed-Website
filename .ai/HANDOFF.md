@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-18T17:29:00+03:00
+Updated: 2026-08-18T17:50:14+03:00
 
 ## Read First
 
@@ -62,6 +62,8 @@ The current control system now:
 
 ## Verification
 
+- A 2026-08-18 public 502 incident was recovered. Root cause: copied `.next` build owned by `root:root` caused Next image-cache `EACCES` under the `amr` service user. The full `.next` tree is now `amr:amr` and public `/` + `/crm-ai-demo` return 200.
+- Post-recovery browser QA on `/crm-ai-demo`: ready state complete, broken images 0, overflow 0, browser errors 0, and no fresh cache-permission errors in service logs.
 - SWEED-041 focused CRM tests: 6 passed, 0 failed after an observed red TDD state for the two new behaviors.
 - Impeccable detector: no findings on changed CRM implementation/test files.
 - Local source/icon QA confirmed Font Awesome Brands rendering for Instagram/Facebook/TikTok and no hand-authored SVG/path markup.
@@ -106,6 +108,7 @@ Previous optical-centering verification remains valid:
 ## Deployment Note
 
 - With Next 16, do not run `next build` against the same `.next` directory while `sweed-demo.service` is actively serving it. Stop the service first, build, verify `.next/BUILD_ID`, then start the service. A concurrent build/restart race was observed and recovered during SWEED-039.
+- When copying a clean `.next` artifact from a root-owned worktree into the service checkout, run `chown -R amr:amr apps/web/.next` before starting `sweed-demo.service` and verify no root-owned entries remain. Missing this step caused the 2026-08-18 image-cache `EACCES`/502 incident.
 
 ## Remaining Boundary
 

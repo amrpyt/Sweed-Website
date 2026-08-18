@@ -169,7 +169,7 @@
   line-height: var(--type-body-leading);
 }
 
-.blogHeading > a {
+.articlesActions > a {
   display: inline-flex;
   justify-self: center;
   min-height: 48px;
@@ -187,18 +187,24 @@
     transform 180ms ease;
 }
 
-.blogHeading > a:hover,
-.blogHeading > a:focus-visible {
+.articlesActions > a:hover,
+.articlesActions > a:focus-visible {
   background: var(--color-action, #e2185b);
 }
 
-.blogHeading > a:active {
+.articlesActions > a:active {
   transform: scale(0.98);
 }
 
-.blogHeading > a:focus-visible {
+.articlesActions > a:focus-visible {
   outline: 3px solid rgb(237 32 98 / 0.28);
   outline-offset: 4px;
+}
+
+.articlesActions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--stack-xl);
 }
 
 .articlesGrid {
@@ -349,7 +355,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .faqItem button i,
-  .blogHeading > a,
+  .articlesActions > a,
   .articleCard,
   .articleMedia img {
     transition: none;

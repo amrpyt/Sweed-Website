@@ -166,12 +166,12 @@
   --content-gap-tight: var(--stack-xs);
   --content-gap-default: var(--stack-md);
   --content-gap-loose: var(--stack-lg);
-  --section-space-compact: var(--cds-spacing-09);
-  --section-space-default: var(--cds-spacing-10);
-  --section-space-feature: var(--cds-spacing-11);
+  --section-space-compact: var(--cds-spacing-08);
+  --section-space-default: var(--cds-spacing-09);
+  --section-space-feature: var(--cds-spacing-10);
   --section-header-gap: var(--stack-lg);
   --section-description-gap: var(--stack-md);
-  --section-content-gap: clamp(var(--cds-spacing-09), 6vw, var(--cds-spacing-12));
+  --section-content-gap: clamp(var(--cds-spacing-08), 4vw, var(--cds-spacing-10));
   --card-padding: clamp(var(--cds-spacing-05), 2vw, var(--cds-spacing-06));
   --panel-padding: clamp(var(--cds-spacing-06), 3vw, var(--cds-spacing-07));
   --control-height-sm: 2.75rem;
@@ -225,16 +225,16 @@
 
 @media (min-width: 48rem) {
   :root {
-    --section-space-compact: var(--cds-spacing-10);
-    --section-space-default: var(--cds-spacing-11);
-    --section-space-feature: var(--cds-spacing-12);
+    --section-space-compact: var(--cds-spacing-09);
+    --section-space-default: var(--cds-spacing-10);
+    --section-space-feature: var(--cds-spacing-11);
   }
 }
 
 @media (min-width: 75rem) {
   :root {
-    --section-space-compact: var(--cds-spacing-11);
-    --section-space-default: var(--cds-spacing-12);
-    --section-space-feature: var(--space-32);
+    --section-space-compact: var(--cds-spacing-10);
+    --section-space-default: var(--cds-spacing-11);
+    --section-space-feature: var(--cds-spacing-12);
   }
 }

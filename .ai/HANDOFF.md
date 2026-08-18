@@ -18,7 +18,7 @@ Updated: 2026-08-18T21:44:00+03:00
 - `Button`, `ButtonLink`, and the underlying `BrandActionButton` mechanism own CTA paint and states. Page/feature CSS may control placement and available width but must not repaint action surfaces, borders, fill, shadows, focus, hover, active, disabled, or reduced-motion behavior.
 - Keep the 16px shared control radius, 48px standard/compact and 64px hero geometry, measured ~3px Arabic optical label shift, contained icon geometry, 3px visible pink focus outline, and expanding inset fill.
 - Tabs, filters, selectors, carousel/menu/icon controls, and other non-CTA interactions intentionally keep their purpose-specific UI; do not turn every clickable control into a marketing CTA.
-- The public demo is currently running verified build `a9A_eF4ntTSB1-SfIPxkV` through HEAD `beef95f`; the service is active and local/public homepage checks return HTTP 200.
+- SWEED-047 was verified and deployed as build `a9A_eF4ntTSB1-SfIPxkV` through application HEAD `beef95f`. Concurrent SWEED-042 rebuilds later advanced the runtime build ID; the SWEED-047 homepage contract was rechecked after those rebuilds and remained intact. The service is active and local/public homepage checks return HTTP 200.
 - Shared header physical placement is intentional: Arabic navigation/menu content remains RTL, the SWEED logo is pinned to the physical left, and the consultation/menu action is pinned to the physical right at desktop and mobile widths.
 - Homepage `ليه تختار سويد؟` must keep all six approved points. The two restored items are `شراكة مش خدمة` and `التزام بالمواعيد`; do not remove them during future content compression without explicit approval.
 - Homepage About no longer has a standalone `من 2011` row; the date remains in the approved company paragraph. The slogan separator no longer renders the circular `N` compass marker.
@@ -80,7 +80,8 @@ The current control system now:
 
 - SWEED-047 TDD: 7 requested assertions failed before implementation; final focused homepage suite passed 14/14.
 - SWEED-047 Impeccable detector: no findings. Final full `bun run check`: 153 passed, 0 failed, 652 expectations, with spacing/mobile-first/package-web TypeScript/ESLint all green.
-- SWEED-047 production build passed with ID `a9A_eF4ntTSB1-SfIPxkV`; build ownership is recursively `amr:amr`; service active; local/public homepage HTTP 200.
+- SWEED-047 production build passed with ID `a9A_eF4ntTSB1-SfIPxkV`; build ownership was verified recursively `amr:amr`; service active; local/public homepage HTTP 200. Concurrent later builds changed the runtime build ID, so this ID is completion evidence rather than a permanent current-runtime identifier.
+- Post-concurrency public recheck preserved the same requested contract: 1440px logo-left/CTA-right, six Why entries, one-line requested desktop headings, no removed controls, two arrows, autoplay plus hover pause; 390px logo-left/menu-right, zero overflow, and reduced-motion manual scroll with arrows hidden.
 - Public 1440×900 browser QA: nav `direction: rtl`; logo x 33–151 physical-left; consultation CTA x 1195–1393 physical-right; six Why entries; Portfolio/Offers/FAQ/Contact titles each one line; no pause control; both arrows present; FAQ all-questions action absent; homepage Contact direct phone/WhatsApp rows absent; document overflow 0.
 - Public 1024×768: logo physical-left, 44×44 menu action physical-right, six Why entries, all four requested section titles one line, document overflow 0.
 - Public 390×844 and 320×568: logo remains physical-left, 44×44 menu control remains physical-right, six Why entries, natural mobile wrapping, document overflow 0.

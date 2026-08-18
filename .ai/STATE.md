@@ -1,22 +1,27 @@
 # Current State
 
-Updated: 2026-08-18T21:51:00+03:00
+Updated: 2026-08-18T22:04:00+03:00
 Git branch: main
-Git HEAD: `a3d519f`
-Application commit: `fix: polish homepage proof cards and flow`
+Git HEAD: `512229d`
+Application commit: `fix: remove oversized homepage section gap`
 Active Task: SWEED-042
 Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
-Status: SWEED-047 complete and deployed — SWEED-042 resumed; preserve concurrent post-deploy dirty homepage work
+Status: SWEED-049 complete and deployed — SWEED-042 resumed
 
 ## Current Goal
 
-Resume the remaining SWEED-042 public-site hardening work without disturbing the completed SWEED-047 homepage pass or concurrent post-deploy homepage edits.
+Resume the remaining SWEED-042 public-site hardening without reintroducing the oversized Services → Why transition.
 
 ## In Progress
 
-- SWEED-042 remains in progress; preserve any concurrent dirty homepage/reference-service work that appeared after the SWEED-047 deployment.
+- SWEED-042 remains in progress; preserve unrelated dirty reference-service/QA work.
 
 ## Completed Recently
+
+- Completed SWEED-049 in `512229d`: removed the five-dot Services → Why divider and compacted only the touching section edges from 96px each to 32px each.
+- Browser measurement reduced the Services CTA → Why heading transition to 64px on both 1536px desktop and 390px mobile, with divider count 0.
+- SWEED-049 TDD observed the new regression contract fail before implementation, then focused tests passed 5/5; full `bun run check` passed 154/154 and production build `0RZfjg9H9QsjyipAf6a3S` deployed successfully.
+- Public desktop/mobile QA found zero broken loaded images, zero browser/console errors, and no horizontal overflow.
 
 - Completed SWEED-048 in `a3d519f`: removed the standalone homepage slogan section, moved the direction promise into the hero subtitle, simplified the restaurant proof title, moved `شاهد كل الأعمال` below the proof cards, upgraded Selected Work cards to clearer white proof surfaces with category/status chips, and added a five-dot SWEED divider between Services and Why.
 - SWEED-048 focused TDD passed 10/10; full `bun run check` passed 153/153 tests and all spacing/mobile-first/TypeScript/ESLint gates. Impeccable detector returned no findings.

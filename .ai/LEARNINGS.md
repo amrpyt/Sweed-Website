@@ -1,8 +1,16 @@
 # Learnings
 
-Updated: 2026-08-18T21:44:00+03:00
+Updated: 2026-08-18T22:04:00+03:00
 
 ## Validated Project Lessons
+
+### Do not stack decorative transition rows between fully padded homepage sections
+
+Lesson: A standalone divider can create a large empty band when both neighboring sections already own full vertical edge padding.
+Evidence: The five-dot divider between Services and Why accumulated 96px Services bottom padding + 32px divider + 96px Why top padding. Removing the row and compacting only the touching edges to 32px reduced the Services CTA-to-Why-heading gap to 64px on desktop and mobile.
+Applies to: Homepage section transitions and future decorative separators.
+Behavior change: Prefer the natural background boundary between adjacent sections. If a separator is necessary, account for neighboring edge padding explicitly and verify the actual content-to-content gap in the browser.
+Revisit when: A future approved art direction intentionally calls for a large transition band.
 
 ### RTL content direction does not define the physical SWEED header endpoints
 

@@ -1,6 +1,6 @@
 # Tasks
 
-Updated: 2026-08-18T21:51:00+03:00
+Updated: 2026-08-18T22:04:00+03:00
 
 ## Active
 
@@ -22,6 +22,33 @@ Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 - [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
+
+### SWEED-049 — Remove oversized Services → Why gap
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-08-18-homepage-services-why-gap-fix.md`
+Implementation commit: `512229d fix: remove oversized homepage section gap`
+
+#### Acceptance Criteria
+
+- [x] Removed the five-dot divider row between Services and Why.
+- [x] Reduced only the touching Services bottom / Why top spacing to `--stack-xl`.
+- [x] Kept the outer section paddings unchanged.
+- [x] Focused regression test, full check/build, deploy, and desktop/mobile browser QA passed.
+- [x] Preserved unrelated dirty reference-service and QA files; no push.
+
+#### Evidence
+
+- Root cause measured before fix: 96px Services bottom padding + 32px divider + 96px Why top padding.
+- TDD red state observed; focused green state passed 5/5.
+- Full `bun run check`: 154 passed, 0 failed, 654 expectations.
+- Production build `0RZfjg9H9QsjyipAf6a3S`; service active; local/public homepage HTTP 200.
+- Public 1536px and 390px: divider count 0, touching paddings 32px + 32px, CTA-to-Why-heading gap 64px, zero broken loaded images, no browser/console errors, no horizontal overflow.
+
+#### Blockers
+
+- None.
 
 ### SWEED-048 — Homepage proof cards and section flow polish
 

@@ -1,9 +1,9 @@
 # Current State
 
-Updated: 2026-08-18T17:50:14+03:00
+Updated: 2026-08-18T19:06:00+03:00
 Git branch: main
-Git HEAD: `392342e`
-Application commit: `feat: add social inbox AI replies to CRM demo`
+Git HEAD: `98e88a4`
+Application commit: `refactor: compress about proof sections`
 Active Task: SWEED-042
 Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 Status: SWEED-042 in progress — executing final v4 public-site hardening
@@ -18,6 +18,10 @@ Execute the 2026-08-18 final v4 SWEED website delivery spec in priority order wi
 
 ## Completed Recently
 
+- Rebuilt `/crm-ai-demo` as a guided visitor-facing product story instead of an internal CRM dashboard; the visible flow is now social message → AI reply → CRM update.
+- Reduced the demo to three selectable acquisition scenarios (Instagram, Facebook, TikTok) and one dominant action at each stage: `شغّل الـAI Agent` → `حدّث الـCRM` → `ابدأ من الأول`.
+- Kept the guided demo frontend-only and deterministic, with semantic page structure, explicit source identity, library-provided icons, keyboard focus, and reduced-motion support.
+- Deployed the guided demo from latest committed main `98e88a4`, which includes CRM redesign commit `d6d5777`, without including the concurrent uncommitted v4 route work.
 - Recovered a public HTTP 502 outage caused by the deployed `apps/web/.next` tree being owned by `root:root` while `sweed-demo.service` runs as `amr`; Next image-cache writes failed with `EACCES`.
 - Restored the deployed build ownership recursively to `amr:amr` after the concurrent build finished, then verified the service, local/public root, and local/public CRM route all returned HTTP 200.
 - Browser recovery QA loaded `/crm-ai-demo` to `document.readyState === "complete"` with zero broken images, zero horizontal overflow, no browser errors, and no fresh image-cache permission errors in service logs.
@@ -57,6 +61,13 @@ Execute the 2026-08-18 final v4 SWEED website delivery spec in priority order wi
 
 ## Verification
 
+- SWEED-043 TDD: the guided three-stage state tests were observed failing before implementation, then passed 5/5.
+- Guided-demo Impeccable scan returned no findings; no hand-authored `<svg>`/`<path>` markup exists in the CRM TSX files.
+- Latest committed-main `bun run check`: 133 passed, 0 failed, with TypeScript, ESLint, spacing, and mobile-first guards passing.
+- Latest committed-main production build passed and generated `/crm-ai-demo` as a static route; deployed build ID `BhQSp-jptS6YU2eZ3xFoI` is owned by `amr:amr`.
+- Public guided-demo QA passed at 1440×900, 390×844, and 320×568 with zero horizontal overflow, zero broken images, and no sub-44px/clipped interactive controls.
+- Public interaction passed from inbound message through AI reply to CRM registration; Facebook produced `94/100`, Instagram `86/100`, and TikTok generated its source-aware reply.
+- Public reduced-motion QA reported zero active animations while the interaction remained functional; browser errors and fresh service permission errors were empty.
 - 2026-08-18 502 recovery: `sweed-demo.service` active on `127.0.0.1:3010`; `/` and `/crm-ai-demo` return 200 locally and publicly after `.next` ownership repair.
 - Post-recovery browser QA: CRM demo title loaded, ready state complete, broken images 0, horizontal overflow 0, browser errors 0, and no fresh `EACCES`/image-cache errors in the service journal.
 - SWEED-041 TDD cycle: the two new source/reply reducer tests failed before implementation, then the focused suite passed 6/6.

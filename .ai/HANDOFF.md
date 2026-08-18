@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-18T17:50:14+03:00
+Updated: 2026-08-18T19:06:00+03:00
 
 ## Read First
 
@@ -14,7 +14,8 @@ Updated: 2026-08-18T17:50:14+03:00
 ## Current Public Contract
 
 - `/crm-ai-demo` is a standalone frontend-only preview of the future SWEED CRM + AI Agent product. It intentionally uses deterministic browser-local data and actions and is not connected to Convex or another backend.
-- The CRM demo supports lead selection, explicit social acquisition sources, a unified social inbox, AI lead classification, deterministic AI social replies, pipeline movement, lead/activity context, AI analysis, local WhatsApp drafting, and reset. Keep these interactions working if it is later surfaced from Services.
+- The CRM demo is now a guided visitor-facing story rather than an internal dashboard: pick Instagram/Facebook/TikTok, read the inbound message, run the AI reply, then write the result into the CRM.
+- Keep the current three-step interaction simple. The route should expose one dominant action at a time and explain the product without requiring CRM expertise.
 - CRM source/brand icons must come from established icon libraries. The current implementation uses Lucide for UI icons and Font Awesome for Instagram/Facebook/TikTok/WhatsApp; do not replace them with hand-authored SVGs.
 - `/services`, `/portfolio`, and `/offers` use the exact approved executable HTML references as their structure/motion/interaction source.
 - Their runtime typography and brand palette intentionally match the homepage: `SWEED Helvetica Arabic`, `#261b3e`, `#ed2062`, `#6d6e70`, and current light surfaces.
@@ -26,21 +27,20 @@ Updated: 2026-08-18T17:50:14+03:00
 - Homepage primary CTA-style actions now use the same 48px control height, 16px `--shape-control` radius, strong 700 weight, and SWEED focus language. Text actions remain text actions; semantic badges/tags and icon utilities may remain pill/circular.
 - Mobile Problem Selector options remain individual 12px-radius cards with separated borders and a pink selected state; do not collapse them back into zero-radius table rows.
 
-## Latest Application Change
+## Latest CRM Change
 
-`d2d03a0 feat: add social inbox AI replies to CRM demo`
+`d6d5777 feat: redesign CRM demo as guided product story`
 
 The standalone CRM demo now:
 - lives at `/crm-ai-demo` and is `noindex` while it remains a product preview;
-- uses SWEED purple/pink and the existing semantic control/motion tokens;
+- uses semantic visitor-facing structure, SWEED purple/pink, and the existing control/motion tokens;
 - keeps all state in the browser with no backend dependency;
-- exposes a three-column product workspace on desktop and task tabs on mobile;
-- shows each lead's source as Instagram, Facebook, TikTok, Website, or referral in both the pipeline and the active record;
+- offers three explicit source scenarios: Instagram, Facebook, and TikTok;
+- presents the same short flow for each scenario: inbound message → source-aware AI reply → CRM opportunity result;
 - uses Lucide UI icons plus Font Awesome social-brand icons and contains no hand-authored SVG/path markup in the CRM feature;
-- includes a Unified Social Inbox in the AI panel with the current inbound message, source identity, and AI intent label;
-- lets the AI Agent reply to the active social message, append the outbound reply to the thread, and add the event to CRM activity;
-- still lets the AI Agent analyze the current lead, draft a WhatsApp follow-up, and update the simulated CRM stage;
-- respects reduced motion and maintains 44px+ interaction targets.
+- exposes one dominant action per stage (`شغّل الـAI Agent`, `حدّث الـCRM`, then replay) rather than a dense set of dashboard controls;
+- shows the CRM payoff as score, opportunity value, service, and next action after the conversation is processed;
+- respects reduced motion, visible keyboard focus, and 44px+ interaction targets.
 
 The current control system now:
 - normalizes the shared desktop/mobile header CTA to the 48px control contract and keeps the Arabic label optically centered independently from its icon;
@@ -62,6 +62,12 @@ The current control system now:
 
 ## Verification
 
+- SWEED-043 guided-demo tests: 5 passed after an observed red TDD state.
+- Latest committed-main check at `98e88a4`: 133 passed, 0 failed, plus TypeScript, ESLint, spacing, and mobile-first guards.
+- Latest committed-main production build passed and generated `/crm-ai-demo`; deployed build ID is `BhQSp-jptS6YU2eZ3xFoI` with `amr:amr` ownership.
+- Public guided flow passed from social message to AI reply to CRM result; Instagram/Facebook/TikTok scenarios were exercised.
+- Public QA at 1440×900, 390×844, and 320×568 had zero horizontal overflow, no broken images, and no clipped/sub-44px controls.
+- Reduced-motion public QA had zero active animations while interactions remained functional; browser errors and fresh cache-permission errors were empty.
 - A 2026-08-18 public 502 incident was recovered. Root cause: copied `.next` build owned by `root:root` caused Next image-cache `EACCES` under the `amr` service user. The full `.next` tree is now `amr:amr` and public `/` + `/crm-ai-demo` return 200.
 - Post-recovery browser QA on `/crm-ai-demo`: ready state complete, broken images 0, overflow 0, browser errors 0, and no fresh cache-permission errors in service logs.
 - SWEED-041 focused CRM tests: 6 passed, 0 failed after an observed red TDD state for the two new behaviors.

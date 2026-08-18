@@ -1,6 +1,6 @@
 # Tasks
 
-Updated: 2026-08-18T17:29:00+03:00
+Updated: 2026-08-18T19:06:00+03:00
 
 ## Active
 
@@ -22,6 +22,36 @@ Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 - [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
+
+### SWEED-043 — Guided CRM demo redesign
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-08-18-crm-guided-html-demo-redesign.md`
+Implementation commit: `d6d5777 feat: redesign CRM demo as guided product story`
+
+#### Acceptance Criteria
+
+- [x] The demo reads as a visitor-facing product showcase rather than an internal CRM dashboard.
+- [x] The opening explains the value path immediately and exposes one obvious interaction.
+- [x] The core flow is social message → AI understanding/reply → CRM record/update.
+- [x] Visitors can switch between Instagram, Facebook, and TikTok scenarios without dashboard complexity.
+- [x] Every stage has one dominant primary action and clear current-state feedback.
+- [x] Social sources remain explicit with library-provided icons only; no hand-authored SVG markup was added.
+- [x] The demo remains fully frontend-only with deterministic local state.
+- [x] Desktop/tablet/mobile layouts are overflow-free, keyboard-usable, and reduced-motion safe.
+- [x] Focused tests, full check, production build, deployment, and public browser QA pass.
+- [x] The implementation is committed and not pushed.
+
+#### Verification
+
+- Guided state tests: 5 passed after an observed red TDD state.
+- Impeccable detector: no findings on the CRM implementation.
+- Latest committed-main check: 133 passed, 0 failed plus TypeScript/lint/design guards.
+- Public route: HTTP 200 locally and publicly; build ID `BhQSp-jptS6YU2eZ3xFoI`.
+- Public desktop/mobile: zero horizontal overflow, no broken images, no clipped/sub-44px controls.
+- Public Instagram and Facebook full flows passed; TikTok AI reply passed under reduced motion.
+- No browser errors or fresh `.next` permission/cache errors.
 
 ### SWEED-041 — CRM social inbox + AI replies
 

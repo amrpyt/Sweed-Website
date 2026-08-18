@@ -1,53 +1,55 @@
 import { describe, expect, test } from "bun:test";
 import { demoReducer, initialDemoState } from "./demo-state";
 
-describe("CRM AI demo state", () => {
-  test("selecting a lead updates the active context", () => {
-    const state = demoReducer(initialDemoState, { type: "select", leadId: "lead-2" });
-    expect(state.selectedLeadId).toBe("lead-2");
-    expect(state.agentMessage).toContain("سارة عادل");
-  });
-
-  test("analysis adds deterministic agent activity", () => {
-    const state = demoReducer(initialDemoState, { type: "analyze" });
-    expect(state.agentMode).toBe("ready");
-    expect(state.completedActions).toContain("analyze");
-    expect(state.activities[0]?.kind).toBe("agent");
-  });
-
-  test("lead acquisition source stays attached to the CRM record", () => {
-    const instagramLead = initialDemoState.leads.find((lead) => lead.id === "lead-2");
-    expect(instagramLead).toMatchObject({
+describe("guided CRM demo state", () => {
+  test("opens on one obvious inbound social-message step", () => {
+    expect(initialDemoState.stage).toBe("message");
+    expect(initialDemoState.activeScenarioId).toBe("instagram");
+    expect(initialDemoState.scenarios.find((scenario) => scenario.id === "instagram")).toMatchObject({
       source: "instagram",
       sourceLabel: "Instagram",
-      sourceHandle: "@grainhouse.eg",
+      name: "سارة عادل",
     });
   });
 
-  test("agent reply adds an outbound social message and activity", () => {
-    const selected = demoReducer(initialDemoState, { type: "select", leadId: "lead-2" });
-    const replied = demoReducer(selected, { type: "reply" });
-    const thread = replied.conversations["lead-2"] ?? [];
+  test("switching the social source resets the story to the first step", () => {
+    const progressed = demoReducer(initialDemoState, { type: "advance" });
+    const switched = demoReducer(progressed, { type: "select-scenario", scenarioId: "facebook" });
 
-    expect(thread.at(-1)).toMatchObject({
-      direction: "outbound",
-      sender: "agent",
-      source: "instagram",
-    });
-    expect(thread.at(-1)?.text).toContain("إدارة السوشيال");
-    expect(replied.completedActions).toContain("reply");
-    expect(replied.activities[0]?.title).toBe("AI Agent رد على Instagram");
+    expect(switched.activeScenarioId).toBe("facebook");
+    expect(switched.stage).toBe("message");
+    expect(switched.agentMode).toBe("idle");
   });
 
-  test("advance moves a qualified lead to proposal", () => {
+  test("the first advance reveals a deterministic AI reply", () => {
     const state = demoReducer(initialDemoState, { type: "advance" });
-    expect(state.leads.find((lead) => lead.id === "lead-1")?.stage).toBe("proposal");
+    const scenario = state.scenarios.find((item) => item.id === state.activeScenarioId);
+
+    expect(state.stage).toBe("reply");
+    expect(scenario?.aiReply).toContain("إدارة السوشيال");
+    expect(scenario?.intent).toBe("مهتم بالخدمة");
   });
 
-  test("reset returns the initial demo state", () => {
-    const moved = demoReducer(initialDemoState, { type: "advance" });
-    const reset = demoReducer(moved, { type: "reset" });
-    expect(reset).toEqual(initialDemoState);
+  test("the second advance writes the lead into the CRM result state", () => {
+    const replied = demoReducer(initialDemoState, { type: "advance" });
+    const synced = demoReducer(replied, { type: "advance" });
+    const scenario = synced.scenarios.find((item) => item.id === synced.activeScenarioId);
+
+    expect(synced.stage).toBe("crm");
+    expect(scenario).toMatchObject({
+      score: 86,
+      value: 52000,
+      service: "إدارة السوشيال ميديا",
+    });
+  });
+
+  test("reset replays the current scenario from the inbound message", () => {
+    const selected = demoReducer(initialDemoState, { type: "select-scenario", scenarioId: "tiktok" });
+    const progressed = demoReducer(demoReducer(selected, { type: "advance" }), { type: "advance" });
+    const reset = demoReducer(progressed, { type: "reset" });
+
+    expect(reset.activeScenarioId).toBe("tiktok");
+    expect(reset.stage).toBe("message");
+    expect(reset.agentMode).toBe("idle");
   });
 });
-

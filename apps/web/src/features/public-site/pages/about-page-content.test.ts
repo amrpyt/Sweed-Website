@@ -7,15 +7,8 @@ describe("approved About page content", () => {
     expect(aboutPageContent.sectionIds).toEqual([
       "about-hero",
       "story",
-      "founder",
       "promise",
-      "values",
       "methodology",
-      "numbers",
-      "team",
-      "alliances",
-      "partners",
-      "testimonials",
       "cta",
     ]);
   });
@@ -28,16 +21,12 @@ describe("approved About page content", () => {
   });
 
   test("does not publish placeholder proof as verified", () => {
-    expect(aboutPageContent.team.members.filter((member) => member.verification === "verified")).toHaveLength(2);
-    expect(aboutPageContent.team.members.filter((member) => member.verification === "placeholder")).toHaveLength(4);
-    expect(aboutPageContent.alliances.items.every((item) => item.verification === "placeholder")).toBe(true);
-    expect(aboutPageContent.testimonials.items.every((item) => item.verification === "placeholder")).toBe(true);
-    expect(aboutPageContent.partners.notice).toContain("ليست أسماء عملاء");
+    expect(aboutPageContent.numbers).toHaveLength(0);
   });
 
   test("preserves Arabic-safe motion content boundaries", () => {
     expect(aboutPageContent.hero.lines).toHaveLength(2);
-    expect(aboutPageContent.values.items).toHaveLength(6);
+    expect(aboutPageContent.values.items).toHaveLength(4);
     expect(aboutPageContent.methodology.steps).toHaveLength(5);
   });
 });

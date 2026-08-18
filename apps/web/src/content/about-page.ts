@@ -56,15 +56,8 @@ export const aboutPageContent = {
   sectionIds: [
     "about-hero",
     "story",
-    "founder",
     "promise",
-    "values",
     "methodology",
-    "numbers",
-    "team",
-    "alliances",
-    "partners",
-    "testimonials",
     "cta",
   ],
   hero: {
@@ -118,15 +111,14 @@ export const aboutPageContent = {
     ] satisfies AboutTimelineItem[],
     afterTimeline:
       "ومن اللحظة دي اتغير شغلنا: بطلنا نكون منفذين أعمال وبقينا بوصلة. قبل أي تصميم أو حملة أو موقع، بنسأل الأول: رايحين فين؟ وبنحدد الإجابة بالتحليل والأرقام، مش بالانطباع. بعدها بننفذ ونقيس ونعدّل لحد ما النتيجة تبان.",
-    closing:
-      "النهارده، وبعد أكتر من 343 مشروع في قطاعات مختلفة، لسه شغالين بنفس القاعدة اللي بدأنا بيها: مفيش حركة قبل الاتجاه، ومفيش وعد من غير التزام.",
+    closing: "ولسه شغالين بنفس القاعدة اللي بدأنا بيها: مفيش حركة قبل الاتجاه، ومفيش وعد من غير التزام.",
   },
   founder: {
     title: "كلمة المؤسس: محمد سويد",
     name: "محمد سويد",
     role: "المؤسس والمدير التنفيذي",
     credential: "استشاري تسويق دولي وتطوير أعمال",
-    portraitStatus: "الصورة الرسمية قيد التسليم",
+    portraitStatus: "",
     paragraphs: [
       "من بداية رحلتي وأنا مؤمن إن أغلب المشروعات مش بتتعب بسبب قلة الأفكار أو المجهود، لكنها بتتعب لما تتحرك قبل ما تحدد اتجاهها.",
       "عشان كده سويد ما اتبنتش عشان تكون مجرد جهة تنفذ طلبات، لكنها اتبنت عشان تكون شريك يفهم الصورة كاملة، ويقول الحقيقة بوضوح، ويحدد الطريق قبل ما يبدأ التنفيذ.",
@@ -168,16 +160,6 @@ export const aboutPageContent = {
         title: "الصدق المهني",
         summary: "بنقولك اللي محتاج تسمعه، مش اللي نفسك تسمعه.",
         icon: "fa-scale-balanced",
-      },
-      {
-        title: "التخصيص لا النسخ",
-        summary: "مشروعك ليه بوصلته الخاصة؛ مفيش حلول جاهزة للكل.",
-        icon: "fa-fingerprint",
-      },
-      {
-        title: "السرعة مع الحكمة",
-        summary: "بنتحرك بسرعة في الاتجاه الصح؛ لأن السرعة في الاتجاه الغلط خسارة مضاعفة.",
-        icon: "fa-bolt",
       },
     ] satisfies AboutValue[],
   },
@@ -224,12 +206,7 @@ export const aboutPageContent = {
     ] satisfies AboutMethodologyStep[],
     action: { label: "احجز استشارتك المجانية", href: "/contact?source=about" },
   },
-  numbers: [
-    { value: 15, prefix: "+", label: "سنة خبرة في السوق المصري والعربي من 2011" },
-    { value: 343, prefix: "+", label: "مشروع اتنفذ في قطاعات مختلفة" },
-    { value: 150, prefix: "+", label: "عميل كملوا معانا مشاريعهم" },
-    { value: 98, suffix: "%", label: "التزام بمواعيد التسليم" },
-  ] satisfies AboutMetric[],
+  numbers: [] as AboutMetric[],
   team: {
     title: "الناس اللي ماسكين البوصلة",
     members: [

@@ -15,7 +15,7 @@ describe("shared public footer", () => {
     const html = renderToStaticMarkup(<LegacyFooter />);
 
     expect(html).toContain("info@sweed.com");
-    expect(html).toContain('/services#consulting');
+    expect(html).toContain('/services/consulting');
     expect(html).toContain('/privacy');
     expect(html).toContain('/terms');
   });

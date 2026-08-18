@@ -1,25 +1,33 @@
 # Handoff
 
-Updated: 2026-08-18T20:11:00+03:00
+Updated: 2026-08-18T21:44:00+03:00
 
 ## Read First
 
 - `.ai/PROJECT.md`
 - `.ai/STATE.md`
 - `.ai/TASKS.md`
+- `.ai/decisions/DEC-015-canonical-sitewide-action-buttons.md`
 - `.ai/decisions/DEC-013-uploaded-html-is-fidelity-source.md`
 - `.ai/decisions/DEC-014-reference-fidelity-with-sweed-theme-bridge.md`
 - `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-design.md`
 
 ## Current Public Contract
 
-- The canonical shared CTA hierarchy is again the approved pre-v4 look: deep-purple `#261b3e` primary surface with white label, white secondary/light surface with purple label/border, and SWEED pink used as the expanding interaction/focus accent. Do not invert these surfaces during token/palette cleanup without explicit approval.
-- Keep the existing `BrandActionButton` mechanism: 16px control radius, shared hero-style expanding fill, measured Arabic optical label shift, contained icon geometry, visible focus outline, disabled state, and reduced-motion fallback.
-- Button restoration implementation is `b7b94c8 fix: restore approved button hierarchy`; the regression came from `999fd13` at 2026-08-18 18:49 +03:00.
-- The public demo is currently running clean build `0kYh3GeJJhMOM1HwzXkcz`, containing the approved button hierarchy plus completed SWEED-044 homepage polish through `dfb7a45`.
+- The site-wide canonical CTA contract is `DEC-015` and implementation `2693fb0`: deep-purple `#261b3e` primary surface with white label, white secondary/light surface with purple label/border, and SWEED pink as the expanding primary/light interaction and focus accent.
+- `Button`, `ButtonLink`, and the underlying `BrandActionButton` mechanism own CTA paint and states. Page/feature CSS may control placement and available width but must not repaint action surfaces, borders, fill, shadows, focus, hover, active, disabled, or reduced-motion behavior.
+- Keep the 16px shared control radius, 48px standard/compact and 64px hero geometry, measured ~3px Arabic optical label shift, contained icon geometry, 3px visible pink focus outline, and expanding inset fill.
+- Tabs, filters, selectors, carousel/menu/icon controls, and other non-CTA interactions intentionally keep their purpose-specific UI; do not turn every clickable control into a marketing CTA.
+- The public demo is currently running verified build `a9A_eF4ntTSB1-SfIPxkV` through HEAD `beef95f`; the service is active and local/public homepage checks return HTTP 200.
+- Shared header physical placement is intentional: Arabic navigation/menu content remains RTL, the SWEED logo is pinned to the physical left, and the consultation/menu action is pinned to the physical right at desktop and mobile widths.
+- Homepage `ليه تختار سويد؟` must keep all six approved points. The two restored items are `شراكة مش خدمة` and `التزام بالمواعيد`; do not remove them during future content compression without explicit approval.
 - Homepage About no longer has a standalone `من 2011` row; the date remains in the approved company paragraph. The slogan separator no longer renders the circular `N` compass marker.
 - Homepage Services renders the approved compact intro, a 2×3 grid from 1024px upward, a one-line desktop heading, and `شوف كل الخدمات` after the grid. Mobile remains one column.
-- Homepage Selected Work is a continuous Embla auto-scroll strip. It pauses on hover/focus, has an explicit pause/resume control, and becomes manually scrollable with no autoplay under reduced motion.
+- Homepage Selected Work is a continuous Embla auto-scroll strip with explicit previous/next arrow controls and no visible pause/resume button. It pauses on hover/focus and becomes manually scrollable with no autoplay/arrows under reduced motion.
+- Selected Work, Offers, FAQ, and homepage Contact headings/supporting copy intentionally use wider desktop measures instead of narrow stacked columns; mobile wraps naturally.
+- The homepage FAQ no longer renders `شاهد كل الأسئلة`.
+- The homepage Contact intro no longer renders the direct phone and WhatsApp method rows. Keep the approved heading/supporting copy, conversion context, and contact form. Global footer contact links are unaffected.
+- `beef95f` restores the approved reference-page CTA bridge after a concurrent palette change: deep-purple primary, white secondary, pink expanding fill remains the required hierarchy.
 
 - `/crm-ai-demo` is a standalone frontend-only preview of the future SWEED CRM + AI Agent product. It intentionally uses deterministic browser-local data and actions and is not connected to Convex or another backend.
 - The CRM demo is now a guided visitor-facing story rather than an internal dashboard: pick Instagram/Facebook/TikTok, read the inbound message, run the AI reply, then write the result into the CRM.
@@ -70,6 +78,21 @@ The current control system now:
 
 ## Verification
 
+- SWEED-047 TDD: 7 requested assertions failed before implementation; final focused homepage suite passed 14/14.
+- SWEED-047 Impeccable detector: no findings. Final full `bun run check`: 153 passed, 0 failed, 652 expectations, with spacing/mobile-first/package-web TypeScript/ESLint all green.
+- SWEED-047 production build passed with ID `a9A_eF4ntTSB1-SfIPxkV`; build ownership is recursively `amr:amr`; service active; local/public homepage HTTP 200.
+- Public 1440×900 browser QA: nav `direction: rtl`; logo x 33–151 physical-left; consultation CTA x 1195–1393 physical-right; six Why entries; Portfolio/Offers/FAQ/Contact titles each one line; no pause control; both arrows present; FAQ all-questions action absent; homepage Contact direct phone/WhatsApp rows absent; document overflow 0.
+- Public 1024×768: logo physical-left, 44×44 menu action physical-right, six Why entries, all four requested section titles one line, document overflow 0.
+- Public 390×844 and 320×568: logo remains physical-left, 44×44 menu control remains physical-right, six Why entries, natural mobile wrapping, document overflow 0.
+- Portfolio interaction QA: autoplay transform advances continuously; hover and settled keyboard focus pause it; arrow click changes carousel position; previous/next controls are about 48–50px.
+- Reduced-motion 390px: track transform is `none`, arrows are hidden, carousel viewport is horizontally scrollable, and manual scroll changed from 0 to -326.
+- Mobile menu 390px: dialog remains RTL, rows measured 47px, Escape closes and restores focus to the trigger, and document overflow remains 0.
+- Fresh production desktop and mobile agent-browser sessions had empty page-error and console-error output; affected-section loaded-image checks found no broken images.
+- SWEED-046 canonicalization: focused final suite 25/25; Impeccable detector had no findings; clean `bun run check` passed 142/142 plus spacing/mobile-first/TypeScript/ESLint; production build passed.
+- Deployed canonical-action build `ZgXdb-_x2rEQswS2SpRGc`; service active; `/`, `/services`, `/portfolio`, `/offers`, `/articles`, `/crm-ai-demo`, and `/midu-clone` return 200.
+- Browser QA verified Services `ناقش خدمة`, Portfolio `افتح المشروع`, Articles `اقرأ المقال`, Offers recommendation actions, CRM stage actions, and Midu CTAs all carry the shared fill marker and 16px canonical geometry.
+- Primary hover retains the purple base while the pink fill expands fully; secondary hover retains the white base while the purple fill expands fully; keyboard focus uses the 3px pink outline. Tested 1024/390/320 layouts had zero horizontal overflow and zero broken loaded images.
+- CRM action flow reached `ابدأ من الأول` after AI reply and CRM update; Offers recommendation flow produced three canonical result actions.
 - SWEED-044 homepage TDD: four render-contract assertions failed before implementation; focused final homepage suite passes 6/6.
 - Clean final SWEED-044 verification: `bun run check` passed 138/138 tests with spacing/mobile-first/type/lint guards; production build passed.
 - Deployed homepage build `0kYh3GeJJhMOM1HwzXkcz`: service active and local/public `/` return HTTP 200.
@@ -138,7 +161,7 @@ Previous optical-centering verification remains valid:
 
 ## Remaining Boundary
 
-- SWEED-044 is complete. Resume SWEED-042 from `.ai/plans/2026-08-18-final-v4-site-hardening.md`; preserve its remaining dirty reference-service files.
+- SWEED-044 and SWEED-047 are complete. Resume SWEED-042 from `.ai/plans/2026-08-18-final-v4-site-hardening.md`; preserve concurrent dirty homepage/reference-service files that appeared after the verified SWEED-047 deployment.
 - The CRM + AI Agent route is intentionally standalone for now; add its Services-page entry only as a follow-up.
 - Articles is not an executable-HTML fidelity route in the current reference batch.
 - Do not push without explicit user approval.

@@ -2,7 +2,7 @@
 
 ID: SWEED-047
 Created: 2026-08-18
-Status: active
+Status: completed
 
 ## Goal
 
@@ -31,3 +31,12 @@ Correct the homepage navigation direction, restore the approved six-point `لي�
 ## Rollback
 
 Revert only the SWEED-047 commits. Do not revert or include the unrelated SWEED-042 dirty reference-service files.
+
+## Completion Evidence
+
+- Implementation: `b8e245a fix: refine homepage RTL and section flow`.
+- Compatibility follow-up: `beef95f fix: preserve approved reference button hierarchy`.
+- TDD: requested assertions failed before implementation; focused final homepage suite passed 14/14.
+- Full verification: `bun run check` passed 153/153 tests; production build passed as `a9A_eF4ntTSB1-SfIPxkV`.
+- Deployment: `.next` verified `amr:amr`; service active; local/public homepage HTTP 200.
+- Browser QA: 1440×900, 1024×768, 390×844, and 320×568 passed the requested layout/content/interaction checks with zero document horizontal overflow; fresh production sessions had no page/console errors or broken loaded images in affected sections.

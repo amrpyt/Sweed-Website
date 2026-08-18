@@ -1,6 +1,6 @@
 # Tasks
 
-Updated: 2026-08-18T20:11:00+03:00
+Updated: 2026-08-18T21:44:00+03:00
 
 ## Active
 
@@ -22,6 +22,73 @@ Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 - [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
+
+### SWEED-047 — Homepage RTL, copy width, and carousel controls
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-08-18-homepage-rtl-copy-carousel-polish.md`
+Implementation commits: `b8e245a fix: refine homepage RTL and section flow`, `beef95f fix: preserve approved reference button hierarchy`
+
+#### Acceptance Criteria
+
+- [x] Header logo sits on the physical left and consultation/menu action on the physical right while Arabic navigation/menu content remains RTL.
+- [x] `ليه تختار سويد؟` restores the approved six points, including `شراكة مش خدمة` and `التزام بالمواعيد`.
+- [x] Selected Work heading/supporting copy use a wider desktop measure instead of a narrow stacked column.
+- [x] Selected Work removes the visible autoplay pause toggle and exposes accessible previous/next arrow buttons using the installed Embla API.
+- [x] Portfolio autoplay still loops; hover/focus pause remains; reduced motion disables autoplay and preserves manual access.
+- [x] Offers and FAQ heading/supporting copy use the same wider desktop treatment.
+- [x] `شاهد كل الأسئلة` is removed from the homepage FAQ section.
+- [x] Homepage contact removes the phone and WhatsApp method rows while keeping the heading, approved supporting copy, form, and conversion context.
+- [x] Contact heading/supporting copy use the wider treatment instead of a narrow stacked measure.
+- [x] Focused tests, full check/build, deployment health, and agent-browser visual QA pass at desktop/tablet/mobile widths.
+- [x] No push was performed; concurrent post-deploy dirty work was preserved rather than staged into SWEED-047.
+
+#### Evidence
+
+- Git history shows `999fd13 refactor: align shared SWEED v4 identity` removed the two approved Why points that originally shipped in `271a6a7 feat: install final SWEED homepage content`; both are restored.
+- TDD red state: 7 requested contract assertions failed before implementation. Focused final homepage suite: 14 passed, 0 failed.
+- Impeccable detector returned no findings; spacing and mobile-first guards passed.
+- Final `bun run check`: 153 passed, 0 failed, 652 expectations, with package/web TypeScript and ESLint green.
+- Production build passed and deployed as `a9A_eF4ntTSB1-SfIPxkV`; `.next` is recursively `amr:amr`; service active; local/public homepage return HTTP 200.
+- Agent-browser 1440×900 confirmed RTL nav, logo physical-left, CTA physical-right, six Why entries, one-line requested desktop headings, both carousel arrows, and all requested removed controls absent.
+- Agent-browser 1024×768, 390×844, and 320×568 confirmed zero document horizontal overflow, correct physical header placement, six Why entries, and natural responsive wrapping.
+- Carousel QA confirmed continuous autoplay, hover/focus pause, working next-arrow movement, 48px+ navigation controls, and reduced-motion manual horizontal scrolling with arrows hidden.
+- Fresh public desktop/mobile sessions had no page errors, no console errors, and no broken loaded images in the affected sections.
+
+#### Blockers
+
+- None.
+
+### SWEED-046 — Canonical site-wide action buttons
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-08-18-canonical-sitewide-button-system.md`
+Implementation commit: `2693fb0 refactor: adopt canonical action buttons site-wide`
+
+#### Acceptance Criteria
+
+- [x] Deep-purple primary, white secondary/light, and pink inset fill interaction are the documented canonical public CTA hierarchy.
+- [x] Shared semantic tokens own the canonical button surfaces, borders, fills, focus treatment, and shadows.
+- [x] Public React CTA surfaces consume `Button` / `ButtonLink` / `BrandActionButton` instead of locally repainting the same button role.
+- [x] Remaining CTA-looking public links/buttons that bypassed the shared action system were migrated where their role is truly CTA.
+- [x] Tabs, filters, selectors, carousel controls, icon buttons, quick prompts, and other non-CTA product controls keep their purpose-specific UI.
+- [x] Reference-page and legacy product CTA bridges retain the same purple/white/pink action language without changing approved reference HTML bytes.
+- [x] Arabic optical centering, focus, disabled, active, hover, and reduced-motion behavior remain intact.
+- [x] Site-wide regression tests, focused tests, full check/build, deployment health, and public desktop/tablet/mobile browser QA pass.
+- [x] Unrelated SWEED-042 dirty files were preserved and no push was performed.
+
+#### Evidence
+
+- TDD red state confirmed known CTA outliers did not carry the canonical fill mechanism before migration; focused final suite passed 25/25.
+- Impeccable detector returned no findings on changed canonical UI targets.
+- Clean-worktree `bun run check`: 142 passed, 0 failed plus spacing/mobile-first/TypeScript/ESLint guards.
+- Production build passed; deployed build `ZgXdb-_x2rEQswS2SpRGc`; service active and representative public routes return HTTP 200.
+- Browser QA verified purple primary, white secondary, full pink/purple inset fill hover, 3px pink keyboard focus, 16px radius, ~3px Arabic optical shift, and zero overflow/broken images across representative desktop/tablet/mobile checks.
+- Former outliers in Services, Portfolio, Articles, Offers recommendations, CRM, AI advisor, offer funnel, and Midu now use the canonical shared action mechanism.
+- CRM full guided action flow and Offers recommendation flow passed after deployment.
+- No push performed.
 
 ### SWEED-044 — Homepage About, Services, and Portfolio polish
 

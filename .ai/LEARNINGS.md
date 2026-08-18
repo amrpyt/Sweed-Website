@@ -1,15 +1,23 @@
 # Learnings
 
-Updated: 2026-08-18T17:50:14+03:00
+Updated: 2026-08-18T21:44:00+03:00
 
 ## Validated Project Lessons
+
+### RTL content direction does not define the physical SWEED header endpoints
+
+Lesson: The SWEED header should keep Arabic navigation and menu content RTL while explicitly pinning the brand to the physical left and the primary consultation/menu action to the physical right.
+Evidence: On 2026-08-18 the user identified the header as visually reversed. Explicit flex ordering plus `direction: rtl` produced the approved result; managed browser QA confirmed logo-left/action-right at 1440px, 1024px, 390px, and 320px with zero document overflow.
+Applies to: Shared public header, responsive menu trigger placement, and future header layout refactors.
+Behavior change: Do not infer physical brand/action placement from document direction alone. Preserve the logo-left/action-right endpoints and verify both desktop CTA and mobile menu trigger positions in browser QA.
+Revisit when: The project owner explicitly approves a different header composition.
 
 ### Preserve the approved button hierarchy when changing shared identity tokens
 
 Lesson: A palette cleanup must not invert the established CTA hierarchy merely because the same brand colors remain present.
-Evidence: On 2026-08-18, `999fd13` changed the canonical SWEED primary CTA from deep purple to pink and the secondary from white to transparent; the user immediately identified the resulting controls as a visual regression. `b7b94c8` restored the prior hierarchy and browser QA confirmed it across public routes.
+Evidence: On 2026-08-18, `999fd13` changed the canonical SWEED primary CTA from deep purple to pink and the secondary from white to transparent; the user immediately identified the resulting controls as a visual regression. `b7b94c8` restored the prior hierarchy, then `2693fb0` made it the explicit site-wide contract through `DEC-015`, semantic `--action-*` tokens, shared action components, and regression coverage.
 Applies to: `BrandActionButton`, shared headers/heroes, homepage CTAs, modular public pages, and any theme bridge that maps reference CTAs onto the shared system.
-Behavior change: Keep deep purple as the canonical primary surface, white as the canonical secondary/light surface, and pink as the interaction/fill accent unless an explicit approved redesign changes that contract. Token refactors must be checked against rendered primary and secondary controls before deployment.
+Behavior change: Keep deep purple as the canonical primary surface, white as the canonical secondary/light surface, and pink as the interaction/fill accent unless an explicit approved redesign changes that contract. Public CTA code must use the shared action mechanism; page CSS may size/place it but must not repaint it. Token refactors must be checked against rendered primary and secondary controls before deployment.
 Revisit when: The project owner explicitly approves a different CTA hierarchy.
 
 ### Copied Next builds must inherit the service user

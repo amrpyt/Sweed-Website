@@ -1,23 +1,41 @@
 # Current State
 
-Updated: 2026-08-18T20:11:00+03:00
+Updated: 2026-08-18T21:44:00+03:00
 Git branch: main
-Git HEAD: `dfb7a45`
-Application commit: `fix: keep services headline on one desktop line`
+Git HEAD: `beef95f`
+Application commit: `fix: preserve approved reference button hierarchy`
 Active Task: SWEED-042
 Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
-Status: SWEED-042 in progress — SWEED-044 homepage polish is complete and deployed
+Status: SWEED-047 complete and deployed — SWEED-042 resumed; preserve concurrent post-deploy dirty homepage work
 
 ## Current Goal
 
-Resume the remaining SWEED-042 public-site hardening work without disturbing the completed homepage polish or the approved shared button hierarchy.
+Resume the remaining SWEED-042 public-site hardening work without disturbing the completed SWEED-047 homepage pass or concurrent post-deploy homepage edits.
 
 ## In Progress
 
-- SWEED-042 remains in progress; preserve its remaining dirty reference-service files and normalizer work.
+- SWEED-042 remains in progress; preserve any concurrent dirty homepage/reference-service work that appeared after the SWEED-047 deployment.
 
 ## Completed Recently
 
+- Completed SWEED-047 in `b8e245a`: the shared header keeps Arabic navigation RTL while placing the SWEED logo on the physical left and the consultation/menu action on the physical right at desktop and mobile widths.
+- Restored all six approved `ليه تختار سويد؟` points, including `شراكة مش خدمة` and `التزام بالمواعيد`; Git history confirmed those two points were removed by `999fd13` after originally shipping in `271a6a7`.
+- Widened the Selected Work, Offers, FAQ, and homepage Contact heading/supporting-copy measures so desktop text uses the available width instead of stacking into narrow columns.
+- Replaced the visible Selected Work autoplay toggle with accessible previous/next arrow controls through the existing Embla API; autoplay, hover/focus pause, looping, and reduced-motion manual scrolling remain intact.
+- Removed the homepage FAQ `شاهد كل الأسئلة` action and the homepage Contact phone/WhatsApp method rows while preserving the contact form and approved supporting copy.
+- Added focused TDD contracts for the requested homepage behavior: the new assertions failed before implementation, then the final focused suite passed 14/14.
+- Fixed a concurrent reference-button palette regression in `beef95f` so the already-approved deep-purple primary / white secondary / pink expanding-fill hierarchy remains green against the existing shared reference tests.
+- Final `bun run check` passed 153/153 tests plus spacing, mobile-first, package/web TypeScript, and ESLint; production build `a9A_eF4ntTSB1-SfIPxkV` passed, is owned by `amr:amr`, and is deployed with the service active.
+- Public managed-agent-browser QA passed at 1440×900, 1024×768, 390×844, and 320×568: zero document horizontal overflow, correct physical header placement, six Why items, expected desktop/mobile wrapping, no removed FAQ/contact/autoplay controls, working carousel arrows/autoplay/hover/focus behavior, and reduced-motion manual reachability.
+- Fresh production browser sessions reported no page errors, no console errors, and no broken loaded images in the affected sections; local and public homepage checks return HTTP 200.
+
+- Completed SWEED-046 in `2693fb0`: the restored deep-purple primary / white secondary / pink expanding-fill action design is now the documented and tested canonical CTA system across the public website.
+- Added semantic `--action-*` tokens plus `DEC-015`; page/feature CSS may size or position CTA controls but must not repaint their surfaces, borders, fill, shadows, focus treatment, or state behavior.
+- Migrated remaining CTA outliers in Services, Portfolio, Articles, Offers recommendations, CRM demo, AI advisor ticket form, offer funnel, shared public sections, and `/midu-clone` to `Button`, `ButtonLink`, or the shared `BrandActionButton` mechanism.
+- Removed duplicate page-local CTA paint rules while deliberately keeping tabs, filters, selectors, carousel controls, menu controls, icon buttons, and other non-CTA interactions purpose-specific.
+- Clean-worktree `bun run check` at `2693fb0` passed 142/142 tests plus spacing, mobile-first, package/web TypeScript, and ESLint; the production build completed successfully.
+- Deployed clean build `ZgXdb-_x2rEQswS2SpRGc`; `sweed-demo.service` is active and `/`, `/services`, `/portfolio`, `/offers`, `/articles`, `/crm-ai-demo`, and `/midu-clone` return HTTP 200 publicly.
+- Public browser QA confirmed canonical former outliers (`ناقش خدمة`, `افتح المشروع`, `اقرأ المقال`, Offers recommendation actions, CRM stage actions, and Midu CTAs), purple/white hierarchy, full expanding fill, 3px focus outline, ~3px Arabic optical shift, zero horizontal overflow, and zero broken loaded images at representative desktop/tablet/mobile widths.
 - Completed SWEED-044 homepage polish in `b3665b3`, with follow-up fixes `14d6daa` and `dfb7a45` after browser QA exposed a non-looping portfolio edge case and an overly narrow 1024px Services title measure.
 - Homepage About no longer renders a standalone `من 2011`; the approved paragraph retains the date naturally, and the slogan no longer uses the circular `N` marker.
 - Homepage Services now removes the long intro, renders six cards as a 2×3 desktop grid, keeps the heading on one line from 1024px upward, and places `شوف كل الخدمات` after the grid.
@@ -73,6 +91,26 @@ Resume the remaining SWEED-042 public-site hardening work without disturbing the
 
 ## Verification
 
+- SWEED-047 TDD red state: 7 new/requested assertions failed before the production changes; final focused homepage suite passed 14/14.
+- SWEED-047 Impeccable detector returned no findings on the changed UI files; spacing and mobile-first design guards passed.
+- Final clean verification for HEAD `beef95f`: `bun run check` passed 153 tests, 0 failed, 652 expectations; package/web TypeScript and ESLint passed.
+- Production build passed after stopping `sweed-demo.service`; deployed build ID `a9A_eF4ntTSB1-SfIPxkV`; `.next` ownership check found no non-`amr:amr` entries; service became ready on the second local HTTP poll and public `/` returns 200.
+- Public 1440×900: nav direction RTL, logo at x 33–151 on the physical left, consultation CTA at x 1195–1393 on the physical right, Why count 6, Portfolio/Offers/FAQ/Contact titles each one line, pause control absent, both carousel arrows present, FAQ all-questions action absent, and homepage Contact direct phone/WhatsApp rows absent.
+- Public 1024×768: zero overflow, logo x 8–96 left, menu action x 957–1001 right at 44×44, Why count 6, and all four requested section titles remain one line.
+- Public 390×844 and 320×568: zero document overflow, logo remains physical-left, 44×44 menu control remains physical-right, Why count 6, and the widened sections wrap naturally without forced desktop-style single lines.
+- Public carousel interaction: autoplay transform advanced continuously, hover held the transform, keyboard focus held the transform, the next-arrow changed carousel position, and arrows measure about 48–50px.
+- Public reduced-motion 390px: `prefers-reduced-motion` true, track transform `none`, arrows hidden, viewport `overflow-x:auto`, and manual scroll moved from 0 to -326.
+- Public mobile menu 390px: dialog direction RTL, zero overflow, 47px menu rows, Escape closes it, and focus returns to the menu trigger.
+- Fresh final production browser sessions at 1440px and 390px had empty page-error and console-error output; affected-section loaded-image checks found no broken images.
+
+- SWEED-046 TDD: the site-wide action contract was observed failing on the known CTA outliers before migration, then the focused button/public/reference suite passed 25/25.
+- SWEED-046 Impeccable detector returned no findings on the changed canonical UI targets.
+- SWEED-046 clean `bun run check` at `2693fb0`: 142 passed, 0 failed; spacing, mobile-first, package/web TypeScript, and ESLint passed.
+- SWEED-046 production build passed with 30 static/SSG pages generated; deployed build ID `ZgXdb-_x2rEQswS2SpRGc` has `amr:amr` ownership.
+- SWEED-046 public HTTP: service active; `/`, `/services`, `/portfolio`, `/offers`, `/articles`, `/crm-ai-demo`, and `/midu-clone` return 200.
+- SWEED-046 desktop hover/focus QA: primary remains `rgb(38, 27, 62)` while pink fill becomes `inset(0px round 8px)` and lifts 2px; secondary remains white while purple fill becomes full; keyboard focus is a 3px SWEED-pink outline with 3px offset.
+- SWEED-046 responsive QA: 1024×768, 390×844, and 320×568 had zero document horizontal overflow and zero broken loaded images on tested routes; visible canonical actions stayed inside the viewport with 16px radius and ~3px Arabic optical correction.
+- SWEED-046 interaction QA: CRM completed `شغّل الـAI Agent` → `حدّث الـCRM` → `ابدأ من الأول` with the canonical action retained at each stage; Offers three-question recommendation rendered all three result actions through the canonical mechanism.
 - SWEED-044 TDD: the four new homepage render-contract assertions were observed failing before implementation; focused final homepage suite passes 6/6.
 - SWEED-044 clean final `bun run check`: 138 passed, 0 failed, with spacing/mobile-first/TypeScript/ESLint guards passing; production build passed.
 - SWEED-044 deployed build: `0kYh3GeJJhMOM1HwzXkcz`; `sweed-demo.service` active; local and public homepage HTTP 200.
@@ -138,7 +176,7 @@ Resume the remaining SWEED-042 public-site hardening work without disturbing the
 
 ## Remaining
 
-- Resume SWEED-042 from its existing plan and remaining dirty reference-service work.
+- Resume SWEED-042 from its existing plan, preserving concurrent dirty homepage/reference-service work that appeared after the verified SWEED-047 deployment.
 - `/articles` remains outside HTML-level fidelity because no executable Articles HTML reference was supplied in the relevant batch.
 - Push to GitHub only when explicitly requested.
 
@@ -148,4 +186,4 @@ None.
 
 ## Next Exact Action
 
-Resume SWEED-042 from `.ai/plans/2026-08-18-final-v4-site-hardening.md`, preserving the remaining dirty reference-service files.
+Resume SWEED-042 from `.ai/plans/2026-08-18-final-v4-site-hardening.md`, first reconciling the current concurrent dirty files without overwriting them.

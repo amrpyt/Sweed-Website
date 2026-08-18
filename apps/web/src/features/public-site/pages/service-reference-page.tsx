@@ -21,6 +21,30 @@ const SHARED_OVERRIDES = `
   font-family: inherit !important;
 }
 
+/* The app-wide typography layer assigns heading/body colors directly.
+ * The uploaded service prototypes intentionally inherit those colors from
+ * each section (for example white copy inside dark heroes). Keep the global
+ * typography from leaking into the isolated reference canvas. */
+.sweed-reference-page h1,
+.sweed-reference-page h2,
+.sweed-reference-page h3,
+.sweed-reference-page h4,
+.sweed-reference-page h5,
+.sweed-reference-page h6,
+.sweed-reference-page p,
+.sweed-reference-page small,
+.sweed-reference-page figcaption {
+  color: inherit;
+}
+
+/* Never leave content invisible while the client runtime is still loading.
+ * Once all prototype scripts are installed, the runtime marks the canvas as
+ * ready and the original reveal CSS/GSAP behavior takes over. */
+.sweed-reference-page:not([data-reference-runtime-ready="true"]) .reveal {
+  opacity: 1;
+  transform: none;
+}
+
 .sweed-reference-page a:focus-visible,
 .sweed-reference-page button:focus-visible,
 .sweed-reference-page input:focus-visible,

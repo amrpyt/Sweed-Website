@@ -88,9 +88,6 @@ export function HomeFaqBlogSection() {
               <h2 id="home-blog-title">مقالات بتفيدك فعلًا</h2>
               <p>خلاصة خبرتنا في السوق — مكتوبة ببساطة عشان تاخد منها قرار، مش معلومة وخلاص.</p>
             </div>
-            <Link className={getBrandActionButtonClassName({ size: "compact" })} href="/articles">
-              <BrandActionButtonContent>كل المقالات</BrandActionButtonContent>
-            </Link>
           </div>
 
           <div className={styles.articlesGrid}>
@@ -124,6 +121,12 @@ export function HomeFaqBlogSection() {
                 </article>
               </Reveal>
             ))}
+          </div>
+
+          <div className={styles.articlesActions}>
+            <Link className={getBrandActionButtonClassName({ size: "compact" })} href="/articles">
+              <BrandActionButtonContent>كل المقالات</BrandActionButtonContent>
+            </Link>
           </div>
         </div>
       </section>

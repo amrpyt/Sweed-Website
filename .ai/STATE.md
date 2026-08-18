@@ -1,9 +1,9 @@
 # Current State
 
-Updated: 2026-08-18T21:44:00+03:00
+Updated: 2026-08-18T21:51:00+03:00
 Git branch: main
-Git HEAD: `beef95f`
-Application commit: `fix: preserve approved reference button hierarchy`
+Git HEAD: `a3d519f`
+Application commit: `fix: polish homepage proof cards and flow`
 Active Task: SWEED-042
 Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 Status: SWEED-047 complete and deployed — SWEED-042 resumed; preserve concurrent post-deploy dirty homepage work
@@ -17,6 +17,10 @@ Resume the remaining SWEED-042 public-site hardening work without disturbing the
 - SWEED-042 remains in progress; preserve any concurrent dirty homepage/reference-service work that appeared after the SWEED-047 deployment.
 
 ## Completed Recently
+
+- Completed SWEED-048 in `a3d519f`: removed the standalone homepage slogan section, moved the direction promise into the hero subtitle, simplified the restaurant proof title, moved `شاهد كل الأعمال` below the proof cards, upgraded Selected Work cards to clearer white proof surfaces with category/status chips, and added a five-dot SWEED divider between Services and Why.
+- SWEED-048 focused TDD passed 10/10; full `bun run check` passed 153/153 tests and all spacing/mobile-first/TypeScript/ESLint gates. Impeccable detector returned no findings.
+- Deployed build `6-l3XQ4eL9exGMJW596dw`; `sweed-demo.service` is active and the public homepage returns HTTP 200. Managed browser QA confirmed the new hero copy, no `#slogan`, portfolio CTA after cards, restaurant title, five-dot divider, zero broken loaded images, and no horizontal overflow at desktop/mobile widths.
 
 - Completed SWEED-047 in `b8e245a`: the shared header keeps Arabic navigation RTL while placing the SWEED logo on the physical left and the consultation/menu action on the physical right at desktop and mobile widths.
 - Restored all six approved `ليه تختار سويد؟` points, including `شراكة مش خدمة` and `التزام بالمواعيد`; Git history confirmed those two points were removed by `999fd13` after originally shipping in `271a6a7`.

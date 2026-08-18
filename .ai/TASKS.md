@@ -1,6 +1,6 @@
 # Tasks
 
-Updated: 2026-08-18T21:44:00+03:00
+Updated: 2026-08-18T21:51:00+03:00
 
 ## Active
 
@@ -22,6 +22,34 @@ Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 - [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
+
+### SWEED-048 — Homepage proof cards and section flow polish
+
+Status: completed
+Priority: high
+Implementation commit: `a3d519f fix: polish homepage proof cards and flow`
+
+#### Acceptance Criteria
+
+- [x] Standalone `نحدد لك الاتجاه / ونلتزم معك بالوصول / معًا ستصل` section is removed and the promise is moved into the hero subtitle.
+- [x] Restaurant proof card uses the cleaner `قطاع المطاعم` title and keeps service/status context visible.
+- [x] `شاهد كل الأعمال` renders below the portfolio cards rather than above them.
+- [x] Selected Work cards use a clearer proof-card hierarchy with distinct category/status chips and verified/pending result treatment.
+- [x] Services and `ليه تختار سويد؟` are separated by a five-dot SWEED divider.
+- [x] Focused tests, full check, detector, deployment health, and public desktop/mobile QA pass.
+- [x] Existing unrelated reference-service dirty work is preserved and no push is performed.
+
+#### Evidence
+
+- Focused homepage suite: 10 passed, 0 failed, 38 expectations; red state was observed first for hero copy and CTA ordering.
+- Full `bun run check`: 153 passed, 0 failed, 651 expectations; spacing/mobile-first/package/web TypeScript and ESLint passed.
+- Impeccable detector: no findings.
+- Deployed build: `6-l3XQ4eL9exGMJW596dw`; service active; local/public homepage HTTP 200.
+- Managed browser DOM/mobile QA: new subtitle present, `#slogan` absent, portfolio CTA follows cards, `قطاع المطاعم` present, divider has five dots, no broken loaded images, no horizontal overflow.
+
+#### Blockers
+
+- None.
 
 ### SWEED-047 — Homepage RTL, copy width, and carousel controls
 

@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-18T21:44:00+03:00
+Updated: 2026-08-18T21:51:00+03:00
 
 ## Read First
 
@@ -13,6 +13,9 @@ Updated: 2026-08-18T21:44:00+03:00
 - `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-design.md`
 
 ## Current Public Contract
+
+- SWEED-048 is deployed from `a3d519f`: the standalone homepage slogan section is gone; the hero subtitle now reads `نحدد لك الاتجاه، ونلتزم معك بالوصول — معًا ستصل.`. Selected Work uses white proof cards with category/status chips, the restaurant pending card title is `قطاع المطاعم`, and `شاهد كل الأعمال` sits below the carousel. Services and Why are separated by a five-dot SWEED divider.
+- SWEED-048 verification passed the focused 10/10 suite, full 153/153 check, Impeccable detector, public HTTP 200, and desktop/mobile browser contract checks. Deployed build ID is `6-l3XQ4eL9exGMJW596dw`.
 
 - The site-wide canonical CTA contract is `DEC-015` and implementation `2693fb0`: deep-purple `#261b3e` primary surface with white label, white secondary/light surface with purple label/border, and SWEED pink as the expanding primary/light interaction and focus accent.
 - `Button`, `ButtonLink`, and the underlying `BrandActionButton` mechanism own CTA paint and states. Page/feature CSS may control placement and available width but must not repaint action surfaces, borders, fill, shadows, focus, hover, active, disabled, or reduced-motion behavior.

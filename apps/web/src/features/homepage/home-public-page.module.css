@@ -173,30 +173,6 @@
   line-height: var(--type-lead-leading);
 }
 
-.sectionDivider {
-  display: flex;
-  min-height: var(--stack-xl);
-  align-items: center;
-  justify-content: center;
-  gap: var(--stack-sm);
-  background: linear-gradient(to bottom, #ffffff 0 50%, #faf8fb 50% 100%);
-}
-
-.sectionDivider span {
-  width: var(--cds-spacing-03);
-  height: var(--cds-spacing-03);
-  border-radius: 50%;
-  background: #ed2062;
-  box-shadow: 0 0 0 var(--cds-spacing-02) rgb(237 32 98 / 10%);
-}
-
-.sectionDivider span:nth-child(even) {
-  width: var(--cds-spacing-02);
-  height: var(--cds-spacing-02);
-  background: #261b3e;
-  box-shadow: none;
-}
-
 .heroActions {
   position: relative;
   z-index: 10;

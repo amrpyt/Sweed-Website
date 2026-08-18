@@ -48,4 +48,18 @@ describe("requested homepage polish", () => {
     expect(html).not.toContain('href="https://wa.me/');
     expect(html).toContain('data-testid="home-contact-form"');
   });
+
+  test("keeps the Services to Why transition compact without a standalone divider row", () => {
+    const pageSource = readLocal("./home-public-page.tsx");
+    const servicesCss = readLocal("./home-services-section.module.css");
+    const whyCss = readLocal("./home-why-metrics-section.module.css");
+
+    expect(pageSource).not.toContain("sectionDivider");
+    expect(servicesCss).toMatch(
+      /\.section\s*{[\s\S]*?padding-block:\s*var\(--section-space-default\)\s+var\(--stack-xl\);/,
+    );
+    expect(whyCss).toMatch(
+      /\.section\s*{[\s\S]*?padding-block:\s*var\(--stack-xl\)\s+var\(--section-space-default\);/,
+    );
+  });
 });

@@ -2,7 +2,7 @@
   position: relative;
   background: #faf8fb;
   color: #261b3e;
-  padding-block: var(--section-space-default);
+  padding-block: var(--stack-xl) var(--section-space-default);
 }
 
 .container {

@@ -1,7 +1,7 @@
 .section {
   position: relative;
   overflow: clip;
-  padding-block: var(--section-space-default);
+  padding-block: var(--section-space-default) var(--stack-xl);
   background: #f7f8fb;
   color: #261b3e;
   direction: rtl;

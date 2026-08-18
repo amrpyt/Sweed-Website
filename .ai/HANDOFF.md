@@ -1,6 +1,6 @@
 # Handoff
 
-Updated: 2026-08-18T19:55:00+03:00
+Updated: 2026-08-18T20:11:00+03:00
 
 ## Read First
 
@@ -16,7 +16,10 @@ Updated: 2026-08-18T19:55:00+03:00
 - The canonical shared CTA hierarchy is again the approved pre-v4 look: deep-purple `#261b3e` primary surface with white label, white secondary/light surface with purple label/border, and SWEED pink used as the expanding interaction/focus accent. Do not invert these surfaces during token/palette cleanup without explicit approval.
 - Keep the existing `BrandActionButton` mechanism: 16px control radius, shared hero-style expanding fill, measured Arabic optical label shift, contained icon geometry, visible focus outline, disabled state, and reduced-motion fallback.
 - Button restoration implementation is `b7b94c8 fix: restore approved button hierarchy`; the regression came from `999fd13` at 2026-08-18 18:49 +03:00.
-- The public demo is currently running clean build `TZjk3K73aZ9mWKGXfKoXV` produced from `b7b94c8`. Branch HEAD later advanced to `b3665b3 feat: polish homepage sections`; that concurrent SWEED-044 commit was intentionally not mixed into the button-repair deployment and still needs its own final verification/deployment.
+- The public demo is currently running clean build `0kYh3GeJJhMOM1HwzXkcz`, containing the approved button hierarchy plus completed SWEED-044 homepage polish through `dfb7a45`.
+- Homepage About no longer has a standalone `من 2011` row; the date remains in the approved company paragraph. The slogan separator no longer renders the circular `N` compass marker.
+- Homepage Services renders the approved compact intro, a 2×3 grid from 1024px upward, a one-line desktop heading, and `شوف كل الخدمات` after the grid. Mobile remains one column.
+- Homepage Selected Work is a continuous Embla auto-scroll strip. It pauses on hover/focus, has an explicit pause/resume control, and becomes manually scrollable with no autoplay under reduced motion.
 
 - `/crm-ai-demo` is a standalone frontend-only preview of the future SWEED CRM + AI Agent product. It intentionally uses deterministic browser-local data and actions and is not connected to Convex or another backend.
 - The CRM demo is now a guided visitor-facing story rather than an internal dashboard: pick Instagram/Facebook/TikTok, read the inbound message, run the AI reply, then write the result into the CRM.
@@ -67,6 +70,12 @@ The current control system now:
 
 ## Verification
 
+- SWEED-044 homepage TDD: four render-contract assertions failed before implementation; focused final homepage suite passes 6/6.
+- Clean final SWEED-044 verification: `bun run check` passed 138/138 tests with spacing/mobile-first/type/lint guards; production build passed.
+- Deployed homepage build `0kYh3GeJJhMOM1HwzXkcz`: service active and local/public `/` return HTTP 200.
+- Managed agent-browser QA at 1440×900 and 1024×768 confirmed one-line Services heading, 2×3 desktop Services grid, CTA after/below the grid, zero document overflow, and the requested About/slogan removals.
+- Managed agent-browser QA at 390×844 and 320×568 confirmed one-column Services, zero horizontal overflow, and no tested control below 44px or clipped outside the viewport.
+- Portfolio motion QA confirmed continuous movement past the prior loop boundary, hover pause/resume, explicit button pause/resume, and reduced-motion `transform:none` with manual horizontal scrolling. Final loaded-image checks found no broken images; browser error logs were empty.
 - SWEED-045 button restoration: TDD red state observed before the fix; focused suite then passed 15/15.
 - Clean `b7b94c8` verification: spacing/mobile/type/lint guards passed, 134 tests passed, production build passed.
 - Public button build `TZjk3K73aZ9mWKGXfKoXV`: service active; `/`, `/services`, `/portfolio`, `/offers` return HTTP 200.
@@ -129,6 +138,7 @@ Previous optical-centering verification remains valid:
 
 ## Remaining Boundary
 
+- SWEED-044 is complete. Resume SWEED-042 from `.ai/plans/2026-08-18-final-v4-site-hardening.md`; preserve its remaining dirty reference-service files.
 - The CRM + AI Agent route is intentionally standalone for now; add its Services-page entry only as a follow-up.
 - Articles is not an executable-HTML fidelity route in the current reference batch.
 - Do not push without explicit user approval.

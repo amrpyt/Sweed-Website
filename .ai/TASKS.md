@@ -1,48 +1,8 @@
 # Tasks
 
-Updated: 2026-08-18T19:55:00+03:00
+Updated: 2026-08-18T20:11:00+03:00
 
 ## Active
-
-### SWEED-044 — Homepage About, Services, and Portfolio polish
-
-Status: in-progress
-Priority: high
-Plan: `.ai/plans/2026-08-18-homepage-about-services-portfolio-polish.md`
-
-#### Acceptance Criteria
-
-- [ ] Homepage About has no standalone `من 2011` row; the date remains naturally inside the approved company paragraph.
-- [ ] The slogan statement is visually centered without the circular `N` compass mark.
-- [ ] Services long intro is not rendered; `شوف كل الخدمات` appears after the service cards.
-- [ ] Services render as two columns on desktop while mobile/tablet remain readable and overflow-free.
-- [ ] The Services heading stays on one line at wide desktop widths without clipping.
-- [ ] Selected Work runs as a continuous horizontal auto-strip with pause/resume and hover/focus pause behavior.
-- [ ] Reduced motion disables portfolio autoplay and leaves content manually reachable.
-- [ ] Focused tests, full check/build, deployment health, and public desktop/mobile browser QA pass.
-- [ ] Only SWEED-044 files are committed; no push is performed.
-
-#### Dependencies
-
-- Preserve unrelated in-progress SWEED-042 dirty route files.
-
-#### Relevant Files and Systems
-
-- `apps/web/src/features/homepage/*`
-- `/`
-- `sweed-demo.service`
-
-#### Evidence
-
-- Pending implementation and verification.
-
-#### Blockers
-
-- None.
-
-#### Next Action
-
-Add render-contract tests and observe the intended red state before changing homepage production code.
 
 ### SWEED-042 — Final v4 public-site hardening
 
@@ -62,6 +22,40 @@ Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 - [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
+
+### SWEED-044 — Homepage About, Services, and Portfolio polish
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-08-18-homepage-about-services-portfolio-polish.md`
+Implementation commits: `b3665b3 feat: polish homepage sections`, `14d6daa fix: keep homepage portfolio loop continuous`, `dfb7a45 fix: keep services headline on one desktop line`
+
+#### Acceptance Criteria
+
+- [x] Homepage About has no standalone `من 2011` row; the date remains naturally inside the approved company paragraph.
+- [x] The slogan statement is visually centered without the circular `N` compass mark.
+- [x] Services long intro is not rendered; `شوف كل الخدمات` appears after the service cards.
+- [x] Services render as two columns on desktop while mobile/tablet remain readable and overflow-free.
+- [x] The Services heading stays on one line at desktop widths from 1024px upward without clipping.
+- [x] Selected Work runs as a continuous horizontal auto-strip with pause/resume and hover/focus pause behavior.
+- [x] Reduced motion disables portfolio autoplay and leaves content manually reachable.
+- [x] Focused tests, full check/build, deployment health, and public desktop/mobile browser QA pass.
+- [x] Only SWEED-044 implementation files were committed; no push was performed.
+
+#### Evidence
+
+- TDD red state observed for four new homepage render-contract assertions before implementation; focused final homepage suite passes 6/6.
+- Clean final `bun run check`: 138 tests passed, 0 failed; spacing, mobile-first, TypeScript, and ESLint guards passed.
+- Production build passed and deployed as build `0kYh3GeJJhMOM1HwzXkcz`; service active; local/public homepage return HTTP 200.
+- Agent-browser 1440×900: zero overflow, Services heading 1 line, cards 2 columns × 3 rows, CTA after/below grid, About standalone 2011 absent, slogan N absent.
+- Agent-browser 1024×768: zero overflow, Services heading 1 line, cards remain 2 columns.
+- Agent-browser 390×844 and 320×568: zero overflow, one-column Services, no tested control below 44px or clipped outside viewport.
+- Portfolio autoplay continued beyond the previous loop stop boundary; hover pauses and leave resumes; explicit pause button freezes movement and changes label; reduced motion uses `transform:none` and manual horizontal scrolling.
+- Final loaded-image/browser checks found no broken images and no browser errors.
+
+#### Blockers
+
+- None.
 
 ### SWEED-045 — Restore approved button look
 

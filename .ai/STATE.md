@@ -1,24 +1,30 @@
 # Current State
 
-Updated: 2026-08-18T19:55:00+03:00
+Updated: 2026-08-18T20:11:00+03:00
 Git branch: main
-Git HEAD: `b3665b3`
-Application commit: `feat: polish homepage sections`
-Active Task: SWEED-044
-Active Plan: `.ai/plans/2026-08-18-homepage-about-services-portfolio-polish.md`
-Status: SWEED-044 in progress — implementation committed; final verification/deployment remains
+Git HEAD: `dfb7a45`
+Application commit: `fix: keep services headline on one desktop line`
+Active Task: SWEED-042
+Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
+Status: SWEED-042 in progress — SWEED-044 homepage polish is complete and deployed
 
 ## Current Goal
 
-Resume SWEED-044 homepage verification/deployment after completing the button visual-regression repair, without disturbing the remaining SWEED-042 route work.
+Resume the remaining SWEED-042 public-site hardening work without disturbing the completed homepage polish or the approved shared button hierarchy.
 
 ## In Progress
 
-- SWEED-044 implementation is committed in `b3665b3`; its final check/build/public QA/deployment still needs reconciliation against the currently deployed clean build.
 - SWEED-042 remains in progress; preserve its remaining dirty reference-service files and normalizer work.
 
 ## Completed Recently
 
+- Completed SWEED-044 homepage polish in `b3665b3`, with follow-up fixes `14d6daa` and `dfb7a45` after browser QA exposed a non-looping portfolio edge case and an overly narrow 1024px Services title measure.
+- Homepage About no longer renders a standalone `من 2011`; the approved paragraph retains the date naturally, and the slogan no longer uses the circular `N` marker.
+- Homepage Services now removes the long intro, renders six cards as a 2×3 desktop grid, keeps the heading on one line from 1024px upward, and places `شوف كل الخدمات` after the grid.
+- Selected Work now runs as a continuous Embla auto-scroll strip with explicit pause/resume, hover/focus pause, and a manual-scroll reduced-motion fallback.
+- Clean final SWEED-044 verification passed 138/138 tests plus spacing, mobile-first, TypeScript, ESLint, and production build; deployed build `0kYh3GeJJhMOM1HwzXkcz` is active and public `/` returns HTTP 200.
+- Managed agent-browser QA passed at 1440×900, 1024×768, 390×844, and 320×568: zero document overflow, one-line Services heading at desktop widths, 2×3 desktop/1-column mobile Services layout, CTA after/below the list, no standalone 2011 or slogan N, no broken loaded images or browser errors, and no sub-44px/clipped tested controls.
+- Agent-browser motion QA confirmed continuous portfolio transforms beyond the previous stop boundary, hover pause/resume, explicit button pause/resume, and reduced-motion `transform:none` with manual horizontal scrolling.
 - Restored the approved shared button hierarchy in `b7b94c8`: deep-purple primary CTAs, white secondary/light CTAs, and the existing pink hero-fill interaction remain canonical.
 - Confirmed root cause was `999fd13` at 2026-08-18 18:49 +03:00, which inverted the canonical primary/secondary surfaces; the regression is now protected by a focused test.
 - SWEED-045 TDD observed the new regression test fail first, then the focused button/reference suite passed 15/15; a clean worktree check passed 134 tests and the production build completed successfully.
@@ -67,6 +73,11 @@ Resume SWEED-044 homepage verification/deployment after completing the button vi
 
 ## Verification
 
+- SWEED-044 TDD: the four new homepage render-contract assertions were observed failing before implementation; focused final homepage suite passes 6/6.
+- SWEED-044 clean final `bun run check`: 138 passed, 0 failed, with spacing/mobile-first/TypeScript/ESLint guards passing; production build passed.
+- SWEED-044 deployed build: `0kYh3GeJJhMOM1HwzXkcz`; `sweed-demo.service` active; local and public homepage HTTP 200.
+- SWEED-044 public browser QA: 1440×900 Services title 1 line, 2 columns/3 rows, CTA after and below grid; 1024×768 title 1 line and 2 columns; 390×844 and 320×568 zero overflow with 1-column Services and no clipped/sub-44px tested controls.
+- SWEED-044 portfolio browser QA: autoplay transform advanced continuously, hover held the transform then resumed on leave, pause button held the transform and changed label, and reduced motion disabled transform/autoplay while retaining manual horizontal scrolling.
 - SWEED-043 TDD: the guided three-stage state tests were observed failing before implementation, then passed 5/5.
 - Guided-demo Impeccable scan returned no findings; no hand-authored `<svg>`/`<path>` markup exists in the CRM TSX files.
 - Latest committed-main `bun run check`: 133 passed, 0 failed, with TypeScript, ESLint, spacing, and mobile-first guards passing.
@@ -127,8 +138,7 @@ Resume SWEED-044 homepage verification/deployment after completing the button vi
 
 ## Remaining
 
-- Complete SWEED-044 implementation, tests, build, deploy, and browser QA.
-- Resume SWEED-042 from its existing plan after this homepage task is complete.
+- Resume SWEED-042 from its existing plan and remaining dirty reference-service work.
 - `/articles` remains outside HTML-level fidelity because no executable Articles HTML reference was supplied in the relevant batch.
 - Push to GitHub only when explicitly requested.
 
@@ -138,4 +148,4 @@ None.
 
 ## Next Exact Action
 
-Add and run the SWEED-044 homepage render-contract tests before editing production homepage sections.
+Resume SWEED-042 from `.ai/plans/2026-08-18-final-v4-site-hardening.md`, preserving the remaining dirty reference-service files.

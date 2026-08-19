@@ -8,6 +8,26 @@ export function SectionHashSync({ sectionIds }: { sectionIds: string[] }) {
   const sectionSignature = sectionIds.join("|");
 
   useEffect(() => {
+    const hashTargetId = window.location.hash.replace(/^#/, "");
+    if (!hashTargetId || !sectionSignature.split("|").includes(hashTargetId)) {
+      return;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      const target = document.getElementById(hashTargetId);
+      if (!target) return;
+
+      const headerHeight = document.querySelector<HTMLElement>('[data-testid="sweed-standard-header"]')?.getBoundingClientRect().height ?? 0;
+      window.scrollTo({
+        top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight),
+        behavior: "auto",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [sectionSignature]);
+
+  useEffect(() => {
     const sections = sectionSignature
       .split("|")
       .filter(Boolean)

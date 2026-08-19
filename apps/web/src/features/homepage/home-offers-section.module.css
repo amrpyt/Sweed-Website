@@ -22,7 +22,7 @@
 .eyebrow {
   width: fit-content;
   margin: 0 auto var(--stack-md);
-  color: #d81958;
+  color: #7d2944;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
   line-height: var(--type-small-leading);
@@ -216,23 +216,35 @@
   box-shadow: 0 10px 24px rgb(10 6 19 / 18%) !important;
 }
 
+.offerCard[data-featured="true"] .offerAction:hover,
+.offerCard[data-featured="true"] .offerAction:focus-visible {
+  --brand-action-fill: #7d2944;
+  --brand-action-fill-color: #ffffff;
+  --brand-action-border: #7d2944;
+}
+
 .offerCard[data-featured="true"] .offerAction:hover .iconBox,
 .offerCard[data-featured="true"] .offerAction:focus-visible .iconBox {
-  color: #7d2944 !important;
+  color: #ffffff !important;
 }
 
 .allOffersLink {
   display: flex;
   width: min(100%, 860px);
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: var(--stack-md);
   margin: var(--stack-2xl) auto 0;
   border-radius: var(--shape-card);
   padding: var(--card-padding);
   background: #f4f1f7;
   text-align: center;
+}
+
+.customPackageLink {
+  width: min(100%, 15.5rem);
+  margin: var(--stack-lg) auto 0;
+  --brand-action-min-width: 15.5rem;
 }
 
 .allOffersLink p {
@@ -261,9 +273,7 @@
 
 @media (min-width: 48rem) {
   .allOffersLink {
-    flex-direction: row;
-    align-items: center;
-    text-align: start;
+    text-align: center;
   }
 }
 

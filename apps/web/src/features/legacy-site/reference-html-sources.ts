@@ -1,10 +1,12 @@
 import { gunzipSync } from "node:zlib";
 import type { LegacyPageKey } from "./legacy-routes";
+import { aboutReferenceHtmlBase64 } from "./reference-html-about";
 import { offersReferenceHtmlBase64 } from "./reference-html-offers";
 import { portfolioReferenceHtmlBase64 } from "./reference-html-portfolio";
 import { servicesReferenceHtmlBase64 } from "./reference-html-services";
 
 const referenceSources = {
+  about: aboutReferenceHtmlBase64,
   services: servicesReferenceHtmlBase64,
   portfolio: portfolioReferenceHtmlBase64,
   offers: offersReferenceHtmlBase64,

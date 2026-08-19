@@ -10,6 +10,29 @@ import { legacyProductActionRuntime } from "./legacy-product-action-theme";
 import type { LegacyPageKey } from "./legacy-routes";
 import { ReferenceScripts } from "./reference-scripts";
 
+const exactReferenceNavigationRuntime = `
+(() => {
+  const hrefByLabel = {
+    "الرئيسية": "/#home",
+    "من نحن": "/#about",
+    "خدماتنا": "/#services",
+    "أعمالنا": "/#portfolio",
+    "العروض": "/#offers",
+    "المقالات": "/#blog",
+  };
+
+  document.querySelectorAll("nav ul a").forEach((link) => {
+    const label = link.textContent?.trim();
+    const href = hrefByLabel[label];
+    if (href) link.setAttribute("href", href);
+  });
+
+  document.querySelectorAll("nav .logo").forEach((link) => {
+    link.setAttribute("href", "/#home");
+  });
+})();
+`;
+
 const homepageBriefRuntime = `
 (() => {
   if (window.__sweedHomepageBriefRuntime) return;
@@ -266,7 +289,12 @@ export function LegacyPage({
       {isReference || isExact ? null : <OfferFunnelController page={page} />}
       {isExact ? null : <AiAdvisorWidget />}
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
-      {!isReference && page === "products" ? (
+      {isExact ? (
+        <Script id={`sweed-exact-reference-navigation-${page}`} strategy="afterInteractive">
+          {exactReferenceNavigationRuntime}
+        </Script>
+      ) : null}
+      {!isReference && !isExact && page === "products" ? (
         <script id="sweed-product-action-runtime" dangerouslySetInnerHTML={{ __html: legacyProductActionRuntime }} />
       ) : null}
       {isReference || isExact ? (

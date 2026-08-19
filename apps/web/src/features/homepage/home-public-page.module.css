@@ -69,12 +69,12 @@
 @keyframes section-accent-draw {
   from {
     opacity: 0;
-    transform: scaleX(0);
+    scale: 0 1;
   }
 
   to {
     opacity: 1;
-    transform: scaleX(1);
+    scale: 1;
   }
 }
 

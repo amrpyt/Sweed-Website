@@ -266,9 +266,11 @@ function extractScripts(html: string, page: LegacyPageKey, presentation: LegacyP
           ? undefined
           : presentation === "reference"
             ? guardReferenceScript(applySweedReferenceTheme(content))
-            : page === "products"
-              ? guardLegacyProductRuntimeScript(content)
-              : content,
+            : presentation === "exact"
+              ? guardReferenceScript(content)
+              : page === "products"
+                ? guardLegacyProductRuntimeScript(content)
+                : content,
     });
     return "";
   });

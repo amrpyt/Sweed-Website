@@ -1,9 +1,8 @@
-import { aboutPageContent } from "@/content/about-page";
-import { AboutPublicPage } from "@/features/public-site/pages/about-public-page";
+import { getLegacyMetadata } from "@/features/legacy-site/legacy-html";
+import { LegacyPage } from "@/features/legacy-site/legacy-page";
 
-export const metadata = {
-  title: aboutPageContent.seo.title,
-  description: aboutPageContent.seo.description,
-};
+export const metadata = getLegacyMetadata("about");
 
-export default AboutPublicPage;
+export default function AboutPage() {
+  return <LegacyPage page="about" presentation="exact" />;
+}

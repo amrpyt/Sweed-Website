@@ -32,12 +32,42 @@
 }
 
 .eyebrow {
+  display: inline-flex;
   width: fit-content;
+  min-height: 2rem;
+  align-items: center;
+  gap: 0.52rem;
   margin: 0 auto var(--stack-md);
   color: #7d2944;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
   line-height: var(--type-small-leading);
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  width: 1.25rem;
+  height: 1px;
+  background: #ed2062;
+  content: "";
+}
+
+.eyebrow::before {
+  box-shadow: 0 0 0 3px rgb(237 32 98 / 10%);
+}
+
+.blogHeading .eyebrow {
+  border-radius: 999px;
+  padding-inline: 0.8rem;
+  background: rgb(237 32 98 / 8%);
+}
+
+.faqHeading .eyebrow::after {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #ed2062;
+  box-shadow: 0 0 0 0.28rem rgb(237 32 98 / 12%);
 }
 
 .faqHeading h2,

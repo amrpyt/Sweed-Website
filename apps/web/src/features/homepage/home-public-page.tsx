@@ -65,12 +65,12 @@ export function HomePublicPage() {
       });
     };
 
-    const initialTimer = window.setTimeout(scrollToTarget, 120);
-    const settleTimer = window.setTimeout(scrollToTarget, 600);
+    const timers = [80, 300, 700, 1200, 1700].map((delay) =>
+      window.setTimeout(scrollToTarget, delay),
+    );
 
     return () => {
-      window.clearTimeout(initialTimer);
-      window.clearTimeout(settleTimer);
+      timers.forEach((timer) => window.clearTimeout(timer));
     };
   }, []);
 

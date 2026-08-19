@@ -29,57 +29,6 @@ export function HomeFaqBlogSection() {
 
   return (
     <>
-      <section className={styles.faqSection} id="faq" aria-labelledby="home-faq-title">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
-        />
-
-        <div className={styles.container}>
-          <div className={styles.faqLayout}>
-            <div className={styles.faqHeading}>
-              <p className={styles.eyebrow}>الأسئلة الشائعة</p>
-              <h2 id="home-faq-title">أسئلة بنسمعها كتير... وإجاباتنا واضحة</h2>
-              <p>كل إجابة بتقولك اللي هيحصل فعلًا: خطوات، مدة، متابعة، ونطاق واضح من الأول.</p>
-            </div>
-
-            <div className={styles.accordion}>
-              {homepageContent.faq.map((item, index) => {
-                const isOpen = openFaqIndex === index;
-                const panelId = `home-faq-panel-${index}`;
-                const triggerId = `home-faq-trigger-${index}`;
-
-                return (
-                  <div className={styles.faqItem} data-open={isOpen ? "true" : "false"} key={item.title}>
-                    <h3>
-                      <button
-                        id={triggerId}
-                        type="button"
-                        aria-controls={panelId}
-                        aria-expanded={isOpen}
-                        onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                      >
-                        <span>{item.title}</span>
-                        <i className="fas fa-plus" aria-hidden="true" />
-                      </button>
-                    </h3>
-                    <div
-                      id={panelId}
-                      className={styles.faqPanel}
-                      role="region"
-                      aria-labelledby={triggerId}
-                      hidden={!isOpen}
-                    >
-                      <p>{item.summary}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className={styles.blogSection} id="blog" aria-labelledby="home-blog-title">
         <div className={styles.container}>
           <div className={styles.blogHeading}>
@@ -127,6 +76,56 @@ export function HomeFaqBlogSection() {
             <Link className={getBrandActionButtonClassName({ size: "compact" })} href="/articles">
               <BrandActionButtonContent>كل المقالات</BrandActionButtonContent>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.faqSection} id="faq" aria-labelledby="home-faq-title">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
+        />
+
+        <div className={styles.container}>
+          <div className={styles.faqLayout}>
+            <div className={styles.faqHeading}>
+              <p className={styles.eyebrow}>الأسئلة الشائعة</p>
+              <h2 id="home-faq-title">أسئلة بنسمعها كتير... وإجاباتنا واضحة</h2>
+            </div>
+
+            <div className={styles.accordion}>
+              {homepageContent.faq.map((item, index) => {
+                const isOpen = openFaqIndex === index;
+                const panelId = `home-faq-panel-${index}`;
+                const triggerId = `home-faq-trigger-${index}`;
+
+                return (
+                  <div className={styles.faqItem} data-open={isOpen ? "true" : "false"} key={item.title}>
+                    <h3>
+                      <button
+                        id={triggerId}
+                        type="button"
+                        aria-controls={panelId}
+                        aria-expanded={isOpen}
+                        onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                      >
+                        <span>{item.title}</span>
+                        <i className="fas fa-plus" aria-hidden="true" />
+                      </button>
+                    </h3>
+                    <div
+                      id={panelId}
+                      className={styles.faqPanel}
+                      role="region"
+                      aria-labelledby={triggerId}
+                      hidden={!isOpen}
+                    >
+                      <p>{item.summary}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

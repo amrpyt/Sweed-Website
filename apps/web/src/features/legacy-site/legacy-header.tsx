@@ -26,23 +26,36 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const handleNavigationClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
 
-    if (page === "home" && href.startsWith("/#")) {
+    if (href.startsWith("/#")) {
       const targetId = href.slice(2);
-      const target = document.getElementById(targetId);
 
-      if (target) {
-        event.preventDefault();
-        closeMenuBeforeNavigation();
-        window.history.pushState(null, "", `#${targetId}`);
+      if (page === "home") {
+        const target = document.getElementById(targetId);
 
-        window.requestAnimationFrame(() => {
-          const headerOffset = headerRef.current?.getBoundingClientRect().height ?? 64;
-          const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-          const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
-          window.scrollTo({ top: Math.max(0, targetTop), behavior });
-        });
+        if (target) {
+          event.preventDefault();
+          closeMenuBeforeNavigation();
+          window.history.pushState(null, "", `#${targetId}`);
+
+          window.requestAnimationFrame(() => {
+            const headerOffset = headerRef.current?.getBoundingClientRect().height ?? 64;
+            const targetTop =
+              target.getBoundingClientRect().top + window.scrollY - headerOffset;
+            const behavior = window.matchMedia(
+              "(prefers-reduced-motion: reduce)",
+            ).matches
+              ? "auto"
+              : "smooth";
+            window.scrollTo({ top: Math.max(0, targetTop), behavior });
+          });
+        }
+
+        return;
       }
 
+      event.preventDefault();
+      closeMenuBeforeNavigation();
+      window.location.assign(href);
       return;
     }
 

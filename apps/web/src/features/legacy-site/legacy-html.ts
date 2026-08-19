@@ -32,7 +32,7 @@ export type LegacyPageDocument = {
   scripts: LegacyScript[];
 };
 
-export type LegacyPresentation = "legacy" | "reference";
+export type LegacyPresentation = "legacy" | "reference" | "exact";
 
 type LegacyPageOptions = {
   presentation?: LegacyPresentation;
@@ -45,7 +45,7 @@ function readLegacyFile(page: LegacyPageKey) {
 }
 
 function readPageSource(page: LegacyPageKey, presentation: LegacyPresentation) {
-  if (presentation === "reference") {
+  if (presentation !== "legacy") {
     if (!hasReferenceHtml(page)) {
       throw new Error(`No approved reference HTML exists for legacy page: ${page}`);
     }
@@ -282,12 +282,26 @@ export function getLegacyPage(page: LegacyPageKey, options: LegacyPageOptions = 
   const title = extractFirst(/<title>([\s\S]*?)<\/title>/i, raw).trim() || "SWEED";
   const head = extractFirst(/<head[^>]*>([\s\S]*?)<\/head>/i, raw);
   const body = extractFirst(/<body[^>]*>([\s\S]*?)<\/body>/i, raw);
-  const bodyWithoutChrome = presentation === "reference" ? stripReferenceChrome(body) : removeLegacyChrome(body);
+  const bodyWithoutChrome =
+    presentation === "exact"
+      ? body
+      : presentation === "reference"
+        ? stripReferenceChrome(body)
+        : removeLegacyChrome(body);
   const { html: bodyWithoutScripts, scripts } = extractScripts(bodyWithoutChrome, page, presentation);
   const headAssets = head
     .replace(/<title>[\s\S]*?<\/title>/gi, "")
     .replace(/<meta[^>]+>/gi, "")
     .trim();
+
+  if (presentation === "exact") {
+    return {
+      title,
+      headHtml: headAssets,
+      bodyHtml: bodyWithoutScripts,
+      scripts,
+    };
+  }
 
   if (presentation === "reference") {
     return {

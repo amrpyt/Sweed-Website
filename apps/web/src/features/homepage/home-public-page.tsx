@@ -2,7 +2,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useLayoutEffect } from "react";
+import { useEffect, useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { BorderBeam } from "border-beam";
 import { homepageContent, type HomeAction } from "@/content/homepage";
@@ -42,6 +42,24 @@ export function HomePublicPage() {
   const matrixRightRef = useRef<HTMLDivElement>(null);
   const buildingRef = useRef<HTMLDivElement>(null);
   const pyramidRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const targetId = window.location.hash.replace(/^#/, "");
+    if (!targetId) return;
+
+    const frameId = window.requestAnimationFrame(() => {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const headerHeight = document.querySelector<HTMLElement>('[data-testid="sweed-standard-header"]')?.getBoundingClientRect().height ?? 0;
+      window.scrollTo({
+        top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight),
+        behavior: "auto",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
 
   useLayoutEffect(() => {
     const section = heroSectionRef.current;

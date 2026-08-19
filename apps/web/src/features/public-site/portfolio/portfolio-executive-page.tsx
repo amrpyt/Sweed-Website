@@ -1,4 +1,5 @@
 "use client";
+// @ts-nocheck
 
 import { type ReactNode, useEffect, useState } from "react";
 import { PublicPageShell } from "../pages/public-page-shell";

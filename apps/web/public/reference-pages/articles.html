@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مقالات في الإدارة والتسويق ونمو الأعمال | سويد</title>
+<meta name="description" content="مقالات وأدلة عملية تساعد أصحاب المشروعات على اتخاذ قرارات أوضح في الإدارة والتسويق والبراند والرقمنة، بخبرة سويد ومنهج البوصلة.">
+<!--
+  نموذج مرجعي للمبرمج — صفحة "المقالات"
+  المنطق: مركز معرفة — 4 أنماط بطاقات فقط (رئيسي، قياسي، أفقي، صف رقمي)
+  البحث والفلاتر Live بدون إعادة تحميل — الحالة الفارغة برسالة مفيدة
+  GSAP 3.13+ (ScrollTrigger فقط) — الحركات مرة واحدة + prefers-reduced-motion
+  ملاحظة SEO: "عرض المزيد" في الإنتاج لازم يتدعم بروابط صفحات حقيقية قابلة للزحف
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple-900:#241238;--purple-700:#3B2160;--purple-100:#EFEAF7;
+  --fuchsia:#D6246E;--silver:#8B87A0;--ink:#2B2437;--white:#FFF;--bg:#FAF9FC;
+  --radius:14px;--shadow:0 10px 30px rgba(59,33,96,.10);
+  --font-display:'Cairo',sans-serif;--font-body:'IBM Plex Sans Arabic',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);background:var(--bg);line-height:1.9;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.5}
+.container{width:min(1160px,92%);margin-inline:auto}
+section{padding:85px 0}
+.eyebrow{display:inline-block;color:var(--fuchsia);font-weight:700;font-size:.95rem;margin-bottom:10px}
+.sec-title{font-size:clamp(1.45rem,3vw,2.05rem);font-weight:900;color:var(--purple-700);margin-bottom:10px}
+.sec-lead{color:var(--silver);max-width:640px}
+.btn{display:inline-block;padding:12px 28px;border-radius:50px;font-family:var(--font-display);font-weight:700;font-size:.93rem;text-decoration:none;transition:transform .22s;cursor:pointer;border:2px solid transparent;background:none}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:var(--fuchsia);color:#fff;box-shadow:0 8px 22px rgba(214,36,110,.35)}
+.btn-ghost{border-color:var(--purple-700);color:var(--purple-700)}
+.btn-ghost.light{border-color:#fff;color:#fff}
+.reveal{opacity:0;transform:translateY(28px)}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1!important;transform:none!important}}
+.tag{display:inline-block;background:var(--purple-100);color:var(--purple-700);border-radius:50px;padding:3px 13px;font-size:.72rem;font-weight:700;font-family:var(--font-display)}
+.meta{color:var(--silver);font-size:.76rem}
+
+/* نافبار */
+.nav{position:sticky;top:0;z-index:80;background:rgba(250,249,252,.92);backdrop-filter:blur(10px);border-bottom:1px solid #EEE9F5;transition:transform .35s}
+.nav.hidden{transform:translateY(-100%)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;padding:15px 0}
+.logo{font-family:var(--font-display);font-weight:900;font-size:1.4rem;color:var(--purple-700);text-decoration:none}
+.logo span{color:var(--fuchsia)}
+.nav ul{display:flex;gap:24px;list-style:none}
+.nav ul a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem}
+.nav ul a.active,.nav ul a:hover{color:var(--fuchsia)}
+@media(max-width:820px){.nav ul{display:none}}
+
+/* ===== 1. الهيرو + المقال الرئيسي ===== */
+.b-hero{background:linear-gradient(145deg,#1D0F30,var(--purple-900) 60%,var(--purple-700));color:#fff;padding:80px 0 90px;position:relative;overflow:hidden}
+.b-hero .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:50px;align-items:center;position:relative;z-index:2}
+.b-hero h1{font-size:clamp(1.6rem,3.6vw,2.5rem);font-weight:900}
+.b-hero .small{color:rgba(255,255,255,.55);font-size:.88rem;margin-bottom:10px;display:block}
+.b-hero p{margin-top:14px;color:rgba(255,255,255,.8);font-size:1rem}
+.search-box{margin-top:26px;position:relative}
+.search-box .row{display:flex;gap:10px}
+.search-box input{flex:1;padding:14px 18px;border-radius:50px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-family:var(--font-body);font-size:.95rem}
+.search-box ::placeholder{color:rgba(255,255,255,.45)}
+.suggest{position:absolute;top:calc(100% + 8px);right:0;left:0;background:#fff;border-radius:12px;box-shadow:var(--shadow);overflow:hidden;display:none;z-index:5}
+.suggest.show{display:block}
+.suggest button{display:block;width:100%;background:none;border:none;text-align:right;padding:11px 18px;font-family:var(--font-body);font-size:.86rem;color:var(--ink);cursor:pointer;border-bottom:1px solid #F1EDF8}
+.suggest button:hover{background:var(--purple-100)}
+.suggest button b{color:var(--fuchsia)}
+#heroPathSvg{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#heroPath{stroke:rgba(214,36,110,.5);stroke-width:2;fill:none;stroke-dasharray:5 6}
+.featured{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.3);color:var(--ink);display:block;text-decoration:none;transition:transform .3s}
+.featured:hover{transform:translateY(-4px)}
+.featured .img{aspect-ratio:16/9;background:linear-gradient(150deg,var(--purple-100),#DCD2EE);position:relative;overflow:hidden}
+.featured .img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--purple-700);font-family:var(--font-display);font-weight:700;font-size:.8rem;transition:transform .5s}
+.featured:hover .img .ph{transform:scale(1.03)}
+.featured .body{padding:24px}
+.featured h3{color:var(--purple-700);font-size:1.15rem;margin:8px 0 6px}
+.featured p{color:var(--silver);font-size:.88rem;margin-bottom:12px}
+.featured .read{color:var(--fuchsia);font-weight:700;font-family:var(--font-display);font-size:.85rem;position:relative}
+.featured .read::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:2px;background:var(--fuchsia);transition:width .3s}
+.featured:hover .read::after{width:100%}
+@media(max-width:900px){.b-hero .grid{grid-template-columns:1fr}}
+
+/* ===== 2. شريط الفلاتر ===== */
+.filters{position:sticky;top:62px;z-index:70;background:#fff;border-bottom:1px solid #EEE9F5;box-shadow:0 6px 18px rgba(59,33,96,.06)}
+.filters .container{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 0;align-items:center}
+.filters .container::-webkit-scrollbar{display:none}
+.f-chip{flex:0 0 auto;border:1px solid #E4DEF0;background:#fff;color:var(--silver);border-radius:50px;padding:8px 18px;font-family:var(--font-display);font-weight:700;font-size:.82rem;cursor:pointer;transition:.22s;min-height:44px}
+.f-chip.active,.f-chip:hover{background:var(--purple-700);border-color:var(--purple-700);color:#fff}
+.f-select{flex:0 0 auto;border:1px solid #E4DEF0;border-radius:50px;padding:8px 16px;font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--silver);background:#fff;min-height:44px}
+.f-clear{display:none;flex:0 0 auto;background:none;border:none;color:var(--fuchsia);font-weight:700;font-size:.8rem;cursor:pointer;font-family:var(--font-display);text-decoration:underline}
+.f-clear.show{display:block}
+.result-count{color:var(--silver);font-size:.78rem;flex:0 0 auto}
+
+/* ===== 3. أحدث المقالات ===== */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.grid-3{grid-template-columns:1fr}}
+.a-card{background:#fff;border:1px solid #EEE9F5;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px rgba(59,33,96,.05);text-decoration:none;color:var(--ink);display:flex;flex-direction:column;transition:border-color .3s}
+.a-card:hover{border-color:var(--purple-700)}
+.a-card .img{aspect-ratio:4/3;background:linear-gradient(150deg,var(--purple-100),#E4DBF2);overflow:hidden;position:relative}
+.a-card .img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--purple-700);font-family:var(--font-display);font-weight:700;font-size:.75rem;transition:transform .35s}
+.a-card:hover .img .ph{transform:translateY(-6px)}
+.a-card .body{padding:20px;display:flex;flex-direction:column;flex:1}
+.a-card h3{color:var(--purple-700);font-size:.98rem;margin:8px 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.a-card p{color:var(--silver);font-size:.83rem;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.a-card .read{color:var(--fuchsia);font-weight:700;font-family:var(--font-display);font-size:.8rem}
+.a-card .read i{font-style:normal;display:inline-block;transition:transform .25s}
+.a-card:hover .read i{transform:translateX(-5px)}
+.empty-state{display:none;text-align:center;background:#fff;border:1px dashed #E4DEF0;border-radius:var(--radius);padding:44px;margin-top:40px;color:var(--silver)}
+.empty-state.show{display:block}
+.empty-state b{color:var(--purple-700);font-family:var(--font-display);display:block;margin-bottom:6px}
+.more-row{text-align:center;margin-top:36px}
+
+/* ===== 4. اختار حسب مشكلتك ===== */
+.paths{background:var(--purple-100)}
+.path-row{background:#fff;border:1px solid #EEE9F5;border-radius:var(--radius);margin-bottom:14px;overflow:hidden;transition:border-color .3s}
+.path-row:hover{border-color:var(--fuchsia)}
+.path-head{display:flex;align-items:center;gap:18px;padding:22px 26px;cursor:pointer}
+.path-head .n{font-family:var(--font-display);font-weight:900;font-size:1.3rem;color:#D9D2E8;transition:color .3s}
+.path-row:hover .n,.path-row.open .n{color:var(--fuchsia)}
+.path-head .q{flex:1}
+.path-head .q b{font-family:var(--font-display);color:var(--purple-700);display:block;font-size:1rem}
+.path-head .q small{color:var(--silver);font-size:.8rem}
+.path-head svg{width:26px;height:26px;flex:0 0 auto;transition:transform .4s}
+.path-row.open .path-head svg{transform:rotate(90deg)}
+.path-body{max-height:0;overflow:hidden;transition:max-height .4s ease;border-top:0 solid #F1EDF8}
+.path-row.open .path-body{max-height:300px;border-top-width:1px}
+.path-body ul{list-style:none;padding:16px 26px}
+.path-body li{padding:8px 0;border-bottom:1px dashed #F1EDF8}
+.path-body li:last-child{border:none}
+.path-body a{color:var(--ink);text-decoration:none;font-size:.88rem;display:flex;justify-content:space-between;gap:10px}
+.path-body a:hover{color:var(--fuchsia)}
+.path-body .meta{flex:0 0 auto}
+
+/* ===== 5. من الخبرة للتنفيذ (Magazine) ===== */
+.mag-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;margin-top:40px}
+@media(max-width:800px){.mag-grid{grid-template-columns:1fr}}
+.mag-big{background:linear-gradient(160deg,var(--purple-700),var(--purple-900));border-radius:var(--radius);color:#fff;padding:30px;display:flex;flex-direction:column;justify-content:flex-end;min-height:380px;text-decoration:none;position:relative;overflow:hidden}
+.mag-big::before{content:'من الميدان';position:absolute;top:22px;right:26px;background:var(--fuchsia);color:#fff;font-size:.7rem;font-weight:700;font-family:var(--font-display);padding:4px 14px;border-radius:50px}
+.mag-big h3{font-size:1.25rem;margin-bottom:8px}
+.mag-big p{color:rgba(255,255,255,.75);font-size:.88rem}
+.mag-side{display:grid;gap:24px}
+.h-card{background:#fff;border:1px solid #EEE9F5;border-radius:var(--radius);display:grid;grid-template-columns:130px 1fr;overflow:hidden;text-decoration:none;color:var(--ink);transition:border-color .3s}
+.h-card:hover{border-color:var(--fuchsia)}
+.h-card .img{background:linear-gradient(150deg,var(--purple-100),#E4DBF2);display:flex;align-items:center;justify-content:center;color:var(--purple-700);font-family:var(--font-display);font-weight:700;font-size:.7rem;aspect-ratio:3/2}
+.h-card .body{padding:16px 18px}
+.h-card h4{color:var(--purple-700);font-size:.9rem;margin:4px 0 4px}
+.pub-note{color:var(--silver);font-size:.76rem;margin-top:20px;text-align:center}
+
+/* ===== 6. الأكثر قراءة ===== */
+.top-list{max-width:820px;margin:40px auto 0}
+.top-row{display:flex;align-items:center;gap:20px;background:#fff;border:1px solid #EEE9F5;border-radius:12px;padding:16px 22px;margin-bottom:12px;text-decoration:none;color:var(--ink);transition:border-color .3s}
+.top-row:hover{border-color:var(--purple-700)}
+.top-row .rank{font-family:var(--font-display);font-weight:900;font-size:1.5rem;color:transparent;-webkit-text-stroke:1.5px var(--purple-700);transition:.3s;flex:0 0 44px;text-align:center}
+.top-row:hover .rank{color:var(--purple-700);-webkit-text-stroke:0}
+.top-row .info{flex:1}
+.top-row .info b{font-family:var(--font-display);color:var(--purple-700);font-size:.93rem;display:block}
+.top-row .thumb{width:58px;height:58px;border-radius:10px;background:linear-gradient(150deg,var(--purple-100),#E4DBF2);flex:0 0 auto;overflow:hidden;position:relative}
+.top-row .thumb::after{content:'';position:absolute;inset:0;background:rgba(214,36,110,.15);opacity:0;transition:.3s}
+.top-row:hover .thumb::after{opacity:1}
+
+/* ===== 7. بوصلة الأعمال ===== */
+.newsletter{background:var(--purple-900);color:#fff;position:relative;overflow:hidden}
+.newsletter .big-compass{position:absolute;left:-100px;top:50%;transform:translateY(-50%);width:380px;opacity:.07}
+.newsletter .inner{position:relative;z-index:1;max-width:600px;text-align:center;margin-inline:auto}
+.newsletter h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;margin:6px 0 10px}
+.newsletter p{color:rgba(255,255,255,.78);margin-bottom:24px}
+.sub-form{display:flex;gap:10px;max-width:480px;margin-inline:auto}
+.sub-form input{flex:1;padding:14px 18px;border-radius:50px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-family:var(--font-body)}
+.sub-form ::placeholder{color:rgba(255,255,255,.4)}
+.sub-ok{display:none;background:rgba(214,36,110,.15);border:1px solid var(--fuchsia);border-radius:12px;padding:16px;font-family:var(--font-display);font-weight:700}
+.sub-ok.show{display:block}
+.sub-note{font-size:.75rem;color:rgba(255,255,255,.45);margin-top:14px}
+@media(max-width:560px){.sub-form{flex-direction:column}}
+
+/* ===== 8. الدعوة الختامية ===== */
+.final-cta{text-align:center}
+.final-cta .box{background:#fff;border:1px solid #EEE9F5;border-radius:var(--radius);box-shadow:var(--shadow);padding:50px 6%;max-width:760px;margin-inline:auto}
+.final-cta h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:var(--purple-700);margin-bottom:12px}
+.final-cta p{color:var(--silver);margin-bottom:26px}
+
+footer{background:#180B28;color:rgba(255,255,255,.7);padding:40px 0;font-size:.9rem}
+footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer a{color:#fff;text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a class="logo" href="#">سويد<span>.</span></a>
+    <ul>
+      <li><a href="#">الرئيسية</a></li>
+      <li><a href="#">من نحن</a></li>
+      <li><a href="#">خدماتنا</a></li>
+      <li><a href="#">أعمالنا</a></li>
+      <li><a href="#">العروض</a></li>
+      <li><a href="#" class="active">المقالات</a></li>
+    </ul>
+    <a class="btn btn-primary" style="padding:9px 22px;font-size:.85rem" href="#final-cta">دعنا نبدأ</a>
+  </div>
+</nav>
+
+<!-- ===== 1. الهيرو + المقال الرئيسي ===== -->
+<section class="b-hero" id="blog-hero">
+  <svg id="heroPathSvg" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+    <path id="heroPath" d="M780,340 C640,420 420,420 250,300"/>
+  </svg>
+  <div class="container grid">
+    <div>
+      <span class="small reveal">مقالات سويد</span>
+      <h1 id="heroTitle">قرار واحد صح… ممكن يوفر عليك شهور من الشغل في الاتجاه الغلط</h1>
+      <p class="reveal">مقالات وأدلة عملية في الإدارة والتسويق والبراند والمحتوى والرقمنة — مكتوبة لصاحب المشروع اللي عايز يفهم قبل ما يصرف، ويقرر قبل ما ينفذ.</p>
+      <div class="search-box reveal">
+        <div class="row">
+          <input type="search" id="heroSearch" placeholder="اكتب المشكلة أو الموضوع اللي بتدور عليه" aria-label="ابحث في المقالات">
+          <button class="btn btn-primary" id="searchBtn">ابحث في المقالات</button>
+        </div>
+        <div class="suggest" id="suggestBox"></div>
+      </div>
+    </div>
+    <a class="featured reveal" href="/articles/direction-vs-effort" id="featuredCard">
+      <div class="img"><div class="ph">[ صورة: صاحب مشروع يراجع عدة مسارات لاتخاذ قرار نمو واضح — 16:9 ]</div></div>
+      <div class="body">
+        <span class="tag">إدارة ونمو</span>
+        <h3>ليه مشروعك شغال طول الوقت… والنتيجة واقفة مكانها؟</h3>
+        <p>المشكلة أحيانًا مش في قلة المجهود، لكن في قرارات كتير من غير أولوية واحدة. اعرف العلامات اللي بتكشف تشتت الاتجاه، وإزاي تحوله لخطة قابلة للقياس.</p>
+        <div class="meta">محمد سويد · 7 دقائق قراءة · [تاريخ النشر]</div>
+        <div class="read" style="margin-top:10px">اقرأ المقال ←</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== 2. شريط الفلاتر ===== -->
+<div class="filters" id="filtersBar">
+  <div class="container">
+    <button class="f-chip active" data-cat="all">الكل</button>
+    <button class="f-chip" data-cat="إدارة ونمو">إدارة ونمو</button>
+    <button class="f-chip" data-cat="تسويق وأداء">تسويق وأداء</button>
+    <button class="f-chip" data-cat="براند وهوية">براند وهوية</button>
+    <button class="f-chip" data-cat="محتوى وإعلان">محتوى وإعلان</button>
+    <button class="f-chip" data-cat="مواقع ورقمنة">مواقع ورقمنة</button>
+    <select class="f-select" id="typeFilter">
+      <option value="all">كل الأنواع</option>
+      <option value="مقال تحليلي">مقال تحليلي</option>
+      <option value="دليل عملي">دليل عملي</option>
+      <option value="دراسة حالة">دراسة حالة</option>
+    </select>
+    <select class="f-select" id="sortFilter">
+      <option value="latest">الأحدث</option>
+      <option value="top">الأكثر قراءة</option>
+      <option value="pick">اختيار سويد</option>
+    </select>
+    <button class="f-clear" id="clearFilters">مسح الفلاتر</button>
+    <span class="result-count" id="resultCount"></span>
+  </div>
+</div>
+
+<!-- ===== 3. أحدث المقالات ===== -->
+<section id="latest">
+  <div class="container">
+    <span class="eyebrow reveal">أحدث المقالات</span>
+    <h2 class="sec-title reveal">كل جديد… في شبكة سهلة المسح بالعين</h2>
+    <div class="grid-3" id="articlesGrid"></div>
+    <div class="empty-state" id="emptyState">
+      <b>ملقيناش مقال بنفس الكلمات…</b>
+      جرّب كلمة أقصر أو اختار تصنيف قريب من موضوعك
+    </div>
+    <div class="more-row"><button class="btn btn-ghost" id="loadMore">عرض المزيد</button></div>
+  </div>
+</section>
+
+<!-- ===== 4. اختار حسب مشكلتك ===== -->
+<section class="paths" id="by-problem">
+  <div class="container">
+    <span class="eyebrow reveal">اختار حسب مشكلتك</span>
+    <h2 class="sec-title reveal">مش لازم تعرف اسم الخدمة… ابدأ من اللي مواقفك</h2>
+    <div style="margin-top:36px" id="pathsList">
+      <div class="path-row reveal">
+        <div class="path-head"><span class="n">01</span>
+          <div class="q"><b>بتشتغل كتير ومش عارف الأولوية؟</b><small>اتجاه وقرار</small></div>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 6l-6 6 6 6" stroke="#D6246E" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="path-body"><ul>
+          <li><a href="#"><span>ليه مشروعك شغال طول الوقت… والنتيجة واقفة مكانها؟</span><span class="meta">7 د</span></a></li>
+          <li><a href="#"><span>إمتى تحتاج خطة استراتيجية… وإمتى تحتاج قرار واحد فقط؟</span><span class="meta">6 د</span></a></li>
+          <li><a href="#"><span>نقطة التعادل ببساطة: إمتى مشروعك يبدأ يدفع لنفسه؟</span><span class="meta">8 د</span></a></li>
+        </ul></div>
+      </div>
+      <div class="path-row reveal">
+        <div class="path-head"><span class="n">02</span>
+          <div class="q"><b>بتصرف على التسويق ومش شايف العائد؟</b><small>تسويق وبيع</small></div>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 6l-6 6 6 6" stroke="#D6246E" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="path-body"><ul>
+          <li><a href="#"><span>قبل ما تزود ميزانية الإعلان… راجع الأربع نقاط دي</span><span class="meta">6 د</span></a></li>
+          <li><a href="#"><span>مش كل رسالة عميل تعتبر نتيجة</span><span class="meta">5 د</span></a></li>
+          <li><a href="#"><span>تقرير الإعلانات اللي يساعدك تقرر… مش يبهرك بالأرقام</span><span class="meta">7 د</span></a></li>
+        </ul></div>
+      </div>
+      <div class="path-row reveal">
+        <div class="path-head"><span class="n">03</span>
+          <div class="q"><b>الناس شايفاك… بس مش فاهمة ليه تختارك؟</b><small>ثقة وتموضع</small></div>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 6l-6 6 6 6" stroke="#D6246E" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="path-body"><ul>
+          <li><a href="#"><span>براندك معروف… ولا مجرد لوجو الناس شافته؟</span><span class="meta">6 د</span></a></li>
+          <li><a href="#"><span>إزاي تعرف إن رسالة مشروعك مش واضحة؟</span><span class="meta">5 د</span></a></li>
+          <li><a href="#"><span>كيف توحّد رسالة المشروع بين اللوحة والفرع والسوشيال والموقع</span><span class="meta">8 د</span></a></li>
+        </ul></div>
+      </div>
+      <div class="path-row reveal">
+        <div class="path-head"><span class="n">04</span>
+          <div class="q"><b>العميل بيوصل لموقعك… وبيخرج من غير خطوة؟</b><small>تجربة ورقمنة</small></div>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 6l-6 6 6 6" stroke="#D6246E" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="path-body"><ul>
+          <li><a href="#"><span>موقعك شكله حلو… بس العميل عارف يعمل إيه بعد كده؟</span><span class="meta">6 د</span></a></li>
+          <li><a href="#"><span>صفحة الخدمة اللي تظهر في جوجل وتحوّل الزيارة لتواصل</span><span class="meta">9 د</span></a></li>
+          <li><a href="#"><span>الفيديو جاب مشاهدات… طب جاب قرار شراء؟</span><span class="meta">5 د</span></a></li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. من الخبرة للتنفيذ ===== -->
+<section id="field-lessons">
+  <div class="container">
+    <span class="eyebrow reveal">من الخبرة للتنفيذ</span>
+    <h2 class="sec-title reveal">مش كلام عام… دي طريقة قرار اتطبقت</h2>
+    <p class="sec-lead reveal">بنحوّل المواقف الحقيقية والأرقام والقرارات لدروس عملية تقدر تطبقها في مشروعك.</p>
+    <div class="mag-grid">
+      <a class="mag-big reveal" href="#">
+        <h3>كيف تحوّل 1,025 إجابة في بحث سوق إلى قرارات تشغيل وتسويق</h3>
+        <p>دراسة حالة من مشروع حقيقي: الطريق من الاستبيانات الخام لخطة نمو سنتين — والقرارات اللي اتغيرت بسبب البيانات.</p>
+        <div class="meta" style="color:rgba(255,255,255,.55);margin-top:10px">دراسة حالة · 10 دقائق قراءة</div>
+      </a>
+      <div class="mag-side">
+        <a class="h-card reveal" href="#">
+          <div class="img">[ صورة 3:2 ]</div>
+          <div class="body"><span class="tag">دليل عملي</span><h4>من خطة سنتين إلى قرارات أسبوعية: إزاي الاستراتيجية ما تتحولش لملف على الرف</h4><div class="meta">6 دقائق قراءة</div></div>
+        </a>
+        <a class="h-card reveal" href="#">
+          <div class="img">[ صورة 3:2 ]</div>
+          <div class="body"><span class="tag">من الميدان</span><h4>متى نرفض زيادة الإنفاق الإعلاني… حتى لو العميل جاهز يدفع</h4><div class="meta">5 دقائق قراءة</div></div>
+        </a>
+      </div>
+    </div>
+    <p class="pub-note reveal">ضابط النشر: لا يُنشر رقم نتيجة أو اسم عميل أو مادة داخلية إلا بعد موافقة مكتوبة — ويمكن نشر الدرس باسم القطاع عند وجود سرية.</p>
+  </div>
+</section>
+
+<!-- ===== 6. الأكثر قراءة ===== -->
+<section style="background:var(--purple-100)" id="top-read">
+  <div class="container">
+    <span class="eyebrow reveal">الأكثر قراءة</span>
+    <h2 class="sec-title reveal">اختيارات القراء… آخر 30 يوم</h2>
+    <div class="top-list">
+      <a class="top-row reveal" href="#"><span class="rank">01</span><div class="info"><b>ليه مشروعك شغال طول الوقت… والنتيجة واقفة مكانها؟</b><span class="meta">إدارة ونمو · 7 دقائق</span></div><div class="thumb"></div></a>
+      <a class="top-row reveal" href="#"><span class="rank">02</span><div class="info"><b>قبل ما تزود ميزانية الإعلان… راجع الأربع نقاط دي</b><span class="meta">تسويق وأداء · 6 دقائق</span></div><div class="thumb"></div></a>
+      <a class="top-row reveal" href="#"><span class="rank">03</span><div class="info"><b>براندك معروف… ولا مجرد لوجو الناس شافته؟</b><span class="meta">براند وهوية · 6 دقائق</span></div><div class="thumb"></div></a>
+      <a class="top-row reveal" href="#"><span class="rank">04</span><div class="info"><b>نقطة التعادل ببساطة: إمتى مشروعك يبدأ يدفع لنفسه؟ <span class="tag" style="margin-inline-start:6px">اختيار سويد</span></b><span class="meta">إدارة ونمو · 8 دقائق</span></div><div class="thumb"></div></a>
+      <a class="top-row reveal" href="#"><span class="rank">05</span><div class="info"><b>موقعك شكله حلو… بس العميل عارف يعمل إيه بعد كده؟</b><span class="meta">مواقع ورقمنة · 6 دقائق</span></div><div class="thumb"></div></a>
+    </div>
+    <p class="pub-note reveal">الترتيب مبني على القراءات المتفاعلة خلال آخر 30 يوم من التحليلات — مفيش أرقام قراءات وهمية.</p>
+  </div>
+</section>
+
+<!-- ===== 7. بوصلة الأعمال ===== -->
+<section class="newsletter" id="newsletter">
+  <svg class="big-compass" viewBox="0 0 200 200" aria-hidden="true">
+    <circle cx="100" cy="100" r="88" fill="none" stroke="#fff" stroke-width="2"/>
+    <polygon points="100,30 112,100 100,112 88,100" fill="#fff"/>
+    <polygon points="100,170 88,100 100,88 112,100" fill="#fff" opacity=".5"/>
+  </svg>
+  <div class="container inner">
+    <span class="eyebrow reveal">بوصلة الأعمال</span>
+    <h2 class="reveal">مش محتاج تقرأ كل حاجة… محتاج تقرأ الحاجة الصح في وقتها</h2>
+    <p class="reveal">اشترك ليوصلك مقال عملي واحد كل أسبوع — يساعدك تاخد قرار أوضح في الإدارة والتسويق والنمو.</p>
+    <div class="sub-form reveal" id="subForm">
+      <input type="email" id="subEmail" placeholder="بريدك الإلكتروني" aria-label="البريد الإلكتروني">
+      <button class="btn btn-primary" id="subBtn">ابعتلي بوصلة الأسبوع</button>
+    </div>
+    <div class="sub-ok" id="subOk">وصلت… أول بوصلة جاية في طريقها ليك 🧭</div>
+    <p class="sub-note">محتوى مفيد فقط — وتقدر تلغي الاشتراك في أي وقت.</p>
+  </div>
+</section>
+
+<!-- ===== 8. الدعوة الختامية ===== -->
+<section class="final-cta" id="final-cta">
+  <div class="container">
+    <div class="box reveal">
+      <h2>فهمت المشكلة… وعايز تحدد الخطوة؟</h2>
+      <p>المقالات بتساعدك تشوف الصورة أوضح — لكن كل مشروع له أرقامه وظروفه. لو عايز نحدد معاك نقطة البداية، احجز جلسة تشخيص.</p>
+      <a class="btn btn-primary" id="smartCta" href="/contact?source=articles">احجز جلسة تشخيص</a>
+      <a class="btn btn-ghost" href="/services" style="margin-inline-start:10px">استكشف خدمات سويد</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 سويد للاستشارات الإدارية والتسويقية — كل الحقوق محفوظة.</div>
+    <div><a href="#">سياسة الخصوصية</a> · <a href="#">شروط الاستخدام</a></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script>
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* نافبار */
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  document.getElementById('nav').classList.toggle('hidden', y > lastY && y > 300);
+  lastY = y;
+}, { passive: true });
+
+/* ========== بيانات المقالات (من الـ CMS في الإنتاج) ========== */
+const ARTICLES = [
+  { cat:'إدارة ونمو', type:'مقال تحليلي', top:1, title:'ليه مشروعك شغال طول الوقت… والنتيجة واقفة مكانها؟', desc:'خمس علامات تكشف أن المشكلة في الاتجاه لا في المجهود.', time:7 },
+  { cat:'إدارة ونمو', type:'مقال تحليلي', title:'إمتى تحتاج خطة استراتيجية… وإمتى تحتاج قرار واحد فقط؟', desc:'طريقة تفرّق بين التخطيط الحقيقي وتكبير حجم الورق.', time:6 },
+  { cat:'إدارة ونمو', type:'دليل عملي', pick:1, top:4, title:'نقطة التعادل ببساطة: إمتى مشروعك يبدأ يدفع لنفسه؟', desc:'شرح عملي يربط المصروفات بالطلبات والهامش.', time:8 },
+  { cat:'تسويق وأداء', type:'دليل عملي', top:2, title:'قبل ما تزود ميزانية الإعلان… راجع الأربع نقاط دي', desc:'اختبار سريع للعرض والرسالة والصفحة ومسار البيع.', time:6 },
+  { cat:'تسويق وأداء', type:'مقال تحليلي', title:'مش كل رسالة عميل تعتبر نتيجة', desc:'كيف تقيس جودة العملاء المحتملين لا عددهم فقط.', time:5 },
+  { cat:'تسويق وأداء', type:'دليل عملي', title:'تقرير الإعلانات اللي يساعدك تقرر… مش يبهرك بالأرقام', desc:'المؤشرات التي يحتاجها صاحب القرار فعلًا.', time:7 },
+  { cat:'براند وهوية', type:'مقال تحليلي', top:3, title:'براندك معروف… ولا مجرد لوجو الناس شافته؟', desc:'الفرق بين الشكل الجميل والمعنى الذي يثبت في ذهن العميل.', time:6 },
+  { cat:'براند وهوية', type:'دليل عملي', title:'إزاي تعرف إن رسالة مشروعك مش واضحة؟', desc:'سبعة أسئلة تكشف ضعف التموضع قبل إطلاق أي حملة.', time:5 },
+  { cat:'محتوى وإعلان', type:'مقال تحليلي', title:'الفيديو جاب مشاهدات… طب جاب قرار شراء؟', desc:'اربط كل فيديو بمرحلة واضحة في رحلة العميل.', time:5 },
+  { cat:'محتوى وإعلان', type:'دليل عملي', title:'محتوى شهر كامل من غير تكرار ولا حشو', desc:'نظام عملي يوزع الوعي والثقة والبيع.', time:7 },
+  { cat:'مواقع ورقمنة', type:'مقال تحليلي', top:5, title:'موقعك شكله حلو… بس العميل عارف يعمل إيه بعد كده؟', desc:'راجع المسار والرسائل والأزرار قبل إضافة أي مؤثرات.', time:6 },
+  { cat:'مواقع ورقمنة', type:'دليل عملي', title:'صفحة الخدمة اللي تظهر في جوجل وتحوّل الزيارة لتواصل', desc:'بنية تجمع بين نية البحث وإقناع العميل.', time:9 },
+];
+
+const grid = document.getElementById('articlesGrid');
+const state = { cat:'all', type:'all', sort:'latest', q:'', shown:6 };
+let lastReadCat = null;
+
+function filtered(){
+  let list = ARTICLES.filter(a =>
+    (state.cat === 'all' || a.cat === state.cat) &&
+    (state.type === 'all' || a.type === state.type) &&
+    (!state.q || (a.title + ' ' + a.desc + ' ' + a.cat).includes(state.q))
+  );
+  if (state.sort === 'top') list = [...list].sort((a,b) => (a.top||99) - (b.top||99));
+  if (state.sort === 'pick') list = [...list].sort((a,b) => (b.pick||0) - (a.pick||0));
+  return list;
+}
+function render(){
+  const list = filtered();
+  const view = list.slice(0, state.shown);
+  grid.innerHTML = view.map(a => `
+    <a class="a-card" href="#" data-cat="${a.cat}">
+      <div class="img"><div class="ph">[ صورة 4:3 — ${a.cat} ]</div></div>
+      <div class="body">
+        <span class="tag">${a.cat}</span>
+        <h3>${a.title}</h3>
+        <p>${a.desc}</p>
+        <div class="meta" style="margin-bottom:8px">محمد سويد · ${a.time} دقائق قراءة · [التاريخ]</div>
+        <span class="read">اقرأ المزيد <i>←</i></span>
+      </div>
+    </a>`).join('');
+  document.getElementById('emptyState').classList.toggle('show', list.length === 0);
+  document.getElementById('loadMore').style.display = list.length > state.shown ? '' : 'none';
+  document.getElementById('resultCount').textContent = list.length ? `${list.length} مقال` : '';
+  const anyFilter = state.cat !== 'all' || state.type !== 'all' || state.q;
+  document.getElementById('clearFilters').classList.toggle('show', !!anyFilter);
+  grid.querySelectorAll('.a-card').forEach(c => c.addEventListener('click', () => {
+    lastReadCat = c.dataset.cat;
+    document.getElementById('smartCta').href = '/contact?source=articles&interest=' + encodeURIComponent(lastReadCat);
+  }));
+  if (!reduced && window.gsap) gsap.from(grid.children, { opacity: 0, y: 18, stagger: .07, duration: .45, ease: 'power2.out' });
+}
+render();
+
+/* الفلاتر */
+document.querySelectorAll('.f-chip').forEach(chip => chip.addEventListener('click', () => {
+  document.querySelectorAll('.f-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  state.cat = chip.dataset.cat; state.shown = 6; render();
+}));
+document.getElementById('typeFilter').addEventListener('change', e => { state.type = e.target.value; state.shown = 6; render(); });
+document.getElementById('sortFilter').addEventListener('change', e => { state.sort = e.target.value; render(); });
+document.getElementById('clearFilters').addEventListener('click', () => {
+  state.cat = 'all'; state.type = 'all'; state.q = ''; state.shown = 6;
+  document.getElementById('typeFilter').value = 'all';
+  document.getElementById('heroSearch').value = '';
+  document.querySelectorAll('.f-chip').forEach(c => c.classList.toggle('active', c.dataset.cat === 'all'));
+  render();
+});
+document.getElementById('loadMore').addEventListener('click', () => { state.shown += 6; render(); });
+
+/* البحث + الاقتراحات (تأخير 250ms بعد 3 أحرف) */
+const searchInput = document.getElementById('heroSearch');
+const suggestBox = document.getElementById('suggestBox');
+let debounce;
+searchInput.addEventListener('input', () => {
+  clearTimeout(debounce);
+  const q = searchInput.value.trim();
+  if (q.length < 3) { suggestBox.classList.remove('show'); if (!q) { state.q = ''; render(); } return; }
+  debounce = setTimeout(() => {
+    const hits = ARTICLES.filter(a => (a.title + a.desc).includes(q)).slice(0, 4);
+    suggestBox.innerHTML = hits.length
+      ? hits.map(a => `<button data-t="${a.title}"><b>${a.cat}</b> — ${a.title}</button>`).join('')
+      : `<button disabled>ملقيناش مقال بنفس الكلمات… جرّب كلمة أقصر</button>`;
+    suggestBox.classList.add('show');
+    suggestBox.querySelectorAll('button[data-t]').forEach(b => b.addEventListener('click', () => {
+      searchInput.value = b.dataset.t; suggestBox.classList.remove('show');
+      state.q = b.dataset.t; state.shown = 6; render();
+      document.getElementById('latest').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+    }));
+  }, 250);
+});
+document.getElementById('searchBtn').addEventListener('click', () => {
+  state.q = searchInput.value.trim(); state.shown = 6; suggestBox.classList.remove('show'); render();
+  document.getElementById('latest').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+});
+document.addEventListener('click', e => { if (!e.target.closest('.search-box')) suggestBox.classList.remove('show'); });
+
+/* مسارات المشاكل: مسار واحد مفتوح */
+document.querySelectorAll('.path-head').forEach(head => head.addEventListener('click', () => {
+  const row = head.parentElement;
+  const wasOpen = row.classList.contains('open');
+  document.querySelectorAll('.path-row').forEach(r => r.classList.remove('open'));
+  if (!wasOpen) row.classList.add('open');
+}));
+
+/* الاشتراك */
+document.getElementById('subBtn').addEventListener('click', () => {
+  if (!document.getElementById('subEmail').value.includes('@')) return alert('اكتب بريد إلكتروني صحيح');
+  document.getElementById('subForm').style.display = 'none';
+  document.getElementById('subOk').classList.add('show');
+});
+
+/* ========== الموشن ========== */
+if (!reduced && window.gsap) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* الهيرو: خط البوصلة 500ms → العنوان → كارت المقال Scale .97→1 */
+  const hp = document.getElementById('heroPath');
+  const hlen = hp.getTotalLength();
+  hp.style.strokeDasharray = hlen; hp.style.strokeDashoffset = hlen;
+  const tl = gsap.timeline({ delay: .15 });
+  tl.to(hp, { strokeDashoffset: 0, duration: .5, ease: 'power1.inOut' })
+    .from('#heroTitle', { y: 26, opacity: 0, duration: .6, ease: 'power2.out' }, '-=.15')
+    .fromTo('#featuredCard', { scale: .97, opacity: 0 }, { scale: 1, opacity: 1, duration: .6, ease: 'power2.out' }, '-=.25');
+
+  /* عام */
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.to(el, { opacity: 1, y: 0, duration: .6, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+  });
+} else {
+  document.getElementById('heroPath')?.removeAttribute('style');
+}
+</script>
+</body>
+</html>

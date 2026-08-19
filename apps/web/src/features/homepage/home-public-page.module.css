@@ -32,6 +32,68 @@
   text-wrap: pretty;
 }
 
+/* A light editorial signature for every section title, so the page reads like a website, not a document. */
+.homepage > section:not(.hero) h2 {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  padding-block-end: clamp(0.55rem, 1vw, 0.8rem);
+}
+
+.homepage > section:not(.hero) h2::after {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-end: 0;
+  width: clamp(2.6rem, 5vw, 4.6rem);
+  height: 0.2rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ed2062 0 64%, #261b3e 64% 100%);
+  content: "";
+  transform: translateX(-50%);
+  transform-origin: center;
+}
+
+.homepage > section:nth-of-type(2n):not(.hero) h2::after {
+  inset-inline-start: 0;
+  background: linear-gradient(90deg, #261b3e 0 28%, #ed2062 28% 100%);
+  transform: none;
+}
+
+.homepage > section:nth-of-type(3n):not(.hero) h2::after {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  background: linear-gradient(90deg, #ed2062 0 72%, #261b3e 72% 100%);
+  transform: none;
+}
+
+@keyframes section-accent-draw {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .homepage > section:not(.hero) h2::after {
+    animation: section-accent-draw linear both;
+    animation-timeline: view();
+    animation-range: entry 4% cover 26%;
+  }
+
+  .homepage > section:nth-of-type(2n):not(.hero) h2::after {
+    transform-origin: right;
+  }
+
+  .homepage > section:nth-of-type(3n):not(.hero) h2::after {
+    transform-origin: left;
+  }
+}
+
 /* Keep sections distinct without adding heavy decoration. */
 .homepage > section + section {
   margin-block-start: 0;

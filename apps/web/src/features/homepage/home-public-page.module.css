@@ -34,17 +34,18 @@
 
 /* Shared section-title signature: centered, restrained, and responsive on every section. */
 .homepage > section:not(.hero) h2 {
+  --section-title-accent-space: clamp(1.25rem, 1.8vw, 1.55rem);
   position: relative;
   max-width: 100%;
   margin-inline: auto;
-  padding-block-end: clamp(0.72rem, 1.2vw, 0.95rem);
+  padding-block-end: var(--section-title-accent-space);
   text-align: center;
 }
 
 .homepage > section:not(.hero) h2::after {
   position: absolute;
   left: 50%;
-  inset-block-end: 0;
+  inset-block-end: 0.18rem;
   width: clamp(4.5rem, 7vw, 6.4rem);
   height: 0.2rem;
   border-radius: 999px;

@@ -1,13 +1,8 @@
-import { portfolioPageSource } from "@/content/public-site/portfolio-page";
-import { PortfolioExecutivePage } from "@/features/public-site/portfolio/portfolio-executive-page";
-import { createPageMetadata } from "@/lib/seo";
+import { getLegacyMetadata } from "@/features/legacy-site/legacy-html";
+import { LegacyPage } from "@/features/legacy-site/legacy-page";
 
-export const metadata = createPageMetadata({
-  title: portfolioPageSource.seo.title,
-  description: portfolioPageSource.seo.description,
-  path: "/portfolio",
-});
+export const metadata = getLegacyMetadata("portfolio");
 
 export default function PortfolioPage() {
-  return <PortfolioExecutivePage />;
+  return <LegacyPage page="portfolio" presentation="exact" />;
 }

@@ -214,6 +214,7 @@ export function LegacyPage({
   presentation?: LegacyPresentation;
 }) {
   const isReference = presentation === "reference";
+  const isExact = presentation === "exact";
   const document = getLegacyPage(page, { presentation });
   const bodyHasMainLandmark = /<main\b/i.test(document.bodyHtml);
   const legacyBodyClassName = `sweed-legacy-page sweed-legacy-page-${page}`;
@@ -221,12 +222,21 @@ export function LegacyPage({
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: document.headHtml }} />
-      <a className="sweed-skip-link" href="#main-content">
-        تخطي إلى المحتوى
-      </a>
-      <LegacyHeader page={page} />
-      {isReference ? null : <LegacyBreadcrumb page={page} />}
-      {isReference ? (
+      {isExact ? null : (
+        <a className="sweed-skip-link" href="#main-content">
+          تخطي إلى المحتوى
+        </a>
+      )}
+      {isExact ? null : <LegacyHeader page={page} />}
+      {isReference || isExact ? null : <LegacyBreadcrumb page={page} />}
+      {isExact ? (
+        <main
+          className="sweed-exact-reference-page"
+          id="main-content"
+          tabIndex={-1}
+          dangerouslySetInnerHTML={{ __html: document.bodyHtml }}
+        />
+      ) : isReference ? (
         <main
           className="sweed-reference-page"
           id="main-content"
@@ -238,16 +248,16 @@ export function LegacyPage({
       ) : (
         <main className={legacyBodyClassName} id="main-content" tabIndex={-1} dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
       )}
-      {isReference ? null : <LegacyEnhancements page={page} />}
-      {!isReference && page === "services" ? <AutomationDemo /> : null}
-      <LegacyFooter />
-      {isReference ? null : <OfferFunnelController page={page} />}
-      <AiAdvisorWidget />
+      {isReference || isExact ? null : <LegacyEnhancements page={page} />}
+      {!isReference && !isExact && page === "services" ? <AutomationDemo /> : null}
+      {isExact ? null : <LegacyFooter />}
+      {isReference || isExact ? null : <OfferFunnelController page={page} />}
+      {isExact ? null : <AiAdvisorWidget />}
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
       {!isReference && page === "products" ? (
         <script id="sweed-product-action-runtime" dangerouslySetInnerHTML={{ __html: legacyProductActionRuntime }} />
       ) : null}
-      {isReference ? (
+      {isReference || isExact ? (
         <ReferenceScripts scripts={document.scripts} />
       ) : (
         document.scripts.map((script) =>

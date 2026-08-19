@@ -74,13 +74,14 @@ export function HomeOffersSection() {
 
         <div className={styles.allOffersLink}>
           <p>{homepageContent.offersTail}</p>
-          <Link
-            className={getBrandActionButtonClassName({ size: "compact" })}
-            href="/contact?source=home-offers"
-          >
-            <BrandActionButtonContent>احجز استشارتك المجانية</BrandActionButtonContent>
-          </Link>
         </div>
+
+        <Link
+          className={getBrandActionButtonClassName({ className: styles.customPackageLink, size: "compact" })}
+          href="/contact?source=home-offers&package=%D8%A8%D8%A7%D9%82%D8%A9%20%D8%B9%D9%84%D9%89%20%D9%85%D9%82%D8%A7%D8%B3%D9%83"
+        >
+          <BrandActionButtonContent>باقة على مقاسك</BrandActionButtonContent>
+        </Link>
       </div>
     </section>
   );

@@ -28,6 +28,26 @@
   line-height: var(--type-small-leading);
 }
 
+.headingLayout > div {
+  display: grid;
+  justify-items: center;
+  gap: 0.7rem;
+}
+
+.headingLayout > div::before {
+  display: grid;
+  width: 2.5rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgb(237 32 98 / 26%);
+  border-radius: 0.8rem 0.8rem 0.2rem;
+  background: #ffffff;
+  color: #ed2062;
+  box-shadow: 0 0.75rem 1.5rem rgb(38 27 62 / 7%);
+  content: "✦";
+  font-size: 1rem;
+}
+
 .headingLayout h2 {
   max-width: 18ch;
   margin: 0 auto;

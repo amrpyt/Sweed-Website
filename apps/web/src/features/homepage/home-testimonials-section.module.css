@@ -16,9 +16,27 @@
 }
 
 .heading > span {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 2rem;
+  align-items: center;
+  justify-self: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding-inline: 0.78rem;
+  background: rgb(237 32 98 / 9%);
   color: #7d2944;
   font-size: 0.9rem;
   font-weight: 850;
+}
+
+.heading > span::before {
+  content: "“";
+  color: #ed2062;
+  font-family: Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1;
 }
 
 .heading h2 {

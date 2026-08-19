@@ -47,18 +47,31 @@ export function HomePublicPage() {
     const targetId = window.location.hash.replace(/^#/, "");
     if (!targetId) return;
 
-    const frameId = window.requestAnimationFrame(() => {
+    const scrollToTarget = () => {
       const target = document.getElementById(targetId);
       if (!target) return;
 
-      const headerHeight = document.querySelector<HTMLElement>('[data-testid="sweed-standard-header"]')?.getBoundingClientRect().height ?? 0;
+      const headerHeight =
+        document
+          .querySelector<HTMLElement>('[data-testid="sweed-standard-header"]')
+          ?.getBoundingClientRect().height ?? 0;
+
       window.scrollTo({
-        top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight),
+        top: Math.max(
+          0,
+          target.getBoundingClientRect().top + window.scrollY - headerHeight,
+        ),
         behavior: "auto",
       });
-    });
+    };
 
-    return () => window.cancelAnimationFrame(frameId);
+    const initialTimer = window.setTimeout(scrollToTarget, 120);
+    const settleTimer = window.setTimeout(scrollToTarget, 600);
+
+    return () => {
+      window.clearTimeout(initialTimer);
+      window.clearTimeout(settleTimer);
+    };
   }, []);
 
   useLayoutEffect(() => {

@@ -43,7 +43,7 @@
 
 .homepage > section:not(.hero) h2::after {
   position: absolute;
-  inset-inline-start: 50%;
+  left: 50%;
   inset-block-end: 0;
   width: clamp(4.5rem, 7vw, 6.4rem);
   height: 0.2rem;

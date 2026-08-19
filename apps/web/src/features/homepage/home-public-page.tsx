@@ -13,6 +13,7 @@ import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
 import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import { OfferFunnelController } from "@/features/offer-funnel";
 import { HomeBlitScrollSection } from "./home-blit-scroll-section";
+import { HomeClientLogoMarqueeSection } from "./home-client-logo-marquee-section";
 import { HomeContactSection } from "./home-contact-section";
 import { HomeConversionProvider, HomeConversionStateMarker } from "./home-conversion-context";
 import { HomeFaqBlogSection } from "./home-faq-blog-section";
@@ -20,6 +21,7 @@ import { HomeArchigreenProjectsSection } from "./home-archigreen-projects-sectio
 import { HomeOffersSection } from "./home-offers-section";
 import { HomeProblemsCompassSection } from "./home-problems-compass-section";
 import { HomeServicesScrollSection } from "./home-services-scroll-section";
+import { HomeTestimonialsSection } from "./home-testimonials-section";
 import { HomeWhyMetricsSection } from "./home-why-metrics-section";
 import { HomeButton } from "./home-hero-ui";
 import styles from "./home-public-page.module.css";
@@ -261,11 +263,15 @@ export function HomePublicPage() {
 
         <HomeBlitScrollSection />
 
+        <HomeClientLogoMarqueeSection />
+
         <HomeServicesScrollSection />
 
         <HomeWhyMetricsSection />
 
         <HomeArchigreenProjectsSection />
+
+        <HomeTestimonialsSection />
 
         <HomeOffersSection />
 

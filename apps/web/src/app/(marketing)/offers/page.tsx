@@ -1,12 +1,13 @@
-import { ExactReferencePage } from "@/features/public-site/pages/exact-reference-page";
+import { offersPageSource } from "@/content/public-site/offers-page";
+import { OffersExecutivePage } from "@/features/public-site/offers/offers-executive-page";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "العروض والباقات | سويد — اختار نقطة البداية",
-  description: "باقات سويد الشاملة وباقات الخدمات بثلاث مستويات لكل خدمة — اختيار واضح يبدأ من احتياجك، ومقارنة ذكية، وطلب تشخيص أو عرض مخصص.",
+  title: offersPageSource.seo.title,
+  description: offersPageSource.seo.description,
   path: "/offers",
 });
 
 export default function OffersPage() {
-  return <ExactReferencePage src="/reference-pages/offers.html" title="العروض والباقات | سويد" />;
+  return <OffersExecutivePage />;
 }

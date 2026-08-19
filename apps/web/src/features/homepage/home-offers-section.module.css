@@ -241,10 +241,26 @@
   text-align: center;
 }
 
+.bottomActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--stack-md);
+  margin: var(--stack-lg) auto 0;
+}
+
+.allOffersPageLink,
 .customPackageLink {
   width: min(100%, 15.5rem);
-  margin: var(--stack-lg) auto 0;
+  margin: 0;
   --brand-action-min-width: 15.5rem;
+}
+
+@media (max-width: 34rem) {
+  .bottomActions {
+    display: grid;
+    width: min(100%, 15.5rem);
+  }
 }
 
 .allOffersLink p {

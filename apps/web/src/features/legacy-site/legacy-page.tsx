@@ -222,6 +222,18 @@ export function LegacyPage({
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: document.headHtml }} />
+      {isExact ? (
+        <style>{`
+          .sweed-exact-reference-page .about-hero h1,
+          .sweed-exact-reference-page .w-hero h1,
+          .sweed-exact-reference-page .promise .half,
+          .sweed-exact-reference-page .pledge-box h3,
+          .sweed-exact-reference-page .cta h2,
+          .sweed-exact-reference-page .w-cta h2 {
+            color: inherit;
+          }
+        `}</style>
+      ) : null}
       {isExact ? null : (
         <a className="sweed-skip-link" href="#main-content">
           تخطي إلى المحتوى

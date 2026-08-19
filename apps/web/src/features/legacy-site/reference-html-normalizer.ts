@@ -92,7 +92,12 @@ export function applySweedReferenceTheme(input: string) {
   output = output
     .replace(/rgba\(59\s*,\s*33\s*,\s*96\s*,/gi, "rgba(38,27,62,")
     .replace(/'IBM Plex Sans Arabic'\s*,\s*sans-serif/gi, sweedReferenceFontStack)
-    .replace(/'Cairo'\s*,\s*sans-serif/gi, sweedReferenceFontStack);
+    .replace(/'Cairo'\s*,\s*sans-serif/gi, sweedReferenceFontStack)
+    .replace(/font-family\s*:\s*Cairo(?=\s*[;}])/gi, `font-family:${sweedReferenceFontStack}`)
+    .replace(
+      /font-family\s*:\s*["']?IBM Plex Sans Arabic["']?(?=\s*[;}])/gi,
+      `font-family:${sweedReferenceFontStack}`,
+    );
 
   return output;
 }
@@ -100,7 +105,7 @@ export function applySweedReferenceTheme(input: string) {
 export function stripReferenceChrome(html: string) {
   return html
     .replace(
-      /^\s*(?:<!--[^]*?-->\s*)?<nav\b[^>]*class=["'][^"']*\bnav\b[^"']*["'][^>]*>[^]*?<\/nav>\s*/i,
+      /<nav\b[^>]*class=["'][^"']*\bnav\b[^"']*["'][^>]*>[^]*?<\/nav>\s*/i,
       "",
     )
     .replace(/\s*<footer\b[^>]*>[^]*?<\/footer>\s*(?=(?:<script\b|$))/i, "");

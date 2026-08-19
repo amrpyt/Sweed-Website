@@ -10,6 +10,7 @@ import {
 } from "./reference-html-normalizer";
 
 const heroMarkers = {
+  about: 'id="about-hero"',
   services: 'id="services-hero"',
   portfolio: 'class="w-hero"',
   offers: 'class="o-hero"',

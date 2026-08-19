@@ -6,7 +6,13 @@ import { digital_marketingReferenceHtmlBase64 } from "./reference-html-service-d
 import { mediaReferenceHtmlBase64 } from "./reference-html-service-media";
 import { advertisingReferenceHtmlBase64 } from "./reference-html-service-advertising";
 import { software_developmentReferenceHtmlBase64 } from "./reference-html-service-software-development";
-import { guardReferenceScript } from "./reference-html-normalizer";
+import {
+  applySweedReferenceTheme,
+  decorateReferenceActionButtons,
+  guardReferenceScript,
+  stripReferenceChrome,
+} from "./reference-html-normalizer";
+import { getSweedReferenceButtonThemeCss } from "./reference-button-theme";
 
 export type ServiceReferenceSlug =
   | "consulting"
@@ -149,9 +155,7 @@ function scopeCss(css: string) {
 }
 
 function normalizePrototypeCss(css: string) {
-  // Keep the supplied stylesheet intact; scoping only prevents it from
-  // affecting unrelated Next.js pages.
-  return scopeCss(css);
+  return scopeCss(applySweedReferenceTheme(css));
 }
 
 function normalizePrototypeLinks(html: string, slug: ServiceReferenceSlug) {
@@ -176,9 +180,10 @@ export function getServiceReferenceDocument(slug: ServiceReferenceSlug): Service
   const title = cleanText(head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "");
   const description = head.match(/<meta\b(?=[^>]*name=["']description["'])[^>]*content=["']([^"']*)["'][^>]*>/i)?.[1] ?? "";
 
-  const styles = [...head.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)]
+  const prototypeStyles = [...head.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)]
     .map((match) => normalizePrototypeCss(match[1] ?? ""))
     .join("\n");
+  const styles = `${prototypeStyles}\n${getSweedReferenceButtonThemeCss(".sweed-reference-page")}`;
 
   const scripts: ServiceReferenceScript[] = [];
   const collectScript = (attributes: string, content: string) => {
@@ -193,8 +198,10 @@ export function getServiceReferenceDocument(slug: ServiceReferenceSlug): Service
   }
 
   body = body.replace(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi, "");
-
+  body = stripReferenceChrome(body);
+  body = applySweedReferenceTheme(body);
   body = normalizePrototypeLinks(body, slug);
+  body = decorateReferenceActionButtons(body);
 
   return { title, description, sourceLength, bodyHtml: body, styles, scripts };
 }

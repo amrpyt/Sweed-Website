@@ -31,6 +31,11 @@ const CONTRACT: Record<
     sourceLength: 107198,
     sectionIds: ["hero", "ctest", "studio", "library", "paths", "lab", "phases", "editbay", "multi", "works", "faq", "cta"],
   },
+  advertising: {
+    h1: "براندك موجود على الشاشة… خلّيه حاضر في كل مكان",
+    sourceLength: 115265,
+    sectionIds: ["hero", "spot", "catalog", "paths", "works", "method", "faq", "cta"],
+  },
 };
 
 function textContent(html: string) {
@@ -53,6 +58,7 @@ describe("uploaded service HTML contract", () => {
       expect(document.bodyHtml).not.toMatch(/<footer\b/i);
       expect(document.styles).toContain(".sweed-reference-page");
       expect(document.styles).toContain("SWEED Helvetica Arabic");
+      expect(document.styles).toContain("--sweed-button-primary-bg: #261b3e;");
       expect(document.styles).not.toMatch(/font-family\s*:[^;}]*\bCairo\b/i);
       expect(document.styles).not.toMatch(/font-family\s*:[^;}]*IBM Plex Sans Arabic/i);
       expect(document.scripts.length).toBeGreaterThan(0);

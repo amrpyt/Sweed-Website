@@ -1,8 +1,14 @@
-﻿import Link from "next/link";
-import { legacyBreadcrumbs, type LegacyPageKey } from "./legacy-routes";
+import Link from "next/link";
+import { legacyBreadcrumbs, type LegacyBreadcrumbItem, type LegacyPageKey } from "./legacy-routes";
 
-export function LegacyBreadcrumb({ page }: { page: LegacyPageKey }) {
-  const items = legacyBreadcrumbs[page];
+export function LegacyBreadcrumb({
+  page,
+  items: itemOverride,
+}: {
+  page: LegacyPageKey;
+  items?: readonly LegacyBreadcrumbItem[];
+}) {
+  const items = itemOverride ?? legacyBreadcrumbs[page];
 
   if (!items?.length) {
     return null;

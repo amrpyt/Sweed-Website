@@ -29,12 +29,29 @@
 }
 
 .kicker {
+  display: inline-flex;
   width: fit-content;
+  min-height: 2rem;
+  align-items: center;
+  gap: 0.5rem;
   margin: 0 auto;
+  border: 1px solid rgb(255 255 255 / 17%);
+  border-radius: 999px;
+  padding-inline: 0.82rem;
+  background: rgb(255 255 255 / 6%);
   color: #ff8ab2;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
   line-height: var(--type-small-leading);
+}
+
+.kicker::before {
+  width: 0.54rem;
+  height: 0.54rem;
+  border: 1px solid #ff8ab2;
+  border-radius: 0.12rem;
+  content: "";
+  transform: rotate(45deg);
 }
 
 .headingCopy h2 {

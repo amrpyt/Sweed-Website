@@ -1,0 +1,121 @@
+.section {
+  overflow: hidden;
+  padding-block: clamp(2.75rem, 5vw, 4.75rem);
+  background: #261b3e;
+  color: #ffffff;
+  direction: rtl;
+}
+
+.heading {
+  display: flex;
+  width: min(100% - (var(--page-gutter) * 2), 74rem);
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 auto 1.8rem;
+}
+
+.heading > span {
+  color: #ff82ab;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.heading h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.45rem, 2.6vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: clients-drift 42s linear infinite reverse;
+  will-change: transform;
+}
+
+.marquee:hover .track,
+.marquee:focus-within .track {
+  animation-play-state: paused;
+}
+
+.group {
+  display: flex;
+  gap: 0.8rem;
+  padding-inline-end: 0.8rem;
+}
+
+.logo {
+  display: inline-flex;
+  min-width: 10.25rem;
+  min-height: 3.55rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 1.05rem 1.05rem 0.5rem;
+  padding-inline: 1.1rem;
+  background: rgb(255 255 255 / 5%);
+  color: rgb(255 255 255 / 88%);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  transition: background 220ms ease, color 220ms ease, transform 220ms ease;
+}
+
+.logo i {
+  color: #ff82ab;
+  font-size: 0.64rem;
+  font-style: normal;
+  letter-spacing: 0.06em;
+}
+
+.logo:hover {
+  background: #ffffff;
+  color: #261b3e;
+  transform: translateY(-0.2rem);
+}
+
+@keyframes clients-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+
+@media (max-width: 42rem) {
+  .heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .logo {
+    min-width: 8.75rem;
+    min-height: 3.2rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    width: 100%;
+    overflow-x: auto;
+    padding-inline: var(--page-gutter);
+    animation: none;
+    scroll-snap-type: inline mandatory;
+  }
+
+  .group {
+    flex: 0 0 auto;
+  }
+
+  .logo {
+    scroll-snap-align: start;
+  }
+}

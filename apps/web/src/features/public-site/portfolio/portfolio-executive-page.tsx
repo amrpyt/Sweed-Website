@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { PublicPageShell } from "../pages/public-page-shell";
 import styles from "./portfolio-executive-page.module.css";
 
@@ -80,11 +80,11 @@ const sectorProjects = {
   professional: { label: "الاستشارات والخدمات المهنية", projects: "سويد", text: "براند — أدلة — كتالوج — موقع — محتوى", href: "?sector=professional", action: "شوف خبرتنا في قطاع الخدمات المهنية" },
 } as const;
 
-function Cta({ href, children, light = false, small = false }: { href: string; children: React.ReactNode; light?: boolean; small?: boolean }) {
+function Cta({ href, children, light = false, small = false }: { href: string; children: ReactNode; light?: boolean; small?: boolean }) {
   return <a className={[styles.btn, light ? styles.btnLight : styles.btnGhost, small ? styles.btnSmall : ""].filter(Boolean).join(" ")} href={href}>{children}</a>;
 }
 
-function Tag({ children, state, dark }: { children: React.ReactNode; state?: "secret" | "active"; dark?: boolean }) {
+function Tag({ children, state, dark }: { children: ReactNode; state?: "secret" | "active"; dark?: boolean }) {
   return <span className={[styles.tag, state === "active" ? styles.stateTag : "", state === "secret" ? styles.secretTag : "", dark ? styles.darkTag : ""].filter(Boolean).join(" ")}>{children}</span>;
 }
 

@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>العروض والباقات | سويد — اختار نقطة البداية</title>
+<meta name="description" content="باقات سويد الشاملة وباقات الخدمات بثلاث مستويات لكل خدمة — اختيار واضح يبدأ من احتياجك، ومقارنة ذكية، وطلب تشخيص أو عرض مخصص.">
+<!--
+  نموذج مرجعي للمبرمج — صفحة "العروض والباقات"
+  المنطق: صفحة بتبيع القرار مش جدول أسعار — محدد احتياج، باقات شاملة، 6 خدمات × 3 مستويات، مقارنة Overlay
+  الأسعار: "يبدأ من / بعد التشخيص / اطلب مقايسة" — مفيش أرقام نهائية قبل الاعتماد، وكلها من الـ CMS مش الكود
+  GSAP 3.13+ (ScrollTrigger فقط) — الحركات مرة واحدة + prefers-reduced-motion
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple-900:#241238;--purple-700:#3B2160;--purple-100:#EFEAF7;
+  --fuchsia:#D6246E;--silver:#8B87A0;--ink:#2B2437;--white:#FFF;--bg:#FAF9FC;
+  --radius:14px;--shadow:0 10px 30px rgba(59,33,96,.10);
+  --font-display:'Cairo',sans-serif;--font-body:'IBM Plex Sans Arabic',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);background:var(--bg);line-height:1.9;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.5}
+.container{width:min(1160px,92%);margin-inline:auto}
+section{padding:90px 0}
+.eyebrow{display:inline-block;color:var(--fuchsia);font-weight:700;font-size:.95rem;margin-bottom:10px}
+.sec-title{font-size:clamp(1.45rem,3vw,2.1rem);font-weight:900;color:var(--purple-700);margin-bottom:10px}
+.sec-lead{color:var(--silver);max-width:640px}
+.btn{display:inline-block;padding:13px 30px;border-radius:50px;font-family:var(--font-display);font-weight:700;font-size:.95rem;text-decoration:none;transition:transform .22s,box-shadow .22s;cursor:pointer;border:2px solid transparent;background:none}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:var(--fuchsia);color:#fff;box-shadow:0 8px 22px rgba(214,36,110,.35)}
+.btn-ghost{border-color:var(--purple-700);color:var(--purple-700)}
+.btn-ghost.light{border-color:#fff;color:#fff}
+.btn-sm{padding:9px 20px;font-size:.83rem}
+.reveal{opacity:0;transform:translateY(30px)}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1!important;transform:none!important}}
+.badge{display:inline-block;background:var(--purple-100);color:var(--fuchsia);border-radius:50px;padding:4px 14px;font-size:.75rem;font-weight:700;font-family:var(--font-display)}
+.price{font-family:var(--font-display);font-weight:900;color:var(--purple-700);font-size:1.05rem}
+.price small{display:block;color:var(--silver);font-weight:400;font-size:.75rem;font-family:var(--font-body)}
+
+/* نافبار */
+.nav{position:sticky;top:0;z-index:80;background:rgba(250,249,252,.92);backdrop-filter:blur(10px);border-bottom:1px solid #EEE9F5;transition:transform .35s}
+.nav.hidden{transform:translateY(-100%)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;padding:15px 0}
+.logo{font-family:var(--font-display);font-weight:900;font-size:1.4rem;color:var(--purple-700);text-decoration:none}
+.logo span{color:var(--fuchsia)}
+.nav ul{display:flex;gap:24px;list-style:none}
+.nav ul a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem}
+.nav ul a.active,.nav ul a:hover{color:var(--fuchsia)}
+@media(max-width:820px){.nav ul{display:none}}
+
+/* ===== 1. الهيرو ===== */
+.o-hero{min-height:78vh;display:flex;align-items:center;background:radial-gradient(1200px 600px at 70% 20%,#3A1E5E, #180B28 70%);color:#fff;position:relative;overflow:hidden;padding:70px 0}
+.o-hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;position:relative;z-index:2}
+.o-hero h1{font-size:clamp(1.7rem,4vw,2.8rem);font-weight:900}
+.o-hero p{margin-top:14px;color:rgba(255,255,255,.82);max-width:560px}
+.o-hero .btns{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
+.hero-map{position:relative;width:100%;max-width:420px;margin-inline:auto}
+.hero-map svg{width:100%;height:auto}
+.hpath{stroke:rgba(255,255,255,.25);stroke-width:2;fill:none;stroke-dasharray:5 6}
+.hpath.lit{stroke:var(--fuchsia);stroke-dasharray:none}
+.station{fill:#fff}
+.station-label{font-family:var(--font-display);font-weight:700;font-size:12px;fill:rgba(255,255,255,.85)}
+.peek{position:absolute;bottom:-30px;border-radius:12px 12px 0 0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-bottom:none;height:64px;width:160px;font-family:var(--font-display);font-weight:700;font-size:.72rem;color:rgba(255,255,255,.7);display:flex;align-items:flex-start;justify-content:center;padding-top:10px;transition:transform .3s,background .3s}
+.peek:hover{transform:translateY(-6px);background:rgba(214,36,110,.15)}
+.pk1{right:6%}.pk2{right:calc(50% - 80px)}.pk3{left:6%}
+@media(max-width:900px){.o-hero .grid{grid-template-columns:1fr}.hero-map{display:none}.peek{display:none}}
+
+/* ===== 2. محدد الاحتياج ===== */
+.quiz{background:#fff}
+.quiz-box{background:var(--bg);border:1px solid #EEE9F5;border-radius:var(--radius);box-shadow:var(--shadow);padding:38px;max-width:760px;margin:40px auto 0}
+.q-step{display:none}
+.q-step.show{display:block}
+.q-step h3{color:var(--purple-700);font-size:1.05rem;margin-bottom:16px}
+.q-step h3 b{color:var(--fuchsia)}
+.q-opts{display:flex;flex-wrap:wrap;gap:10px}
+.q-opt{border:1px solid #E4DEF0;background:#fff;color:var(--ink);border-radius:50px;padding:10px 20px;font-family:var(--font-display);font-weight:700;font-size:.86rem;cursor:pointer;transition:.22s;min-height:44px}
+.q-opt:hover,.q-opt.sel{background:var(--purple-700);border-color:var(--purple-700);color:#fff}
+.q-result{display:none;text-align:center}
+.q-result.show{display:block}
+.q-result .rec{background:var(--purple-100);border-radius:12px;padding:22px;margin:14px 0 20px;font-size:1rem}
+.q-result .rec b{color:var(--fuchsia)}
+.q-skip{display:block;text-align:center;margin-top:18px;color:var(--silver);font-size:.85rem;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:var(--font-body)}
+.q-progress{display:flex;gap:6px;justify-content:center;margin-bottom:26px}
+.q-dot{width:34px;height:5px;border-radius:5px;background:#E4DEF0;transition:background .3s}
+.q-dot.on{background:var(--fuchsia)}
+
+/* ===== 3. الباقات الشاملة ===== */
+.mains{background:var(--purple-100);position:relative}
+.mains-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:60px;position:relative}
+.mpath-svg{position:absolute;top:-28px;right:0;left:0;width:100%;height:20px}
+.mpath-svg path{stroke:var(--fuchsia);stroke-width:2.5;fill:none;stroke-dasharray:6 7}
+.mcard{background:#fff;border:1px solid #EEE9F5;border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);position:relative;transition:transform .25s,border-color .25s;display:flex;flex-direction:column}
+.mcard:hover{transform:translateY(-8px);border-color:var(--fuchsia)}
+.mcard .station-dot{position:absolute;top:-38px;right:calc(50% - 8px);width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #D9D2E8;transition:.4s}
+.mcard.lit .station-dot{border-color:var(--fuchsia);background:var(--fuchsia)}
+.mcard h3{color:var(--purple-700);font-size:1.2rem}
+.mcard .promise{color:var(--fuchsia);font-family:var(--font-display);font-weight:700;font-size:.9rem;margin:2px 0 6px}
+.mcard .fit{color:var(--silver);font-size:.85rem;margin-bottom:14px}
+.mcard ul{list-style:none;font-size:.88rem;margin:12px 0;flex:1}
+.mcard ul li{padding-right:20px;position:relative;margin-bottom:6px}
+.mcard ul li::before{content:'✓';position:absolute;right:0;color:var(--fuchsia);font-weight:900}
+.mcard .drawer-btn{background:none;border:none;color:var(--purple-700);font-weight:700;font-family:var(--font-display);font-size:.82rem;cursor:pointer;text-decoration:underline;margin-bottom:14px;text-align:right}
+.mcard .more{display:none;font-size:.85rem;color:var(--silver);margin-bottom:12px}
+.mcard .more.open{display:block}
+.mcard.mid{transform:translateY(-12px)}
+.mcard.mid:hover{transform:translateY(-20px)}
+.mcard.mid .badge{position:absolute;top:-14px;left:22px;background:var(--fuchsia);color:#fff}
+.mcard.dark{background:linear-gradient(150deg,var(--purple-700),var(--purple-900));color:#fff;border:none}
+.mcard.dark h3,.mcard.dark .price{color:#fff}
+.mcard.dark .fit{color:rgba(255,255,255,.6)}
+.compare-hint{position:absolute;bottom:100%;right:0;left:0;text-align:center;font-size:.72rem;color:var(--fuchsia);opacity:0;transition:.3s;font-weight:700}
+.mcard:hover .compare-hint{opacity:1}
+@media(max-width:900px){.mains-grid{grid-template-columns:1fr}.mcard.mid{transform:none}.mpath-svg,.station-dot{display:none}}
+
+/* ===== 4. أوفرلاي المقارنة ===== */
+.overlay{position:fixed;inset:0;background:rgba(24,11,40,.55);backdrop-filter:blur(3px);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.overlay.open{display:flex}
+.ov-panel{background:#fff;width:min(960px,96%);max-height:86vh;border-radius:18px 18px 0 0;overflow:auto;transform:translateY(100%);transition:transform .4s ease}
+.overlay.open .ov-panel{transform:translateY(0)}
+.ov-head{position:sticky;top:0;background:#fff;padding:20px 26px 12px;border-bottom:1px solid #EEE9F5;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;z-index:2}
+.ov-head h3{color:var(--purple-700);font-size:1.05rem}
+.ov-tools{display:flex;gap:10px;align-items:center}
+.diff-toggle{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--silver);cursor:pointer}
+.diff-toggle input{accent-color:var(--fuchsia);width:18px;height:18px}
+.ov-close{background:var(--purple-100);border:none;width:38px;height:38px;border-radius:50%;font-size:1rem;cursor:pointer;color:var(--purple-700)}
+.ov-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.ov-table th{position:sticky;top:71px;background:var(--purple-700);color:#fff;padding:12px;font-family:var(--font-display);font-size:.85rem;z-index:1}
+.ov-table td{padding:11px 12px;border-bottom:1px solid #F1EDF8;text-align:center}
+.ov-table td:first-child{text-align:right;font-weight:600;color:var(--purple-700)}
+.ov-table tr.same.hideme{display:none}
+.ov-table td.na{color:#C9C4D8}
+.ov-foot{padding:18px 26px;text-align:center}
+
+/* ===== 5. Tabs الخدمات ===== */
+.svc-tabs{position:sticky;top:62px;z-index:70;background:#fff;border-bottom:1px solid #EEE9F5;box-shadow:0 6px 18px rgba(59,33,96,.06)}
+.svc-tabs .container{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 0;scroll-snap-type:x mandatory}
+.svc-tabs .container::-webkit-scrollbar{display:none}
+.st-btn{flex:0 0 auto;border:1px solid #E4DEF0;background:#fff;color:var(--silver);border-radius:50px;padding:9px 20px;font-family:var(--font-display);font-weight:700;font-size:.84rem;cursor:pointer;transition:.25s;min-height:44px;scroll-snap-align:start}
+.st-btn.active{background:var(--fuchsia);border-color:var(--fuchsia);color:#fff}
+
+/* لوحات الخدمات المشتركة */
+.svc-panel{display:none;opacity:0}
+.svc-panel.show{display:block;opacity:1;transition:opacity .28s}
+.pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+@media(max-width:900px){.pk-grid{grid-template-columns:1fr}}
+.pk{border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;cursor:pointer}
+.pk:hover,.pk.selected{transform:translateY(-8px)}
+.pk h4{font-size:1.05rem}
+.pk .fit{font-size:.82rem;margin:2px 0 12px}
+.pk ul{list-style:none;font-size:.86rem;flex:1;margin-bottom:14px}
+.pk ul li{padding-right:18px;position:relative;margin-bottom:5px;transition:color .3s}
+.pk ul li::before{content:'—';position:absolute;right:0;color:var(--fuchsia)}
+.pk:hover ul li:nth-child(-n+3){color:var(--fuchsia);font-weight:600}
+.compare-btn-row{text-align:center;margin-top:34px}
+
+/* 5أ الاستشارات — ملفات قرار */
+#panel-consult .pk{background:#fff;border:1px solid #EEE9F5;box-shadow:var(--shadow)}
+#panel-consult .pk::after{content:attr(data-paper);position:absolute;top:-12px;left:20px;background:var(--purple-100);color:var(--purple-700);font-size:.68rem;font-weight:700;font-family:var(--font-display);padding:5px 14px;border-radius:8px 8px 0 0;opacity:0;transform:translateY(8px);transition:.3s}
+#panel-consult .pk:hover::after{opacity:1;transform:translateY(0)}
+#panel-consult .pk h4{color:var(--purple-700)}
+#panel-consult .pk .fit{color:var(--silver)}
+
+/* 5ب البراند — تسرب الألوان */
+#panel-brand .pk{background:#fff;border:1px solid #E4DEF0;filter:grayscale(1);overflow:hidden}
+#panel-brand .pk::before{content:'';position:absolute;top:-40px;left:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,var(--fuchsia),transparent 70%);opacity:0;transition:.45s}
+#panel-brand .pk:hover{filter:grayscale(0);border-color:var(--fuchsia)}
+#panel-brand .pk:hover::before{opacity:.35}
+#panel-brand .pk h4{color:var(--purple-700)}
+#panel-brand .pk .fit{color:var(--silver)}
+
+/* 5ج التسويق — وحدات Dashboard */
+#panel-mkt .pk{background:#fff;border:1px solid #EEE9F5;box-shadow:var(--shadow)}
+#panel-mkt .pk h4{color:var(--purple-700)}
+#panel-mkt .pk .fit{color:var(--silver)}
+.mini-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:26px auto 0;max-width:560px}
+.mod{border-radius:10px;background:#fff;border:1px solid #E4DEF0;padding:10px;text-align:center;font-family:var(--font-display);font-weight:700;font-size:.72rem;color:#C9C4D8;transition:.35s}
+.mod.on{color:#fff;background:var(--fuchsia);border-color:var(--fuchsia)}
+@media(max-width:640px){.mini-board{grid-template-columns:repeat(2,1fr)}}
+
+/* 5د المحتوى المرئي — Frames سينمائية */
+#panel-media{color:#fff}
+#panel-media .pk{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14)}
+#panel-media .pk h4{color:#fff}
+#panel-media .pk .fit{color:rgba(255,255,255,.55)}
+#panel-media .pk ul{color:rgba(255,255,255,.82)}
+#panel-media .pk .frame-top{aspect-ratio:16/9;border-radius:10px;background:linear-gradient(150deg,#2A1745,var(--purple-700));display:flex;align-items:center;justify-content:center;margin-bottom:16px;position:relative;overflow:hidden}
+#panel-media .pk .frame-top::after{content:'▶';width:44px;height:44px;border-radius:50%;background:var(--fuchsia);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+#panel-media .pk:hover .frame-top{box-shadow:inset 0 0 0 2px var(--fuchsia)}
+#panel-media .price{color:#fff}
+
+/* 5هـ الدعاية — عينات خامات + قبل/بعد */
+#panel-ads .pk{background:#fff;border:1px solid #EEE9F5;box-shadow:var(--shadow)}
+#panel-ads .pk h4{color:var(--purple-700)}
+#panel-ads .pk .fit{color:var(--silver)}
+.material{height:110px;border-radius:10px;margin-bottom:16px;position:relative;overflow:hidden;background:repeating-linear-gradient(45deg,var(--purple-100),var(--purple-100) 10px,#E4DEF0 10px,#E4DEF0 20px)}
+.material .after{position:absolute;inset:0;background:linear-gradient(150deg,var(--purple-700),var(--purple-900));display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-weight:700;font-size:.8rem;clip-path:inset(0 100% 0 0);transition:clip-path .5s ease}
+#panel-ads .pk:hover .after{clip-path:inset(0 0 0 0)}
+.material .before-lbl{position:absolute;bottom:8px;right:10px;font-size:.68rem;color:var(--silver);font-weight:700}
+
+/* 5و المواقع — نوافذ متصفح */
+#panel-web .pk{background:#fff;border:1px solid #EEE9F5;box-shadow:var(--shadow);padding-top:0;overflow:hidden}
+#panel-web .pk .chrome{background:#EFEAF7;margin:0 -28px 18px;padding:10px 16px;display:flex;gap:5px;align-items:center}
+#panel-web .pk .chrome i{width:9px;height:9px;border-radius:50%;background:#D9D2E8;font-style:normal}
+#panel-web .pk .chrome i:first-child{background:var(--fuchsia)}
+#panel-web .pk h4{color:var(--purple-700)}
+#panel-web .pk .fit{color:var(--silver)}
+.sitemap{display:flex;gap:6px;align-items:center;margin:22px auto 0;justify-content:center;flex-wrap:wrap;font-size:.75rem;color:var(--silver);font-family:var(--font-display);font-weight:700}
+.sitemap span{background:#fff;border:1px solid #E4DEF0;border-radius:8px;padding:6px 12px;transition:.3s}
+.sitemap span.on{border-color:var(--fuchsia);color:var(--fuchsia)}
+.sitemap b{color:#D9D2E8}
+
+/* ===== 6. العروض ===== */
+.offers-sec{background:#fff}
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+@media(max-width:900px){.offer-grid{grid-template-columns:1fr}}
+.offer{border:1.5px dashed var(--fuchsia);border-radius:var(--radius);padding:26px;background:linear-gradient(180deg,#FFF, #FDF4F8);position:relative}
+.offer .exp{position:absolute;top:-12px;right:20px;background:var(--fuchsia);color:#fff;font-size:.7rem;font-weight:700;font-family:var(--font-display);padding:4px 14px;border-radius:50px}
+.offer h4{color:var(--purple-700);font-size:1rem;margin-bottom:8px}
+.offer p{font-size:.86rem;color:var(--ink);margin-bottom:8px}
+.offer small{display:block;color:var(--silver);font-size:.76rem;margin-bottom:14px}
+
+/* ===== 7. الأرقام ===== */
+.counters{background:var(--purple-900);color:#fff;padding:70px 0}
+.cnt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;text-align:center}
+.cnt b{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.6rem);color:var(--fuchsia);display:block}
+.cnt span{color:rgba(255,255,255,.72);font-size:.88rem}
+.cnt .words{font-family:var(--font-display);font-weight:700;color:#fff;font-size:.8rem;display:block;margin-top:2px}
+@media(max-width:700px){.cnt-grid{grid-template-columns:1fr 1fr}}
+.cnt-note{text-align:center;color:rgba(255,255,255,.45);font-size:.75rem;margin-top:26px;max-width:640px;margin-inline:auto}
+
+/* ===== 8. FAQ ===== */
+.faq-item{background:#fff;border:1px solid #EEE9F5;border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq-q{width:100%;background:none;border:none;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px;cursor:pointer;font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--purple-700);text-align:right}
+.faq-q i{font-style:normal;color:var(--fuchsia);transition:transform .3s;font-size:1.1rem}
+.faq-item.open .faq-q i{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--silver);font-size:.9rem;padding:0 22px}
+.faq-item.open .faq-a{max-height:220px;padding-bottom:18px}
+
+/* ===== 9. CTA + نموذج ===== */
+.o-cta{background:var(--purple-900);color:#fff}
+.o-cta .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+@media(max-width:900px){.o-cta .wrap{grid-template-columns:1fr}}
+.o-cta h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;margin-bottom:12px}
+.o-cta p{color:rgba(255,255,255,.8)}
+.stepper{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:28px}
+.stepper .s-dots{display:flex;gap:6px;margin-bottom:20px}
+.s-dot{flex:1;height:5px;border-radius:5px;background:rgba(255,255,255,.15);transition:.3s}
+.s-dot.on{background:var(--fuchsia)}
+.f-step{display:none}
+.f-step.show{display:block}
+.f-step label{font-size:.84rem;color:rgba(255,255,255,.7);display:block;margin:12px 0 4px}
+.f-step input,.f-step select,.f-step textarea{width:100%;padding:12px 15px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:#fff;font-family:var(--font-body);font-size:.92rem}
+.f-step ::placeholder{color:rgba(255,255,255,.4)}
+.step-nav{display:flex;justify-content:space-between;margin-top:20px;gap:10px}
+.summary{background:rgba(255,255,255,.06);border-radius:10px;padding:16px;font-size:.86rem;color:rgba(255,255,255,.85)}
+.summary b{color:var(--fuchsia)}
+
+/* زر الموبايل الثابت */
+.sticky-cta{position:fixed;bottom:0;right:0;left:0;background:#fff;border-top:1px solid #EEE9F5;box-shadow:0 -8px 24px rgba(59,33,96,.12);padding:12px 4%;display:none;align-items:center;justify-content:space-between;gap:12px;z-index:90}
+.sticky-cta.show{display:flex}
+.sticky-cta .sel-name{font-family:var(--font-display);font-weight:700;color:var(--purple-700);font-size:.85rem}
+.sticky-cta .sel-name small{display:block;color:var(--silver);font-weight:400;font-size:.72rem}
+
+footer{background:#180B28;color:rgba(255,255,255,.7);padding:40px 0;font-size:.9rem}
+footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer a{color:#fff;text-decoration:none}
+.dark-band{background:#14091F}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a class="logo" href="#">سويد<span>.</span></a>
+    <ul>
+      <li><a href="#">الرئيسية</a></li>
+      <li><a href="#">من نحن</a></li>
+      <li><a href="#">خدماتنا</a></li>
+      <li><a href="#">أعمالنا</a></li>
+      <li><a href="#" class="active">العروض</a></li>
+      <li><a href="#">المقالات</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="#offers-cta">دعنا نبدأ</a>
+  </div>
+</nav>
+
+<!-- ===== 1. الهيرو ===== -->
+<section class="o-hero" id="offers-hero">
+  <div class="container grid">
+    <div>
+      <span class="eyebrow reveal">العروض والباقات</span>
+      <h1 class="reveal">مش كل مشروع محتاج نفس الطريق… بس كل مشروع محتاج بداية صح</h1>
+      <p class="reveal">اختار هدفك أو الخدمة اللي محتاجها، وشوف الفرق بين كل مستوى بوضوح. ولو مشروعك محتاج أكتر من تخصص — جمعنالك الاتجاه والتنفيذ والمتابعة في باقات واحدة.</p>
+      <div class="btns reveal">
+        <a class="btn btn-primary" id="heroCta" href="#need-quiz">اكتشف أنسب باقة</a>
+        <a class="btn btn-ghost light" href="#main-packages">قارن الباقات الشاملة</a>
+      </div>
+    </div>
+    <div class="hero-map reveal">
+      <svg viewBox="0 0 420 300" aria-hidden="true">
+        <path class="hpath" id="hp1" d="M210,150 C230,110 280,90 340,70"/>
+        <path class="hpath" id="hp2" d="M210,150 C270,150 320,150 380,150"/>
+        <path class="hpath" id="hp3" d="M210,150 C230,190 280,215 340,235"/>
+        <circle class="station" cx="345" cy="68" r="6"/><text class="station-label" x="345" y="50" text-anchor="middle">اتجاه</text>
+        <circle class="station" cx="382" cy="150" r="6"/><text class="station-label" x="382" y="132" text-anchor="middle">بناء</text>
+        <circle class="station" cx="345" cy="237" r="6"/><text class="station-label" x="345" y="270" text-anchor="middle">وصول</text>
+        <g id="oNeedleG">
+          <circle cx="210" cy="150" r="46" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+          <polygon id="oNeedle" points="210,112 218,150 210,158 202,150" fill="#D6246E"/>
+          <circle cx="210" cy="150" r="5" fill="#fff"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="peek pk1">تحديد الاتجاه</div>
+  <div class="peek pk2">بناء المسار</div>
+  <div class="peek pk3">شراكة الوصول</div>
+</section>
+
+<!-- ===== 2. محدد الاحتياج ===== -->
+<section class="quiz" id="need-quiz">
+  <div class="container">
+    <span class="eyebrow reveal">محدد الاحتياج</span>
+    <h2 class="sec-title reveal">قولنا عايز توصل لإيه… وإحنا نضيّق الاختيارات</h2>
+    <p class="sec-lead reveal">مش لازم تعرف أسماء الخدمات — ابدأ باللي حاسس بيه، والترشيح يظهر في 3 أسئلة بس.</p>
+    <div class="quiz-box reveal">
+      <div class="q-progress"><div class="q-dot on"></div><div class="q-dot"></div><div class="q-dot"></div></div>
+      <div class="q-step show" data-step="1">
+        <h3>سؤال 1 من 3 — <b>إيه أقرب تحدٍ عندك؟</b></h3>
+        <div class="q-opts">
+          <button class="q-opt" data-v="قرارات واتجاه">قرارات واتجاه</button>
+          <button class="q-opt" data-v="براند مش واضح">براند مش واضح</button>
+          <button class="q-opt" data-v="تسويق بلا نتيجة">تسويق بلا نتيجة</button>
+          <button class="q-opt" data-v="محتوى ضعيف">محتوى ضعيف</button>
+          <button class="q-opt" data-v="ظهور على الأرض">ظهور على الأرض</button>
+          <button class="q-opt" data-v="موقع أو حل رقمي">موقع أو حل رقمي</button>
+        </div>
+      </div>
+      <div class="q-step" data-step="2">
+        <h3>سؤال 2 من 3 — <b>مشروعك في أي مرحلة؟</b></h3>
+        <div class="q-opts">
+          <button class="q-opt" data-v="فكرة أو تأسيس">فكرة أو تأسيس</button>
+          <button class="q-opt" data-v="قائم ومحتاج نمو">قائم ومحتاج نمو</button>
+          <button class="q-opt" data-v="محتاج إعادة توجيه">محتاج إعادة توجيه</button>
+        </div>
+      </div>
+      <div class="q-step" data-step="3">
+        <h3>سؤال 3 من 3 — <b>عايز تبدأ إمتى؟</b></h3>
+        <div class="q-opts">
+          <button class="q-opt" data-v="الآن">الآن</button>
+          <button class="q-opt" data-v="خلال شهر">خلال شهر</button>
+          <button class="q-opt" data-v="بجهز وأقارن">بجهز وأقارن</button>
+        </div>
+      </div>
+      <div class="q-result" data-step="4">
+        <span class="badge">ترشيح سويد</span>
+        <div class="rec" id="recText">بناءً على إجاباتك…</div>
+        <a class="btn btn-primary" id="recBtn" href="#main-packages">شوف تفاصيل الترشيح</a>
+        <a class="btn btn-ghost" href="#offers-cta" style="margin-inline-start:10px">اطلب تشخيص يثبت الاختيار</a>
+        <p style="font-size:.75rem;color:var(--silver);margin-top:14px">النتيجة ترشيح مش وعد آلي ولا تشخيص نهائي</p>
+      </div>
+      <button class="q-skip" id="qSkip">تخطى الأسئلة وشوف الباقات مباشرة</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. الباقات الشاملة ===== -->
+<section class="mains" id="main-packages">
+  <div class="container">
+    <span class="eyebrow reveal">الباقات الشاملة</span>
+    <h2 class="sec-title reveal">لما مشروعك محتاج منظومة… مش مورّد لكل خدمة</h2>
+    <p class="sec-lead reveal">دي الباقات اللي بتجسد وعد سويد: اتجاه واحد بيجمع الاستشارة والبناء والتنفيذ والقياس.</p>
+    <div class="mains-grid">
+      <svg class="mpath-svg" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path id="mainsPath" d="M40,10 L960,10"/></svg>
+      <div class="mcard reveal" data-pkg="تحديد الاتجاه">
+        <span class="compare-hint">قارن مع باقي الباقات ↓</span>
+        <span class="station-dot"></span>
+        <h3>تحديد الاتجاه</h3>
+        <div class="promise">نعرف أنت واقف فين… ورايح فين</div>
+        <div class="fit">لمشروع قائم أو فكرة محتاجة قرار واضح</div>
+        <div class="price">يبدأ من [سعر معتمد]<small>مشروع محدد المدة · غير شامل التنفيذ</small></div>
+        <ul>
+          <li>تشخيص وتحليل وضع وسوق</li>
+          <li>تحديد أولويات معتمدة</li>
+          <li>خارطة طريق 90 يوم</li>
+          <li>جلسة تسليم وشرح</li>
+          <li>ملخص قرارات قابل للتنفيذ</li>
+        </ul>
+        <button class="drawer-btn">شوف كل اللي هتستلمه +</button>
+        <div class="more">تحليل منافسين موسع، سيناريوهات بدائل، وتوصيات تنفيذ لكل أولوية — التفاصيل الكاملة في عرض السعر.</div>
+        <a class="btn btn-ghost" href="#offers-cta" data-select="تحديد الاتجاه">ابدأ التشخيص</a>
+      </div>
+      <div class="mcard mid reveal" data-pkg="بناء المسار">
+        <span class="badge">الأنسب لمرحلة التأسيس والنمو</span>
+        <span class="compare-hint">قارن مع باقي الباقات ↓</span>
+        <span class="station-dot"></span>
+        <h3>بناء المسار</h3>
+        <div class="promise">نحوّل القرار لبراند وأدوات وخطة تنفيذ</div>
+        <div class="fit">لمشروع بيتأسس أو بيعيد بناء حضوره</div>
+        <div class="price">تسعير حسب نطاق المشروع<small>مرحلة تأسيس · حدود التعديلات في العقد</small></div>
+        <ul>
+          <li>كل مخرجات تحديد الاتجاه</li>
+          <li>استراتيجية براند ورسائل</li>
+          <li>هوية أساسية وتأسيس المنصات</li>
+          <li>خطة إطلاق تسويقية</li>
+          <li>اجتماعات مرحلة البناء</li>
+        </ul>
+        <button class="drawer-btn">شوف كل اللي هتستلمه +</button>
+        <div class="more">دليل هوية، قوالب منصات، حزمة محتوى إطلاق، وإشراف على أول ظهور — التفاصيل الكاملة في عرض السعر.</div>
+        <a class="btn btn-primary" href="#offers-cta" data-select="بناء المسار">ابنِ المسار</a>
+      </div>
+      <div class="mcard dark reveal" data-pkg="شراكة الوصول">
+        <span class="compare-hint" style="color:#fff">قارن مع باقي الباقات ↓</span>
+        <span class="station-dot"></span>
+        <h3>شراكة الوصول</h3>
+        <div class="promise" style="color:#FF7BAC">فريق واحد بيدير الاتجاه والتنفيذ والتحسين</div>
+        <div class="fit">لشركة عايزة شريك نمو مستمر</div>
+        <div class="price">[سعر معتمد] شهريًا<small>حد أدنى 3 شهور · ميزانية الإعلانات منفصلة</small></div>
+        <ul>
+          <li>استراتيجية وإدارة تسويق</li>
+          <li>محتوى وتصميم شهري</li>
+          <li>إدارة حملات وتحسين</li>
+          <li>تقارير واجتماعات قرار</li>
+          <li>تطوير مستمر للمسار</li>
+        </ul>
+        <button class="drawer-btn" style="color:#fff">شوف كل اللي هتستلمه +</button>
+        <div class="more" style="color:rgba(255,255,255,.6)">مراجعات ربع سنوية، لوحة مؤشرات، ودعم قرارات الإدارة — التفاصيل الكاملة في عرض السعر.</div>
+        <a class="btn btn-ghost light" href="#offers-cta" data-select="شراكة الوصول">ابدأ الشراكة</a>
+      </div>
+    </div>
+    <div class="compare-btn-row reveal"><button class="btn btn-ghost" id="openCompare">قارن الباقات الشاملة</button></div>
+  </div>
+</section>
+
+<!-- ===== أوفرلاي المقارنة ===== -->
+<div class="overlay" id="compareOverlay" role="dialog" aria-modal="true" aria-label="مقارنة الباقات">
+  <div class="ov-panel">
+    <div class="ov-head">
+      <h3 id="ovTitle">مقارنة الباقات الشاملة</h3>
+      <div class="ov-tools">
+        <label class="diff-toggle"><input type="checkbox" id="diffOnly"> اظهر الاختلافات فقط</label>
+        <button class="ov-close" id="closeCompare" aria-label="إغلاق">✕</button>
+      </div>
+    </div>
+    <table class="ov-table" id="ovTable"></table>
+    <div class="ov-foot"><a class="btn btn-primary btn-sm" href="#offers-cta" id="ovCta">اطلب تفاصيل الباقة المختارة</a></div>
+  </div>
+</div>
+
+<!-- ===== 5. Tabs الخدمات ===== -->
+<div class="svc-tabs" id="svcTabs">
+  <div class="container">
+    <button class="st-btn active" data-panel="consult">استشارات</button>
+    <button class="st-btn" data-panel="brand">براند وهوية</button>
+    <button class="st-btn" data-panel="mkt">تسويق وحملات</button>
+    <button class="st-btn" data-panel="media">محتوى مرئي</button>
+    <button class="st-btn" data-panel="ads">دعاية وإعلان</button>
+    <button class="st-btn" data-panel="web">مواقع وحلول رقمية</button>
+  </div>
+</div>
+
+<!-- 5أ الاستشارات -->
+<section class="svc-panel show" id="panel-consult">
+  <div class="container">
+    <span class="eyebrow">باقات الاستشارات والتطوير</span>
+    <h2 class="sec-title">محتاج رأي… ولا قرار وخطة ومتابعة؟</h2>
+    <div class="pk-grid">
+      <div class="pk" data-paper="📄 التشخيص" data-pkg="جلسة الاتجاه">
+        <h4>جلسة الاتجاه</h4><div class="fit">لقرار محدد أو مشكلة محتاجة تشخيص</div>
+        <div class="price">يبدأ من [سعر معتمد]<small>جلسة أو أسبوع · التنفيذ اختياري</small></div>
+        <ul><li>جلسة تشخيص معمقة</li><li>مراجعة البيانات المتاحة</li><li>ملخص قرارات وأولويات</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="جلسة الاتجاه">احجز الجلسة</a>
+      </div>
+      <div class="pk" data-paper="🗺 الخارطة" data-pkg="خارطة النمو">
+        <h4>خارطة النمو</h4><div class="fit">لمشروع محتاج خطة متكاملة</div>
+        <div class="price">تسعير حسب النطاق<small>3–6 أسابيع · التنفيذ يُسعّر منفصلًا</small></div>
+        <ul><li>تحليل وضع وسوق ومنافسين</li><li>أهداف وKPIs وخطة 90 يوم</li><li>سيناريوهات قرار</li></ul>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="خارطة النمو">ابنِ الخطة</a>
+      </div>
+      <div class="pk" data-paper="📊 لوحة المتابعة" data-pkg="شريك القرار">
+        <h4>شريك القرار</h4><div class="fit">لإدارة محتاجة متابعة واستشارة مستمرة</div>
+        <div class="price">[سعر معتمد] شهريًا<small>شهري أو ربع سنوي · يمكن دمج التنفيذ</small></div>
+        <ul><li>اجتماعات دورية ومراجعة أداء</li><li>قرارات تصحيح مستمرة</li><li>دعم الإدارة في القرار</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="شريك القرار">ابدأ الشراكة</a>
+      </div>
+    </div>
+    <div class="compare-btn-row"><button class="btn btn-ghost compare-svc" data-svc="consult">قارن الباقات</button></div>
+  </div>
+</section>
+
+<!-- 5ب البراند -->
+<section class="svc-panel" id="panel-brand" style="background:#fff">
+  <div class="container">
+    <span class="eyebrow">باقات البراند والهوية</span>
+    <h2 class="sec-title">اسم وشعار… ولا معنى الناس تعرفه وتفتكره؟</h2>
+    <div class="pk-grid">
+      <div class="pk" data-pkg="أساس البراند">
+        <h4>أساس البراند</h4><div class="fit">لمشروع جديد محتاج معنى واضح</div>
+        <div class="price">يبدأ من [سعر معتمد]<small>مدة تنفيذ محددة · حدود تعديلات بالعقد</small></div>
+        <ul><li>الجمهور والتموضع والوعد</li><li>شخصية البراند</li><li>الرسائل الرئيسية</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="أساس البراند">ثبّت الأساس</a>
+      </div>
+      <div class="pk" data-pkg="هوية متكاملة">
+        <h4>هوية متكاملة</h4><div class="fit">لبراند محتاج استراتيجية وشكل متسق</div>
+        <div class="price">تسعير حسب النطاق<small>يشمل دليل هوية · الإطلاق اختياري</small></div>
+        <ul><li>كل مخرجات الأساس</li><li>شعار وألوان وخطوط وتطبيقات</li><li>دليل هوية بصري</li></ul>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="هوية متكاملة">ابنِ الهوية</a>
+      </div>
+      <div class="pk" data-pkg="نظام البراند">
+        <h4>نظام البراند</h4><div class="fit">لشركة محتاجة توحيد كل نقاط الاتصال</div>
+        <div class="price">بعد التشخيص<small>نطاق مخصص · إشراف إطلاق مشمول</small></div>
+        <ul><li>دليل نبرة وصوت</li><li>قوالب منصات ورسائل حملات</li><li>تطبيقات موسعة وإشراف إطلاق</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="نظام البراند">ابنِ النظام</a>
+      </div>
+    </div>
+    <div class="compare-btn-row"><button class="btn btn-ghost compare-svc" data-svc="brand">قارن الباقات</button></div>
+  </div>
+</section>
+
+<!-- 5ج التسويق -->
+<section class="svc-panel" id="panel-mkt" style="background:var(--purple-100)">
+  <div class="container">
+    <span class="eyebrow">باقات التسويق والحملات</span>
+    <h2 class="sec-title">بتنشر كتير… ولا بتتحرك ناحية هدف؟</h2>
+    <div class="pk-grid">
+      <div class="pk" data-pkg="حضور منظم" data-mods="0,1,2">
+        <h4>حضور منظم</h4><div class="fit">لمشروع محتاج تأسيس وإدارة أساسية</div>
+        <div class="price">[سعر معتمد] شهريًا<small>حد أدنى للمدة · الإعلانات اختيارية</small></div>
+        <ul><li>دراسة وضع وخطة محتوى</li><li>إدارة منصات محددة</li><li>كتابة وتصميم وتقرير شهري</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="حضور منظم">نظّم حضورك</a>
+      </div>
+      <div class="pk" data-pkg="نمو مستمر" data-mods="0,1,2,3,4,5">
+        <h4>نمو مستمر</h4><div class="fit">لمشروع عايز محتوى وحملات مترابطة</div>
+        <div class="price">[سعر معتمد] شهريًا<small>حد أدنى للمدة · ميزانية الإعلان منفصلة</small></div>
+        <ul><li>كل مخرجات حضور منظم + ريلز</li><li>إدارة حملات وتحسين أسبوعي</li><li>متابعة منافسين واجتماع شهري</li></ul>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="نمو مستمر">ابدأ النمو</a>
+      </div>
+      <div class="pk" data-pkg="أداء ونتائج" data-mods="0,1,2,3,4,5,6,7">
+        <h4>أداء ونتائج</h4><div class="fit">لمشروع معتمد على التسويق كقناة مبيعات</div>
+        <div class="price">بعد التشخيص<small>Dashboard واجتماعات · أتعاب الإدارة منفصلة عن ميزانية الإعلان</small></div>
+        <ul><li>استراتيجية أداء وفانل</li><li>تتبع وتحليلات وتحسين مستمر</li><li>لوحة KPIs واجتماعات قرار</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="أداء ونتائج">اربط التسويق بالنتيجة</a>
+      </div>
+    </div>
+    <div class="mini-board" id="miniBoard">
+      <div class="mod">الخطة</div><div class="mod">المحتوى</div><div class="mod">المنصات</div><div class="mod">الريلز</div>
+      <div class="mod">الحملات</div><div class="mod">التحسين</div><div class="mod">الفانل</div><div class="mod">لوحة KPIs</div>
+    </div>
+    <p style="text-align:center;color:var(--silver);font-size:.78rem;margin-top:10px">مرّر على أي باقة — الوحدات المشمولة بتنور في اللوحة</p>
+    <div class="compare-btn-row"><button class="btn btn-ghost compare-svc" data-svc="mkt">قارن الباقات</button></div>
+  </div>
+</section>
+
+<!-- 5د المحتوى المرئي -->
+<section class="svc-panel dark-band" id="panel-media">
+  <div class="container">
+    <span class="eyebrow">باقات المحتوى المرئي</span>
+    <h2 class="sec-title" style="color:#fff">فيديو يتشاف… ولا محتوى يحرّك قرار؟</h2>
+    <div class="pk-grid">
+      <div class="pk" data-pkg="لقطة البداية">
+        <div class="frame-top"></div>
+        <h4>لقطة البداية</h4><div class="fit">لحملة أو إطلاق محتاج محتوى مركز</div>
+        <div class="price">يبدأ من [سعر معتمد]<small>يوم تصوير محدد · حقوق الاستخدام بالعقد</small></div>
+        <ul><li>فكرة وسكريبت</li><li>يوم تصوير + مونتاج حزمة محددة</li><li>نسخ للمنصات</li></ul>
+        <a class="btn btn-ghost light btn-sm" href="#offers-cta" data-select="لقطة البداية">ابدأ التصوير</a>
+      </div>
+      <div class="pk" data-pkg="حضور متحرك">
+        <div class="frame-top"></div>
+        <h4>حضور متحرك</h4><div class="fit">لبراند محتاج إنتاج شهري منتظم</div>
+        <div class="price">[سعر معتمد] شهريًا<small>تصوير دوري · حد أدنى للمدة</small></div>
+        <ul><li>استراتيجية شهرية وعدة ريلز</li><li>تصوير دوري ومونتاج</li><li>أغلفة ونصوص</li></ul>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="حضور متحرك">ابنِ الحضور</a>
+      </div>
+      <div class="pk" data-pkg="إنتاج متكامل">
+        <div class="frame-top"></div>
+        <h4>إنتاج متكامل</h4><div class="fit">لحملة أو فيلم بمستوى أعلى</div>
+        <div class="price">بعد التشخيص<small>معالجة إبداعية · نطاق مخصص</small></div>
+        <ul><li>معالجة إبداعية وإخراج</li><li>تصوير متعدد ومونتاج متقدم</li><li>موشن وصوت ونسخ متعددة</li></ul>
+        <a class="btn btn-ghost light btn-sm" href="#offers-cta" data-select="إنتاج متكامل">نفّذ الحملة</a>
+      </div>
+    </div>
+    <div class="compare-btn-row"><button class="btn btn-ghost light compare-svc" data-svc="media">قارن الباقات</button></div>
+  </div>
+</section>
+
+<!-- 5هـ الدعاية -->
+<section class="svc-panel" id="panel-ads">
+  <div class="container">
+    <span class="eyebrow">باقات الدعاية والإعلان</span>
+    <h2 class="sec-title">يتشاف فين… ويتنفذ إزاي… ويفضل في الذاكرة ليه؟</h2>
+    <div class="pk-grid">
+      <div class="pk" data-pkg="نقطة ظهور">
+        <div class="material"><div class="after">صورة التنفيذ الواقعي</div><span class="before-lbl">التصميم — مرّر للتحول</span></div>
+        <h4>نقطة ظهور</h4><div class="fit">لتنفيذ محدد: مطبوع أو لافتة أو واجهة</div>
+        <div class="price">اطلب مقايسة<small>التسعير بعد المقاس والخامة والموقع</small></div>
+        <ul><li>معاينة الاحتياج + تصميم وتجهيز</li><li>خامة وتنفيذ عنصر محدد</li><li>مراجعة جودة</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="نقطة ظهور">اطلب مقايسة</a>
+      </div>
+      <div class="pk" data-pkg="حملة انتشار">
+        <div class="material"><div class="after">التنفيذ على أرض الواقع</div><span class="before-lbl">التصميم — مرّر للتحول</span></div>
+        <h4>حملة انتشار</h4><div class="fit">لافتتاح أو عرض محتاج أكتر من نقطة تماس</div>
+        <div class="price">اطلب مقايسة<small>التسعير بعد حصر النقاط والمواقع</small></div>
+        <ul><li>فكرة حملة ورسالة موحدة</li><li>مجموعة مطبوعات أو لوحات</li><li>إنتاج وتركيب</li></ul>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="حملة انتشار">خطط الحملة</a>
+      </div>
+      <div class="pk" data-pkg="حضور متكامل">
+        <div class="material"><div class="after">هوية موحدة في كل نقطة</div><span class="before-lbl">التصميم — مرّر للتحول</span></div>
+        <h4>حضور متكامل</h4><div class="fit">لشركة محتاجة توحيد الظهور داخل وخارج الفروع</div>
+        <div class="price">بعد المعاينة<small>إدارة موردين وجودة مشمولة حسب النطاق</small></div>
+        <ul><li>مسح نقاط الاتصال</li><li>نظام تطبيقات ولوحات وواجهات</li><li>مطبوعات وهدايا وإدارة جودة</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="حضور متكامل">وحّد الحضور</a>
+      </div>
+    </div>
+    <div class="compare-btn-row"><button class="btn btn-ghost compare-svc" data-svc="ads">قارن الباقات</button></div>
+  </div>
+</section>
+
+<!-- 5و المواقع -->
+<section class="svc-panel" id="panel-web" style="background:var(--purple-100)">
+  <div class="container">
+    <span class="eyebrow">باقات المواقع والحلول الرقمية</span>
+    <h2 class="sec-title">موقع موجود… ولا مسار يحوّل الزيارة لخطوة؟</h2>
+    <div class="pk-grid">
+      <div class="pk" data-pkg="صفحة انطلاق" data-map="0">
+        <div class="chrome"><i></i><i></i><i></i></div>
+        <h4>صفحة انطلاق</h4><div class="fit">لخدمة أو حملة محتاجة صفحة تحويل</div>
+        <div class="price">يبدأ من [سعر معتمد]<small>صفحة واحدة · الاستضافة بند مستقل</small></div>
+        <ul><li>UX مختصر وتصميم متجاوب</li><li>نموذج تواصل</li><li>تحليلات أساسية</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="صفحة انطلاق">ابدأ الصفحة</a>
+      </div>
+      <div class="pk" data-pkg="موقع الشركة" data-map="1">
+        <div class="chrome"><i></i><i></i><i></i></div>
+        <h4>موقع الشركة</h4><div class="fit">لشركة محتاجة حضور مؤسسي متكامل</div>
+        <div class="price">تسعير حسب النطاق<small>لوحة تحكم مشمولة · فترة ضمان</small></div>
+        <ul><li>هيكل محتوى وUX/UI كامل</li><li>صفحات أساسية ولوحة تحكم</li><li>SEO تقني وربط وتحليلات</li></ul>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="موقع الشركة">ابنِ الموقع</a>
+      </div>
+      <div class="pk" data-pkg="منظومة نمو" data-map="2">
+        <div class="chrome"><i></i><i></i><i></i></div>
+        <h4>منظومة نمو</h4><div class="fit">لشركة محتاجة تكامل ووظائف مخصصة</div>
+        <div class="price">بعد جلسة تشخيص<small>خطة دعم وتطوير · تكاملات CRM</small></div>
+        <ul><li>بحث مستخدم وتجربة مخصصة</li><li>تطوير وظائف وتكاملات</li><li>تحليلات متقدمة ودعم</li></ul>
+        <a class="btn btn-ghost btn-sm" href="#offers-cta" data-select="منظومة نمو">صمّم المنظومة</a>
+      </div>
+    </div>
+    <div class="sitemap" id="sitemap">
+      <span>هبوط</span><b>←</b><span>الرئيسية</span><b>←</b><span>الخدمات</span><b>←</b><span>لوحة تحكم</span><b>←</b><span>CRM وتكاملات</span>
+    </div>
+    <p style="text-align:center;color:var(--silver);font-size:.78rem;margin-top:10px">مرّر على أي باقة — خريطة الصفحات بتوضح نطاقها</p>
+    <div class="compare-btn-row"><button class="btn btn-ghost compare-svc" data-svc="web">قارن الباقات</button></div>
+  </div>
+</section>
+
+<!-- ===== 6. العروض ===== -->
+<section class="offers-sec" id="live-offers">
+  <div class="container">
+    <span class="eyebrow reveal">العروض الحالية</span>
+    <h2 class="sec-title reveal">قيمة إضافية تشجع القرار… من غير ما ترخّص البراند</h2>
+    <p class="sec-lead reveal">عروضنا مبنية على قيمة مضافة أو تجميع خدمات متكاملة — مش خصم دائم بيخلي السعر الأصلي مش مقنع.</p>
+    <div class="offer-grid">
+      <div class="offer reveal">
+        <span class="exp">عرض حتى [التاريخ]</span>
+        <h4>ابدأ صح</h4>
+        <p>قيمة جلسة التشخيص بتتخصم من التعاقد لو المشروع بدأ خلال المدة المحددة.</p>
+        <small>الشرط: مدة واضحة واعتماد مالي</small>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="عرض ابدأ صح">احجز التشخيص</a>
+      </div>
+      <div class="offer reveal">
+        <span class="exp">متاح ضمن نطاقات محددة</span>
+        <h4>البراند جاهز للظهور</h4>
+        <p>تجميعة استراتيجية البراند + الهوية + الموقع أو صفحة الانطلاق بقيمة أفضل من الفصل.</p>
+        <small>الشرط: نطاق ثابت وحدود تعديلات</small>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="تجميعة البراند جاهز للظهور">شوف التجميعة</a>
+      </div>
+      <div class="offer reveal">
+        <span class="exp">حد أدنى لمدة التعاقد</span>
+        <h4>محتوى + أداء</h4>
+        <p>مراجعة Funnel أو إعداد تتبع هدية عند الجمع بين إدارة المحتوى والحملات.</p>
+        <small>الشرط: حد أدنى لمدة التعاقد</small>
+        <a class="btn btn-primary btn-sm" href="#offers-cta" data-select="عرض محتوى + أداء">اربط المحتوى بالأداء</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. الأرقام ===== -->
+<section class="counters" id="numbers">
+  <div class="container">
+    <div class="cnt-grid">
+      <div class="cnt"><b data-count="15" data-fmt="+">0</b><span>سنة خبرة ميدانية</span></div>
+      <div class="cnt"><b data-count="83" data-fmt="+">0</b><span>مشروع تم تطويره ودراسته</span></div>
+      <div class="cnt"><b data-count="6">0</b><span>مسارات خدمات متكاملة</span></div>
+      <div class="cnt"><b data-count="3">0</b><span class="words">اتجاه · بناء · وصول</span><span>مراحل في منهج سويد</span></div>
+    </div>
+    <p class="cnt-note">تعكس أرقام المشروعات والخبرة المسار المهني للمؤسس وما ساهم في تطويره عبر أكثر من 15 عامًا، بينما تُعرض نتائج سويد وفق البيانات الموثقة لكل مشروع.</p>
+  </div>
+</section>
+
+<!-- ===== 8. FAQ ===== -->
+<section id="faq">
+  <div class="container" style="max-width:820px">
+    <span class="eyebrow reveal">الأسئلة الشائعة</span>
+    <h2 class="sec-title reveal">اعتراضات لازم تتقفل قبل التواصل</h2>
+    <div style="margin-top:36px" id="faqList">
+      <div class="faq-item reveal"><button class="faq-q">إزاي أعرف أنهي باقة مناسبة؟<i>+</i></button><div class="faq-a">ابدأ بمحدد الاحتياج فوق أو اطلب جلسة تشخيص — وإحنا نرشح المستوى المناسب حسب وضعك وهدفك، مش حسب أعلى سعر.</div></div>
+      <div class="faq-item reveal"><button class="faq-q">هل أقدر أعدل محتويات الباقة؟<i>+</i></button><div class="faq-a">نعم في حدود الحفاظ على هدف الباقة. وأي تغيير مؤثر في النطاق أو المدة بيتسعّر بوضوح قبل البدء.</div></div>
+      <div class="faq-item reveal"><button class="faq-q">هل ميزانية الإعلانات ضمن الباقة؟<i>+</i></button><div class="faq-a">لا — أتعاب الإدارة منفصلة عن ميزانية الإعلان، ما لم يُذكر غير كده صراحة.</div></div>
+      <div class="faq-item reveal"><button class="faq-q">هل التصوير والطباعة والاستضافة مشمولين؟<i>+</i></button><div class="faq-a">البنود المشمولة وغير المشمولة بتظهر جوه كل باقة — لأن التكاليف دي بتختلف حسب النطاق والخامات والموقع.</div></div>
+      <div class="faq-item reveal"><button class="faq-q">هل أقدر أبدأ بخدمة واحدة؟<i>+</i></button><div class="faq-a">أكيد — لكل خدمة 3 مستويات مستقلة، وتقدر تتوسع بعدين للباقات الشاملة.</div></div>
+      <div class="faq-item reveal"><button class="faq-q">إيه مدة التعاقد؟<i>+</i></button><div class="faq-a">بتختلف حسب الخدمة: المشروعات التأسيسية ليها مدة تنفيذ، والخدمات المستمرة ليها حد أدنى بيتذكر بوضوح في العقد.</div></div>
+      <div class="faq-item reveal"><button class="faq-q">هل في ضمان للنتائج؟<i>+</i></button><div class="faq-a">بنضمن وضوح المنهج وجودة التنفيذ والمتابعة — لكن النتائج التجارية بتتأثر بالسوق والعرض والميزانية وسرعة اعتماد القرارات.</div></div>
+      <div class="faq-item reveal"><button class="faq-q">هل الباقة مناسبة لأي قطاع؟<i>+</i></button><div class="faq-a">الهيكل واحد، لكن التطبيق بيتخصص حسب القطاع والجمهور وطبيعة القرار الشرائي.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 9. CTA + النموذج ===== -->
+<section class="o-cta" id="offers-cta">
+  <div class="container wrap">
+    <div>
+      <span class="eyebrow reveal">الإغلاق</span>
+      <h2 class="reveal">مش لاقي مشروعك جوه باقة جاهزة؟</h2>
+      <p class="reveal">وده طبيعي — لأن كل مشروع له بوصلته الخاصة. ابعتلنا وضعك وهدفك، وإحنا نحدد لك إيه اللي تحتاجه فعلًا… وإيه اللي مش محتاج تصرف عليه.</p>
+      <div class="reveal" style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="#leadForm">خلينا نحدد الاتجاه</a>
+        <a class="btn btn-ghost light" href="#">تواصل مع مستشار</a>
+      </div>
+    </div>
+    <div class="stepper reveal" id="leadForm">
+      <div class="s-dots"><div class="s-dot on"></div><div class="s-dot"></div><div class="s-dot"></div><div class="s-dot"></div></div>
+      <div class="f-step show" data-fs="1">
+        <label>الباقة أو الخدمة المختارة</label>
+        <input type="text" id="chosenPkg" placeholder="هتتملى تلقائيًا لما تختار باقة" readonly>
+        <label>اسمك *</label><input type="text" placeholder="اكتب اسمك">
+        <label>اسم الشركة</label><input type="text" placeholder="اختياري">
+        <label>رقم الهاتف / واتساب *</label><input type="tel" placeholder="01xxxxxxxxx">
+      </div>
+      <div class="f-step" data-fs="2">
+        <label>القطاع</label><select><option>اختار القطاع</option><option>عقاري</option><option>تكنولوجيا وخدمات</option><option>صناعة</option><option>طبي</option><option>مطاعم وتجزئة</option><option>آخر</option></select>
+        <label>مرحلة المشروع</label><select><option>فكرة أو تأسيس</option><option>قائم ومحتاج نمو</option><option>محتاج إعادة توجيه</option></select>
+        <label>أقرب تحدٍ *</label><input type="text" placeholder="سطر واحد كفاية">
+        <label>موعد البدء</label><select><option>الآن</option><option>خلال شهر</option><option>بجهز وأقارن</option></select>
+      </div>
+      <div class="f-step" data-fs="3">
+        <label>نطاق الميزانية</label>
+        <select><option>[نطاق معتمد 1]</option><option>[نطاق معتمد 2]</option><option>[نطاق معتمد 3]</option><option>محتاج مساعدة في تحديدها</option></select>
+      </div>
+      <div class="f-step" data-fs="4">
+        <div class="summary" id="leadSummary">الملخص هيظهر هنا…</div>
+        <label style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:.8rem"><input type="checkbox" style="width:18px;height:18px;accent-color:var(--fuchsia)"> موافق على سياسة الخصوصية</label>
+      </div>
+      <div class="step-nav">
+        <button class="btn btn-ghost light btn-sm" id="prevStep" style="visibility:hidden">السابق</button>
+        <button class="btn btn-primary btn-sm" id="nextStep">التالي</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- زر الموبايل الثابت -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sel-name">مختار: <span id="stickyName">—</span><small>غيّر اختيارك في أي وقت</small></div>
+  <a class="btn btn-primary btn-sm" href="#offers-cta">اطلب تفاصيل الباقة</a>
+</div>
+
+<footer>
+  <div class="container">
+    <div>© 2026 سويد للاستشارات الإدارية والتسويقية — كل الحقوق محفوظة.</div>
+    <div><a href="#">سياسة الخصوصية</a> · <a href="#">شروط الاستخدام</a></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script>
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = window.matchMedia('(max-width: 820px)').matches;
+
+/* نافبار */
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  document.getElementById('nav').classList.toggle('hidden', y > lastY && y > 300);
+  lastY = y;
+}, { passive: true });
+
+/* ========== الكويز ========== */
+const answers = [];
+const recMap = {
+  'قرارات واتجاه':'الاستشارات والتطوير','براند مش واضح':'البراند والهوية','تسويق بلا نتيجة':'التسويق والحملات',
+  'محتوى ضعيف':'المحتوى المرئي','ظهور على الأرض':'الدعاية والإعلان','موقع أو حل رقمي':'المواقع والحلول الرقمية'
+};
+const lvlMap = { 'فكرة أو تأسيس':'المستوى الأول (التأسيس)','قائم ومحتاج نمو':'المستوى الأوسط (النمو)','محتاج إعادة توجيه':'باقة "تحديد الاتجاه" الشاملة أولًا' };
+document.querySelectorAll('.q-step').forEach(step => {
+  step.querySelectorAll('.q-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      opt.classList.add('sel');
+      answers[+step.dataset.step - 1] = opt.dataset.v;
+      setTimeout(() => {
+        step.classList.remove('show');
+        const n = +step.dataset.step + 1;
+        document.querySelectorAll('.q-dot').forEach((d, i) => d.classList.toggle('on', i < n));
+        const next = document.querySelector(`.q-step[data-step="${n}"]`);
+        if (next) next.classList.add('show');
+        else {
+          const res = document.querySelector('.q-result');
+          res.classList.add('show');
+          const svc = recMap[answers[0]] || 'الباقات الشاملة';
+          const lvl = lvlMap[answers[1]] || '';
+          const urgency = answers[2] === 'الآن' ? 'وتقدر تبدأ فورًا بجلسة تشخيص.' : answers[2] === 'خلال شهر' ? 'وعندك وقت مناسب للمقارنة قبل البدء.' : 'خد وقتك في المقارنة — والتشخيص المجاني بيثبت الاختيار.';
+          document.getElementById('recText').innerHTML =
+            `بناءً على إجاباتك، ابدأ بمسار <b>${svc}</b> — وغالبًا <b>${lvl}</b>. تقدر تشوف التفاصيل، تقارن، أو تطلب تشخيص يثبت الاختيار قبل التعاقد. ${urgency}`;
+        }
+      }, 250);
+    });
+  });
+});
+document.getElementById('qSkip').addEventListener('click', () => document.getElementById('main-packages').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }));
+
+/* ========== المقارنة ========== */
+const compareData = {
+  main: { title:'مقارنة الباقات الشاملة', cols:['تحديد الاتجاه','بناء المسار','شراكة الوصول'], rows:[
+    ['التشخيص وتحليل الوضع','شامل','شامل','شامل ومستمر'],
+    ['تحليل السوق والمنافسين','أساسي','متقدم','متقدم مع تحديثات'],
+    ['الخطة التنفيذية','90 يوم','خطة إطلاق','ربع سنوية متجددة'],
+    ['استراتيجية البراند','—','مشمولة','مشمولة ومطورة'],
+    ['الهوية والتأسيس','—','هوية أساسية ومنصات','حسب نطاق المشروع'],
+    ['إدارة التسويق','—','مرحلة إطلاق اختيارية','مشمولة'],
+    ['إنتاج المحتوى','—','حزمة إطلاق','إنتاج شهري'],
+    ['إدارة الحملات','توصيات فقط','إعداد الإطلاق','إدارة وتحسين'],
+    ['التقارير والاجتماعات','جلسة تسليم','اجتماعات مرحلة البناء','دورية'],
+    ['مدة الارتباط','مشروع محدد','مرحلة تأسيس','3 أشهر فأكثر'],
+  ]},
+  consult:{ title:'مقارنة باقات الاستشارات', cols:['جلسة الاتجاه','خارطة النمو','شريك القرار'], rows:[
+    ['مدة العمل','جلسة أو أسبوع','3–6 أسابيع','شهري أو ربع سنوي'],
+    ['التحليل','محدد','شامل','شامل ومتجدد'],
+    ['الخطة التنفيذية','أولويات','90 يوم','متجددة'],
+    ['المتابعة','جلسة تسليم','مراجعة واحدة','دورية'],
+    ['التنفيذ بواسطة سويد','اختياري','يُسعّر منفصلًا','يمكن دمجه'],
+  ]},
+  brand:{ title:'مقارنة باقات البراند', cols:['أساس البراند','هوية متكاملة','نظام البراند'], rows:[
+    ['استراتيجية البراند','مشمولة','مشمولة','مشمولة ومتعمقة'],
+    ['شخصية ونبرة الصوت','أساسية','شاملة','دليل استخدام'],
+    ['الهوية البصرية','—','متكاملة','متكاملة وموسعة'],
+    ['التطبيقات','—','أساسية','حسب نقاط الاتصال'],
+    ['إطلاق البراند','توصيات','اختياري','إشراف مشمول'],
+  ]},
+  mkt:{ title:'مقارنة باقات التسويق', cols:['حضور منظم','نمو مستمر','أداء ونتائج'], rows:[
+    ['الخطة','شهرية','ربع سنوية','نمو متجدد'],
+    ['عدد المنصات','يُحدد','أوسع','حسب رحلة العميل'],
+    ['المحتوى المرئي','محدود','دوري','متعدد الأنواع'],
+    ['إدارة الإعلانات','اختيارية','مشمولة','مشمولة ومتقدمة'],
+    ['التقارير','شهري','شهري + قرارات','Dashboard + اجتماعات'],
+  ]},
+  media:{ title:'مقارنة باقات المحتوى المرئي', cols:['لقطة البداية','حضور متحرك','إنتاج متكامل'], rows:[
+    ['الفكرة والسكريبت','مركز','شهري','معالجة إبداعية'],
+    ['التصوير','يوم محدد','دوري','حسب خطة الإنتاج'],
+    ['المونتاج','أساسي احترافي','متعدد','متقدم'],
+    ['الموشن والصوت','إضافي','حسب المحتوى','مشمول حسب المعالجة'],
+    ['حقوق الاستخدام','توضح بالعقد','توضح بالعقد','توضح بالعقد'],
+  ]},
+  ads:{ title:'مقارنة باقات الدعاية', cols:['نقطة ظهور','حملة انتشار','حضور متكامل'], rows:[
+    ['الفكرة الإعلانية','حسب العنصر','موحدة للحملة','نظام كامل'],
+    ['التصميم','عنصر محدد','مجموعة تطبيقات','تطبيقات متعددة'],
+    ['التصنيع','مشمول بالمقايسة','مشمول بالمقايسة','مشمول حسب النطاق'],
+    ['التركيب','حسب الموقع','حسب المواقع','إدارة شاملة'],
+    ['التسعير','بعد المقاس والخامة','بعد الحصر','بعد المعاينة'],
+  ]},
+  web:{ title:'مقارنة باقات المواقع', cols:['صفحة انطلاق','موقع الشركة','منظومة نمو'], rows:[
+    ['الصفحات','صفحة واحدة','عدة صفحات','حسب النظام'],
+    ['UX/UI','مسار واحد','تجربة كاملة','بحث وتجربة مخصصة'],
+    ['لوحة التحكم','اختيارية','مشمولة','مخصصة'],
+    ['التكاملات','أساسية','نماذج وتحليلات','CRM وواجهات ربط'],
+    ['الدعم','فترة تسليم','فترة ضمان','خطة دعم وتطوير'],
+  ]},
+};
+const ov = document.getElementById('compareOverlay');
+function openCompare(key){
+  const d = compareData[key];
+  document.getElementById('ovTitle').textContent = d.title;
+  const same = r => r[1] === r[2] && r[2] === r[3];
+  document.getElementById('ovTable').innerHTML =
+    `<tr><th>البند</th>${d.cols.map(c => `<th>${c}</th>`).join('')}</tr>` +
+    d.rows.map(r => `<tr class="${same(r) ? 'same' : ''}"><td>${r[0]}</td>${r.slice(1).map(v => `<td class="${v === '—' ? 'na' : ''}">${v}</td>`).join('')}</tr>`).join('');
+  document.getElementById('diffOnly').checked = false;
+  ov.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+document.getElementById('openCompare').addEventListener('click', () => openCompare('main'));
+document.querySelectorAll('.compare-svc').forEach(b => b.addEventListener('click', () => openCompare(b.dataset.svc)));
+document.getElementById('closeCompare').addEventListener('click', () => { ov.classList.remove('open'); document.body.style.overflow = ''; });
+ov.addEventListener('click', e => { if (e.target === ov) { ov.classList.remove('open'); document.body.style.overflow = ''; } });
+document.getElementById('diffOnly').addEventListener('change', e => {
+  document.querySelectorAll('#ovTable tr.same').forEach(tr => tr.classList.toggle('hideme', e.target.checked));
+});
+
+/* ========== Tabs الخدمات (Crossfade) ========== */
+document.querySelectorAll('.st-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.st-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.svc-panel').forEach(p => p.classList.remove('show'));
+    const panel = document.getElementById('panel-' + btn.dataset.panel);
+    panel.classList.add('show');
+    history.replaceState(null, '', '?service=' + btn.dataset.panel);
+    if (!reduced && window.gsap) gsap.from(panel.querySelectorAll('.pk'), { opacity: 0, y: 20, stagger: .09, duration: .5, ease: 'power2.out' });
+    document.getElementById('svcTabs').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+  });
+});
+const svcParam = new URLSearchParams(location.search).get('service');
+if (svcParam && document.querySelector(`.st-btn[data-panel="${svcParam}"]`)) document.querySelector(`.st-btn[data-panel="${svcParam}"]`).click();
+
+/* ========== اختيار الباقة (زر ثابت موبايل + تعبئة النموذج) ========== */
+function selectPkg(name){
+  document.getElementById('chosenPkg').value = name;
+  document.getElementById('stickyName').textContent = name;
+  if (isMobile) document.getElementById('stickyCta').classList.add('show');
+}
+document.querySelectorAll('[data-select]').forEach(el => el.addEventListener('click', () => selectPkg(el.dataset.select)));
+document.querySelectorAll('.pk,.mcard').forEach(card => card.addEventListener('click', e => {
+  if (e.target.closest('a,button')) return;
+  document.querySelectorAll('.pk,.mcard').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  if (card.dataset.pkg) selectPkg(card.dataset.pkg);
+}));
+
+/* درج "شوف كل اللي هتستلمه" */
+document.querySelectorAll('.drawer-btn').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); b.nextElementSibling.classList.toggle('open'); }));
+
+/* لوحة التسويق: إضاءة الوحدات */
+const mods = document.querySelectorAll('#miniBoard .mod');
+document.querySelectorAll('#panel-mkt .pk').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    const on = (card.dataset.mods || '').split(',').map(Number);
+    mods.forEach((m, i) => m.classList.toggle('on', on.includes(i)));
+  });
+});
+
+/* خريطة المواقع: نطاق الباقة */
+const mapScopes = [[0], [1, 2, 3], [1, 2, 3, 4]];
+const siteNodes = document.querySelectorAll('#sitemap span');
+document.querySelectorAll('#panel-web .pk').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    const scope = mapScopes[+card.dataset.map];
+    siteNodes.forEach((n, i) => n.classList.toggle('on', scope.includes(i)));
+  });
+});
+
+/* FAQ */
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+
+/* ========== نموذج متعدد الخطوات ========== */
+let fs = 1;
+const maxFs = 4;
+function showStep(){
+  document.querySelectorAll('.f-step').forEach(s => s.classList.toggle('show', +s.dataset.fs === fs));
+  document.querySelectorAll('.s-dot').forEach((d, i) => d.classList.toggle('on', i < fs));
+  document.getElementById('prevStep').style.visibility = fs === 1 ? 'hidden' : 'visible';
+  document.getElementById('nextStep').textContent = fs === maxFs ? 'ابعت الطلب' : 'التالي';
+  if (fs === maxFs) {
+    const pkg = document.getElementById('chosenPkg').value || 'من غير باقة محددة';
+    document.getElementById('leadSummary').innerHTML = `اخترت: <b>${pkg}</b> — هنراجع طلبك علشان ما نرشحلكش باقة أكبر أو أصغر من احتياجك، ونتواصل معاك خلال وقت العمل المعتمد.`;
+  }
+}
+document.getElementById('nextStep').addEventListener('click', () => {
+  if (fs < maxFs) { fs++; showStep(); }
+  else alert('طلبك وصل ✓ هنراجعه ونتواصل معاك خلال وقت العمل المعتمد.');
+});
+document.getElementById('prevStep').addEventListener('click', () => { if (fs > 1) { fs--; showStep(); } });
+
+/* ========== موشن الاسكرول ========== */
+if (!reduced && window.gsap) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* الهيرو: الإبرة بتدور 700ms وتثبت ناحية الزر الأساسي + مسارات المحطات بتترسم */
+  gsap.from('#oNeedle', { rotation: 200, transformOrigin: '210px 150px', duration: .7, ease: 'power2.inOut', delay: .25 });
+  ['#hp1', '#hp2', '#hp3'].forEach((sel, i) => {
+    const p = document.querySelector(sel);
+    const len = p.getTotalLength();
+    p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
+    gsap.to(p, { strokeDashoffset: 0, duration: .9, delay: .6 + i * .2, ease: 'power1.inOut' });
+  });
+
+  /* عام */
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.to(el, { opacity: 1, y: 0, duration: .6, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+  });
+
+  /* الباقات الشاملة: خط المسار بيترسم والمحطات بتنور بالتتابع */
+  const mp = document.getElementById('mainsPath');
+  const mlen = mp.getTotalLength();
+  mp.style.strokeDasharray = mlen; mp.style.strokeDashoffset = mlen;
+  gsap.timeline({ scrollTrigger: { trigger: '.mains-grid', start: 'top 70%', once: true } })
+    .to(mp, { strokeDashoffset: 0, duration: 1.2, ease: 'power1.inOut' })
+    .add(() => document.querySelectorAll('.mcard').forEach((c, i) => setTimeout(() => c.classList.add('lit'), i * 220)), '-=.5');
+
+  /* العدادات: عند ظهور 60% — مرة واحدة (800–1200ms) */
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const end = +el.dataset.count, fmt = el.dataset.fmt || '';
+    const obj = { v: 0 };
+    ScrollTrigger.create({ trigger: el, start: 'top 60%', once: true,
+      onEnter: () => gsap.to(obj, { v: end, duration: 1, ease: 'power1.out',
+        onUpdate: () => el.textContent = (fmt === '+' ? '+' : '') + Math.round(obj.v) }) });
+  });
+} else {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    el.textContent = (el.dataset.fmt === '+' ? '+' : '') + el.dataset.count;
+  });
+}
+</script>
+</body>
+</html>

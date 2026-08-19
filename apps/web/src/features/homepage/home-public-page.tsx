@@ -65,12 +65,22 @@ export function HomePublicPage() {
       });
     };
 
-    const timers = [80, 300, 700, 1200, 1700].map((delay) =>
-      window.setTimeout(scrollToTarget, delay),
-    );
+    scrollToTarget();
+    window.addEventListener("load", scrollToTarget);
+
+    let attempts = 0;
+    const retryTimer = window.setInterval(() => {
+      attempts += 1;
+      scrollToTarget();
+
+      if (attempts >= 20) {
+        window.clearInterval(retryTimer);
+      }
+    }, 250);
 
     return () => {
-      timers.forEach((timer) => window.clearTimeout(timer));
+      window.removeEventListener("load", scrollToTarget);
+      window.clearInterval(retryTimer);
     };
   }, []);
 

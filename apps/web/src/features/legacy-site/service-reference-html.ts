@@ -4,19 +4,17 @@ import { brandingReferenceHtmlBase64 } from "./reference-html-service-branding";
 import { consultingReferenceHtmlBase64 } from "./reference-html-service-consulting";
 import { digital_marketingReferenceHtmlBase64 } from "./reference-html-service-digital-marketing";
 import { mediaReferenceHtmlBase64 } from "./reference-html-service-media";
+import { advertisingReferenceHtmlBase64 } from "./reference-html-service-advertising";
 import { software_developmentReferenceHtmlBase64 } from "./reference-html-service-software-development";
-import {
-  applySweedReferenceTheme,
-  decorateReferenceActionButtons,
-  guardReferenceScript,
-} from "./reference-html-normalizer";
+import { guardReferenceScript } from "./reference-html-normalizer";
 
 export type ServiceReferenceSlug =
   | "consulting"
   | "branding"
   | "digital-marketing"
   | "software-development"
-  | "media";
+  | "media"
+  | "advertising";
 
 export type ServiceReferenceScript = {
   src?: string;
@@ -38,14 +36,7 @@ const SOURCES: Record<ServiceReferenceSlug, readonly string[]> = {
   "digital-marketing": digital_marketingReferenceHtmlBase64,
   "software-development": software_developmentReferenceHtmlBase64,
   media: mediaReferenceHtmlBase64,
-};
-
-const FONT_STACK = '"SWEED Helvetica Arabic", "SF Arabic", Arial, sans-serif';
-
-const SERVICE_NAME_REPLACEMENTS: Partial<Record<ServiceReferenceSlug, readonly [RegExp, string][]>> = {
-  consulting: [[/الاستشارات الإدارية والتسويقية وتطوير الأعمال/g, "الاستشارات الإدارية والتسويقية"]],
-  branding: [[/بناء وتطوير البراند والهوية/g, "بناء البراند والهوية البصرية"]],
-  "software-development": [[/البرمجة والتطوير التقني/g, "المواقع والأنظمة والحلول الرقمية"]],
+  advertising: advertisingReferenceHtmlBase64,
 };
 
 function decodeSource(chunks: readonly string[]) {
@@ -158,15 +149,9 @@ function scopeCss(css: string) {
 }
 
 function normalizePrototypeCss(css: string) {
-  const themed = applySweedReferenceTheme(css)
-    .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/@import\s+(?:url\([^)]*\)|["'][^"']+["'])[^;]*;?/gi, "")
-    .replace(/['"]Cairo['"]/gi, FONT_STACK)
-    .replace(/['"]IBM Plex Sans Arabic['"]/gi, FONT_STACK)
-    .replace(/font-family\s*:\s*Cairo(?:\s*,[^;}]*)?/gi, `font-family:${FONT_STACK}`)
-    .replace(/font-family\s*:\s*IBM Plex Sans Arabic(?:\s*,[^;}]*)?/gi, `font-family:${FONT_STACK}`);
-
-  return scopeCss(themed);
+  // Keep the supplied stylesheet intact; scoping only prevents it from
+  // affecting unrelated Next.js pages.
+  return scopeCss(css);
 }
 
 function normalizePrototypeLinks(html: string, slug: ServiceReferenceSlug) {
@@ -182,33 +167,14 @@ function normalizePrototypeLinks(html: string, slug: ServiceReferenceSlug) {
     .replace(/href=["']\/offers\?service=web["']/gi, 'href="/offers?service=software-development"');
 }
 
-function stripPrototypeChrome(html: string) {
-  return html
-    .replace(/<nav\b[\s\S]*?<\/nav>/gi, "")
-    .replace(/<footer\b[\s\S]*?<\/footer>/gi, "");
-}
-
-function normalizeSharedServiceName(value: string, slug: ServiceReferenceSlug) {
-  return (SERVICE_NAME_REPLACEMENTS[slug] ?? []).reduce(
-    (result, [pattern, replacement]) => result.replace(pattern, replacement),
-    value,
-  );
-}
-
 export function getServiceReferenceDocument(slug: ServiceReferenceSlug): ServiceReferenceDocument {
   const source = decodeSource(SOURCES[slug]);
   const sourceLength = Buffer.byteLength(source, "utf8");
   const head = source.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] ?? "";
   let body = source.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? source;
 
-  const title = normalizeSharedServiceName(
-    cleanText(head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? ""),
-    slug,
-  );
-  const description = normalizeSharedServiceName(
-    head.match(/<meta\b(?=[^>]*name=["']description["'])[^>]*content=["']([^"']*)["'][^>]*>/i)?.[1] ?? "",
-    slug,
-  );
+  const title = cleanText(head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "");
+  const description = head.match(/<meta\b(?=[^>]*name=["']description["'])[^>]*content=["']([^"']*)["'][^>]*>/i)?.[1] ?? "";
 
   const styles = [...head.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)]
     .map((match) => normalizePrototypeCss(match[1] ?? ""))
@@ -228,11 +194,7 @@ export function getServiceReferenceDocument(slug: ServiceReferenceSlug): Service
 
   body = body.replace(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi, "");
 
-  body = stripPrototypeChrome(body);
-  body = normalizeSharedServiceName(
-    decorateReferenceActionButtons(normalizePrototypeLinks(applySweedReferenceTheme(body), slug)),
-    slug,
-  );
+  body = normalizePrototypeLinks(body, slug);
 
   return { title, description, sourceLength, bodyHtml: body, styles, scripts };
 }

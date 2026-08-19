@@ -31,7 +31,7 @@ export function HomeArchigreenProjectsSection() {
       speed: 0.7,
       startDelay: 700,
       stopOnFocusIn: false,
-      stopOnInteraction: true,
+      stopOnInteraction: false,
       stopOnMouseEnter: false,
     });
     const embla = EmblaCarousel(
@@ -47,6 +47,7 @@ export function HomeArchigreenProjectsSection() {
 
     emblaApiRef.current = embla;
     autoScrollRef.current = autoScroll;
+    autoScroll.play(0);
 
     return () => {
       emblaApiRef.current = null;

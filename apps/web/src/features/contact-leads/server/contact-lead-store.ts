@@ -5,6 +5,7 @@ import { randomUUID } from "node:crypto";
 
 export type ContactLeadInput = {
   name: string;
+  company?: string;
   phone: string;
   interest: string;
   message: string;

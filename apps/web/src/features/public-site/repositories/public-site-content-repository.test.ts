@@ -19,6 +19,7 @@ describe("public-site content repository", () => {
     expect(shell.contactAction.href).toBe("/contact");
     expect(shell.siteSettings.primaryEmail).toBe("info@sweed.com");
     expect(shell.siteSettings.primaryPhone).toBe("01068274662");
+    expect(shell.siteSettings.address).toBe("مدينة السادات، مصر");
   });
 
   test("returns sorted services listing source", () => {

@@ -16,7 +16,8 @@
 }
 
 .primaryMethods a,
-.contactMethods a {
+.contactMethods a,
+.contactMethodStatic {
   display: grid;
   gap: var(--stack-xs);
   min-height: var(--control-height-lg);
@@ -243,6 +244,12 @@
 }
 
 .contactMethods a {
+  padding-block: var(--stack-lg);
+  color: var(--color-ink);
+  border-block-end: 1px solid var(--color-line);
+}
+
+.contactMethodStatic {
   padding-block: var(--stack-lg);
   color: var(--color-ink);
   border-block-end: 1px solid var(--color-line);

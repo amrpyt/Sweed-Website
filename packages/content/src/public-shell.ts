@@ -7,5 +7,6 @@ export const publicSiteShellSettings: SiteSettings = {
   primaryPhone: "01068274662",
   primaryEmail: "info@sweed.com",
   whatsappUrl: "https://wa.me/201068274662",
+  address: "مدينة السادات، مصر",
   workingHours: "السبت - الخميس: 9:00 ص - 6:00 م",
 };

@@ -6,6 +6,7 @@ export const siteSettings: SiteSettings = {
   primaryPhone: "+20 106 827 4662",
   primaryEmail: "info@sweed.com",
   whatsappUrl: "https://wa.me/201068274662",
+  address: "مدينة السادات، مصر",
 };
 
 export const services: Service[] = [

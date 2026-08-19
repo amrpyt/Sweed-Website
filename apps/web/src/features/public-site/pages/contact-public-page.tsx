@@ -55,6 +55,12 @@ export function ContactPublicPage() {
                 <span>البريد الإلكتروني</span>
                 <strong dir="ltr">{shell.siteSettings.primaryEmail}</strong>
               </a>
+              {shell.siteSettings.address ? (
+                <div className={styles.contactMethodStatic}>
+                  <span>العنوان</span>
+                  <strong>{shell.siteSettings.address}</strong>
+                </div>
+              ) : null}
             </div>
           </section>
         </div>

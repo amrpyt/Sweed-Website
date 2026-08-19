@@ -17,6 +17,7 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
 
 const emptyValues: ContactInquiryValues = {
   name: "",
+  company: "",
   phone: "",
   service: "",
   notes: "",
@@ -111,6 +112,19 @@ export function ContactInquiryForm({
               aria-invalid={Boolean(errors.name)}
               aria-describedby={errors.name ? "contact-name-error" : undefined}
               onChange={(event) => updateField("name", event.target.value)}
+            />
+          </Field>
+
+          <Field label="الشركة" errorId="contact-company-error">
+            <input
+              id="contactCompany"
+              name="company"
+              type="text"
+              autoComplete="organization"
+              maxLength={160}
+              value={values.company}
+              placeholder="اسم الشركة (اختياري)"
+              onChange={(event) => updateField("company", event.target.value)}
             />
           </Field>
 
@@ -230,6 +244,7 @@ function getInitialState(
     context,
     values: {
       name: searchParams.get("name") ?? "",
+      company: searchParams.get("company") ?? "",
       phone: searchParams.get("phone") ?? "",
       service,
       notes: searchParams.get("notes") ?? "",

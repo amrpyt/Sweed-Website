@@ -13,6 +13,7 @@ const contactRateLimiter = new SlidingWindowRateLimiter({
 
 const limits = {
   name: 120,
+  company: 160,
   phone: 40,
   interest: 160,
   message: 2000,
@@ -37,6 +38,7 @@ function parseLead(body: unknown): { lead?: ContactLeadInput; errors?: Record<st
   const raw = body as Record<string, unknown>;
   const lead: ContactLeadInput = {
     name: cleanString(raw.name, limits.name),
+    company: cleanString(raw.company, limits.company),
     phone: cleanString(raw.phone, limits.phone),
     interest: cleanString(raw.interest, limits.interest),
     message: cleanString(raw.message, limits.message),

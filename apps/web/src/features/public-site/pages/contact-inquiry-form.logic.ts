@@ -1,5 +1,6 @@
 export type ContactInquiryValues = {
   name: string;
+  company: string;
   phone: string;
   service: string;
   notes: string;
@@ -31,6 +32,7 @@ export function buildContactLeadPayload(
 ) {
   return {
     name: values.name.trim(),
+    company: values.company.trim(),
     phone: values.phone.trim(),
     interest: values.service,
     message: values.notes.trim(),

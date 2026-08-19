@@ -30,11 +30,30 @@
 }
 
 .sectionLabel {
+  display: inline-flex;
   width: fit-content;
+  min-height: 2rem;
+  align-items: center;
   margin-inline: auto;
+  border-radius: 0.7rem 0.7rem 0.22rem;
+  padding-inline: 0.85rem;
+  background:
+    linear-gradient(90deg, rgb(237 32 98 / 15%), rgb(237 32 98 / 4%)),
+    #ffffff;
   color: #d81958;
   font-size: var(--type-label-size);
   font-weight: var(--font-weight-strong);
+  box-shadow: inset 0 0 0 1px rgb(237 32 98 / 16%);
+}
+
+.sectionLabel::before {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-inline-end: 0.5rem;
+  border: 2px solid #d81958;
+  border-radius: 0.15rem;
+  content: "";
+  transform: rotate(45deg);
 }
 
 .intro h2 {
@@ -56,6 +75,7 @@
   font-size: var(--type-small-size);
   font-weight: var(--font-weight-strong);
   line-height: var(--type-small-leading);
+  word-spacing: 0.16em;
 }
 
 .servicesContent {

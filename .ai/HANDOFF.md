@@ -1,13 +1,13 @@
 # Handoff
 
-Updated: 2026-08-20T03:11:00+03:00
+Updated: 2026-08-20T03:38:00+03:00
 
 ## Vercel Delivery
 
-- GitHub `main` is pushed through `55b54c6`.
+- GitHub `main` is pushed through application commit `4d5703f`.
 - Vercel project: `sweed-website`.
 - Production URL: `https://sweed-website.vercel.app`.
-- GitHub→Vercel automatic deployment is active; commit `55b54c6` reached `Deployment has completed` and production About QA passed.
+- GitHub→Vercel automatic deployment is active; commit `4d5703f` reached `Deployment has completed` and production Branding/Digital Marketing QA passed.
 - No Vercel environment variables are configured yet; do not assume AI/admin/backend integrations are production-configured there.
 
 ## Read First
@@ -22,10 +22,15 @@ Updated: 2026-08-20T03:11:00+03:00
 
 ## Current Public Contract
 
+- SWEED-051 fixes the shared reference-service renderer. Keep inline `font-family:` replacements quote-safe inside HTML attributes and keep reference CTA wrappers `inline-grid`; changing them back to a quoted inline stack or block-level `grid` can corrupt uploaded HTML or produce full-width 740–1265px action bars.
+- `/services/branding` must keep four `.wcard` case cards in the browser DOM. Its case/compare CTAs should remain intrinsic (currently about 171–176px on desktop), not container-width bars.
+- `/services/digital-marketing` case/compare CTAs should remain intrinsic (currently about 171–193px on desktop), with zero oversized buttons at desktop and 390px mobile widths.
+- About's secondary CTA specificity correction is intentionally About-only. Do not solve About conflicts by adding broad `!important` paint rules to every `.sweed-reference-page .btn`.
+
 - `/about` deliberately uses `LegacyPage` `presentation="reference"` rather than `exact`: the approved reference HTML still owns content/layout/motion, while the shared SWEED header/footer, palette bridge, SWEED Helvetica Arabic, and canonical CTA system own the brand shell.
 - Keep `/about` `showAdvisor={false}` unless the owner explicitly asks to add that feature; the pre-change exact page did not include the AI advisor and SWEED-050 intentionally changed branding only.
 - About content preservation was browser-diffed against pre-change production: section identifiers/classes and h1/h2/h3 text are unchanged. Current About has 14 reference sections.
-- The reference CTA bridge now uses important paint declarations for shared marketing button background/color/border so higher-specificity prototype selectors such as `.cta .btn-ghost` cannot create white-on-white or otherwise repaint the canonical system.
+- The reference CTA bridge keeps intrinsic `inline-grid` sizing. About's higher-specificity `.cta .btn-ghost` conflict is handled by an About-only override rather than broad important paint declarations.
 - Production About QA at 1440×900 and 390×844: shared header/footer present, prototype nav absent, SWEED font only, primary purple / secondary white button hierarchy, expanding fill works, zero overflow, zero broken images/browser errors, and mobile menu opens correctly.
 
 - SWEED-049 supersedes the SWEED-048 divider treatment: there is no standalone five-dot row between Services and Why. Only the touching edges are compacted to 32px each, producing a measured 64px Services-CTA → Why-heading gap on desktop and mobile.

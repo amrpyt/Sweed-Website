@@ -1,31 +1,39 @@
 # Current State
 
-Updated: 2026-08-20T03:11:00+03:00
+Updated: 2026-08-20T03:38:00+03:00
 Git branch: `main` synchronized through isolated worktree
-Git HEAD: `55b54c6`
-Application commit: `fix: align about page with SWEED brand`
+Git HEAD: `4d5703f`
+Application commit: `fix: repair reference service rendering`
 Active Task: SWEED-042
 Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
-Status: SWEED-050 complete and deployed — SWEED-042 resumed
+Status: SWEED-051 complete and deployed — SWEED-042 resumed
 
 ## Delivery Update
 
-- Pushed `main` to GitHub through `55b54c6`; the application worktree and `origin/main` are synchronized.
-- Vercel project `sweed-website` automatically deployed `55b54c6` successfully.
+- Pushed `main` to GitHub through `4d5703f`; the application worktree and `origin/main` are synchronized.
+- Vercel project `sweed-website` automatically deployed `4d5703f` successfully.
 - Production URL: `https://sweed-website.vercel.app`.
-- Production `/about` was browser-verified at desktop and mobile widths after deployment.
+- Production `/services/branding` and `/services/digital-marketing` were browser-verified at desktop and 390px mobile widths after deployment.
 - GitHub→Vercel automatic deployment is active for the current project.
 - Vercel currently has no project environment variables configured; static/public routes build and serve successfully.
 
 ## Current Goal
 
-Resume the remaining SWEED-042 public-site hardening without regressing the newly aligned About brand shell.
+Resume the remaining SWEED-042 public-site hardening without regressing the repaired reference-service renderer or About brand shell.
 
 ## In Progress
 
 - SWEED-042 remains the broader backlog after this focused About pass.
 
 ## Completed Recently
+
+- Completed SWEED-051 in `4d5703f`: repaired the shared reference renderer used by `/services/branding` and `/services/digital-marketing` without editing their approved uploaded HTML sources.
+- Root cause 1: `applySweedReferenceTheme` inserted a double-quoted SWEED font stack into quoted inline `onerror` markup, corrupting HTML parsing and re-parenting Branding card bodies outside `.wcard`; inline `font-family:` replacement now uses a quote-safe unquoted CSS stack.
+- Root cause 2: the canonical reference action bridge used block-level `display:grid`, stretching buttons in normal block parents to 740–1265px; it now uses `inline-grid`, preserving the icon/label grid while restoring intrinsic CTA sizing.
+- The broad About-era `!important` reference paint overrides were removed and the conflicting About CTA rule is now scoped only to the About reference route.
+- TDD observed the font-safety and intrinsic-button regressions fail before repair; the final focused suite passes 26/26. Fresh TypeScript, ESLint, and production build pass. The repo-wide `bun run check` remains blocked at the existing unrelated `design:spacing` debt.
+- Local browser QA: Branding keeps four `.wcard` cards, case/compare CTAs measure 171–176px; Digital case/compare CTAs measure 171–193px; both have zero oversized buttons, horizontal overflow, broken loaded images, or browser errors at desktop and 390px mobile widths.
+- Production QA after Vercel success matches local: Branding 4 cards and 171–176px affected CTAs; Digital 171–193px affected CTAs; both have zero oversized buttons, overflow, and broken loaded images at desktop and 390px mobile widths.
 
 - Completed SWEED-050 in `55b54c6`: `/about` now uses the approved reference HTML inside the shared SWEED header/footer, SWEED Helvetica Arabic, current purple/pink/neutral palette bridge, and canonical 48px/16px SWEED CTA system.
 - Preserved the approved About structure exactly: browser comparison against the pre-change production page found an empty diff for section identifiers and h1/h2/h3 text; the page still renders 14 sections and 25 headings.

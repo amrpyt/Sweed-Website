@@ -1,8 +1,24 @@
 # Learnings
 
-Updated: 2026-08-20T03:11:00+03:00
+Updated: 2026-08-20T03:38:00+03:00
 
 ## Validated Project Lessons
+
+### Reference HTML theming must not inject quoted CSS into quoted markup
+
+Lesson: Regex-based theme replacement can corrupt uploaded HTML when it inserts double-quoted CSS values inside a double-quoted event-handler attribute.
+Evidence: Branding fallback images contained `onerror="...font-family:Cairo..."`; replacing that token with `font-family:"SWEED Helvetica Arabic",...` terminated the attribute early and caused the browser parser to move card bodies outside their `.wcard` elements. A quote-safe unquoted CSS font stack restored all four card structures.
+Applies to: `applySweedReferenceTheme`, service reference HTML, inline styles inside HTML attributes or JavaScript strings.
+Behavior change: Use quote-safe replacements for inline `font-family:` values or parse the markup context before injecting quoted values. Add a regression input that contains an event-handler fallback whenever theme replacement rules change.
+Revisit when: Reference theming moves from regex replacement to an HTML/CSS parser that understands attribute/string boundaries.
+
+### Reference CTA wrappers must preserve intrinsic prototype sizing
+
+Lesson: A button can keep an internal CSS grid without becoming a block-level grid item. Using `display:grid` on reference anchors changes the prototype's inline sizing contract and can make CTAs fill entire block containers.
+Evidence: Branding and Digital Marketing had case/comparison actions measuring 740–1265px after the bridge; their raw approved HTML used `inline-block` and measured roughly 153–195px. Switching the shared wrapper to `inline-grid` preserved the canonical icon/label layout while production CTAs measured 171–193px with zero oversized buttons.
+Applies to: `getSweedReferenceButtonThemeCss` and any future reference CTA bridge.
+Behavior change: Keep the reference CTA wrapper `inline-grid` unless a specific prototype explicitly owns a full-width button rule. Verify both block-parent and flex-parent CTA contexts after button-system changes.
+Revisit when: The reference action system is replaced by native React buttons instead of decorated uploaded HTML.
 
 ### Use reference presentation when approved HTML needs the current SWEED brand shell
 
@@ -12,12 +28,12 @@ Applies to: Approved uploaded/reference HTML routes that must preserve structure
 Behavior change: Do not rebuild the page composition just to align branding. Prefer the existing reference normalizer/theme bridge, strip duplicate chrome, and browser-diff structural content before/after.
 Revisit when: The owner explicitly requests a composition redesign rather than brand-system alignment.
 
-### Reference button paint must outrank prototype context selectors
+### Reference button conflicts must be scoped to the page that owns them
 
-Lesson: A scoped reference theme can still lose to higher-specificity prototype rules such as `.cta .btn-ghost`, producing invalid combinations even when the shared variables are correct.
-Evidence: About's secondary CTA initially computed to a white background with white text after the reference switch. Making canonical button surface/text/border paint authoritative fixed the conflict; the final control is white/purple at rest and purple/white after the expanding-fill hover.
-Applies to: `reference-button-theme.ts` and all approved HTML rendered through the SWEED reference bridge.
-Behavior change: Treat shared CTA paint as authoritative over reference-prototype paint while leaving page composition and non-CTA controls untouched. Verify both rest and settled hover states in the browser.
+Lesson: A page-specific specificity conflict must not be solved with broad `!important` declarations on every reference CTA.
+Evidence: About's `.cta .btn-ghost` needed a stronger white-secondary/purple-label override, but broad important paint rules then changed Branding/Digital service controls globally. SWEED-051 removed the broad rules and kept the About correction behind an About-only reference style.
+Applies to: `reference-button-theme.ts`, `LegacyPage`, and approved HTML rendered through the SWEED reference bridge.
+Behavior change: Resolve higher-specificity prototype conflicts at the narrowest page/section scope that owns the conflict. Keep shared reference CTA defaults overrideable where the approved composition intentionally needs context-specific behavior.
 Revisit when: Reference pages stop shipping page-local CTA paint or the shared CTA architecture changes.
 
 ### Do not stack decorative transition rows between fully padded homepage sections

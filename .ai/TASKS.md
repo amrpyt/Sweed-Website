@@ -1,6 +1,6 @@
 # Tasks
 
-Updated: 2026-08-20T03:11:00+03:00
+Updated: 2026-08-20T03:38:00+03:00
 
 ## Active
 
@@ -22,6 +22,34 @@ Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 - [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
+
+### SWEED-051 — Repair reference service rendering regression
+
+Status: completed
+Priority: critical
+Plan: `.ai/plans/2026-08-20-service-reference-rendering-regression.md`
+Implementation commit: `4d5703f fix: repair reference service rendering`
+
+#### Acceptance Criteria
+
+- [x] Branding approved HTML structure is preserved and all four `.wcard` case cards render as card descendants.
+- [x] Branding and Digital Marketing reference CTAs keep intrinsic sizing instead of stretching across block containers.
+- [x] Inline SWEED font replacement does not corrupt quoted fallback HTML in `onerror` attributes.
+- [x] About keeps its approved white-secondary/purple-label CTA without broad reference-page `!important` overrides.
+- [x] Focused reference/button/service regression tests pass.
+- [x] TypeScript, ESLint, and production build pass; the existing unrelated spacing-gate failure is unchanged.
+- [x] Desktop and 390px mobile QA have zero oversized reference CTAs, horizontal overflow, broken loaded images, or browser errors on the affected service routes.
+- [x] `main` is pushed and Vercel production is verified on both affected URLs.
+
+#### Evidence
+
+- TDD red state reproduced both regressions: block-level reference CTA display and unsafe quoted inline font replacement.
+- Focused final suite: 26 pass / 0 fail / 250 expectations.
+- Fresh TypeScript and ESLint exit 0; Next production build exits 0 and prerenders both affected service routes.
+- `bun run check` stops at the known pre-existing `design:spacing` violations in unrelated public/homepage CSS; this task adds no spacing-rule violations.
+- Production Branding: 4 `.wcard` elements; affected CTAs 171–176px; zero CTAs above 500px desktop; zero overflow/broken images; 390px has zero CTAs above 360px.
+- Production Digital Marketing: affected CTAs 171–193px; zero CTAs above 500px desktop; zero overflow/broken images; 390px has zero CTAs above 360px.
+- Vercel status for `4d5703f` reached `success — Deployment has completed`.
 
 ### SWEED-050 — Align About page with SWEED brand system
 

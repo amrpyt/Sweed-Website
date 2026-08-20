@@ -46,6 +46,72 @@ const aboutReferenceActionOverride = `
 }
 `;
 
+const aboutExactPresentationOverride = `
+  .sweed-exact-reference-page .about-hero {
+    min-height: clamp(31rem, 62vh, 38rem);
+  }
+  .sweed-exact-reference-page > section {
+    isolation: isolate;
+  }
+  .sweed-exact-reference-page > section:not(.about-hero) {
+    padding-block: clamp(4rem, 7vw, 5rem);
+  }
+  .sweed-exact-reference-page > section:nth-of-type(even):not(.about-hero) {
+    background: #ffffff;
+  }
+  .sweed-exact-reference-page > section:nth-of-type(odd):not(.about-hero):not(.numbers):not(.cta) {
+    background: #faf9fc;
+  }
+  .sweed-exact-reference-page > section:not(.about-hero) h2,
+  .sweed-exact-reference-page > section:not(.about-hero) .eyebrow,
+  .sweed-exact-reference-page > section:not(.about-hero) .section-kicker {
+    text-align: center;
+  }
+  .sweed-exact-reference-page > section:not(.about-hero) h2::after {
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: .18rem;
+    margin: 1rem auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #261b3e 0 48%, #ed2062 48% 100%);
+  }
+  .sweed-exact-reference-page > section:not(.about-hero) p:not(.eyebrow):not(.section-kicker) {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  .sweed-exact-reference-page .founder,
+  .sweed-exact-reference-page .promise,
+  .sweed-exact-reference-page .pledge,
+  .sweed-exact-reference-page .numbers,
+  .sweed-exact-reference-page .cta {
+    color: inherit;
+  }
+  .sweed-exact-reference-page .founder *,
+  .sweed-exact-reference-page .promise *,
+  .sweed-exact-reference-page .pledge *,
+  .sweed-exact-reference-page .numbers *,
+  .sweed-exact-reference-page .cta * {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .sweed-exact-reference-page .founder :is(p, h2, h3, span),
+  .sweed-exact-reference-page .promise :is(p, h2, h3, span),
+  .sweed-exact-reference-page .pledge :is(p, h2, h3, span),
+  .sweed-exact-reference-page .numbers :is(p, h2, h3, span),
+  .sweed-exact-reference-page .cta :is(p, h2, h3, span) {
+    color: inherit !important;
+  }
+  @media (max-width: 48rem) {
+    .sweed-exact-reference-page > section:not(.about-hero) {
+      padding-block: 3rem;
+    }
+    .sweed-exact-reference-page .about-hero {
+      min-height: 29rem;
+    }
+  }
+`;
+
 const homepageBriefRuntime = `
 (() => {
   if (window.__sweedHomepageBriefRuntime) return;
@@ -270,6 +336,7 @@ export function LegacyPage({
           .sweed-exact-reference-page .w-cta h2 {
             color: inherit;
           }
+          ${page === "about" ? aboutExactPresentationOverride : ""}
         `}</style>
       ) : null}
       {isReference && page === "about" ? (

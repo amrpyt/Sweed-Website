@@ -222,6 +222,49 @@ const servicesPageRefinementCss = `
     padding-block: clamp(4.25rem, 6vw, 5.7rem);
   }
 
+  .sweed-services-refine #branding {
+    background:
+      radial-gradient(circle at 88% 20%, rgba(237, 32, 98, .09), transparent 18rem),
+      linear-gradient(125deg, #ffffff 0%, #ffffff 66%, #faf6fb 100%);
+  }
+
+  .sweed-services-refine #digital-marketing {
+    background:
+      radial-gradient(circle at 9% 24%, rgba(105, 77, 150, .11), transparent 20rem),
+      var(--sweed-soft);
+  }
+
+  .sweed-services-refine #development {
+    background:
+      radial-gradient(circle at 91% 76%, rgba(237, 32, 98, .08), transparent 18rem),
+      linear-gradient(125deg, #ffffff 0%, #ffffff 72%, #f8f4fb 100%);
+  }
+
+  .sweed-services-refine .sweed-services-integrated {
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 10% 16%, rgba(237, 32, 98, .13), transparent 20rem),
+      radial-gradient(circle at 90% 78%, rgba(105, 77, 150, .16), transparent 23rem),
+      var(--purple-100);
+  }
+
+  .sweed-services-refine .sweed-services-integrated::before {
+    content: "";
+    position: absolute;
+    inset: auto -4rem -7rem auto;
+    width: 18rem;
+    height: 18rem;
+    border: 1px solid rgba(237, 32, 98, .22);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2.75rem rgba(105, 77, 150, .045), 0 0 0 5.5rem rgba(237, 32, 98, .03);
+    pointer-events: none;
+  }
+
+  .sweed-services-refine .sweed-services-integrated > .sweed-services-container {
+    position: relative;
+    z-index: 1;
+  }
+
   .sweed-services-refine .sweed-services-advertising .sweed-services-head h2::after,
   .sweed-services-refine .sweed-services-cta h2::after {
     background: linear-gradient(90deg, rgba(255,255,255,.95) 0 43%, var(--sweed-pink) 43% 100%);
@@ -270,8 +313,59 @@ const servicesPageRefinementCss = `
   }
 
   .sweed-services-refine .sweed-services-paths article {
-    min-height: 10.8rem;
-    padding: 1.35rem 1.45rem;
+    min-height: 8.8rem;
+    padding: 1.2rem 1.35rem;
+  }
+
+  .sweed-services-refine .sweed-services-paths.sweed-services-path-marquee {
+    display: block;
+    width: calc(100% + 8vw);
+    margin-inline: -4vw;
+    overflow: hidden;
+    direction: ltr;
+  }
+
+  .sweed-services-refine .sweed-services-path-track {
+    display: flex;
+    width: max-content;
+    gap: 1rem;
+    padding: .35rem 4vw .75rem;
+    animation: sweedServicesPathMarquee 34s linear infinite;
+    will-change: transform;
+  }
+
+  .sweed-services-refine .sweed-services-path-marquee:hover .sweed-services-path-track {
+    animation-play-state: paused;
+  }
+
+  .sweed-services-refine .sweed-services-path-track article {
+    display: grid;
+    flex: 0 0 17.5rem;
+    min-height: 8.5rem;
+    align-content: center;
+    gap: .65rem;
+    direction: rtl;
+    border-color: rgba(38, 27, 62, .1);
+    background: rgba(255,255,255,.94);
+    text-align: right;
+  }
+
+  .sweed-services-refine .sweed-services-path-track article:nth-child(3n + 2) {
+    border-color: rgba(237, 32, 98, .42);
+    background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,244,249,.95));
+  }
+
+  .sweed-services-refine .sweed-services-path-track article:nth-child(3n) {
+    background: linear-gradient(135deg, #33224f, #261b3e);
+  }
+
+  .sweed-services-refine .sweed-services-path-track article:nth-child(3n) :is(b, strong) {
+    color: #fff;
+  }
+
+  @keyframes sweedServicesPathMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   .sweed-services-refine .sweed-services-photo-panel {
@@ -435,11 +529,32 @@ export function ServicesPublicPage() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const rail = document.querySelector<HTMLElement>("#integrated-path .sweed-services-paths");
+    if (!rail || rail.dataset.sweedPathMarqueeReady === "true") return;
+
+    const cards = Array.from(rail.children);
+    if (!cards.length) return;
+
+    const track = document.createElement("div");
+    track.className = "sweed-services-path-track";
+    cards.forEach((card) => track.appendChild(card));
+    cards.forEach((card) => {
+      const copy = card.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      track.appendChild(copy);
+    });
+
+    rail.replaceChildren(track);
+    rail.classList.add("sweed-services-path-marquee");
+    rail.dataset.sweedPathMarqueeReady = "true";
+  }, []);
+
   return (
     <PublicPageShell page="services" sectionIds={["services-hero", "consulting", "branding", "digital-marketing", "development", "advertising", "media", "integrated-path", "services-cta"]} showBreadcrumb={false}>
       <main className={`${styles.page} sweed-services-refine`}><style>{servicesPageRefinementCss}</style>
         <section className={`${styles.hero} sweed-services-hero-section`} id="services-hero" aria-labelledby="services-page-title"><div className="sweed-services-hero-photo" aria-hidden="true" />
-          <div className={styles.container}>
+          <div className={`${styles.container} sweed-services-container`}>
             <div className={`${styles.heroGrid} sweed-services-hero-grid`}>
               <div>
                 <p className={styles.crumb}>الرئيسية <span>←</span> <b>خدماتنا</b></p>
@@ -506,11 +621,11 @@ export function ServicesPublicPage() {
         </ServiceSection>
 
         <section className={`${styles.integrated} sweed-services-integrated`} id="integrated-path">
-          <div className={styles.container}>
+          <div className={`${styles.container} sweed-services-container`}>
             <span className={`${styles.eyebrow} sweed-services-eyebrow`}>المسار المتكامل</span>
             <h2>الخدمة الصح في الوقت الصح… مش كل الخدمات مرة واحدة</h2>
             <p>بنرتب البداية حسب وضع مشروعك الحقيقي، مش حسب قائمة ثابتة.</p>
-            <div className={`${styles.pathsGrid} sweed-services-paths`}>{[["فكرة أو بداية مش واضحة", "استشارات ← هوية", "ثم منصات أو موقع وإطلاق تسويقي عند الحاجة"], ["مبيعات أو تشغيل محتاجين نظام", "استشارات ← برمجة وتطوير", "ثم تسويق رقمي وقياس أداء"], ["ظهور ضعيف رغم جودة الخدمة", "هوية ورسالة ← دعاية أو ميديا", "ثم حملات رقمية مرتبطة بهدف"]].map(([title, route, copy]) => <article key={title}><b>{title}</b><strong>{route}</strong><small>{copy}</small></article>)}</div>
+            <div className={`${styles.pathsGrid} sweed-services-paths`}>{[["فكرة أو بداية مش واضحة", "استشارات ← هوية"], ["رسالتك مش واضحة", "هوية ← محتوى"], ["محتاج عملاء أكثر", "تسويق رقمي ← صفحة هبوط"], ["مبيعات أو تشغيل محتاجين نظام", "استشارات ← برمجة وتطوير"], ["ظهورك أقل من جودة خدمتك", "هوية ← دعاية أو ميديا"], ["محتاج ثقة أسرع", "محتوى ← ميديا"]].map(([title, route]) => <article key={title}><b>{title}</b><strong>{route}</strong></article>)}</div>
           </div>
         </section>
 

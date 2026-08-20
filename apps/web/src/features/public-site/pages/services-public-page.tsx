@@ -15,7 +15,7 @@ const serviceMap = [
 ] as const;
 
 
-const servicesPageRefinementCss = \`
+const servicesPageRefinementCss = `
   .sweed-services-refine {
     --sweed-ink: #261b3e;
     --sweed-pink: #ed2062;
@@ -378,7 +378,7 @@ const servicesPageRefinementCss = \`
       transition-duration: .01ms !important;
     }
   }
-\`;
+`;
 
 function ActionLink({ href, children, light = false }: { href: string; children: React.ReactNode; light?: boolean }) {
   return <Link className={`sweed-services-action ${styles.button} ${light ? styles.buttonGhostLight : styles.buttonPrimary}`} href={href}>{children}</Link>;

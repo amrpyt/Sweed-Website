@@ -464,6 +464,11 @@ const aboutExactPresentationOverride = `
   }
 `;
 
+const aboutReferencePresentationOverride = aboutExactPresentationOverride.replaceAll(
+  "sweed-exact-reference-page",
+  "sweed-reference-page",
+);
+
 const homepageBriefRuntime = `
 (() => {
   if (window.__sweedHomepageBriefRuntime) return;
@@ -692,7 +697,9 @@ export function LegacyPage({
         `}</style>
       ) : null}
       {isReference && page === "about" ? (
-        <style data-sweed-about-reference-actions="true">{aboutReferenceActionOverride}</style>
+        <style data-sweed-about-reference-actions="true">
+          {aboutReferenceActionOverride + aboutReferencePresentationOverride}
+        </style>
       ) : null}
       {isExact ? null : (
         <a className="sweed-skip-link" href="#main-content">

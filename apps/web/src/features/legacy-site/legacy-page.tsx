@@ -417,6 +417,377 @@ const aboutExactPresentationOverride = `
     visibility: visible !important;
   }
 
+
+  /* الرؤية والرسالة: شريط واحد أخف وأقرب للهوية */
+  .sweed-exact-reference-page #values {
+    padding-bottom: clamp(3.25rem, 4vw, 4rem) !important;
+  }
+
+  .sweed-exact-reference-page #values .cards-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 2rem 0 0 !important;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: 1.55rem;
+    background:
+      radial-gradient(circle at 10% 8%, rgba(237,32,98,.22), transparent 18rem),
+      linear-gradient(120deg, #261b3e, #32224f);
+    box-shadow: 0 18px 38px rgba(38,27,62,.18);
+  }
+
+  .sweed-exact-reference-page #values .cards-2 .card {
+    min-height: 0;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border: 0 !important;
+    border-radius: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #ffffff;
+  }
+
+  .sweed-exact-reference-page #values .cards-2 .card + .card {
+    border-inline-start: 1px solid rgba(255,255,255,.16) !important;
+  }
+
+  .sweed-exact-reference-page #values .cards-2 .card::before,
+  .sweed-exact-reference-page #values .cards-2 .card .ic {
+    display: none;
+  }
+
+  .sweed-exact-reference-page #values .cards-2 .card h3 {
+    margin: 0 0 .75rem;
+    color: #ff96b9 !important;
+    font-size: 1.08rem;
+    text-align: center !important;
+  }
+
+  .sweed-exact-reference-page #values .cards-2 .card p {
+    margin: 0;
+    color: rgba(255,255,255,.93) !important;
+    font-size: clamp(1rem, 1.45vw, 1.2rem);
+    font-weight: 700;
+    text-align: center !important;
+    text-align-last: center;
+    line-height: 1.85;
+  }
+
+  .sweed-exact-reference-page #values .cards-3 {
+    display: none !important;
+  }
+
+  /* القصة: الفيديو والنص ثم السنوات الأربع في صف واحد */
+  @media (min-width: 59rem) {
+    .sweed-exact-reference-page .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+      grid-template-areas:
+        "media copy"
+        "timeline timeline";
+      gap: 2.25rem 3.25rem;
+    }
+
+    .sweed-exact-reference-page .story-text {
+      grid-area: copy;
+    }
+
+    .sweed-exact-reference-page .story-grid > div:last-child {
+      display: contents;
+    }
+
+    .sweed-exact-reference-page .video-frame {
+      grid-area: media;
+      align-self: start;
+    }
+
+    .sweed-exact-reference-page .timeline {
+      grid-area: timeline;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 0;
+    }
+  }
+
+  .sweed-exact-reference-page .timeline .tl-item {
+    display: flex;
+    min-height: 0;
+    padding: 1.1rem 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+  }
+
+  .sweed-exact-reference-page .timeline .tl-item::before {
+    position: static;
+    display: block;
+    width: .58rem;
+    height: .58rem;
+    margin: 0 auto .65rem;
+    box-shadow: 0 0 0 4px rgba(237,32,98,.13);
+  }
+
+  .sweed-exact-reference-page .timeline .tl-item b {
+    min-height: 1.75rem;
+    margin: 0 0 .38rem;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .sweed-exact-reference-page .timeline .tl-item small {
+    flex: 1;
+    text-align: center;
+    line-height: 1.65;
+  }
+
+  /* المنهجية: توازن ثابت تحت كل رقم */
+  .sweed-exact-reference-page .method {
+    padding-block: clamp(3.7rem, 5vw, 4.6rem) !important;
+  }
+
+  .sweed-exact-reference-page .method .sec-lead,
+  .sweed-exact-reference-page #team .sec-lead,
+  .sweed-exact-reference-page #alliances .sec-lead {
+    max-width: 52rem;
+    margin: 1rem auto 0;
+    text-align: center !important;
+    text-align-last: center;
+  }
+
+  .sweed-exact-reference-page .method-track {
+    margin-top: 2.7rem;
+  }
+
+  .sweed-exact-reference-page .steps {
+    align-items: stretch;
+    gap: .95rem;
+  }
+
+  .sweed-exact-reference-page .step {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sweed-exact-reference-page .step > div:last-child {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sweed-exact-reference-page .step .dot {
+    flex: 0 0 3.35rem;
+    width: 3.35rem;
+    height: 3.35rem;
+    margin-bottom: .9rem;
+  }
+
+  .sweed-exact-reference-page .step b {
+    min-height: 1.65rem;
+    margin: 0 0 .42rem;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .sweed-exact-reference-page .step p {
+    min-height: 4.9rem;
+    margin: 0;
+    text-align: center !important;
+    text-align-last: center;
+    line-height: 1.72;
+  }
+
+  .sweed-exact-reference-page .step small {
+    min-height: 2.9rem;
+    margin-top: auto;
+    text-align: center;
+  }
+
+  /* ليه سويد: عنوان بجانب الأيقونة وكروت أصغر */
+  .sweed-exact-reference-page #why {
+    padding-block: clamp(3.5rem, 4.7vw, 4.25rem) !important;
+  }
+
+  .sweed-exact-reference-page #why .cards-3 {
+    margin-top: 1.8rem !important;
+    gap: .85rem;
+  }
+
+  .sweed-exact-reference-page #why .cards-3 .card {
+    display: grid;
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    gap: 0 .85rem;
+    min-height: 0;
+    padding: 1.15rem 1.2rem;
+    align-items: center;
+  }
+
+  .sweed-exact-reference-page #why .cards-3 .card .ic {
+    grid-column: 1;
+    grid-row: 1;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin: 0;
+    border-radius: .8rem;
+  }
+
+  .sweed-exact-reference-page #why .cards-3 .card h3 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  .sweed-exact-reference-page #why .cards-3 .card p {
+    grid-column: 1 / -1;
+    margin: .8rem 0 0;
+    font-size: .9rem;
+    line-height: 1.7;
+  }
+
+  /* عنوان الفريق والجملة أسفله متوازنان */
+  .sweed-exact-reference-page #team {
+    padding-block: clamp(3.8rem, 5vw, 4.8rem) !important;
+  }
+
+  .sweed-exact-reference-page #team .team-swiper {
+    margin-top: 2rem !important;
+  }
+
+  /* التحالفات: ستة عناصر وشعارات مرئية في مسار متحرك */
+  .sweed-exact-reference-page #alliances {
+    padding-block: clamp(3.6rem, 4.7vw, 4.3rem) !important;
+  }
+
+  .sweed-exact-reference-page #alliances .ally-grid.sweed-about-ally-marquee,
+  .sweed-exact-reference-page #partners .logo-cloud.sweed-about-logo-marquee,
+  .sweed-exact-reference-page #testimonials .testi-swiper.sweed-about-testimonial-marquee {
+    display: block !important;
+    overflow: hidden;
+    direction: ltr;
+  }
+
+  .sweed-exact-reference-page .sweed-about-ally-track,
+  .sweed-exact-reference-page .sweed-about-logo-track,
+  .sweed-exact-reference-page .sweed-about-testimonial-track {
+    display: flex;
+    width: max-content;
+    align-items: stretch;
+    animation: sweedAboutMarquee 33s linear infinite;
+    will-change: transform;
+  }
+
+  .sweed-exact-reference-page #alliances .sweed-about-ally-track {
+    gap: 1rem;
+    padding: .25rem 0 .5rem;
+  }
+
+  .sweed-exact-reference-page #alliances .ally-grid:hover .sweed-about-ally-track,
+  .sweed-exact-reference-page #partners .logo-cloud:hover .sweed-about-logo-track,
+  .sweed-exact-reference-page #testimonials .testi-swiper:hover .sweed-about-testimonial-track {
+    animation-play-state: paused;
+  }
+
+  .sweed-exact-reference-page #alliances .ally {
+    flex: 0 0 15rem;
+    min-height: 0;
+    padding: 1.2rem;
+    border-radius: 1.15rem;
+    box-shadow: 0 10px 24px rgba(38,27,62,.08);
+  }
+
+  .sweed-exact-reference-page #alliances .ally .lg {
+    height: 3.7rem;
+    margin-bottom: .85rem;
+    background: linear-gradient(135deg, #f2edf8, #fff);
+  }
+
+  .sweed-exact-reference-page #alliances .ally .lg img,
+  .sweed-exact-reference-page #partners .plogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .sweed-exact-reference-page #alliances .ally b {
+    min-height: 1.55rem;
+  }
+
+  .sweed-exact-reference-page #alliances .ally p {
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* شعارات العملاء: سطر واحد وستة شعارات متحركة */
+  .sweed-exact-reference-page #partners {
+    padding-block: clamp(3.45rem, 4.5vw, 4.1rem) !important;
+  }
+
+  .sweed-exact-reference-page #partners .logo-cloud {
+    margin-top: 1.85rem !important;
+  }
+
+  .sweed-exact-reference-page #partners .sweed-about-logo-track {
+    gap: 1rem;
+    animation-duration: 25s;
+  }
+
+  .sweed-exact-reference-page #partners .plogo {
+    flex: 0 0 10.5rem;
+    height: 4.45rem;
+    padding: .75rem 1rem;
+    border-radius: 1rem;
+    background: #ffffff;
+    filter: none;
+  }
+
+  /* آراء عملاء أكثر، شريط متحرك خفيف */
+  .sweed-exact-reference-page #testimonials {
+    padding-block: clamp(3.8rem, 5vw, 4.6rem) !important;
+  }
+
+  .sweed-exact-reference-page #testimonials .testi-swiper {
+    margin-top: 1.9rem !important;
+  }
+
+  .sweed-exact-reference-page #testimonials .sweed-about-testimonial-track {
+    gap: 1rem;
+    animation-duration: 43s;
+  }
+
+  .sweed-exact-reference-page #testimonials .swiper-slide {
+    display: block;
+    flex: 0 0 22rem;
+    width: 22rem !important;
+    height: auto;
+  }
+
+  .sweed-exact-reference-page #testimonials .t-card {
+    min-height: 15.25rem;
+    padding: 1.45rem;
+    border: 1px solid rgba(38,27,62,.08);
+    border-radius: 1.2rem;
+  }
+
+  .sweed-exact-reference-page #testimonials .t-card p {
+    min-height: 7.25rem;
+    margin-bottom: 1rem;
+    line-height: 1.78;
+  }
+
+  .sweed-exact-reference-page #testimonials .swiper-pagination {
+    display: none !important;
+  }
+
+  @keyframes sweedAboutMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
   @keyframes sweedAboutCompass {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-6px) rotate(7deg); }
@@ -474,6 +845,138 @@ const aboutReferencePresentationOverride = aboutExactPresentationOverride.replac
   "sweed-exact-reference-page",
   "sweed-reference-page",
 );
+
+const aboutLiveLayoutRuntime = `
+(() => {
+  if (window.__sweedAboutLiveLayoutRuntime) return;
+  window.__sweedAboutLiveLayoutRuntime = true;
+
+  const logoSvg = (name, accent, ink) => {
+    const safe = String(name).replace(/[&<>"]/g, "");
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 88" role="img" aria-label="' + safe + '"><rect width="260" height="88" rx="20" fill="#ffffff"/><circle cx="42" cy="44" r="21" fill="' + accent + '"/><path d="M34 44h16M42 36v16" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/><text x="76" y="53" fill="' + ink + '" font-family="Arial, sans-serif" font-size="27" font-weight="700" letter-spacing="1.5">' + safe + '</text></svg>';
+    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+  };
+
+  const decorateLogo = (node, name, accent, ink) => {
+    if (!node || node.dataset.sweedLogoReady === "true") return;
+    node.dataset.sweedLogoReady = "true";
+    const image = document.createElement("img");
+    image.alt = "شعار تجريبي " + name;
+    image.src = logoSvg(name, accent, ink);
+    node.replaceChildren(image);
+  };
+
+  const prepareAlliances = () => {
+    const grid = document.querySelector("#alliances .ally-grid");
+    if (!grid || grid.dataset.sweedMarqueeReady === "true") return;
+
+    const cards = Array.from(grid.children).filter((node) => node.classList?.contains("ally"));
+    if (!cards.length) return;
+
+    const logoNames = ["NEXA", "FRAME", "TEK", "MASAR", "NOVA", "NORTH"];
+    const accents = ["#ed2062", "#4f347d", "#ed2062", "#694d96", "#ed2062", "#4f347d"];
+    const allCards = cards.slice(0, 4);
+    while (allCards.length < 6) {
+      const clone = cards[allCards.length - 4].cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      allCards.push(clone);
+    }
+
+    allCards.forEach((card, index) => {
+      const logo = card.querySelector(".lg");
+      decorateLogo(logo, logoNames[index], accents[index], "#261b3e");
+    });
+
+    const track = document.createElement("div");
+    track.className = "sweed-about-ally-track";
+    allCards.forEach((card) => track.appendChild(card));
+    allCards.forEach((card) => {
+      const copy = card.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      track.appendChild(copy);
+    });
+
+    grid.replaceChildren(track);
+    grid.classList.add("sweed-about-ally-marquee");
+    grid.dataset.sweedMarqueeReady = "true";
+  };
+
+  const preparePartners = () => {
+    const cloud = document.querySelector("#partners .logo-cloud");
+    if (!cloud || cloud.dataset.sweedMarqueeReady === "true") return;
+
+    const logos = Array.from(cloud.querySelectorAll(".plogo")).slice(0, 6);
+    if (!logos.length) return;
+
+    const names = ["VISTA", "ORBIT", "MADA", "LINEA", "CIRCA", "NOVA"];
+    const accents = ["#ed2062", "#4f347d", "#ed2062", "#694d96", "#ed2062", "#4f347d"];
+    logos.forEach((logo, index) => decorateLogo(logo, names[index], accents[index], "#261b3e"));
+
+    const track = document.createElement("div");
+    track.className = "sweed-about-logo-track";
+    logos.forEach((logo) => track.appendChild(logo));
+    logos.forEach((logo) => {
+      const copy = logo.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      track.appendChild(copy);
+    });
+
+    cloud.replaceChildren(track);
+    cloud.classList.add("sweed-about-logo-marquee");
+    cloud.dataset.sweedMarqueeReady = "true";
+  };
+
+  const prepareTestimonials = () => {
+    const slider = document.querySelector("#testimonials .testi-swiper");
+    const wrapper = slider?.querySelector(".swiper-wrapper");
+    if (!slider || !wrapper || slider.dataset.sweedMarqueeReady === "true") return;
+
+    if (slider.swiper && typeof slider.swiper.destroy === "function") {
+      slider.swiper.destroy(true, true);
+    }
+
+    const reviews = Array.from(wrapper.children).slice(0, 5);
+    if (!reviews.length) return;
+
+    const track = document.createElement("div");
+    track.className = "sweed-about-testimonial-track";
+    for (let repeat = 0; repeat < 2; repeat += 1) {
+      reviews.forEach((review) => {
+        const card = repeat === 0 ? review : review.cloneNode(true);
+        if (repeat > 0) card.setAttribute("aria-hidden", "true");
+        track.appendChild(card);
+      });
+    }
+    reviews.forEach((review) => {
+      const copy = review.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      track.appendChild(copy);
+    });
+    reviews.forEach((review) => {
+      const copy = review.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      track.appendChild(copy);
+    });
+
+    wrapper.replaceWith(track);
+    slider.querySelector(".swiper-pagination")?.remove();
+    slider.classList.add("sweed-about-testimonial-marquee");
+    slider.dataset.sweedMarqueeReady = "true";
+  };
+
+  const run = () => {
+    prepareAlliances();
+    preparePartners();
+    prepareTestimonials();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => window.setTimeout(run, 1400), { once: true });
+  } else {
+    window.setTimeout(run, 1400);
+  }
+})();
+`;
 
 const homepageBriefRuntime = `
 (() => {
@@ -739,6 +1242,11 @@ export function LegacyPage({
       {isReference || isExact ? null : <OfferFunnelController page={page} />}
       {!isExact && showAdvisor ? <AiAdvisorWidget /> : null}
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
+      {isReference && page === "about" ? (
+        <Script id="sweed-about-live-layout" strategy="afterInteractive">
+          {aboutLiveLayoutRuntime}
+        </Script>
+      ) : null}
       {isExact ? (
         <Script id={`sweed-exact-reference-navigation-${page}`} strategy="afterInteractive">
           {exactReferenceNavigationRuntime}

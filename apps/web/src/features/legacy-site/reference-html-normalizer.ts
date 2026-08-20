@@ -3,6 +3,8 @@ import { getSweedReferenceButtonThemeCss } from "./reference-button-theme";
 const referenceScope = ".sweed-reference-page";
 const sweedReferenceFontStack =
   '"SWEED Helvetica Arabic","SF Arabic",Arial,sans-serif';
+const sweedReferenceInlineFontStack =
+  "SWEED Helvetica Arabic,SF Arabic,Arial,sans-serif";
 
 const sweedReferenceColorMap = new Map<string, string>([
   ["#241238", "#261b3e"],
@@ -93,10 +95,10 @@ export function applySweedReferenceTheme(input: string) {
     .replace(/rgba\(59\s*,\s*33\s*,\s*96\s*,/gi, "rgba(38,27,62,")
     .replace(/'IBM Plex Sans Arabic'\s*,\s*sans-serif/gi, sweedReferenceFontStack)
     .replace(/'Cairo'\s*,\s*sans-serif/gi, sweedReferenceFontStack)
-    .replace(/font-family\s*:\s*Cairo(?=\s*[;}])/gi, `font-family:${sweedReferenceFontStack}`)
+    .replace(/font-family\s*:\s*Cairo(?=\s*[;}])/gi, `font-family:${sweedReferenceInlineFontStack}`)
     .replace(
       /font-family\s*:\s*["']?IBM Plex Sans Arabic["']?(?=\s*[;}])/gi,
-      `font-family:${sweedReferenceFontStack}`,
+      `font-family:${sweedReferenceInlineFontStack}`,
     );
 
   return output;

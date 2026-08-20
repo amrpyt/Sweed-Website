@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { getSweedReferenceButtonThemeCss } from "./reference-button-theme";
 import { getReferenceHtml, type ReferenceHtmlPage } from "./reference-html-sources";
 import {
   applySweedReferenceTheme,
@@ -73,9 +74,12 @@ describe("reference page integration normalization", () => {
     expect(scoped).toContain("border-radius: var(--shape-control);");
     expect(scoped).toContain("min-height: var(--control-height-md);");
     expect(scoped).toContain("line-height: var(--control-text-leading);");
-    expect(scoped).toContain("background: var(--sweed-action-bg) !important;");
-    expect(scoped).toContain("border-color: var(--sweed-action-border) !important;");
-    expect(scoped).toContain("color: var(--sweed-action-color) !important;");
+    const buttonTheme = getSweedReferenceButtonThemeCss(".sweed-reference-page");
+    expect(buttonTheme).toContain("display: inline-grid;");
+    expect(buttonTheme).not.toContain("display: grid;");
+    expect(scoped).not.toContain("background: var(--sweed-action-bg) !important;");
+    expect(scoped).not.toContain("border-color: var(--sweed-action-border) !important;");
+    expect(scoped).not.toContain("color: var(--sweed-action-color) !important;");
     expect(scoped).toContain("clip-path: inset(0 calc(100% - var(--sweed-action-icon-size)) 0 0 round var(--sweed-action-inner-radius));");
     expect(scoped).toContain("clip-path: inset(0 0 0 0 round var(--sweed-action-inner-radius));");
     expect(scoped).toContain("color: #261b3e !important;");
@@ -115,6 +119,15 @@ describe("reference page integration normalization", () => {
     expect(themed).toContain('#ed2062');
     expect(themed).not.toContain('#D6246E');
     expect(themed).not.toContain('#FF7BAC');
+  });
+
+  test("keeps inline fallback markup valid while replacing the reference font", () => {
+    const themed = applySweedReferenceTheme(
+      `<img onerror="this.parentElement.innerHTML='<div style=\\'font-family:Cairo;font-weight:700\\'>fallback</div>'">`,
+    );
+
+    expect(themed).toContain("font-family:SWEED Helvetica Arabic,SF Arabic,Arial,sans-serif;font-weight:700");
+    expect(themed).not.toContain('font-family:"SWEED Helvetica Arabic"');
   });
 
   test("guards reference navbar access after duplicate navbar removal", () => {

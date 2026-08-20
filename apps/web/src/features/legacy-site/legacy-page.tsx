@@ -33,6 +33,19 @@ const exactReferenceNavigationRuntime = `
 })();
 `;
 
+const aboutReferenceActionOverride = `
+.sweed-reference-page .cta .btn-ghost {
+  background: var(--sweed-action-bg);
+  border-color: var(--sweed-action-border);
+  color: var(--sweed-action-color);
+}
+.sweed-reference-page .cta .btn-ghost:hover,
+.sweed-reference-page .cta .btn-ghost:focus-visible {
+  border-color: #261b3e;
+  color: #ffffff;
+}
+`;
+
 const homepageBriefRuntime = `
 (() => {
   if (window.__sweedHomepageBriefRuntime) return;
@@ -258,6 +271,9 @@ export function LegacyPage({
             color: inherit;
           }
         `}</style>
+      ) : null}
+      {isReference && page === "about" ? (
+        <style data-sweed-about-reference-actions="true">{aboutReferenceActionOverride}</style>
       ) : null}
       {isExact ? null : (
         <a className="sweed-skip-link" href="#main-content">

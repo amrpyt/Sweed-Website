@@ -1,12 +1,12 @@
 # Current State
 
-Updated: 2026-08-18T22:24:00+03:00
-Git branch: main
-Git HEAD: `7f4d1ae`
-Application commit: `fix: harden service reference rendering`
-Active Task: SWEED-042
-Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
-Status: SWEED-049 complete and deployed — SWEED-042 resumed
+Updated: 2026-08-20T02:52:00+03:00
+Git branch: isolated worktree from `origin/main`
+Git HEAD: `1f0f04d`
+Application commit: `chore: retrigger production deployment`
+Active Task: SWEED-050
+Active Plan: `.ai/plans/2026-08-20-about-brand-system-alignment.md`
+Status: in progress
 
 ## Delivery Update
 
@@ -19,11 +19,13 @@ Status: SWEED-049 complete and deployed — SWEED-042 resumed
 
 ## Current Goal
 
-Resume the remaining SWEED-042 public-site hardening without reintroducing the oversized Services → Why transition.
+Align `/about` with the approved SWEED header, footer, typography, palette, and CTA system while preserving the page's existing content and composition.
 
 ## In Progress
 
-- SWEED-042 remains in progress; preserve unrelated dirty reference-service/QA work.
+- SWEED-050 is in progress in an isolated worktree based on current `origin/main`.
+- The source checkout remains dirty and behind `origin/main`; do not mix it into this task.
+- SWEED-042 remains the broader backlog after this focused About pass.
 
 ## Completed Recently
 

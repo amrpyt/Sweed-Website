@@ -1,8 +1,25 @@
 # Tasks
 
-Updated: 2026-08-18T22:04:00+03:00
+Updated: 2026-08-20T02:52:00+03:00
 
 ## Active
+
+### SWEED-050 — Align About page with SWEED brand system
+
+Status: in progress
+Priority: high
+Plan: `.ai/plans/2026-08-20-about-brand-system-alignment.md`
+
+#### Acceptance Criteria
+
+- [ ] `/about` keeps the approved reference content, section order, layout, motion, and interactions.
+- [ ] Prototype navbar/footer are removed from the About content and the shared SWEED header/footer render instead.
+- [ ] About typography uses SWEED Helvetica Arabic rather than IBM Plex Sans Arabic / Cairo reference typography.
+- [ ] About colors use the current SWEED `#261b3e`, `#ed2062`, and `#6d6e70` identity bridge.
+- [ ] About marketing CTAs use the canonical shared SWEED action-button mechanism and geometry.
+- [ ] Desktop/tablet/mobile QA has no horizontal overflow, broken images, or browser errors.
+- [ ] Focused tests, typecheck/lint/design guards, and production build complete with no new regression.
+- [ ] The verified change is committed and pushed to `main`, and Vercel production is verified.
 
 ### SWEED-042 — Final v4 public-site hardening
 

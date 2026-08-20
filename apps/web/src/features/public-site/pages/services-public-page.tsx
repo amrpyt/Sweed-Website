@@ -662,7 +662,7 @@ const servicesPageRefinementCss = `
     color: var(--sweed-pink);
   }
 
-  .sweed-services-refine .sweed-services-advertising > .sweed-services-container > .sweed-services-action {
+  .sweed-services-refine #advertising .sweed-services-action {
     display: inline-flex;
     margin-top: 1.55rem;
   }
@@ -691,7 +691,7 @@ const servicesPageRefinementCss = `
     line-height: 1.45;
   }
 
-  .sweed-services-refine .sweed-services-cta .formActions {
+  .sweed-services-refine .sweed-services-form-actions {
     justify-content: center;
     margin-top: 2rem;
   }
@@ -893,7 +893,7 @@ export function ServicesPublicPage() {
               <div className={styles.formRow}><label>اسمك<input type="text" placeholder="اكتب اسمك" /></label><label>رقم الموبايل (واتساب)<input type="tel" placeholder="01xxxxxxxxx" /></label></div>
               <div className={styles.formRow}><label>الخدمة اللي بتفكر فيها (اختياري)<select defaultValue=""><option value="">لسه محددتش — ساعدوني</option><option value="consulting">الاستشارات الإدارية والتسويقية</option><option value="branding">التصميم والهوية البصرية</option><option value="digital-marketing">التسويق الرقمي</option><option value="development">البرمجة والتطوير</option><option value="advertising">الدعاية والإعلان</option><option value="media">إنتاج المحتوى والميديا</option></select></label><label>أكبر تحدي عندك دلوقتي<input type="text" placeholder="سطر واحد كفاية" /></label></div>
               <label>احكيلنا عن مشروعك<textarea rows={3} placeholder="نشاطك إيه، وواقف فين دلوقتي" /></label>
-              <div className={styles.formActions}><ActionLink href="/contact?source=services">احجز استشارتك المجانية</ActionLink><ActionLink href="https://wa.me/201068274662" light>ابدأ محادثة واتساب</ActionLink></div>
+              <div className={styles.formActions + " sweed-services-form-actions"}><ActionLink href="/contact?source=services">احجز استشارتك المجانية</ActionLink><ActionLink href="https://wa.me/201068274662" light>ابدأ محادثة واتساب</ActionLink></div>
             </form>
           </div>
         </section>

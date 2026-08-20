@@ -1,8 +1,24 @@
 # Learnings
 
-Updated: 2026-08-18T22:04:00+03:00
+Updated: 2026-08-20T03:11:00+03:00
 
 ## Validated Project Lessons
+
+### Use reference presentation when approved HTML needs the current SWEED brand shell
+
+Lesson: `presentation="exact"` is intentionally isolated fidelity mode; it keeps the prototype navbar/footer, fonts, palette, and button paint. When the owner wants the approved composition unchanged but branded like the rest of SWEED, `presentation="reference"` is the correct bridge.
+Evidence: `/about` in exact mode rendered IBM Plex Sans Arabic, the prototype nav/footer, old prototype colors, and 50px pill CTAs. Switching only the presentation layer preserved all 14 sections and heading text while applying the shared SWEED header/footer, SWEED Helvetica Arabic, current palette, and canonical CTA system.
+Applies to: Approved uploaded/reference HTML routes that must preserve structure and interactions while adopting current SWEED chrome and identity.
+Behavior change: Do not rebuild the page composition just to align branding. Prefer the existing reference normalizer/theme bridge, strip duplicate chrome, and browser-diff structural content before/after.
+Revisit when: The owner explicitly requests a composition redesign rather than brand-system alignment.
+
+### Reference button paint must outrank prototype context selectors
+
+Lesson: A scoped reference theme can still lose to higher-specificity prototype rules such as `.cta .btn-ghost`, producing invalid combinations even when the shared variables are correct.
+Evidence: About's secondary CTA initially computed to a white background with white text after the reference switch. Making canonical button surface/text/border paint authoritative fixed the conflict; the final control is white/purple at rest and purple/white after the expanding-fill hover.
+Applies to: `reference-button-theme.ts` and all approved HTML rendered through the SWEED reference bridge.
+Behavior change: Treat shared CTA paint as authoritative over reference-prototype paint while leaving page composition and non-CTA controls untouched. Verify both rest and settled hover states in the browser.
+Revisit when: Reference pages stop shipping page-local CTA paint or the shared CTA architecture changes.
 
 ### Do not stack decorative transition rows between fully padded homepage sections
 

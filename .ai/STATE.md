@@ -1,33 +1,38 @@
 # Current State
 
-Updated: 2026-08-20T02:52:00+03:00
-Git branch: isolated worktree from `origin/main`
-Git HEAD: `1f0f04d`
-Application commit: `chore: retrigger production deployment`
-Active Task: SWEED-050
-Active Plan: `.ai/plans/2026-08-20-about-brand-system-alignment.md`
-Status: in progress
+Updated: 2026-08-20T03:11:00+03:00
+Git branch: `main` synchronized through isolated worktree
+Git HEAD: `55b54c6`
+Application commit: `fix: align about page with SWEED brand`
+Active Task: SWEED-042
+Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
+Status: SWEED-050 complete and deployed — SWEED-042 resumed
 
 ## Delivery Update
 
-- Pushed `main` to GitHub through `7f4d1ae`; the branch is synchronized with `origin/main`.
-- Created Vercel project `sweed-website` and deployed production successfully.
-- Production alias: `https://sweed-website-seven.vercel.app`.
-- Verified HTTP 200 for `/`, `/services`, `/portfolio`, and `/crm-ai-demo`.
-- Automatic GitHub→Vercel linking is not active because the Vercel account has no GitHub Login Connection configured.
+- Pushed `main` to GitHub through `55b54c6`; the application worktree and `origin/main` are synchronized.
+- Vercel project `sweed-website` automatically deployed `55b54c6` successfully.
+- Production URL: `https://sweed-website.vercel.app`.
+- Production `/about` was browser-verified at desktop and mobile widths after deployment.
+- GitHub→Vercel automatic deployment is active for the current project.
 - Vercel currently has no project environment variables configured; static/public routes build and serve successfully.
 
 ## Current Goal
 
-Align `/about` with the approved SWEED header, footer, typography, palette, and CTA system while preserving the page's existing content and composition.
+Resume the remaining SWEED-042 public-site hardening without regressing the newly aligned About brand shell.
 
 ## In Progress
 
-- SWEED-050 is in progress in an isolated worktree based on current `origin/main`.
-- The source checkout remains dirty and behind `origin/main`; do not mix it into this task.
 - SWEED-042 remains the broader backlog after this focused About pass.
 
 ## Completed Recently
+
+- Completed SWEED-050 in `55b54c6`: `/about` now uses the approved reference HTML inside the shared SWEED header/footer, SWEED Helvetica Arabic, current purple/pink/neutral palette bridge, and canonical 48px/16px SWEED CTA system.
+- Preserved the approved About structure exactly: browser comparison against the pre-change production page found an empty diff for section identifiers and h1/h2/h3 text; the page still renders 14 sections and 25 headings.
+- Kept non-brand behavior unchanged by disabling the AI advisor on the About route, matching the prior exact-reference behavior.
+- Fixed reference-button specificity so prototype `.cta .btn-ghost` paint cannot override the shared white-secondary/purple-label contract; the settled hover uses the purple expanding fill and white label.
+- Focused reference/button tests passed 24/24; TypeScript, ESLint, mobile-first guard, and production build passed. The full unit baseline is 152 pass / 9 pre-existing failures, the same nine unrelated failures present before this task. The spacing guard remains blocked by pre-existing unrelated CSS debt.
+- Production QA on `https://sweed-website.vercel.app/about`: shared header/footer present, prototype nav absent, SWEED font only, zero horizontal overflow, zero broken images/browser errors, 44×44 mobile menu control, and working mobile menu at 390×844.
 
 - Completed SWEED-049 in `512229d`: removed the five-dot Services → Why divider and compacted only the touching section edges from 96px each to 32px each.
 - Browser measurement reduced the Services CTA → Why heading transition to 64px on both 1536px desktop and 390px mobile, with divider count 0.

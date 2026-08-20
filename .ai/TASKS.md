@@ -1,25 +1,8 @@
 # Tasks
 
-Updated: 2026-08-20T02:52:00+03:00
+Updated: 2026-08-20T03:11:00+03:00
 
 ## Active
-
-### SWEED-050 — Align About page with SWEED brand system
-
-Status: in progress
-Priority: high
-Plan: `.ai/plans/2026-08-20-about-brand-system-alignment.md`
-
-#### Acceptance Criteria
-
-- [ ] `/about` keeps the approved reference content, section order, layout, motion, and interactions.
-- [ ] Prototype navbar/footer are removed from the About content and the shared SWEED header/footer render instead.
-- [ ] About typography uses SWEED Helvetica Arabic rather than IBM Plex Sans Arabic / Cairo reference typography.
-- [ ] About colors use the current SWEED `#261b3e`, `#ed2062`, and `#6d6e70` identity bridge.
-- [ ] About marketing CTAs use the canonical shared SWEED action-button mechanism and geometry.
-- [ ] Desktop/tablet/mobile QA has no horizontal overflow, broken images, or browser errors.
-- [ ] Focused tests, typecheck/lint/design guards, and production build complete with no new regression.
-- [ ] The verified change is committed and pushed to `main`, and Vercel production is verified.
 
 ### SWEED-042 — Final v4 public-site hardening
 
@@ -39,6 +22,33 @@ Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 - [ ] Full check/build/deploy/public QA pass and changes are committed without pushing.
 
 ## Completed
+
+### SWEED-050 — Align About page with SWEED brand system
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-08-20-about-brand-system-alignment.md`
+Implementation commit: `55b54c6 fix: align about page with SWEED brand`
+
+#### Acceptance Criteria
+
+- [x] `/about` keeps the approved reference content, section order, layout, motion, and interactions.
+- [x] Prototype navbar/footer are removed from the About content and the shared SWEED header/footer render instead.
+- [x] About typography uses SWEED Helvetica Arabic rather than IBM Plex Sans Arabic / Cairo reference typography.
+- [x] About colors use the current SWEED `#261b3e`, `#ed2062`, and `#6d6e70` identity bridge.
+- [x] About marketing CTAs use the canonical shared SWEED action-button mechanism and geometry.
+- [x] Desktop/tablet/mobile QA has no horizontal overflow, broken images, or browser errors.
+- [x] Focused tests, typecheck/lint, mobile-first guard, and production build complete with no new regression; the repo-wide spacing guard remains blocked only by pre-existing unrelated CSS debt.
+- [x] The verified change is committed and pushed to `main`, and Vercel production is verified.
+
+#### Evidence
+
+- Approved-content browser diff against the pre-change production page was empty for section IDs/classes and h1/h2/h3 text.
+- Final About render: 14 sections, 25 headings, shared header/footer, zero prototype nav, zero IBM Plex/Cairo computed typography, zero horizontal overflow, zero broken images.
+- CTA system: 48px controls, 16px radius, purple primary/white label, white secondary/purple label, settled purple expanding-fill hover.
+- Responsive browser QA passed at 1440×900, 1024×768, 390×844, and 320×568; mobile menu remains 44×44 and opens correctly.
+- Focused tests: 24 pass / 0 fail. Full unit baseline: 152 pass / 9 known unrelated failures. TypeScript, ESLint, mobile-first check, and production build passed.
+- Vercel deployment for `55b54c6` completed successfully and production `/about` passed the same desktop/mobile checks.
 
 ### SWEED-049 — Remove oversized Services → Why gap
 

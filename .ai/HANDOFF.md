@@ -1,14 +1,13 @@
 # Handoff
 
-Updated: 2026-08-18T22:24:00+03:00
+Updated: 2026-08-20T03:11:00+03:00
 
 ## Vercel Delivery
 
-- GitHub `main` is pushed through `7f4d1ae`.
+- GitHub `main` is pushed through `55b54c6`.
 - Vercel project: `sweed-website`.
-- Production alias: `https://sweed-website-seven.vercel.app`.
-- Deployment `dpl_8oG4LYKbnLzeLrbybiKHjniMVYhC` reached READY and representative public routes returned HTTP 200.
-- The Vercel account must add a GitHub Login Connection before `vercel git connect` can enable automatic deployments from `amrpyt/Sweed-Website`.
+- Production URL: `https://sweed-website.vercel.app`.
+- GitHub→Vercel automatic deployment is active; commit `55b54c6` reached `Deployment has completed` and production About QA passed.
 - No Vercel environment variables are configured yet; do not assume AI/admin/backend integrations are production-configured there.
 
 ## Read First
@@ -22,6 +21,12 @@ Updated: 2026-08-18T22:24:00+03:00
 - `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-design.md`
 
 ## Current Public Contract
+
+- `/about` deliberately uses `LegacyPage` `presentation="reference"` rather than `exact`: the approved reference HTML still owns content/layout/motion, while the shared SWEED header/footer, palette bridge, SWEED Helvetica Arabic, and canonical CTA system own the brand shell.
+- Keep `/about` `showAdvisor={false}` unless the owner explicitly asks to add that feature; the pre-change exact page did not include the AI advisor and SWEED-050 intentionally changed branding only.
+- About content preservation was browser-diffed against pre-change production: section identifiers/classes and h1/h2/h3 text are unchanged. Current About has 14 reference sections.
+- The reference CTA bridge now uses important paint declarations for shared marketing button background/color/border so higher-specificity prototype selectors such as `.cta .btn-ghost` cannot create white-on-white or otherwise repaint the canonical system.
+- Production About QA at 1440×900 and 390×844: shared header/footer present, prototype nav absent, SWEED font only, primary purple / secondary white button hierarchy, expanding fill works, zero overflow, zero broken images/browser errors, and mobile menu opens correctly.
 
 - SWEED-049 supersedes the SWEED-048 divider treatment: there is no standalone five-dot row between Services and Why. Only the touching edges are compacted to 32px each, producing a measured 64px Services-CTA → Why-heading gap on desktop and mobile.
 - SWEED-049 is deployed from `512229d` as build `0RZfjg9H9QsjyipAf6a3S`; full check is 154/154, service is active, local/public homepage HTTP 200, and desktop/mobile browser checks show no overflow, errors, or broken loaded images.

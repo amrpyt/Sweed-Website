@@ -49,11 +49,16 @@ const servicesPageRefinementCss = `
     pointer-events: none;
   }
 
+  .sweed-services-refine .sweed-services-hero-grid {
+    grid-template-columns: minmax(0, 1.34fr) minmax(17rem, .66fr);
+    gap: clamp(1.25rem, 3vw, 2.4rem);
+  }
+
   .sweed-services-refine .sweed-services-hero-section h1 {
     max-width: none;
-    font-size: clamp(2rem, 3.15vw, 3rem);
+    font-size: clamp(1.9rem, 2.72vw, 2.75rem);
     line-height: 1.35;
-    text-wrap: balance;
+    white-space: nowrap;
   }
 
   .sweed-services-refine .sweed-services-hero-section h1::after,
@@ -351,6 +356,7 @@ const servicesPageRefinementCss = `
     .sweed-services-refine .sweed-services-hero-section h1 {
       max-width: 14ch;
       font-size: clamp(2rem, 9vw, 2.55rem);
+      white-space: normal;
     }
 
     .sweed-services-refine .sweed-services-head h2,
@@ -409,7 +415,7 @@ export function ServicesPublicPage() {
       <main className={`${styles.page} sweed-services-refine`}><style>{servicesPageRefinementCss}</style>
         <section className={`${styles.hero} sweed-services-hero-section`} id="services-hero" aria-labelledby="services-page-title"><div className="sweed-services-hero-photo" aria-hidden="true" />
           <div className={styles.container}>
-            <div className={styles.heroGrid}>
+            <div className={`${styles.heroGrid} sweed-services-hero-grid`}>
               <div>
                 <p className={styles.crumb}>الرئيسية <span>←</span> <b>خدماتنا</b></p>
                 <h1 id="services-page-title">مش كل مشكلة محتاجة نفس الخدمة</h1>

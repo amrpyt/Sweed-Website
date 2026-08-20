@@ -374,9 +374,7 @@ const servicesPageRefinementCss = `
     overflow: hidden;
     border: 1px solid rgba(38, 27, 62, .1);
     border-radius: 1.15rem;
-    background:
-      linear-gradient(135deg, rgba(38, 27, 62, .72), rgba(38, 27, 62, .15)),
-      url("/images/hero/businessman-laptop-standing.jpg") center / cover no-repeat;
+    background: #261b3e;
     box-shadow: 0 18px 36px rgba(38, 27, 62, .15);
   }
 
@@ -443,6 +441,261 @@ const servicesPageRefinementCss = `
     from { transform: scale(1.02) translateX(0); }
     to { transform: scale(1.08) translateX(-1.4%); }
   }
+
+
+  .sweed-services-refine .sweed-services-chips {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .6rem;
+    margin-block: 1.35rem;
+  }
+
+  .sweed-services-refine .sweed-services-chips span {
+    display: flex;
+    min-height: 2.85rem;
+    align-items: center;
+    justify-content: center;
+    padding: .45rem .55rem;
+    border: 1px solid rgba(38, 27, 62, .06);
+    border-radius: .8rem;
+    text-align: center;
+  }
+
+  .sweed-services-refine .sweed-services-service-section .sweed-services-action {
+    margin-top: .35rem;
+  }
+
+  .sweed-services-refine .sweed-services-business-carousel {
+    background: #261b3e;
+  }
+
+  .sweed-services-refine .sweed-services-business-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: sweedServicesBusinessSlide 10s ease-in-out infinite;
+  }
+
+  .sweed-services-refine .sweed-services-business-slide-one {
+    background-image: linear-gradient(120deg, rgba(38, 27, 62, .74), rgba(38, 27, 62, .14)), url("/images/hero/two-men-consultation.jpg");
+  }
+
+  .sweed-services-refine .sweed-services-business-slide-two {
+    background-image: linear-gradient(120deg, rgba(38, 27, 62, .68), rgba(38, 27, 62, .12)), url("/images/hero/entrepreneur-laptop-office.jpg");
+    animation-delay: 5s;
+  }
+
+  .sweed-services-refine .sweed-services-business-carousel::before {
+    content: "أعمال واستشارات تُبنى على فهم الصورة كاملة";
+    position: absolute;
+    z-index: 2;
+    inset: auto 1rem 1rem auto;
+    max-width: 15rem;
+    padding: .55rem .8rem;
+    border: 1px solid rgba(255,255,255,.26);
+    border-radius: 999px;
+    background: rgba(38, 27, 62, .48);
+    color: #fff;
+    font-size: .78rem;
+    backdrop-filter: blur(8px);
+  }
+
+  @keyframes sweedServicesBusinessSlide {
+    0%, 42% { opacity: 1; transform: scale(1); }
+    50%, 92% { opacity: 0; transform: scale(1.06); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .sweed-services-refine #branding .brandSplit {
+    overflow: hidden;
+    border-radius: 1.15rem;
+    box-shadow: 0 18px 34px rgba(38, 27, 62, .08);
+  }
+
+  .sweed-services-refine .sweed-brand-mockups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .7rem;
+    margin-top: 1rem;
+  }
+
+  .sweed-services-refine .sweed-brand-mockup {
+    position: relative;
+    min-height: 6.4rem;
+    overflow: hidden;
+    border-radius: .8rem;
+  }
+
+  .sweed-services-refine .sweed-brand-before-mockups .sweed-brand-mockup:nth-child(1) {
+    background: linear-gradient(135deg, #ffba66 0 42%, #536be2 42% 100%);
+  }
+
+  .sweed-services-refine .sweed-brand-before-mockups .sweed-brand-mockup:nth-child(2) {
+    background: linear-gradient(145deg, #20c9a3 0 48%, #f17caa 48% 100%);
+  }
+
+  .sweed-services-refine .sweed-brand-before-mockups .sweed-brand-mockup:nth-child(3) {
+    background: linear-gradient(135deg, #fe7c5b 0 42%, #ffe2a5 42% 100%);
+  }
+
+  .sweed-services-refine .sweed-brand-before-mockups .sweed-brand-mockup::before,
+  .sweed-services-refine .sweed-brand-before-mockups .sweed-brand-mockup::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    background: rgba(255,255,255,.85);
+  }
+
+  .sweed-services-refine .sweed-brand-before-mockups .sweed-brand-mockup::before {
+    width: 62%;
+    height: .42rem;
+    inset: 1.1rem auto auto 1rem;
+  }
+
+  .sweed-services-refine .sweed-brand-before-mockups .sweed-brand-mockup::after {
+    width: 42%;
+    height: 2.15rem;
+    inset: auto 1rem .9rem auto;
+  }
+
+  .sweed-services-refine .sweed-brand-after-mockups .sweed-brand-mockup {
+    border: 1px solid rgba(255,255,255,.22);
+    background: linear-gradient(145deg, #3b285c, #261b3e);
+  }
+
+  .sweed-services-refine .sweed-brand-after-mockups .sweed-brand-mockup::before {
+    content: "";
+    position: absolute;
+    inset: 1rem auto auto 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: .58rem;
+    background: linear-gradient(90deg, transparent 42%, #fff 42% 58%, transparent 58%), linear-gradient(#ed2062 42%, transparent 42% 58%, #ed2062 58%);
+    box-shadow: 0 0 0 .35rem rgba(237, 32, 98, .14);
+  }
+
+  .sweed-services-refine .sweed-brand-after-mockups .sweed-brand-mockup::after {
+    content: "";
+    position: absolute;
+    inset: auto 1rem 1rem 1rem;
+    height: .48rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #fff 0 44%, #ed2062 44% 100%);
+  }
+
+  .sweed-services-refine .sweed-services-digital-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .75rem;
+    padding: .8rem;
+    border: 1px solid rgba(38, 27, 62, .09);
+    border-radius: 1.15rem;
+    background: rgba(255,255,255,.78);
+    box-shadow: 0 17px 34px rgba(38, 27, 62, .08);
+  }
+
+  .sweed-services-refine .sweed-services-digital-card {
+    overflow: hidden;
+    min-height: 10.3rem;
+    border: 1px solid rgba(38, 27, 62, .09);
+    border-radius: .85rem;
+    background: #fff;
+    color: var(--sweed-ink);
+  }
+
+  .sweed-services-refine .sweed-services-digital-card b,
+  .sweed-services-refine .sweed-services-digital-card small {
+    display: block;
+    padding-inline: .7rem;
+  }
+
+  .sweed-services-refine .sweed-services-digital-card b {
+    margin-top: .7rem;
+    font-size: .91rem;
+  }
+
+  .sweed-services-refine .sweed-services-digital-card small {
+    padding-block: .25rem .8rem;
+    color: rgba(38, 27, 62, .7);
+    font-size: .75rem;
+    line-height: 1.55;
+  }
+
+  .sweed-services-refine .sweed-services-digital-photo {
+    height: 5.1rem;
+    background-position: center;
+    background-size: cover;
+    filter: saturate(.72) contrast(.98);
+  }
+
+  .sweed-services-refine .sweed-services-digital-photo-one,
+  .sweed-services-refine .sweed-services-digital-photo-four {
+    background-image: linear-gradient(rgba(38,27,62,.15), rgba(38,27,62,.15)), url("/images/hero/two-men-consultation.jpg");
+  }
+
+  .sweed-services-refine .sweed-services-digital-photo-two,
+  .sweed-services-refine .sweed-services-digital-photo-five {
+    background-image: linear-gradient(rgba(38,27,62,.12), rgba(38,27,62,.12)), url("/images/hero/entrepreneur-laptop-office.jpg");
+  }
+
+  .sweed-services-refine .sweed-services-digital-photo-three,
+  .sweed-services-refine .sweed-services-digital-photo-six {
+    background-image: linear-gradient(rgba(38,27,62,.18), rgba(38,27,62,.18)), url("/images/hero/businessman-laptop-standing.jpg");
+  }
+
+  .sweed-services-refine .sweed-services-advertising-icon {
+    width: 2rem;
+    height: 2rem;
+    stroke: var(--sweed-pink);
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .sweed-services-refine .sweed-services-touchpoints > div > span {
+    display: grid;
+    place-items: center;
+    color: var(--sweed-pink);
+  }
+
+  .sweed-services-refine .sweed-services-advertising > .sweed-services-container > .sweed-services-action {
+    display: inline-flex;
+    margin-top: 1.55rem;
+  }
+
+  .sweed-services-refine .sweed-services-media-frames {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sweed-services-refine .sweed-services-media-frames > div {
+    display: grid;
+    min-height: 6.4rem;
+    align-content: center;
+    gap: .35rem;
+    padding: .75rem;
+    border: 1px solid rgba(38, 27, 62, .1);
+    border-radius: .8rem;
+    background: #fff;
+  }
+
+  .sweed-services-refine .sweed-services-media-frames > div b {
+    color: var(--sweed-ink);
+  }
+
+  .sweed-services-refine .sweed-services-media-frames > div small {
+    color: rgba(38, 27, 62, .64);
+    line-height: 1.45;
+  }
+
+  .sweed-services-refine .sweed-services-cta .formActions {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
 
   @media (max-width: 900px) {
     .sweed-services-hero-photo {
@@ -587,21 +840,22 @@ export function ServicesPublicPage() {
         </nav>
         <p className={`${styles.mapNote} sweed-services-map-note`}>مش بنرشح لك أغلى خدمة… <b>بنرشح لك أول خدمة منطقية لحالتك</b></p>
 
-        <ServiceSection id="consulting" number="خدمة 01" title="الاستشارات الإدارية والتسويقية" hook="قبل ما تتحرك… محتاج تتأكد إنت رايح فين" description="بنحلل الصورة، نكشف نقطة التسرب، ونثبت أولويات قابلة للتنفيذ." chips={["بحث وتحليل سوق ومنافسين", "تحديد أهداف وأولويات", "خطط إدارية وتسويقية", "هيكلة وتشغيل", "مؤشرات أداء ومتابعة"]} kpi="مؤشر النجاح: قرار أوضح، أولويات معتمدة، وخطة تنفيذ قابلة للمتابعة — من غير وعد بنتيجة مالية مسبقة." cta="اعرف تفاصيل الاستشارات" href="/services/consulting">
-          <div className="sweed-services-photo-panel" aria-label="صورة توضيحية لخدمة الاستشارات">
-            
+        <ServiceSection id="consulting" number="خدمة 01" title="الاستشارات الإدارية والتسويقية" hook="قبل ما تتحرك… محتاج تتأكد إنت رايح فين" description="بنحلل الصورة، نكشف نقطة التسرب، ونثبت أولويات قابلة للتنفيذ." chips={["بحث السوق", "تحليل المنافسين", "تحديد الأهداف", "خطط إدارية وتسويقية", "هيكلة وتشغيل", "مؤشرات أداء"]} kpi="مؤشر النجاح: قرار أوضح، أولويات معتمدة، وخطة تنفيذ قابلة للمتابعة — من غير وعد بنتيجة مالية مسبقة." cta="اعرف تفاصيل الاستشارات" href="/services/consulting">
+          <div className="sweed-services-photo-panel sweed-services-business-carousel" aria-label="صور أعمال لخدمة الاستشارات">
+            <span className="sweed-services-business-slide sweed-services-business-slide-one" />
+            <span className="sweed-services-business-slide sweed-services-business-slide-two" />
           </div>
         </ServiceSection>
 
         <ServiceSection id="branding" number="خدمة 02" title="التصميم والهوية البصرية" hook="براندك معروف… ولا مجرد اسم وشوية تصميمات؟" description="نحوّل تميّزك إلى رسالة وهوية ثابتة يعرف بها العميل ليه يختارك." chips={["استراتيجية البراند", "الجمهور والتموضع", "الرسائل والنبرة", "الهوية البصرية", "دليل الاستخدام", "قوالب المنصات"]} kpi="مؤشر النجاح: رسالة وهوية متسقتان قابلتان للتطبيق على كل نقطة بيشوفها العميل." cta="ابنِ هوية مشروعك" href="/services/branding" reverse white>
           <div className={styles.brandSplit}>
-            <div className={styles.brandBefore}><h3>قبل — شكل مختلف في كل مكان</h3><div className={styles.brandTiles}>{["A", "؟", "B", "!", "C", "؟"].map((item, i) => <span key={i}>{item}</span>)}</div></div>
-            <div className={styles.brandAfter}><h3>بعد — هوية واحدة ثابتة</h3><div className={styles.brandTiles}>{["س", "س", "س", "س", "س", "س"].map((item, i) => <span className={i === 1 || i === 3 || i === 5 ? styles.tileAccent : undefined} key={i}>{item}</span>)}</div></div>
+            <div className={styles.brandBefore}><h3>قبل — شكل مختلف في كل مكان</h3><div className="sweed-brand-mockups sweed-brand-before-mockups">{Array.from({ length: 3 }).map((_, i) => <span className="sweed-brand-mockup" key={i} />)}</div></div>
+            <div className={styles.brandAfter}><h3>بعد — هوية واحدة ثابتة</h3><div className="sweed-brand-mockups sweed-brand-after-mockups">{Array.from({ length: 3 }).map((_, i) => <span className="sweed-brand-mockup" key={i} />)}</div></div>
           </div>
         </ServiceSection>
 
         <ServiceSection id="digital-marketing" number="خدمة 03" title="التسويق الرقمي" hook="الإعلان مش المشكلة… لو المسار نفسه مش واضح" description="نربط كل قناة بهدف، ونراجع الرسالة والعرض قبل زيادة الميزانية." chips={["تأسيس وتأمين المنصات", "إدارة السوشيال", "الحملات الممولة", "المحتوى التسويقي", "SEO عند الحاجة", "تقارير وتحسين دوري"]} kpi="مؤشر النجاح: هدف واضح لكل قناة وتقارير بتشرح قرار التحسين — مش أرقام مبيعات مضمونة." cta="شوف نظام التسويق الرقمي" href="/services/digital-marketing">
-          <div className={styles.funnelWrap}><div className={styles.channels}><span>📱</span><span>🔍</span><span>✉️</span><span>📢</span></div><div className={styles.funnel}><b>وعي — الجمهور الصح يشوفك</b><b>اهتمام — رسالة وعرض واضحين</b><b>قرار — خطوة محددة تتقاس</b></div><p>كل قناة ليها هدف واحد… مش نشاط مستمر بلا اتجاه</p></div>
+          <div className="sweed-services-digital-grid" aria-label="مراحل التسويق الرقمي">{[["one", "وعي", "الجمهور الصح يشوفك"], ["two", "اهتمام", "رسالة واضحة"], ["three", "ثقة", "محتوى يثبت القيمة"], ["four", "عرض", "خطوة مقنعة"], ["five", "تحويل", "صفحة أسهل للقرار"], ["six", "قياس", "تحسين مستمر"]].map(([photo, title, copy]) => <article className="sweed-services-digital-card" key={title}><div className={"sweed-services-digital-photo sweed-services-digital-photo-" + photo} /><b>{title}</b><small>{copy}</small></article>)}</div><div className={styles.funnel}><b>وعي — الجمهور الصح يشوفك</b><b>اهتمام — رسالة وعرض واضحين</b><b>قرار — خطوة محددة تتقاس</b></div><p>كل قناة ليها هدف واحد… مش نشاط مستمر بلا اتجاه</p></div>
         </ServiceSection>
 
         <ServiceSection id="development" number="خدمة 04" title="البرمجة والتطوير" hook="لو شغلك كبر… هل نظامك كبر معاه؟" description="نبني موقعًا أو نظامًا يسهّل الشراء والمتابعة ورؤية الأرقام." chips={["مواقع تعريفية", "متاجر إلكترونية", "صفحات هبوط", "CRM وأنظمة تشغيل", "ربط وأتمتة", "تحسين تجربة المستخدم"]} kpi="مؤشر النجاح: تجربة أسهل للعميل وسير عمل أوضح للفريق حسب نطاق المشروع." cta="استكشف حلول التطوير" href="/services/software-development" reverse white>
@@ -611,13 +865,13 @@ export function ServicesPublicPage() {
         <section className={`${styles.advertising} sweed-services-advertising`} id="advertising">
           <div className={styles.container}>
             <ServiceHead number="خدمة 05" title="الدعاية والإعلان" hook="وجودك في السوق لازم يتشاف… ويتميز" description="كل نقطة ظهور تحمل نفس الرسالة وتخدم قرارًا واضحًا." />
-            <div className={`${styles.touchpoints} sweed-services-touchpoints`}>{[["🪧", "لوحات وبنرات", "ظهور في الشارع الصح"], ["🏬", "واجهات ولافتات", "أول انطباع عند الباب"], ["🚚", "إعلانات مركبات", "رسالة بتتحرك في المدينة"], ["📦", "مطبوعات وهدايا", "الهوية في إيد العميل"]].map(([icon, title, copy]) => <div className={styles.touchpoint} key={title}><span>{icon}</span><b>{title}</b><small>{copy}</small></div>)}</div>
-                        <ActionLink href="/services/advertising">خطط لظهور براندك</ActionLink>
+            <div className={styles.touchpoints + " sweed-services-touchpoints"}>{[["billboard", "لوحات وبنرات", "ظهور في الشارع الصح"], ["storefront", "واجهات ولافتات", "أول انطباع عند الباب"], ["truck", "إعلانات مركبات", "رسالة بتتحرك في المدينة"], ["print", "مطبوعات وهدايا", "الهوية في إيد العميل"]].map(([icon, title, copy]) => <div className={styles.touchpoint} key={title}><span><AdvertisingIcon type={icon as AdvertisingIconType} /></span><b>{title}</b><small>{copy}</small></div>)}</div>
+            <ActionLink href="/services/advertising">خطط لظهور براندك</ActionLink>
           </div>
         </section>
 
-        <ServiceSection id="media" number="خدمة 06" title="إنتاج المحتوى والميديا" hook="المحتوى الحلو مش كفاية… لازم يحرّك قرار" description="نبدأ من فكرة وسكربت ومسار عميل، لا من الكاميرا فقط." chips={["استراتيجية وخطة محتوى", "كتابة وسكربت", "تصوير منتجات وفعاليات", "فيديو إعلاني وتعريفي", "موشن جرافيك"]} kpi="مؤشر النجاح: محتوى مرئي ليه هدف ومكان معلوم في رحلة العميل — مش إنتاج لمجرد النشر." cta="ابدأ خطة المحتوى المرئي" href="/services/media">
-          <div className={styles.storyboard}><div className="sweed-services-media-poster" aria-hidden="true"><span>▶</span></div><div className={styles.storyFrames}>{[["🎬", "اللقطة 1: تعرّف"], ["🤝", "اللقطة 2: ثقة"], ["💡", "اللقطة 3: شرح"], ["🎯", "اللقطة 4: خطوة"]].map(([icon, title]) => <div key={title}><span>{icon}</span><b>{title}</b></div>)}</div><p>وعي <b>←</b> اهتمام <b>←</b> قرار</p></div>
+        <ServiceSection id="media" number="خدمة 06" title="إنتاج المحتوى والميديا" hook="المحتوى الحلو مش كفاية… لازم يحرّك قرار" description="نبدأ من فكرة وسكربت ومسار عميل، لا من الكاميرا فقط." chips={["استراتيجية وخطة محتوى", "كتابة وسكربت", "تصوير منتجات وفعاليات", "فيديو إعلاني وتعريفي", "موشن جرافيك", "خطة نشر"]} kpi="مؤشر النجاح: محتوى مرئي ليه هدف ومكان معلوم في رحلة العميل — مش إنتاج لمجرد النشر." cta="ابدأ خطة المحتوى المرئي" href="/services/media">
+          <div className={styles.storyboard}><div className="sweed-services-media-poster" aria-hidden="true"><span>▶</span></div><div className={styles.storyFrames + " sweed-services-media-frames"}>{[["تعرّف", "فكرة واضحة"], ["ثقة", "قصة تقرّبك"], ["قرار", "خطوة تتحرك"]].map(([title, copy]) => <div key={title}><b>{title}</b><small>{copy}</small></div>)}</div><p>وعي <b>←</b> اهتمام <b>←</b> قرار</p></div>
         </ServiceSection>
 
         <section className={`${styles.integrated} sweed-services-integrated`} id="integrated-path">
@@ -648,12 +902,22 @@ export function ServicesPublicPage() {
   );
 }
 
+type AdvertisingIconType = "billboard" | "storefront" | "truck" | "print";
+
+function AdvertisingIcon({ type }: { type: AdvertisingIconType }) {
+  const common = { viewBox: "0 0 32 32", "aria-hidden": true };
+  if (type === "billboard") return <svg className="sweed-services-advertising-icon" {...common}><rect x="5" y="5" width="22" height="13" rx="2" /><path d="M11 27l2-9m8 9l-2-9M8 27h16" /></svg>;
+  if (type === "storefront") return <svg className="sweed-services-advertising-icon" {...common}><path d="M4 12h24v15H4zM3 7h26l-2 5H5zM10 27v-8h5v8m4-8h5" /></svg>;
+  if (type === "truck") return <svg className="sweed-services-advertising-icon" {...common}><path d="M3 9h17v13H3zM20 14h5l4 4v4h-9zM8 25a2 2 0 100-4 2 2 0 000 4zm15 0a2 2 0 100-4 2 2 0 000 4z" /></svg>;
+  return <svg className="sweed-services-advertising-icon" {...common}><path d="M7 5h18v22H7zM11 10h10M11 14h10M11 18h6M20 25v-5" /></svg>;
+}
+
 function ServiceHead({ number, title, hook, description }: { number: string; title: string; hook: string; description: string }) {
   return <div className={`${styles.serviceHead} sweed-services-head`}><span>{number}</span><h2>{title}</h2><p className={`${styles.hook} sweed-services-hook`}>{hook}</p><p className={`${styles.description} sweed-services-copy`}>{description}</p></div>;
 }
 
 function Chips({ items, dark = false }: { items: string[]; dark?: boolean }) {
-  return <div className={dark ? `${styles.chips} ${styles.chipsDark} sweed-services-chips` : `${styles.chips} sweed-services-chips`}>{items.slice(0, 4).map((item) => <span key={item}>{item}</span>)}</div>;
+  return <div className={dark ? `${styles.chips} ${styles.chipsDark} sweed-services-chips` : `${styles.chips} sweed-services-chips`}>{items.slice(0, 6).map((item) => <span key={item}>{item}</span>)}</div>;
 }
 
 function ServiceSection({ id, number, title, hook, description, chips, kpi: _kpi, cta, href, children, reverse = false, white = false }: { id: string; number: string; title: string; hook: string; description: string; chips: string[]; kpi: string; cta: string; href: string; children: React.ReactNode; reverse?: boolean; white?: boolean }) {

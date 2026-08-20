@@ -540,7 +540,7 @@ export function ServicesPublicPage() {
     track.className = "sweed-services-path-track";
     cards.forEach((card) => track.appendChild(card));
     cards.forEach((card) => {
-      const copy = card.cloneNode(true);
+      const copy = card.cloneNode(true) as HTMLElement;
       copy.setAttribute("aria-hidden", "true");
       track.appendChild(copy);
     });

@@ -26,10 +26,11 @@ ${referenceScope} .btn {
   align-items: center;
   overflow: hidden;
   border: 1px solid var(--sweed-action-border);
+  border-color: var(--sweed-action-border) !important;
   border-radius: var(--shape-control);
   padding: var(--sweed-action-inset) calc(var(--sweed-action-inset) + var(--inline-md)) var(--sweed-action-inset) var(--sweed-action-inset);
-  background: var(--sweed-action-bg);
-  color: var(--sweed-action-color);
+  background: var(--sweed-action-bg) !important;
+  color: var(--sweed-action-color) !important;
   box-sizing: border-box;
   cursor: pointer;
   direction: ltr;
@@ -48,7 +49,7 @@ ${referenceScope} .btn {
 }
 ${referenceScope} .btn:hover,
 ${referenceScope} .btn:focus-visible {
-  color: var(--sweed-action-fill-color);
+  color: var(--sweed-action-fill-color) !important;
   transform: translateY(-2px);
 }
 ${referenceScope} .btn:active {
@@ -116,7 +117,7 @@ ${referenceScope} .btn-primary {
 }
 ${referenceScope} .btn-primary:hover,
 ${referenceScope} .btn-primary:focus-visible {
-  border-color: var(--sweed-button-accent);
+  border-color: var(--sweed-button-accent) !important;
   box-shadow: 0 16px 36px rgba(237, 32, 98, 0.2);
 }
 ${referenceScope} .btn-ghost {
@@ -128,7 +129,7 @@ ${referenceScope} .btn-ghost {
 }
 ${referenceScope} .btn-ghost:hover,
 ${referenceScope} .btn-ghost:focus-visible {
-  border-color: #261b3e;
+  border-color: #261b3e !important;
   box-shadow: 0 16px 36px rgba(38, 27, 62, 0.16);
 }
 ${referenceScope} .btn-ghost.light {
@@ -140,7 +141,7 @@ ${referenceScope} .btn-ghost.light {
 }
 ${referenceScope} .btn-ghost.light:hover,
 ${referenceScope} .btn-ghost.light:focus-visible {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
   color: #ffffff !important;
 }
 

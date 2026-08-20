@@ -232,9 +232,11 @@ const homepageBriefRuntime = `
 export function LegacyPage({
   page,
   presentation = "legacy",
+  showAdvisor = true,
 }: {
   page: LegacyPageKey;
   presentation?: LegacyPresentation;
+  showAdvisor?: boolean;
 }) {
   const isReference = presentation === "reference";
   const isExact = presentation === "exact";
@@ -287,7 +289,7 @@ export function LegacyPage({
       {!isReference && !isExact && page === "services" ? <AutomationDemo /> : null}
       {isExact ? null : <LegacyFooter />}
       {isReference || isExact ? null : <OfferFunnelController page={page} />}
-      {isExact ? null : <AiAdvisorWidget />}
+      {!isExact && showAdvisor ? <AiAdvisorWidget /> : null}
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
       {isExact ? (
         <Script id={`sweed-exact-reference-navigation-${page}`} strategy="afterInteractive">

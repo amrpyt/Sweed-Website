@@ -73,6 +73,9 @@ describe("reference page integration normalization", () => {
     expect(scoped).toContain("border-radius: var(--shape-control);");
     expect(scoped).toContain("min-height: var(--control-height-md);");
     expect(scoped).toContain("line-height: var(--control-text-leading);");
+    expect(scoped).toContain("background: var(--sweed-action-bg) !important;");
+    expect(scoped).toContain("border-color: var(--sweed-action-border) !important;");
+    expect(scoped).toContain("color: var(--sweed-action-color) !important;");
     expect(scoped).toContain("clip-path: inset(0 calc(100% - var(--sweed-action-icon-size)) 0 0 round var(--sweed-action-inner-radius));");
     expect(scoped).toContain("clip-path: inset(0 0 0 0 round var(--sweed-action-inner-radius));");
     expect(scoped).toContain("color: #261b3e !important;");

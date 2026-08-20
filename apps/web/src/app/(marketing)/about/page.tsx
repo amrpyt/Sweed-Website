@@ -5,5 +5,5 @@ export const metadata = {
 };
 
 export default function AboutPage() {
-  return <LegacyPage page="about" presentation="exact" />;
+  return <LegacyPage page="about" presentation="reference" showAdvisor={false} />;
 }

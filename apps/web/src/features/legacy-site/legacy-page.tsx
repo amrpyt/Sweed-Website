@@ -713,6 +713,39 @@ const aboutExactPresentationOverride = `
     object-fit: contain;
   }
 
+  .sweed-exact-reference-page #alliances .ally {
+    flex-basis: 10.75rem;
+    padding: .7rem;
+  }
+
+  .sweed-exact-reference-page #alliances .ally .lg {
+    height: 4.35rem;
+    margin: 0;
+  }
+
+  .sweed-exact-reference-page #alliances .ally :is(b, p) {
+    display: none !important;
+  }
+
+  /* الدعوة الختامية: الجملة في منتصف العنوان مباشرة */
+  .sweed-exact-reference-page .cta .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sweed-exact-reference-page .cta h2,
+  .sweed-exact-reference-page .cta p {
+    width: 100%;
+    text-align: center !important;
+    text-align-last: center;
+  }
+
+  .sweed-exact-reference-page .cta p {
+    max-width: none;
+    margin: .85rem auto 1.55rem;
+  }
+
   .sweed-exact-reference-page #alliances .ally b {
     min-height: 1.55rem;
   }

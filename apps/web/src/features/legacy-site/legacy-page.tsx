@@ -293,6 +293,12 @@ const aboutExactPresentationOverride = `
     animation: sweedAboutCompass 4.5s ease-in-out infinite;
   }
 
+  .sweed-exact-reference-page .pledge-box h3 {
+    max-width: none;
+    white-space: nowrap;
+    font-size: clamp(1rem, 1.55vw, 1.3rem);
+  }
+
   .sweed-exact-reference-page .promise .sub {
     max-width: 48rem;
     margin: 1rem auto 0;

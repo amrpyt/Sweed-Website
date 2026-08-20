@@ -50,14 +50,14 @@ const servicesPageRefinementCss = `
   }
 
   .sweed-services-refine .sweed-services-hero-grid {
-    grid-template-columns: minmax(0, 1.34fr) minmax(17rem, .66fr);
-    gap: clamp(1.25rem, 3vw, 2.4rem);
+    grid-template-columns: minmax(0, 1.55fr) minmax(14rem, .45fr);
+    gap: clamp(1rem, 2vw, 1.6rem);
   }
 
   .sweed-services-refine .sweed-services-hero-section h1 {
     max-width: none;
-    font-size: clamp(1.9rem, 2.72vw, 2.75rem);
-    line-height: 1.35;
+    font-size: clamp(2.3rem, 3.45vw, 3.55rem);
+    line-height: 1.26;
     white-space: nowrap;
   }
 
@@ -274,6 +274,27 @@ const servicesPageRefinementCss = `
     padding: 1.35rem 1.45rem;
   }
 
+  .sweed-services-refine .sweed-services-photo-panel {
+    position: relative;
+    min-height: 21.25rem;
+    overflow: hidden;
+    border: 1px solid rgba(38, 27, 62, .1);
+    border-radius: 1.15rem;
+    background:
+      linear-gradient(135deg, rgba(38, 27, 62, .72), rgba(38, 27, 62, .15)),
+      url("/images/hero/businessman-laptop-standing.jpg") center / cover no-repeat;
+    box-shadow: 0 18px 36px rgba(38, 27, 62, .15);
+  }
+
+  .sweed-services-refine .sweed-services-photo-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
   .sweed-services-refine .sweed-services-media-poster {
     position: relative;
     min-height: 11.5rem;
@@ -369,6 +390,10 @@ const servicesPageRefinementCss = `
       min-height: 0;
     }
 
+    .sweed-services-refine .sweed-services-photo-panel {
+      min-height: 17rem;
+    }
+
     .sweed-services-refine .sweed-services-touchpoints > div,
     .sweed-services-refine .sweed-services-paths article {
       min-height: 0;
@@ -419,7 +444,7 @@ export function ServicesPublicPage() {
               <div>
                 <p className={styles.crumb}>الرئيسية <span>←</span> <b>خدماتنا</b></p>
                 <h1 id="services-page-title">مش كل مشكلة محتاجة نفس الخدمة</h1>
-                <p className={styles.heroDescription}>قبل ما نبدأ تنفيذ، بنفهم مشروعك واقف فين وإيه اللي ناقصه فعلًا — وبعدها بنحدد الخدمة أو المسار اللي يحرّكه في الاتجاه الصح.</p>
+                <p className={styles.heroDescription}>بنحدد مكان مشروعك، ثم نرشح أول خدمة أو مسار يحرّكه في الاتجاه الصح.</p>
                 <div className={styles.heroActions}>
                   <ActionLink href="#services-cta">حدد نقطة البداية</ActionLink>
                   <ActionLink href="#service-map" light>استكشف الخدمات</ActionLink>
@@ -447,44 +472,36 @@ export function ServicesPublicPage() {
         </nav>
         <p className={`${styles.mapNote} sweed-services-map-note`}>مش بنرشح لك أغلى خدمة… <b>بنرشح لك أول خدمة منطقية لحالتك</b></p>
 
-        <ServiceSection id="consulting" number="خدمة 01" title="الاستشارات الإدارية والتسويقية" hook="قبل ما تتحرك… محتاج تتأكد إنت رايح فين" description="لما القرار يبقى مبني على إحساس، الفريق بيشتغل كتير والنتيجة بتفضل أقل من المتوقع. هنا بنفهم الصورة كاملة، نكشف نقطة التسرب، ونثبت أولويات قابلة للتنفيذ." chips={["بحث وتحليل سوق ومنافسين", "تحديد أهداف وأولويات", "خطط إدارية وتسويقية", "هيكلة وتشغيل", "مؤشرات أداء ومتابعة"]} kpi="مؤشر النجاح: قرار أوضح، أولويات معتمدة، وخطة تنفيذ قابلة للمتابعة — من غير وعد بنتيجة مالية مسبقة." cta="اعرف تفاصيل الاستشارات" href="/services/consulting">
-          <div className={styles.diag}>
-            <svg viewBox="0 0 420 300" aria-hidden="true">
-              <path className={styles.diagPath} d="M40,250 C120,220 90,140 190,150 C280,160 260,70 360,60" />
-              <circle className={styles.diagNode} cx="40" cy="250" r="16" /><text x="40" y="285" textAnchor="middle">الوضع الحالي</text>
-              <circle className={styles.diagLeak} cx="190" cy="150" r="16" /><text x="190" y="185" textAnchor="middle">نقطة التسرب</text>
-              <circle className={styles.diagDecision} cx="360" cy="60" r="16" /><text className={styles.decisionText} x="360" y="30" textAnchor="middle">قرار واضح</text>
-            </svg>
-            <p>من التخبط… إلى قرار واضح</p>
+        <ServiceSection id="consulting" number="خدمة 01" title="الاستشارات الإدارية والتسويقية" hook="قبل ما تتحرك… محتاج تتأكد إنت رايح فين" description="بنحلل الصورة، نكشف نقطة التسرب، ونثبت أولويات قابلة للتنفيذ." chips={["بحث وتحليل سوق ومنافسين", "تحديد أهداف وأولويات", "خطط إدارية وتسويقية", "هيكلة وتشغيل", "مؤشرات أداء ومتابعة"]} kpi="مؤشر النجاح: قرار أوضح، أولويات معتمدة، وخطة تنفيذ قابلة للمتابعة — من غير وعد بنتيجة مالية مسبقة." cta="اعرف تفاصيل الاستشارات" href="/services/consulting">
+          <div className="sweed-services-photo-panel" aria-label="صورة توضيحية لخدمة الاستشارات">
+            
           </div>
         </ServiceSection>
 
-        <ServiceSection id="branding" number="خدمة 02" title="التصميم والهوية البصرية" hook="براندك معروف… ولا مجرد اسم وشوية تصميمات؟" description="الهوية مش لوجو منفصل عن شغلك — هي ترجمة واضحة لتميّزك، ورسالة ثابتة بتخلي العميل يفهمك ويعرف ليه يختارك." chips={["استراتيجية البراند", "الجمهور والتموضع", "الرسائل والنبرة", "الهوية البصرية", "دليل الاستخدام", "قوالب المنصات"]} kpi="مؤشر النجاح: رسالة وهوية متسقتان قابلتان للتطبيق على كل نقطة بيشوفها العميل." cta="ابنِ هوية مشروعك" href="/services/branding" reverse white>
+        <ServiceSection id="branding" number="خدمة 02" title="التصميم والهوية البصرية" hook="براندك معروف… ولا مجرد اسم وشوية تصميمات؟" description="نحوّل تميّزك إلى رسالة وهوية ثابتة يعرف بها العميل ليه يختارك." chips={["استراتيجية البراند", "الجمهور والتموضع", "الرسائل والنبرة", "الهوية البصرية", "دليل الاستخدام", "قوالب المنصات"]} kpi="مؤشر النجاح: رسالة وهوية متسقتان قابلتان للتطبيق على كل نقطة بيشوفها العميل." cta="ابنِ هوية مشروعك" href="/services/branding" reverse white>
           <div className={styles.brandSplit}>
             <div className={styles.brandBefore}><h3>قبل — شكل مختلف في كل مكان</h3><div className={styles.brandTiles}>{["A", "؟", "B", "!", "C", "؟"].map((item, i) => <span key={i}>{item}</span>)}</div></div>
             <div className={styles.brandAfter}><h3>بعد — هوية واحدة ثابتة</h3><div className={styles.brandTiles}>{["س", "س", "س", "س", "س", "س"].map((item, i) => <span className={i === 1 || i === 3 || i === 5 ? styles.tileAccent : undefined} key={i}>{item}</span>)}</div></div>
           </div>
         </ServiceSection>
 
-        <ServiceSection id="digital-marketing" number="خدمة 03" title="التسويق الرقمي" hook="الإعلان مش المشكلة… لو المسار نفسه مش واضح" description="مبنقيسش الشغل بعدد البوستات أو الإعلانات. بنربط كل قناة بهدف، وبنراجع الرسالة والصفحة والعرض قبل ما نطلب ميزانية أكبر." chips={["تأسيس وتأمين المنصات", "إدارة السوشيال", "الحملات الممولة", "المحتوى التسويقي", "SEO عند الحاجة", "تقارير وتحسين دوري"]} kpi="مؤشر النجاح: هدف واضح لكل قناة وتقارير بتشرح قرار التحسين — مش أرقام مبيعات مضمونة." cta="شوف نظام التسويق الرقمي" href="/services/digital-marketing">
+        <ServiceSection id="digital-marketing" number="خدمة 03" title="التسويق الرقمي" hook="الإعلان مش المشكلة… لو المسار نفسه مش واضح" description="نربط كل قناة بهدف، ونراجع الرسالة والعرض قبل زيادة الميزانية." chips={["تأسيس وتأمين المنصات", "إدارة السوشيال", "الحملات الممولة", "المحتوى التسويقي", "SEO عند الحاجة", "تقارير وتحسين دوري"]} kpi="مؤشر النجاح: هدف واضح لكل قناة وتقارير بتشرح قرار التحسين — مش أرقام مبيعات مضمونة." cta="شوف نظام التسويق الرقمي" href="/services/digital-marketing">
           <div className={styles.funnelWrap}><div className={styles.channels}><span>📱</span><span>🔍</span><span>✉️</span><span>📢</span></div><div className={styles.funnel}><b>وعي — الجمهور الصح يشوفك</b><b>اهتمام — رسالة وعرض واضحين</b><b>قرار — خطوة محددة تتقاس</b></div><p>كل قناة ليها هدف واحد… مش نشاط مستمر بلا اتجاه</p></div>
         </ServiceSection>
 
-        <ServiceSection id="development" number="خدمة 04" title="البرمجة والتطوير" hook="لو شغلك كبر… هل نظامك كبر معاه؟" description="الموقع أو النظام مش بند تقني منفصل — لازم يسهّل على العميل الشراء، وعلى الفريق المتابعة، وعلى الإدارة رؤية اللي بيحصل." chips={["مواقع تعريفية", "متاجر إلكترونية", "صفحات هبوط", "CRM وأنظمة تشغيل", "ربط وأتمتة", "تحسين تجربة المستخدم"]} kpi="مؤشر النجاح: تجربة أسهل للعميل وسير عمل أوضح للفريق حسب نطاق المشروع." cta="استكشف حلول التطوير" href="/services/software-development" reverse white>
+        <ServiceSection id="development" number="خدمة 04" title="البرمجة والتطوير" hook="لو شغلك كبر… هل نظامك كبر معاه؟" description="نبني موقعًا أو نظامًا يسهّل الشراء والمتابعة ورؤية الأرقام." chips={["مواقع تعريفية", "متاجر إلكترونية", "صفحات هبوط", "CRM وأنظمة تشغيل", "ربط وأتمتة", "تحسين تجربة المستخدم"]} kpi="مؤشر النجاح: تجربة أسهل للعميل وسير عمل أوضح للفريق حسب نطاق المشروع." cta="استكشف حلول التطوير" href="/services/software-development" reverse white>
           <div className={styles.system}><div className={styles.systemGrid}><div><b>العميل</b><small>يشتري ويتابع بسهولة</small></div><div><b>الفريق</b><small>يشتغل بسير عمل واضح</small></div><div><b>الإدارة</b><small>تشوف اللي بيحصل بالأرقام</small></div></div><div className={styles.systemCore}>نظام واحد<br />متصل</div></div>
         </ServiceSection>
 
         <section className={`${styles.advertising} sweed-services-advertising`} id="advertising">
           <div className={styles.container}>
-            <ServiceHead number="خدمة 05" title="الدعاية والإعلان" hook="وجودك في السوق لازم يتشاف… ويتميز" description="اللوحة أو المطبوعات مش هدف في نفسها. كل نقطة ظهور لازم تحمل نفس الرسالة، وتخدم مكان ومرحلة وقرار واضح." />
+            <ServiceHead number="خدمة 05" title="الدعاية والإعلان" hook="وجودك في السوق لازم يتشاف… ويتميز" description="كل نقطة ظهور تحمل نفس الرسالة وتخدم قرارًا واضحًا." />
             <div className={`${styles.touchpoints} sweed-services-touchpoints`}>{[["🪧", "لوحات وبنرات", "ظهور في الشارع الصح"], ["🏬", "واجهات ولافتات", "أول انطباع عند الباب"], ["🚚", "إعلانات مركبات", "رسالة بتتحرك في المدينة"], ["📦", "مطبوعات وهدايا", "الهوية في إيد العميل"]].map(([icon, title, copy]) => <div className={styles.touchpoint} key={title}><span>{icon}</span><b>{title}</b><small>{copy}</small></div>)}</div>
-            <Chips items={["حملات خارجية", "كتالوجات ومطبوعات", "تطبيقات هوية ميدانية"]} dark />
-            <p className={styles.kpi}>مؤشر النجاح: رسالة موحدة وحضور ميداني مقصود في الأماكن المناسبة.</p>
-            <ActionLink href="/services/advertising">خطط لظهور براندك</ActionLink>
+                        <ActionLink href="/services/advertising">خطط لظهور براندك</ActionLink>
           </div>
         </section>
 
-        <ServiceSection id="media" number="خدمة 06" title="إنتاج المحتوى والميديا" hook="المحتوى الحلو مش كفاية… لازم يحرّك قرار" description="كل لقطة لازم تعرف دورها: تعرّف، تبني ثقة، تشرح، أو تدفع لخطوة. عشان كده التصوير عندنا بيبدأ من فكرة وسكربت ومسار عميل — مش من الكاميرا." chips={["استراتيجية وخطة محتوى", "كتابة وسكربت", "تصوير منتجات وفعاليات", "فيديو إعلاني وتعريفي", "موشن جرافيك"]} kpi="مؤشر النجاح: محتوى مرئي ليه هدف ومكان معلوم في رحلة العميل — مش إنتاج لمجرد النشر." cta="ابدأ خطة المحتوى المرئي" href="/services/media">
+        <ServiceSection id="media" number="خدمة 06" title="إنتاج المحتوى والميديا" hook="المحتوى الحلو مش كفاية… لازم يحرّك قرار" description="نبدأ من فكرة وسكربت ومسار عميل، لا من الكاميرا فقط." chips={["استراتيجية وخطة محتوى", "كتابة وسكربت", "تصوير منتجات وفعاليات", "فيديو إعلاني وتعريفي", "موشن جرافيك"]} kpi="مؤشر النجاح: محتوى مرئي ليه هدف ومكان معلوم في رحلة العميل — مش إنتاج لمجرد النشر." cta="ابدأ خطة المحتوى المرئي" href="/services/media">
           <div className={styles.storyboard}><div className="sweed-services-media-poster" aria-hidden="true"><span>▶</span></div><div className={styles.storyFrames}>{[["🎬", "اللقطة 1: تعرّف"], ["🤝", "اللقطة 2: ثقة"], ["💡", "اللقطة 3: شرح"], ["🎯", "اللقطة 4: خطوة"]].map(([icon, title]) => <div key={title}><span>{icon}</span><b>{title}</b></div>)}</div><p>وعي <b>←</b> اهتمام <b>←</b> قرار</p></div>
         </ServiceSection>
 
@@ -492,8 +509,8 @@ export function ServicesPublicPage() {
           <div className={styles.container}>
             <span className={`${styles.eyebrow} sweed-services-eyebrow`}>المسار المتكامل</span>
             <h2>الخدمة الصح في الوقت الصح… مش كل الخدمات مرة واحدة</h2>
-            <p>ممكن تبدأ بخدمة واحدة، وممكن مشروعك يحتاج مسار متكامل. الفرق إننا بنرتب الخطوات حسب وضعك الحقيقي — مش حسب قائمة ثابتة.</p>
-            <div className={`${styles.pathsGrid} sweed-services-paths`}>{[["فكرة أو بداية مش واضحة", "استشارات ← هوية", "وبعدها عند الحاجة: منصات وموقع ثم إطلاق تسويقي"], ["نشاط قائم وشكله مش متسق", "استشارات تسويقية ← هوية", "وبعدها: محتوى وحملات وظهور ميداني"], ["مبيعات أو تشغيل محتاجين نظام", "استشارات ← برمجة وتطوير", "وبعدها: تسويق رقمي وقياس أداء"], ["ظهور ضعيف رغم جودة الخدمة", "هوية ورسالة ← دعاية أو ميديا", "وبعدها: حملات رقمية مرتبطة بهدف"]].map(([title, route, copy]) => <article key={title}><b>{title}</b><strong>{route}</strong><small>{copy}</small></article>)}</div>
+            <p>بنرتب البداية حسب وضع مشروعك الحقيقي، مش حسب قائمة ثابتة.</p>
+            <div className={`${styles.pathsGrid} sweed-services-paths`}>{[["فكرة أو بداية مش واضحة", "استشارات ← هوية", "ثم منصات أو موقع وإطلاق تسويقي عند الحاجة"], ["مبيعات أو تشغيل محتاجين نظام", "استشارات ← برمجة وتطوير", "ثم تسويق رقمي وقياس أداء"], ["ظهور ضعيف رغم جودة الخدمة", "هوية ورسالة ← دعاية أو ميديا", "ثم حملات رقمية مرتبطة بهدف"]].map(([title, route, copy]) => <article key={title}><b>{title}</b><strong>{route}</strong><small>{copy}</small></article>)}</div>
           </div>
         </section>
 
@@ -502,7 +519,7 @@ export function ServicesPublicPage() {
           <div className={`${styles.container} ${styles.ctaInner} sweed-services-cta-inner`}>
             <span className={`${styles.eyebrow} sweed-services-eyebrow`}>تواصل معانا</span>
             <h2>مش محتاج تختار لوحدك</h2>
-            <p>احكيلنا وضع مشروعك في سطرين، وإحنا نبدأ معاك من سؤال واحد: إيه أول خطوة تستحق تتعمل دلوقتي؟</p>
+            <p>احكيلنا وضع مشروعك في سطرين، ونحدد معاك أول خطوة تستحق تتعمل.</p>
             <form className={`${styles.form} sweed-services-form`} onSubmit={(event) => event.preventDefault()}>
               <div className={styles.formRow}><label>اسمك<input type="text" placeholder="اكتب اسمك" /></label><label>رقم الموبايل (واتساب)<input type="tel" placeholder="01xxxxxxxxx" /></label></div>
               <div className={styles.formRow}><label>الخدمة اللي بتفكر فيها (اختياري)<select defaultValue=""><option value="">لسه محددتش — ساعدوني</option><option value="consulting">الاستشارات الإدارية والتسويقية</option><option value="branding">التصميم والهوية البصرية</option><option value="digital-marketing">التسويق الرقمي</option><option value="development">البرمجة والتطوير</option><option value="advertising">الدعاية والإعلان</option><option value="media">إنتاج المحتوى والميديا</option></select></label><label>أكبر تحدي عندك دلوقتي<input type="text" placeholder="سطر واحد كفاية" /></label></div>
@@ -521,9 +538,9 @@ function ServiceHead({ number, title, hook, description }: { number: string; tit
 }
 
 function Chips({ items, dark = false }: { items: string[]; dark?: boolean }) {
-  return <div className={dark ? `${styles.chips} ${styles.chipsDark} sweed-services-chips` : `${styles.chips} sweed-services-chips`}>{items.map((item) => <span key={item}>{item}</span>)}</div>;
+  return <div className={dark ? `${styles.chips} ${styles.chipsDark} sweed-services-chips` : `${styles.chips} sweed-services-chips`}>{items.slice(0, 4).map((item) => <span key={item}>{item}</span>)}</div>;
 }
 
-function ServiceSection({ id, number, title, hook, description, chips, kpi, cta, href, children, reverse = false, white = false }: { id: string; number: string; title: string; hook: string; description: string; chips: string[]; kpi: string; cta: string; href: string; children: React.ReactNode; reverse?: boolean; white?: boolean }) {
-  return <section className={white ? `${styles.service} ${styles.serviceWhite} sweed-services-service-section` : `${styles.service} sweed-services-service-section`} id={id}><div className={`${styles.container} ${styles.serviceGrid} sweed-services-grid ${reverse ? styles.reverse : ""}`}><div><ServiceHead number={number} title={title} hook={hook} description={description}/><Chips items={chips}/><p className={`${styles.kpi} sweed-services-kpi`}>{kpi}</p><ActionLink href={href}>{cta}</ActionLink></div><div className={`${styles.serviceVisual} sweed-services-visual`}>{children}</div></div></section>;
+function ServiceSection({ id, number, title, hook, description, chips, kpi: _kpi, cta, href, children, reverse = false, white = false }: { id: string; number: string; title: string; hook: string; description: string; chips: string[]; kpi: string; cta: string; href: string; children: React.ReactNode; reverse?: boolean; white?: boolean }) {
+  return <section className={white ? `${styles.service} ${styles.serviceWhite} sweed-services-service-section` : `${styles.service} sweed-services-service-section`} id={id}><div className={`${styles.container} ${styles.serviceGrid} sweed-services-grid ${reverse ? styles.reverse : ""}`}><div><ServiceHead number={number} title={title} hook={hook} description={description}/><Chips items={chips}/><ActionLink href={href}>{cta}</ActionLink></div><div className={`${styles.serviceVisual} sweed-services-visual`}>{children}</div></div></section>;
 }

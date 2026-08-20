@@ -46,47 +46,362 @@ const aboutReferenceActionOverride = `
 }
 `;
 
-const aboutExactPresentationOverride = `
-  .sweed-exact-reference-page .about-hero {
-    min-height: clamp(31rem, 62vh, 38rem);
+const aboutExactPresentationOverride = \`
+  .sweed-exact-reference-page {
+    --about-ink: #261b3e;
+    --about-pink: #ed2062;
+    --about-soft: #faf8fc;
+    background: #faf9fc;
   }
+
   .sweed-exact-reference-page > section {
     isolation: isolate;
   }
+
   .sweed-exact-reference-page > section:not(.about-hero) {
-    padding-block: clamp(4rem, 7vw, 5rem);
+    padding-block: clamp(3.85rem, 5vw, 4.85rem);
   }
-  .sweed-exact-reference-page > section:nth-of-type(even):not(.about-hero) {
+
+  .sweed-exact-reference-page > section:nth-of-type(even):not(.about-hero):not(.promise):not(.numbers):not(.cta) {
     background: #ffffff;
   }
-  .sweed-exact-reference-page > section:nth-of-type(odd):not(.about-hero):not(.numbers):not(.cta) {
-    background: #faf9fc;
+
+  .sweed-exact-reference-page > section:nth-of-type(odd):not(.about-hero):not(.promise):not(.numbers):not(.cta) {
+    background: var(--about-soft);
   }
-  .sweed-exact-reference-page > section:not(.about-hero) h2,
-  .sweed-exact-reference-page > section:not(.about-hero) .eyebrow,
-  .sweed-exact-reference-page > section:not(.about-hero) .section-kicker {
-    text-align: center;
+
+  .sweed-exact-reference-page .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
   }
-  .sweed-exact-reference-page > section:not(.about-hero) h2::after {
+
+  .sweed-exact-reference-page .sec-title,
+  .sweed-exact-reference-page .about-hero h1 {
+    position: relative;
+    width: max-content;
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center !important;
+    white-space: nowrap;
+    letter-spacing: -.02em;
+  }
+
+  .sweed-exact-reference-page .sec-title::after,
+  .sweed-exact-reference-page .about-hero h1::after {
     content: "";
     display: block;
-    width: 3.5rem;
-    height: .18rem;
-    margin: 1rem auto 0;
+    width: 3.55rem;
+    height: .2rem;
+    margin: .85rem auto 0;
     border-radius: 999px;
-    background: linear-gradient(90deg, #261b3e 0 48%, #ed2062 48% 100%);
+    background: linear-gradient(90deg, var(--about-ink) 0 45%, var(--about-pink) 45% 100%);
+    box-shadow: 0 5px 14px rgba(237, 32, 98, .16);
   }
-  .sweed-exact-reference-page > section:not(.about-hero) p:not(.eyebrow):not(.section-kicker) {
-    text-align: justify;
+
+  .sweed-exact-reference-page .eyebrow {
+    display: table;
+    margin-inline: auto;
+    padding: .42rem .85rem;
+    border: 1px solid rgba(237, 32, 98, .2);
+    border-radius: 999px;
+    background: rgba(237, 32, 98, .06);
+    color: var(--about-pink);
+    text-align: center !important;
+  }
+
+  .sweed-exact-reference-page :is(
+    .story-text p,
+    .founder-sign,
+    .sec-lead,
+    .card p,
+    .pledge-box p,
+    .step p,
+    .ally p,
+    .member p,
+    .t-card p,
+    .cta p
+  ) {
+    text-align: justify !important;
     text-justify: inter-word;
+    text-align-last: auto;
+    line-height: 1.9;
   }
-  .sweed-exact-reference-page .founder,
-  .sweed-exact-reference-page .promise,
-  .sweed-exact-reference-page .pledge,
-  .sweed-exact-reference-page .numbers,
-  .sweed-exact-reference-page .cta {
-    color: inherit;
+
+  /* القصة: صورة فعلية + مساحة أقل + خط زمني 2×2 */
+  .sweed-exact-reference-page > section:nth-of-type(2) {
+    padding-block: clamp(3.5rem, 5vw, 4.5rem) !important;
   }
+
+  .sweed-exact-reference-page .story-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(21rem, .9fr);
+    gap: clamp(2rem, 4vw, 3.25rem);
+    margin-top: 2.3rem !important;
+    align-items: start;
+  }
+
+  .sweed-exact-reference-page .story-text {
+    display: grid;
+    gap: .7rem;
+  }
+
+  .sweed-exact-reference-page .story-text p {
+    margin: 0 !important;
+  }
+
+  .sweed-exact-reference-page .video-frame {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    background:
+      linear-gradient(135deg, rgba(38, 27, 62, .22), rgba(38, 27, 62, .64)),
+      url("/images/hero/two-men-consultation.jpg") center / cover no-repeat;
+    box-shadow: 0 20px 42px rgba(38, 27, 62, .2);
+  }
+
+  .sweed-exact-reference-page .video-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 1px solid rgba(255,255,255,.24);
+    border-radius: inherit;
+  }
+
+  .sweed-exact-reference-page .video-frame .play {
+    width: 4.25rem;
+    height: 4.25rem;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+
+  .sweed-exact-reference-page .video-frame:hover .play {
+    transform: scale(1.09);
+    box-shadow: 0 0 0 18px rgba(237, 32, 98, .2);
+  }
+
+  .sweed-exact-reference-page .timeline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .8rem;
+    margin-top: 1rem;
+    padding: 0;
+    border: 0;
+  }
+
+  .sweed-exact-reference-page .tl-item {
+    min-height: 6.4rem;
+    padding: 1rem 1rem 1rem 2.1rem;
+    border: 1px solid rgba(38, 27, 62, .1);
+    border-radius: 1rem;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 8px 20px rgba(38, 27, 62, .055);
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+
+  .sweed-exact-reference-page .tl-item::before {
+    right: auto;
+    left: .9rem;
+    top: 1rem;
+    width: .58rem;
+    height: .58rem;
+    box-shadow: 0 0 0 4px rgba(237, 32, 98, .13);
+  }
+
+  .sweed-exact-reference-page .tl-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(237, 32, 98, .35);
+    box-shadow: 0 14px 26px rgba(38, 27, 62, .1);
+  }
+
+  .sweed-exact-reference-page .tl-item b {
+    margin-bottom: .25rem;
+  }
+
+  .sweed-exact-reference-page .tl-item small {
+    display: block;
+    line-height: 1.65;
+  }
+
+  /* صورة للمؤسس بدل الحرف الافتراضي */
+  .sweed-exact-reference-page .founder {
+    padding-block: 4rem !important;
+  }
+
+  .sweed-exact-reference-page .founder-card {
+    gap: 2.5rem;
+    padding: clamp(1.5rem, 4vw, 2.6rem);
+    background: linear-gradient(135deg, #f2edf8, #ffffff);
+    border: 1px solid rgba(38, 27, 62, .08);
+    box-shadow: 0 18px 40px rgba(38, 27, 62, .08);
+  }
+
+  .sweed-exact-reference-page .avatar {
+    overflow: hidden;
+    color: transparent;
+    background:
+      linear-gradient(180deg, rgba(38, 27, 62, 0), rgba(38, 27, 62, .42)),
+      url("/images/hero/businessman-laptop-standing.jpg") center / cover no-repeat;
+    box-shadow: 0 14px 28px rgba(38, 27, 62, .18);
+  }
+
+  /* الوعد: أقصر وأدفأ وأكثر حركة */
+  .sweed-exact-reference-page .promise {
+    position: relative;
+    overflow: hidden;
+    min-height: 0 !important;
+    padding-block: clamp(3.6rem, 5vw, 4.75rem) !important;
+    background:
+      radial-gradient(circle at 15% 18%, rgba(237, 32, 98, .24), transparent 22rem),
+      radial-gradient(circle at 86% 82%, rgba(119, 93, 173, .34), transparent 21rem),
+      #261b3e !important;
+  }
+
+  .sweed-exact-reference-page .promise::before,
+  .sweed-exact-reference-page .promise::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .sweed-exact-reference-page .promise::before {
+    width: 17rem;
+    height: 17rem;
+    top: -10rem;
+    right: 7%;
+  }
+
+  .sweed-exact-reference-page .promise::after {
+    width: 11rem;
+    height: 11rem;
+    bottom: -6rem;
+    left: 9%;
+  }
+
+  .sweed-exact-reference-page .promise .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sweed-exact-reference-page .promise .half {
+    font-size: clamp(1.35rem, 2.5vw, 2.05rem);
+    line-height: 1.45;
+  }
+
+  .sweed-exact-reference-page .promise .compass {
+    filter: drop-shadow(0 8px 16px rgba(237, 32, 98, .34));
+    animation: sweedAboutCompass 4.5s ease-in-out infinite;
+  }
+
+  .sweed-exact-reference-page .promise .sub {
+    max-width: 48rem;
+    margin: 1rem auto 0;
+    color: rgba(255,255,255,.8) !important;
+    text-align: center !important;
+  }
+
+  /* المبادئ: كروت ملونة وخفيفة وتفاعلية */
+  .sweed-exact-reference-page .cards-2,
+  .sweed-exact-reference-page .cards-3 {
+    gap: 1rem;
+    margin-top: 2rem !important;
+  }
+
+  .sweed-exact-reference-page .cards-2 {
+    margin-bottom: 1rem;
+  }
+
+  .sweed-exact-reference-page .cards-2 .card,
+  .sweed-exact-reference-page .cards-3 .card {
+    position: relative;
+    min-height: 0;
+    padding: clamp(1.25rem, 2.4vw, 1.8rem);
+    overflow: hidden;
+    border: 1px solid rgba(38, 27, 62, .1);
+    border-radius: 1.15rem;
+    box-shadow: 0 12px 28px rgba(38, 27, 62, .065);
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  }
+
+  .sweed-exact-reference-page .cards-2 .card::before,
+  .sweed-exact-reference-page .cards-3 .card::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: .24rem;
+    background: linear-gradient(90deg, #261b3e, #ed2062);
+    transform: scaleX(.32);
+    transform-origin: right;
+    transition: transform .35s ease;
+  }
+
+  .sweed-exact-reference-page .cards-2 .card:nth-child(odd),
+  .sweed-exact-reference-page .cards-3 .card:nth-child(3n + 1) {
+    background: linear-gradient(135deg, #ffffff, #faf0f5);
+  }
+
+  .sweed-exact-reference-page .cards-2 .card:nth-child(even),
+  .sweed-exact-reference-page .cards-3 .card:nth-child(3n + 2) {
+    background: linear-gradient(135deg, #ffffff, #f0ecf7);
+  }
+
+  .sweed-exact-reference-page .cards-3 .card:nth-child(3n) {
+    background: linear-gradient(135deg, #ffffff, #f8f5ee);
+  }
+
+  .sweed-exact-reference-page .cards-2 .card:hover,
+  .sweed-exact-reference-page .cards-3 .card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(237, 32, 98, .38);
+    box-shadow: 0 18px 34px rgba(38, 27, 62, .13);
+  }
+
+  .sweed-exact-reference-page .cards-2 .card:hover::before,
+  .sweed-exact-reference-page .cards-3 .card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .sweed-exact-reference-page .cards-2 .card .ic,
+  .sweed-exact-reference-page .cards-3 .card .ic {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: .9rem;
+    background: linear-gradient(135deg, #261b3e, #45316d);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(38, 27, 62, .18);
+  }
+
+  .sweed-exact-reference-page .cards-2 .card h3,
+  .sweed-exact-reference-page .cards-3 .card h3 {
+    margin-bottom: .55rem;
+    text-align: right !important;
+  }
+
+  /* بطاقات فريق القيادة تصبح مرئية بصور موجودة */
+  .sweed-exact-reference-page .team-swiper {
+    margin-top: 2rem !important;
+  }
+
+  .sweed-exact-reference-page .member .photo {
+    color: transparent;
+    background:
+      linear-gradient(180deg, rgba(38, 27, 62, 0), rgba(38, 27, 62, .32)),
+      url("/images/hero/entrepreneur-laptop-office.jpg") center / cover no-repeat;
+  }
+
+  .sweed-exact-reference-page .swiper-slide:nth-child(even) .member .photo {
+    background:
+      linear-gradient(180deg, rgba(38, 27, 62, 0), rgba(38, 27, 62, .36)),
+      url("/images/hero/businessman-laptop-standing.jpg") center / cover no-repeat;
+  }
+
+  .sweed-exact-reference-page .member,
+  .sweed-exact-reference-page .ally,
+  .sweed-exact-reference-page .t-card {
+    border-radius: 1.15rem;
+  }
+
   .sweed-exact-reference-page .founder *,
   .sweed-exact-reference-page .promise *,
   .sweed-exact-reference-page .pledge *,
@@ -95,22 +410,59 @@ const aboutExactPresentationOverride = `
     opacity: 1 !important;
     visibility: visible !important;
   }
-  .sweed-exact-reference-page .founder :is(p, h2, h3, span),
-  .sweed-exact-reference-page .promise :is(p, h2, h3, span),
-  .sweed-exact-reference-page .pledge :is(p, h2, h3, span),
-  .sweed-exact-reference-page .numbers :is(p, h2, h3, span),
-  .sweed-exact-reference-page .cta :is(p, h2, h3, span) {
-    color: inherit !important;
+
+  @keyframes sweedAboutCompass {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(7deg); }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sweed-exact-reference-page *,
+    .sweed-exact-reference-page *::before,
+    .sweed-exact-reference-page *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
+  }
+
+  @media (max-width: 58rem) {
+    .sweed-exact-reference-page .story-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sweed-exact-reference-page .timeline {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
   @media (max-width: 48rem) {
     .sweed-exact-reference-page > section:not(.about-hero) {
       padding-block: 3rem;
     }
-    .sweed-exact-reference-page .about-hero {
-      min-height: 29rem;
+
+    .sweed-exact-reference-page .sec-title,
+    .sweed-exact-reference-page .about-hero h1 {
+      width: auto;
+      white-space: normal;
+      font-size: clamp(1.55rem, 7vw, 2.15rem);
+    }
+
+    .sweed-exact-reference-page .story-grid {
+      margin-top: 1.65rem !important;
+    }
+
+    .sweed-exact-reference-page .timeline,
+    .sweed-exact-reference-page .cards-2,
+    .sweed-exact-reference-page .cards-3 {
+      grid-template-columns: 1fr;
+    }
+
+    .sweed-exact-reference-page .founder-card {
+      gap: 1.5rem;
     }
   }
-`;
+\`;
 
 const homepageBriefRuntime = `
 (() => {

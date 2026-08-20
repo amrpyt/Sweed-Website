@@ -46,7 +46,7 @@ const aboutReferenceActionOverride = `
 }
 `;
 
-const aboutExactPresentationOverride = \`
+const aboutExactPresentationOverride = `
   .sweed-exact-reference-page {
     --about-ink: #261b3e;
     --about-pink: #ed2062;
@@ -462,7 +462,7 @@ const aboutExactPresentationOverride = \`
       gap: 1.5rem;
     }
   }
-\`;
+`;
 
 const homepageBriefRuntime = `
 (() => {

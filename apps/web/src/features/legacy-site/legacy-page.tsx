@@ -884,14 +884,13 @@ const portfolioExactPresentationOverride = `
     --portfolio-ink: #261b3e;
     --portfolio-pink: #ed2062;
     --portfolio-soft: #f7f4fb;
-    --portfolio-line: rgba(38, 27, 62, .11);
     background: #fbfafe;
   }
 
   .sweed-exact-reference-page > section {
     position: relative;
     isolation: isolate;
-    padding-block: clamp(4rem, 6vw, 5.5rem);
+    padding-block: clamp(4rem, 5.5vw, 5.35rem);
   }
 
   .sweed-exact-reference-page .reveal {
@@ -904,11 +903,10 @@ const portfolioExactPresentationOverride = `
   .sweed-exact-reference-page .w-hero h1,
   .sweed-exact-reference-page .w-cta h2 {
     position: relative;
-    width: fit-content;
     max-width: 100%;
     margin-inline: auto;
     text-align: center !important;
-    letter-spacing: -.025em;
+    letter-spacing: -.02em;
   }
 
   .sweed-exact-reference-page .sec-title::after,
@@ -916,48 +914,26 @@ const portfolioExactPresentationOverride = `
   .sweed-exact-reference-page .w-cta h2::after {
     content: "";
     display: block;
-    width: 3.9rem;
-    height: .22rem;
-    margin: .92rem auto 0;
+    width: 3.6rem;
+    height: .2rem;
+    margin: .9rem auto 0;
     border-radius: 999px;
     background: linear-gradient(90deg, var(--portfolio-ink) 0 43%, var(--portfolio-pink) 43% 100%);
-    box-shadow: 0 5px 15px rgba(237, 32, 98, .18);
   }
 
-  .sweed-exact-reference-page .consult-side .sec-title::after,
-  .sweed-exact-reference-page .film .sec-title::after,
-  .sweed-exact-reference-page .w-cta h2::after,
-  .sweed-exact-reference-page .w-hero h1::after {
+  .sweed-exact-reference-page :is(.consult .sec-title, .film .sec-title, .w-hero h1, .w-cta h2)::after {
     background: linear-gradient(90deg, #ffffff 0 43%, var(--portfolio-pink) 43% 100%);
   }
 
   .sweed-exact-reference-page .eyebrow {
     display: table;
     margin-inline: auto;
-    padding: .4rem .86rem;
-    border: 1px solid rgba(237, 32, 98, .23);
+    padding: .38rem .82rem;
+    border: 1px solid rgba(237, 32, 98, .22);
     border-radius: 999px;
     background: rgba(237, 32, 98, .06);
     color: var(--portfolio-pink);
     text-align: center !important;
-  }
-
-  .sweed-exact-reference-page :is(
-    .w-hero p,
-    .sec-lead,
-    .challenge,
-    .dossier li,
-    .bp-card p,
-    .mkt-proj li,
-    .film-info .challenge,
-    .w-item .meta small,
-    .ux-notes .note,
-    .sector-panel small,
-    .w-cta p
-  ) {
-    text-align: justify;
-    text-justify: inter-word;
-    line-height: 1.85;
   }
 
   .sweed-exact-reference-page .sec-lead {
@@ -967,607 +943,144 @@ const portfolioExactPresentationOverride = `
     text-align-last: center;
   }
 
-  /* Hero: صور أعمال متبدلة بدل مساحة لونية جامدة */
-  .sweed-exact-reference-page .w-hero {
-    min-height: min(50rem, 87vh);
-    padding-bottom: 10.75rem;
-    background: linear-gradient(105deg, rgba(24, 11, 40, .94), rgba(38, 27, 62, .72)) !important;
+  .sweed-exact-reference-page :is(.challenge, .dossier li, .bp-card p, .mkt-proj li, .film-info .challenge, .w-item .meta small, .ux-notes .note, .sector-panel small) {
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.82;
   }
 
-  .sweed-exact-reference-page .w-hero::before,
-  .sweed-exact-reference-page .w-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-position: center;
-    background-size: cover;
-    pointer-events: none;
+  /* الهيرو: صورة أعمال هادئة مع الحفاظ على نفس المحتوى والأزرار */
+  .sweed-exact-reference-page .w-hero {
+    min-height: min(50rem, 86vh);
+    background: linear-gradient(105deg, rgba(24, 11, 40, .94), rgba(38, 27, 62, .67)) !important;
   }
 
   .sweed-exact-reference-page .w-hero::before {
-    z-index: 0;
-    background-image: linear-gradient(105deg, rgba(24, 11, 40, .95), rgba(38, 27, 62, .52)), url("/images/hero/two-men-consultation.jpg");
-    animation: sweedPortfolioHeroFade 12s ease-in-out infinite alternate;
-  }
-
-  .sweed-exact-reference-page .w-hero::after {
-    z-index: 0;
-    opacity: 0;
-    background-image: linear-gradient(105deg, rgba(24, 11, 40, .94), rgba(38, 27, 62, .55)), url("/images/hero/entrepreneur-laptop-office.jpg");
-    animation: sweedPortfolioHeroFadeAlt 12s ease-in-out infinite alternate;
-  }
-
-  .sweed-exact-reference-page .w-hero > :not(.clip) {
-    position: relative;
-    z-index: 2;
-  }
-
-  .sweed-exact-reference-page .w-hero .inner {
-    max-width: 66rem;
-  }
-
-  .sweed-exact-reference-page .w-hero h1 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    text-wrap: balance;
-  }
-
-  .sweed-exact-reference-page .w-hero p {
-    max-width: 52rem;
-    margin-inline: auto;
-    text-align: center !important;
-    text-align-last: center;
-  }
-
-  .sweed-exact-reference-page .w-hero .btns {
-    margin-top: 2rem;
-  }
-
-  .sweed-exact-reference-page .w-hero .btn {
-    min-width: 10.75rem;
-  }
-
-  .sweed-exact-reference-page .clip {
-    z-index: 1;
-    background: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .22);
-    box-shadow: 0 14px 30px rgba(24, 11, 40, .18);
-  }
-
-  .sweed-exact-reference-page .trust {
-    background: rgba(24, 11, 40, .42);
-    backdrop-filter: blur(8px);
-  }
-
-  .sweed-exact-reference-page .footnote {
-    padding-block: .8rem;
-    background: #f1edf8;
-  }
-
-  .sweed-exact-reference-page .filters {
-    border-top: 1px solid rgba(38, 27, 62, .05);
-  }
-
-  /* الاستشارات: عنوان مختصر ثم 3 حالات مرئية متساوية */
-  .sweed-exact-reference-page .consult {
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 10% 15%, rgba(237, 32, 98, .18), transparent 18rem),
-      linear-gradient(135deg, #211632, #2f204a) !important;
-  }
-
-  .sweed-exact-reference-page .consult-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.1rem;
-    align-items: stretch;
-  }
-
-  .sweed-exact-reference-page .consult-side {
-    position: static;
-    grid-column: 1 / -1;
-    max-width: 50rem;
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .sweed-exact-reference-page .consult-side .line {
-    display: none;
-  }
-
-  .sweed-exact-reference-page .consult-side p {
-    max-width: 44rem;
-    margin: 1rem auto 0;
-    text-align: center !important;
-    text-align-last: center;
-  }
-
-  .sweed-exact-reference-page .dossier {
-    display: flex;
-    min-height: 100%;
-    margin: 0;
-    padding: 1.2rem;
-    flex-direction: column;
-    border-radius: 1.15rem;
-    background: rgba(255,255,255,.065);
-    transition: transform .32s ease, border-color .32s ease, background .32s ease;
-  }
-
-  .sweed-exact-reference-page .dossier:hover {
-    transform: translateY(-6px);
-    border-color: rgba(237, 32, 98, .65);
-    background: rgba(255,255,255,.1);
-  }
-
-  .sweed-exact-reference-page .sweed-portfolio-thumb {
-    display: block;
-    aspect-ratio: 16 / 8.25;
-    margin: .15rem 0 1rem;
-    overflow: hidden;
-    border-radius: .85rem;
-    background: #4b3a69;
-  }
-
-  .sweed-exact-reference-page .sweed-portfolio-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(.72) contrast(1.04);
-    transition: transform .5s ease, filter .5s ease;
-  }
-
-  .sweed-exact-reference-page .dossier:hover .sweed-portfolio-thumb img {
-    transform: scale(1.06);
-    filter: saturate(1) contrast(1.05);
-  }
-
-  .sweed-exact-reference-page .dossier .challenge {
-    font-size: .86rem;
-    line-height: 1.72;
-  }
-
-  .sweed-exact-reference-page .dossier ul {
-    font-size: .81rem;
-    line-height: 1.6;
-  }
-
-  .sweed-exact-reference-page .dossier .proof {
-    margin-top: auto;
-  }
-
-  .sweed-exact-reference-page .dossier .cta-line {
-    margin-top: 1rem;
-  }
-
-  /* البراند: عرض قبل/بعد حي بدل طبقات جامدة */
-  .sweed-exact-reference-page .brandw {
-    background: linear-gradient(180deg, #ffffff, #faf8fd);
-  }
-
-  .sweed-exact-reference-page .layers-stage {
-    max-width: 58rem;
-    aspect-ratio: auto;
-    min-height: 20rem;
-    margin-top: 2.3rem !important;
-  }
-
-  .sweed-exact-reference-page .sweed-brand-showcase {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 20rem;
-    overflow: hidden;
-    border: 1px solid var(--portfolio-line);
-    border-radius: 1.3rem;
-    box-shadow: 0 16px 36px rgba(38, 27, 62, .09);
-  }
-
-  .sweed-exact-reference-page .brand-sample {
-    position: relative;
-    min-height: 20rem;
-    padding: 1.3rem;
-    overflow: hidden;
-  }
-
-  .sweed-exact-reference-page .brand-sample.before {
-    background: #f1edf7;
-  }
-
-  .sweed-exact-reference-page .brand-sample.after {
-    background: linear-gradient(145deg, #2c1c4b, #4b3276);
-    color: #fff;
-  }
-
-  .sweed-exact-reference-page .brand-sample__label {
-    display: inline-flex;
-    padding: .3rem .65rem;
-    border-radius: 999px;
-    background: rgba(255,255,255,.78);
-    color: var(--portfolio-ink);
-    font-size: .76rem;
-    font-weight: 700;
-  }
-
-  .sweed-exact-reference-page .brand-sample.after .brand-sample__label {
-    background: rgba(255,255,255,.13);
-    color: #fff;
-  }
-
-  .sweed-exact-reference-page .brand-moodboard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .55rem;
-    margin-top: 1.1rem;
-  }
-
-  .sweed-exact-reference-page .brand-moodboard i {
-    display: block;
-    aspect-ratio: 1;
-    border-radius: .65rem;
-    background: linear-gradient(145deg, #ffffff, #e9e2f2);
-    box-shadow: inset 0 0 0 1px rgba(38,27,62,.08);
-  }
-
-  .sweed-exact-reference-page .brand-moodboard i:nth-child(2n) { background: linear-gradient(145deg, #e4d7eb, #ffffff); }
-  .sweed-exact-reference-page .brand-moodboard i:nth-child(3n) { background: linear-gradient(145deg, #fde6ef, #ffffff); }
-
-  .sweed-exact-reference-page .brand-system {
-    display: grid;
-    gap: .7rem;
-    margin-top: 1.1rem;
-  }
-
-  .sweed-exact-reference-page .brand-system__word {
-    padding: .75rem 1rem;
-    border: 1px solid rgba(255,255,255,.18);
-    border-radius: .7rem;
-    background: rgba(255,255,255,.08);
-    font-family: var(--font-display);
-    font-weight: 900;
-    letter-spacing: .04em;
-  }
-
-  .sweed-exact-reference-page .brand-system__cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .55rem;
-  }
-
-  .sweed-exact-reference-page .brand-system__cards i {
-    display: block;
-    min-height: 4.4rem;
-    border-radius: .7rem;
-    background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.67));
-  }
-
-  .sweed-exact-reference-page .brand-sample p {
-    position: absolute;
-    right: 1.3rem;
-    bottom: 1rem;
-    left: 1.3rem;
-    margin: 0;
-    font-size: .8rem;
-    line-height: 1.65;
-  }
-
-  .sweed-exact-reference-page .brand-projects {
-    gap: 1.1rem;
-    margin-top: 2.1rem;
-  }
-
-  .sweed-exact-reference-page .bp-card {
-    padding: 1.2rem;
-    overflow: hidden;
-    border-radius: 1.15rem;
-    transition: transform .32s ease, box-shadow .32s ease;
-  }
-
-  .sweed-exact-reference-page .bp-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 34px rgba(38,27,62,.13);
-  }
-
-  .sweed-exact-reference-page .bp-card .sweed-portfolio-thumb {
-    margin-top: .85rem;
-    aspect-ratio: 16 / 6.5;
-  }
-
-  /* التسويق: الهاتف يتحول لمحتوى مصور، وليس رسمًا فقط */
-  .sweed-exact-reference-page .mkt {
-    background:
-      radial-gradient(circle at 85% 15%, rgba(237,32,98,.11), transparent 17rem),
-      var(--portfolio-soft);
-  }
-
-  .sweed-exact-reference-page .mkt-grid {
-    align-items: center;
-    gap: clamp(2rem, 5vw, 4.5rem);
-  }
-
-  .sweed-exact-reference-page .phone {
-    width: min(100%, 18rem);
-    overflow: hidden;
-    background: #211632;
-  }
-
-  .sweed-exact-reference-page .phone::before,
-  .sweed-exact-reference-page .phone::after {
-    content: "";
-    position: absolute;
-    inset: .75rem;
-    border-radius: 1.4rem;
-    background: linear-gradient(180deg, rgba(38,27,62,.08), rgba(38,27,62,.76)), url("/images/hero/entrepreneur-laptop-office.jpg") center / cover;
-    animation: sweedPortfolioPhoneFade 10s ease-in-out infinite alternate;
-  }
-
-  .sweed-exact-reference-page .phone::after {
-    opacity: 0;
-    background-image: linear-gradient(180deg, rgba(38,27,62,.08), rgba(38,27,62,.74)), url("/images/hero/sweed-building.png");
-    animation-name: sweedPortfolioPhoneFadeAlt;
-  }
-
-  .sweed-exact-reference-page .phone .screen {
-    position: relative;
-    z-index: 2;
-    background: rgba(255,255,255,.08);
-  }
-
-  .sweed-exact-reference-page .feed-head,
-  .sweed-exact-reference-page .post {
-    backdrop-filter: blur(8px);
-  }
-
-  .sweed-exact-reference-page .feed-head { background: rgba(38,27,62,.74); }
-  .sweed-exact-reference-page .post { background: rgba(255,255,255,.88); }
-
-  .sweed-exact-reference-page .mkt-proj .challenge {
-    box-shadow: 0 10px 25px rgba(38,27,62,.06);
-  }
-
-  /* الفيديو: غلاف بصور متبدلة وزر تشغيل فقط */
-  .sweed-exact-reference-page .film {
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 12% 18%, rgba(237,32,98,.2), transparent 20rem),
-      #191027;
-  }
-
-  .sweed-exact-reference-page .film .screen16 {
-    isolation: isolate;
-    min-height: 21rem;
-    background: #2a1745;
-    box-shadow: 0 22px 46px rgba(0,0,0,.25);
-  }
-
-  .sweed-exact-reference-page .film .screen16::before,
-  .sweed-exact-reference-page .film .screen16::after {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1;
-    background: linear-gradient(90deg, rgba(20,9,31,.55), rgba(20,9,31,.1)), url("/images/hero/two-men-consultation.jpg") center / cover;
-    animation: sweedPortfolioFilmFade 12s ease-in-out infinite alternate;
+    z-index: 0;
+    background: linear-gradient(105deg, rgba(24, 11, 40, .95), rgba(38, 27, 62, .52)), url("/images/hero/two-men-consultation.jpg") center / cover no-repeat;
   }
 
-  .sweed-exact-reference-page .film .screen16::after {
-    opacity: 0;
-    background-image: linear-gradient(90deg, rgba(20,9,31,.58), rgba(20,9,31,.13)), url("/images/hero/sweed-building.png");
-    animation-name: sweedPortfolioFilmFadeAlt;
-  }
-
-  .sweed-exact-reference-page .film .screen16 .play,
-  .sweed-exact-reference-page .film .screen16 figcaption {
+  .sweed-exact-reference-page .w-hero .inner,
+  .sweed-exact-reference-page .w-hero .trust,
+  .sweed-exact-reference-page .w-hero .clip {
     position: relative;
-    z-index: 2;
+    z-index: 1;
   }
 
-  .sweed-exact-reference-page .film .screen16 .play {
-    transition: transform .32s ease, box-shadow .32s ease;
+  .sweed-exact-reference-page .w-hero .inner { max-width: 60rem; }
+  .sweed-exact-reference-page .w-hero h1 { font-size: clamp(2rem, 4vw, 3.35rem); text-wrap: balance; }
+  .sweed-exact-reference-page .w-hero p { max-width: 50rem; margin-inline: auto; text-align: center !important; text-align-last: center; }
+  .sweed-exact-reference-page .w-hero .btn { min-width: 10.5rem; }
+  .sweed-exact-reference-page .trust { background: rgba(24, 11, 40, .4); backdrop-filter: blur(7px); }
+  .sweed-exact-reference-page .footnote { padding-block: .8rem; background: #f1edf8; }
+
+  /* الاستشارات: الإطار المرجعي نفسه، مع صور خفيفة داخل الحالات دون تغيير توزيعها */
+  .sweed-exact-reference-page .consult {
+    background: radial-gradient(circle at 10% 15%, rgba(237, 32, 98, .16), transparent 18rem), #261b3e;
   }
 
-  .sweed-exact-reference-page .film .screen16:hover .play {
-    transform: scale(1.08);
-    box-shadow: 0 0 0 18px rgba(237,32,98,.18);
-  }
-
-  .sweed-exact-reference-page .frame {
-    min-height: 6.4rem;
-    transition: transform .3s ease, background .3s ease;
-  }
-
-  .sweed-exact-reference-page .frame:hover {
-    transform: translateY(-4px);
-    background: rgba(237,32,98,.16);
-  }
-
-  .sweed-exact-reference-page .frame span {
-    width: 1.15rem;
-    height: 1.15rem;
-    margin-bottom: .45rem;
-    overflow: hidden;
-    border: 2px solid var(--portfolio-pink);
-    border-radius: 50%;
-    color: transparent;
-  }
-
-  /* الدعاية والمواقع: خلفيات أعمال فعلية تخفف اعتماد الصفحة على الكلام */
-  .sweed-exact-reference-page .wall-grid {
+  .sweed-exact-reference-page .consult-grid > div:last-child {
+    display: grid;
     gap: 1rem;
-    margin-top: 2.2rem;
   }
 
-  .sweed-exact-reference-page .w-item {
-    min-height: 16rem;
-    border: 1px solid var(--portfolio-line);
-    background: linear-gradient(135deg, rgba(38,27,62,.52), rgba(38,27,62,.12)), url("/images/hero/sweed-building.png") center / cover;
+  .sweed-exact-reference-page .dossier {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+    padding: clamp(1.2rem, 2vw, 1.55rem);
+    background: linear-gradient(100deg, rgba(38,27,62,.93), rgba(38,27,62,.65)), url("/images/hero/two-men-consultation.jpg") center / cover;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
   }
 
-  .sweed-exact-reference-page .w-item:nth-child(3) {
-    background-image: linear-gradient(135deg, rgba(38,27,62,.56), rgba(38,27,62,.16)), url("/images/hero/entrepreneur-laptop-office.jpg");
+  .sweed-exact-reference-page .dossier:nth-child(2) {
+    background-image: linear-gradient(100deg, rgba(38,27,62,.94), rgba(38,27,62,.65)), url("/images/hero/sweed-building.png");
   }
 
-  .sweed-exact-reference-page .w-item.big {
-    min-height: 33rem;
-    background-image: linear-gradient(135deg, rgba(38,27,62,.64), rgba(38,27,62,.21)), url("/images/hero/two-men-consultation.jpg");
+  .sweed-exact-reference-page .dossier:nth-child(3) {
+    background-image: linear-gradient(100deg, rgba(38,27,62,.94), rgba(38,27,62,.66)), url("/images/hero/entrepreneur-laptop-office.jpg");
   }
 
-  .sweed-exact-reference-page .webw {
-    background: linear-gradient(135deg, #f2edf8, #faf9fc);
+  .sweed-exact-reference-page .dossier:hover {
+    transform: translateY(-4px);
+    border-color: rgba(237, 32, 98, .7);
+    box-shadow: 0 18px 30px rgba(0,0,0,.18);
   }
 
-  .sweed-exact-reference-page .browser {
-    border: 1px solid rgba(38,27,62,.1);
-    box-shadow: 0 18px 38px rgba(38,27,62,.12);
+  .sweed-exact-reference-page .dossier .challenge { background: rgba(15, 8, 26, .48); }
+
+  /* براند وهوية: صور تطبيقات حية في أعلى كل حالة، من غير حذف أي بيانات */
+  .sweed-exact-reference-page .brandw { background: linear-gradient(180deg, #ffffff, #faf8fd); }
+  .sweed-exact-reference-page .brand-projects { gap: 1.2rem; margin-top: 2.6rem; }
+
+  .sweed-exact-reference-page .bp-card {
+    position: relative;
+    overflow: hidden;
+    padding-top: 9.5rem;
+    border-radius: 1.15rem;
+    transition: transform .3s ease, box-shadow .3s ease;
   }
 
-  .sweed-exact-reference-page .ux-notes .note {
-    border-right-color: var(--portfolio-pink);
+  .sweed-exact-reference-page .bp-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 8rem;
+    background: linear-gradient(90deg, rgba(38,27,62,.18), rgba(38,27,62,.02)), url("/images/hero/sweed-building.png") center / cover;
   }
 
-  .sweed-exact-reference-page #sectors {
-    background: #ffffff;
+  .sweed-exact-reference-page .bp-card:nth-child(2)::before {
+    background-image: linear-gradient(90deg, rgba(38,27,62,.18), rgba(38,27,62,.02)), url("/images/hero/entrepreneur-laptop-office.jpg");
   }
 
-  .sweed-exact-reference-page .sector-panel {
-    max-width: 48rem;
-    margin-inline: auto;
-    text-align: center;
-  }
+  .sweed-exact-reference-page .bp-card:hover { transform: translateY(-5px); box-shadow: 0 18px 34px rgba(38,27,62,.12); }
 
-  .sweed-exact-reference-page .sector-panel small {
-    display: block;
-    text-align: center;
-  }
+  /* التسويق والمحتوى: صور غلاف حقيقية فوق العناصر التفاعلية الموجودة */
+  .sweed-exact-reference-page .mkt { background: radial-gradient(circle at 85% 15%, rgba(237,32,98,.11), transparent 17rem), var(--portfolio-soft); }
+  .sweed-exact-reference-page .phone { background: #261b3e; box-shadow: 0 18px 34px rgba(38,27,62,.18); }
+  .sweed-exact-reference-page .phone .screen { background: linear-gradient(180deg, rgba(38,27,62,.12), rgba(38,27,62,.62)), url("/images/hero/entrepreneur-laptop-office.jpg") center / cover; }
+  .sweed-exact-reference-page .feed-head { background: rgba(38,27,62,.78); }
+  .sweed-exact-reference-page .post { background: rgba(255,255,255,.9); }
 
-  .sweed-exact-reference-page .w-cta {
-    padding-block: clamp(4rem, 6vw, 5rem);
-    background:
-      radial-gradient(circle at 84% 18%, rgba(237,32,98,.24), transparent 18rem),
-      #261b3e;
+  .sweed-exact-reference-page .film { background: radial-gradient(circle at 12% 18%, rgba(237,32,98,.18), transparent 20rem), #191027; }
+  .sweed-exact-reference-page .film .screen16 {
+    min-height: clamp(16rem, 34vw, 25rem);
+    background: linear-gradient(90deg, rgba(20,9,31,.58), rgba(20,9,31,.13)), url("/images/hero/two-men-consultation.jpg") center / cover;
+    box-shadow: 0 22px 46px rgba(0,0,0,.25);
   }
+  .sweed-exact-reference-page .film .screen16 .play { transition: transform .3s ease, box-shadow .3s ease; }
+  .sweed-exact-reference-page .film .screen16:hover .play { transform: scale(1.08); box-shadow: 0 0 0 18px rgba(237,32,98,.18); }
+  .sweed-exact-reference-page .frame { transition: transform .25s ease, background .25s ease; }
+  .sweed-exact-reference-page .frame:hover { transform: translateY(-4px); background: rgba(237,32,98,.15); }
+  .sweed-exact-reference-page .frame span { color: var(--portfolio-pink); filter: grayscale(1) sepia(.2) saturate(8); }
 
-  .sweed-exact-reference-page .w-cta .inner {
-    max-width: 50rem;
-    text-align: center;
-  }
+  /* الدعاية والمواقع: خلفيات أعمال تدعم المعنى، مع بقاء النص والروابط كما هي */
+  .sweed-exact-reference-page .wall-grid { gap: 1rem; margin-top: 2.3rem; }
+  .sweed-exact-reference-page .w-item { border: 1px solid rgba(38,27,62,.1); background: linear-gradient(135deg, rgba(38,27,62,.5), rgba(38,27,62,.1)), url("/images/hero/sweed-building.png") center / cover; }
+  .sweed-exact-reference-page .w-item.big { background-image: linear-gradient(135deg, rgba(38,27,62,.66), rgba(38,27,62,.22)), url("/images/hero/two-men-consultation.jpg"); }
+  .sweed-exact-reference-page .w-item:nth-child(3) { background-image: linear-gradient(135deg, rgba(38,27,62,.55), rgba(38,27,62,.16)), url("/images/hero/entrepreneur-laptop-office.jpg"); }
+  .sweed-exact-reference-page .webw { background: linear-gradient(135deg, #f1edf8, #faf9fc); }
+  .sweed-exact-reference-page .browser { border: 1px solid rgba(38,27,62,.1); box-shadow: 0 18px 38px rgba(38,27,62,.1); }
 
-  .sweed-exact-reference-page .w-cta p {
-    max-width: 43rem;
-    margin: 1rem auto 1.7rem;
-    text-align: center !important;
-    text-align-last: center;
-  }
-
-  .sweed-exact-reference-page .w-cta .form {
-    padding: clamp(1rem, 3vw, 1.6rem);
-    border: 1px solid rgba(255,255,255,.13);
-    border-radius: 1.2rem;
-    background: rgba(255,255,255,.06);
-    text-align: right;
-  }
-
-  .sweed-exact-reference-page .w-cta .form > div:last-child {
-    justify-content: center;
-    margin-top: .9rem !important;
-  }
-
-  .sweed-exact-reference-page .btn {
-    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
-  }
-
-  .sweed-exact-reference-page .btn:hover,
-  .sweed-exact-reference-page .btn:focus-visible {
-    transform: translateY(-3px);
-  }
-
-  @keyframes sweedPortfolioHeroFade { 0%, 45% { opacity: 1; } 55%, 100% { opacity: 0; } }
-  @keyframes sweedPortfolioHeroFadeAlt { 0%, 45% { opacity: 0; } 55%, 100% { opacity: 1; } }
-  @keyframes sweedPortfolioPhoneFade { 0%, 45% { opacity: 1; } 55%, 100% { opacity: 0; } }
-  @keyframes sweedPortfolioPhoneFadeAlt { 0%, 45% { opacity: 0; } 55%, 100% { opacity: 1; } }
-  @keyframes sweedPortfolioFilmFade { 0%, 45% { opacity: 1; } 55%, 100% { opacity: 0; } }
-  @keyframes sweedPortfolioFilmFadeAlt { 0%, 45% { opacity: 0; } 55%, 100% { opacity: 1; } }
+  .sweed-exact-reference-page .w-cta { background: radial-gradient(circle at 84% 18%, rgba(237,32,98,.22), transparent 18rem), #261b3e; }
+  .sweed-exact-reference-page .w-cta .inner { max-width: 48rem; text-align: center; }
+  .sweed-exact-reference-page .w-cta p { max-width: 43rem; margin: 1rem auto 1.65rem; text-align: center !important; text-align-last: center; }
+  .sweed-exact-reference-page .w-cta .form { padding: clamp(1rem, 3vw, 1.6rem); border: 1px solid rgba(255,255,255,.13); border-radius: 1.15rem; background: rgba(255,255,255,.06); text-align: right; }
+  .sweed-exact-reference-page .w-cta .form > div:last-child { justify-content: center; margin-top: .9rem !important; }
 
   @media (prefers-reduced-motion: reduce) {
-    .sweed-exact-reference-page *,
-    .sweed-exact-reference-page *::before,
-    .sweed-exact-reference-page *::after {
-      animation-duration: .01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: .01ms !important;
-    }
-  }
-
-  @media (max-width: 62rem) {
-    .sweed-exact-reference-page .consult-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .sweed-exact-reference-page .consult-side { grid-column: 1 / -1; }
+    .sweed-exact-reference-page *, .sweed-exact-reference-page *::before, .sweed-exact-reference-page *::after { transition-duration: .01ms !important; }
   }
 
   @media (max-width: 48rem) {
-    .sweed-exact-reference-page > section { padding-block: 3.4rem; }
-    .sweed-exact-reference-page .w-hero { min-height: 43rem; padding-bottom: 13rem; }
-    .sweed-exact-reference-page .w-hero h1,
-    .sweed-exact-reference-page .sec-title,
-    .sweed-exact-reference-page .w-cta h2 { width: auto; font-size: clamp(1.65rem, 8vw, 2.35rem); }
-    .sweed-exact-reference-page .consult-grid,
-    .sweed-exact-reference-page .brand-projects,
-    .sweed-exact-reference-page .brand-projects { grid-template-columns: 1fr; }
-    .sweed-exact-reference-page .sweed-brand-showcase { grid-template-columns: 1fr; }
-    .sweed-exact-reference-page .brand-sample { min-height: 16rem; }
-    .sweed-exact-reference-page .film .screen16 { min-height: 14rem; }
-    .sweed-exact-reference-page .w-item.big { min-height: 22rem; }
+    .sweed-exact-reference-page > section { padding-block: 3.35rem; }
+    .sweed-exact-reference-page .w-hero { min-height: 43rem; }
+    .sweed-exact-reference-page .w-hero h1, .sweed-exact-reference-page .sec-title, .sweed-exact-reference-page .w-cta h2 { font-size: clamp(1.65rem, 8vw, 2.35rem); }
+    .sweed-exact-reference-page .bp-card { padding-top: 8.7rem; }
   }
-`;
-
-const portfolioLiveLayoutRuntime = `
-(() => {
-  if (window.__sweedPortfolioLiveLayoutRuntime) return;
-  window.__sweedPortfolioLiveLayoutRuntime = true;
-
-  const imageSources = [
-    "/images/hero/two-men-consultation.jpg",
-    "/images/hero/entrepreneur-laptop-office.jpg",
-    "/images/hero/sweed-building.png",
-    "/images/hero/businessman-laptop-standing.jpg",
-  ];
-
-  const addThumbnail = (card, source, label) => {
-    if (!card || card.querySelector(".sweed-portfolio-thumb")) return;
-    const figure = document.createElement("figure");
-    figure.className = "sweed-portfolio-thumb";
-    const image = document.createElement("img");
-    image.src = source;
-    image.alt = label;
-    image.loading = "lazy";
-    figure.appendChild(image);
-    const anchor = card.querySelector(".top, .tag");
-    if (anchor?.parentNode) anchor.parentNode.insertBefore(figure, anchor.nextSibling);
-    else card.prepend(figure);
-  };
-
-  const setupBrandShowcase = () => {
-    const stage = document.querySelector("#layersStage");
-    if (!stage || stage.dataset.sweedBrandShowcaseReady === "true") return;
-    stage.dataset.sweedBrandShowcaseReady = "true";
-    stage.replaceChildren();
-    const showcase = document.createElement("div");
-    showcase.className = "sweed-brand-showcase";
-    showcase.innerHTML =
-      '<div class="brand-sample before"><span class="brand-sample__label">قبل: عناصر متفرقة</span><div class="brand-moodboard"><i></i><i></i><i></i><i></i><i></i><i></i></div><p>رسالة غير ثابتة وتطبيقات لا تجمعها لغة واحدة.</p></div>' +
-      '<div class="brand-sample after"><span class="brand-sample__label">بعد: هوية موحّدة</span><div class="brand-system"><div class="brand-system__word">SWEED / نظام بصري واضح</div><div class="brand-system__cards"><i></i><i></i><i></i></div></div><p>رسالة وصوت وتطبيقات تعمل كمنظومة واحدة.</p></div>';
-    stage.appendChild(showcase);
-  };
-
-  const setup = () => {
-    document.querySelectorAll("#consulting-work .dossier").forEach((card, index) => {
-      addThumbnail(card, imageSources[index % imageSources.length], "صورة من أعمال سويد الاستشارية");
-    });
-    document.querySelectorAll("#branding-work .bp-card").forEach((card, index) => {
-      addThumbnail(card, imageSources[(index + 1) % imageSources.length], "تطبيق حي للهوية البصرية");
-    });
-    setupBrandShowcase();
-  };
-
-  const start = () => window.setTimeout(setup, 900);
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
-  else start();
-})();
 `;
 
 const aboutLiveLayoutRuntime = `
@@ -1969,11 +1482,6 @@ export function LegacyPage({
       {isReference && page === "about" ? (
         <Script id="sweed-about-live-layout" strategy="afterInteractive">
           {aboutLiveLayoutRuntime}
-        </Script>
-      ) : null}
-      {isExact && page === "portfolio" ? (
-        <Script id="sweed-portfolio-live-layout" strategy="afterInteractive">
-          {portfolioLiveLayoutRuntime}
         </Script>
       ) : null}
       {isExact ? (

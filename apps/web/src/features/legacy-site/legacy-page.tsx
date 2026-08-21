@@ -2068,6 +2068,63 @@ const offersExactPresentationOverride = `
     .sweed-exact-reference-page .svc-panel > .container > :is(.eyebrow, .sec-title) { text-align: center; }
     .sweed-exact-reference-page .svc-panel > .container > .sec-title::after { margin-inline: auto; }
   }
+
+
+  /* توحيد عناوين العروض وبطاقات الباقات مع الصفحة الرئيسية */
+  .sweed-exact-reference-page :is(h1, h2, h3, h4, h5, h6, .sec-title, .eyebrow, .promise, .price strong, .price b) {
+    font-family: var(--font-display, "SWEED Helvetica Arabic", "SF Arabic", Arial, sans-serif) !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+  }
+  .sweed-exact-reference-page :is(p, li, small, .fit, .price) {
+    font-family: var(--font-body, "SWEED Helvetica Arabic", "SF Arabic", Arial, sans-serif) !important;
+    font-style: normal !important;
+  }
+  .sweed-exact-reference-page .o-hero h1 {
+    font-size: clamp(2.45rem, 4.6vw, 4.5rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.22 !important;
+  }
+  .sweed-exact-reference-page .sec-title {
+    font-size: clamp(2rem, 3.2vw, 3.25rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.32 !important;
+  }
+  .sweed-exact-reference-page #main-packages,
+  .sweed-exact-reference-page #main-packages .mains-grid { overflow: visible !important; }
+  .sweed-exact-reference-page #main-packages .mains-grid { padding-top: 2.65rem !important; }
+  .sweed-exact-reference-page #main-packages .mcard {
+    min-height: 100%;
+    padding-top: 2.15rem !important;
+    overflow: visible !important;
+  }
+  .sweed-exact-reference-page #main-packages .mcard .badge {
+    position: absolute !important;
+    z-index: 8 !important;
+    top: -1.18rem !important;
+    left: 50% !important;
+    min-height: 2.25rem !important;
+    overflow: visible !important;
+    white-space: nowrap;
+  }
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-image {
+    display: block !important;
+    width: 100% !important;
+    height: clamp(7.5rem, 11vw, 10rem) !important;
+    margin: 0 0 1rem !important;
+    border: 1px solid rgba(38, 27, 62, .1);
+    border-radius: .85rem !important;
+    object-fit: cover !important;
+    background: #eee9f6;
+    box-shadow: 0 .55rem 1.35rem rgba(38, 27, 62, .1);
+  }
+  .sweed-exact-reference-page #main-packages .mcard.dark .pkg-image { border-color: rgba(255, 255, 255, .22); }
+  @media (max-width: 700px) {
+    .sweed-exact-reference-page .o-hero h1 { font-size: clamp(2.15rem, 11vw, 3.2rem) !important; }
+    .sweed-exact-reference-page #main-packages .mains-grid { padding-top: 2.3rem !important; }
+    .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-image { height: 8.5rem !important; }
+  }
 `;
 
 const offersExactRuntime = `
@@ -2138,7 +2195,7 @@ const offersExactRuntime = `
       card.querySelectorAll("ul li:nth-child(n+5), .more, .drawer-btn, .compare-hint").forEach((node) => node.remove());
     });
     const mainLead = document.querySelector("#main-packages .sec-lead");
-    if (mainLead) mainLead.textContent = "دي الباقات اللي بتجسد وعد سويد: اتجاه واحد بيجمع الاستشارة والبناء والتنفيذ والقياس.";
+    if (mainLead) mainLead.remove();
 
     document.querySelectorAll(".svc-panel .pk").forEach((card) => {
       card.querySelectorAll("ul li:nth-child(n+4)").forEach((node) => node.remove());
@@ -2163,6 +2220,22 @@ const offersExactRuntime = `
       "/images/portfolio/blit-scroll-effect-demo-poster.png",
       "/images/hero/custom-image.png",
     ];
+    const addPackageImage = (card, imageIndex) => {
+      if (card.querySelector(".pkg-image")) return;
+      const image = document.createElement("img");
+      image.className = "pkg-image";
+      image.src = images[imageIndex % images.length];
+      image.alt = card.querySelector("h3, h4")?.textContent?.trim() || "باقة من سويد";
+      image.loading = "lazy";
+      const heading = card.querySelector("h3, h4");
+      if (heading) card.insertBefore(image, heading);
+      else card.prepend(image);
+    };
+
+    document.querySelectorAll("#main-packages .mcard").forEach((card, cardIndex) => {
+      addPackageImage(card, cardIndex);
+    });
+
     document.querySelectorAll(".svc-panel .pk-grid").forEach((grid, panelIndex) => {
       grid.querySelectorAll(":scope > .pk").forEach((card, cardIndex) => {
         if (cardIndex === 1 && !card.querySelector(".offers-favorite")) {
@@ -2171,19 +2244,12 @@ const offersExactRuntime = `
           favorite.textContent = "الباقة المفضلة";
           card.prepend(favorite);
         }
-        if (card.querySelector(".pkg-image, .frame-top, .material, .chrome")) return;
-        const image = document.createElement("img");
-        image.className = "pkg-image";
-        image.src = images[(panelIndex * 3 + cardIndex) % images.length];
-        image.alt = card.querySelector("h4")?.textContent?.trim() || "باقة من سويد";
-        image.loading = "lazy";
-        const heading = card.querySelector("h4");
-        if (heading) card.insertBefore(image, heading);
+        addPackageImage(card, panelIndex * 3 + cardIndex + 3);
       });
     });
 
     const liveLead = document.querySelector("#live-offers .sec-lead");
-    if (liveLead) liveLead.textContent = "عروضنا مبنية على قيمة مضافة أو تجميع خدمات متكاملة — مش خصم دائم بيخلي السعر الأصلي مش مقنع.";
+    if (liveLead) liveLead.remove();
   };
 
   const removeCounters = () => document.getElementById("numbers")?.remove();

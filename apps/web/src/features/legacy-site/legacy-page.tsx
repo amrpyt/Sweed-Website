@@ -30,6 +30,183 @@ const exactReferenceNavigationRuntime = `
   document.querySelectorAll("nav .logo").forEach((link) => {
     link.setAttribute("href", "/#home");
   });
+
+  document.querySelectorAll("nav .btn").forEach((link) => {
+    link.setAttribute("href", "/contact");
+    link.textContent = "دعنا نبدأ";
+  });
+})();
+`;
+
+const portfolioExactRuntime = `
+(() => {
+  if (window.__sweedPortfolioRefreshReady) return;
+  window.__sweedPortfolioRefreshReady = true;
+
+  const images = [
+    "/images/hero/sweed-building.png",
+    "/images/hero/entrepreneur-laptop-office.jpg",
+    "/images/hero/two-men-consultation.jpg",
+    "/images/hero/businessman-laptop-standing.jpg"
+  ];
+
+  const makeBrandCard = (title, sector, copy, proof, image) => {
+    const card = document.createElement("article");
+    card.className = "bp-card portfolio-proof-card reveal";
+    card.dataset.portfolioImage = image;
+    card.innerHTML = '<span class="tag">تطبيقات الهوية</span><h3>' + title + '</h3><div class="sector">' + sector + '</div><p>' + copy + '</p><div class="proof">' + proof + '</div>';
+    return card;
+  };
+
+  const prepareBranding = () => {
+    const section = document.getElementById("branding-work");
+    const projects = section?.querySelector(".brand-projects");
+    if (!section || !projects || projects.dataset.sweedExpanded === "true") return;
+
+    projects.dataset.sweedExpanded = "true";
+    projects.append(
+      makeBrandCard("دليل هوية قابل للاستخدام", "منظومة مرئية متكاملة", "نحوّل عناصر الهوية إلى قواعد بسيطة يستخدمها الفريق بثبات.", "ألوان وخطوط وتطبيقات تحافظ على نفس الانطباع.", images[3]),
+      makeBrandCard("نماذج تطبيقات حيّة", "من الشعار إلى كل نقطة تواصل", "نختبر الهوية على الواجهات والمطبوعات والمحتوى قبل اعتمادها.", "هوية واضحة في الاستخدام اليومي، وليست ملفًا نظريًا.", images[0])
+    );
+  };
+
+  const prepareMarketing = () => {
+    const section = document.getElementById("marketing-work");
+    if (!section || section.dataset.sweedShortened === "true") return;
+    section.dataset.sweedShortened = "true";
+    const lead = section.querySelector(".sec-lead");
+    if (lead) lead.textContent = "كل مشروع له رسالة وقنوات ومتابعة واضحة تربط المحتوى بهدفه.";
+    section.querySelectorAll(".mkt-proj ul li:nth-child(n+3)").forEach((item) => item.remove());
+    section.querySelectorAll(".mkt-proj .challenge").forEach((item) => item.classList.add("portfolio-compact-copy"));
+    section.querySelectorAll('a[href="/work/damer"], a[href="/work/boubyan"], a[href="/work/snap-shop"]').forEach((link) => {
+      link.setAttribute("href", "/services/digital-marketing");
+      link.textContent = "شوف خدمة التسويق الرقمي";
+    });
+  };
+
+  const prepareFilm = () => {
+    const section = document.getElementById("media-work");
+    if (!section || section.dataset.sweedShortened === "true") return;
+    section.dataset.sweedShortened = "true";
+    const lead = section.querySelector(".sec-lead");
+    if (lead) lead.textContent = "السيكشن بيعرض الفيلم كفكرة ورسالة وإيقاع — كل مشروع بيبدأ بلقطة قوية وبعدها بيكشف السكربت والهدف.";
+    section.querySelectorAll(".film-info ul li:nth-child(n+3)").forEach((item) => item.remove());
+    section.querySelectorAll(".frame span").forEach((icon, index) => {
+      icon.textContent = String(index + 1).padStart(2, "0");
+      icon.setAttribute("aria-hidden", "true");
+    });
+  };
+
+  const prepareAdvertising = () => {
+    const section = document.getElementById("advertising-work");
+    const grid = section?.querySelector(".wall-grid");
+    if (!section || !grid || grid.dataset.sweedGallery === "true") return;
+    grid.dataset.sweedGallery = "true";
+    const sideItems = Array.from(grid.querySelectorAll(".w-item:not(.big)"));
+    const options = [
+      { title: "الكتالوج التعريفي", text: "رسالة واضحة تدعم العرض الورقي والرقمي.", image: images[0] },
+      { title: "تطبيقات هوية ميدانية", text: "واجهات ومطبوعات تظهر الهوية في مكانها الحقيقي.", image: images[1] },
+      { title: "لوحات الطرق", text: "رسالة سريعة ومقروءة حسب مكان الرؤية.", image: images[2] },
+      { title: "مواد البيع والعروض", text: "نماذج تساعد العميل على الفهم واتخاذ الخطوة.", image: images[3] }
+    ];
+    let index = 0;
+    const update = () => {
+      sideItems.forEach((item, offset) => {
+        const current = options[(index + offset) % options.length];
+        const title = item.querySelector(".meta b");
+        const text = item.querySelector(".meta small");
+        if (title) title.textContent = current.title;
+        if (text) text.textContent = current.text;
+        item.style.backgroundImage = 'linear-gradient(135deg, rgba(38,27,62,.68), rgba(38,27,62,.16)), url("' + current.image + '")';
+      });
+    };
+    const controls = document.createElement("div");
+    controls.className = "portfolio-wall-controls";
+    controls.innerHTML = '<button type="button" aria-label="المشروع السابق">→</button><button type="button" aria-label="المشروع التالي">←</button>';
+    controls.querySelectorAll("button")[0].addEventListener("click", () => { index = (index + options.length - 1) % options.length; update(); });
+    controls.querySelectorAll("button")[1].addEventListener("click", () => { index = (index + 1) % options.length; update(); });
+    grid.after(controls);
+    update();
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.setInterval(() => { index = (index + 1) % options.length; update(); }, 4800);
+    }
+    const service = document.createElement("a");
+    service.className = "btn btn-primary portfolio-service-link";
+    service.href = "/services/advertising";
+    service.textContent = "شوف خدمة الدعاية والإعلان";
+    controls.after(service);
+  };
+
+  const prepareWeb = () => {
+    const section = document.getElementById("web-work");
+    if (!section || section.dataset.sweedClientFocused === "true") return;
+    section.dataset.sweedClientFocused = "true";
+    const tag = section.querySelector(".ux-notes .tag");
+    if (tag) tag.textContent = "مواقع وحلول رقمية";
+    const notes = Array.from(section.querySelectorAll(".ux-notes .note"));
+    const copy = [
+      ["تجربة تبدأ بالعميل", "نرتب الصفحة حول السؤال الذي يحتاج عميلك إجابته أولًا."],
+      ["مسار واضح", "كل محتوى يقود للخطوة التالية بدون تشتيت أو زحمة."],
+      ["تحويل قابل للقياس", "نربط الطلبات والنماذج والأعمال في رحلة واحدة مفهومة."]
+    ];
+    notes.forEach((note, index) => {
+      if (!copy[index]) return;
+      note.innerHTML = "<b>" + copy[index][0] + "</b>" + copy[index][1];
+    });
+    const proof = section.querySelector(".ux-notes .proof");
+    if (proof) proof.textContent = "موقع يخدم رسالتك ويجعل التواصل أسهل.";
+    const button = section.querySelector(".ux-notes .btn");
+    if (button) {
+      button.setAttribute("href", "/services/software-development");
+      button.removeAttribute("target");
+      button.textContent = "شوف خدمة المواقع والحلول";
+    }
+    section.querySelectorAll(".mini-sec").forEach((item, index) => {
+      const labels = ["رسالة واضحة", "خدمة مناسبة", "دليل ثقة", "خطوة تواصل", "متابعة أسهل"];
+      item.childNodes[0].textContent = labels[index] || "";
+    });
+  };
+
+  const prepareSectors = () => {
+    const section = document.getElementById("sectors");
+    if (!section || section.dataset.sweedVisuals === "true") return;
+    section.dataset.sweedVisuals = "true";
+    section.querySelectorAll(".sector-panel").forEach((panel, index) => {
+      const content = document.createElement("div");
+      content.className = "sector-content";
+      Array.from(panel.childNodes).forEach((node) => content.appendChild(node));
+      const visual = document.createElement("div");
+      visual.className = "sector-visual";
+      visual.style.backgroundImage = 'linear-gradient(135deg, rgba(38,27,62,.1), rgba(237,32,98,.08)), url("' + images[index % images.length] + '")';
+      panel.append(visual, content);
+    });
+  };
+
+  const prepareContact = () => {
+    const cta = document.getElementById("work-cta");
+    if (!cta || cta.dataset.sweedContactReady === "true") return;
+    cta.dataset.sweedContactReady = "true";
+    const compact = document.createElement("section");
+    compact.className = "portfolio-contact-actions";
+    compact.innerHTML = '<div class="container"><span class="eyebrow">جاهز نبدأ</span><h2>خلينا نعرف مشروعك أقرب</h2><p>اختار الطريقة المريحة لك، وفريق سويد هيتابع معك من صفحة التواصل.</p><div><a class="btn btn-primary" href="/contact">احجز استشارتك المجانية</a><a class="btn btn-ghost" href="/contact">تواصل معنا</a></div></div>';
+    cta.replaceWith(compact);
+    document.querySelectorAll('a[href="#work-cta"]').forEach((link) => link.setAttribute("href", "/contact"));
+  };
+
+  const run = () => {
+    document.getElementById("consulting-work")?.remove();
+    document.querySelector('.f-btn[data-target="consulting-work"]')?.remove();
+    prepareBranding();
+    prepareMarketing();
+    prepareFilm();
+    prepareAdvertising();
+    prepareWeb();
+    prepareSectors();
+    prepareContact();
+  };
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => window.setTimeout(run, 500), { once: true });
+  else window.setTimeout(run, 500);
 })();
 `;
 
@@ -1230,6 +1407,89 @@ const portfolioExactPresentationOverride = `
   .sweed-exact-reference-page .w-cta .form { padding: clamp(1rem, 3vw, 1.6rem); border: 1px solid rgba(255,255,255,.13); border-radius: 1.15rem; background: rgba(255,255,255,.06); text-align: right; }
   .sweed-exact-reference-page .w-cta .form > div:last-child { justify-content: center; margin-top: .9rem !important; }
 
+  /* إعادة بناء أقسام أعمالنا: محتوى أخف وصور أوضح وتفاعل مستقل لكل خدمة */
+  .sweed-exact-reference-page .brand-projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .sweed-exact-reference-page .brand-projects .bp-card {
+    display: flex;
+    min-height: 24rem;
+    flex-direction: column;
+  }
+
+  .sweed-exact-reference-page .brand-projects .proof { margin-top: auto; }
+
+  .sweed-exact-reference-page .portfolio-proof-card {
+    animation: portfolio-card-drift 5.8s ease-in-out infinite;
+  }
+
+  .sweed-exact-reference-page .portfolio-proof-card:nth-child(4) { animation-delay: -2.1s; }
+
+  .sweed-exact-reference-page .portfolio-proof-card::before {
+    background-image: linear-gradient(90deg, rgba(38,27,62,.28), rgba(38,27,62,.03)), var(--portfolio-card-image);
+  }
+
+  .sweed-exact-reference-page .portfolio-proof-card[data-portfolio-image="/images/hero/businessman-laptop-standing.jpg"] { --portfolio-card-image: url("/images/hero/businessman-laptop-standing.jpg"); }
+  .sweed-exact-reference-page .portfolio-proof-card[data-portfolio-image="/images/hero/sweed-building.png"] { --portfolio-card-image: url("/images/hero/sweed-building.png"); }
+
+  @keyframes portfolio-card-drift {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
+
+  .sweed-exact-reference-page .mkt-grid {
+    grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr);
+    align-items: stretch;
+    gap: clamp(1.4rem, 3.5vw, 3rem);
+  }
+
+  .sweed-exact-reference-page .mkt .phone { position: relative; top: auto; width: min(100%, 18rem); min-height: 31rem; }
+  .sweed-exact-reference-page .mkt-proj { min-height: 25rem; padding: clamp(1.25rem, 2.7vw, 2.1rem); border-radius: 1.15rem; background: rgba(255,255,255,.88); box-shadow: 0 14px 30px rgba(38,27,62,.08); }
+  .sweed-exact-reference-page .mkt-proj .challenge { margin-bottom: .9rem; }
+  .sweed-exact-reference-page .portfolio-compact-copy { max-width: 46rem; }
+  .sweed-exact-reference-page .mkt-proj ul { display: grid; gap: .35rem; }
+
+  .sweed-exact-reference-page .film .sec-lead { max-width: 60rem; text-align: center !important; text-align-last: center; }
+  .sweed-exact-reference-page .film .frames { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; margin-top: .85rem; }
+  .sweed-exact-reference-page .film .frame { min-height: 5.8rem; padding: .8rem .55rem; }
+  .sweed-exact-reference-page .film .frame span { display: grid; width: 1.9rem; height: 1.9rem; place-items: center; margin: 0 auto .4rem; border: 1px solid rgba(237,32,98,.42); border-radius: 50%; background: rgba(237,32,98,.08); color: var(--portfolio-pink); font-family: Arial, sans-serif !important; font-size: .75rem; font-weight: 700; }
+  .sweed-exact-reference-page .film .film-info { max-width: 60rem; margin: 1.35rem auto 0; }
+  .sweed-exact-reference-page .film .film-info .challenge { padding: .9rem 1.05rem; }
+
+  .sweed-exact-reference-page .wall { background: linear-gradient(135deg, #ffffff, #f5f1fa); }
+  .sweed-exact-reference-page .wall-grid { align-items: stretch; }
+  .sweed-exact-reference-page .wall-grid .w-item:not(.big) { transition: opacity .35s ease, transform .35s ease, background-image .35s ease; }
+  .sweed-exact-reference-page .wall-grid .w-item:not(.big):hover { transform: translateY(-5px); }
+  .sweed-exact-reference-page .portfolio-wall-controls { display: flex; justify-content: center; gap: .65rem; margin-top: 1.15rem; }
+  .sweed-exact-reference-page .portfolio-wall-controls button { width: 2.65rem; height: 2.65rem; border: 1px solid rgba(38,27,62,.22); border-radius: .8rem; background: #fff; color: var(--portfolio-ink); font-size: 1.2rem; cursor: pointer; transition: transform .22s ease, border-color .22s ease, background .22s ease; }
+  .sweed-exact-reference-page .portfolio-wall-controls button:hover { border-color: var(--portfolio-pink); background: rgba(237,32,98,.08); transform: translateY(-2px); }
+  .sweed-exact-reference-page .portfolio-service-link { display: grid; width: fit-content; margin: 1rem auto 0; }
+
+  .sweed-exact-reference-page .webw { overflow: hidden; }
+  .sweed-exact-reference-page .webw .browser { position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(38,27,62,.06), rgba(237,32,98,.08)); }
+  .sweed-exact-reference-page .webw .browser::before { content: ""; position: absolute; inset: auto -8% -18% auto; width: 14rem; height: 14rem; border-radius: 50%; background: url("/images/hero/businessman-laptop-standing.jpg") center / cover; opacity: .16; filter: grayscale(1); pointer-events: none; }
+  .sweed-exact-reference-page .webw .ux-notes { display: grid; align-content: center; gap: .85rem; }
+  .sweed-exact-reference-page .webw .note { min-height: 0; padding: 1rem 1.15rem; border-radius: .9rem; background: rgba(255,255,255,.86); box-shadow: 0 10px 22px rgba(38,27,62,.07); }
+
+  .sweed-exact-reference-page #sectors .sector-panel.show { display: grid; grid-template-columns: minmax(12rem, .7fr) minmax(0, 1.3fr); align-items: stretch; gap: 1.35rem; overflow: hidden; padding: 1.2rem; }
+  .sweed-exact-reference-page #sectors .sector-visual { min-height: 12rem; border-radius: .95rem; background-position: center; background-size: cover; }
+  .sweed-exact-reference-page #sectors .sector-content { display: grid; align-content: center; gap: .65rem; min-width: 0; }
+  .sweed-exact-reference-page #sectors .sector-content > div[style] { margin-top: .4rem !important; }
+
+  .sweed-exact-reference-page > footer { display: none; }
+  .portfolio-contact-actions { padding: clamp(3.4rem, 6vw, 5rem) 0; background: radial-gradient(circle at 18% 12%, rgba(237,32,98,.18), transparent 18rem), #261b3e; color: #fff; text-align: center; }
+  .portfolio-contact-actions .container { display: grid; justify-items: center; gap: 1rem; }
+  .portfolio-contact-actions h2 { color: #fff; font-size: clamp(1.75rem, 3vw, 2.65rem); }
+  .portfolio-contact-actions p { max-width: 42rem; margin: 0; color: rgba(255,255,255,.8); }
+  .portfolio-contact-actions > .container > div { display: flex; flex-wrap: wrap; justify-content: center; gap: .85rem; margin-top: .55rem; }
+  .portfolio-contact-actions .btn.btn-ghost { border-color: rgba(255,255,255,.75); background: transparent; color: #fff; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sweed-exact-reference-page .portfolio-proof-card { animation: none; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .sweed-exact-reference-page *, .sweed-exact-reference-page *::before, .sweed-exact-reference-page *::after { transition-duration: .01ms !important; }
   }
@@ -1244,6 +1504,14 @@ const portfolioExactPresentationOverride = `
     .sweed-exact-reference-page .trust .t-item:nth-child(odd) { border-inline-start: 0; }
     .sweed-exact-reference-page .trust .t-item:last-child { grid-column: 1 / -1; }
     .sweed-exact-reference-page .bp-card { padding-top: 8.7rem; }
+    .sweed-exact-reference-page .brand-projects { grid-template-columns: 1fr; }
+    .sweed-exact-reference-page .brand-projects .bp-card { min-height: 0; }
+    .sweed-exact-reference-page .mkt-grid { grid-template-columns: 1fr; }
+    .sweed-exact-reference-page .mkt .phone { width: min(100%, 16rem); min-height: 27rem; }
+    .sweed-exact-reference-page .mkt-proj { min-height: 0; }
+    .sweed-exact-reference-page .film .frames { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sweed-exact-reference-page #sectors .sector-panel.show { grid-template-columns: 1fr; }
+    .sweed-exact-reference-page #sectors .sector-visual { min-height: 10rem; }
   }
 `;
 
@@ -1828,9 +2096,52 @@ export function LegacyPage({
           .sweed-exact-reference-page .btn.btn-sm { min-width: 10.75rem; min-height: 2.8rem; padding: .28rem .8rem .28rem .28rem; font-size: .88rem; }
           .sweed-exact-reference-page .btn.btn-sm::before { width: 2.24rem; height: 2.24rem; font-size: 1rem; }
           .sweed-exact-reference-page .crumb { font-size: clamp(.95rem, 1.35vw, 1.05rem) !important; font-weight: 700; }
+          /* شريط التنقل الموحد للقوالب المرجعية: نفس توزيع الرئيسية على كل صفحة */
+          .sweed-exact-reference-page > .nav {
+            position: sticky !important;
+            top: 0;
+            z-index: 90;
+            border-bottom: 1px solid rgba(38,27,62,.09) !important;
+            background: rgba(255,255,255,.96) !important;
+            box-shadow: none !important;
+            backdrop-filter: blur(12px);
+          }
+          .sweed-exact-reference-page > .nav > .container {
+            width: min(calc(100% - 7rem), 1360px) !important;
+            min-height: 7.4rem;
+            padding: 0 !important;
+          }
+          .sweed-exact-reference-page > .nav .logo {
+            color: #261b3e !important;
+            font-family: "SWEED Helvetica Arabic", "SF Arabic", sans-serif !important;
+            font-size: clamp(1.7rem, 2.2vw, 2.05rem) !important;
+            letter-spacing: -.045em;
+          }
+          .sweed-exact-reference-page > .nav ul { gap: clamp(1.1rem, 2.1vw, 2.5rem) !important; }
+          .sweed-exact-reference-page > .nav ul a { color: #261b3e !important; font-size: clamp(.96rem, 1.1vw, 1.08rem) !important; font-weight: 700; }
+          .sweed-exact-reference-page > .nav ul a.active { color: #ed2062 !important; }
+          .sweed-exact-reference-page > .nav .btn {
+            display: inline-flex !important;
+            min-width: 8.6rem !important;
+            min-height: 3rem !important;
+            align-items: center;
+            justify-content: center;
+            padding: .55rem 1.25rem !important;
+            border: 0 !important;
+            border-radius: 999px !important;
+            background: #e02269 !important;
+            box-shadow: 0 12px 24px rgba(224,34,105,.2) !important;
+            color: #fff !important;
+            font-size: .96rem !important;
+          }
+          .sweed-exact-reference-page > .nav .btn::before { display: none !important; content: none !important; }
+          .sweed-exact-reference-page > .nav .btn:hover { background: #c91555 !important; transform: translateY(-2px); }
           @media (max-width: 48rem) {
             .sweed-exact-reference-page .btn { min-width: 12.6rem; min-height: 3.25rem; font-size: .93rem; }
             .sweed-exact-reference-page .btn::before { width: 2.5rem; height: 2.5rem; }
+            .sweed-exact-reference-page > .nav > .container { width: min(calc(100% - 2rem), 1360px) !important; min-height: 4.7rem; }
+            .sweed-exact-reference-page > .nav .logo { font-size: 1.45rem !important; }
+            .sweed-exact-reference-page > .nav .btn { min-width: auto !important; min-height: 2.65rem !important; padding-inline: .95rem !important; font-size: .85rem !important; }
           }
           ${page === "about" ? aboutExactPresentationOverride : page === "portfolio" ? portfolioExactPresentationOverride : page === "offers" ? offersExactPresentationOverride : ""}
         `}</style>
@@ -1868,7 +2179,7 @@ export function LegacyPage({
       )}
       {isReference || isExact ? null : <LegacyEnhancements page={page} />}
       {!isReference && !isExact && page === "services" ? <AutomationDemo /> : null}
-      {isExact ? null : <LegacyFooter />}
+      {isExact ? (page === "portfolio" ? <LegacyFooter /> : null) : <LegacyFooter />}
       {isReference || isExact ? null : <OfferFunnelController page={page} />}
       {!isExact && showAdvisor ? <AiAdvisorWidget /> : null}
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
@@ -1880,6 +2191,11 @@ export function LegacyPage({
       {isExact ? (
         <Script id={`sweed-exact-reference-navigation-${page}`} strategy="afterInteractive">
           {exactReferenceNavigationRuntime}
+        </Script>
+      ) : null}
+      {isExact && page === "portfolio" ? (
+        <Script id="sweed-portfolio-refresh" strategy="afterInteractive">
+          {portfolioExactRuntime}
         </Script>
       ) : null}
       {!isReference && !isExact && page === "products" ? (

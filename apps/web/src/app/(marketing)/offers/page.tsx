@@ -1,5 +1,9 @@
-import { redirect } from "next/navigation";
+import { LegacyPage } from "@/features/legacy-site/legacy-page";
+
+export const metadata = {
+  title: "العروض والباقات | سويد — اختار نقطة البداية",
+};
 
 export default function OffersPage() {
-  redirect("/reference-pages/offers.html");
+  return <LegacyPage page="offers" presentation="exact" />;
 }

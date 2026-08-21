@@ -964,9 +964,13 @@ const portfolioExactPresentationOverride = `
   }
 
   .sweed-exact-reference-page .w-hero .inner,
-  .sweed-exact-reference-page .w-hero .trust,
-  .sweed-exact-reference-page .w-hero .clip {
+  .sweed-exact-reference-page .w-hero .trust {
     position: relative;
+    z-index: 1;
+  }
+
+  .sweed-exact-reference-page .w-hero .clip {
+    position: absolute;
     z-index: 1;
   }
 

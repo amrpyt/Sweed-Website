@@ -1,6 +1,6 @@
 .headerSpacer {
   width: 100%;
-  height: 77px;
+  height: 118px;
 }
 
 .header {
@@ -32,8 +32,8 @@
 .nav {
   position: relative;
   display: flex;
-  width: min(100% - 3rem, 1360px);
-  min-height: 76px;
+  width: min(100% - 8rem, 1360px);
+  min-height: 118px;
   margin-inline: auto;
   align-items: center;
   gap: clamp(var(--stack-md), 1.5vw, var(--stack-lg));
@@ -51,7 +51,7 @@
 
 .logo img {
   display: block;
-  width: clamp(98px, 9vw, 118px);
+  width: clamp(106px, 9vw, 126px);
   height: auto;
 }
 
@@ -75,7 +75,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(var(--stack-2xs), 0.42vw, var(--stack-xs));
+  gap: clamp(var(--stack-md), 1.7vw, var(--stack-xl));
   margin: 0;
   padding: 0;
   list-style: none;
@@ -88,13 +88,13 @@
 .navList a {
   position: relative;
   display: inline-flex;
-  min-height: 44px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  padding-inline: clamp(var(--stack-xs), 0.78vw, var(--stack-md));
+  border-radius: 12px;
+  padding-inline: clamp(var(--stack-xs), 0.42vw, var(--stack-sm));
   color: rgba(38, 27, 62, 0.76);
-  font-size: clamp(0.84rem, 0.86vw, 0.96rem);
+  font-size: clamp(0.94rem, 1vw, 1.08rem);
   font-weight: 700;
   line-height: 1;
   text-decoration: none;
@@ -137,6 +137,19 @@
 .desktopCta,
 .mobileCta {
   flex: 0 0 auto;
+  display: inline-flex;
+  min-width: 8.65rem;
+  min-height: 3.1rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #e02269;
+  box-shadow: 0 12px 24px rgba(224, 34, 105, 0.22);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 
 .desktopCta,
@@ -145,11 +158,20 @@
 }
 
 .desktopCta {
-  min-width: 148px !important;
+  min-width: 8.65rem !important;
 }
 
 .mobileCta {
-  display: none !important;
+  display: none;
+}
+
+.desktopCta:hover,
+.desktopCta:focus-visible,
+.mobileCta:hover,
+.mobileCta:focus-visible {
+  background: #c91555;
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .menuButton {

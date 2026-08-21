@@ -1574,11 +1574,115 @@ const offersExactPresentationOverride = `
 
   .sweed-exact-reference-page .o-hero h1 {
     max-width: 44rem;
+    color: #fff !important;
+    text-shadow: 0 .45rem 1.7rem rgba(0, 0, 0, .32);
     text-wrap: balance;
   }
 
   .sweed-exact-reference-page .o-hero p {
     max-width: 39rem;
+    color: rgba(255, 255, 255, .92) !important;
+    text-shadow: 0 .18rem .85rem rgba(0, 0, 0, .28);
+  }
+
+  /* نفس شريط الرئيسية: الشعار يسار، القائمة في المنتصف، والإجراء الرئيسي يمين */
+  .sweed-exact-reference-page > .nav {
+    position: sticky !important;
+    top: 0;
+    z-index: 80;
+    min-height: 7.4rem !important;
+    border-bottom: 1px solid #ece7f2 !important;
+    background: rgba(255, 255, 255, .98) !important;
+    box-shadow: 0 .25rem 1rem rgba(38, 27, 62, .035);
+    backdrop-filter: blur(16px);
+  }
+
+  .sweed-exact-reference-page > .nav .container {
+    display: grid !important;
+    width: min(calc(100% - 8rem), 76.25rem) !important;
+    min-height: 7.4rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.28rem;
+    direction: ltr;
+  }
+
+  .sweed-exact-reference-page > .nav .logo {
+    display: inline-flex !important;
+    width: 7.7rem;
+    min-height: 3.05rem;
+    align-items: center;
+    justify-content: flex-start;
+    color: transparent !important;
+  }
+
+  .sweed-exact-reference-page > .nav .logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .sweed-exact-reference-page > .nav ul {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 1.7vw, 1.45rem) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    direction: rtl;
+  }
+
+  .sweed-exact-reference-page > .nav ul a {
+    position: relative;
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    color: #261b3e !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    text-decoration: none;
+  }
+
+  .sweed-exact-reference-page > .nav ul a::after {
+    position: absolute;
+    right: 50%;
+    bottom: .22rem;
+    width: 0;
+    height: .17rem;
+    border-radius: 999px;
+    background: #ed2062;
+    content: "";
+    transform: translateX(50%);
+    transition: width .24s ease;
+  }
+
+  .sweed-exact-reference-page > .nav ul a:hover,
+  .sweed-exact-reference-page > .nav ul a.active { color: #ed2062 !important; }
+  .sweed-exact-reference-page > .nav ul a:hover::after,
+  .sweed-exact-reference-page > .nav ul a.active::after { width: 1.35rem; }
+
+  .sweed-exact-reference-page > .nav .btn {
+    display: inline-flex !important;
+    min-width: 8.65rem;
+    min-height: 3.1rem;
+    align-items: center;
+    justify-content: center;
+    padding: .55rem 1.18rem !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: #e02269 !important;
+    box-shadow: 0 .65rem 1.35rem rgba(224, 34, 105, .2) !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    transform: translateY(0);
+    transition: transform .24s ease, box-shadow .24s ease, background .24s ease;
+  }
+
+  .sweed-exact-reference-page > .nav .btn:hover {
+    background: #261b3e !important;
+    box-shadow: 0 .85rem 1.55rem rgba(38, 27, 62, .18) !important;
+    transform: translateY(-2px);
   }
 
   /* صفحة العروض: هوية موحّدة، عناصر مرئية خفيفة، وقراءة عربية أوضح */
@@ -1659,6 +1763,36 @@ const offersExactPresentationOverride = `
     box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 1.5rem 3rem rgba(0,0,0,.16);
   }
   .sweed-exact-reference-page .hero-map.offers-hero-map-enhanced svg { filter: drop-shadow(0 .7rem 1rem rgba(0,0,0,.18)); }
+  .sweed-exact-reference-page .offers-hero-signal {
+    position: absolute;
+    z-index: 3;
+    display: inline-flex;
+    min-height: 2.05rem;
+    align-items: center;
+    gap: .42rem;
+    padding: .35rem .68rem;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 999px;
+    background: rgba(38,27,62,.58);
+    box-shadow: 0 .55rem 1.2rem rgba(0,0,0,.16);
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 800;
+    backdrop-filter: blur(.55rem);
+    animation: offers-signal-float 3.8s ease-in-out infinite;
+  }
+  .sweed-exact-reference-page .offers-hero-signal::before {
+    width: .48rem;
+    height: .48rem;
+    border-radius: 50%;
+    background: #ed2062;
+    box-shadow: 0 0 0 .22rem rgba(237,32,98,.16);
+    content: "";
+    animation: offers-signal-pulse 2s ease-in-out infinite;
+  }
+  .sweed-exact-reference-page .offers-hero-signal.signal-one { top: 12%; right: 8%; }
+  .sweed-exact-reference-page .offers-hero-signal.signal-two { bottom: 17%; right: 9%; animation-delay: -.9s; }
+  .sweed-exact-reference-page .offers-hero-signal.signal-three { bottom: 11%; left: 8%; animation-delay: -1.7s; }
 
   .sweed-exact-reference-page .quiz {
     background: linear-gradient(110deg, #fff 0 54%, #f5f1fa 54% 100%);
@@ -1697,9 +1831,24 @@ const offersExactPresentationOverride = `
   .sweed-exact-reference-page .q-skip::after { position: absolute; right: .65rem; bottom: .1rem; left: .65rem; height: .14rem; border-radius: 999px; background: linear-gradient(90deg, #261b3e, #ed2062); content: ""; }
 
   .sweed-exact-reference-page .mains .sec-lead { max-width: 52rem; }
-  .sweed-exact-reference-page .mains-grid { align-items: stretch; }
-  .sweed-exact-reference-page .mcard { padding: 2rem 1.7rem 1.65rem; }
+  .sweed-exact-reference-page .mains-grid { align-items: stretch; padding-top: 1.6rem; overflow: visible; }
+  .sweed-exact-reference-page .mcard { position: relative; display: flex; padding: 2rem 1.7rem 1.65rem; flex-direction: column; }
   .sweed-exact-reference-page .mcard .badge { z-index: 2; top: -1.08rem; left: 50%; display: inline-flex; max-width: calc(100% - 2rem); min-height: 2.15rem; align-items: center; justify-content: center; padding-inline: .85rem; border: 1px solid rgba(255,255,255,.45); background: #ed2062; color: #fff; font-size: .76rem; text-align: center; transform: translateX(-50%); box-shadow: 0 .7rem 1.25rem rgba(237,32,98,.18); }
+  .sweed-exact-reference-page .mcard .fit { display: none; }
+  .sweed-exact-reference-page .mcard h3,
+  .sweed-exact-reference-page .mcard .promise,
+  .sweed-exact-reference-page .mcard .price,
+  .sweed-exact-reference-page .pk h4,
+  .sweed-exact-reference-page .pk .price { position: relative; z-index: 1; }
+  .sweed-exact-reference-page .mcard h3,
+  .sweed-exact-reference-page .pk h4 { color: #261b3e; font-size: clamp(1.35rem, 1.7vw, 1.66rem); font-weight: 900; line-height: 1.25; }
+  .sweed-exact-reference-page .mcard.dark h3 { color: #fff; }
+  .sweed-exact-reference-page .svc-panel.dark-band .pk h4,
+  .sweed-exact-reference-page .svc-panel.dark-band .pk .price { color: #fff; }
+  .sweed-exact-reference-page .mcard .promise { color: #ed2062; font-weight: 800; }
+  .sweed-exact-reference-page .mcard .price,
+  .sweed-exact-reference-page .pk .price { margin-top: 1rem; color: #261b3e; font-size: clamp(1.28rem, 1.65vw, 1.6rem); font-weight: 900; }
+  .sweed-exact-reference-page .mcard.dark .price { color: #fff; }
   .sweed-exact-reference-page .mcard ul li:nth-child(n+5),
   .sweed-exact-reference-page .mcard .more { display: none; }
   .sweed-exact-reference-page .mcard .drawer-btn { margin-top: .4rem; }
@@ -1716,7 +1865,74 @@ const offersExactPresentationOverride = `
   .sweed-exact-reference-page #panel-media .frame-top::after { width: 3.1rem; height: 3.1rem; background: #ed2062; box-shadow: 0 0 0 .45rem rgba(255,255,255,.1); }
   .sweed-exact-reference-page .svc-panel .pk ul li:nth-child(n+4) { display: none; }
   .sweed-exact-reference-page .svc-panel .pk .price small { min-height: 2.5em; }
-  .sweed-exact-reference-page .svc-panel .compare-btn-row { text-align: right; }
+  .sweed-exact-reference-page .svc-panel .compare-btn-row { text-align: left; }
+
+  .sweed-exact-reference-page .pkg-image {
+    display: block;
+    width: 100%;
+    height: 8.1rem;
+    margin: 0 0 1.2rem;
+    border-radius: .82rem;
+    object-fit: cover;
+    filter: saturate(.84) contrast(.96);
+  }
+
+  .sweed-exact-reference-page .pk {
+    position: relative;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+  }
+
+  .sweed-exact-reference-page .pk .offers-favorite {
+    position: absolute;
+    z-index: 4;
+    top: .85rem;
+    right: .85rem;
+    display: inline-flex;
+    min-height: 1.9rem;
+    align-items: center;
+    padding: .3rem .68rem;
+    border-radius: 999px;
+    background: #ed2062;
+    box-shadow: 0 .5rem 1rem rgba(237,32,98,.2);
+    color: #fff;
+    font-size: .74rem;
+    font-weight: 900;
+  }
+
+  .sweed-exact-reference-page .pk > .btn,
+  .sweed-exact-reference-page .mcard > .btn {
+    align-self: flex-end;
+    margin-top: auto;
+    width: fit-content !important;
+    min-width: 11.2rem;
+    justify-content: center;
+  }
+
+  .sweed-exact-reference-page .svc-panel .compare-btn-row,
+  .sweed-exact-reference-page .mains .compare-btn-row {
+    display: flex;
+    margin-top: 1.55rem;
+    justify-content: flex-start;
+    direction: ltr;
+    text-align: left;
+  }
+
+  .sweed-exact-reference-page .svc-panel .compare-btn-row .btn,
+  .sweed-exact-reference-page .mains .compare-btn-row .btn {
+    display: inline-flex;
+    min-width: 11.8rem;
+    justify-content: center;
+    direction: rtl;
+  }
+
+  .sweed-exact-reference-page .offers-sec .offer-card .btn {
+    width: fit-content !important;
+    min-width: 10.8rem;
+    margin-left: 0;
+    margin-right: auto;
+  }
 
   .sweed-exact-reference-page .counters { display: none !important; }
 
@@ -1725,6 +1941,8 @@ const offersExactPresentationOverride = `
 
   @keyframes offers-orbit { to { transform: translateX(-50%) rotate(360deg); } }
   @keyframes offers-skip-pulse { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); text-shadow: 0 .4rem 1rem rgba(237,32,98,.22); } }
+  @keyframes offers-signal-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-.45rem); } }
+  @keyframes offers-signal-pulse { 0%, 100% { opacity: .72; transform: scale(.9); } 50% { opacity: 1; transform: scale(1.15); } }
 
   .sweed-exact-reference-page .mains {
     background:
@@ -1806,6 +2024,16 @@ const offersExactPresentationOverride = `
     text-align: center;
   }
 
+  .sweed-exact-reference-page .o-cta :is(h2, p) {
+    color: #fff !important;
+    text-shadow: 0 .28rem 1.1rem rgba(0,0,0,.3);
+  }
+
+  .sweed-exact-reference-page .o-cta .eyebrow {
+    color: #ff8fba !important;
+    font-weight: 900;
+  }
+
   .sweed-exact-reference-page .o-cta p {
     max-width: 46rem;
     margin-inline: auto;
@@ -1823,6 +2051,11 @@ const offersExactPresentationOverride = `
   }
 
   @media (max-width: 48rem) {
+    .sweed-exact-reference-page > .nav { min-height: 5.2rem !important; }
+    .sweed-exact-reference-page > .nav .container { width: min(calc(100% - 2rem), 76.25rem) !important; min-height: 5.2rem; grid-template-columns: auto 1fr auto; gap: .75rem; }
+    .sweed-exact-reference-page > .nav .logo { width: 5.3rem; min-height: 2.5rem; }
+    .sweed-exact-reference-page > .nav ul { display: none !important; }
+    .sweed-exact-reference-page > .nav .btn { min-width: 6.75rem; min-height: 2.6rem; padding-inline: .85rem !important; font-size: .84rem !important; }
     .sweed-exact-reference-page > section:not(.o-hero) { padding-block: 3.4rem; }
     .sweed-exact-reference-page .o-hero { min-height: 42rem; }
     .sweed-exact-reference-page .o-hero h1 { font-size: clamp(1.8rem, 8.5vw, 2.55rem); }
@@ -1861,6 +2094,21 @@ const offersExactRuntime = `
     if (!map || map.dataset.sweedOfferVisualReady === "true") return;
     map.dataset.sweedOfferVisualReady = "true";
     map.classList.add("offers-hero-map-enhanced");
+    ["بداية واضحة", "قيمة مضافة", "مسار نمو"].forEach((label, index) => {
+      const signal = document.createElement("span");
+      signal.className = `offers-hero-signal signal-${["one", "two", "three"][index]}`;
+      signal.textContent = label;
+      map.appendChild(signal);
+    });
+  };
+
+  const prepareMainHeader = () => {
+    const nav = document.querySelector(".sweed-exact-reference-page > .nav");
+    const logo = nav?.querySelector(".logo");
+    if (!nav || !logo || nav.dataset.sweedHomeHeaderReady === "true") return;
+    nav.dataset.sweedHomeHeaderReady = "true";
+    logo.setAttribute("aria-label", "SWEED الرئيسية");
+    logo.innerHTML = '<img src="/sweed-logo-official.svg" alt="SWEED" />';
   };
 
   const prepareNeedQuiz = () => {
@@ -1887,7 +2135,7 @@ const offersExactRuntime = `
 
   const compactPackages = () => {
     document.querySelectorAll("#main-packages .mcard").forEach((card) => {
-      card.querySelectorAll("ul li:nth-child(n+5), .more, .drawer-btn").forEach((node) => node.remove());
+      card.querySelectorAll("ul li:nth-child(n+5), .more, .drawer-btn, .compare-hint").forEach((node) => node.remove());
     });
     const mainLead = document.querySelector("#main-packages .sec-lead");
     if (mainLead) mainLead.textContent = "دي الباقات اللي بتجسد وعد سويد: اتجاه واحد بيجمع الاستشارة والبناء والتنفيذ والقياس.";
@@ -1906,11 +2154,42 @@ const offersExactRuntime = `
         frame.setAttribute("aria-label", "عرض فيديو الخدمة");
       });
     }
+
+    const images = [
+      "/images/hero/businessman-laptop-standing.jpg",
+      "/images/hero/sweed-building.png",
+      "/images/hero/entrepreneur-laptop-office.jpg",
+      "/images/hero/two-men-consultation.jpg",
+      "/images/portfolio/blit-scroll-effect-demo-poster.png",
+      "/images/hero/custom-image.png",
+    ];
+    document.querySelectorAll(".svc-panel .pk-grid").forEach((grid, panelIndex) => {
+      grid.querySelectorAll(":scope > .pk").forEach((card, cardIndex) => {
+        if (cardIndex === 1 && !card.querySelector(".offers-favorite")) {
+          const favorite = document.createElement("span");
+          favorite.className = "offers-favorite";
+          favorite.textContent = "الباقة المفضلة";
+          card.prepend(favorite);
+        }
+        if (card.querySelector(".pkg-image, .frame-top, .material, .chrome")) return;
+        const image = document.createElement("img");
+        image.className = "pkg-image";
+        image.src = images[(panelIndex * 3 + cardIndex) % images.length];
+        image.alt = card.querySelector("h4")?.textContent?.trim() || "باقة من سويد";
+        image.loading = "lazy";
+        const heading = card.querySelector("h4");
+        if (heading) card.insertBefore(image, heading);
+      });
+    });
+
+    const liveLead = document.querySelector("#live-offers .sec-lead");
+    if (liveLead) liveLead.textContent = "عروضنا مبنية على قيمة مضافة أو تجميع خدمات متكاملة — مش خصم دائم بيخلي السعر الأصلي مش مقنع.";
   };
 
   const removeCounters = () => document.getElementById("numbers")?.remove();
 
   const start = () => {
+    prepareMainHeader();
     prepareHeroVisual();
     prepareNeedQuiz();
     compactPackages();

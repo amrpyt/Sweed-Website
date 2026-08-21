@@ -1651,6 +1651,14 @@ const offersExactPresentationOverride = `
   .sweed-exact-reference-page .offers-hero-node.one { inset: 3.3rem 2.25rem auto auto; }
   .sweed-exact-reference-page .offers-hero-node.two { inset: auto 2rem 4rem auto; }
   .sweed-exact-reference-page .offers-hero-node.three { inset: auto auto 4rem 2rem; }
+  .sweed-exact-reference-page .hero-map.offers-hero-map-enhanced {
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 1.45rem;
+    background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(237,32,98,.08));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 1.5rem 3rem rgba(0,0,0,.16);
+  }
+  .sweed-exact-reference-page .hero-map.offers-hero-map-enhanced svg { filter: drop-shadow(0 .7rem 1rem rgba(0,0,0,.18)); }
 
   .sweed-exact-reference-page .quiz {
     background: linear-gradient(110deg, #fff 0 54%, #f5f1fa 54% 100%);
@@ -1852,11 +1860,7 @@ const offersExactRuntime = `
     const map = document.querySelector("#offers-hero .hero-map");
     if (!map || map.dataset.sweedOfferVisualReady === "true") return;
     map.dataset.sweedOfferVisualReady = "true";
-    const visual = document.createElement("div");
-    visual.className = "offers-hero-visual";
-    visual.setAttribute("aria-hidden", "true");
-    visual.innerHTML = '<div class="offers-hero-core"><span>عرض</span></div><span class="offers-hero-node one">اتجاه</span><span class="offers-hero-node two">بناء</span><span class="offers-hero-node three">وصول</span>';
-    map.replaceWith(visual);
+    map.classList.add("offers-hero-map-enhanced");
   };
 
   const prepareNeedQuiz = () => {

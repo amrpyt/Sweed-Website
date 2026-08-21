@@ -51,7 +51,7 @@ const legacyBreadcrumbCss = `
     justify-content: flex-start !important;
     gap: 0.55rem !important;
     color: rgba(38, 27, 62, 0.72) !important;
-    font-size: 0.95rem !important;
+    font-size: 1.05rem !important;
     font-weight: 700 !important;
     line-height: 1.4 !important;
     overflow: hidden !important;
@@ -82,8 +82,7 @@ const legacyBreadcrumbCss = `
   @media (max-width: 768px) {
     .sweed-legacy-breadcrumb .breadcrumb-content {
       padding: 0.75rem 1rem !important;
-      font-size: var(--type-small-size, 0.875rem) !important;
+      font-size: 0.95rem !important;
     }
   }
 `;
-

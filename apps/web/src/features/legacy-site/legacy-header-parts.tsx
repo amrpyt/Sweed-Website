@@ -104,7 +104,7 @@ export function HeaderCta({ consultationHref, page }: { consultationHref: string
     <div className="nav-buttons">
       <Link className={getBrandActionButtonClassName({ size: "nav" })} href={consultationHref}>
         {page === "home" ? (
-          <BrandActionButtonContent>دعنا نبدأ</BrandActionButtonContent>
+          <BrandActionButtonContent>حمل الكتالوج</BrandActionButtonContent>
         ) : (
           <BrandActionButtonContent>احجز استشارة مجانية</BrandActionButtonContent>
         )}

@@ -33,7 +33,7 @@ const exactReferenceNavigationRuntime = `
 
   document.querySelectorAll("nav .btn").forEach((link) => {
     link.setAttribute("href", "/contact");
-    link.textContent = "دعنا نبدأ";
+    link.textContent = "حمل الكتالوج";
   });
 })();
 `;
@@ -2082,14 +2082,30 @@ const offersExactPresentationOverride = `
     font-style: normal !important;
   }
   .sweed-exact-reference-page .o-hero h1 {
-    font-size: clamp(2.45rem, 4.6vw, 4.5rem) !important;
+    font-size: var(--type-display-size, clamp(3rem, 5.4vw, 5rem)) !important;
     font-weight: 700 !important;
-    line-height: 1.22 !important;
+    line-height: var(--type-display-leading, 1.08) !important;
   }
   .sweed-exact-reference-page .sec-title {
-    font-size: clamp(2rem, 3.2vw, 3.25rem) !important;
+    font-size: var(--type-section-title-size, clamp(2.125rem, 3.4vw, 3.25rem)) !important;
     font-weight: 700 !important;
-    line-height: 1.32 !important;
+    line-height: var(--type-title-leading, 1.16) !important;
+  }
+  .sweed-exact-reference-page .o-hero p,
+  .sweed-exact-reference-page .sec-lead {
+    font-size: var(--type-lead-size, clamp(1.125rem, 1.2vw, 1.35rem)) !important;
+    line-height: var(--type-lead-leading, 1.65) !important;
+  }
+  .sweed-exact-reference-page :is(.mcard h3, .pk h4, .offer-card h3) {
+    font-size: var(--type-card-title-size, clamp(1.35rem, 1.8vw, 2rem)) !important;
+    line-height: var(--type-title-leading, 1.16) !important;
+  }
+  .sweed-exact-reference-page :is(.mcard .fit, .mcard li, .pk .fit, .pk li, .offer-card p, .faq-a, .o-cta p) {
+    font-size: var(--type-body-size, 1rem) !important;
+    line-height: var(--type-body-leading, 1.75) !important;
+  }
+  .sweed-exact-reference-page :is(.eyebrow, .badge, .st-btn, .mcard .promise, .price small) {
+    font-size: var(--type-label-size, .875rem) !important;
   }
   .sweed-exact-reference-page #main-packages,
   .sweed-exact-reference-page #main-packages .mains-grid { overflow: visible !important; }
@@ -2109,21 +2125,101 @@ const offersExactPresentationOverride = `
     white-space: nowrap;
   }
   .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-image {
-    display: block !important;
-    width: 100% !important;
-    height: clamp(7.5rem, 11vw, 10rem) !important;
-    margin: 0 0 1rem !important;
-    border: 1px solid rgba(38, 27, 62, .1);
-    border-radius: .85rem !important;
-    object-fit: cover !important;
-    background: #eee9f6;
-    box-shadow: 0 .55rem 1.35rem rgba(38, 27, 62, .1);
+    display: none !important;
   }
-  .sweed-exact-reference-page #main-packages .mcard.dark .pkg-image { border-color: rgba(255, 255, 255, .22); }
+  /* كل باقة تعرض فيديو واحد فقط: لا صور داخل بطاقات العروض. */
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) :is(.frame-top, .material, .chrome) {
+    display: none !important;
+  }
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video {
+    position: relative;
+    display: grid !important;
+    width: 100%;
+    height: clamp(8.25rem, 12vw, 10.5rem);
+    place-items: center;
+    margin: 0 0 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(38, 27, 62, .12);
+    border-radius: .9rem;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(237,32,98,.17) 0 16%, transparent 16.5%),
+      linear-gradient(135deg, #f5f0fa, #e8e0f2);
+    box-shadow: 0 .55rem 1.35rem rgba(38, 27, 62, .1);
+    isolation: isolate;
+  }
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video::before,
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video::after {
+    position: absolute;
+    z-index: -1;
+    border: 1px solid rgba(38, 27, 62, .13);
+    border-radius: 50%;
+    content: "";
+    transition: transform .55s cubic-bezier(.22,1,.36,1), opacity .35s ease;
+  }
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video::before { width: 8.8rem; height: 8.8rem; }
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video::after { width: 12.6rem; height: 12.6rem; opacity: .64; }
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk):hover .pkg-video::before { transform: scale(1.16) rotate(18deg); }
+  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk):hover .pkg-video::after { transform: scale(.89) rotate(-14deg); opacity: 1; }
+  .sweed-exact-reference-page .pkg-video-play {
+    display: grid;
+    width: 3.35rem;
+    height: 3.35rem;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #ed2062;
+    box-shadow: 0 0 0 .58rem rgba(237,32,98,.14), 0 .72rem 1.2rem rgba(237,32,98,.22);
+    color: #fff;
+    font-family: Arial, sans-serif !important;
+    font-size: .94rem;
+    line-height: 1;
+  }
+  .sweed-exact-reference-page .mcard.dark .pkg-video,
+  .sweed-exact-reference-page .svc-panel.dark-band .pkg-video {
+    border-color: rgba(255,255,255,.2);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(237,32,98,.31) 0 16%, transparent 16.5%),
+      linear-gradient(135deg, #2f1d4a, #1f1234);
+  }
+  .sweed-exact-reference-page .mcard.dark .pkg-video::before,
+  .sweed-exact-reference-page .mcard.dark .pkg-video::after,
+  .sweed-exact-reference-page .svc-panel.dark-band .pkg-video::before,
+  .sweed-exact-reference-page .svc-panel.dark-band .pkg-video::after { border-color: rgba(255,255,255,.2); }
+
+  /* نفس روح الدائرة خلف الصورة، لكن بتكوين مختلف لكل واحدة من الخدمات الست. */
+  .sweed-exact-reference-page #panel-consult .pkg-video { background: radial-gradient(circle at 50% 50%, rgba(237,32,98,.12) 0 18%, transparent 18.5%), repeating-radial-gradient(circle at 50% 50%, transparent 0 1.35rem, rgba(59,33,96,.08) 1.4rem 1.47rem), #faf8fc; }
+  .sweed-exact-reference-page #panel-brand .pkg-video { background: radial-gradient(circle at 30% 32%, rgba(237,32,98,.35), transparent 26%), radial-gradient(circle at 74% 70%, rgba(59,33,96,.22), transparent 32%), #f7f3fb; }
+  .sweed-exact-reference-page #panel-mkt .pkg-video { background: linear-gradient(rgba(59,33,96,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(59,33,96,.08) 1px, transparent 1px), radial-gradient(circle at center, rgba(237,32,98,.2) 0 16%, transparent 16.5%), #f8f5fc; background-size: 1.3rem 1.3rem, 1.3rem 1.3rem, auto; }
+  .sweed-exact-reference-page #panel-media .pkg-video { background: radial-gradient(circle at center, transparent 0 1.7rem, rgba(237,32,98,.4) 1.76rem 1.88rem, transparent 1.94rem), radial-gradient(circle at center, transparent 0 3.5rem, rgba(255,255,255,.14) 3.56rem 3.68rem, transparent 3.74rem), linear-gradient(135deg, #2e1b47, #1e1231); }
+  .sweed-exact-reference-page #panel-ads .pkg-video { background: repeating-linear-gradient(135deg, rgba(237,32,98,.14) 0 .7rem, transparent .7rem 1.4rem), radial-gradient(circle at center, rgba(59,33,96,.16) 0 23%, transparent 23.5%), #f8f3fa; }
+  .sweed-exact-reference-page #panel-web .pkg-video { background: linear-gradient(90deg, rgba(59,33,96,.1) 1px, transparent 1px), linear-gradient(rgba(59,33,96,.1) 1px, transparent 1px), radial-gradient(circle at center, rgba(237,32,98,.21) 0 18%, transparent 18.5%), #f8f5fc; background-size: 1.8rem 1.8rem, 1.8rem 1.8rem, auto; }
+
+  /* شريط الخدمات الست: السهم يظهر ويتحرك مع المرور، واللوحة تدخل بحركة ناعمة عند الاختيار. */
+  .sweed-exact-reference-page .st-btn { position: relative; padding-inline-start: 2.5rem; }
+  .sweed-exact-reference-page .st-btn::after {
+    position: absolute;
+    inset-inline-start: .9rem;
+    top: 50%;
+    color: currentColor;
+    content: "←";
+    font-family: Arial, sans-serif !important;
+    font-size: 1rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: translate(0, -50%);
+    transition: opacity .22s ease, transform .28s cubic-bezier(.22,1,.36,1);
+  }
+  .sweed-exact-reference-page .st-btn:hover::after,
+  .sweed-exact-reference-page .st-btn:focus-visible::after,
+  .sweed-exact-reference-page .st-btn.active::after { opacity: 1; transform: translate(-.28rem, -50%); }
+  .sweed-exact-reference-page .st-btn:hover { border-color: #ed2062; color: #ed2062; transform: translateY(-2px); box-shadow: 0 .55rem 1rem rgba(237,32,98,.11); }
+  .sweed-exact-reference-page .st-btn.active:hover { color: #fff; }
+  .sweed-exact-reference-page .svc-panel.show { animation: offers-service-enter .46s cubic-bezier(.22,1,.36,1) both; }
+  @keyframes offers-service-enter { from { opacity: 0; transform: translateY(1.25rem); } to { opacity: 1; transform: translateY(0); } }
   @media (max-width: 700px) {
     .sweed-exact-reference-page .o-hero h1 { font-size: clamp(2.15rem, 11vw, 3.2rem) !important; }
     .sweed-exact-reference-page #main-packages .mains-grid { padding-top: 2.3rem !important; }
-    .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-image { height: 8.5rem !important; }
+    .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video { height: 8.5rem !important; }
   }
 `;
 
@@ -2212,31 +2308,28 @@ const offersExactRuntime = `
       });
     }
 
-    const images = [
-      "/images/hero/businessman-laptop-standing.jpg",
-      "/images/hero/sweed-building.png",
-      "/images/hero/entrepreneur-laptop-office.jpg",
-      "/images/hero/two-men-consultation.jpg",
-      "/images/portfolio/blit-scroll-effect-demo-poster.png",
-      "/images/hero/custom-image.png",
-    ];
-    const addPackageImage = (card, imageIndex) => {
-      if (card.querySelector(".pkg-image")) return;
-      const image = document.createElement("img");
-      image.className = "pkg-image";
-      image.src = images[imageIndex % images.length];
-      image.alt = card.querySelector("h3, h4")?.textContent?.trim() || "باقة من سويد";
-      image.loading = "lazy";
+    const addPackageVideo = (card) => {
+      card.querySelectorAll(".pkg-image, .frame-top, .material, .chrome").forEach((node) => node.remove());
+      if (card.querySelector(".pkg-video")) return;
+      const video = document.createElement("div");
+      video.className = "pkg-video";
+      video.setAttribute("role", "img");
+      video.setAttribute("aria-label", "فيديو باقة " + (card.querySelector("h3, h4")?.textContent?.trim() || "سويد"));
+      const play = document.createElement("span");
+      play.className = "pkg-video-play";
+      play.setAttribute("aria-hidden", "true");
+      play.textContent = "▶";
+      video.appendChild(play);
       const heading = card.querySelector("h3, h4");
-      if (heading) card.insertBefore(image, heading);
-      else card.prepend(image);
+      if (heading) card.insertBefore(video, heading);
+      else card.prepend(video);
     };
 
-    document.querySelectorAll("#main-packages .mcard").forEach((card, cardIndex) => {
-      addPackageImage(card, cardIndex);
+    document.querySelectorAll("#main-packages .mcard").forEach((card) => {
+      addPackageVideo(card);
     });
 
-    document.querySelectorAll(".svc-panel .pk-grid").forEach((grid, panelIndex) => {
+    document.querySelectorAll(".svc-panel .pk-grid").forEach((grid) => {
       grid.querySelectorAll(":scope > .pk").forEach((card, cardIndex) => {
         if (cardIndex === 1 && !card.querySelector(".offers-favorite")) {
           const favorite = document.createElement("span");
@@ -2244,7 +2337,7 @@ const offersExactRuntime = `
           favorite.textContent = "الباقة المفضلة";
           card.prepend(favorite);
         }
-        addPackageImage(card, panelIndex * 3 + cardIndex + 3);
+        addPackageVideo(card);
       });
     });
 

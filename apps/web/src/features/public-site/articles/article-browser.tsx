@@ -70,9 +70,10 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
       <section className={styles.resultsSection} id="latest">
         <div className={styles.container}>
           <header className={styles.resultsHeader}>
-            <div>
-              <p>المكتبة المنشورة</p>
-              <h2>كل جديد… في شبكة سهلة المسح بالعين</h2>
+            <div className={styles.resultsIntro}>
+              <p className={styles.resultsKicker}>المكتبة المنشورة</p>
+              <h2>{articlesPageSource.section.header.title}</h2>
+              <p className={styles.resultsSummary}>{articlesPageSource.section.header.summary}</p>
             </div>
             <div className={styles.controls}>
               <label>

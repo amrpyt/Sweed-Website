@@ -174,6 +174,7 @@ function getConsultingPresentationCss(slug: ServiceReferenceSlug) {
 .sweed-reference-page[data-service-reference="consulting"] .d-hero h1{line-height:1.42;text-wrap:balance}
 .sweed-reference-page[data-service-reference="consulting"] .hero-overlay{background:linear-gradient(to left,rgba(21,11,35,.94) 0%,rgba(38,27,62,.80) 48%,rgba(38,27,62,.42) 100%)}
 .sweed-reference-page[data-service-reference="consulting"] .hero-chips span{border-color:rgba(255,255,255,.26);background:rgba(255,255,255,.11)}
+.sweed-reference-page[data-service-reference="consulting"] .d-hero .btns{opacity:1!important}
 
 .sweed-reference-page[data-service-reference="consulting"] #quiz .container,
 .sweed-reference-page[data-service-reference="consulting"] #problems .container,

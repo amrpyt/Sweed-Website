@@ -14,13 +14,32 @@ const dateFormatter = new Intl.DateTimeFormat("ar-EG", {
   timeZone: "UTC",
 });
 
+const articleVisuals = [
+  "/images/hero/entrepreneur-laptop-office.jpg",
+  "/images/hero/sweed-building.png",
+  "/images/hero/businessman-laptop-standing.jpg",
+  "/images/portfolio/blit-scroll-effect-demo-poster.png",
+  "/images/homepage/strategy-horse.png",
+] as const;
+
+function getSupportVisual(article: Article, index: number) {
+  return articleVisuals[(article.order + index) % articleVisuals.length];
+}
+
+function getAuthorInitial(article: Article) {
+  return (article.author?.name ?? "سويد").trim().slice(0, 1);
+}
+
 export function ArticleDetailPublicPage({ article, allArticles }: { article: Article; allArticles: readonly Article[] }) {
   const model = getArticleDetailModel(article, allArticles);
   const schema = createArticleJsonLd(article);
   const sectionIds = [...article.body.map((section) => section.id), "related-service", "related-articles", "article-cta"];
+  const authorName = article.author?.name ?? "فريق سويد";
+  const authorRole = article.author?.role ?? "من دفتر البوصلة";
+  const hasInlineVisual = article.body.length > 1;
 
   return (
-    <PublicPageShell page="article-detail" sectionIds={sectionIds}>
+    <PublicPageShell page="article-detail" sectionIds={sectionIds} showBreadcrumb={false}>
       <main className={styles.page}>
         {schema ? (
           <script
@@ -33,52 +52,103 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
         <header className={styles.hero}>
           <div className={styles.heroInner}>
             <nav className={styles.breadcrumb} aria-label="مسار المقال">
+              <Link href="/">الرئيسية</Link>
+              <span aria-hidden="true">/</span>
               <Link href="/articles">المقالات</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">{article.title}</span>
+              <span aria-current="page">{article.category}</span>
             </nav>
 
             <div className={styles.heroCopy}>
               <p className={styles.category}>{article.category}</p>
               <h1>{article.title}</h1>
+              <span className={styles.titleRule} aria-hidden="true" />
               <p className={styles.summary}>{article.summary}</p>
-              <div className={styles.meta}>
-                <time dateTime={article.publishedAt}>{dateFormatter.format(new Date(`${article.publishedAt}T00:00:00Z`))}</time>
-                <span>{article.readingTime}</span>
-                {article.author?.name ? <span>{article.author.name}</span> : null}
+
+              <div className={styles.articleMeta}>
+                <div className={styles.authorInfo}>
+                  {article.author?.avatar?.src ? (
+                    <Image className={styles.authorAvatarImage} src={article.author.avatar.src} alt={article.author.avatar.alt} width={46} height={46} />
+                  ) : (
+                    <span className={styles.authorAvatar} aria-hidden="true">{getAuthorInitial(article)}</span>
+                  )}
+                  <span>
+                    <strong>{authorName}</strong>
+                    <small>{authorRole}</small>
+                  </span>
+                </div>
+                <div className={styles.meta}>
+                  <time dateTime={article.publishedAt}>{dateFormatter.format(new Date(`${article.publishedAt}T00:00:00Z`))}</time>
+                  <span>{article.readingTime} قراءة</span>
+                </div>
               </div>
             </div>
 
             {article.seo.image ? (
               <figure className={styles.heroMedia}>
                 <Image src={article.seo.image} alt={article.title} fill priority sizes="(min-width: 64rem) 42vw, 100vw" />
+                <figcaption>من دفتر البوصلة</figcaption>
               </figure>
             ) : null}
           </div>
         </header>
 
-        <section className={styles.readingSection}>
+        <section className={styles.readingSection} aria-label="محتوى المقال">
           <div className={styles.readingLayout}>
             <article className={styles.articleBody} data-testid="article-body">
-              {article.body.map((section) => (
-                <section id={section.id} key={section.id}>
-                  <h2>{section.title}</h2>
+              <div className={styles.articleIntro}>
+                <span>فكرة المقال</span>
+                <p>{article.seo.description}</p>
+              </div>
+
+              {article.body.map((section, index) => (
+                <section id={section.id} key={section.id} className={styles.bodySection}>
+                  <div className={styles.sectionHeading}>
+                    <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                    <h2>{section.title}</h2>
+                  </div>
                   <p>{section.summary}</p>
                   {section.items?.length ? (
                     <ul>
                       {section.items.map((item) => <li key={item}>{item}</li>)}
                     </ul>
                   ) : null}
+
+                  {(hasInlineVisual && index === Math.floor((article.body.length - 1) / 2)) || (!hasInlineVisual && index === 0) ? (
+                    <figure className={styles.inlineVisual}>
+                      <Image src={getSupportVisual(article, index)} alt="" fill sizes="(min-width: 64rem) 46rem, 100vw" />
+                      <figcaption>لما الصورة تبقى أوضح، القرار بيبقى أسهل.</figcaption>
+                    </figure>
+                  ) : null}
                 </section>
               ))}
+
+              <div className={styles.articleTakeaway}>
+                <span>الخلاصة</span>
+                <p>{article.summary}</p>
+              </div>
             </article>
 
             <aside className={styles.aside} id="related-service">
+              <div className={styles.tocBlock}>
+                <p>داخل المقال</p>
+                <ol>
+                  {article.body.map((section, index) => (
+                    <li key={section.id}>
+                      <a href={`#${section.id}`}>
+                        <span>{String(index + 1).padStart(2, "0")}</span>
+                        {section.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
               <div className={styles.shareBlock}>
                 <p>شارك المقال</p>
                 <div className={styles.shareLinks}>
-                  <a href={model.shareLinks.whatsapp} target="_blank" rel="noreferrer">شارك عبر واتساب</a>
-                  <a href={model.shareLinks.linkedin} target="_blank" rel="noreferrer">شارك على LinkedIn</a>
+                  <a href={model.shareLinks.whatsapp} target="_blank" rel="noreferrer">واتساب</a>
+                  <a href={model.shareLinks.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
                 </div>
               </div>
 
@@ -87,7 +157,7 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
                 <h2>{model.relatedService.title}</h2>
                 <span>{model.relatedService.summary}</span>
                 <ButtonLink href={model.relatedService.href} size="compact">
-                  اعرف خدمة {model.relatedService.title}
+                  اعرف تفاصيل الخدمة
                 </ButtonLink>
               </div>
             </aside>
@@ -97,16 +167,29 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
         <section className={styles.relatedSection} id="related-articles">
           <div className={styles.relatedInner}>
             <header>
+              <p className={styles.sectionEyebrow}>من دفتر البوصلة</p>
               <h2>كمّل من نفس النقطة</h2>
-              <p>مقالات منشورة من نفس المكتبة، مرتبة حسب قربها من موضوعك وحداثتها.</p>
+              <span className={styles.titleRule} aria-hidden="true" />
+              <p>مقالات تكمّل الفكرة وتفتح لك زاوية جديدة قبل ما تاخد قرارك.</p>
             </header>
             <div className={styles.relatedGrid}>
-              {model.relatedArticles.map((related) => (
+              {model.relatedArticles.map((related, index) => (
                 <article key={related.slug}>
-                  <span>{related.category}</span>
-                  <h3><Link href={`/articles/${related.slug}`}>{related.title}</Link></h3>
-                  <p>{related.summary}</p>
-                  <small>{related.readingTime}</small>
+                  {related.seo.image ? (
+                    <Link className={styles.relatedImage} href={`/articles/${related.slug}`} aria-label={related.title}>
+                      <Image src={related.seo.image} alt="" fill sizes="(min-width: 64rem) 25rem, 100vw" />
+                    </Link>
+                  ) : (
+                    <div className={styles.relatedImage} aria-hidden="true">
+                      <Image src={getSupportVisual(article, index + 1)} alt="" fill sizes="(min-width: 64rem) 25rem, 100vw" />
+                    </div>
+                  )}
+                  <div className={styles.relatedCopy}>
+                    <span>{related.category}</span>
+                    <h3><Link href={`/articles/${related.slug}`}>{related.title}</Link></h3>
+                    <p>{related.summary}</p>
+                    <small>{related.readingTime} قراءة</small>
+                  </div>
                 </article>
               ))}
             </div>
@@ -116,7 +199,9 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
         <section className={styles.finalCta} id="article-cta">
           <div className={styles.ctaInner}>
             <div>
+              <p className={styles.sectionEyebrow}>خطوتك التالية</p>
               <h2>{articlesPageSource.finalCta.title}</h2>
+              <span className={styles.titleRule} aria-hidden="true" />
               <p>{articlesPageSource.finalCta.summary}</p>
             </div>
             <div className={styles.ctaActions}>

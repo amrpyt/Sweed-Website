@@ -885,6 +885,12 @@ const portfolioExactPresentationOverride = `
     --portfolio-pink: #ed2062;
     --portfolio-soft: #f7f4fb;
     background: #fbfafe;
+    font-family: "SWEED Helvetica Arabic", "SF Arabic", sans-serif !important;
+  }
+
+  .sweed-exact-reference-page,
+  .sweed-exact-reference-page * {
+    font-family: "SWEED Helvetica Arabic", "SF Arabic", sans-serif !important;
   }
 
   .sweed-exact-reference-page > section {
@@ -949,7 +955,7 @@ const portfolioExactPresentationOverride = `
     line-height: 1.82;
   }
 
-  /* الهيرو: صورة أعمال هادئة مع الحفاظ على نفس المحتوى والأزرار */
+  /* الهيرو: لغة بصرية مرتبطة بأنواع المخرجات بدل بطاقات نصية عائمة */
   .sweed-exact-reference-page .w-hero {
     min-height: min(50rem, 86vh);
     background: linear-gradient(105deg, rgba(24, 11, 40, .94), rgba(38, 27, 62, .67)) !important;
@@ -972,13 +978,138 @@ const portfolioExactPresentationOverride = `
   .sweed-exact-reference-page .w-hero .clip {
     position: absolute;
     z-index: 1;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    color: transparent;
+    font-size: 0;
+    pointer-events: none;
+    opacity: .72;
+    border-color: rgba(255,255,255,.18);
+    background: rgba(255,255,255,.055);
+    box-shadow: 0 16px 38px rgba(8, 3, 18, .18);
+  }
+
+  .sweed-exact-reference-page .w-hero .clip::before,
+  .sweed-exact-reference-page .w-hero .clip::after {
+    position: absolute;
+    content: "";
+    border-radius: inherit;
+  }
+
+  /* استراتيجية: أعمدة قياس، فيديو: فريم، هوية: ألوان، موقع: واجهة، دليل: شبكة، طريق: محطات */
+  .sweed-exact-reference-page .w-hero .c1::before {
+    inset: 1.2rem;
+    background:
+      linear-gradient(180deg, transparent 0 25%, rgba(255,255,255,.14) 25% 28%, transparent 28% 54%, rgba(255,255,255,.14) 54% 57%, transparent 57%),
+      linear-gradient(180deg, var(--portfolio-pink) 0 76%, transparent 76%) 12% 100% / 16% 100% no-repeat,
+      linear-gradient(180deg, rgba(255,255,255,.82) 0 52%, transparent 52%) 44% 100% / 16% 100% no-repeat,
+      linear-gradient(180deg, rgba(255,255,255,.45) 0 88%, transparent 88%) 76% 100% / 16% 100% no-repeat;
+    border-bottom: 1px solid rgba(255,255,255,.34);
+  }
+
+  .sweed-exact-reference-page .w-hero .c2::before {
+    inset: 1rem;
+    border: 1px solid rgba(255,255,255,.42);
+    background: repeating-linear-gradient(180deg, transparent 0 1.7rem, rgba(255,255,255,.16) 1.7rem 1.9rem);
+  }
+
+  .sweed-exact-reference-page .w-hero .c2::after {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-38%, -50%);
+    border-top: .8rem solid transparent;
+    border-bottom: .8rem solid transparent;
+    border-left: 1.25rem solid var(--portfolio-pink);
+  }
+
+  .sweed-exact-reference-page .w-hero .c3::before {
+    inset: 1.1rem;
+    border-radius: .75rem;
+    background:
+      linear-gradient(135deg, #ed2062 0 49%, #f9b4ce 49% 100%) 0 0 / 30% 100% no-repeat,
+      linear-gradient(135deg, #55409a 0 49%, #f6ebff 49% 100%) 50% 0 / 30% 100% no-repeat,
+      linear-gradient(135deg, #ffffff 0 49%, #a897d7 49% 100%) 100% 0 / 30% 100% no-repeat;
+  }
+
+  .sweed-exact-reference-page .w-hero .c4::before {
+    inset: 1rem;
+    border: 1px solid rgba(255,255,255,.42);
+    background:
+      linear-gradient(90deg, var(--portfolio-pink) 0 26%, transparent 26%) 15% 18% / 64% .35rem no-repeat,
+      linear-gradient(90deg, rgba(255,255,255,.8) 0 75%, transparent 75%) 15% 42% / 72% .25rem no-repeat,
+      linear-gradient(90deg, rgba(255,255,255,.5) 0 56%, transparent 56%) 15% 57% / 72% .25rem no-repeat,
+      linear-gradient(135deg, rgba(255,255,255,.14), rgba(237,32,98,.36)) 15% 78% / 72% 1.35rem no-repeat;
+  }
+
+  .sweed-exact-reference-page .w-hero .c5::before {
+    inset: 1rem;
+    background:
+      radial-gradient(circle, var(--portfolio-pink) 0 .48rem, transparent .52rem) 15% 15% / 42% 42% no-repeat,
+      radial-gradient(circle, rgba(255,255,255,.86) 0 .48rem, transparent .52rem) 85% 15% / 42% 42% no-repeat,
+      radial-gradient(circle, rgba(255,255,255,.56) 0 .48rem, transparent .52rem) 15% 85% / 42% 42% no-repeat,
+      radial-gradient(circle, rgba(255,255,255,.32) 0 .48rem, transparent .52rem) 85% 85% / 42% 42% no-repeat;
+    border: 1px solid rgba(255,255,255,.18);
+  }
+
+  .sweed-exact-reference-page .w-hero .c6::before {
+    inset: 1.1rem;
+    background:
+      radial-gradient(circle, var(--portfolio-pink) 0 .35rem, transparent .39rem) 0 50% / 33% 100% no-repeat,
+      radial-gradient(circle, rgba(255,255,255,.8) 0 .35rem, transparent .39rem) 50% 18% / 33% 100% no-repeat,
+      radial-gradient(circle, rgba(255,255,255,.52) 0 .35rem, transparent .39rem) 100% 70% / 33% 100% no-repeat,
+      linear-gradient(145deg, transparent 48%, rgba(255,255,255,.46) 49% 51%, transparent 52%);
+  }
+
+  .sweed-exact-reference-page .w-hero .crumb {
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,.74);
+    font-size: clamp(.95rem, 1.35vw, 1.05rem) !important;
+    font-weight: 700;
+    letter-spacing: 0;
   }
 
   .sweed-exact-reference-page .w-hero .inner { max-width: 60rem; }
   .sweed-exact-reference-page .w-hero h1 { font-size: clamp(2rem, 4vw, 3.35rem); text-wrap: balance; }
   .sweed-exact-reference-page .w-hero p { max-width: 50rem; margin-inline: auto; text-align: center !important; text-align-last: center; }
-  .sweed-exact-reference-page .w-hero .btn { min-width: 10.5rem; }
-  .sweed-exact-reference-page .trust { background: rgba(24, 11, 40, .4); backdrop-filter: blur(7px); }
+  .sweed-exact-reference-page .w-hero .btn { min-width: 13.75rem; }
+
+  .sweed-exact-reference-page .trust {
+    position: absolute !important;
+    inset: auto 50% 1.3rem auto !important;
+    width: min(73rem, calc(100% - 3rem));
+    transform: translateX(50%);
+    padding: .78rem 1rem;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 1rem;
+    background: rgba(24, 11, 40, .56);
+    box-shadow: 0 16px 34px rgba(10, 4, 19, .2);
+    backdrop-filter: blur(10px);
+  }
+
+  .sweed-exact-reference-page .trust .container {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+    gap: 0;
+  }
+
+  .sweed-exact-reference-page .trust .t-item {
+    display: flex;
+    min-width: 0;
+    align-items: baseline;
+    justify-content: center;
+    gap: .42rem;
+    padding: .15rem .8rem;
+    border-inline-start: 1px solid rgba(255,255,255,.13);
+    white-space: nowrap;
+  }
+
+  .sweed-exact-reference-page .trust .t-item:first-child { border-inline-start: 0; }
+  .sweed-exact-reference-page .trust .t-item b { display: inline; flex: 0 0 auto; font-size: 1.25rem; }
+  .sweed-exact-reference-page .trust .t-item span { overflow: hidden; color: rgba(255,255,255,.78); font-size: .76rem; text-overflow: ellipsis; }
   .sweed-exact-reference-page .footnote { padding-block: .8rem; background: #f1edf8; }
 
   /* الاستشارات: الإطار المرجعي نفسه، مع صور خفيفة داخل الحالات دون تغيير توزيعها */
@@ -1107,7 +1238,180 @@ const portfolioExactPresentationOverride = `
     .sweed-exact-reference-page > section { padding-block: 3.35rem; }
     .sweed-exact-reference-page .w-hero { min-height: 43rem; }
     .sweed-exact-reference-page .w-hero h1, .sweed-exact-reference-page .sec-title, .sweed-exact-reference-page .w-cta h2 { font-size: clamp(1.65rem, 8vw, 2.35rem); }
+    .sweed-exact-reference-page .trust { width: min(31rem, calc(100% - 1.5rem)); padding: .7rem .45rem; }
+    .sweed-exact-reference-page .trust .container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .38rem 0; }
+    .sweed-exact-reference-page .trust .t-item { padding-inline: .35rem; }
+    .sweed-exact-reference-page .trust .t-item:nth-child(odd) { border-inline-start: 0; }
+    .sweed-exact-reference-page .trust .t-item:last-child { grid-column: 1 / -1; }
     .sweed-exact-reference-page .bp-card { padding-top: 8.7rem; }
+  }
+`;
+
+const offersExactPresentationOverride = `
+  .sweed-exact-reference-page {
+    --offers-ink: #261b3e;
+    --offers-pink: #ed2062;
+    --offers-soft: #faf8fc;
+    background: var(--offers-soft);
+  }
+
+  .sweed-exact-reference-page > section {
+    isolation: isolate;
+  }
+
+  .sweed-exact-reference-page > section:not(.o-hero) {
+    padding-block: clamp(3.9rem, 5.4vw, 5.25rem);
+  }
+
+  .sweed-exact-reference-page .sec-title {
+    position: relative;
+    margin-bottom: 1.35rem;
+    text-wrap: balance;
+  }
+
+  .sweed-exact-reference-page .sec-title::after {
+    content: "";
+    display: block;
+    width: 3.4rem;
+    height: .22rem;
+    margin: .85rem auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--offers-ink) 0 48%, var(--offers-pink) 48% 100%);
+    box-shadow: 0 5px 12px rgba(237, 32, 98, .14);
+  }
+
+  .sweed-exact-reference-page .sec-lead {
+    margin-inline: auto;
+    text-align: center !important;
+    text-align-last: center;
+  }
+
+  .sweed-exact-reference-page :is(.mcard .fit, .mcard li, .pk .fit, .pk li, .offer-card p, .faq-a, .o-cta p) {
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.82;
+  }
+
+  .sweed-exact-reference-page .o-hero {
+    min-height: min(78vh, 49rem);
+    background:
+      linear-gradient(100deg, rgba(24, 11, 40, .96), rgba(38, 27, 62, .66)),
+      url("/images/hero/two-men-consultation.jpg") center / cover no-repeat;
+  }
+
+  .sweed-exact-reference-page .o-hero .grid {
+    align-items: center;
+  }
+
+  .sweed-exact-reference-page .o-hero h1 {
+    max-width: 44rem;
+    text-wrap: balance;
+  }
+
+  .sweed-exact-reference-page .o-hero p {
+    max-width: 39rem;
+  }
+
+  .sweed-exact-reference-page .mains {
+    background:
+      radial-gradient(circle at 84% 12%, rgba(237, 32, 98, .1), transparent 19rem),
+      #f1edf8;
+  }
+
+  .sweed-exact-reference-page .mcard,
+  .sweed-exact-reference-page .pk,
+  .sweed-exact-reference-page .offer-card {
+    border-radius: 1.05rem;
+    overflow: hidden;
+  }
+
+  .sweed-exact-reference-page .mcard,
+  .sweed-exact-reference-page .pk {
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+
+  .sweed-exact-reference-page .mcard:hover,
+  .sweed-exact-reference-page .pk:hover {
+    box-shadow: 0 18px 34px rgba(38, 27, 62, .13);
+  }
+
+  .sweed-exact-reference-page .svc-panel {
+    background: linear-gradient(180deg, #ffffff, #faf8fc);
+  }
+
+  .sweed-exact-reference-page .svc-panel.dark-band {
+    background:
+      radial-gradient(circle at 13% 20%, rgba(237, 32, 98, .18), transparent 20rem),
+      #261b3e;
+  }
+
+  .sweed-exact-reference-page .pk-grid {
+    align-items: stretch;
+  }
+
+  .sweed-exact-reference-page .pk {
+    min-height: 100%;
+  }
+
+  .sweed-exact-reference-page .pk::before {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: .24rem;
+    margin-bottom: 1.1rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--offers-ink), var(--offers-pink));
+  }
+
+  .sweed-exact-reference-page .offer-card {
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+
+  .sweed-exact-reference-page .offer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(38, 27, 62, .11);
+  }
+
+  .sweed-exact-reference-page .faq-item {
+    transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+  }
+
+  .sweed-exact-reference-page .faq-item:hover {
+    transform: translateX(-4px);
+    border-color: rgba(237, 32, 98, .38);
+    box-shadow: 0 10px 22px rgba(38, 27, 62, .08);
+  }
+
+  .sweed-exact-reference-page .o-cta {
+    background:
+      linear-gradient(100deg, rgba(24, 11, 40, .96), rgba(38, 27, 62, .68)),
+      url("/images/hero/entrepreneur-laptop-office.jpg") center / cover no-repeat;
+  }
+
+  .sweed-exact-reference-page .o-cta .wrap {
+    text-align: center;
+  }
+
+  .sweed-exact-reference-page .o-cta p {
+    max-width: 46rem;
+    margin-inline: auto;
+    text-align: center !important;
+    text-align-last: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sweed-exact-reference-page *,
+    .sweed-exact-reference-page *::before,
+    .sweed-exact-reference-page *::after {
+      animation-duration: .01ms !important;
+      transition-duration: .01ms !important;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .sweed-exact-reference-page > section:not(.o-hero) { padding-block: 3.4rem; }
+    .sweed-exact-reference-page .o-hero { min-height: 42rem; }
+    .sweed-exact-reference-page .o-hero h1 { font-size: clamp(1.8rem, 8.5vw, 2.55rem); }
   }
 `;
 
@@ -1467,7 +1771,68 @@ export function LegacyPage({
           .sweed-exact-reference-page .w-cta h2 {
             color: inherit;
           }
-          ${page === "about" ? aboutExactPresentationOverride : page === "portfolio" ? portfolioExactPresentationOverride : ""}
+          /* أزرار القوالب المرجعية: نفس منطق زر سويد المعتمد (سهم + مساحة ملونة متحركة) */
+          .sweed-exact-reference-page .btn {
+            position: relative;
+            display: inline-grid !important;
+            grid-template-columns: 2.75rem minmax(0, 1fr);
+            min-width: 13.75rem;
+            min-height: 3.5rem;
+            align-items: center;
+            gap: .65rem;
+            padding: .34rem 1.15rem .34rem .34rem;
+            overflow: hidden;
+            border: 1px solid #261b3e;
+            border-radius: 1rem;
+            background: #261b3e;
+            color: #ffffff;
+            box-shadow: 0 10px 24px rgba(38,27,62,.18);
+            font-family: "SWEED Helvetica Arabic", "SF Arabic", sans-serif !important;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: center;
+            text-decoration: none;
+            transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease, color .24s ease;
+          }
+          .sweed-exact-reference-page .btn::before {
+            display: grid;
+            grid-column: 1;
+            place-items: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: .72rem;
+            background: #ed2062;
+            color: #ffffff;
+            content: "↗";
+            font-family: Arial, sans-serif !important;
+            font-size: 1.22rem;
+            font-weight: 700;
+            line-height: 1;
+            transition: transform .24s ease, background .24s ease, color .24s ease;
+          }
+          .sweed-exact-reference-page .btn:hover,
+          .sweed-exact-reference-page .btn:focus-visible {
+            border-color: #ed2062;
+            color: #ffffff;
+            box-shadow: 0 15px 30px rgba(237,32,98,.22);
+            transform: translateY(-2px);
+          }
+          .sweed-exact-reference-page .btn:hover::before,
+          .sweed-exact-reference-page .btn:focus-visible::before { transform: translateY(-1px) rotate(5deg); }
+          .sweed-exact-reference-page .btn.btn-primary { background: #261b3e; color: #ffffff; }
+          .sweed-exact-reference-page .btn.btn-ghost { background: #ffffff; border-color: rgba(38,27,62,.22); color: #261b3e; }
+          .sweed-exact-reference-page .btn.btn-ghost.light { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.72); color: #ffffff; }
+          .sweed-exact-reference-page .btn.btn-ghost.light:hover,
+          .sweed-exact-reference-page .btn.btn-ghost.light:focus-visible { border-color: #ed2062; }
+          .sweed-exact-reference-page .btn.btn-sm { min-width: 10.75rem; min-height: 2.8rem; padding: .28rem .8rem .28rem .28rem; font-size: .88rem; }
+          .sweed-exact-reference-page .btn.btn-sm::before { width: 2.24rem; height: 2.24rem; font-size: 1rem; }
+          .sweed-exact-reference-page .crumb { font-size: clamp(.95rem, 1.35vw, 1.05rem) !important; font-weight: 700; }
+          @media (max-width: 48rem) {
+            .sweed-exact-reference-page .btn { min-width: 12.6rem; min-height: 3.25rem; font-size: .93rem; }
+            .sweed-exact-reference-page .btn::before { width: 2.5rem; height: 2.5rem; }
+          }
+          ${page === "about" ? aboutExactPresentationOverride : page === "portfolio" ? portfolioExactPresentationOverride : page === "offers" ? offersExactPresentationOverride : ""}
         `}</style>
       ) : null}
       {isReference && page === "about" ? (

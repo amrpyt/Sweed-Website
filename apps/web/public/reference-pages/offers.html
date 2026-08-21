@@ -269,6 +269,21 @@ footer{background:#180B28;color:rgba(255,255,255,.7);padding:40px 0;font-size:.9
 footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
 footer a{color:#fff;text-decoration:none}
 .dark-band{background:#14091F}
+/* ===== تحسينات سويد: إيقاع موحد وصور داعمة بدون تغيير المحتوى ===== */
+section{padding-block:clamp(64px,6vw,88px)}
+.sec-title{position:relative;margin-bottom:18px;text-wrap:balance}
+.sec-title::after{content:"";display:block;width:54px;height:4px;margin:14px auto 0;border-radius:999px;background:linear-gradient(90deg,var(--purple-700) 0 48%,var(--fuchsia) 48% 100%);box-shadow:0 5px 13px rgba(214,36,110,.15)}
+.sec-lead{margin-inline:auto;text-align:center;text-align-last:center}
+.o-hero{background:linear-gradient(100deg,rgba(24,11,40,.96),rgba(38,27,62,.68)),url("/images/hero/two-men-consultation.jpg") center/cover no-repeat}
+.o-hero h1{max-width:680px;text-wrap:balance}.o-hero p{max-width:590px}
+.mains{background:radial-gradient(circle at 84% 12%,rgba(214,36,110,.12),transparent 19rem),var(--purple-100)}
+.mcard,.pk,.offer-card{border-radius:17px;overflow:hidden}.mcard,.pk{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}.mcard:hover,.pk:hover{box-shadow:0 18px 34px rgba(38,27,62,.13)}
+.svc-panel{background:linear-gradient(180deg,#fff,#faf8fc)}.svc-panel.dark-band{background:radial-gradient(circle at 13% 20%,rgba(214,36,110,.18),transparent 20rem),#261b3e}
+.pk-grid{align-items:stretch}.pk{min-height:100%}.pk::before{content:"";display:block;height:72px;margin-bottom:18px;border:1px solid rgba(255,255,255,.26);border-radius:10px;background:linear-gradient(100deg,rgba(38,27,62,.6),rgba(38,27,62,.12)),url("/images/hero/entrepreneur-laptop-office.jpg") center/cover no-repeat}.pk:nth-child(2)::before{background-image:linear-gradient(100deg,rgba(38,27,62,.58),rgba(38,27,62,.12)),url("/images/hero/sweed-building.png")}.pk:nth-child(3)::before{background-image:linear-gradient(100deg,rgba(38,27,62,.58),rgba(38,27,62,.12)),url("/images/hero/businessman-laptop-standing.jpg")}
+.faq-item{transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}.faq-item:hover{transform:translateX(-4px);border-color:rgba(214,36,110,.38);box-shadow:0 10px 22px rgba(38,27,62,.08)}
+.o-cta{background:linear-gradient(100deg,rgba(24,11,40,.96),rgba(38,27,62,.68)),url("/images/hero/entrepreneur-laptop-office.jpg") center/cover no-repeat}.o-cta .wrap{text-align:center}.o-cta p{max-width:720px;margin-inline:auto;text-align:center;text-align-last:center}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(max-width:900px){section{padding-block:56px}.pk::before{height:62px}.sec-title::after{margin-top:12px}}
 </style>
 </head>
 <body>

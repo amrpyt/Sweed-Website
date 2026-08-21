@@ -1569,6 +1569,7 @@ const offersExactPresentationOverride = `
 
   .sweed-exact-reference-page .o-hero .grid {
     align-items: center;
+    grid-template-columns: minmax(0, 1.08fr) minmax(17rem, .72fr);
   }
 
   .sweed-exact-reference-page .o-hero h1 {
@@ -1579,6 +1580,143 @@ const offersExactPresentationOverride = `
   .sweed-exact-reference-page .o-hero p {
     max-width: 39rem;
   }
+
+  /* صفحة العروض: هوية موحّدة، عناصر مرئية خفيفة، وقراءة عربية أوضح */
+  .sweed-exact-reference-page,
+  .sweed-exact-reference-page :is(button, input, select, textarea) {
+    font-family: "SWEED Helvetica Arabic", "SF Arabic", sans-serif !important;
+  }
+
+  .sweed-exact-reference-page .o-hero .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    min-height: 2.2rem;
+    padding: .35rem .8rem;
+    border: 1px solid rgba(255,255,255,.36);
+    border-radius: 999px;
+    background: rgba(237,32,98,.18);
+    color: #fff !important;
+    font-size: clamp(.9rem, 1.2vw, 1.08rem);
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .sweed-exact-reference-page .o-hero .eyebrow::before {
+    width: .48rem;
+    height: .48rem;
+    border-radius: 50%;
+    background: #ed2062;
+    box-shadow: 0 0 0 .25rem rgba(237,32,98,.16);
+    content: "";
+  }
+
+  .sweed-exact-reference-page .o-hero .crumb {
+    display: inline-flex;
+    margin-bottom: 1.35rem;
+    color: #ffffff !important;
+    font-size: clamp(1rem, 1.25vw, 1.12rem) !important;
+    font-weight: 800;
+    text-shadow: 0 2px 14px rgba(0,0,0,.4);
+  }
+
+  .sweed-exact-reference-page .offers-hero-visual {
+    position: relative;
+    width: min(100%, 25rem);
+    min-height: 20rem;
+    margin-inline: auto;
+    border: 1px solid rgba(255,255,255,.17);
+    border-radius: 1.45rem;
+    background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(237,32,98,.1));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 1.5rem 3rem rgba(0,0,0,.18);
+    overflow: hidden;
+  }
+
+  .sweed-exact-reference-page .offers-hero-visual::before,
+  .sweed-exact-reference-page .offers-hero-visual::after {
+    position: absolute;
+    width: 15rem;
+    height: 15rem;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 50%;
+    content: "";
+  }
+
+  .sweed-exact-reference-page .offers-hero-visual::before { inset: 2.15rem auto auto 50%; transform: translateX(-50%); }
+  .sweed-exact-reference-page .offers-hero-visual::after { inset: 4.35rem auto auto 50%; width: 10.6rem; height: 10.6rem; transform: translateX(-50%); border-color: rgba(237,32,98,.62); animation: offers-orbit 9s linear infinite; }
+  .sweed-exact-reference-page .offers-hero-core { position: absolute; inset: 50% auto auto 50%; display: grid; width: 4.3rem; height: 4.3rem; place-items: center; border-radius: 1.2rem; background: #ed2062; color: #fff; font-weight: 900; transform: translate(-50%, -50%) rotate(45deg); box-shadow: 0 0 0 .65rem rgba(237,32,98,.14), 0 .8rem 1.5rem rgba(237,32,98,.25); }
+  .sweed-exact-reference-page .offers-hero-core span { transform: rotate(-45deg); }
+  .sweed-exact-reference-page .offers-hero-node { position: absolute; display: inline-flex; align-items: center; gap: .45rem; color: #fff; font-size: .92rem; font-weight: 800; }
+  .sweed-exact-reference-page .offers-hero-node::before { width: .7rem; height: .7rem; border: .2rem solid #fff; border-radius: 50%; background: #ed2062; box-shadow: 0 0 0 .32rem rgba(237,32,98,.2); content: ""; }
+  .sweed-exact-reference-page .offers-hero-node.one { inset: 3.3rem 2.25rem auto auto; }
+  .sweed-exact-reference-page .offers-hero-node.two { inset: auto 2rem 4rem auto; }
+  .sweed-exact-reference-page .offers-hero-node.three { inset: auto auto 4rem 2rem; }
+
+  .sweed-exact-reference-page .quiz {
+    background: linear-gradient(110deg, #fff 0 54%, #f5f1fa 54% 100%);
+  }
+
+  .sweed-exact-reference-page .quiz > .container {
+    display: grid;
+    grid-template-columns: minmax(16rem, .8fr) minmax(23rem, 1.2fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 6rem);
+  }
+
+  .sweed-exact-reference-page .offers-quiz-copy {
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    text-align: right;
+  }
+
+  .sweed-exact-reference-page .offers-quiz-copy .sec-title,
+  .sweed-exact-reference-page .offers-quiz-copy .sec-lead {
+    margin-inline: 0;
+    text-align: right !important;
+    text-align-last: right;
+  }
+
+  .sweed-exact-reference-page .offers-quiz-copy .sec-title::after {
+    margin-inline: 0 auto;
+  }
+
+  .sweed-exact-reference-page .offers-quiz-copy .sec-lead { max-width: 36rem; color: #766c8e; font-size: clamp(1rem, 1.3vw, 1.18rem); }
+  .sweed-exact-reference-page .quiz-box { width: 100%; max-width: none; margin: 0; padding: clamp(1.5rem, 3vw, 2.35rem); }
+  .sweed-exact-reference-page .q-opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .78rem; }
+  .sweed-exact-reference-page .q-opt { min-height: 4rem; padding: .75rem .55rem; border-radius: .9rem; font-size: .92rem; text-align: center; }
+  .sweed-exact-reference-page .q-skip { position: relative; width: fit-content; margin: 1.45rem auto 0; padding: .35rem .65rem; color: #ed2062; font-size: .98rem; font-weight: 800; text-decoration: none; animation: offers-skip-pulse 2.5s ease-in-out infinite; }
+  .sweed-exact-reference-page .q-skip::after { position: absolute; right: .65rem; bottom: .1rem; left: .65rem; height: .14rem; border-radius: 999px; background: linear-gradient(90deg, #261b3e, #ed2062); content: ""; }
+
+  .sweed-exact-reference-page .mains .sec-lead { max-width: 52rem; }
+  .sweed-exact-reference-page .mains-grid { align-items: stretch; }
+  .sweed-exact-reference-page .mcard { padding: 2rem 1.7rem 1.65rem; }
+  .sweed-exact-reference-page .mcard .badge { z-index: 2; top: -1.08rem; left: 50%; display: inline-flex; max-width: calc(100% - 2rem); min-height: 2.15rem; align-items: center; justify-content: center; padding-inline: .85rem; border: 1px solid rgba(255,255,255,.45); background: #ed2062; color: #fff; font-size: .76rem; text-align: center; transform: translateX(-50%); box-shadow: 0 .7rem 1.25rem rgba(237,32,98,.18); }
+  .sweed-exact-reference-page .mcard ul li:nth-child(n+5),
+  .sweed-exact-reference-page .mcard .more { display: none; }
+  .sweed-exact-reference-page .mcard .drawer-btn { margin-top: .4rem; }
+  .sweed-exact-reference-page .mcard .price small { min-height: 2.5em; }
+
+  .sweed-exact-reference-page .svc-panel > .container > :is(.eyebrow, .sec-title) { display: block; width: 100%; text-align: right; }
+  .sweed-exact-reference-page .svc-panel > .container > .sec-title::after { margin-inline: 0 auto; }
+  .sweed-exact-reference-page .svc-panel > .container > .eyebrow { margin-bottom: .7rem; }
+  .sweed-exact-reference-page #panel-brand { background: linear-gradient(180deg, #fff, #f8f5fc) !important; }
+  .sweed-exact-reference-page #panel-brand .pk { filter: none; border-color: #eee9f5; }
+  .sweed-exact-reference-page #panel-brand .pk::before { background: linear-gradient(90deg, #261b3e, #ed2062); opacity: 1; }
+  .sweed-exact-reference-page #panel-brand .pk::after { display: none; }
+  .sweed-exact-reference-page #panel-media .frame-top { display: grid; min-height: 6rem; aspect-ratio: auto; margin-bottom: 1rem; background: linear-gradient(135deg, rgba(237,32,98,.84), rgba(38,27,62,.98)); }
+  .sweed-exact-reference-page #panel-media .frame-top::after { width: 3.1rem; height: 3.1rem; background: #ed2062; box-shadow: 0 0 0 .45rem rgba(255,255,255,.1); }
+  .sweed-exact-reference-page .svc-panel .pk ul li:nth-child(n+4) { display: none; }
+  .sweed-exact-reference-page .svc-panel .pk .price small { min-height: 2.5em; }
+  .sweed-exact-reference-page .svc-panel .compare-btn-row { text-align: right; }
+
+  .sweed-exact-reference-page .counters { display: none !important; }
+
+  .sweed-exact-reference-page .offers-sec .sec-lead { max-width: 54rem; }
+  .sweed-exact-reference-page .offers-sec .offer { min-height: 100%; border-radius: 1rem; }
+
+  @keyframes offers-orbit { to { transform: translateX(-50%) rotate(360deg); } }
+  @keyframes offers-skip-pulse { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); text-shadow: 0 .4rem 1rem rgba(237,32,98,.22); } }
 
   .sweed-exact-reference-page .mains {
     background:
@@ -1680,7 +1818,109 @@ const offersExactPresentationOverride = `
     .sweed-exact-reference-page > section:not(.o-hero) { padding-block: 3.4rem; }
     .sweed-exact-reference-page .o-hero { min-height: 42rem; }
     .sweed-exact-reference-page .o-hero h1 { font-size: clamp(1.8rem, 8.5vw, 2.55rem); }
+    .sweed-exact-reference-page .o-hero .grid,
+    .sweed-exact-reference-page .quiz > .container { grid-template-columns: 1fr; }
+    .sweed-exact-reference-page .offers-hero-visual { min-height: 15rem; max-width: 22rem; }
+    .sweed-exact-reference-page .offers-hero-node { font-size: .8rem; }
+    .sweed-exact-reference-page .q-opts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sweed-exact-reference-page .offers-quiz-copy { justify-items: stretch; }
+    .sweed-exact-reference-page .svc-panel > .container > :is(.eyebrow, .sec-title) { text-align: center; }
+    .sweed-exact-reference-page .svc-panel > .container > .sec-title::after { margin-inline: auto; }
   }
+`;
+
+const offersExactRuntime = `
+(() => {
+  if (window.__sweedOffersRefreshReady) return;
+  window.__sweedOffersRefreshReady = true;
+
+  const removeGeneratedMarks = () => {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      const parent = node.parentElement;
+      if (!parent || /^(SCRIPT|STYLE|TEXTAREA|OPTION)$/i.test(parent.tagName)) return;
+      node.nodeValue = (node.nodeValue || "")
+        .replace(/[\\[\\]{}]/g, "")
+        .replace(/[()]/g, "")
+        .replace(/\\s{2,}/g, " ");
+    });
+  };
+
+  const prepareHeroVisual = () => {
+    const map = document.querySelector("#offers-hero .hero-map");
+    if (!map || map.dataset.sweedOfferVisualReady === "true") return;
+    map.dataset.sweedOfferVisualReady = "true";
+    const visual = document.createElement("div");
+    visual.className = "offers-hero-visual";
+    visual.setAttribute("aria-hidden", "true");
+    visual.innerHTML = '<div class="offers-hero-core"><span>عرض</span></div><span class="offers-hero-node one">اتجاه</span><span class="offers-hero-node two">بناء</span><span class="offers-hero-node three">وصول</span>';
+    map.replaceWith(visual);
+  };
+
+  const prepareNeedQuiz = () => {
+    const section = document.getElementById("need-quiz");
+    const container = section?.querySelector(".container");
+    const box = section?.querySelector(".quiz-box");
+    if (!section || !container || !box || section.dataset.sweedOfferQuizReady === "true") return;
+    section.dataset.sweedOfferQuizReady = "true";
+
+    const copy = document.createElement("div");
+    copy.className = "offers-quiz-copy";
+    const intro = [container.querySelector(":scope > .eyebrow"), container.querySelector(":scope > .sec-title"), container.querySelector(":scope > .sec-lead")];
+    intro.forEach((node) => node && copy.appendChild(node));
+    container.prepend(copy);
+
+    const lead = copy.querySelector(".sec-lead");
+    if (lead) lead.textContent = "مش لازم تعرف أسماء الخدمات — ابدأ باللي حاسس بيه، والترشيح يظهر في 3 أسئلة بس.";
+    const skip = box.querySelector(".q-skip");
+    if (skip) {
+      skip.classList.add("offers-skip-link");
+      skip.textContent = "تخطى الأسئلة وشوف الباقات مباشرة";
+    }
+  };
+
+  const compactPackages = () => {
+    document.querySelectorAll("#main-packages .mcard").forEach((card) => {
+      card.querySelectorAll("ul li:nth-child(n+5), .more, .drawer-btn").forEach((node) => node.remove());
+    });
+    const mainLead = document.querySelector("#main-packages .sec-lead");
+    if (mainLead) mainLead.textContent = "دي الباقات اللي بتجسد وعد سويد: اتجاه واحد بيجمع الاستشارة والبناء والتنفيذ والقياس.";
+
+    document.querySelectorAll(".svc-panel .pk").forEach((card) => {
+      card.querySelectorAll("ul li:nth-child(n+4)").forEach((node) => node.remove());
+    });
+  };
+
+  const prepareServicePanels = () => {
+    const brand = document.getElementById("panel-brand");
+    if (brand) brand.classList.add("offers-brand-panel");
+    const media = document.getElementById("panel-media");
+    if (media) {
+      media.querySelectorAll(".frame-top").forEach((frame) => {
+        frame.setAttribute("aria-label", "عرض فيديو الخدمة");
+      });
+    }
+  };
+
+  const removeCounters = () => document.getElementById("numbers")?.remove();
+
+  const start = () => {
+    prepareHeroVisual();
+    prepareNeedQuiz();
+    compactPackages();
+    prepareServicePanels();
+    removeCounters();
+    removeGeneratedMarks();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start, { once: true });
+  } else {
+    start();
+  }
+})();
 `;
 
 const aboutLiveLayoutRuntime = `
@@ -2196,6 +2436,11 @@ export function LegacyPage({
       {isExact && page === "portfolio" ? (
         <Script id="sweed-portfolio-refresh" strategy="afterInteractive">
           {portfolioExactRuntime}
+        </Script>
+      ) : null}
+      {isExact && page === "offers" ? (
+        <Script id="sweed-offers-refresh" strategy="afterInteractive">
+          {offersExactRuntime}
         </Script>
       ) : null}
       {!isReference && !isExact && page === "products" ? (

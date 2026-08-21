@@ -2096,7 +2096,7 @@ const offersExactRuntime = `
     map.classList.add("offers-hero-map-enhanced");
     ["بداية واضحة", "قيمة مضافة", "مسار نمو"].forEach((label, index) => {
       const signal = document.createElement("span");
-      signal.className = `offers-hero-signal signal-${["one", "two", "three"][index]}`;
+      signal.className = "offers-hero-signal signal-" + ["one", "two", "three"][index];
       signal.textContent = label;
       map.appendChild(signal);
     });

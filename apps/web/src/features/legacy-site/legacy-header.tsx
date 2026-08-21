@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
-import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import type { LegacyPageKey } from "./legacy-routes";
 import { siteSettings } from "@/content/local-data";
 import { defaultNavItems, homeNavItems, isActivePage, primaryNavigationId } from "./legacy-header.config";
@@ -16,7 +15,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
-  const catalogHref = "/sweed-company-catalog.pdf";
+  const contactHref = "/contact";
   const isHidden = useScrollHeaderVisibility({ disabled: isOpen });
 
   const closeMenuBeforeNavigation = () => {
@@ -215,21 +214,13 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
             </div>
           ) : null}
 
-          <Link
-            className={getBrandActionButtonClassName({ className: styles.mobileCta, size: "nav" })}
-            href={catalogHref} download="SWEED-Company-Catalog.pdf"
-            onClick={(event) => handleNavigationClick(event, catalogHref)}
-          >
-            <BrandActionButtonContent>تحميل الكتالوج</BrandActionButtonContent>
+          <Link className={styles.mobileCta} href={contactHref} onClick={(event) => handleNavigationClick(event, contactHref)}>
+            دعنا نبدأ
           </Link>
         </div>
 
-        <Link
-          className={getBrandActionButtonClassName({ className: styles.desktopCta, size: "nav" })}
-          href={catalogHref} download="SWEED-Company-Catalog.pdf"
-          onClick={(event) => handleNavigationClick(event, catalogHref)}
-        >
-          <BrandActionButtonContent>تحميل الكتالوج</BrandActionButtonContent>
+        <Link className={styles.desktopCta} href={contactHref} onClick={(event) => handleNavigationClick(event, contactHref)}>
+          دعنا نبدأ
         </Link>
 
         <button

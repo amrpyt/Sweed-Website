@@ -215,12 +215,12 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
           ) : null}
 
           <Link className={styles.mobileCta} href={contactHref} onClick={(event) => handleNavigationClick(event, contactHref)}>
-            دعنا نبدأ
+            حمل الكتالوج
           </Link>
         </div>
 
         <Link className={styles.desktopCta} href={contactHref} onClick={(event) => handleNavigationClick(event, contactHref)}>
-          دعنا نبدأ
+          حمل الكتالوج
         </Link>
 
         <button

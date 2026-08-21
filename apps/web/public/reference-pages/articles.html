@@ -183,6 +183,81 @@ section{padding:85px 0}
 footer{background:#180B28;color:rgba(255,255,255,.7);padding:40px 0;font-size:.9rem}
 footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
 footer a{color:#fff;text-decoration:none}
+
+/* ===== تحسينات سويد: صور حقيقية وإيقاع بصري للمقالات ===== */
+section{padding-block:clamp(62px,6vw,88px)}
+.sec-title{position:relative;display:inline-block;margin-bottom:26px;line-height:1.45;text-wrap:balance}
+.sec-title::after{content:'';position:absolute;right:50%;bottom:-13px;width:72px;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--purple-700) 0 48%,var(--fuchsia) 48%);transform:translateX(50%)}
+.sec-lead{margin-inline:auto;text-align:center;line-height:2;max-width:720px}
+#latest .container,#by-problem .container,#field-lessons .container,#top-read .container{text-align:center}
+.eyebrow{padding:4px 13px;margin-bottom:12px;border:1px solid rgba(214,36,110,.22);border-radius:999px;background:rgba(214,36,110,.055)}
+
+.b-hero{background:linear-gradient(90deg,rgba(29,15,48,.98) 0%,rgba(36,18,56,.95) 48%,rgba(36,18,56,.60) 100%),url('/images/hero/entrepreneur-laptop-office.jpg') center/cover no-repeat}
+.b-hero h1{line-height:1.42;text-wrap:balance}
+.b-hero p{max-width:590px}
+.featured .img,.featured .img .ph{background:url('/images/hero/two-men-consultation.jpg') center/cover no-repeat}
+.featured .img .ph,.a-card .img .ph{color:transparent;font-size:0}
+.featured .img::after,.a-card .img::after,.h-card .img::after,.top-row .thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(145deg,rgba(36,18,56,.12),rgba(214,36,110,.08));pointer-events:none}
+.featured .body{text-align:right}
+
+.grid-3{gap:22px}
+.a-card{box-shadow:0 8px 22px rgba(59,33,96,.075);transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.a-card:hover{transform:translateY(-7px);box-shadow:0 16px 32px rgba(59,33,96,.14)}
+.a-card .img{background-position:center;background-size:cover}
+.a-card:nth-child(3n+1) .img{background-image:url('/images/hero/businessman-laptop-standing.jpg')}
+.a-card:nth-child(3n+2) .img{background-image:url('/images/hero/entrepreneur-laptop-office.jpg')}
+.a-card:nth-child(3n+3) .img{background-image:url('/images/hero/sweed-building.png')}
+.a-card .body{text-align:right}
+.a-card h3{line-height:1.65}
+
+.paths{background:linear-gradient(120deg,rgba(239,234,247,.96),rgba(250,249,252,.98)),url('/images/homepage/compass-problems.png') left 8% center/260px auto no-repeat}
+.path-row{text-align:right;box-shadow:0 6px 18px rgba(59,33,96,.04)}
+.path-row:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(59,33,96,.08)}
+.path-head{transition:background .25s ease}
+.path-row:hover .path-head{background:rgba(239,234,247,.34)}
+.path-body a{text-align:right}
+
+.mag-grid{text-align:right}
+.mag-big{background:linear-gradient(150deg,rgba(59,33,96,.94),rgba(36,18,56,.84)),url('/images/hero/businessman-laptop-standing.jpg') center/cover no-repeat;box-shadow:var(--shadow);transition:transform .3s ease}
+.mag-big:hover{transform:translateY(-5px)}
+.h-card .img{position:relative;color:transparent;font-size:0;background:center/cover no-repeat}
+.mag-side .h-card:nth-child(1) .img{background-image:url('/images/hero/entrepreneur-laptop-office.jpg')}
+.mag-side .h-card:nth-child(2) .img{background-image:url('/images/hero/two-men-consultation.jpg')}
+.h-card{transition:transform .25s ease,border-color .25s ease}
+.h-card:hover{transform:translateX(-5px)}
+
+.top-row{box-shadow:0 5px 15px rgba(59,33,96,.045);transition:transform .25s ease,border-color .25s ease}
+.top-row:hover{transform:translateX(-5px)}
+.top-row .thumb{background:center/cover no-repeat}
+.top-row:nth-child(5n+1) .thumb{background-image:url('/images/hero/businessman-laptop-standing.jpg')}
+.top-row:nth-child(5n+2) .thumb{background-image:url('/images/hero/two-men-consultation.jpg')}
+.top-row:nth-child(5n+3) .thumb{background-image:url('/images/hero/sweed-building.png')}
+.top-row:nth-child(5n+4) .thumb{background-image:url('/images/hero/entrepreneur-laptop-office.jpg')}
+.top-row:nth-child(5n+5) .thumb{background-image:url('/images/homepage/strategy-horse.png')}
+
+.newsletter{background:linear-gradient(90deg,rgba(36,18,56,.98),rgba(36,18,56,.88)),url('/images/hero/two-men-consultation.jpg') center/cover no-repeat}
+.newsletter .eyebrow{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
+.newsletter h2{line-height:1.45;text-wrap:balance}
+.final-cta .box{background:linear-gradient(120deg,rgba(255,255,255,.96),rgba(255,255,255,.92)),url('/images/hero/sweed-building.png') left center/280px auto no-repeat}
+.final-cta .box p{max-width:600px;margin-inline:auto;margin-bottom:26px}
+.final-cta .btn + .btn{margin-top:10px}
+
+@media(max-width:640px){
+  section{padding-block:54px}
+  .sec-title{font-size:clamp(1.4rem,7vw,1.9rem);margin-bottom:24px}
+  .b-hero{background-position:62% center}
+  .b-hero .grid{gap:30px}
+  .search-box .row{flex-direction:column}
+  .featured .body{padding:20px}
+  .h-card{grid-template-columns:110px 1fr}
+  .top-row{gap:12px;padding:14px}
+  .top-row .rank{flex-basis:34px;font-size:1.15rem}
+  .final-cta .box{padding:38px 7%;background-size:190px auto}
+}
+@media(prefers-reduced-motion:reduce){
+  .a-card,.path-row,.mag-big,.h-card,.top-row,.btn{transition:none!important}
+}
+
 </style>
 </head>
 <body>

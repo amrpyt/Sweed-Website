@@ -986,8 +986,28 @@ const portfolioExactPresentationOverride = `
     background: radial-gradient(circle at 10% 15%, rgba(237, 32, 98, .16), transparent 18rem), #261b3e;
   }
 
+  .sweed-exact-reference-page .consult-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.25rem;
+  }
+
+  .sweed-exact-reference-page .consult-side {
+    width: min(100%, 48rem);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sweed-exact-reference-page .consult-side p {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center !important;
+    text-align-last: center;
+  }
+
   .sweed-exact-reference-page .consult-grid > div:last-child {
     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
     gap: 1rem;
   }
 
@@ -1015,6 +1035,10 @@ const portfolioExactPresentationOverride = `
   }
 
   .sweed-exact-reference-page .dossier .challenge { background: rgba(15, 8, 26, .48); }
+
+  @media (max-width: 58rem) {
+    .sweed-exact-reference-page .consult-grid > div:last-child { grid-template-columns: 1fr; }
+  }
 
   /* براند وهوية: صور تطبيقات حية في أعلى كل حالة، من غير حذف أي بيانات */
   .sweed-exact-reference-page .brandw { background: linear-gradient(180deg, #ffffff, #faf8fd); }

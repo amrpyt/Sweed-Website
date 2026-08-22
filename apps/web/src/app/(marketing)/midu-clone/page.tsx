@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ui/button";
+import { LegacyFooter } from "@/features/legacy-site/legacy-footer";
+import { LegacyHeader } from "@/features/legacy-site/legacy-header";
 import styles from "./midu-clone.module.css";
 
 export const metadata: Metadata = {
@@ -179,20 +181,9 @@ function Keycap({ label, accent }: { label: string; accent: string }) {
 
 export default function MiduClonePage() {
   return (
-    <main className={styles.page}>
-      <header className={styles.navShell}>
-        <a className={styles.logo} href="#top" aria-label="SWEED home">
-          SWEED
-        </a>
-        <div className={styles.navMeta}>4/5 slots for July</div>
-        <nav className={styles.navLinks} aria-label="Clone page navigation">
-          <a href="#work">Work</a>
-          <a href="#services">Services</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <ButtonLink href="#contact" size="compact">Get in touch</ButtonLink>
-      </header>
+    <>
+      <LegacyHeader page="home" />
+      <main className={styles.page}>
 
       <section className={styles.hero} id="top" aria-labelledby="hero-title">
         <div className={styles.heroRail} aria-hidden="true">
@@ -356,14 +347,16 @@ export default function MiduClonePage() {
         </div>
       </section>
 
-      <footer className={styles.footer} id="contact">
-        <div>
-          <span>London / Cairo</span>
-          <h2>Design for teams ready to become sharper than their category.</h2>
-        </div>
-        <ButtonLink href="mailto:hello@sweed.example" size="compact">Get in touch</ButtonLink>
-        <p>2026 SWEED Studio. Reference rebuild for internal review.</p>
-      </footer>
-    </main>
+        <section className={styles.footer} id="contact" aria-label="Contact SWEED Studio">
+          <div>
+            <span>London / Cairo</span>
+            <h2>Design for teams ready to become sharper than their category.</h2>
+          </div>
+          <ButtonLink href="mailto:hello@sweed.example" size="compact">Get in touch</ButtonLink>
+          <p>2026 SWEED Studio. Reference rebuild for internal review.</p>
+        </section>
+      </main>
+      <LegacyFooter />
+    </>
   );
 }

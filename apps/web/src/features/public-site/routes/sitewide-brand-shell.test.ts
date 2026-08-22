@@ -17,4 +17,14 @@ describe("sitewide SWEED brand shell", () => {
     expect(route).toContain("<CrmAiDemoPage />");
     expect(demo).not.toContain("styles.siteBar");
   });
+
+  test("uses the shared SWEED shell around the Midu experimental body", () => {
+    const route = readMarketingRoute("midu-clone");
+
+    expect(route).toContain("LegacyHeader");
+    expect(route).toContain("LegacyFooter");
+    expect(route).not.toContain("<header className={styles.navShell}>");
+    expect(route).not.toContain("<footer className={styles.footer}");
+    expect(route).toContain('<section className={styles.footer} id="contact"');
+  });
 });

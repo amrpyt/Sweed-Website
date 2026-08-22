@@ -2776,6 +2776,7 @@ export function LegacyPage({
 }) {
   const isReference = presentation === "reference";
   const isExact = presentation === "exact";
+  const isBranded = presentation === "branded";
   const document = getLegacyPage(page, { presentation });
   const bodyHasMainLandmark = /<main\b/i.test(document.bodyHtml);
   const legacyBodyClassName = `sweed-legacy-page sweed-legacy-page-${page}`;
@@ -2905,6 +2906,16 @@ export function LegacyPage({
           {aboutReferenceActionOverride + aboutReferencePresentationOverride}
         </style>
       ) : null}
+      {isBranded && page === "portfolio" ? (
+        <style data-sweed-portfolio-branded-layout="true">
+          {portfolioExactPresentationOverride.replaceAll("sweed-exact-reference-page", "sweed-reference-page")}
+        </style>
+      ) : null}
+      {isBranded && page === "offers" ? (
+        <style data-sweed-offers-branded-layout="true">
+          {offersExactPresentationOverride.replaceAll("sweed-exact-reference-page", "sweed-reference-page")}
+        </style>
+      ) : null}
       {isExact ? null : (
         <a className="sweed-skip-link" href="#main-content">
           تخطي إلى المحتوى
@@ -2919,7 +2930,7 @@ export function LegacyPage({
           tabIndex={-1}
           dangerouslySetInnerHTML={{ __html: document.bodyHtml }}
         />
-      ) : isReference ? (
+      ) : isReference || isBranded ? (
         <main
           className="sweed-reference-page"
           id="main-content"
@@ -2931,11 +2942,11 @@ export function LegacyPage({
       ) : (
         <main className={legacyBodyClassName} id="main-content" tabIndex={-1} dangerouslySetInnerHTML={{ __html: document.bodyHtml }} />
       )}
-      {isReference || isExact ? null : <LegacyEnhancements page={page} />}
-      {!isReference && !isExact && page === "services" ? <AutomationDemo /> : null}
+      {isReference || isExact || isBranded ? null : <LegacyEnhancements page={page} />}
+      {!isReference && !isExact && !isBranded && page === "services" ? <AutomationDemo /> : null}
       {isExact ? (page === "portfolio" ? <LegacyFooter /> : null) : <LegacyFooter />}
-      {isReference || isExact ? null : <OfferFunnelController page={page} />}
-      {!isExact && showAdvisor ? <AiAdvisorWidget /> : null}
+      {isReference || isExact || isBranded ? null : <OfferFunnelController page={page} />}
+      {!isExact && !isBranded && showAdvisor ? <AiAdvisorWidget /> : null}
       {page === "home" ? <script dangerouslySetInnerHTML={{ __html: homepageBriefRuntime }} /> : null}
       {isReference && page === "about" ? (
         <Script id="sweed-about-live-layout" strategy="afterInteractive">
@@ -2952,15 +2963,25 @@ export function LegacyPage({
           {portfolioExactRuntime}
         </Script>
       ) : null}
+      {isBranded && page === "portfolio" ? (
+        <Script id="sweed-portfolio-branded-refresh" strategy="afterInteractive">
+          {portfolioExactRuntime}
+        </Script>
+      ) : null}
       {isExact && page === "offers" ? (
         <Script id="sweed-offers-refresh" strategy="afterInteractive">
           {offersExactRuntime}
         </Script>
       ) : null}
-      {!isReference && !isExact && page === "products" ? (
+      {isBranded && page === "offers" ? (
+        <Script id="sweed-offers-branded-refresh" strategy="afterInteractive">
+          {offersExactRuntime}
+        </Script>
+      ) : null}
+      {!isReference && !isExact && !isBranded && page === "products" ? (
         <script id="sweed-product-action-runtime" dangerouslySetInnerHTML={{ __html: legacyProductActionRuntime }} />
       ) : null}
-      {isReference || isExact ? (
+      {isReference || isExact || isBranded ? (
         <ReferenceScripts scripts={document.scripts} />
       ) : (
         document.scripts.map((script) =>

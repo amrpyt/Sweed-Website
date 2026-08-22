@@ -14,16 +14,20 @@ describe("final v4 route contract", () => {
     expect(source).not.toContain("LegacyPage");
   });
 
-  test("portfolio renders the modular executive implementation", () => {
+  test("portfolio keeps its approved enhanced body inside the shared SWEED shell", () => {
     const source = readRoute("portfolio");
-    expect(source).toContain("PortfolioExecutivePage");
-    expect(source).not.toContain("LegacyPage");
+    expect(source).toContain("LegacyPage");
+    expect(source).toContain('page="portfolio"');
+    expect(source).toContain('presentation="branded"');
+    expect(source).not.toContain('presentation="exact"');
   });
 
-  test("offers renders the modular executive implementation", () => {
+  test("offers keeps its approved enhanced body inside the shared SWEED shell", () => {
     const source = readRoute("offers");
-    expect(source).toContain("OffersExecutivePage");
-    expect(source).not.toContain("LegacyPage");
+    expect(source).toContain("LegacyPage");
+    expect(source).toContain('page="offers"');
+    expect(source).toContain('presentation="branded"');
+    expect(source).not.toContain('presentation="exact"');
   });
 
   test("articles stays on the current knowledge-center implementation", () => {

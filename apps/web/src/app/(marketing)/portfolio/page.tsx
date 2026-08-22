@@ -5,5 +5,5 @@ export const metadata = {
 };
 
 export default function PortfolioPage() {
-  return <LegacyPage page="portfolio" presentation="exact" />;
+  return <LegacyPage page="portfolio" presentation="branded" />;
 }

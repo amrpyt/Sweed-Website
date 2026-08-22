@@ -32,7 +32,7 @@ export type LegacyPageDocument = {
   scripts: LegacyScript[];
 };
 
-export type LegacyPresentation = "legacy" | "reference" | "exact";
+export type LegacyPresentation = "legacy" | "reference" | "exact" | "branded";
 
 type LegacyPageOptions = {
   presentation?: LegacyPresentation;
@@ -266,7 +266,7 @@ function extractScripts(html: string, page: LegacyPageKey, presentation: LegacyP
           ? undefined
           : presentation === "reference"
             ? guardReferenceScript(applySweedReferenceTheme(content))
-            : presentation === "exact"
+            : presentation === "exact" || presentation === "branded"
               ? guardReferenceScript(content)
               : page === "products"
                 ? guardLegacyProductRuntimeScript(content)
@@ -287,7 +287,7 @@ export function getLegacyPage(page: LegacyPageKey, options: LegacyPageOptions = 
   const bodyWithoutChrome =
     presentation === "exact"
       ? body
-      : presentation === "reference"
+      : presentation === "reference" || presentation === "branded"
         ? stripReferenceChrome(body)
         : removeLegacyChrome(body);
   const { html: bodyWithoutScripts, scripts } = extractScripts(bodyWithoutChrome, page, presentation);
@@ -305,7 +305,7 @@ export function getLegacyPage(page: LegacyPageKey, options: LegacyPageOptions = 
     };
   }
 
-  if (presentation === "reference") {
+  if (presentation === "reference" || presentation === "branded") {
     return {
       title,
       headHtml: scopeReferenceHeadHtml(normalizeReferenceHtml(headAssets)),

@@ -4,9 +4,9 @@ Updated: 2026-08-22T20:24:00+03:00
 Git branch: `main` synchronized through isolated worktree
 Git HEAD: `86a4e43`
 Application commits: `f6d999c fix: restore approved navbar consultation CTA`, `86a4e43 fix: restore navbar contact item`
-Active Task: SWEED-042
-Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
-Status: SWEED-052 complete and deployed — SWEED-042 resumed
+Active Task: SWEED-053
+Active Plan: `.ai/plans/2026-08-22-sitewide-brand-shell-unification.md`
+Status: SWEED-053 in progress — public-route shell audit complete, implementation starting
 
 ## Delivery Update
 
@@ -19,11 +19,12 @@ Status: SWEED-052 complete and deployed — SWEED-042 resumed
 
 ## Current Goal
 
-Resume SWEED-042 without regressing the restored approved shared navbar.
+Unify public route chrome, typography, and marketing actions without regressing approved page-specific composition or the restored navbar.
 
 ## In Progress
 
-- SWEED-042 remains the broader backlog after the navbar repair.
+- Agent Browser desktop audit completed across 26 public surfaces.
+- Shell/identity fixes are required for Portfolio, Offers, Products, CRM demo, Midu clone, and the 404 surface; the remaining audited public routes already use the shared SWEED shell and font contract.
 
 ## Completed Recently
 

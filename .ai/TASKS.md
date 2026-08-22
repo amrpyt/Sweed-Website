@@ -4,6 +4,33 @@ Updated: 2026-08-22T20:16:00+03:00
 
 ## Active
 
+### SWEED-053 — Sitewide brand shell and action unification
+
+Status: in progress
+Priority: critical
+Plan: `.ai/plans/2026-08-22-sitewide-brand-shell-unification.md`
+
+#### Acceptance Criteria
+
+- [ ] All 26 audited public surfaces use the approved shared navbar/footer where appropriate; no public route retains a duplicate prototype/global site nav or footer.
+- [ ] Portfolio and Offers preserve their approved reference content/layout/motion while using the shared SWEED shell and reference identity bridge.
+- [ ] Products content uses SWEED Helvetica Arabic and canonical purchase CTAs while preserving product filters/cards/behavior.
+- [ ] CRM demo and Midu clone keep their internal experiences but no longer own competing global site chrome.
+- [ ] 404 uses the shared SWEED header/footer and retains its current message/action.
+- [ ] Marketing CTAs follow DEC-015; tabs, filters, selectors, demo channels, and utility controls remain purpose-specific.
+- [ ] Changed routes pass desktop/mobile Agent Browser QA with zero horizontal overflow and no new broken interaction.
+- [ ] Focused tests, build, Vercel deployment, and production verification complete successfully; any unrelated pre-existing repo-wide check debt is reported separately.
+
+#### Audit Evidence
+
+- `/portfolio`: shared header missing, body font IBM Plex Sans Arabic, prototype catalog pill present; shared footer already present.
+- `/offers`: shared header/footer both missing, body font IBM Plex Sans Arabic and H1 Cairo, prototype catalog pill present.
+- `/products`: shared shell present but H1/body computed as Cairo; purchase CTAs are visually painted but not canonical action controls.
+- `/crm-ai-demo`: no shared header/footer; local site bar owns the top chrome; internal typography already SWEED and primary demo action already canonical.
+- `/midu-clone`: no shared header/footer; local experimental global nav/footer present; existing marketing actions already use canonical `ButtonLink`.
+- 404: no shared header/footer; return action already canonical.
+- Home, About, Services index, six service detail pages, Articles index, six article pages, Contact, FAQ, Privacy, and Terms all passed the shared-shell/SWEED-font desktop audit with zero horizontal overflow.
+
 ### SWEED-052 — Restore approved navbar primary CTA
 
 Status: completed

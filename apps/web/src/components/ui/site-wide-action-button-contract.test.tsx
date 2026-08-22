@@ -55,10 +55,11 @@ describe("site-wide SWEED CTA contract", () => {
     expectCanonicalAction(advisor, "إرسال التذكرة");
   });
 
-  test("the isolated Midu route no longer carries a competing CTA design", () => {
+  test("the Midu body and shared shell use the canonical CTA design", () => {
     const html = renderToStaticMarkup(<MiduClonePage />);
 
-    expectCanonicalAction(html, "Get in touch", 2);
+    expectCanonicalAction(html, "احجز استشارتك المجانية");
+    expectCanonicalAction(html, "Get in touch");
     expectCanonicalAction(html, "Explore plans");
     expectCanonicalAction(html, "Select plan", 3);
   });

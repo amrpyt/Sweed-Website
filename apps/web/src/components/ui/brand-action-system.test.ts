@@ -89,6 +89,9 @@ describe("canonical SWEED action button system", () => {
     expect(decorated).toContain('class="sweed-action-label">اطلب الآن</span>');
     expect(decorated).toContain('<path d="M7 17L17 7"></path>');
     expect(cssBridge).toContain(".sweed-legacy-page-products .sweed-action-fill");
+    expect(cssBridge).toContain("font-family: var(--font-body) !important;");
+    expect(cssBridge).toContain(".sweed-legacy-page-products select");
+    expect(cssBridge).toContain("font-family: inherit !important;");
     expect(cssBridge).toContain("clip-path: inset(0 calc(100% - var(--legacy-action-icon-size)) 0 0 round var(--legacy-action-inner-radius));");
     expect(cssBridge).toContain("clip-path: inset(0 0 0 0 round var(--legacy-action-inner-radius));");
     expect(cssBridge).not.toContain(".tab-btn");

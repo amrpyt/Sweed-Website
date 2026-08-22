@@ -80,6 +80,13 @@ export function getLegacyProductActionThemeCss() {
   --legacy-action-inset: var(--cds-spacing-02);
   --legacy-action-icon-size: var(--cds-spacing-07);
   --legacy-action-inner-radius: calc(var(--shape-control) - var(--legacy-action-inset));
+  font-family: var(--font-body) !important;
+}
+
+.sweed-legacy-page-products input,
+.sweed-legacy-page-products select,
+.sweed-legacy-page-products textarea {
+  font-family: inherit !important;
 }
 
 .sweed-legacy-page-products .product-btn,

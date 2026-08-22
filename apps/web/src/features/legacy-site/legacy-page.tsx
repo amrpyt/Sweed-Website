@@ -1528,13 +1528,14 @@ const offersExactPresentationOverride = `
   }
 
   .sweed-exact-reference-page > section:not(.o-hero) {
-    padding-block: clamp(3.9rem, 5.4vw, 5.25rem);
+    padding-block: clamp(4rem, 5vw, 5rem);
   }
 
   .sweed-exact-reference-page .sec-title {
     position: relative;
-    margin-bottom: 1.35rem;
+    margin-bottom: 1.5rem;
     text-wrap: balance;
+    animation: offers-title-reveal .46s cubic-bezier(.22,1,.36,1) both;
   }
 
   .sweed-exact-reference-page .sec-title::after {
@@ -1542,16 +1543,31 @@ const offersExactPresentationOverride = `
     display: block;
     width: 3.4rem;
     height: .22rem;
-    margin: .85rem auto 0;
+    margin: .9rem auto 0;
     border-radius: 999px;
     background: linear-gradient(90deg, var(--offers-ink) 0 48%, var(--offers-pink) 48% 100%);
     box-shadow: 0 5px 12px rgba(237, 32, 98, .14);
   }
 
   .sweed-exact-reference-page .sec-lead {
+    max-width: 60ch;
     margin-inline: auto;
     text-align: center !important;
     text-align-last: center;
+  }
+
+  .sweed-exact-reference-page > section:not(.o-hero) > .container > .eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 2rem;
+    align-items: center;
+    margin-bottom: .75rem;
+    padding: .3rem .7rem;
+    border-radius: 999px;
+    background: rgba(237,32,98,.09);
+    color: var(--offers-pink);
+    font-weight: 800;
+    animation: offers-title-reveal .36s cubic-bezier(.22,1,.36,1) both;
   }
 
   .sweed-exact-reference-page :is(.mcard .fit, .mcard li, .pk .fit, .pk li, .offer-card p, .faq-a, .o-cta p) {
@@ -1583,6 +1599,8 @@ const offersExactPresentationOverride = `
     max-width: 39rem;
     color: rgba(255, 255, 255, .92) !important;
     text-shadow: 0 .18rem .85rem rgba(0, 0, 0, .28);
+    text-align: justify;
+    text-justify: inter-word;
   }
 
   /* نفس شريط الرئيسية: الشعار يسار، القائمة في المنتصف، والإجراء الرئيسي يمين */
@@ -1834,7 +1852,8 @@ const offersExactPresentationOverride = `
   .sweed-exact-reference-page .mains-grid { align-items: stretch; padding-top: 1.6rem; overflow: visible; }
   .sweed-exact-reference-page .mcard { position: relative; display: flex; padding: 2rem 1.7rem 1.65rem; flex-direction: column; }
   .sweed-exact-reference-page .mcard .badge { z-index: 2; top: -1.08rem; left: 50%; display: inline-flex; max-width: calc(100% - 2rem); min-height: 2.15rem; align-items: center; justify-content: center; padding-inline: .85rem; border: 1px solid rgba(255,255,255,.45); background: #ed2062; color: #fff; font-size: .76rem; text-align: center; transform: translateX(-50%); box-shadow: 0 .7rem 1.25rem rgba(237,32,98,.18); }
-  .sweed-exact-reference-page .mcard .fit { display: none; }
+  .sweed-exact-reference-page .mcard .fit { display: block; min-height: 3.5em; }
+  .sweed-exact-reference-page .mcard.dark .fit { color: rgba(255,255,255,.82); }
   .sweed-exact-reference-page .mcard h3,
   .sweed-exact-reference-page .mcard .promise,
   .sweed-exact-reference-page .mcard .price,
@@ -1985,6 +2004,14 @@ const offersExactPresentationOverride = `
     min-height: 100%;
   }
 
+  .sweed-exact-reference-page :is(.mcard, .pk) > :is(h3, h4, .promise, .fit, .price, ul, .btn) {
+    width: 100%;
+  }
+
+  .sweed-exact-reference-page :is(.mcard, .pk) > ul {
+    flex: 1 1 auto;
+  }
+
   .sweed-exact-reference-page .pk::before {
     content: "";
     display: block;
@@ -2017,7 +2044,8 @@ const offersExactPresentationOverride = `
   .sweed-exact-reference-page .o-cta {
     background:
       linear-gradient(100deg, rgba(24, 11, 40, .96), rgba(38, 27, 62, .68)),
-      url("/images/hero/entrepreneur-laptop-office.jpg") center / cover no-repeat;
+      url("/images/hero/custom-image.png") 14% 82% / min(34rem, 44%) auto no-repeat,
+      #261b3e;
   }
 
   .sweed-exact-reference-page .o-cta .wrap {
@@ -2124,14 +2152,30 @@ const offersExactPresentationOverride = `
     overflow: visible !important;
     white-space: nowrap;
   }
-  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-image {
+  /* الباقات الرئيسية تستخدم صورًا حقيقية مختلفة؛ الخدمات الست تحتفظ بمربع فيديو واحد فقط. */
+  .sweed-exact-reference-page #main-packages .mcard .pkg-image {
+    display: block !important;
+    width: 100%;
+    height: clamp(10.5rem, 14vw, 12.75rem);
+    margin: 0 0 1.2rem;
+    border-radius: .9rem;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 .55rem 1.35rem rgba(38,27,62,.12);
+  }
+  .sweed-exact-reference-page #main-packages .mcard.dark .pkg-image {
+    filter: saturate(.8) contrast(.9) brightness(.78);
+  }
+  .sweed-exact-reference-page .svc-panel .pk .pkg-image {
     display: none !important;
   }
-  /* كل باقة تعرض فيديو واحد فقط: لا صور داخل بطاقات العروض. */
   .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) :is(.frame-top, .material, .chrome) {
     display: none !important;
   }
-  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video {
+  .sweed-exact-reference-page #main-packages .mcard .pkg-video {
+    display: none !important;
+  }
+  .sweed-exact-reference-page .svc-panel .pk .pkg-video {
     position: relative;
     display: grid !important;
     width: 100%;
@@ -2147,8 +2191,8 @@ const offersExactPresentationOverride = `
     box-shadow: 0 .55rem 1.35rem rgba(38, 27, 62, .1);
     isolation: isolate;
   }
-  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video::before,
-  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video::after {
+  .sweed-exact-reference-page .svc-panel .pk .pkg-video::before,
+  .sweed-exact-reference-page .svc-panel .pk .pkg-video::after {
     position: absolute;
     z-index: -1;
     border: 1px solid rgba(38, 27, 62, .13);
@@ -2156,10 +2200,10 @@ const offersExactPresentationOverride = `
     content: "";
     transition: transform .55s cubic-bezier(.22,1,.36,1), opacity .35s ease;
   }
-  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video::before { width: 8.8rem; height: 8.8rem; }
-  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video::after { width: 12.6rem; height: 12.6rem; opacity: .64; }
-  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk):hover .pkg-video::before { transform: scale(1.16) rotate(18deg); }
-  .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk):hover .pkg-video::after { transform: scale(.89) rotate(-14deg); opacity: 1; }
+  .sweed-exact-reference-page .svc-panel .pk .pkg-video::before { width: 8.8rem; height: 8.8rem; }
+  .sweed-exact-reference-page .svc-panel .pk .pkg-video::after { width: 12.6rem; height: 12.6rem; opacity: .64; }
+  .sweed-exact-reference-page .svc-panel .pk:hover .pkg-video::before { transform: scale(1.16) rotate(18deg); }
+  .sweed-exact-reference-page .svc-panel .pk:hover .pkg-video::after { transform: scale(.89) rotate(-14deg); opacity: 1; }
   .sweed-exact-reference-page .pkg-video-play {
     display: grid;
     width: 3.35rem;
@@ -2174,15 +2218,12 @@ const offersExactPresentationOverride = `
     font-size: .94rem;
     line-height: 1;
   }
-  .sweed-exact-reference-page .mcard.dark .pkg-video,
   .sweed-exact-reference-page .svc-panel.dark-band .pkg-video {
     border-color: rgba(255,255,255,.2);
     background:
       radial-gradient(circle at 50% 50%, rgba(237,32,98,.31) 0 16%, transparent 16.5%),
       linear-gradient(135deg, #2f1d4a, #1f1234);
   }
-  .sweed-exact-reference-page .mcard.dark .pkg-video::before,
-  .sweed-exact-reference-page .mcard.dark .pkg-video::after,
   .sweed-exact-reference-page .svc-panel.dark-band .pkg-video::before,
   .sweed-exact-reference-page .svc-panel.dark-band .pkg-video::after { border-color: rgba(255,255,255,.2); }
 
@@ -2216,10 +2257,24 @@ const offersExactPresentationOverride = `
   .sweed-exact-reference-page .st-btn.active:hover { color: #fff; }
   .sweed-exact-reference-page .svc-panel.show { animation: offers-service-enter .46s cubic-bezier(.22,1,.36,1) both; }
   @keyframes offers-service-enter { from { opacity: 0; transform: translateY(1.25rem); } to { opacity: 1; transform: translateY(0); } }
+
+  .sweed-exact-reference-page .svc-tabs .container {
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sweed-exact-reference-page .svc-tabs .st-btn {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
   @media (max-width: 700px) {
     .sweed-exact-reference-page .o-hero h1 { font-size: clamp(2.15rem, 11vw, 3.2rem) !important; }
     .sweed-exact-reference-page #main-packages .mains-grid { padding-top: 2.3rem !important; }
-    .sweed-exact-reference-page :is(#main-packages .mcard, .svc-panel .pk) .pkg-video { height: 8.5rem !important; }
+    .sweed-exact-reference-page .svc-panel .pk .pkg-video { height: 8.5rem !important; }
+  }
+
+  @keyframes offers-title-reveal {
+    from { opacity: 0; transform: translateY(.7rem); }
+    to { opacity: 1; transform: translateY(0); }
   }
 `;
 
@@ -2309,8 +2364,7 @@ const offersExactRuntime = `
     }
 
     const addPackageVideo = (card) => {
-      card.querySelectorAll(".pkg-image, .frame-top, .material, .chrome").forEach((node) => node.remove());
-      if (card.querySelector(".pkg-video")) return;
+      card.querySelectorAll(".pkg-image, .pkg-video, .frame-top, .material, .chrome").forEach((node) => node.remove());
       const video = document.createElement("div");
       video.className = "pkg-video";
       video.setAttribute("role", "img");
@@ -2325,8 +2379,26 @@ const offersExactRuntime = `
       else card.prepend(video);
     };
 
-    document.querySelectorAll("#main-packages .mcard").forEach((card) => {
-      addPackageVideo(card);
+    const mainPackageImages = [
+      { src: "/images/hero/sweed-building.png", alt: "مقر سويد - بداية واضحة" },
+      { src: "/images/hero/businessman-laptop-standing.jpg", alt: "تنفيذ احترافي لمسار المشروع" },
+      { src: "/images/hero/entrepreneur-laptop-office.jpg", alt: "عمل وتسويق مستمران ضمن شراكة الوصول" },
+    ];
+
+    const addPackageImage = (card, asset) => {
+      card.querySelectorAll(".pkg-image, .pkg-video, .frame-top, .material, .chrome").forEach((node) => node.remove());
+      const image = document.createElement("img");
+      image.className = "pkg-image";
+      image.src = asset.src;
+      image.alt = asset.alt;
+      image.loading = "lazy";
+      const heading = card.querySelector("h3, h4");
+      if (heading) card.insertBefore(image, heading);
+      else card.prepend(image);
+    };
+
+    document.querySelectorAll("#main-packages .mcard").forEach((card, index) => {
+      addPackageImage(card, mainPackageImages[index] || mainPackageImages[0]);
     });
 
     document.querySelectorAll(".svc-panel .pk-grid").forEach((grid) => {

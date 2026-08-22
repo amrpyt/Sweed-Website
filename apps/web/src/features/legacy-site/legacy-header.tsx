@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { MouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
+import { BrandActionButtonContent, getBrandActionButtonClassName } from "@/components/ui/brand-action-button";
 import type { LegacyPageKey } from "./legacy-routes";
 import { siteSettings } from "@/content/local-data";
 import { defaultNavItems, homeNavItems, isActivePage, primaryNavigationId } from "./legacy-header.config";
@@ -15,7 +16,7 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const navItems = page === "home" ? homeNavItems : defaultNavItems;
-  const contactHref = "/contact";
+  const consultationHref = "/contact";
   const isHidden = useScrollHeaderVisibility({ disabled: isOpen });
 
   const closeMenuBeforeNavigation = () => {
@@ -214,13 +215,21 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
             </div>
           ) : null}
 
-          <Link className={styles.mobileCta} href={contactHref} onClick={(event) => handleNavigationClick(event, contactHref)}>
-            حمل الكتالوج
+          <Link
+            className={getBrandActionButtonClassName({ className: styles.mobileCta, size: "nav" })}
+            href={consultationHref}
+            onClick={(event) => handleNavigationClick(event, consultationHref)}
+          >
+            <BrandActionButtonContent>احجز استشارتك المجانية</BrandActionButtonContent>
           </Link>
         </div>
 
-        <Link className={styles.desktopCta} href={contactHref} onClick={(event) => handleNavigationClick(event, contactHref)}>
-          حمل الكتالوج
+        <Link
+          className={getBrandActionButtonClassName({ className: styles.desktopCta, size: "nav" })}
+          href={consultationHref}
+          onClick={(event) => handleNavigationClick(event, consultationHref)}
+        >
+          <BrandActionButtonContent>احجز استشارتك المجانية</BrandActionButtonContent>
         </Link>
 
         <button

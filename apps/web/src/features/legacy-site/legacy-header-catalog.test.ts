@@ -4,9 +4,10 @@ import { describe, expect, test } from "bun:test";
 
 const headerSource = readFileSync(join(import.meta.dir, "legacy-header.tsx"), "utf8");
 
-describe("header catalog CTA", () => {
-  test("uses the catalog destination consistently in both CTA click handlers", () => {
-    expect(headerSource.match(/handleNavigationClick\(event, catalogHref\)/g)).toHaveLength(2);
-    expect(headerSource).not.toContain("consultationHref");
+describe("header primary CTA", () => {
+  test("keeps the approved consultation action in desktop and mobile navigation", () => {
+    expect(headerSource.match(/handleNavigationClick\(event, consultationHref\)/g)).toHaveLength(2);
+    expect(headerSource).toContain("احجز استشارتك المجانية");
+    expect(headerSource).not.toContain("تحميل الكتالوج");
   });
 });

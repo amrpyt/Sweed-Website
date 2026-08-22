@@ -4,10 +4,10 @@ Updated: 2026-08-22T20:24:00+03:00
 
 ## Vercel Delivery
 
-- GitHub `main` is pushed through `4f7bb11` (application repair `f6d999c`).
+- GitHub `main` is pushed through `86a4e43` (navbar geometry/CTA repair `f6d999c`, contact-item restoration `86a4e43`).
 - Vercel project: `sweed-website`.
 - Production URL: `https://sweed-website.vercel.app`.
-- GitHub→Vercel automatic deployment is active; commit `4f7bb11` reached `Deployment has completed` and production homepage navbar QA passed.
+- GitHub→Vercel automatic deployment is active; final application commit `86a4e43` reached `Deployment has completed`.
 - No Vercel environment variables are configured yet; do not assume AI/admin/backend integrations are production-configured there.
 
 ## Read First
@@ -23,6 +23,7 @@ Updated: 2026-08-22T20:24:00+03:00
 ## Current Public Contract
 
 - Shared navbar visual baseline is the approved compact SWEED header from `b8e245a`: 77px desktop header spacer, 76px nav, logo capped at 118px, compact nav spacing/type, logo physical left and primary action physical right.
+- Shared desktop/mobile navigation keeps seven items, including `اتصل بنا`; current routing may target homepage sections, but removing the visible contact item changes the approved navbar composition.
 - Shared navbar CTA must use the canonical `BrandActionButton` system and label `احجز استشارتك المجانية`, linking to `/contact`. Do not replace it with a custom pink pill or catalog CTA without explicit owner approval.
 - The catalog PDF may remain in the project, but it is not the shared primary navigation action.
 - Production verification after SWEED-052: desktop CTA ~198×48, `rgb(38,27,62)` surface, white label, 16px radius; mobile menu 44×44, closed initially, and canonical consultation CTA inside the open sheet.

@@ -2,16 +2,16 @@
 
 Updated: 2026-08-22T20:24:00+03:00
 Git branch: `main` synchronized through isolated worktree
-Git HEAD: `4f7bb11`
-Application commit: `f6d999c fix: restore approved navbar consultation CTA`
+Git HEAD: `86a4e43`
+Application commits: `f6d999c fix: restore approved navbar consultation CTA`, `86a4e43 fix: restore navbar contact item`
 Active Task: SWEED-042
 Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
 Status: SWEED-052 complete and deployed — SWEED-042 resumed
 
 ## Delivery Update
 
-- Pushed `main` to GitHub through `4f7bb11`; the application repair is `f6d999c` and the geometry guard is `4f7bb11`.
-- Vercel project `sweed-website` automatically deployed `4f7bb11` successfully.
+- Pushed `main` to GitHub through `86a4e43`; the application repair is `f6d999c` plus the restored contact item in `86a4e43`.
+- Vercel project `sweed-website` automatically deployed `86a4e43` successfully.
 - Production URL: `https://sweed-website.vercel.app`.
 - Production homepage navbar was browser-verified at 1440px desktop and 390px mobile after deployment.
 - GitHub→Vercel automatic deployment is active for the current project.
@@ -27,13 +27,14 @@ Resume SWEED-042 without regressing the restored approved shared navbar.
 
 ## Completed Recently
 
-- Completed SWEED-052 through `4f7bb11`: restored the approved compact shared navbar over latest upstream `10f9451` while preserving all newer About/Services/Portfolio/Offers work.
+- Completed SWEED-052 through `86a4e43`: restored the approved compact shared navbar over latest upstream while preserving all newer About/Services/Portfolio/Offers work.
 - Root cause: upstream `Unify navigation with homepage design` commits changed the shared header from 77px/76px geometry to 118px, enlarged logo/nav spacing/type, and replaced the canonical SWEED action with a custom pink pill.
 - Restored the shared header geometry from approved `b8e245a`, including 77px spacer/header, 76px nav, 118px desktop logo cap, compact navigation spacing/type, and canonical BrandActionButton usage.
 - Restored desktop/mobile primary CTA to `احجز استشارتك المجانية` → `/contact`; the catalog asset remains available but is no longer the shared navbar action.
+- Restored the seventh `اتصل بنا` navigation item while preserving the current homepage-section routing behavior.
 - Focused navbar/button tests: 8 pass / 0 fail. TypeScript passed. ESLint passed with one pre-existing Services warning. Production build passed.
 - Production Vercel QA: desktop header 77px, nav 76px, logo 118px at physical left, CTA ~198×48 at physical right with `#261b3e` / white / 16px radius, no visible catalog CTA, no overflow. Mobile header 65px, 44×44 menu closed by default, panel opens correctly, in-menu CTA 335×48 with canonical styling.
-- Vercel status for `4f7bb11` reached `Deployment has completed`.
+- Vercel status for `86a4e43` reached `Deployment has completed`.
 
 - Completed SWEED-051 in `4d5703f`: repaired the shared reference renderer used by `/services/branding` and `/services/digital-marketing` without editing their approved uploaded HTML sources.
 - Root cause 1: `applySweedReferenceTheme` inserted a double-quoted SWEED font stack into quoted inline `onerror` markup, corrupting HTML parsing and re-parenting Branding card bodies outside `.wcard`; inline `font-family:` replacement now uses a quote-safe unquoted CSS stack.

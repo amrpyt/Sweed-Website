@@ -24,9 +24,9 @@ Plan: `.ai/plans/2026-08-22-navbar-primary-cta-regression.md`
 - Regression test was observed failing before the repair because `consultationHref` was absent from the current shared header.
 - While the repair was in progress, upstream advanced to `10f9451`; its navigation-unification commits also introduced the 118px oversized header and custom pink pill. The repair was rebased on top of those commits and restored only shared navbar visuals/CTA.
 - Final focused suite: 8 pass / 0 fail / 55 expectations. TypeScript exit 0; ESLint exit 0 with one unrelated Services warning; production build exit 0.
-- Production desktop: header 77px, nav 76px, logo 118px left, consultation CTA ~198×48 right, purple/white 16px radius, zero visible catalog CTA and zero horizontal overflow.
+- Production/local verified contract: header 77px, nav 76px, logo 118px left, seven nav items including `اتصل بنا`, consultation CTA ~198×48 right, purple/white 16px radius, zero visible catalog CTA and zero horizontal overflow.
 - Production mobile: header 65px, menu 44×44 and `aria-expanded=false` initially; panel becomes visible after click; consultation CTA 335×48 with canonical purple/white styling.
-- Vercel deployment for `4f7bb11` completed successfully.
+- Vercel deployment for final application commit `86a4e43` completed successfully.
 
 ### SWEED-042 — Final v4 public-site hardening
 

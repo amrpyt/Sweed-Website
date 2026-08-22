@@ -27,4 +27,13 @@ describe("sitewide SWEED brand shell", () => {
     expect(route).not.toContain("<footer className={styles.footer}");
     expect(route).toContain('<section className={styles.footer} id="contact"');
   });
+
+  test("wraps the 404 state with the shared SWEED header and footer", () => {
+    const source = readFileSync(new URL("../../../app/not-found.tsx", import.meta.url), "utf8");
+
+    expect(source).toContain("LegacyHeader");
+    expect(source).toContain("LegacyFooter");
+    expect(source).toContain("الصفحة دي مش موجودة");
+    expect(source).toContain("<ButtonLink href=\"/\">العودة للرئيسية</ButtonLink>");
+  });
 });

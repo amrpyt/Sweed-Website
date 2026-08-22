@@ -1,8 +1,27 @@
 # Tasks
 
-Updated: 2026-08-20T03:38:00+03:00
+Updated: 2026-08-22T20:16:00+03:00
 
 ## Active
+
+### SWEED-052 — Restore approved navbar primary CTA
+
+Status: in progress
+Priority: critical
+Plan: `.ai/plans/2026-08-22-navbar-primary-cta-regression.md`
+
+#### Acceptance Criteria
+
+- [ ] Shared desktop/mobile navbar uses `احجز استشارتك المجانية` instead of the catalog CTA.
+- [ ] Header CSS and canonical BrandActionButton styling remain aligned with the approved navbar state.
+- [ ] Desktop keeps logo-left/action-right placement with no horizontal overflow.
+- [ ] Mobile menu is closed by default, opens correctly, and keeps a 44px menu control.
+- [ ] Focused regression test, TypeScript, ESLint, production build, Vercel deploy, and production browser QA pass.
+
+#### Evidence
+
+- Current header history shows `43c5d6b` replaced the approved consultation CTA with `تحميل الكتالوج`; header CSS and shared action-button code did not change between approved `b8e245a` and current `main`.
+- Regression test was observed failing before the repair because `consultationHref` was absent from the current shared header.
 
 ### SWEED-042 — Final v4 public-site hardening
 

@@ -1,12 +1,12 @@
 # Current State
 
-Updated: 2026-08-20T03:38:00+03:00
+Updated: 2026-08-22T20:16:00+03:00
 Git branch: `main` synchronized through isolated worktree
-Git HEAD: `4d5703f`
-Application commit: `fix: repair reference service rendering`
-Active Task: SWEED-042
-Active Plan: `.ai/plans/2026-08-18-final-v4-site-hardening.md`
-Status: SWEED-051 complete and deployed — SWEED-042 resumed
+Git HEAD: `1f0d05a`
+Application commit: `fix: repair reference service rendering` (latest code commit before current navbar repair)
+Active Task: SWEED-052
+Active Plan: `.ai/plans/2026-08-22-navbar-primary-cta-regression.md`
+Status: SWEED-052 in progress
 
 ## Delivery Update
 
@@ -19,11 +19,11 @@ Status: SWEED-051 complete and deployed — SWEED-042 resumed
 
 ## Current Goal
 
-Resume the remaining SWEED-042 public-site hardening without regressing the repaired reference-service renderer or About brand shell.
+Restore the approved shared navbar balance and primary consultation CTA without reverting later navigation behavior.
 
 ## In Progress
 
-- SWEED-042 remains the broader backlog after this focused About pass.
+- SWEED-052 navbar regression repair is being verified in an isolated worktree.
 
 ## Completed Recently
 

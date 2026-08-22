@@ -6,22 +6,27 @@ Updated: 2026-08-22T20:16:00+03:00
 
 ### SWEED-052 — Restore approved navbar primary CTA
 
-Status: in progress
+Status: completed
 Priority: critical
 Plan: `.ai/plans/2026-08-22-navbar-primary-cta-regression.md`
 
 #### Acceptance Criteria
 
-- [ ] Shared desktop/mobile navbar uses `احجز استشارتك المجانية` instead of the catalog CTA.
-- [ ] Header CSS and canonical BrandActionButton styling remain aligned with the approved navbar state.
-- [ ] Desktop keeps logo-left/action-right placement with no horizontal overflow.
-- [ ] Mobile menu is closed by default, opens correctly, and keeps a 44px menu control.
-- [ ] Focused regression test, TypeScript, ESLint, production build, Vercel deploy, and production browser QA pass.
+- [x] Shared desktop/mobile navbar uses `احجز استشارتك المجانية` instead of the catalog CTA.
+- [x] Header CSS and canonical BrandActionButton styling remain aligned with the approved navbar state.
+- [x] Desktop keeps logo-left/action-right placement with no horizontal overflow.
+- [x] Mobile menu is closed by default, opens correctly, and keeps a 44px menu control.
+- [x] Focused regression test, TypeScript, ESLint, production build, Vercel deploy, and production browser QA pass.
 
 #### Evidence
 
 - Current header history shows `43c5d6b` replaced the approved consultation CTA with `تحميل الكتالوج`; header CSS and shared action-button code did not change between approved `b8e245a` and current `main`.
 - Regression test was observed failing before the repair because `consultationHref` was absent from the current shared header.
+- While the repair was in progress, upstream advanced to `10f9451`; its navigation-unification commits also introduced the 118px oversized header and custom pink pill. The repair was rebased on top of those commits and restored only shared navbar visuals/CTA.
+- Final focused suite: 8 pass / 0 fail / 55 expectations. TypeScript exit 0; ESLint exit 0 with one unrelated Services warning; production build exit 0.
+- Production desktop: header 77px, nav 76px, logo 118px left, consultation CTA ~198×48 right, purple/white 16px radius, zero visible catalog CTA and zero horizontal overflow.
+- Production mobile: header 65px, menu 44×44 and `aria-expanded=false` initially; panel becomes visible after click; consultation CTA 335×48 with canonical purple/white styling.
+- Vercel deployment for `4f7bb11` completed successfully.
 
 ### SWEED-042 — Final v4 public-site hardening
 

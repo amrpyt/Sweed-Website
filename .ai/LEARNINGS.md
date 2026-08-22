@@ -1,8 +1,16 @@
 # Learnings
 
-Updated: 2026-08-20T03:38:00+03:00
+Updated: 2026-08-22T20:24:00+03:00
 
 ## Validated Project Lessons
+
+### Shared navbar polish must preserve the approved compact header contract
+
+Lesson: "Unifying" the navbar by enlarging its geometry and painting a page-local CTA can regress a previously approved shared shell even when navigation still functions.
+Evidence: August 22 upstream navigation-unification commits increased the desktop header from 77px to 118px, enlarged logo/type/gaps, and replaced the canonical SWEED action with a custom pink pill. The owner immediately flagged the navbar and its button as broken. Restoring the compact `b8e245a` geometry and canonical `BrandActionButton` returned production to 77px/76px with a ~198×48 purple consultation CTA.
+Applies to: `legacy-header.module.css`, `legacy-header.tsx`, shared navigation redesigns, and any agent changing site chrome.
+Behavior change: Treat the compact navbar geometry and canonical consultation CTA as an approved system contract. Navigation behavior/routing may evolve independently, but visual changes to header height, logo scale, nav spacing/type, CTA label, CTA paint, or CTA component require explicit owner approval.
+Revisit when: The owner explicitly approves a new navbar design.
 
 ### Reference HTML theming must not inject quoted CSS into quoted markup
 

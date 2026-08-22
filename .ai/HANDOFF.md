@@ -1,13 +1,13 @@
 # Handoff
 
-Updated: 2026-08-20T03:38:00+03:00
+Updated: 2026-08-22T20:24:00+03:00
 
 ## Vercel Delivery
 
-- GitHub `main` is pushed through application commit `4d5703f`.
+- GitHub `main` is pushed through `4f7bb11` (application repair `f6d999c`).
 - Vercel project: `sweed-website`.
 - Production URL: `https://sweed-website.vercel.app`.
-- GitHub→Vercel automatic deployment is active; commit `4d5703f` reached `Deployment has completed` and production Branding/Digital Marketing QA passed.
+- GitHub→Vercel automatic deployment is active; commit `4f7bb11` reached `Deployment has completed` and production homepage navbar QA passed.
 - No Vercel environment variables are configured yet; do not assume AI/admin/backend integrations are production-configured there.
 
 ## Read First
@@ -21,6 +21,11 @@ Updated: 2026-08-20T03:38:00+03:00
 - `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-design.md`
 
 ## Current Public Contract
+
+- Shared navbar visual baseline is the approved compact SWEED header from `b8e245a`: 77px desktop header spacer, 76px nav, logo capped at 118px, compact nav spacing/type, logo physical left and primary action physical right.
+- Shared navbar CTA must use the canonical `BrandActionButton` system and label `احجز استشارتك المجانية`, linking to `/contact`. Do not replace it with a custom pink pill or catalog CTA without explicit owner approval.
+- The catalog PDF may remain in the project, but it is not the shared primary navigation action.
+- Production verification after SWEED-052: desktop CTA ~198×48, `rgb(38,27,62)` surface, white label, 16px radius; mobile menu 44×44, closed initially, and canonical consultation CTA inside the open sheet.
 
 - SWEED-051 fixes the shared reference-service renderer. Keep inline `font-family:` replacements quote-safe inside HTML attributes and keep reference CTA wrappers `inline-grid`; changing them back to a quoted inline stack or block-level `grid` can corrupt uploaded HTML or produce full-width 740–1265px action bars.
 - `/services/branding` must keep four `.wcard` case cards in the browser DOM. Its case/compare CTAs should remain intrinsic (currently about 171–176px on desktop), not container-width bars.

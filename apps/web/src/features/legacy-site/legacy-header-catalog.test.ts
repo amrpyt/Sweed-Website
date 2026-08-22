@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, test } from "bun:test";
+import { defaultNavItems, homeNavItems } from "./legacy-header.config";
 
 const headerSource = readFileSync(join(import.meta.dir, "legacy-header.tsx"), "utf8");
 const headerCss = readFileSync(join(import.meta.dir, "legacy-header.module.css"), "utf8");
@@ -21,5 +22,10 @@ describe("header primary CTA", () => {
     expect(headerCss).toContain("width: clamp(98px, 9vw, 118px);");
     expect(headerCss).not.toContain("height: 118px;");
     expect(headerCss).not.toContain("background: #e02269;");
+  });
+
+  test("keeps the approved contact item in desktop and mobile navigation lists", () => {
+    expect(defaultNavItems.some((item) => item.label === "اتصل بنا")).toBe(true);
+    expect(homeNavItems.some((item) => item.label === "اتصل بنا")).toBe(true);
   });
 });

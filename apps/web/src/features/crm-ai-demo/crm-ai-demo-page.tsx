@@ -9,7 +9,6 @@ import {
   RotateCcw,
   Sparkles,
 } from "lucide-react";
-import Link from "next/link";
 import { useMemo, useReducer } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -46,17 +45,6 @@ export function CrmAiDemoPage() {
 
   return (
     <main className={styles.page}>
-      <header className={styles.siteBar}>
-        <Link className={styles.brand} href="/" aria-label="العودة إلى SWEED">
-          <strong>SWEED</strong>
-          <span>CRM + AI Agent</span>
-        </Link>
-        <div className={styles.demoMeta}>
-          <span className={styles.liveDot} />
-          <span>ديمو تفاعلي — بدون باك إند</span>
-        </div>
-      </header>
-
       <section className={styles.intro} aria-labelledby="demo-title">
         <div className={styles.introCopy}>
           <span className={styles.productTag}><Sparkles size={16} /> SWEED AI Sales</span>

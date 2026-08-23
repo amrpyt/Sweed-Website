@@ -99,15 +99,17 @@ export function PrimaryNavigation({
   );
 }
 
-export function HeaderCta({ consultationHref, page }: { consultationHref: string; page: LegacyPageKey }) {
+export function HeaderCta({ page: _page }: { page: LegacyPageKey }) {
   return (
     <div className="nav-buttons">
-      <Link className={getBrandActionButtonClassName({ size: "nav" })} href={consultationHref}>
-        {page === "home" ? (
-          <BrandActionButtonContent>حمل الكتالوج</BrandActionButtonContent>
-        ) : (
-          <BrandActionButtonContent>احجز استشارة مجانية</BrandActionButtonContent>
-        )}
+      <Link
+        className={getBrandActionButtonClassName({ size: "nav" })}
+        href="/sweed-company-catalog.pdf"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="فتح كتالوج سويد"
+      >
+        <BrandActionButtonContent>حمل الكتالوج</BrandActionButtonContent>
       </Link>
     </div>
   );

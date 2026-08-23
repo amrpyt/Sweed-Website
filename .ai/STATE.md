@@ -1,14 +1,21 @@
 # Current State
 
-Updated: 2026-08-23T04:20:00+03:00
-Git branch: `main` delivered from isolated detached worktree
-Git HEAD: `b7db89a`
-Application commits: `92d399f`, `35f6913`, `d2b6863`, `03e6c14`, `80994a8`; regression follow-up `b7db89a`
-Active Task: SWEED-053
-Active Plan: `.ai/plans/2026-08-22-sitewide-brand-shell-unification.md`
-Status: SWEED-053 implementation and deployment complete; production browser automation is partially blocked by Vercel Security Checkpoint Code 21
+Updated: 2026-08-23T21:12:00+03:00
+Git branch: dedicated Claude branch `claude/sweed-engineering-setup-hy7zhz` via isolated detached worktree
+Git HEAD: autodeploy verification commit `7957d63` before this memory checkpoint
+Application baseline: branch forked from production `90ce8ca`; no application-code change was required for autodeploy
+Active Task: SWEED-054
+Active Plan: `.ai/plans/2026-08-23-claude-public-vercel-autodeploy.md`
+Status: SWEED-054 complete — Claude branch pushes publish automatically to a public independent Vercel site
 
 ## Delivery Update
+
+- Dedicated Claude branch: `claude/sweed-engineering-setup-hy7zhz`.
+- Public Claude URL: `https://sweed-claude-public.vercel.app`; anonymous verification returns HTTP 200 with no Vercel login or Security Checkpoint.
+- Independent Vercel project: `sweed-claude-public`; it is separate from the production `sweed-website` project and its SSO deployment protection is disabled.
+- VPS autodeploy runner: `/usr/local/sbin/sweed-claude-public-deploy` with SHA no-op state at `/var/lib/sweed-claude-deployer/last-deployed-sha`.
+- systemd timer `sweed-claude-public-deploy.timer` is enabled/active and checks the Claude branch every 60 seconds.
+- End-to-end proof: empty commit `7957d63` was pushed only to the Claude branch; the timer detected it automatically, Vercel built 30 pages, aliased the public URL, and recorded the same deployed SHA. `main` stayed at `90ce8ca`.
 
 - Pushed `main` to GitHub through `b7db89a`; `origin/main` fast-forwarded from `371c3ac` with no concurrent upstream commits or conflicts.
 - Vercel project `sweed-website` automatically deployed `b7db89a`; GitHub commit status reached `success — Deployment has completed`.

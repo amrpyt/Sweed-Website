@@ -1,6 +1,16 @@
 # Handoff
 
-Updated: 2026-08-23T04:20:00+03:00
+Updated: 2026-08-23T21:12:00+03:00
+
+## Claude Branch Public Autodeploy
+
+- Dedicated collaborator branch: `claude/sweed-engineering-setup-hy7zhz`.
+- Stable public collaborator site: `https://sweed-claude-public.vercel.app`.
+- The collaborator only needs to commit and push to that branch. No Vercel login or manual deployment request is required.
+- VPS timer `sweed-claude-public-deploy.timer` polls every 60 seconds. When the remote SHA changes it runs `/usr/local/sbin/sweed-claude-public-deploy`, fetches only the Claude branch, archives it into a temporary directory, deploys to Vercel project `sweed-claude-public`, verifies anonymous HTTP 200, then records the deployed SHA.
+- The runner skips deployment when the remote SHA matches `/var/lib/sweed-claude-deployer/last-deployed-sha`.
+- End-to-end proof used empty commit `7957d63`: automatic timer detection → Vercel build → alias update → HTTP 200. No manual service start was used for that verification.
+- Production remains independent: `main` / `https://sweed-website.vercel.app`. Never merge/push Claude work to `main` without explicit owner approval.
 
 ## Vercel Delivery
 

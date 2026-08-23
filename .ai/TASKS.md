@@ -1,8 +1,23 @@
 # Tasks
 
-Updated: 2026-08-23T04:20:00+03:00
+Updated: 2026-08-23T21:12:00+03:00
 
 ## Active
+
+### SWEED-054 — Claude public Vercel autodeploy
+
+Status: completed
+Priority: high
+Plan: `.ai/plans/2026-08-23-claude-public-vercel-autodeploy.md`
+
+#### Acceptance Criteria
+
+- [x] Claude works only on `claude/sweed-engineering-setup-hy7zhz`; `main` is not changed by preview work.
+- [x] Claude has a stable public URL that does not require Vercel login: `https://sweed-claude-public.vercel.app`.
+- [x] A push to the Claude branch is picked up automatically without the collaborator sending a deployment request to the owner.
+- [x] Autodeploy does not expose a broad Vercel credential to the collaborator or repository.
+- [x] Unchanged branch SHAs do not rebuild unnecessarily.
+- [x] End-to-end verification commit `7957d63` was detected automatically and deployed successfully; public HTTP check returned 200 and `main` stayed unchanged.
 
 ### SWEED-053 — Sitewide brand shell and action unification
 

@@ -2563,15 +2563,39 @@ const aboutLiveLayoutRuntime = `
     slider.dataset.sweedMarqueeReady = "true";
   };
 
-  const moveTeamBeforeWhy = () => {
-    const team = document.querySelector("#team");
+  const prepareFounderPortrait = () => {
+    const portrait = "/images/hero/mohamed-sweed-portrait.jpeg";
+
+    const applyPortrait = (node, alt) => {
+      if (!node || node.dataset.sweedPortraitReady === "true") return;
+      node.dataset.sweedPortraitReady = "true";
+      node.replaceChildren();
+      node.style.overflow = "hidden";
+      const image = document.createElement("img");
+      image.src = portrait;
+      image.alt = alt;
+      image.loading = "eager";
+      image.decoding = "async";
+      image.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:center;";
+      node.appendChild(image);
+    };
+
+    applyPortrait(document.querySelector("#founder .avatar"), "محمد سويد — المؤسس والمدير التنفيذي");
+    applyPortrait(document.querySelector("#team .swiper-slide:first-child .member .photo"), "محمد سويد — المؤسس والمدير التنفيذي");
+  };
+
+  const moveTeamAndPartnersBeforeWhy = () => {
     const why = document.querySelector("#why");
-    if (!team || !why || team.parentElement !== why.parentElement) return;
-    why.parentElement.insertBefore(team, why);
+    if (!why?.parentElement) return;
+    const parent = why.parentElement;
+    [document.querySelector("#team"), document.querySelector("#partners")].forEach((section) => {
+      if (section?.parentElement === parent) parent.insertBefore(section, why);
+    });
   };
 
   const run = () => {
-    moveTeamBeforeWhy();
+    prepareFounderPortrait();
+    moveTeamAndPartnersBeforeWhy();
     prepareAlliances();
     preparePartners();
     prepareTestimonials();

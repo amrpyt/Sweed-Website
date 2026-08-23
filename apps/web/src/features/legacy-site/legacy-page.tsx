@@ -91,6 +91,108 @@ const portfolioExactRuntime = `
     return card;
   };
 
+  const prepareConsulting = () => {
+    const section = document.getElementById("consulting-work");
+    const container = section?.querySelector(".consult-grid");
+    const intro = section?.querySelector(".consult-side");
+    const existingCards = Array.from(section?.querySelectorAll(".dossier") ?? []);
+    if (!section || !container || !intro || existingCards.length !== 3 || section.dataset.sweedConsultingReady === "true") return;
+
+    section.dataset.sweedConsultingReady = "true";
+    const style = document.createElement("style");
+    style.id = "sweed-consulting-cards";
+    style.textContent = [
+      ".sweed-reference-page #consulting-work { padding-block: clamp(2.7rem, 4vw, 4rem) !important; }",
+      ".sweed-reference-page #consulting-work .consult-grid { display: block !important; }",
+      ".sweed-reference-page #consulting-work .consult-side { max-width: 62rem; margin: 0 auto 1.25rem !important; text-align: center; }",
+      ".sweed-reference-page #consulting-work .consult-side .eyebrow, .sweed-reference-page #consulting-work .consult-side .sec-title, .sweed-reference-page #consulting-work .consult-side p { margin-inline: auto !important; text-align: center !important; text-align-last: center !important; }",
+      ".sweed-reference-page #consulting-work .consult-side .line { display: none !important; }",
+      ".sweed-reference-page #consulting-work .consult-card-viewport { width: 100%; overflow: hidden; padding-block: .25rem 1rem; }",
+      ".sweed-reference-page #consulting-work .consult-card-track { display: flex; width: max-content; gap: 1rem; padding-inline: .15rem; animation: sweed-consulting-cards-rtl 32s linear infinite; will-change: transform; }",
+      ".sweed-reference-page #consulting-work .consult-card-viewport:hover .consult-card-track { animation-play-state: paused; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card { display: flex !important; width: clamp(18.5rem, 29vw, 23rem); min-height: 25.5rem; padding: 1.35rem !important; flex: 0 0 clamp(18.5rem, 29vw, 23rem); flex-direction: column; border: 1px solid rgba(237,32,98,.78) !important; border-radius: 1.1rem !important; background: #fff !important; box-shadow: 0 .8rem 2rem rgba(12,5,27,.15); color: #261b3e !important; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card :is(h3, .sector, .challenge, li, .proof) { color: #261b3e !important; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .top { min-height: 3.3rem; align-items: flex-start; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .top h3 { font-size: 1.04rem; line-height: 1.55; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .sector { min-height: 2.2rem; color: #6f6682 !important; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .challenge { min-height: 6.4rem; margin-top: .85rem; padding: .9rem !important; background: #f6f2fa !important; border-radius: .8rem; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card ul { display: grid; gap: .4rem; min-height: 7.4rem; margin-block: .9rem; padding-inline: 0 !important; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card li { font-size: .88rem; line-height: 1.65; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .proof { min-height: 2.5rem; margin-top: auto; padding-right: .75rem; border-right: .18rem solid #ed2062; font-size: .88rem; font-weight: 800; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .cta-line { display: flex; width: 100%; margin-top: 1rem; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .consult-card-action { display: inline-flex !important; width: 100% !important; min-height: 3rem !important; align-items: center !important; justify-content: center !important; padding: .55rem .9rem !important; overflow: visible !important; border: 1px solid #261b3e !important; border-radius: .8rem !important; background: #261b3e !important; color: #fff !important; font-size: .9rem !important; font-weight: 800 !important; line-height: 1.2 !important; text-align: center !important; text-decoration: none !important; white-space: nowrap; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .consult-card-action::before { display: none !important; content: none !important; }",
+      ".sweed-reference-page #consulting-work .dossier.consult-marquee-card .consult-card-action:hover { background: #ed2062 !important; border-color: #ed2062 !important; transform: translateY(-2px); }",
+      "@keyframes sweed-consulting-cards-rtl { from { transform: translateX(0); } to { transform: translateX(-50%); } }",
+      "@media (max-width: 48rem) { .sweed-reference-page #consulting-work { padding-block: 2.6rem !important; } .sweed-reference-page #consulting-work .consult-side { margin-bottom: 1rem !important; } .sweed-reference-page #consulting-work .dossier.consult-marquee-card { width: min(82vw, 21rem); min-height: 24rem; flex-basis: min(82vw, 21rem); } .sweed-reference-page #consulting-work .consult-card-track { animation-duration: 25s; } }",
+      "@media (prefers-reduced-motion: reduce) { .sweed-reference-page #consulting-work .consult-card-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .sweed-reference-page #consulting-work .consult-card-track [aria-hidden='true'] { display: none; } }"
+    ].join("\n");
+    document.head.appendChild(style);
+
+    const additionalProjects = [
+      {
+        title: "الضامر للتطوير العقاري | استراتيجية إطلاق ومبيعات",
+        state: "مستمر",
+        sector: "التطوير العقاري — مدينة السادات",
+        challenge: "إطلاق مشروع تجاري وإداري برسالة واضحة تربط العرض بالمستثمرين وأصحاب الأنشطة.",
+        points: ["صياغة المبادرة والعرض والرسائل البيعية", "خطة متكاملة للتسويق الرقمي والميداني", "مسار متابعة يربط الاهتمام بالمبيعات"],
+        proof: "خطة إطلاق تربط الهوية والعرض وقنوات الوصول"
+      },
+      {
+        title: "بوبيان للتطوير العقاري | خطة ظهور المشروع",
+        state: "مستمر",
+        sector: "التطوير العقاري — أكتوبر",
+        challenge: "بناء حضور واضح لمشروع جديد مع ربط سرعة التنفيذ بالثقة والطلب.",
+        points: ["تحديد الرسالة والجمهور ونقاط القوة", "خطة محتوى وحملات مرتبطة بمراحل المشروع", "متابعة دورية للنتائج وفرص التحسين"],
+        proof: "مسار ظهور يربط التنفيذ بالمبيعات"
+      },
+      {
+        title: "سفنكس فاير | استراتيجية نمو ومبيعات B2B",
+        state: "مستمر",
+        sector: "أنظمة الحماية ومكافحة الحريق — مصر",
+        challenge: "تحويل خبرة فنية قوية لرسالة تفتح فرصًا مع المشروعات والشركات.",
+        points: ["تحديد القطاعات والفرص ذات الأولوية", "رسائل ثقة تربط الالتزام الفني بقيمة القرار", "محتوى ومتابعة يدعمان فريق المبيعات"],
+        proof: "مسار نمو مهني يدعم الثقة والطلبات"
+      }
+    ];
+
+    const createCard = (project) => {
+      const card = document.createElement("article");
+      card.className = "dossier consult-marquee-card";
+      card.innerHTML = '<div class="top"><h3>' + project.title + '</h3><span class="tag state">' + project.state + '</span></div><div class="sector">' + project.sector + '</div><div class="challenge"><b>التحدي</b>' + project.challenge + '</div><ul>' + project.points.map((point) => '<li>' + point + '</li>').join("") + '</ul><div class="proof">' + project.proof + '</div><div class="cta-line"><a class="btn consult-card-action" href="/contact">شوف المشروع كامل</a></div>';
+      return card;
+    };
+
+    existingCards.forEach((card) => {
+      card.classList.add("consult-marquee-card");
+      const actionRow = card.querySelector(".cta-line") ?? card.appendChild(document.createElement("div"));
+      actionRow.classList.add("cta-line");
+      let action = actionRow.querySelector("a");
+      if (!action) {
+        action = document.createElement("a");
+        action.setAttribute("href", "/contact");
+        actionRow.appendChild(action);
+      }
+      action.className = "btn consult-card-action";
+      action.textContent = "شوف المشروع كامل";
+    });
+
+    const cards = [...existingCards, ...additionalProjects.map(createCard)];
+    const viewport = document.createElement("div");
+    viewport.className = "consult-card-viewport";
+    const track = document.createElement("div");
+    track.className = "consult-card-track";
+    cards.forEach((card) => track.appendChild(card));
+    cards.forEach((card) => {
+      const duplicate = card.cloneNode(true);
+      duplicate.setAttribute("aria-hidden", "true");
+      duplicate.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
+      track.appendChild(duplicate);
+    });
+    viewport.appendChild(track);
+    existingCards[0].parentElement?.replaceWith(viewport);
+  };
+
   const prepareBranding = () => {
     const section = document.getElementById("branding-work");
     const projects = section?.querySelector(".brand-projects");
@@ -259,8 +361,7 @@ const portfolioExactRuntime = `
 
   const run = () => {
     ensurePortfolioPolish();
-    document.getElementById("consulting-work")?.remove();
-    document.querySelector('.f-btn[data-target="consulting-work"]')?.remove();
+    prepareConsulting();
     prepareBranding();
     prepareMarketing();
     prepareFilm();

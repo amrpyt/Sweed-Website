@@ -52,6 +52,37 @@ const portfolioExactRuntime = `
     "/images/hero/businessman-laptop-standing.jpg"
   ];
 
+  const ensurePortfolioPolish = () => {
+    if (document.getElementById("sweed-portfolio-polish")) return;
+    const style = document.createElement("style");
+    style.id = "sweed-portfolio-polish";
+    style.textContent = [
+      ".sweed-reference-page #marketing-work .mkt-grid { align-items: stretch !important; }",
+      ".sweed-reference-page #marketing-work .mkt-proj { display: grid !important; justify-items: center !important; align-content: start !important; text-align: center !important; }",
+      ".sweed-reference-page #marketing-work .mkt-proj :is(h3, .challenge, ul, li, .status, .tag, .proof) { margin-inline: auto !important; text-align: center !important; text-align-last: center !important; }",
+      ".sweed-reference-page #marketing-work .mkt-proj ul { width: min(100%, 42rem); justify-items: center; padding-inline: 0 !important; }",
+      ".sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { display: inline-grid !important; grid-template-columns: 2.75rem minmax(0, 1fr) !important; width: max-content !important; max-width: 100% !important; min-width: 17.5rem !important; align-self: center !important; justify-self: center !important; overflow: visible !important; white-space: nowrap !important; }",
+      ".sweed-reference-page #media-work .sec-lead { max-width: none !important; white-space: nowrap; font-size: clamp(.78rem, 1vw, 1rem) !important; }",
+      ".sweed-reference-page .portfolio-service-link { margin: 1.45rem auto 0 !important; }",
+      ".sweed-reference-page #web-work .ux-notes .btn { margin: 1.2rem auto 0 !important; }",
+      ".sweed-reference-page .portfolio-contact-actions > .container > div { display: flex !important; width: 100%; align-items: center; justify-content: center; }",
+      ".sweed-reference-page .portfolio-contact-actions .btn { display: inline-flex !important; width: auto !important; min-width: 12.75rem !important; min-height: 3.25rem !important; align-items: center !important; justify-content: center !important; padding-inline: 1.3rem !important; overflow: visible !important; white-space: nowrap !important; }",
+      ".sweed-reference-page #web-work .browser { min-height: 27rem; }",
+      ".sweed-reference-page .portfolio-system-slider { position: relative; display: grid; min-height: 27rem; overflow: hidden; isolation: isolate; background: #261b3e; }",
+      ".sweed-reference-page .portfolio-system-slide { position: absolute; inset: 0; background-position: center; background-size: cover; opacity: 1; transition: opacity .65s ease, transform .65s ease; }",
+      ".sweed-reference-page .portfolio-system-slider::after { position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, rgba(38,27,62,.08) 28%, rgba(38,27,62,.78)); content: ''; pointer-events: none; }",
+      ".sweed-reference-page .portfolio-system-caption { position: relative; z-index: 2; align-self: end; padding: 1.35rem; color: #fff; text-align: right; }",
+      ".sweed-reference-page .portfolio-system-caption b { display: block; font-size: clamp(1.1rem, 1.7vw, 1.45rem); }",
+      ".sweed-reference-page .portfolio-system-caption span { display: block; margin-top: .35rem; color: rgba(255,255,255,.84); font-size: .94rem; }",
+      ".sweed-reference-page .portfolio-system-dots { position: absolute; z-index: 3; right: 1.35rem; bottom: 1rem; display: flex; gap: .35rem; direction: ltr; }",
+      ".sweed-reference-page .portfolio-system-dots i { width: .5rem; height: .5rem; border-radius: 50%; background: rgba(255,255,255,.45); transition: width .28s ease, background .28s ease; }",
+      ".sweed-reference-page .portfolio-system-dots i.active { width: 1.35rem; border-radius: 999px; background: #ed2062; }",
+      "@media (max-width: 48rem) { .sweed-reference-page #media-work .sec-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
+      "@media (prefers-reduced-motion: reduce) { .sweed-reference-page .portfolio-system-slide { transition: none; } }"
+    ].join("\n");
+    document.head.appendChild(style);
+  };
+
   const makeBrandCard = (title, sector, copy, proof, image) => {
     const card = document.createElement("article");
     card.className = "bp-card portfolio-proof-card reveal";
@@ -81,8 +112,8 @@ const portfolioExactRuntime = `
     section.querySelectorAll(".mkt-proj ul li:nth-child(n+3)").forEach((item) => item.remove());
     section.querySelectorAll(".mkt-proj .challenge").forEach((item) => item.classList.add("portfolio-compact-copy"));
     section.querySelectorAll('a[href="/work/damer"], a[href="/work/boubyan"], a[href="/work/snap-shop"]').forEach((link) => {
-      link.setAttribute("href", "/services/digital-marketing");
-      link.textContent = "شوف خدمة التسويق الرقمي";
+      link.classList.add("portfolio-full-project-link");
+      link.textContent = "شوف المشروع كامل";
     });
   };
 
@@ -163,6 +194,37 @@ const portfolioExactRuntime = `
       button.removeAttribute("target");
       button.textContent = "شوف خدمة المواقع والحلول";
     }
+    const browser = section.querySelector(".browser");
+    if (browser && browser.dataset.sweedProjectSlider !== "true") {
+      browser.dataset.sweedProjectSlider = "true";
+      const slides = [
+        { title: "واجهة مشروع عقاري", copy: "عرض المشروع والفرص والخطوة التالية في مسار واحد.", image: "/images/hero/sweed-building.png" },
+        { title: "لوحة متابعة نظام", copy: "تجربة منظمة تعرض البيانات والخدمات بدون زحمة.", image: "/images/portfolio/blit-scroll-effect-demo-poster.png" },
+        { title: "منصة خدمة رقمية", copy: "واجهة واضحة تساعد العميل يوصل للمعلومة ويكمل الإجراء.", image: "/images/hero/custom-image.png" }
+      ];
+      browser.innerHTML = '<div class="portfolio-system-slider" aria-label="نماذج مواقع وحلول رقمية"><div class="portfolio-system-slide"></div><div class="portfolio-system-caption"><b></b><span></span></div><div class="portfolio-system-dots"><i></i><i></i><i></i></div></div>';
+      const slider = browser.querySelector(".portfolio-system-slider");
+      const slide = browser.querySelector(".portfolio-system-slide");
+      const title = browser.querySelector(".portfolio-system-caption b");
+      const copyText = browser.querySelector(".portfolio-system-caption span");
+      const dots = Array.from(browser.querySelectorAll(".portfolio-system-dots i"));
+      let slideIndex = 0;
+      const renderSlide = () => {
+        const current = slides[slideIndex];
+        if (slide) slide.style.backgroundImage = 'url("' + current.image + '")';
+        if (title) title.textContent = current.title;
+        if (copyText) copyText.textContent = current.copy;
+        dots.forEach((dot, index) => dot.classList.toggle("active", index === slideIndex));
+        slider?.setAttribute("data-slide", String(slideIndex + 1));
+      };
+      renderSlide();
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        window.setInterval(() => {
+          slideIndex = (slideIndex + 1) % slides.length;
+          renderSlide();
+        }, 4200);
+      }
+    }
     section.querySelectorAll(".mini-sec").forEach((item, index) => {
       const labels = ["رسالة واضحة", "خدمة مناسبة", "دليل ثقة", "خطوة تواصل", "متابعة أسهل"];
       item.childNodes[0].textContent = labels[index] || "";
@@ -196,6 +258,7 @@ const portfolioExactRuntime = `
   };
 
   const run = () => {
+    ensurePortfolioPolish();
     document.getElementById("consulting-work")?.remove();
     document.querySelector('.f-btn[data-target="consulting-work"]')?.remove();
     prepareBranding();

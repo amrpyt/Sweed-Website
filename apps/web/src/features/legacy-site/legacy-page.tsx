@@ -96,7 +96,8 @@ const portfolioExactRuntime = `
     const container = section?.querySelector(".consult-grid");
     const intro = section?.querySelector(".consult-side");
     const existingCards = Array.from(section?.querySelectorAll(".dossier") ?? []);
-    if (!section || !container || !intro || existingCards.length !== 3 || section.dataset.sweedConsultingReady === "true") return;
+    const cardList = existingCards[0]?.parentElement;
+    if (!section || !container || !intro || !cardList || existingCards.length !== 3 || section.dataset.sweedConsultingReady === "true") return;
 
     section.dataset.sweedConsultingReady = "true";
     const style = document.createElement("style");
@@ -190,7 +191,7 @@ const portfolioExactRuntime = `
       track.appendChild(duplicate);
     });
     viewport.appendChild(track);
-    existingCards[0].parentElement?.replaceWith(viewport);
+    cardList.replaceWith(viewport);
   };
 
   const prepareBranding = () => {

@@ -79,7 +79,7 @@ const portfolioExactRuntime = `
       ".sweed-reference-page .portfolio-system-dots i.active { width: 1.35rem; border-radius: 999px; background: #ed2062; }",
       "@media (max-width: 48rem) { .sweed-reference-page #media-work .sec-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
       "@media (prefers-reduced-motion: reduce) { .sweed-reference-page .portfolio-system-slide { transition: none; } }"
-    ].join("\n");
+    ].join("\\n");
     document.head.appendChild(style);
   };
 
@@ -126,7 +126,7 @@ const portfolioExactRuntime = `
       "@keyframes sweed-consulting-cards-rtl { from { transform: translateX(0); } to { transform: translateX(-50%); } }",
       "@media (max-width: 48rem) { .sweed-reference-page #consulting-work { padding-block: 2.6rem !important; } .sweed-reference-page #consulting-work .consult-side { margin-bottom: 1rem !important; } .sweed-reference-page #consulting-work .dossier.consult-marquee-card { width: min(82vw, 21rem); min-height: 24rem; flex-basis: min(82vw, 21rem); } .sweed-reference-page #consulting-work .consult-card-track { animation-duration: 25s; } }",
       "@media (prefers-reduced-motion: reduce) { .sweed-reference-page #consulting-work .consult-card-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .sweed-reference-page #consulting-work .consult-card-track [aria-hidden='true'] { display: none; } }"
-    ].join("\n");
+    ].join("\\n");
     document.head.appendChild(style);
 
     const additionalProjects = [

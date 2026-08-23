@@ -6,11 +6,11 @@ import { defaultNavItems, homeNavItems } from "./legacy-header.config";
 const headerSource = readFileSync(join(import.meta.dir, "legacy-header.tsx"), "utf8");
 const headerCss = readFileSync(join(import.meta.dir, "legacy-header.module.css"), "utf8");
 
-describe("header primary CTA", () => {
-  test("keeps the approved consultation action in desktop and mobile navigation", () => {
-    expect(headerSource.match(/handleNavigationClick\(event, consultationHref\)/g)).toHaveLength(2);
-    expect(headerSource).toContain("احجز استشارتك المجانية");
-    expect(headerSource).not.toContain("تحميل الكتالوج");
+describe("header catalog CTA", () => {
+  test("uses the catalog destination in desktop and mobile navigation", () => {
+    expect(headerSource.match(/handleNavigationClick\(event, catalogHref\)/g)).toHaveLength(2);
+    expect(headerSource).toContain("حمل الكتالوج");
+    expect(headerSource).not.toContain("consultationHref");
     expect(headerSource).toContain("getBrandActionButtonClassName");
     expect(headerSource).toContain("BrandActionButtonContent");
   });

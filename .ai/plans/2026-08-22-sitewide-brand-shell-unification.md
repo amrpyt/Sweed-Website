@@ -10,6 +10,8 @@
 
 **Spec:** `DESIGN.md`, `.ai/decisions/DEC-014-reference-fidelity-with-sweed-theme-bridge.md`, `.ai/decisions/DEC-015-canonical-sitewide-action-buttons.md`.
 
+**Implementation outcome (2026-08-23):** Complete. Portfolio/Offers could not safely use plain `presentation="reference"` because browser comparison showed it changed the enhanced exact content/runtime. The delivered solution adds `presentation="branded"`: exact approved content/runtime plus stripped prototype chrome, the shared SWEED shell, SWEED typography/theme bridge, and canonical CTA decoration.
+
 ## Global Constraints
 
 - Shared desktop navbar stays at the approved compact contract: 77px header spacer, 76px nav, logo physical left, consultation action physical right.
@@ -29,12 +31,12 @@
 - Modify: `apps/web/src/app/(marketing)/offers/page.tsx`
 - Modify/Test: `apps/web/src/features/public-site/routes/reference-route-contract.test.ts`
 
-- [ ] Write route-contract assertions requiring `presentation="reference"` for Portfolio and Offers.
-- [ ] Run the focused route/reference tests and observe the current `exact` routes fail the new contract.
-- [ ] Switch only the presentation mode to `reference`.
-- [ ] Verify the reference bridge strips prototype nav/footer, injects the shared SWEED shell, preserves page content, and applies SWEED font/palette/action bridge.
-- [ ] Agent Browser desktop/mobile checks for shell, font, CTA geometry, overflow, and primary interactions.
-- [ ] Commit the task independently.
+- [x] Write route-contract assertions requiring a shared-brand presentation for Portfolio and Offers.
+- [x] Run the focused route/reference tests and observe the current `exact` routes fail the new contract.
+- [x] Add and use `presentation="branded"` after plain `reference` failed approved-content browser comparison.
+- [x] Verify the branded bridge strips prototype nav/footer, injects the shared SWEED shell, preserves exact page content/runtime, and applies SWEED font/palette/action bridge.
+- [x] Agent Browser desktop/mobile checks for shell, font, CTA geometry, overflow, and primary interactions.
+- [x] Commit the task independently.
 
 ### Task 2: Products typography and action system
 
@@ -42,11 +44,11 @@
 - Modify: `apps/web/src/features/legacy-site/legacy-page.tsx` or the narrow Products integration seam selected after inspection.
 - Modify/Test: focused legacy Products/theme tests under `apps/web/src/features/legacy-site/`.
 
-- [ ] Add a regression contract showing Products keeps its existing shared header/footer while body typography must compute to SWEED Helvetica Arabic.
-- [ ] Add a contract that product purchase CTAs use the canonical SWEED action mechanism while category/filter controls remain purpose-specific.
-- [ ] Apply the smallest Products-only theme/action bridge; do not change product content, filters, cards, or purchase destinations.
-- [ ] Agent Browser desktop/mobile checks for font, purchase CTA styling, filters, shell, and overflow.
-- [ ] Commit the task independently.
+- [x] Add a regression contract showing Products keeps its existing shared header/footer while body typography must compute to SWEED Helvetica Arabic.
+- [x] Add a contract that product purchase CTAs use the canonical SWEED action mechanism while category/filter controls remain purpose-specific.
+- [x] Apply the smallest Products-only theme/action bridge; do not change product content, filters, cards, or purchase destinations.
+- [x] Agent Browser desktop/mobile checks for font, purchase CTA styling, filters, shell, and overflow.
+- [x] Commit the task independently.
 
 ### Task 3: Standalone CRM demo shell
 
@@ -55,11 +57,11 @@
 - Modify: `apps/web/src/features/crm-ai-demo/crm-ai-demo-page.tsx`
 - Modify/Test: CRM demo tests if present, otherwise add a route shell contract.
 
-- [ ] Add a route contract requiring shared header/footer around the demo.
-- [ ] Remove or demote only the local site-level chrome that duplicates the global shell; keep the CRM story/frame/channel controls unchanged.
-- [ ] Keep the AI execution action canonical and keep channel/reset controls purpose-specific.
-- [ ] Agent Browser desktop/mobile checks including channel selection and primary demo action.
-- [ ] Commit independently.
+- [x] Add a route contract requiring shared header/footer around the demo.
+- [x] Remove or demote only the local site-level chrome that duplicates the global shell; keep the CRM story/frame/channel controls unchanged.
+- [x] Keep the AI execution action canonical and keep channel/reset controls purpose-specific.
+- [x] Agent Browser desktop/mobile checks including channel selection and primary demo action.
+- [x] Commit independently.
 
 ### Task 4: Midu clone public shell
 
@@ -68,10 +70,10 @@
 - Modify: `apps/web/src/app/(marketing)/midu-clone/midu-clone.module.css`
 - Add/Modify: focused route shell test.
 
-- [ ] Add a failing contract requiring shared SWEED header/footer and no duplicate local site nav/footer.
-- [ ] Preserve the experimental body composition and existing canonical `ButtonLink` CTAs, but remove the local global nav/footer layer.
-- [ ] Verify the page still has no horizontal overflow and its in-page anchor actions remain functional.
-- [ ] Commit independently.
+- [x] Add a failing contract requiring shared SWEED header/footer and no duplicate local site nav/footer.
+- [x] Preserve the experimental body composition and existing canonical `ButtonLink` CTAs, but remove the local global nav/footer layer.
+- [x] Verify the page still has no horizontal overflow and its in-page anchor actions remain functional.
+- [x] Commit independently.
 
 ### Task 5: 404 shared shell
 
@@ -79,10 +81,10 @@
 - Modify: `apps/web/src/app/not-found.tsx`
 - Add/Modify: state-page route/shell test.
 
-- [ ] Add a failing contract requiring the approved shared header/footer around the 404 content.
-- [ ] Wrap the existing 404 message and canonical return action without changing its copy.
-- [ ] Verify desktop/mobile shell and action geometry.
-- [ ] Commit independently.
+- [x] Add a failing contract requiring the approved shared header/footer around the 404 content.
+- [x] Wrap the existing 404 message and canonical return action without changing its copy.
+- [x] Verify desktop/mobile shell and action geometry.
+- [x] Commit independently.
 
 ### Task 6: Sitewide shell regression matrix and delivery
 
@@ -90,12 +92,12 @@
 - Add/Modify: focused shell contract test(s) covering public route implementation seams.
 - Update: project memory evidence after verification.
 
-- [ ] Run focused brand-shell/reference/button suites.
-- [ ] Run `bun run check` and record any pre-existing unrelated failure separately from introduced regressions.
-- [ ] Run `bun run build`.
-- [ ] Run Impeccable detector once over changed UI targets.
-- [ ] Agent Browser desktop audit over all 26 public surfaces: shared shell expectations, SWEED font, canonical marketing actions, zero overflow.
-- [ ] Agent Browser 390px audit on all changed routes; exercise mobile menu and one primary interaction per changed route.
-- [ ] Fetch `origin/main`, integrate any concurrent upstream changes without overwriting them, rerun focused checks/build if integration changed affected files.
-- [ ] Push `main`, monitor Vercel to success, and repeat production spot checks on every changed route.
+- [x] Run focused brand-shell/reference/button suites.
+- [x] Run `bun run check` and record pre-existing unrelated spacing/unit debt separately from introduced regressions.
+- [x] Run `bun run build`.
+- [x] Run Impeccable detector once over changed UI targets; all five warnings are proven pre-existing in `origin/main`.
+- [x] Agent Browser desktop audit over all 26 public surfaces: shared shell expectations, SWEED font, canonical marketing actions, zero overflow.
+- [x] Agent Browser 390px audit on all changed routes; exercise mobile menu and primary interactions.
+- [x] Fetch `origin/main`; confirm no concurrent upstream commits and fast-forward-safe delivery.
+- [x] Push `main` and monitor Vercel to success. Production browser spot checks reached the real Portfolio/Offers deployment before Vercel Security Checkpoint Code 21 blocked further automated traversal from the VPS IP; this external limitation is recorded in STATE/TASKS/HANDOFF.
 

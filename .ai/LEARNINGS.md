@@ -1,8 +1,24 @@
 # Learnings
 
-Updated: 2026-08-22T20:24:00+03:00
+Updated: 2026-08-23T04:20:00+03:00
 
 ## Validated Project Lessons
+
+### Preserve enhanced exact runtime separately from the shared brand shell
+
+Lesson: A plain `reference` presentation is not always equivalent to an `exact` presentation after page-specific enhancement runtimes have been added. Brand unification must not silently swap the approved content/runtime source.
+Evidence: During SWEED-053, switching Portfolio and Offers from `exact` to `reference` immediately changed section/heading sets in Agent Browser. A dedicated `branded` presentation kept the exact body plus `portfolioExactRuntime` / `offersExactRuntime`, while stripping prototype global chrome and applying the shared SWEED header/footer, font/theme bridge, and canonical actions. Final browser comparison preserved the original exact section and heading sets.
+Applies to: `LegacyPage`, Portfolio, Offers, and future approved reference pages that have exact-mode enhancement runtimes.
+Behavior change: Before changing presentation modes, browser-diff section identifiers/headings and exercise page-specific runtime behavior. Use a dedicated shell/theme composition when exact content must survive unchanged.
+Revisit when: Exact/reference content sources and enhancement runtimes are consolidated into one modular React implementation.
+
+### Vercel Security Checkpoint can block automation without indicating a deployment failure
+
+Lesson: A `403 Vercel Security Checkpoint` from Agent Browser or ordinary VPS curl can be an anti-bot decision on the automation client/IP, even when the GitHub-linked deployment itself is healthy.
+Evidence: Vercel status for `b7db89a` reached `success — Deployment has completed`; Portfolio and Offers loaded as real production pages before the automation session began receiving `Failed to verify your browser` Code 21 on other paths. Fresh local build and 26-route browser matrix remained green.
+Applies to: Post-deploy production QA from the VPS against `sweed-website.vercel.app`.
+Behavior change: Distinguish checkpoint HTML/title/code from application errors. Do not diagnose missing shell/content from checkpoint DOM. Record the production-QA limitation and rely on deployment status plus local browser evidence unless a trusted bypass/client is available.
+Revisit when: Vercel firewall/bot settings or the automation egress IP changes.
 
 ### Shared navbar polish must preserve the approved compact header contract
 

@@ -1,13 +1,14 @@
 # Handoff
 
-Updated: 2026-08-22T20:24:00+03:00
+Updated: 2026-08-23T04:20:00+03:00
 
 ## Vercel Delivery
 
-- GitHub `main` is pushed through `86a4e43` (navbar geometry/CTA repair `f6d999c`, contact-item restoration `86a4e43`).
+- GitHub `main` is pushed through `b7db89a`; SWEED-053 application commits are `92d399f`, `35f6913`, `d2b6863`, `03e6c14`, and `80994a8`, with CTA contract follow-up `b7db89a`.
 - Vercel project: `sweed-website`.
 - Production URL: `https://sweed-website.vercel.app`.
-- GitHub→Vercel automatic deployment is active; final application commit `86a4e43` reached `Deployment has completed`.
+- GitHub→Vercel automatic deployment is active; final application commit `b7db89a` reached `success — Deployment has completed`.
+- Post-deploy Agent Browser automation from the VPS is partially blocked by Vercel Security Checkpoint Code 21 (`Failed to verify your browser`). Portfolio and Offers were reached as real deployed pages before the checkpoint triggered; use local 26-route browser evidence plus Vercel deployment status as the current automated verification record until the checkpoint policy/IP changes.
 - No Vercel environment variables are configured yet; do not assume AI/admin/backend integrations are production-configured there.
 
 ## Read First
@@ -21,6 +22,14 @@ Updated: 2026-08-22T20:24:00+03:00
 - `docs/superpowers/specs/2026-08-12-reference-html-fidelity-restoration-design.md`
 
 ## Current Public Contract
+
+- SWEED-053 makes shared chrome/identity the default across all 26 audited public surfaces. Portfolio, Offers, Products, CRM demo, Midu clone, and 404 no longer carry competing global site chrome or non-SWEED typography.
+- `/portfolio` and `/offers` use `LegacyPage presentation="branded"`. This mode intentionally combines the approved `exact` content/runtime with stripped prototype chrome, shared SWEED header/footer, SWEED Helvetica Arabic, the current palette bridge, and canonical CTA decoration. Do not collapse it back to `reference` without browser-diffing content/runtime first; the two presentation modes do not currently produce identical enhanced content.
+- `/products` remains the legacy Products body inside the shared shell, but its root and form controls inherit the SWEED font. Purchase CTAs keep the existing canonical expanding-fill bridge; filters/categories remain purpose-specific controls.
+- `/crm-ai-demo` and `/midu-clone` now receive `LegacyHeader` + `LegacyFooter` at route level. Their local site-level headers/footers were removed/demoted while internal demo/section controls stay intact.
+- The global 404 state also receives `LegacyHeader` + `LegacyFooter` and keeps the canonical return action.
+- Final local Agent Browser verification: 26/26 public surfaces show shared header/footer, SWEED typography, and zero horizontal overflow. Changed-route 390×844 checks show 44×44 mobile menu controls and canonical 48px / 16px action geometry.
+- Fresh build at `b7db89a` exited 0 and generated 30 static pages. Focused shell/reference/button tests pass; full unit baseline is 161 pass / 7 unrelated pre-existing failures, and the spacing gate still reports unrelated Home/Articles/Services debt.
 
 - Shared navbar visual baseline is the approved compact SWEED header from `b8e245a`: 77px desktop header spacer, 76px nav, logo capped at 118px, compact nav spacing/type, logo physical left and primary action physical right.
 - Shared desktop/mobile navigation keeps seven items, including `اتصل بنا`; current routing may target homepage sections, but removing the visible contact item changes the approved navbar composition.

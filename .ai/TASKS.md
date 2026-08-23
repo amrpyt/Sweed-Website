@@ -1,25 +1,25 @@
 # Tasks
 
-Updated: 2026-08-22T20:16:00+03:00
+Updated: 2026-08-23T04:20:00+03:00
 
 ## Active
 
 ### SWEED-053 — Sitewide brand shell and action unification
 
-Status: in progress
+Status: completed
 Priority: critical
 Plan: `.ai/plans/2026-08-22-sitewide-brand-shell-unification.md`
 
 #### Acceptance Criteria
 
-- [ ] All 26 audited public surfaces use the approved shared navbar/footer where appropriate; no public route retains a duplicate prototype/global site nav or footer.
-- [ ] Portfolio and Offers preserve their approved reference content/layout/motion while using the shared SWEED shell and reference identity bridge.
-- [ ] Products content uses SWEED Helvetica Arabic and canonical purchase CTAs while preserving product filters/cards/behavior.
-- [ ] CRM demo and Midu clone keep their internal experiences but no longer own competing global site chrome.
-- [ ] 404 uses the shared SWEED header/footer and retains its current message/action.
-- [ ] Marketing CTAs follow DEC-015; tabs, filters, selectors, demo channels, and utility controls remain purpose-specific.
-- [ ] Changed routes pass desktop/mobile Agent Browser QA with zero horizontal overflow and no new broken interaction.
-- [ ] Focused tests, build, Vercel deployment, and production verification complete successfully; any unrelated pre-existing repo-wide check debt is reported separately.
+- [x] All 26 audited public surfaces use the approved shared navbar/footer where appropriate; no public route retains a duplicate prototype/global site nav or footer.
+- [x] Portfolio and Offers preserve their approved reference content/layout/motion while using the shared SWEED shell and identity bridge.
+- [x] Products content uses SWEED Helvetica Arabic and canonical purchase CTAs while preserving product filters/cards/behavior.
+- [x] CRM demo and Midu clone keep their internal experiences but no longer own competing global site chrome.
+- [x] 404 uses the shared SWEED header/footer and retains its current message/action.
+- [x] Marketing CTAs follow DEC-015; tabs, filters, selectors, demo channels, and utility controls remain purpose-specific.
+- [x] Changed routes pass desktop/mobile Agent Browser QA with zero horizontal overflow and no new broken interaction.
+- [x] Focused tests, production build, GitHub push, and Vercel deployment status verification completed; unrelated pre-existing repo-wide check debt is recorded separately. Exhaustive production Agent Browser traversal is externally limited by Vercel Security Checkpoint Code 21 on the VPS automation IP.
 
 #### Audit Evidence
 
@@ -30,6 +30,17 @@ Plan: `.ai/plans/2026-08-22-sitewide-brand-shell-unification.md`
 - `/midu-clone`: no shared header/footer; local experimental global nav/footer present; existing marketing actions already use canonical `ButtonLink`.
 - 404: no shared header/footer; return action already canonical.
 - Home, About, Services index, six service detail pages, Articles index, six article pages, Contact, FAQ, Privacy, and Terms all passed the shared-shell/SWEED-font desktop audit with zero horizontal overflow.
+
+#### Completion Evidence
+
+- Portfolio/Offers use `presentation="branded"`, which preserves the exact approved content/runtime while applying the shared SWEED shell and theme. Browser comparison kept the pre-change section and heading sets unchanged.
+- Final desktop Agent Browser matrix: 26/26 surfaces with shared header/footer, SWEED typography, and zero horizontal overflow.
+- Changed-route mobile matrix at 390×844: Portfolio, Offers, Products, CRM demo, Midu clone, and 404 all retain shared shell, zero overflow, and 44×44 menu controls.
+- Focused verification: 24 shell/reference/button tests + 3 targeted shared/CRM/Midu CTA tests passed with zero failures.
+- Full unit baseline: 161 pass / 7 pre-existing unrelated failures; this task introduced no new failing contract.
+- Fresh production build generated 30 static pages and exited 0.
+- `origin/main` fast-forwarded to `b7db89a`; Vercel commit status reached `success — Deployment has completed`.
+- Post-deploy browser automation verified the real Portfolio and Offers production pages before Vercel's anti-bot checkpoint blocked further automated traversal from the VPS IP. The checkpoint reports `Failed to verify your browser` Code 21 and is tracked as an external verification limitation, not an application failure.
 
 ### SWEED-052 — Restore approved navbar primary CTA
 

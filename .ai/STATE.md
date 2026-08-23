@@ -1,19 +1,21 @@
 # Current State
 
-Updated: 2026-08-22T20:24:00+03:00
-Git branch: `main` synchronized through isolated worktree
-Git HEAD: `86a4e43`
-Application commits: `f6d999c fix: restore approved navbar consultation CTA`, `86a4e43 fix: restore navbar contact item`
+Updated: 2026-08-23T04:20:00+03:00
+Git branch: `main` delivered from isolated detached worktree
+Git HEAD: `b7db89a`
+Application commits: `92d399f`, `35f6913`, `d2b6863`, `03e6c14`, `80994a8`; regression follow-up `b7db89a`
 Active Task: SWEED-053
 Active Plan: `.ai/plans/2026-08-22-sitewide-brand-shell-unification.md`
-Status: SWEED-053 in progress — public-route shell audit complete, implementation starting
+Status: SWEED-053 implementation and deployment complete; production browser automation is partially blocked by Vercel Security Checkpoint Code 21
 
 ## Delivery Update
 
-- Pushed `main` to GitHub through `86a4e43`; the application repair is `f6d999c` plus the restored contact item in `86a4e43`.
-- Vercel project `sweed-website` automatically deployed `86a4e43` successfully.
+- Pushed `main` to GitHub through `b7db89a`; `origin/main` fast-forwarded from `371c3ac` with no concurrent upstream commits or conflicts.
+- Vercel project `sweed-website` automatically deployed `b7db89a`; GitHub commit status reached `success — Deployment has completed`.
 - Production URL: `https://sweed-website.vercel.app`.
-- Production homepage navbar was browser-verified at 1440px desktop and 390px mobile after deployment.
+- Local final Agent Browser matrix passed all 26 audited public surfaces: shared header/footer, SWEED font, and zero horizontal overflow.
+- Local changed-route mobile QA passed Portfolio, Offers, Products, CRM demo, Midu clone, and 404 at 390×844 with 44×44 mobile menu controls and canonical CTA geometry.
+- Production Agent Browser reached the real deployed Portfolio and Offers pages before Vercel began returning `Vercel Security Checkpoint` / `Failed to verify your browser` Code 21 to the automation session. This is an external anti-bot limitation, not an application render failure; authenticated GitHub deployment status remains successful.
 - GitHub→Vercel automatic deployment is active for the current project.
 - Vercel currently has no project environment variables configured; static/public routes build and serve successfully.
 
@@ -23,10 +25,19 @@ Unify public route chrome, typography, and marketing actions without regressing 
 
 ## In Progress
 
-- Agent Browser desktop audit completed across 26 public surfaces.
-- Shell/identity fixes are required for Portfolio, Offers, Products, CRM demo, Midu clone, and the 404 surface; the remaining audited public routes already use the shared SWEED shell and font contract.
+- No implementation work remains for SWEED-053.
+- External limitation: Vercel Security Checkpoint Code 21 prevents exhaustive post-deploy Agent Browser traversal from the VPS IP on some production paths.
 
 ## Completed Recently
+
+- Completed SWEED-053 through `b7db89a`: unified site chrome/identity across Portfolio, Offers, Products, CRM demo, Midu clone, and 404 without replacing page-specific content or interaction models.
+- Portfolio and Offers now use a `branded` legacy presentation mode: their approved exact content/runtime is preserved while prototype global chrome is stripped and the shared SWEED header/footer, font/theme bridge, and canonical action system are applied.
+- Products keeps its existing filters/cards/runtime while the body, headings, selects, and purchase actions inherit SWEED Helvetica Arabic; purchase CTAs retain the canonical expanding-fill mechanism.
+- CRM demo and Midu clone no longer own competing global site headers/footers; their internal selectors, demo controls, pricing/body composition, and CTA behavior remain intact.
+- 404 now renders inside the shared SWEED header/footer and keeps the existing message/return action.
+- Final focused shell/reference/button verification: 24/24 core tests plus 3/3 targeted CTA tests passed. Full unit baseline is 161 pass / 7 known unrelated failures; the seven failing contracts live outside the changed behavior. TypeScript and mobile-first checks passed; ESLint has zero errors and one pre-existing Services warning.
+- Fresh production build at `b7db89a` exited 0 and generated all 30 static pages. `bun run check` remains blocked at pre-existing spacing debt in unrelated Home/Articles/Services CSS.
+- Impeccable detector reported five warnings in `legacy-page.tsx`; all five warning snippets (`font-family: Arial` and `transition: width`) already exist verbatim in `origin/main`, so no approved runtime behavior was changed to silence pre-existing detector debt.
 
 - Completed SWEED-052 through `86a4e43`: restored the approved compact shared navbar over latest upstream while preserving all newer About/Services/Portfolio/Offers work.
 - Root cause: upstream `Unify navigation with homepage design` commits changed the shared header from 77px/76px geometry to 118px, enlarged logo/nav spacing/type, and replaced the canonical SWEED action with a custom pink pill.

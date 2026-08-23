@@ -418,7 +418,7 @@ const aboutExactPresentationOverride = `
     color: transparent;
     background:
       linear-gradient(180deg, rgba(38, 27, 62, 0), rgba(38, 27, 62, .42)),
-      url("/images/hero/businessman-laptop-standing.jpg") center / cover no-repeat;
+      url("/images/hero/mohamed-sweed-portrait.jpeg") center / cover no-repeat;
     box-shadow: 0 14px 28px rgba(38, 27, 62, .18);
   }
 
@@ -579,6 +579,12 @@ const aboutExactPresentationOverride = `
     background:
       linear-gradient(180deg, rgba(38, 27, 62, 0), rgba(38, 27, 62, .36)),
       url("/images/hero/businessman-laptop-standing.jpg") center / cover no-repeat;
+  }
+
+  .sweed-exact-reference-page .swiper-slide:first-child .member .photo {
+    background:
+      linear-gradient(180deg, rgba(38, 27, 62, 0), rgba(38, 27, 62, .3)),
+      url("/images/hero/mohamed-sweed-portrait.jpeg") center / cover no-repeat;
   }
 
   .sweed-exact-reference-page .member,
@@ -2557,7 +2563,15 @@ const aboutLiveLayoutRuntime = `
     slider.dataset.sweedMarqueeReady = "true";
   };
 
+  const moveTeamBeforeWhy = () => {
+    const team = document.querySelector("#team");
+    const why = document.querySelector("#why");
+    if (!team || !why || team.parentElement !== why.parentElement) return;
+    why.parentElement.insertBefore(team, why);
+  };
+
   const run = () => {
+    moveTeamBeforeWhy();
     prepareAlliances();
     preparePartners();
     prepareTestimonials();

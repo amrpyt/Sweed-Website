@@ -32,7 +32,9 @@ const exactReferenceNavigationRuntime = `
   });
 
   document.querySelectorAll("nav .btn").forEach((link) => {
-    link.setAttribute("href", "/contact");
+    link.setAttribute("href", "/sweed-company-catalog.pdf");
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noreferrer");
     link.textContent = "حمل الكتالوج";
   });
 })();

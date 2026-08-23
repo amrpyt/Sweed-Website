@@ -184,7 +184,7 @@ const portfolioExactRuntime = `
     track.className = "consult-card-track";
     cards.forEach((card) => track.appendChild(card));
     cards.forEach((card) => {
-      const duplicate = card.cloneNode(true) as HTMLElement;
+      const duplicate = card.cloneNode(true);
       duplicate.setAttribute("aria-hidden", "true");
       duplicate.querySelectorAll("a").forEach((link) => link.setAttribute("tabindex", "-1"));
       track.appendChild(duplicate);

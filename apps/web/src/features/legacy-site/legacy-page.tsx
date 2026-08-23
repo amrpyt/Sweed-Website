@@ -2584,18 +2584,18 @@ const aboutLiveLayoutRuntime = `
     applyPortrait(document.querySelector("#team .swiper-slide:first-child .member .photo"), "محمد سويد — المؤسس والمدير التنفيذي");
   };
 
-  const moveTeamAndPartnersBeforeWhy = () => {
+  const moveAboutSectionsIntoOrder = () => {
     const why = document.querySelector("#why");
     if (!why?.parentElement) return;
     const parent = why.parentElement;
-    [document.querySelector("#team"), document.querySelector("#partners")].forEach((section) => {
+    ["#team", "#partners", "#alliances"].map((selector) => document.querySelector(selector)).forEach((section) => {
       if (section?.parentElement === parent) parent.insertBefore(section, why);
     });
   };
 
   const run = () => {
     prepareFounderPortrait();
-    moveTeamAndPartnersBeforeWhy();
+    moveAboutSectionsIntoOrder();
     prepareAlliances();
     preparePartners();
     prepareTestimonials();

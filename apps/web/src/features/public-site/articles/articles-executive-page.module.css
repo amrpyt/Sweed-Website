@@ -78,9 +78,15 @@
   line-height: var(--type-lead-leading);
 }
 
+.carouselStage {
+  position: relative;
+  min-width: 0;
+}
+
 .carouselViewport {
   width: 100%;
   overflow: hidden;
+  direction: ltr;
   padding-block: 0.35rem 1.25rem;
   mask-image: linear-gradient(90deg, transparent 0, black 2.5rem, black calc(100% - 2.5rem), transparent 100%);
 }
@@ -98,8 +104,68 @@
   animation-duration: 27s;
 }
 
-.carouselViewport:hover .carouselTrack {
+.articleCarouselSection[data-sets="3"] .carouselTrack {
+  animation-name: articles-carousel-rtl-three-sets;
+}
+
+.carouselStage:hover .carouselTrack {
   animation-play-state: paused;
+}
+
+.carouselControls {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+}
+
+.carouselArrow {
+  position: absolute;
+  inset-block-start: 50%;
+  display: grid;
+  width: 3.15rem;
+  height: 3.15rem;
+  padding: 0;
+  place-items: center;
+  pointer-events: auto;
+  color: var(--color-accent-strong);
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0.75rem 1.8rem color-mix(in srgb, var(--color-accent-strong) 18%, transparent);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    color var(--motion-fast),
+    background var(--motion-fast),
+    border-color var(--motion-fast),
+    transform var(--motion-fast);
+}
+
+.carouselArrow:hover,
+.carouselArrow:focus-visible {
+  color: var(--color-panel);
+  background: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.carouselArrow:focus-visible {
+  outline: 0.18rem solid color-mix(in srgb, var(--color-accent) 42%, transparent);
+  outline-offset: 0.18rem;
+}
+
+.carouselArrow span {
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.carouselArrowRight {
+  inset-inline-start: 0.4rem;
+}
+
+.carouselArrowLeft {
+  inset-inline-end: 0.4rem;
 }
 
 .carouselCard {
@@ -196,6 +262,12 @@
   }
 }
 
+@keyframes articles-carousel-rtl-three-sets {
+  to {
+    transform: translateX(calc(-33.333333% - 0.333333rem));
+  }
+}
+
 @media (max-width: 47.99rem) {
   .carouselViewport {
     mask-image: none;
@@ -204,6 +276,18 @@
   .carouselCard {
     width: 82vw;
     flex-basis: 82vw;
+  }
+
+  .carouselArrow {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .carouselHeader p {
+    max-width: none;
+    white-space: nowrap;
   }
 }
 

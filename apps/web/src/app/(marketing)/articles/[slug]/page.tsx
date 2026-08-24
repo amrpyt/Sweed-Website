@@ -27,10 +27,13 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
   return {
     ...metadata,
+    keywords: article.tags,
     openGraph: {
       ...metadata.openGraph,
       type: "article",
       publishedTime: article.publishedAt,
+      authors: article.author?.name ? [article.author.name] : undefined,
+      tags: article.tags,
     },
   };
 }

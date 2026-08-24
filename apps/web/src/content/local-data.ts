@@ -1,4 +1,5 @@
 import type { Article, FAQGroup, Offer, PortfolioItem, Product, Service, SiteSettings } from "./types";
+import { adsWithoutReturnArticleBody } from "./ads-without-return-article";
 
 export const siteSettings: SiteSettings = {
   brandName: "SWEED",
@@ -242,32 +243,22 @@ export const articles: Article[] = [
   },
   {
     slug: "ads-without-return",
-    title: "بتصرف على الإعلانات ومفيش عائد؟ دي أشهر 3 أسباب",
-    summary: "قبل ما تزود الميزانية أو تغير الوكالة، راجع الهدف والجمهور والقياس.",
+    title: "بتصرف على الإعلانات ومفيش عائد؟ الدليل الكامل لتشخيص وإصلاح الحملة",
+    summary: "دليل عملي يربط الإعلان بالعرض والصفحة والمتابعة والقياس، عشان تحدد مكان التسريب وتصلح العائد قبل ما تزود الميزانية.",
     category: "التسويق الرقمي",
     publishedAt: "2026-07-18",
-    readingTime: "5 دقائق",
-    body: [
-      {
-        id: "goal",
-        title: "الهدف مش محدد",
-        summary: "الحملة اللي بتحاول تعمل وعي ومبيعات ورسائل في نفس الوقت غالبًا مش هتديك قراءة واضحة.",
-      },
-      {
-        id: "audience",
-        title: "الجمهور واسع أو غير مناسب",
-        summary: "الاستهداف الصح بيبدأ من فهم مين عنده المشكلة ومين جاهز ياخد خطوة فعلية.",
-      },
-      {
-        id: "measurement",
-        title: "القياس واقف عند النقرات",
-        summary: "لازم تربط الإعلان بالطلب المؤهل والبيع، مش بعدد المشاهدات أو الرسائل بس.",
-      },
-    ],
+    readingTime: "24 دقيقة",
+    body: adsWithoutReturnArticleBody,
     seo: {
-      title: "3 أسباب لضعف عائد الإعلانات",
-      description: "راجع الهدف والجمهور والقياس قبل زيادة ميزانية الإعلانات.",
-      image: "/images/hero/entrepreneur-laptop-office.jpg",
+      title: "ضعف عائد الإعلانات: دليل التشخيص والإصلاح",
+      description: "دليل عملي شامل لتشخيص ضعف عائد الإعلانات، من الهدف والجمهور والعرض إلى صفحة الهبوط والتتبع والمبيعات، مع أمثلة وخطة تنفيذ خلال 30 يومًا.",
+      image: "/images/articles/latest/ads.webp",
+    },
+    tags: ["عائد الإعلانات", "قياس التحويل", "Google Ads", "Meta Ads", "تحسين الحملات", "التسويق الرقمي"],
+    author: {
+      name: "فريق سويد",
+      role: "استشارات وتسويق وقياس أداء",
+      bio: "فريق يجمع بين الاستراتيجية والمحتوى والإعلانات والقياس، ويحوّل بيانات الحملات إلى قرارات عملية قابلة للتنفيذ والتحسين.",
     },
     order: 9,
   },
@@ -419,4 +410,3 @@ export const faqGroups: FAQGroup[] = [
     order: 2,
   },
 ];
-

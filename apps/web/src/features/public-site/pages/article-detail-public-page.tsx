@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
-import type { Article } from "@/content/types";
+import type { Article, ArticleContentBlock } from "@/content/types";
 import { articlesPageSource } from "@/content/public-site/articles-page";
 import { createArticleJsonLd, getArticleDetailModel } from "./article-detail-model";
 import { ArticleReadingProgress } from "./article-reading-progress";
@@ -44,6 +44,106 @@ function getAuthorInitial(article: Article) {
   return (article.author?.name ?? "سويد").trim().slice(0, 1);
 }
 
+function ArticleContentBlocks({ blocks }: { blocks: readonly ArticleContentBlock[] }) {
+  return (
+    <div className={styles.richContent}>
+      {blocks.map((block, index) => {
+        const key = `${block.type}-${index}`;
+
+        if (block.type === "paragraph") return <p key={key}>{block.text}</p>;
+        if (block.type === "subheading") return <h3 id={block.id} key={key}>{block.title}</h3>;
+        if (block.type === "list") {
+          const List = block.style === "number" ? "ol" : "ul";
+          return <List key={key}>{block.items.map((item) => <li key={item}>{item}</li>)}</List>;
+        }
+        if (block.type === "quote") {
+          return (
+            <blockquote key={key}>
+              <p>{block.text}</p>
+              {block.attribution ? <cite>{block.attribution}</cite> : null}
+            </blockquote>
+          );
+        }
+        if (block.type === "highlight") {
+          return (
+            <aside className={styles.highlightBox} key={key}>
+              <strong>{block.title}</strong>
+              <p>{block.text}</p>
+            </aside>
+          );
+        }
+        if (block.type === "image") {
+          return (
+            <figure className={styles.contentImage} key={key}>
+              <Image src={block.src} alt={block.alt} fill sizes="(min-width: 64rem) 62rem, 100vw" />
+              {block.caption ? <figcaption>{block.caption}</figcaption> : null}
+            </figure>
+          );
+        }
+        if (block.type === "video") {
+          return (
+            <figure className={styles.videoBlock} key={key}>
+              <div>
+                <iframe
+                  src={block.embedUrl}
+                  title={block.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              <figcaption><strong>{block.title}</strong>{block.caption ? <span>{block.caption}</span> : null}</figcaption>
+            </figure>
+          );
+        }
+        if (block.type === "table") {
+          return (
+            <figure className={styles.tableBlock} key={key}>
+              <div>
+                <table>
+                  <thead><tr>{block.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr></thead>
+                  <tbody>{block.rows.map((row, rowIndex) => <tr key={`${key}-${rowIndex}`}>{row.map((cell, cellIndex) => <td key={`${key}-${rowIndex}-${cellIndex}`}>{cell}</td>)}</tr>)}</tbody>
+                </table>
+              </div>
+              {block.caption ? <figcaption>{block.caption}</figcaption> : null}
+            </figure>
+          );
+        }
+        if (block.type === "case-study") {
+          return (
+            <aside className={styles.caseStudy} key={key}>
+              <p>مثال تطبيقي</p>
+              <h3>{block.title}</h3>
+              <dl>
+                <div><dt>التحدي</dt><dd>{block.challenge}</dd></div>
+                <div><dt>التدخل</dt><dd>{block.action}</dd></div>
+                <div><dt>النتيجة</dt><dd>{block.result}</dd></div>
+              </dl>
+            </aside>
+          );
+        }
+        if (block.type === "links") {
+          return (
+            <aside className={styles.resourceLinks} key={key}>
+              <h3>{block.title}</h3>
+              <ul>
+                {block.items.map((item) => (
+                  <li key={item.href}>
+                    <a href={item.href} target="_blank" rel="noreferrer">{item.label}<span aria-hidden="true">↗</span></a>
+                    {item.description ? <p>{item.description}</p> : null}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          );
+        }
+
+        return null;
+      })}
+    </div>
+  );
+}
+
 export function ArticleDetailPublicPage({ article, allArticles }: { article: Article; allArticles: readonly Article[] }) {
   const model = getArticleDetailModel(article, allArticles);
   const schema = createArticleJsonLd(article);
@@ -51,6 +151,7 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
   const authorName = article.author?.name ?? "فريق سويد";
   const authorRole = article.author?.role ?? "من دفتر البوصلة";
   const hasInlineVisual = article.body.length > 1;
+  const hasExplicitRichVisuals = article.body.some((section) => section.blocks?.some((block) => block.type === "image" || block.type === "video"));
 
   return (
     <PublicPageShell page="article-detail" sectionIds={sectionIds} showBreadcrumb={false}>
@@ -129,7 +230,9 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
                     </ul>
                   ) : null}
 
-                  {(hasInlineVisual && index === Math.floor((article.body.length - 1) / 2)) || (!hasInlineVisual && index === 0) ? (
+                  {section.blocks?.length ? <ArticleContentBlocks blocks={section.blocks} /> : null}
+
+                  {!hasExplicitRichVisuals && ((hasInlineVisual && index === Math.floor((article.body.length - 1) / 2)) || (!hasInlineVisual && index === 0)) ? (
                     <figure className={styles.inlineVisual}>
                       <Image src={getArticleVisual(article, "mixed") ?? article.seo.image ?? ""} alt="" fill sizes="(min-width: 64rem) 62rem, 100vw" />
                       <figcaption>لما الصورة تبقى أوضح، القرار بيبقى أسهل.</figcaption>

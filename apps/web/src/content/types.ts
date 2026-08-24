@@ -9,12 +9,25 @@ export type MediaAsset = {
   alt: string;
 };
 
+export type ArticleContentBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "subheading"; id?: string; title: string }
+  | { type: "list"; style?: "bullet" | "number"; items: string[] }
+  | { type: "quote"; text: string; attribution?: string }
+  | { type: "highlight"; title: string; text: string }
+  | { type: "image"; src: string; alt: string; caption?: string }
+  | { type: "video"; title: string; embedUrl: string; caption?: string }
+  | { type: "table"; caption?: string; headers: string[]; rows: string[][] }
+  | { type: "case-study"; title: string; challenge: string; action: string; result: string }
+  | { type: "links"; title: string; items: Array<{ label: string; href: string; description?: string }> };
+
 export type ContentSection = {
   id: string;
   eyebrow?: string;
   title: string;
   summary: string;
   items?: string[];
+  blocks?: ArticleContentBlock[];
 };
 
 export type LinkTarget = {

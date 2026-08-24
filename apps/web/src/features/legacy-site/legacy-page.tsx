@@ -65,7 +65,11 @@ const portfolioExactRuntime = `
       ".sweed-reference-page #marketing-work .marketing-project-action-row { position: absolute; inset-inline: clamp(1.25rem, 2.7vw, 2.1rem); bottom: clamp(1.25rem, 2.7vw, 2.1rem); display: flex !important; justify-content: flex-start; margin: 0 !important; }",
       ".sweed-reference-page #marketing-work .mkt-proj .btn { width: 17.5rem !important; min-width: 17.5rem !important; max-width: 100% !important; min-height: 3.25rem !important; align-self: auto !important; justify-self: auto !important; overflow: hidden !important; white-space: nowrap !important; }",
       ".sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { display: inline-grid !important; grid-template-columns: 2.75rem minmax(0, 1fr) !important; width: max-content !important; max-width: 100% !important; min-width: 17.5rem !important; align-self: center !important; justify-self: center !important; overflow: visible !important; white-space: nowrap !important; }",
-      ".sweed-reference-page #media-work .sec-lead { max-width: none !important; white-space: nowrap; font-size: clamp(.78rem, 1vw, 1rem) !important; }",
+      ".sweed-reference-page #media-work .portfolio-film-lead { width: 100%; max-width: none !important; margin-inline: auto !important; white-space: nowrap; font-size: clamp(.78rem, 1vw, 1rem) !important; text-align: center !important; text-align-last: center !important; }",
+      ".sweed-reference-page #media-work .film-tabs { justify-content: center; gap: .55rem; margin-top: 1rem !important; }",
+      ".sweed-reference-page #media-work .frames { gap: .65rem !important; margin-top: .65rem !important; }",
+      ".sweed-reference-page #media-work .frame { display: flex !important; height: 4rem !important; min-height: 4rem !important; align-items: center; justify-content: center; gap: .45rem; padding: .45rem .65rem !important; }",
+      ".sweed-reference-page #media-work .frame span { display: inline-grid; width: 1.65rem !important; height: 1.65rem !important; flex: 0 0 1.65rem; place-items: center; margin: 0 !important; font-size: .7rem !important; }",
       ".sweed-reference-page .portfolio-service-link { margin: 1.45rem auto 0 !important; }",
       ".sweed-reference-page #web-work .ux-notes .btn { margin: 1.2rem auto 0 !important; }",
       ".sweed-reference-page .portfolio-contact-actions > .container > div { display: flex !important; width: 100%; align-items: center; justify-content: center; }",
@@ -80,7 +84,7 @@ const portfolioExactRuntime = `
       ".sweed-reference-page .portfolio-system-dots { position: absolute; z-index: 3; right: 1.35rem; bottom: 1rem; display: flex; gap: .35rem; direction: ltr; }",
       ".sweed-reference-page .portfolio-system-dots i { width: .5rem; height: .5rem; border-radius: 50%; background: rgba(255,255,255,.45); transition: width .28s ease, background .28s ease; }",
       ".sweed-reference-page .portfolio-system-dots i.active { width: 1.35rem; border-radius: 999px; background: #ed2062; }",
-      "@media (max-width: 48rem) { .sweed-reference-page #media-work .sec-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #marketing-work .mkt-grid { grid-template-columns: 1fr !important; } .sweed-reference-page #marketing-work .mkt .phone { width: min(100%, 16rem); margin-inline: auto; } .sweed-reference-page #marketing-work .mkt-proj.show { height: auto; min-height: 0; padding-bottom: 1.25rem !important; } .sweed-reference-page #marketing-work .marketing-project-action-row { position: static; margin-top: 1rem !important; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { width: min(100%, 17.5rem) !important; min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
+      "@media (max-width: 48rem) { .sweed-reference-page #media-work .portfolio-film-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #media-work .film-tabs { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); } .sweed-reference-page #media-work .film-tab { width: 100%; } .sweed-reference-page #media-work .frames { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .sweed-reference-page #marketing-work .mkt-grid { grid-template-columns: 1fr !important; } .sweed-reference-page #marketing-work .mkt .phone { width: min(100%, 16rem); margin-inline: auto; } .sweed-reference-page #marketing-work .mkt-proj.show { height: auto; min-height: 0; padding-bottom: 1.25rem !important; } .sweed-reference-page #marketing-work .marketing-project-action-row { position: static; margin-top: 1rem !important; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { width: min(100%, 17.5rem) !important; min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
       "@media (prefers-reduced-motion: reduce) { .sweed-reference-page .portfolio-system-slide { transition: none; } }"
     ].join("\\n");
     document.head.appendChild(style);
@@ -228,8 +232,83 @@ const portfolioExactRuntime = `
     const section = document.getElementById("media-work");
     if (!section || section.dataset.sweedShortened === "true") return;
     section.dataset.sweedShortened = "true";
-    const lead = section.querySelector(".sec-lead");
-    if (lead) lead.textContent = "السيكشن بيعرض الفيلم كفكرة ورسالة وإيقاع — كل مشروع بيبدأ بلقطة قوية وبعدها بيكشف السكربت والهدف.";
+    const lead = section.querySelector(".sec-lead") ?? section.querySelector(":scope > .container > p");
+    if (lead) {
+      lead.classList.add("portfolio-film-lead");
+      lead.textContent = "السيكشن بيعرض الفيلم كفكرة ورسالة وإيقاع — كل مشروع بيبدأ بلقطة قوية وبعدها بيكشف السكربت والهدف.";
+    }
+
+    const tabs = section.querySelector(".film-tabs");
+    const extraProjects = [
+      {
+        key: "elmaher",
+        label: "الماهر جروب",
+        caption: "قصة تطور المشروع — من الأرض لخطوة تنفيذ موثقة",
+        tag: "تطوير عقاري",
+        challenge: "تحويل تطورات التنفيذ والقرارات الرسمية لمحتوى يرفع الثقة ويخدم قرار الشراء.",
+        points: ["لقطات موقع وتحديثات تنفيذ مرتبطة برسالة واضحة", "مونتاج سريع يوازن بين المعلومة والمشهد"],
+        proof: "كل فيديو يوثق خطوة فعلية ويقود الجمهور للخطوة التالية"
+      },
+      {
+        key: "aqarshop",
+        label: "عقار شوب",
+        caption: "محتوى عقاري يختصر القرار — ريلز 9:16",
+        tag: "منصة عقارية",
+        challenge: "شرح الاختيارات العقارية بلغة سريعة وواضحة من غير تعقيد أو تفاصيل تشتت المشاهد.",
+        points: ["هوك يبدأ بسؤال العميل الحقيقي", "عرض المعلومة والاختيار المناسب في وقت قصير"],
+        proof: "محتوى يربط الوضوح بسرعة الوصول للعقار المناسب"
+      },
+      {
+        key: "sweed",
+        label: "سويد",
+        caption: "محتوى استشاري يحول الفكرة لقرار",
+        tag: "استشارات وأعمال",
+        challenge: "تقديم الأفكار الإدارية والتسويقية بصورة بسيطة تحافظ على قيمة الخبرة وتشد الانتباه.",
+        points: ["افتتاحية مباشرة من مشكلة حقيقية", "أمثلة عملية وخاتمة تقود لقرار واضح"],
+        proof: "فيديو تعليمي قصير يحتفظ بنبرة سويد الاستشارية"
+      }
+    ];
+
+    const captions = {
+      sphinx: "فيلم تحالف استراتيجي — التشغيل بالنقر، من غير صوت تلقائي",
+      snapv: "محتوى قصير يغيّر السلوك — ريلز 9:16",
+      boubyanv: "قصة مشروع قبل ظهور المباني"
+    };
+
+    extraProjects.forEach((project) => {
+      if (!tabs?.querySelector('[data-f="' + project.key + '"]')) {
+        const tab = document.createElement("button");
+        tab.className = "film-tab";
+        tab.type = "button";
+        tab.dataset.f = project.key;
+        tab.textContent = project.label;
+        tabs.appendChild(tab);
+      }
+
+      if (!section.querySelector("#f-" + project.key)) {
+        const panel = document.createElement("div");
+        panel.className = "film-info";
+        panel.id = "f-" + project.key;
+        panel.innerHTML = '<span class="tag dark">' + project.tag + '</span><div class="challenge"><b>التحدي</b>' + project.challenge + '</div><ul style="list-style:none;font-size:.88rem;color:rgba(255,255,255,.8)">' + project.points.map((point) => '<li style="padding-right:18px;position:relative;margin-bottom:5px"><span style="position:absolute;right:0;color:var(--fuchsia)">—</span> ' + point + '</li>').join("") + '</ul><div class="proof" style="color:#fff">' + project.proof + '</div>';
+        section.querySelector(".film-info:last-of-type")?.after(panel);
+      }
+
+      captions[project.key] = project.caption;
+    });
+
+    section.querySelectorAll(".film-tab").forEach((tab) => {
+      if (tab.dataset.sweedFilmBound === "true") return;
+      tab.dataset.sweedFilmBound = "true";
+      tab.addEventListener("click", () => {
+        section.querySelectorAll(".film-tab").forEach((item) => item.classList.remove("active"));
+        section.querySelectorAll(".film-info").forEach((panel) => panel.classList.remove("show"));
+        tab.classList.add("active");
+        section.querySelector("#f-" + tab.dataset.f)?.classList.add("show");
+        const caption = section.querySelector("#filmCap");
+        if (caption) caption.textContent = captions[tab.dataset.f] ?? "مشروع محتوى مرئي";
+      });
+    });
+
     section.querySelectorAll(".film-info ul li:nth-child(n+3)").forEach((item) => item.remove());
     section.querySelectorAll(".frame span").forEach((icon, index) => {
       icon.textContent = String(index + 1).padStart(2, "0");

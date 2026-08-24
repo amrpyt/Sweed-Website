@@ -16,6 +16,212 @@
   }
 }
 
+.articleCarouselSection {
+  scroll-margin-block-start: var(--cds-spacing-13);
+  padding-block: clamp(3.25rem, 5vw, 5rem);
+  overflow: hidden;
+  background: var(--color-surface);
+  border-block-start: 1px solid var(--color-line);
+}
+
+.articleCarouselAlternate {
+  background: var(--color-panel);
+}
+
+.carouselInner {
+  display: grid;
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+  width: var(--sweed-container);
+  margin-inline: auto;
+}
+
+.carouselHeader {
+  display: grid;
+  justify-items: start;
+  gap: 0.7rem;
+  text-align: right;
+}
+
+.carouselHeader h2,
+.carouselHeader p,
+.carouselCard h3,
+.carouselCard p {
+  margin: 0;
+}
+
+.carouselHeader h2 {
+  position: relative;
+  padding-block-end: 1rem;
+  color: var(--color-ink);
+  font-size: var(--type-section-title-size);
+  font-weight: var(--font-weight-display);
+  line-height: var(--type-title-leading);
+  letter-spacing: -0.02em;
+}
+
+.carouselHeader h2::after {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  width: clamp(4.5rem, 7vw, 6.4rem);
+  height: 0.2rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-accent-strong) 0 28%, var(--color-accent) 28% 72%, var(--color-accent-strong) 72% 100%);
+  content: "";
+}
+
+.carouselHeader p {
+  max-width: var(--measure-lead);
+  color: var(--color-muted);
+  font-size: var(--type-lead-size);
+  font-weight: var(--font-weight-body);
+  line-height: var(--type-lead-leading);
+}
+
+.carouselViewport {
+  width: 100%;
+  overflow: hidden;
+  padding-block: 0.35rem 1.25rem;
+  mask-image: linear-gradient(90deg, transparent 0, black 2.5rem, black calc(100% - 2.5rem), transparent 100%);
+}
+
+.carouselTrack {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  direction: ltr;
+  animation: articles-carousel-rtl 42s linear infinite;
+  will-change: transform;
+}
+
+.articleCarouselSection[data-items="3"] .carouselTrack {
+  animation-duration: 27s;
+}
+
+.carouselViewport:hover .carouselTrack {
+  animation-play-state: paused;
+}
+
+.carouselCard {
+  display: grid;
+  width: clamp(18.5rem, 29vw, 26rem);
+  min-height: 34rem;
+  flex: 0 0 clamp(18.5rem, 29vw, 26rem);
+  grid-template-rows: 14rem minmax(0, 1fr);
+  overflow: hidden;
+  direction: rtl;
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--shape-feature);
+  box-shadow: 0 0.8rem 2rem color-mix(in srgb, var(--color-accent-strong) 10%, transparent);
+}
+
+.articleCarouselAlternate .carouselCard {
+  background: var(--color-surface);
+}
+
+.carouselCardMedia {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-accent-strong) 8%, var(--color-panel));
+}
+
+.carouselCardMedia img {
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.carouselCard:hover .carouselCardMedia img {
+  transform: scale(1.035);
+}
+
+.carouselCardCopy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.carouselCardCategory {
+  width: fit-content;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-panel));
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--type-small-leading);
+}
+
+.carouselCard h3 {
+  color: var(--color-ink);
+  font-size: var(--type-card-title-size);
+  font-weight: var(--font-weight-display);
+  line-height: var(--type-title-leading);
+  text-wrap: balance;
+}
+
+.carouselCard p {
+  color: var(--color-muted);
+  font-size: var(--type-body-size);
+  font-weight: var(--font-weight-body);
+  line-height: var(--type-body-leading);
+  text-align: justify;
+  text-wrap: pretty;
+}
+
+.carouselCardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--inline-sm);
+  margin-block-start: auto;
+  padding-block-start: 0.75rem;
+  color: var(--color-muted);
+  border-block-start: 1px solid var(--color-line);
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-leading);
+}
+
+.articleCardAction {
+  width: 100%;
+  margin-block-start: 0.15rem;
+}
+
+@keyframes articles-carousel-rtl {
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .carouselViewport {
+    mask-image: none;
+  }
+
+  .carouselCard {
+    width: 82vw;
+    flex-basis: 82vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carouselViewport {
+    overflow-x: auto;
+  }
+
+  .carouselTrack {
+    animation: none;
+    transform: none;
+  }
+
+  .carouselCardMedia img {
+    transition: none;
+  }
+}
+
 .pathsSection,
 .lessonsSection,
 .relationship,

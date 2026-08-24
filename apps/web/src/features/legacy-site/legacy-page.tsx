@@ -57,11 +57,14 @@ const portfolioExactRuntime = `
     const style = document.createElement("style");
     style.id = "sweed-portfolio-polish";
     style.textContent = [
-      ".sweed-reference-page #marketing-work .mkt-grid { align-items: stretch !important; }",
-      ".sweed-reference-page #marketing-work .mkt-proj.show { display: grid !important; justify-items: center !important; align-content: start !important; text-align: center !important; }",
-      ".sweed-reference-page #marketing-work .mkt-proj :is(h3, .challenge, ul, li, .status, .tag, .proof) { margin-inline: auto !important; text-align: center !important; text-align-last: center !important; }",
-      ".sweed-reference-page #marketing-work .mkt-proj ul { width: min(100%, 42rem); justify-items: center; padding-inline: 0 !important; }",
-      ".sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { display: inline-grid !important; grid-template-columns: 2.75rem minmax(0, 1fr) !important; width: max-content !important; max-width: 100% !important; min-width: 17.5rem !important; align-self: center !important; justify-self: center !important; overflow: visible !important; white-space: nowrap !important; }",
+      ".sweed-reference-page #marketing-work .mkt-grid { grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr) !important; align-items: stretch !important; gap: clamp(1.4rem, 3.5vw, 3rem) !important; }",
+      ".sweed-reference-page #marketing-work .mkt-grid > div:last-child { display: flex; min-width: 0; flex-direction: column; }",
+      ".sweed-reference-page #marketing-work .mkt-proj.show { display: flex !important; min-height: 25rem; flex: 1; flex-direction: column; align-items: stretch !important; text-align: right !important; }",
+      ".sweed-reference-page #marketing-work .mkt-proj :is(h3, .challenge, ul, li, .status, .tag, .proof) { margin-inline: 0 !important; text-align: right !important; text-align-last: right !important; }",
+      ".sweed-reference-page #marketing-work .mkt-proj ul { width: 100% !important; justify-items: stretch; padding-inline: 0 !important; }",
+      ".sweed-reference-page #marketing-work .marketing-project-action-row { display: flex !important; width: 100%; justify-content: flex-start; margin-top: auto !important; padding-top: 1rem; }",
+      ".sweed-reference-page #marketing-work .mkt-proj .btn { width: 17.5rem !important; min-width: 17.5rem !important; max-width: 100% !important; min-height: 3.25rem !important; align-self: auto !important; justify-self: auto !important; overflow: hidden !important; white-space: nowrap !important; }",
+      ".sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { display: inline-grid !important; grid-template-columns: 2.75rem minmax(0, 1fr) !important; width: max-content !important; max-width: 100% !important; min-width: 17.5rem !important; align-self: center !important; justify-self: center !important; overflow: visible !important; white-space: nowrap !important; }",
       ".sweed-reference-page #media-work .sec-lead { max-width: none !important; white-space: nowrap; font-size: clamp(.78rem, 1vw, 1rem) !important; }",
       ".sweed-reference-page .portfolio-service-link { margin: 1.45rem auto 0 !important; }",
       ".sweed-reference-page #web-work .ux-notes .btn { margin: 1.2rem auto 0 !important; }",
@@ -77,7 +80,7 @@ const portfolioExactRuntime = `
       ".sweed-reference-page .portfolio-system-dots { position: absolute; z-index: 3; right: 1.35rem; bottom: 1rem; display: flex; gap: .35rem; direction: ltr; }",
       ".sweed-reference-page .portfolio-system-dots i { width: .5rem; height: .5rem; border-radius: 50%; background: rgba(255,255,255,.45); transition: width .28s ease, background .28s ease; }",
       ".sweed-reference-page .portfolio-system-dots i.active { width: 1.35rem; border-radius: 999px; background: #ed2062; }",
-      "@media (max-width: 48rem) { .sweed-reference-page #media-work .sec-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
+      "@media (max-width: 48rem) { .sweed-reference-page #media-work .sec-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #marketing-work .mkt-grid { grid-template-columns: 1fr !important; } .sweed-reference-page #marketing-work .mkt .phone { width: min(100%, 16rem); margin-inline: auto; } .sweed-reference-page #marketing-work .mkt-proj.show { min-height: 0; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { width: min(100%, 17.5rem) !important; min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
       "@media (prefers-reduced-motion: reduce) { .sweed-reference-page .portfolio-system-slide { transition: none; } }"
     ].join("\\n");
     document.head.appendChild(style);
@@ -217,7 +220,7 @@ const portfolioExactRuntime = `
     section.querySelectorAll(".mkt-proj .challenge").forEach((item) => item.classList.add("portfolio-compact-copy"));
     section.querySelectorAll('a[href="/work/damer"], a[href="/work/boubyan"], a[href="/work/snap-shop"]').forEach((link) => {
       link.classList.add("portfolio-full-project-link");
-      link.textContent = "شوف المشروع كامل";
+      link.parentElement?.classList.add("marketing-project-action-row");
     });
   };
 

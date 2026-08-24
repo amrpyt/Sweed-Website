@@ -3,11 +3,13 @@ import type { Article, LinkTarget } from "@/content/types";
 import type { ArticlesPageSource } from "@/features/public-site/page-composers/types";
 
 export type KnowledgeCategoryId =
-  | "management-growth"
-  | "marketing-performance"
-  | "brand-identity"
-  | "content-advertising"
-  | "web-digital";
+  | "consulting"
+  | "branding"
+  | "digital-marketing"
+  | "visual-content"
+  | "advertising"
+  | "web-digital"
+  | "general";
 
 export type KnowledgeContentType = "article" | "guide" | "case-study";
 
@@ -17,12 +19,12 @@ export type KnowledgeArticle = Article & {
 };
 
 const taxonomy: Record<string, { knowledgeCategory: KnowledgeCategoryId; contentType: KnowledgeContentType }> = {
-  "project-needs-direction": { knowledgeCategory: "management-growth", contentType: "article" },
-  "ads-without-return": { knowledgeCategory: "marketing-performance", contentType: "guide" },
-  "five-brand-decisions": { knowledgeCategory: "brand-identity", contentType: "guide" },
-  "how-to-choose-marketing-package": { knowledgeCategory: "marketing-performance", contentType: "guide" },
+  "project-needs-direction": { knowledgeCategory: "consulting", contentType: "article" },
+  "ads-without-return": { knowledgeCategory: "digital-marketing", contentType: "guide" },
+  "five-brand-decisions": { knowledgeCategory: "branding", contentType: "guide" },
+  "how-to-choose-marketing-package": { knowledgeCategory: "general", contentType: "guide" },
   "why-ai-demo-helps-sales": { knowledgeCategory: "web-digital", contentType: "article" },
-  "marketing-metrics-that-matter": { knowledgeCategory: "marketing-performance", contentType: "guide" },
+  "marketing-metrics-that-matter": { knowledgeCategory: "digital-marketing", contentType: "guide" },
 };
 
 export function getKnowledgeArticles(articles: readonly Article[]): KnowledgeArticle[] {
@@ -52,11 +54,13 @@ export const articlesPageSource = {
   },
   categories: [
     { id: "all", label: "الكل" },
-    { id: "management-growth", label: "إدارة ونمو" },
-    { id: "marketing-performance", label: "تسويق وأداء" },
-    { id: "brand-identity", label: "براند وهوية" },
-    { id: "content-advertising", label: "محتوى وإعلان" },
-    { id: "web-digital", label: "مواقع ورقمنة" },
+    { id: "consulting", label: "استشارات" },
+    { id: "branding", label: "براند وهوية" },
+    { id: "digital-marketing", label: "تسويق وحملات" },
+    { id: "visual-content", label: "محتوى مرئي" },
+    { id: "advertising", label: "دعاية وإعلان" },
+    { id: "web-digital", label: "مواقع وحلول رقمية" },
+    { id: "general", label: "عام" },
   ] as const,
   contentTypes: [
     { id: "all", label: "كل الأنواع" },

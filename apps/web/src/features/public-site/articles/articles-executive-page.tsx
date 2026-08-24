@@ -8,6 +8,15 @@ import { ArticleBrowser } from "./article-browser";
 import { ArticleCarouselControls } from "./article-carousel-controls";
 import styles from "./articles-executive-page.module.css";
 
+const mixedArticleImages: Readonly<Record<string, string>> = {
+  "project-needs-direction": "/images/articles/mixed/mixed-strategy.webp",
+  "ads-without-return": "/images/articles/mixed/mixed-ads.webp",
+  "five-brand-decisions": "/images/articles/mixed/mixed-brand.webp",
+  "how-to-choose-marketing-package": "/images/articles/mixed/mixed-package.webp",
+  "why-ai-demo-helps-sales": "/images/articles/mixed/mixed-ai.webp",
+  "marketing-metrics-that-matter": "/images/articles/mixed/mixed-budget.webp",
+};
+
 const sectionIds = [
   "latest",
   articlesPageSource.problemPaths.id,
@@ -57,17 +66,13 @@ export function ArticlesExecutivePage() {
           alternate
         />
 
-        <section className={styles.relationship} id={articlesPageSource.relationship.id}>
-          <div className={styles.relationshipInner}>
-            <div>
-              <h2>{articlesPageSource.relationship.title}</h2>
-              <p>{articlesPageSource.relationship.summary}</p>
-            </div>
-            <ButtonLink href={articlesPageSource.relationship.action.href} size="compact" variant="secondary">
-              {articlesPageSource.relationship.action.label}
-            </ButtonLink>
-          </div>
-        </section>
+        <ArticleCarouselSection
+          id={articlesPageSource.relationship.id}
+          title="مقالات متنوعة"
+          summary="مش محتاج تقرأ كل حاجة… محتاج تقرأ الحاجة الصح في وقتها"
+          articles={articles}
+          imageBySlug={mixedArticleImages}
+        />
 
         <section className={styles.finalCta} id={articlesPageSource.finalCta.id}>
           <div className={styles.ctaInner}>
@@ -94,12 +99,14 @@ function ArticleCarouselSection({
   title,
   summary,
   articles,
+  imageBySlug,
   alternate = false,
 }: {
   id: string;
   title: string;
   summary: string;
   articles: readonly KnowledgeArticle[];
+  imageBySlug?: Readonly<Record<string, string>>;
   alternate?: boolean;
 }) {
   const loopSetCount = articles.length > 1 && articles.length <= 3 ? 3 : articles.length > 1 ? 2 : 1;
@@ -122,7 +129,12 @@ function ArticleCarouselSection({
           <div className={styles.carouselViewport}>
             <div className={styles.carouselTrack} id={trackId}>
               {loopArticles.map((article, index) => (
-                <CarouselArticleCard article={article} duplicate={index >= articles.length} key={`${article.slug}-${index}`} />
+                <CarouselArticleCard
+                  article={article}
+                  duplicate={index >= articles.length}
+                  image={imageBySlug?.[article.slug] ?? article.seo.image}
+                  key={`${article.slug}-${index}`}
+                />
               ))}
             </div>
           </div>
@@ -133,16 +145,24 @@ function ArticleCarouselSection({
   );
 }
 
-function CarouselArticleCard({ article, duplicate }: { article: KnowledgeArticle; duplicate: boolean }) {
+function CarouselArticleCard({
+  article,
+  duplicate,
+  image,
+}: {
+  article: KnowledgeArticle;
+  duplicate: boolean;
+  image?: string;
+}) {
   return (
     <article aria-hidden={duplicate || undefined} className={styles.carouselCard}>
       <div className={styles.carouselCardMedia}>
-        {article.seo.image ? (
+        {image ? (
           <Image
             alt={duplicate ? "" : article.title}
             fill
             sizes="(min-width: 64rem) 29vw, 82vw"
-            src={article.seo.image}
+            src={image}
           />
         ) : null}
       </div>

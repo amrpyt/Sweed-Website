@@ -71,6 +71,9 @@ const portfolioExactRuntime = `
       ".sweed-reference-page #media-work .frame { display: flex !important; height: 4rem !important; min-height: 4rem !important; align-items: center; justify-content: center; gap: .45rem; padding: .45rem .65rem !important; }",
       ".sweed-reference-page #media-work .frame span { display: inline-grid; width: 1.65rem !important; height: 1.65rem !important; flex: 0 0 1.65rem; place-items: center; margin: 0 !important; font-size: .7rem !important; }",
       ".sweed-reference-page .portfolio-service-link { margin: 1.45rem auto 0 !important; }",
+      ".sweed-reference-page #advertising-work { padding-bottom: clamp(2.5rem, 3.5vw, 3.25rem) !important; }",
+      ".sweed-reference-page #advertising-work .portfolio-service-action-row { display: flex; width: 100%; justify-content: center; margin-top: .65rem; }",
+      ".sweed-reference-page #advertising-work .portfolio-service-link { width: 17.5rem !important; min-width: 17.5rem !important; margin: 0 !important; overflow: hidden !important; }",
       ".sweed-reference-page #web-work .ux-notes .btn { margin: 1.2rem auto 0 !important; }",
       ".sweed-reference-page .portfolio-contact-actions > .container > div { display: flex !important; width: 100%; align-items: center; justify-content: center; }",
       ".sweed-reference-page .portfolio-contact-actions .btn { display: inline-flex !important; width: auto !important; min-width: 12.75rem !important; min-height: 3.25rem !important; align-items: center !important; justify-content: center !important; padding-inline: 1.3rem !important; overflow: visible !important; white-space: nowrap !important; }",
@@ -349,11 +352,14 @@ const portfolioExactRuntime = `
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       window.setInterval(() => { index = (index + 1) % options.length; update(); }, 4800);
     }
+    const actionRow = document.createElement("div");
+    actionRow.className = "portfolio-service-action-row";
     const service = document.createElement("a");
     service.className = "btn btn-primary portfolio-service-link";
     service.href = "/services/advertising";
-    service.textContent = "شوف خدمة الدعاية والإعلان";
-    controls.after(service);
+    service.innerHTML = '<span aria-hidden="true" class="sweed-action-fill"></span><span aria-hidden="true" class="sweed-action-icon"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.75" viewBox="0 0 24 24" width="18"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></span><span class="sweed-action-label">شوف خدمة الدعاية والإعلان</span>';
+    actionRow.appendChild(service);
+    controls.after(actionRow);
   };
 
   const prepareWeb = () => {

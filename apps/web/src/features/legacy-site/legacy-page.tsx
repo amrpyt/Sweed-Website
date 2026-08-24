@@ -58,7 +58,7 @@ const portfolioExactRuntime = `
     style.id = "sweed-portfolio-polish";
     style.textContent = [
       ".sweed-reference-page #marketing-work .mkt-grid { align-items: stretch !important; }",
-      ".sweed-reference-page #marketing-work .mkt-proj { display: grid !important; justify-items: center !important; align-content: start !important; text-align: center !important; }",
+      ".sweed-reference-page #marketing-work .mkt-proj.show { display: grid !important; justify-items: center !important; align-content: start !important; text-align: center !important; }",
       ".sweed-reference-page #marketing-work .mkt-proj :is(h3, .challenge, ul, li, .status, .tag, .proof) { margin-inline: auto !important; text-align: center !important; text-align-last: center !important; }",
       ".sweed-reference-page #marketing-work .mkt-proj ul { width: min(100%, 42rem); justify-items: center; padding-inline: 0 !important; }",
       ".sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { display: inline-grid !important; grid-template-columns: 2.75rem minmax(0, 1fr) !important; width: max-content !important; max-width: 100% !important; min-width: 17.5rem !important; align-self: center !important; justify-self: center !important; overflow: visible !important; white-space: nowrap !important; }",
@@ -90,6 +90,34 @@ const portfolioExactRuntime = `
     card.innerHTML = '<span class="tag">تطبيقات الهوية</span><h3>' + title + '</h3><div class="sector">' + sector + '</div><p>' + copy + '</p><div class="proof">' + proof + '</div>';
     return card;
   };
+
+  // Add any future consulting project here; the card and marquee are created automatically.
+  const consultingProjectCatalog = [
+    {
+      title: "الضامر للتطوير العقاري | استراتيجية إطلاق ومبيعات",
+      state: "مستمر",
+      sector: "التطوير العقاري — مدينة السادات",
+      challenge: "إطلاق مشروع تجاري وإداري برسالة واضحة تربط العرض بالمستثمرين وأصحاب الأنشطة.",
+      points: ["صياغة المبادرة والعرض والرسائل البيعية", "خطة متكاملة للتسويق الرقمي والميداني", "مسار متابعة يربط الاهتمام بالمبيعات"],
+      proof: "خطة إطلاق تربط الهوية والعرض وقنوات الوصول"
+    },
+    {
+      title: "بوبيان للتطوير العقاري | خطة ظهور المشروع",
+      state: "مستمر",
+      sector: "التطوير العقاري — أكتوبر",
+      challenge: "بناء حضور واضح لمشروع جديد مع ربط سرعة التنفيذ بالثقة والطلب.",
+      points: ["تحديد الرسالة والجمهور ونقاط القوة", "خطة محتوى وحملات مرتبطة بمراحل المشروع", "متابعة دورية للنتائج وفرص التحسين"],
+      proof: "مسار ظهور يربط التنفيذ بالمبيعات"
+    },
+    {
+      title: "سفنكس فاير | استراتيجية نمو ومبيعات B2B",
+      state: "مستمر",
+      sector: "أنظمة الحماية ومكافحة الحريق — مصر",
+      challenge: "تحويل خبرة فنية قوية لرسالة تفتح فرصًا مع المشروعات والشركات.",
+      points: ["تحديد القطاعات والفرص ذات الأولوية", "رسائل ثقة تربط الالتزام الفني بقيمة القرار", "محتوى ومتابعة يدعمان فريق المبيعات"],
+      proof: "مسار نمو مهني يدعم الثقة والطلبات"
+    }
+  ];
 
   const prepareConsulting = () => {
     const section = document.getElementById("consulting-work");
@@ -130,33 +158,6 @@ const portfolioExactRuntime = `
     ].join("\\n");
     document.head.appendChild(style);
 
-    const additionalProjects = [
-      {
-        title: "الضامر للتطوير العقاري | استراتيجية إطلاق ومبيعات",
-        state: "مستمر",
-        sector: "التطوير العقاري — مدينة السادات",
-        challenge: "إطلاق مشروع تجاري وإداري برسالة واضحة تربط العرض بالمستثمرين وأصحاب الأنشطة.",
-        points: ["صياغة المبادرة والعرض والرسائل البيعية", "خطة متكاملة للتسويق الرقمي والميداني", "مسار متابعة يربط الاهتمام بالمبيعات"],
-        proof: "خطة إطلاق تربط الهوية والعرض وقنوات الوصول"
-      },
-      {
-        title: "بوبيان للتطوير العقاري | خطة ظهور المشروع",
-        state: "مستمر",
-        sector: "التطوير العقاري — أكتوبر",
-        challenge: "بناء حضور واضح لمشروع جديد مع ربط سرعة التنفيذ بالثقة والطلب.",
-        points: ["تحديد الرسالة والجمهور ونقاط القوة", "خطة محتوى وحملات مرتبطة بمراحل المشروع", "متابعة دورية للنتائج وفرص التحسين"],
-        proof: "مسار ظهور يربط التنفيذ بالمبيعات"
-      },
-      {
-        title: "سفنكس فاير | استراتيجية نمو ومبيعات B2B",
-        state: "مستمر",
-        sector: "أنظمة الحماية ومكافحة الحريق — مصر",
-        challenge: "تحويل خبرة فنية قوية لرسالة تفتح فرصًا مع المشروعات والشركات.",
-        points: ["تحديد القطاعات والفرص ذات الأولوية", "رسائل ثقة تربط الالتزام الفني بقيمة القرار", "محتوى ومتابعة يدعمان فريق المبيعات"],
-        proof: "مسار نمو مهني يدعم الثقة والطلبات"
-      }
-    ];
-
     const createCard = (project) => {
       const card = document.createElement("article");
       card.className = "dossier consult-marquee-card";
@@ -178,7 +179,7 @@ const portfolioExactRuntime = `
       action.textContent = "شوف المشروع كامل";
     });
 
-    const cards = [...existingCards, ...additionalProjects.map(createCard)];
+    const cards = [...existingCards, ...consultingProjectCatalog.map(createCard)];
     const viewport = document.createElement("div");
     viewport.className = "consult-card-viewport";
     const track = document.createElement("div");

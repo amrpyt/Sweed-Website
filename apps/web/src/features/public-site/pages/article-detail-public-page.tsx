@@ -4,6 +4,7 @@ import { ButtonLink } from "@/components/ui/button";
 import type { Article } from "@/content/types";
 import { articlesPageSource } from "@/content/public-site/articles-page";
 import { createArticleJsonLd, getArticleDetailModel } from "./article-detail-model";
+import { ArticleReadingProgress } from "./article-reading-progress";
 import { PublicPageShell } from "./public-page-shell";
 import styles from "./article-detail-public-page.module.css";
 
@@ -14,16 +15,29 @@ const dateFormatter = new Intl.DateTimeFormat("ar-EG", {
   timeZone: "UTC",
 });
 
-const articleVisuals = [
-  "/images/hero/entrepreneur-laptop-office.jpg",
-  "/images/hero/sweed-building.png",
-  "/images/hero/businessman-laptop-standing.jpg",
-  "/images/portfolio/blit-scroll-effect-demo-poster.png",
-  "/images/homepage/strategy-horse.png",
-] as const;
+const articleImageNames: Readonly<Record<string, string>> = {
+  "project-needs-direction": "direction",
+  "ads-without-return": "ads",
+  "five-brand-decisions": "brand",
+  "how-to-choose-marketing-package": "package",
+  "why-ai-demo-helps-sales": "ai",
+  "marketing-metrics-that-matter": "metrics",
+};
 
-function getSupportVisual(article: Article, index: number) {
-  return articleVisuals[(article.order + index) % articleVisuals.length];
+const mixedImageNames: Readonly<Record<string, string>> = {
+  "project-needs-direction": "strategy",
+  "ads-without-return": "ads",
+  "five-brand-decisions": "brand",
+  "how-to-choose-marketing-package": "package",
+  "why-ai-demo-helps-sales": "ai",
+  "marketing-metrics-that-matter": "budget",
+};
+
+function getArticleVisual(article: Article, collection: "browser" | "latest" | "mixed") {
+  const name = collection === "mixed" ? mixedImageNames[article.slug] : articleImageNames[article.slug];
+  if (!name) return article.seo.image;
+  const filename = collection === "mixed" ? `mixed-${name}` : name;
+  return `/images/articles/${collection}/${filename}.webp`;
 }
 
 function getAuthorInitial(article: Article) {
@@ -33,7 +47,7 @@ function getAuthorInitial(article: Article) {
 export function ArticleDetailPublicPage({ article, allArticles }: { article: Article; allArticles: readonly Article[] }) {
   const model = getArticleDetailModel(article, allArticles);
   const schema = createArticleJsonLd(article);
-  const sectionIds = [...article.body.map((section) => section.id), "related-service", "related-articles", "article-cta"];
+  const sectionIds = [...article.body.map((section) => section.id), "related-service", "related-articles", "most-viewed", "article-cta"];
   const authorName = article.author?.name ?? "فريق سويد";
   const authorRole = article.author?.role ?? "من دفتر البوصلة";
   const hasInlineVisual = article.body.length > 1;
@@ -41,6 +55,7 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
   return (
     <PublicPageShell page="article-detail" sectionIds={sectionIds} showBreadcrumb={false}>
       <main className={styles.page}>
+        <ArticleReadingProgress />
         {schema ? (
           <script
             type="application/ld+json"
@@ -84,9 +99,9 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
               </div>
             </div>
 
-            {article.seo.image ? (
+            {getArticleVisual(article, "latest") ? (
               <figure className={styles.heroMedia}>
-                <Image src={article.seo.image} alt={article.title} fill priority sizes="(min-width: 64rem) 42vw, 100vw" />
+                <Image src={getArticleVisual(article, "latest")!} alt={article.title} fill priority sizes="(min-width: 64rem) 46vw, 100vw" />
                 <figcaption>من دفتر البوصلة</figcaption>
               </figure>
             ) : null}
@@ -116,7 +131,7 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
 
                   {(hasInlineVisual && index === Math.floor((article.body.length - 1) / 2)) || (!hasInlineVisual && index === 0) ? (
                     <figure className={styles.inlineVisual}>
-                      <Image src={getSupportVisual(article, index)} alt="" fill sizes="(min-width: 64rem) 46rem, 100vw" />
+                      <Image src={getArticleVisual(article, "mixed") ?? article.seo.image ?? ""} alt="" fill sizes="(min-width: 64rem) 62rem, 100vw" />
                       <figcaption>لما الصورة تبقى أوضح، القرار بيبقى أسهل.</figcaption>
                     </figure>
                   ) : null}
@@ -126,6 +141,25 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
               <div className={styles.articleTakeaway}>
                 <span>الخلاصة</span>
                 <p>{article.summary}</p>
+              </div>
+
+              <div className={styles.articleFooterMeta}>
+                <div>
+                  <span>{article.category}</span>
+                  {(article.tags ?? ["قرارات عملية", "من دفتر البوصلة"]).map((tag) => <span key={tag}>{tag}</span>)}
+                </div>
+                <div className={styles.authorBio}>
+                  {article.author?.avatar?.src ? (
+                    <Image className={styles.authorAvatarImage} src={article.author.avatar.src} alt={article.author.avatar.alt} width={58} height={58} />
+                  ) : (
+                    <span className={styles.authorAvatar} aria-hidden="true">{getAuthorInitial(article)}</span>
+                  )}
+                  <div>
+                    <strong>{authorName}</strong>
+                    <small>{authorRole}</small>
+                    <p>{article.author?.bio ?? "نحوّل الخبرة والمواقف العملية إلى محتوى يساعد صاحب المشروع يفهم الصورة ويأخذ قرارًا أوضح."}</p>
+                  </div>
+                </div>
               </div>
             </article>
 
@@ -166,29 +200,55 @@ export function ArticleDetailPublicPage({ article, allArticles }: { article: Art
 
         <section className={styles.relatedSection} id="related-articles">
           <div className={styles.relatedInner}>
-            <header>
-              <p className={styles.sectionEyebrow}>من دفتر البوصلة</p>
-              <h2>كمّل من نفس النقطة</h2>
+            <header className={styles.recommendationHeader}>
+              <p className={styles.sectionEyebrow}>كمّل القراءة</p>
+              <h2>مقالات ذات صلة</h2>
               <span className={styles.titleRule} aria-hidden="true" />
               <p>مقالات تكمّل الفكرة وتفتح لك زاوية جديدة قبل ما تاخد قرارك.</p>
             </header>
             <div className={styles.relatedGrid}>
-              {model.relatedArticles.map((related, index) => (
+              {model.relatedArticles.map((related) => (
                 <article key={related.slug}>
-                  {related.seo.image ? (
+                  {getArticleVisual(related, "browser") ? (
                     <Link className={styles.relatedImage} href={`/articles/${related.slug}`} aria-label={related.title}>
-                      <Image src={related.seo.image} alt="" fill sizes="(min-width: 64rem) 25rem, 100vw" />
+                      <Image src={getArticleVisual(related, "browser")!} alt="" fill sizes="(min-width: 64rem) 27rem, 100vw" />
                     </Link>
                   ) : (
-                    <div className={styles.relatedImage} aria-hidden="true">
-                      <Image src={getSupportVisual(article, index + 1)} alt="" fill sizes="(min-width: 64rem) 25rem, 100vw" />
-                    </div>
+                    <div className={styles.relatedImage} aria-hidden="true" />
                   )}
                   <div className={styles.relatedCopy}>
                     <span>{related.category}</span>
                     <h3><Link href={`/articles/${related.slug}`}>{related.title}</Link></h3>
                     <p>{related.summary}</p>
                     <small>{related.readingTime} قراءة</small>
+                    <ButtonLink className={styles.cardAction} href={`/articles/${related.slug}`} size="compact">اقرأ المقال</ButtonLink>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className={`${styles.relatedSection} ${styles.mostViewedSection}`} id="most-viewed">
+          <div className={styles.relatedInner}>
+            <header className={styles.recommendationHeader}>
+              <p className={styles.sectionEyebrow}>اختيارات القرّاء</p>
+              <h2>أكثر المقالات مشاهدة</h2>
+              <span className={styles.titleRule} aria-hidden="true" />
+              <p>موضوعات عملية بيرجع لها أصحاب المشاريع لأنها تختصر الطريق وتوضح القرار.</p>
+            </header>
+            <div className={styles.relatedGrid}>
+              {model.mostViewedArticles.map((popular) => (
+                <article key={popular.slug}>
+                  <Link className={styles.relatedImage} href={`/articles/${popular.slug}`} aria-label={popular.title}>
+                    <Image src={getArticleVisual(popular, "latest") ?? popular.seo.image ?? ""} alt="" fill sizes="(min-width: 64rem) 27rem, 100vw" />
+                  </Link>
+                  <div className={styles.relatedCopy}>
+                    <span>{popular.category}</span>
+                    <h3><Link href={`/articles/${popular.slug}`}>{popular.title}</Link></h3>
+                    <p>{popular.summary}</p>
+                    <small>{popular.readingTime} قراءة</small>
+                    <ButtonLink className={styles.cardAction} href={`/articles/${popular.slug}`} size="compact">اقرأ المقال</ButtonLink>
                   </div>
                 </article>
               ))}

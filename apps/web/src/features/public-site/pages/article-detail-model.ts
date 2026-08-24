@@ -60,11 +60,20 @@ export function getArticleDetailModel(article: Article, allArticles: readonly Ar
       return dateOrder || a.slug.localeCompare(b.slug);
     })
     .slice(0, 3);
+  const mostViewedSlugs = ["marketing-metrics-that-matter", "ads-without-return", "project-needs-direction"];
+  const rankedArticles = mostViewedSlugs.flatMap((slug) => {
+    const match = allArticles.find((item) => item.slug === slug);
+    return match ? [match] : [];
+  });
+  const mostViewedArticles = [...rankedArticles, ...allArticles]
+    .filter((item, index, items) => item.slug !== article.slug && items.findIndex((candidate) => candidate.slug === item.slug) === index)
+    .slice(0, 3);
 
   return {
     article,
     relatedService,
     relatedArticles,
+    mostViewedArticles,
     shareLinks: {
       whatsapp: `https://wa.me/?text=${encodeURIComponent(`${article.title} ${absoluteUrl(`/articles/${article.slug}`)}`)}`,
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(absoluteUrl(`/articles/${article.slug}`))}`,

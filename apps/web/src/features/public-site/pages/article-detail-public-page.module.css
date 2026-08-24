@@ -27,10 +27,14 @@
 }
 
 .heroInner,
-.readingLayout,
 .relatedInner,
 .ctaInner {
-  width: min(100% - (var(--page-gutter) * 2), 76rem);
+  width: min(100% - (var(--page-gutter) * 2), 88rem);
+  margin-inline: auto;
+}
+
+.readingLayout {
+  width: min(100% - (var(--page-gutter) * 2), 94rem);
   margin-inline: auto;
 }
 
@@ -96,7 +100,7 @@
 }
 
 .heroCopy h1 {
-  max-width: 17ch;
+  max-width: 22ch;
   margin: 0;
   color: var(--color-accent-contrast);
   font-size: clamp(2.5rem, 4.4vw, 4.6rem);
@@ -248,7 +252,7 @@
   display: grid;
   gap: clamp(2.8rem, 5vw, 4.8rem);
   min-width: 0;
-  max-width: 46rem;
+  max-width: none;
 }
 
 .articleIntro,
@@ -260,6 +264,68 @@
   border-radius: 1.3rem;
   background: linear-gradient(135deg, color-mix(in srgb, white 80%, var(--color-accent-soft)), var(--color-panel));
   box-shadow: 0 1rem 2.5rem rgb(40 29 68 / 5%);
+}
+
+.articleFooterMeta {
+  display: grid;
+  gap: 1rem;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--color-line);
+}
+
+.articleFooterMeta > div:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.articleFooterMeta > div:first-child span {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-line));
+  border-radius: 999px;
+  color: var(--color-accent-strong);
+  background: color-mix(in srgb, var(--color-accent) 6%, var(--color-panel));
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-strong);
+}
+
+.authorBio {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  border: 1px solid color-mix(in srgb, var(--color-accent-strong) 10%, var(--color-line));
+  border-radius: 1.2rem;
+  background: var(--color-panel);
+}
+
+.authorBio .authorAvatar,
+.authorBio .authorAvatarImage {
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.authorBio > div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.authorBio strong {
+  color: var(--color-ink);
+  font-size: 1rem;
+}
+
+.authorBio small {
+  color: var(--color-accent);
+  font-size: var(--type-small-size);
+}
+
+.authorBio p {
+  margin: 0.35rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.8;
 }
 
 .articleIntro span,
@@ -461,6 +527,11 @@
   border-block: 1px solid color-mix(in srgb, var(--color-accent-strong) 8%, var(--color-line));
 }
 
+.mostViewedSection {
+  background: var(--color-surface);
+  border-block-start: 0;
+}
+
 .relatedInner { display: grid; gap: clamp(1.8rem, 4vw, 3.2rem); }
 
 .relatedSection header {
@@ -522,6 +593,7 @@
 
 .relatedCopy {
   display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
   gap: 0.75rem;
   padding: 1.2rem;
 }
@@ -547,6 +619,11 @@
 .relatedGrid h3 a:hover { color: var(--color-accent); }
 .relatedGrid p { color: var(--color-muted); font-size: 0.93rem; line-height: 1.8; }
 .relatedGrid small { color: var(--color-accent); font-size: 0.78rem; font-weight: var(--font-weight-strong); }
+
+.cardAction {
+  width: 100%;
+  margin-block-start: 0.25rem;
+}
 
 .finalCta {
   position: relative;
@@ -588,14 +665,17 @@
 
 @media (min-width: 64rem) {
   .heroInner {
-    grid-template-columns: minmax(0, 1fr) minmax(23rem, 0.82fr);
+    grid-template-columns: minmax(0, 1.12fr) minmax(25rem, 0.88fr);
     align-items: center;
   }
 
   .breadcrumb { grid-column: 1 / -1; }
   .heroCopy { order: 2; }
   .heroMedia { order: 1; }
-  .readingLayout { grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.43fr); }
+  .readingLayout {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 20rem);
+    gap: clamp(2.5rem, 4vw, 4.5rem);
+  }
   .aside { position: sticky; inset-block-start: 6.5rem; }
   .relatedGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .ctaInner { grid-template-columns: minmax(0, 1fr) auto; text-align: start; }
@@ -611,6 +691,12 @@
   .relatedImage { min-height: 10.5rem; }
   .bodySection p,
   .bodySection li { text-align: start; }
+}
+
+@media (max-width: 63.99rem) {
+  .aside {
+    order: -1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

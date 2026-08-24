@@ -76,13 +76,19 @@ export function ArticlesExecutivePage() {
 
         <section className={styles.finalCta} id={articlesPageSource.finalCta.id}>
           <div className={styles.ctaInner}>
-            <div>
+            <div className={styles.ctaCopy}>
               <h2>{articlesPageSource.finalCta.title}</h2>
               <p>{articlesPageSource.finalCta.summary}</p>
             </div>
             <div className={styles.actions}>
               {articlesPageSource.finalCta.actions.map((action) => (
-                <ButtonLink href={action.href} key={action.href} variant={action.variant}>
+                <ButtonLink
+                  className={styles.finalCtaAction}
+                  href={action.href}
+                  key={action.href}
+                  size="compact"
+                  variant={action.variant}
+                >
                   {action.label}
                 </ButtonLink>
               ))}

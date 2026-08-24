@@ -27,4 +27,20 @@ describe("article detail model", () => {
     expect(schema?.image).toContain("/images/hero/two-men-consultation.jpg");
     expect(createArticleJsonLd({ ...article, seo: { ...article.seo, image: undefined } })).toBeNull();
   });
+
+  test("ships the reference advertising article with complete long-form elements", () => {
+    const article = articles.find((item) => item.slug === "ads-without-return")!;
+    const blocks = article.body.flatMap((section) => section.blocks ?? []);
+    const arabicWordCount = (JSON.stringify(article.body).match(/[\u0600-\u06FF]+/g) ?? []).length;
+
+    expect(article.readingTime).toBe("24 دقيقة");
+    expect(article.body.length).toBeGreaterThanOrEqual(12);
+    expect(arabicWordCount).toBeGreaterThanOrEqual(5000);
+    expect(blocks.filter((block) => block.type === "image")).toHaveLength(2);
+    expect(blocks.filter((block) => block.type === "video")).toHaveLength(2);
+    expect(blocks.some((block) => block.type === "table")).toBe(true);
+    expect(blocks.some((block) => block.type === "case-study")).toBe(true);
+    expect(blocks.some((block) => block.type === "links")).toBe(true);
+    expect(article.tags).toContain("عائد الإعلانات");
+  });
 });

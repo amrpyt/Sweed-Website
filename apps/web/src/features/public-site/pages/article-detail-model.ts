@@ -90,8 +90,11 @@ export function createArticleJsonLd(article: Article): Record<string, unknown> |
     headline: article.title,
     description: article.seo.description,
     datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
     url: absoluteUrl(`/articles/${article.slug}`),
     image: absoluteUrl(article.seo.image),
+    articleSection: article.category,
+    keywords: article.tags,
     publisher: {
       "@type": "Organization",
       name: "SWEED",
@@ -101,7 +104,7 @@ export function createArticleJsonLd(article: Article): Record<string, unknown> |
 
   if (article.author?.name) {
     schema.author = {
-      "@type": "Person",
+      "@type": article.author.name.includes("فريق") ? "Organization" : "Person",
       name: article.author.name,
     };
   }

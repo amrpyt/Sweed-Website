@@ -417,6 +417,239 @@
   content: "";
 }
 
+.richContent {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.richContent h3 {
+  margin: 1rem 0 0;
+  color: var(--color-ink);
+  font-size: clamp(1.3rem, 1.8vw, 1.75rem);
+  line-height: 1.35;
+  scroll-margin-block-start: 7rem;
+  text-wrap: balance;
+}
+
+.richContent ol,
+.richContent ul {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0;
+  margin: 0;
+}
+
+.richContent ol {
+  padding-inline-start: 1.45rem;
+}
+
+.richContent ol li {
+  padding-inline-start: 0.35rem;
+}
+
+.richContent ol li::before { display: none; }
+.richContent ol li::marker { color: var(--color-accent); font-weight: var(--font-weight-strong); }
+
+.richContent blockquote {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.6rem 0;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border: 0;
+  border-inline-start: 0.35rem solid var(--color-accent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-accent-soft) 60%, var(--color-panel));
+}
+
+.richContent blockquote p {
+  color: var(--color-ink);
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+  font-weight: var(--font-weight-strong);
+  line-height: 1.75;
+}
+
+.richContent blockquote cite {
+  color: var(--color-accent);
+  font-size: var(--type-small-size);
+  font-style: normal;
+  font-weight: var(--font-weight-strong);
+}
+
+.highlightBox {
+  display: grid;
+  gap: 0.55rem;
+  padding: clamp(1.2rem, 3vw, 1.65rem);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 26%, var(--color-line));
+  border-radius: 1.1rem;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 9%, white), var(--color-panel));
+}
+
+.highlightBox strong {
+  color: var(--color-accent);
+  font-size: 1.02rem;
+}
+
+.highlightBox p { color: var(--color-ink); }
+
+.contentImage {
+  position: relative;
+  min-height: clamp(17rem, 38vw, 29rem);
+  margin: 0.75rem 0;
+  overflow: hidden;
+  border-radius: 1.35rem;
+  background: var(--color-accent-strong);
+  box-shadow: 0 1.25rem 2.8rem rgb(40 29 68 / 11%);
+}
+
+.contentImage img { object-fit: cover; transition: transform 600ms ease; }
+.contentImage:hover img { transform: scale(1.035); }
+
+.contentImage figcaption {
+  position: absolute;
+  inset: auto 1rem 1rem;
+  z-index: 1;
+  max-width: calc(100% - 2rem);
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.7rem;
+  color: white;
+  background: rgb(29 20 54 / 78%);
+  font-size: var(--type-small-size);
+  line-height: 1.65;
+}
+
+.videoBlock {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0.75rem 0;
+}
+
+.videoBlock > div {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.35rem;
+  background: var(--color-accent-strong);
+  box-shadow: 0 1.25rem 2.8rem rgb(40 29 68 / 12%);
+  aspect-ratio: 16 / 9;
+}
+
+.videoBlock iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.videoBlock figcaption {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.videoBlock figcaption strong { color: var(--color-ink); }
+
+.tableBlock {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0.75rem 0;
+}
+
+.tableBlock > div {
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  border-radius: 1.1rem;
+  background: var(--color-panel);
+}
+
+.tableBlock table {
+  width: 100%;
+  min-width: 42rem;
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.tableBlock th,
+.tableBlock td {
+  padding: 0.95rem 1rem;
+  border-block-end: 1px solid var(--color-line);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  text-align: start;
+  vertical-align: top;
+}
+
+.tableBlock th {
+  color: var(--color-accent-contrast);
+  background: var(--color-accent-strong);
+  font-weight: var(--font-weight-strong);
+}
+
+.tableBlock tr:last-child td { border-block-end: 0; }
+.tableBlock tbody tr:nth-child(even) { background: color-mix(in srgb, var(--color-accent-soft) 35%, transparent); }
+.tableBlock figcaption { color: var(--color-muted); font-size: 0.84rem; line-height: 1.6; }
+
+.caseStudy {
+  display: grid;
+  gap: 0.75rem;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border-radius: 1.35rem;
+  color: white;
+  background: linear-gradient(145deg, var(--color-accent-strong), #4b315f);
+  box-shadow: 0 1.2rem 2.7rem rgb(40 29 68 / 14%);
+}
+
+.caseStudy > p,
+.caseStudy h3,
+.caseStudy dl,
+.caseStudy dt,
+.caseStudy dd { margin: 0; }
+
+.caseStudy > p { color: color-mix(in srgb, var(--color-accent) 72%, white); font-size: var(--type-label-size); font-weight: var(--font-weight-strong); }
+.caseStudy h3 { color: white; margin: 0; }
+.caseStudy dl { display: grid; gap: 0.8rem; }
+.caseStudy dl > div { display: grid; gap: 0.25rem; padding-block-start: 0.8rem; border-block-start: 1px solid rgb(255 255 255 / 14%); }
+.caseStudy dt { color: color-mix(in srgb, var(--color-accent) 72%, white); font-size: 0.82rem; font-weight: var(--font-weight-strong); }
+.caseStudy dd { color: rgb(255 255 255 / 82%); font-size: 0.96rem; line-height: 1.85; }
+
+.resourceLinks {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 1.8rem);
+  border: 1px solid var(--color-line);
+  border-radius: 1.25rem;
+  background: var(--color-panel);
+}
+
+.resourceLinks h3 { margin: 0; }
+.resourceLinks ul { gap: 0; }
+
+.resourceLinks li {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.9rem 0;
+  border-block-end: 1px solid var(--color-line);
+}
+
+.resourceLinks li:last-child { border-block-end: 0; }
+.resourceLinks li::before { display: none; }
+
+.resourceLinks a {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: space-between;
+  color: var(--color-ink);
+  font-weight: var(--font-weight-strong);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.resourceLinks a span { color: var(--color-accent); }
+.resourceLinks a:hover { color: var(--color-accent); }
+.resourceLinks p { color: var(--color-muted); font-size: 0.88rem; line-height: 1.65; }
+
 .inlineVisual {
   position: relative;
   min-height: clamp(13rem, 30vw, 20rem);
@@ -691,6 +924,8 @@
   .relatedImage { min-height: 10.5rem; }
   .bodySection p,
   .bodySection li { text-align: start; }
+  .tableBlock th,
+  .tableBlock td { padding: 0.8rem; }
 }
 
 @media (max-width: 63.99rem) {
@@ -705,5 +940,7 @@
   .relatedImage img,
   .relatedGrid article,
   .tocBlock a,
-  .shareLinks a { transition: none; }
+  .shareLinks a,
+  .contentImage img,
+  .resourceLinks a { transition: none; }
 }

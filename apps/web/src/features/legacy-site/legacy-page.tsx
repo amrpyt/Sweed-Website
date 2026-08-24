@@ -75,6 +75,16 @@ const portfolioExactRuntime = `
       ".sweed-reference-page #advertising-work .portfolio-service-action-row { display: flex; width: 100%; justify-content: center; margin-top: .65rem; }",
       ".sweed-reference-page #advertising-work .portfolio-service-link { width: 17.5rem !important; min-width: 17.5rem !important; margin: 0 !important; overflow: hidden !important; }",
       ".sweed-reference-page #web-work .ux-notes .btn { margin: 1.2rem auto 0 !important; }",
+      ".sweed-reference-page #web-work .web-grid { align-items: stretch !important; }",
+      ".sweed-reference-page #web-work .ux-notes { display: grid !important; grid-template-rows: repeat(5, minmax(0, 1fr)) auto; align-content: stretch !important; gap: .55rem !important; }",
+      ".sweed-reference-page #web-work .web-solution-card { display: grid !important; grid-template-columns: 2.1rem minmax(0, 1fr); min-height: 0 !important; align-items: center; gap: .75rem; margin: 0 !important; padding: .7rem .9rem !important; overflow: hidden; border: 1px solid rgba(38,27,62,.13) !important; border-radius: .9rem !important; background: rgba(255,255,255,.92) !important; box-shadow: 0 .55rem 1.25rem rgba(38,27,62,.06) !important; color: #261b3e !important; text-align: right !important; transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease; }",
+      ".sweed-reference-page #web-work .web-solution-card.is-active { border-color: #ed2062 !important; box-shadow: 0 .7rem 1.5rem rgba(237,32,98,.12) !important; transform: translateX(-.2rem); }",
+      ".sweed-reference-page #web-work .web-solution-number { display: inline-grid; width: 2.1rem; height: 2.1rem; place-items: center; border-radius: .7rem; background: #261b3e; color: #fff; font-family: Arial, sans-serif !important; font-size: .72rem; font-weight: 800; }",
+      ".sweed-reference-page #web-work .web-solution-copy { display: grid; gap: .15rem; min-width: 0; }",
+      ".sweed-reference-page #web-work .web-solution-copy b { color: #261b3e !important; font-size: .94rem; line-height: 1.35; }",
+      ".sweed-reference-page #web-work .web-solution-copy small { color: #6f6682 !important; font-size: .8rem; line-height: 1.45; }",
+      ".sweed-reference-page #web-work .web-service-action-row { display: flex !important; width: 100%; align-items: center; justify-content: center; margin: .2rem 0 0 !important; }",
+      ".sweed-reference-page #web-work .web-service-action-row .btn { width: 17.5rem !important; min-width: 17.5rem !important; margin: 0 !important; overflow: hidden !important; }",
       ".sweed-reference-page .portfolio-contact-actions > .container > div { display: flex !important; width: 100%; align-items: center; justify-content: center; }",
       ".sweed-reference-page .portfolio-contact-actions .btn { display: inline-flex !important; width: auto !important; min-width: 12.75rem !important; min-height: 3.25rem !important; align-items: center !important; justify-content: center !important; padding-inline: 1.3rem !important; overflow: visible !important; white-space: nowrap !important; }",
       ".sweed-reference-page #web-work .browser { min-height: 27rem; }",
@@ -87,6 +97,9 @@ const portfolioExactRuntime = `
       ".sweed-reference-page .portfolio-system-dots { position: absolute; z-index: 3; right: 1.35rem; bottom: 1rem; display: flex; gap: .35rem; direction: ltr; }",
       ".sweed-reference-page .portfolio-system-dots i { width: .5rem; height: .5rem; border-radius: 50%; background: rgba(255,255,255,.45); transition: width .28s ease, background .28s ease; }",
       ".sweed-reference-page .portfolio-system-dots i.active { width: 1.35rem; border-radius: 999px; background: #ed2062; }",
+      ".sweed-reference-page #web-work .portfolio-system-slide { opacity: 0; transform: translateY(100%); transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1); }",
+      ".sweed-reference-page #web-work .portfolio-system-slide.is-active { opacity: 1; transform: translateY(0); }",
+      ".sweed-reference-page #web-work .portfolio-system-slide.is-leaving { opacity: 0; transform: translateY(-100%); }",
       "@media (max-width: 48rem) { .sweed-reference-page #media-work .portfolio-film-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #media-work .film-tabs { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); } .sweed-reference-page #media-work .film-tab { width: 100%; } .sweed-reference-page #media-work .frames { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .sweed-reference-page #marketing-work .mkt-grid { grid-template-columns: 1fr !important; } .sweed-reference-page #marketing-work .mkt .phone { width: min(100%, 16rem); margin-inline: auto; } .sweed-reference-page #marketing-work .mkt-proj.show { height: auto; min-height: 0; padding-bottom: 1.25rem !important; } .sweed-reference-page #marketing-work .marketing-project-action-row { position: static; margin-top: 1rem !important; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { width: min(100%, 17.5rem) !important; min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
       "@media (prefers-reduced-motion: reduce) { .sweed-reference-page .portfolio-system-slide { transition: none; } }"
     ].join("\\n");
@@ -367,53 +380,75 @@ const portfolioExactRuntime = `
     if (!section || section.dataset.sweedClientFocused === "true") return;
     section.dataset.sweedClientFocused = "true";
     const tag = section.querySelector(".ux-notes .tag");
-    if (tag) tag.textContent = "مواقع وحلول رقمية";
     const notes = Array.from(section.querySelectorAll(".ux-notes .note"));
-    const copy = [
+    const proof = section.querySelector(".ux-notes .proof");
+    const solutionCards = [tag, ...notes, proof].filter(Boolean);
+    const cardCopy = [
       ["تجربة تبدأ بالعميل", "نرتب الصفحة حول السؤال الذي يحتاج عميلك إجابته أولًا."],
       ["مسار واضح", "كل محتوى يقود للخطوة التالية بدون تشتيت أو زحمة."],
-      ["تحويل قابل للقياس", "نربط الطلبات والنماذج والأعمال في رحلة واحدة مفهومة."]
+      ["تحويل قابل للقياس", "نربط الطلبات والنماذج والأعمال في رحلة واحدة مفهومة."],
+      ["سرعة وأداء", "صفحات خفيفة وسريعة تحافظ على تركيز العميل وتسهّل وصوله."],
+      ["متابعة وتطوير", "نظام مرن سهل التحديث ويتطور مع احتياجات مشروعك."]
     ];
-    notes.forEach((note, index) => {
-      if (!copy[index]) return;
-      note.innerHTML = "<b>" + copy[index][0] + "</b>" + copy[index][1];
+    solutionCards.forEach((card, index) => {
+      if (!cardCopy[index]) return;
+      card.classList.add("web-solution-card");
+      card.innerHTML = '<span class="web-solution-number">' + String(index + 1).padStart(2, "0") + '</span><span class="web-solution-copy"><b>' + cardCopy[index][0] + '</b><small>' + cardCopy[index][1] + '</small></span>';
     });
-    const proof = section.querySelector(".ux-notes .proof");
-    if (proof) proof.textContent = "موقع يخدم رسالتك ويجعل التواصل أسهل.";
     const button = section.querySelector(".ux-notes .btn");
     if (button) {
       button.setAttribute("href", "/services/software-development");
       button.removeAttribute("target");
-      button.textContent = "شوف خدمة المواقع والحلول";
+      button.innerHTML = '<span aria-hidden="true" class="sweed-action-fill"></span><span aria-hidden="true" class="sweed-action-icon"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.75" viewBox="0 0 24 24" width="18"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></span><span class="sweed-action-label">شوف خدمة المواقع والحلول</span>';
+      const actionRow = button.parentElement;
+      if (actionRow) {
+        actionRow.classList.add("web-service-action-row");
+        actionRow.style.marginTop = "";
+      }
     }
     const browser = section.querySelector(".browser");
     if (browser && browser.dataset.sweedProjectSlider !== "true") {
       browser.dataset.sweedProjectSlider = "true";
       const slides = [
-        { title: "واجهة مشروع عقاري", copy: "عرض المشروع والفرص والخطوة التالية في مسار واحد.", image: "/images/hero/sweed-building.png" },
-        { title: "لوحة متابعة نظام", copy: "تجربة منظمة تعرض البيانات والخدمات بدون زحمة.", image: "/images/portfolio/blit-scroll-effect-demo-poster.png" },
-        { title: "منصة خدمة رقمية", copy: "واجهة واضحة تساعد العميل يوصل للمعلومة ويكمل الإجراء.", image: "/images/hero/custom-image.png" }
+        { title: "تجربة تتمحور حول العميل", copy: "واجهة تبدأ من احتياج الزائر وتقوده للمعلومة المناسبة.", image: "/images/hero/entrepreneur-laptop-office.jpg" },
+        { title: "مسار واضح للقرار", copy: "بنية منظمة توصل العميل للخطوة التالية بدون تشتيت.", image: "/images/hero/sweed-building.png" },
+        { title: "تحويل قابل للقياس", copy: "طلبات ونماذج ومؤشرات مترابطة في رحلة واحدة.", image: "/images/portfolio/blit-scroll-effect-demo-poster.png" },
+        { title: "سرعة وأداء مستقر", copy: "تجربة خفيفة تحافظ على تركيز العميل وسهولة الاستخدام.", image: "/images/hero/businessman-laptop-standing.jpg" },
+        { title: "متابعة وتطوير مستمر", copy: "حل رقمي مرن يتحدث ويتطور مع احتياجات المشروع.", image: "/images/hero/two-men-consultation.jpg" }
       ];
-      browser.innerHTML = '<div class="portfolio-system-slider" aria-label="نماذج مواقع وحلول رقمية"><div class="portfolio-system-slide"></div><div class="portfolio-system-caption"><b></b><span></span></div><div class="portfolio-system-dots"><i></i><i></i><i></i></div></div>';
+      browser.innerHTML = '<div class="portfolio-system-slider" aria-label="نماذج مواقع وحلول رقمية">' + slides.map((item, index) => '<div class="portfolio-system-slide' + (index === 0 ? ' is-active' : '') + '" style="background-image:url(&quot;' + item.image + '&quot;)" aria-hidden="' + (index === 0 ? 'false' : 'true') + '"></div>').join("") + '<div class="portfolio-system-caption"><b></b><span></span></div><div class="portfolio-system-dots">' + slides.map(() => '<i></i>').join("") + '</div></div>';
       const slider = browser.querySelector(".portfolio-system-slider");
-      const slide = browser.querySelector(".portfolio-system-slide");
+      const slideElements = Array.from(browser.querySelectorAll(".portfolio-system-slide"));
       const title = browser.querySelector(".portfolio-system-caption b");
       const copyText = browser.querySelector(".portfolio-system-caption span");
       const dots = Array.from(browser.querySelectorAll(".portfolio-system-dots i"));
       let slideIndex = 0;
-      const renderSlide = () => {
-        const current = slides[slideIndex];
-        if (slide) slide.style.backgroundImage = 'url("' + current.image + '")';
+      let transitionTimer = 0;
+      const renderSlide = (nextIndex, animate) => {
+        const previousIndex = slideIndex;
+        const current = slides[nextIndex];
+        if (animate && previousIndex !== nextIndex) {
+          slideElements[previousIndex]?.classList.remove("is-active");
+          slideElements[previousIndex]?.classList.add("is-leaving");
+        }
+        slideElements[nextIndex]?.classList.remove("is-leaving");
+        slideElements[nextIndex]?.classList.add("is-active");
+        slideElements.forEach((slide, index) => slide.setAttribute("aria-hidden", index === nextIndex ? "false" : "true"));
         if (title) title.textContent = current.title;
         if (copyText) copyText.textContent = current.copy;
-        dots.forEach((dot, index) => dot.classList.toggle("active", index === slideIndex));
-        slider?.setAttribute("data-slide", String(slideIndex + 1));
+        dots.forEach((dot, index) => dot.classList.toggle("active", index === nextIndex));
+        solutionCards.forEach((card, index) => card.classList.toggle("is-active", index === nextIndex));
+        slider?.setAttribute("data-slide", String(nextIndex + 1));
+        slideIndex = nextIndex;
+        window.clearTimeout(transitionTimer);
+        transitionTimer = window.setTimeout(() => slideElements.forEach((slide, index) => {
+          if (index !== slideIndex) slide.classList.remove("is-leaving");
+        }), 800);
       };
-      renderSlide();
+      renderSlide(0, false);
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         window.setInterval(() => {
-          slideIndex = (slideIndex + 1) % slides.length;
-          renderSlide();
+          renderSlide((slideIndex + 1) % slides.length, true);
         }, 4200);
       }
     }

@@ -17,6 +17,30 @@ const mixedArticleImages: Readonly<Record<string, string>> = {
   "marketing-metrics-that-matter": "/images/articles/mixed/mixed-budget.webp",
 };
 
+const browserArticleImages: Readonly<Record<string, string>> = {
+  "project-needs-direction": "/images/articles/browser/direction.webp",
+  "ads-without-return": "/images/articles/browser/ads.webp",
+  "five-brand-decisions": "/images/articles/browser/brand.webp",
+  "how-to-choose-marketing-package": "/images/articles/browser/package.webp",
+  "why-ai-demo-helps-sales": "/images/articles/browser/ai.webp",
+  "marketing-metrics-that-matter": "/images/articles/browser/metrics.webp",
+};
+
+const latestArticleImages: Readonly<Record<string, string>> = {
+  "project-needs-direction": "/images/articles/latest/direction.webp",
+  "ads-without-return": "/images/articles/latest/ads.webp",
+  "five-brand-decisions": "/images/articles/latest/brand.webp",
+  "how-to-choose-marketing-package": "/images/articles/latest/package.webp",
+  "why-ai-demo-helps-sales": "/images/articles/latest/ai.webp",
+  "marketing-metrics-that-matter": "/images/articles/latest/metrics.webp",
+};
+
+const mostViewedArticleImages: Readonly<Record<string, string>> = {
+  "project-needs-direction": "/images/articles/most-viewed/direction.webp",
+  "ads-without-return": "/images/articles/most-viewed/ads.webp",
+  "marketing-metrics-that-matter": "/images/articles/most-viewed/metrics.webp",
+};
+
 const sectionIds = [
   "latest",
   articlesPageSource.problemPaths.id,
@@ -49,13 +73,18 @@ export function ArticlesExecutivePage() {
           />
         </div>
 
-        <ArticleBrowser articles={articles} />
+        <ArticleBrowser
+          articles={articles}
+          featuredImage="/images/articles/featured/direction.webp"
+          imageBySlug={browserArticleImages}
+        />
 
         <ArticleCarouselSection
           id={articlesPageSource.problemPaths.id}
           title="أحدث المقالات"
           summary="آخر ما نشرناه من مقالات وأدلة عملية تساعدك تفهم أسرع وتاخد قرار أوضح."
           articles={latestArticles}
+          imageBySlug={latestArticleImages}
         />
 
         <ArticleCarouselSection
@@ -63,6 +92,7 @@ export function ArticlesExecutivePage() {
           title="الأكثر مشاهدة"
           summary="موضوعات عملية بيرجع لها أصحاب المشاريع لفهم قرارات التسويق والنمو بشكل أوضح."
           articles={mostViewedArticles}
+          imageBySlug={mostViewedArticleImages}
           alternate
         />
 

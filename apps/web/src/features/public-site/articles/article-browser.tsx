@@ -13,7 +13,15 @@ type CategoryFilter = "all" | KnowledgeCategoryId;
 type TypeFilter = "all" | KnowledgeContentType;
 const ARTICLES_PER_PAGE = 3;
 
-export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArticle[] }) {
+export function ArticleBrowser({
+  articles,
+  featuredImage,
+  imageBySlug,
+}: {
+  articles: readonly KnowledgeArticle[];
+  featuredImage?: string;
+  imageBySlug?: Readonly<Record<string, string>>;
+}) {
   const [draftQuery, setDraftQuery] = useState("");
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<CategoryFilter>("all");
@@ -65,7 +73,7 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
             <p>النتائج بتتحدث بعد لحظة قصيرة عشان تكتب براحتك.</p>
           </div>
 
-          {featured ? <FeaturedArticle article={featured} /> : null}
+          {featured ? <FeaturedArticle article={featured} image={featuredImage ?? featured.seo.image} /> : null}
         </div>
       </section>
 
@@ -114,7 +122,9 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
           {filtered.length ? (
             <>
               <div className={styles.grid} data-testid="knowledge-results">
-                {visibleArticles.map((article) => <ArticleCard article={article} key={article.slug} />)}
+                {visibleArticles.map((article) => (
+                  <ArticleCard article={article} image={imageBySlug?.[article.slug] ?? article.seo.image} key={article.slug} />
+                ))}
               </div>
               {hasMore ? (
                 <div className={styles.loadMore}>
@@ -135,12 +145,12 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
   );
 }
 
-function FeaturedArticle({ article }: { article: KnowledgeArticle }) {
+function FeaturedArticle({ article, image }: { article: KnowledgeArticle; image?: string }) {
   return (
     <article className={styles.featured}>
       <div className={styles.featuredMedia}>
-        {article.seo.image ? (
-          <Image src={article.seo.image} alt={article.title} fill sizes="(min-width: 64rem) 42vw, 100vw" priority />
+        {image ? (
+          <Image src={image} alt={article.title} fill sizes="(min-width: 64rem) 42vw, 100vw" priority />
         ) : null}
       </div>
       <div className={styles.featuredCopy}>
@@ -157,11 +167,11 @@ function FeaturedArticle({ article }: { article: KnowledgeArticle }) {
   );
 }
 
-function ArticleCard({ article }: { article: KnowledgeArticle }) {
+function ArticleCard({ article, image }: { article: KnowledgeArticle; image?: string }) {
   return (
     <article className={styles.card} data-testid="knowledge-article-card">
       <div className={styles.cardMedia}>
-        {article.seo.image ? <Image src={article.seo.image} alt={article.title} fill sizes="(min-width: 64rem) 30vw, 100vw" /> : null}
+        {image ? <Image src={image} alt={article.title} fill sizes="(min-width: 64rem) 30vw, 100vw" /> : null}
       </div>
       <div className={styles.cardCopy}>
         <div className={styles.cardMeta}>

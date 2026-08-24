@@ -23,12 +23,14 @@ export function ArticlesExecutivePage() {
   return (
     <PublicPageShell page="articles" sectionIds={sectionIds}>
       <main className={styles.page}>
-        <PublicPageHero
-          eyebrow={articlesPageSource.hero.eyebrow}
-          title={articlesPageSource.hero.title}
-          summary={articlesPageSource.hero.summary}
-          tone="dark"
-        />
+        <div className={styles.articlesHero}>
+          <PublicPageHero
+            eyebrow={articlesPageSource.hero.eyebrow}
+            title={articlesPageSource.hero.title}
+            summary={articlesPageSource.hero.summary}
+            tone="dark"
+          />
+        </div>
 
         <ArticleBrowser articles={articles} />
 

@@ -156,22 +156,24 @@
 
 .resultsSection {
   scroll-margin-block-start: var(--cds-spacing-13);
-  padding-block: var(--section-space-default);
+  padding-block: clamp(2.5rem, 4vw, 3.75rem);
 }
 
 .container {
   display: grid;
-  gap: var(--section-content-gap);
+  gap: clamp(1.1rem, 2.2vw, 1.75rem);
 }
 
 .resultsHeader {
   display: grid;
-  gap: var(--content-gap-default);
+  gap: clamp(0.9rem, 1.8vw, 1.35rem);
 }
 
 .resultsHeader > div:first-child {
   display: grid;
-  gap: var(--section-header-gap);
+  justify-items: start;
+  gap: 0.75rem;
+  text-align: right;
 }
 
 .resultsHeader p,
@@ -193,7 +195,7 @@
 
 .resultsHeader h2 {
   position: relative;
-  max-width: var(--measure-heading);
+  max-width: none;
   padding-block-end: 1.25rem;
   color: var(--color-ink);
   font-size: var(--type-section-title-size);
@@ -216,12 +218,12 @@
 }
 
 .resultsSummary {
-  max-width: var(--measure-lead);
+  max-width: none;
   color: var(--color-muted);
   font-size: var(--type-lead-size);
   font-weight: var(--font-weight-body);
   line-height: var(--type-lead-leading);
-  text-align: justify;
+  text-align: right;
   text-wrap: pretty;
   animation: results-heading-enter var(--motion-layout) 80ms both;
 }
@@ -249,6 +251,7 @@
 .controls {
   display: grid;
   gap: var(--stack-sm);
+  justify-content: start;
 }
 
 .controls label {
@@ -286,6 +289,15 @@
   background: transparent;
   border: 1px solid var(--color-line);
   cursor: pointer;
+}
+
+.categoryFilters button {
+  transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.categoryFilters button:hover {
+  box-shadow: 0 0.65rem 1.4rem color-mix(in srgb, var(--color-accent-strong) 20%, transparent);
+  transform: translateY(-0.2rem);
 }
 
 .resultsMeta {
@@ -362,6 +374,16 @@
   margin: 0;
 }
 
+.loadMore {
+  display: flex;
+  justify-content: center;
+  padding-block-start: 0.25rem;
+}
+
+.loadMore button {
+  min-width: 10rem;
+}
+
 .empty h3 {
   color: var(--color-ink);
   font-size: var(--type-card-title-size);
@@ -402,12 +424,27 @@
     min-height: 100%;
   }
 
-  .resultsHeader {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: end;
+  .resultsHeader h2,
+  .resultsSummary {
+    white-space: nowrap;
+  }
+
+  .controls {
+    grid-template-columns: repeat(3, minmax(10rem, 14rem));
+    justify-content: start;
   }
 
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .categoryFilters button {
+    transition: none;
+  }
+
+  .categoryFilters button:hover {
+    transform: none;
   }
 }

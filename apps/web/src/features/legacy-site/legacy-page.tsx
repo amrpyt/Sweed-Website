@@ -2563,6 +2563,41 @@ const offersExactPresentationOverride = `
     flex: 0 0 auto;
     scroll-snap-align: start;
   }
+  .sweed-exact-reference-page #offers-hero h1 {
+    max-width: 48rem;
+    font-size: clamp(2.8rem, 4vw, 3.35rem) !important;
+    line-height: 1.22 !important;
+  }
+  .sweed-exact-reference-page #offers-hero .btns a[href="#main-packages"],
+  .sweed-exact-reference-page #main-packages .compare-btn-row .btn {
+    display: inline-grid !important;
+    grid-template-columns: var(--sweed-action-icon-size) minmax(0, 1fr) !important;
+    width: 17.5rem !important;
+    min-width: 17.5rem !important;
+    max-width: 100% !important;
+    justify-content: initial !important;
+    overflow: hidden !important;
+    direction: ltr !important;
+  }
+  .sweed-exact-reference-page #panel-web {
+    padding-block: clamp(2.5rem, 3.2vw, 3rem) !important;
+  }
+  .sweed-exact-reference-page #panel-web .pk-grid {
+    margin-top: 1.25rem !important;
+  }
+  .sweed-exact-reference-page #panel-web .compare-btn-row {
+    margin-top: .85rem !important;
+  }
+  .sweed-exact-reference-page #panel-web .compare-btn-row .compare-svc {
+    display: inline-grid !important;
+    grid-template-columns: var(--sweed-action-icon-size) minmax(0, 1fr) !important;
+    width: 14rem !important;
+    min-width: 14rem !important;
+    max-width: 100% !important;
+    justify-content: initial !important;
+    overflow: hidden !important;
+    direction: ltr !important;
+  }
   @media (max-width: 700px) {
     .sweed-exact-reference-page .o-hero h1 { font-size: clamp(2.15rem, 11vw, 3.2rem) !important; }
     .sweed-exact-reference-page #main-packages .mains-grid { padding-top: 2.3rem !important; }

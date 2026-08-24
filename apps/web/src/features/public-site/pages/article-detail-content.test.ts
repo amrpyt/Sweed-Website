@@ -13,6 +13,8 @@ describe("article detail model", () => {
     expect(model.article.body.map((section) => section.id)).toEqual(["effort-vs-direction", "first-step"]);
     expect(model.relatedService.href).toBe("/services/consulting");
     expect(model.relatedArticles.every((item) => item.slug !== article.slug)).toBe(true);
+    expect(model.mostViewedArticles).toHaveLength(3);
+    expect(model.mostViewedArticles.every((item) => item.slug !== article.slug)).toBe(true);
   });
 
   test("creates Article JSON-LD only when required typed fields exist", () => {

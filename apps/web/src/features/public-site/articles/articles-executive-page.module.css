@@ -2,10 +2,10 @@
   background: var(--color-surface);
 }
 
-.articlesHero > header {
+.articlesHero > header[data-tone="dark"] {
   background:
     linear-gradient(90deg, rgba(38, 27, 62, 0.3) 0%, rgba(38, 27, 62, 0.82) 52%, rgba(38, 27, 62, 0.98) 82%),
-    url("/images/hero/entrepreneur-laptop-office.jpg") center / cover no-repeat;
+    url("/images/hero/entrepreneur-laptop-office.jpg") center / cover no-repeat !important;
 }
 
 @media (min-width: 64rem) {

@@ -59,7 +59,7 @@ const portfolioExactRuntime = `
     style.textContent = [
       ".sweed-reference-page #marketing-work .mkt-grid { grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr) !important; align-items: stretch !important; gap: clamp(1.4rem, 3.5vw, 3rem) !important; }",
       ".sweed-reference-page #marketing-work .mkt-grid > div:last-child { display: flex; min-width: 0; flex-direction: column; }",
-      ".sweed-reference-page #marketing-work .mkt-proj.show { display: flex !important; min-height: 25rem; flex: 1; flex-direction: column; align-items: stretch !important; text-align: right !important; }",
+      ".sweed-reference-page #marketing-work .mkt-proj.show { display: flex !important; min-height: 25rem; flex-direction: column; align-items: stretch !important; text-align: right !important; }",
       ".sweed-reference-page #marketing-work .mkt-proj :is(h3, .challenge, ul, li, .status, .tag, .proof) { margin-inline: 0 !important; text-align: right !important; text-align-last: right !important; }",
       ".sweed-reference-page #marketing-work .mkt-proj ul { width: 100% !important; justify-items: stretch; padding-inline: 0 !important; }",
       ".sweed-reference-page #marketing-work .marketing-project-action-row { display: flex !important; width: 100%; justify-content: flex-start; margin-top: auto !important; padding-top: 1rem; }",

@@ -5,6 +5,7 @@ import { getArticlesPageModel } from "@/features/public-site";
 import { PublicPageShell } from "@/features/public-site/pages/public-page-shell";
 import { PublicPageHero } from "@/features/public-site/shared/public-page-hero";
 import { ArticleBrowser } from "./article-browser";
+import { ArticleCarouselControls } from "./article-carousel-controls";
 import styles from "./articles-executive-page.module.css";
 
 const sectionIds = [
@@ -101,12 +102,15 @@ function ArticleCarouselSection({
   articles: readonly KnowledgeArticle[];
   alternate?: boolean;
 }) {
-  const loopArticles = articles.length > 1 ? [...articles, ...articles] : articles;
+  const loopSetCount = articles.length > 1 && articles.length <= 3 ? 3 : articles.length > 1 ? 2 : 1;
+  const loopArticles = Array.from({ length: loopSetCount }, () => articles).flat();
+  const trackId = `${id}-carousel-track`;
 
   return (
     <section
       className={`${styles.articleCarouselSection} ${alternate ? styles.articleCarouselAlternate : ""}`}
       data-items={articles.length}
+      data-sets={loopSetCount}
       id={id}
     >
       <div className={styles.carouselInner}>
@@ -114,12 +118,15 @@ function ArticleCarouselSection({
           <h2>{title}</h2>
           <p>{summary}</p>
         </header>
-        <div className={styles.carouselViewport}>
-          <div className={styles.carouselTrack}>
-            {loopArticles.map((article, index) => (
-              <CarouselArticleCard article={article} duplicate={index >= articles.length} key={`${article.slug}-${index}`} />
-            ))}
+        <div className={styles.carouselStage}>
+          <div className={styles.carouselViewport}>
+            <div className={styles.carouselTrack} id={trackId}>
+              {loopArticles.map((article, index) => (
+                <CarouselArticleCard article={article} duplicate={index >= articles.length} key={`${article.slug}-${index}`} />
+              ))}
+            </div>
           </div>
+          <ArticleCarouselControls itemCount={articles.length} trackId={trackId} />
         </div>
       </div>
     </section>

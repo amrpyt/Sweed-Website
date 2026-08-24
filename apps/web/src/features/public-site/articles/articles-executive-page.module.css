@@ -2,6 +2,20 @@
   background: var(--color-surface);
 }
 
+.articlesHero > header {
+  background:
+    linear-gradient(90deg, rgba(38, 27, 62, 0.3) 0%, rgba(38, 27, 62, 0.82) 52%, rgba(38, 27, 62, 0.98) 82%),
+    url("/images/hero/entrepreneur-laptop-office.jpg") center / cover no-repeat;
+}
+
+@media (min-width: 64rem) {
+  .articlesHero > header > div > div:first-child,
+  .articlesHero h1 {
+    width: 100%;
+    max-width: 76rem;
+  }
+}
+
 .pathsSection,
 .lessonsSection,
 .relationship,

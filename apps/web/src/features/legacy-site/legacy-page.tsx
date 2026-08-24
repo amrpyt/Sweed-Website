@@ -2598,6 +2598,25 @@ const offersExactPresentationOverride = `
     overflow: hidden !important;
     direction: ltr !important;
   }
+  .sweed-exact-reference-page #panel-consult {
+    padding-block: clamp(2.5rem, 3.2vw, 3rem) !important;
+  }
+  .sweed-exact-reference-page #panel-consult .pk-grid {
+    margin-top: 1.25rem !important;
+  }
+  .sweed-exact-reference-page #panel-consult .compare-btn-row {
+    margin-top: .85rem !important;
+  }
+  .sweed-exact-reference-page #panel-consult .compare-btn-row .compare-svc {
+    display: inline-grid !important;
+    grid-template-columns: var(--sweed-action-icon-size) minmax(0, 1fr) !important;
+    width: 14rem !important;
+    min-width: 14rem !important;
+    max-width: 100% !important;
+    justify-content: initial !important;
+    overflow: hidden !important;
+    direction: ltr !important;
+  }
   @media (max-width: 700px) {
     .sweed-exact-reference-page .o-hero h1 { font-size: clamp(2.15rem, 11vw, 3.2rem) !important; }
     .sweed-exact-reference-page #main-packages .mains-grid { padding-top: 2.3rem !important; }

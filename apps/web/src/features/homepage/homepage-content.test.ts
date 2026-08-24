@@ -12,7 +12,8 @@ describe("homepage content", () => {
     expect(homepageContent.why.map((item) => item.title)).toContain("التزام بالمواعيد");
     expect(homepageContent.stats).toHaveLength(0);
     expect(homepageContent.faq).toHaveLength(5);
-    expect(homepageContent.articles).toHaveLength(3);
+    expect(homepageContent.portfolio).toHaveLength(6);
+    expect(homepageContent.articles).toHaveLength(6);
   });
 
   test("preserves problem-to-service mappings", () => {
@@ -32,6 +33,7 @@ describe("homepage content", () => {
 
     expect(verified).toHaveLength(1);
     expect(verified[0]?.result).toContain("22%");
+    expect(pending).toHaveLength(5);
     expect(pending.every((item) => item.result === "النتيجة الرقمية قيد التوثيق")).toBe(true);
   });
 

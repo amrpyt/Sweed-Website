@@ -11,6 +11,7 @@ import styles from "./article-browser.module.css";
 
 type CategoryFilter = "all" | KnowledgeCategoryId;
 type TypeFilter = "all" | KnowledgeContentType;
+const ARTICLES_PER_PAGE = 3;
 
 export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArticle[] }) {
   const [draftQuery, setDraftQuery] = useState("");
@@ -18,6 +19,7 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
   const [category, setCategory] = useState<CategoryFilter>("all");
   const [type, setType] = useState<TypeFilter>("all");
   const [sort, setSort] = useState<ArticleBrowserFilters["sort"]>("latest");
+  const [visibleCount, setVisibleCount] = useState(ARTICLES_PER_PAGE);
 
   useEffect(() => {
     const timeout = window.setTimeout(() => setQuery(draftQuery), 250);
@@ -28,7 +30,13 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
     () => filterArticles(articles, { query, category, type, sort }),
     [articles, category, query, sort, type],
   );
+  const visibleArticles = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
   const featured = articles.find((article) => article.slug === articlesPageSource.featuredSlug) ?? articles[0] ?? null;
+
+  useEffect(() => {
+    setVisibleCount(ARTICLES_PER_PAGE);
+  }, [category, query, sort, type]);
 
   function clearFilters() {
     setDraftQuery("");
@@ -36,6 +44,7 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
     setCategory("all");
     setType("all");
     setSort("latest");
+    setVisibleCount(ARTICLES_PER_PAGE);
   }
 
   return (
@@ -60,18 +69,20 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
         </div>
       </section>
 
-      <StickyChipStrip
-        ariaLabel="تصنيفات مركز المعرفة"
-        activeId={category}
-        items={articlesPageSource.categories.map((item) => ({ id: item.id, label: item.label, href: `#${item.id}` }))}
-        onSelect={(id) => setCategory(id as CategoryFilter)}
-      />
+      <div className={styles.categoryFilters}>
+        <StickyChipStrip
+          ariaLabel="تصنيفات مركز المعرفة"
+          activeId={category}
+          items={articlesPageSource.categories.map((item) => ({ id: item.id, label: item.label, href: `#${item.id}` }))}
+          onSelect={(id) => setCategory(id as CategoryFilter)}
+        />
+      </div>
 
       <section className={styles.resultsSection} id="latest">
         <div className={styles.container}>
           <header className={styles.resultsHeader}>
             <div className={styles.resultsIntro}>
-              <p className={styles.resultsKicker}>المكتبة المنشورة</p>
+              <p className={styles.resultsKicker}>مقالاتنا</p>
               <h2>{articlesPageSource.section.header.title}</h2>
               <p className={styles.resultsSummary}>{articlesPageSource.section.header.summary}</p>
             </div>
@@ -101,9 +112,16 @@ export function ArticleBrowser({ articles }: { articles: readonly KnowledgeArtic
           </div>
 
           {filtered.length ? (
-            <div className={styles.grid} data-testid="knowledge-results">
-              {filtered.map((article) => <ArticleCard article={article} key={article.slug} />)}
-            </div>
+            <>
+              <div className={styles.grid} data-testid="knowledge-results">
+                {visibleArticles.map((article) => <ArticleCard article={article} key={article.slug} />)}
+              </div>
+              {hasMore ? (
+                <div className={styles.loadMore}>
+                  <Button type="button" onClick={() => setVisibleCount((count) => count + ARTICLES_PER_PAGE)}>المزيد</Button>
+                </div>
+              ) : null}
+            </>
           ) : (
             <div className={styles.empty} data-testid="knowledge-results">
               <h3>ملقيناش نتيجة مطابقة</h3>

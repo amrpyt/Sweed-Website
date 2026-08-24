@@ -20,7 +20,7 @@ describe("article browser filters", () => {
   test("filters by executive knowledge category", () => {
     const result = filterArticles(knowledgeArticles, {
       query: "",
-      category: "brand-identity",
+      category: "branding",
       type: "all",
       sort: "latest",
     });

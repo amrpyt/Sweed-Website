@@ -218,9 +218,9 @@
 
 .offerCard[data-featured="true"] .offerAction:hover,
 .offerCard[data-featured="true"] .offerAction:focus-visible {
-  --brand-action-fill: #7d2944;
+  --brand-action-fill: #ed2062;
   --brand-action-fill-color: #ffffff;
-  --brand-action-border: #7d2944;
+  --brand-action-border: #ed2062;
 }
 
 .offerCard[data-featured="true"] .offerAction:hover .iconBox,

@@ -218,7 +218,7 @@ const portfolioExactRuntime = `
     if (lead) lead.textContent = "كل مشروع له رسالة وقنوات ومتابعة واضحة تربط المحتوى بهدفه.";
     section.querySelectorAll(".mkt-proj ul li:nth-child(n+3)").forEach((item) => item.remove());
     section.querySelectorAll(".mkt-proj .challenge").forEach((item) => item.classList.add("portfolio-compact-copy"));
-    section.querySelectorAll('a[href="/work/damer"], a[href="/work/boubyan"], a[href="/work/snap-shop"]').forEach((link) => {
+    section.querySelectorAll('a[href="/work/damer"], a[href="/work/boubyan"], a[href="/work/snap-shop-marketing"]').forEach((link) => {
       link.classList.add("portfolio-full-project-link");
       link.parentElement?.classList.add("marketing-project-action-row");
     });

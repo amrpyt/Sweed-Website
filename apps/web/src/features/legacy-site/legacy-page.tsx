@@ -52,6 +52,30 @@ const portfolioExactRuntime = `
     "/images/hero/businessman-laptop-standing.jpg"
   ];
 
+  const advertisingVisuals = [
+    { title: "لوحات الطرق", text: "رسالة سريعة ومقروءة حسب مكان الرؤية.", image: "/images/articles/browser/direction.webp" },
+    { title: "مواد البيع والعروض", text: "نماذج تساعد العميل على الفهم واتخاذ الخطوة.", image: "/images/articles/latest/brand.webp" },
+    { title: "واجهات وهوية ميدانية", text: "هوية حاضرة على الواجهة وفي نقطة التواصل.", image: "/images/articles/browser/brand.webp" },
+    { title: "الكتالوج التعريفي", text: "رسالة واضحة تدعم العرض الورقي والرقمي.", image: "/images/articles/mixed/mixed-brand.webp" },
+    { title: "نقاط البيع والمعارض", text: "تجربة بصرية تربط الخامة بالمكان والقرار.", image: "/images/articles/latest/direction.webp" },
+    { title: "حملات خارجية", text: "فكرة موحدة تتكيف مع المقاس والموقع والجمهور.", image: "/images/articles/mixed/mixed-strategy.webp" }
+  ];
+
+  const webVisuals = [
+    "/images/articles/browser/direction.webp",
+    "/images/articles/latest/package.webp",
+    "/images/articles/browser/metrics.webp",
+    "/images/articles/mixed/mixed-ai.webp",
+    "/images/articles/latest/brand.webp"
+  ];
+
+  const sectorVisuals = [
+    "/images/articles/latest/direction.webp",
+    "/images/articles/browser/ai.webp",
+    "/images/articles/mixed/mixed-strategy.webp",
+    "/images/articles/latest/brand.webp"
+  ];
+
   const ensurePortfolioPolish = () => {
     if (document.getElementById("sweed-portfolio-polish")) return;
     const style = document.createElement("style");
@@ -67,13 +91,24 @@ const portfolioExactRuntime = `
       ".sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { display: inline-grid !important; grid-template-columns: 2.75rem minmax(0, 1fr) !important; width: max-content !important; max-width: 100% !important; min-width: 17.5rem !important; align-self: center !important; justify-self: center !important; overflow: visible !important; white-space: nowrap !important; }",
       ".sweed-reference-page #media-work .portfolio-film-lead { width: 100%; max-width: none !important; margin-inline: auto !important; white-space: nowrap; font-size: clamp(.78rem, 1vw, 1rem) !important; text-align: center !important; text-align-last: center !important; }",
       ".sweed-reference-page #media-work .film-tabs { justify-content: center; gap: .55rem; margin-top: 1rem !important; }",
-      ".sweed-reference-page #media-work .frames { gap: .65rem !important; margin-top: .65rem !important; }",
-      ".sweed-reference-page #media-work .frame { display: flex !important; height: 4rem !important; min-height: 4rem !important; align-items: center; justify-content: center; gap: .45rem; padding: .45rem .65rem !important; }",
-      ".sweed-reference-page #media-work .frame span { display: inline-grid; width: 1.65rem !important; height: 1.65rem !important; flex: 0 0 1.65rem; place-items: center; margin: 0 !important; font-size: .7rem !important; }",
+      ".sweed-reference-page #media-work { padding-block: clamp(2.8rem, 4vw, 3.65rem) !important; }",
+      ".sweed-reference-page #media-work .screen16 { width: min(100%, 58rem) !important; min-height: clamp(14rem, 27vw, 21rem) !important; margin: 1rem auto 0 !important; }",
+      ".sweed-reference-page #media-work .film-info { width: min(100%, 58rem); margin-top: 1rem !important; }",
+      ".sweed-reference-page #media-work .portfolio-film-action-row { display: flex !important; width: min(100%, 58rem); min-height: 3.25rem; align-items: center; justify-content: space-between; gap: 1rem; margin: 1rem auto 0 !important; color: rgba(255,255,255,.7) !important; text-align: right !important; text-align-last: right !important; }",
+      ".sweed-reference-page #media-work .portfolio-film-action-row .btn { flex: 0 0 auto; margin-inline-start: auto; }",
       ".sweed-reference-page .portfolio-service-link { margin: 1.45rem auto 0 !important; }",
       ".sweed-reference-page #advertising-work { padding-bottom: clamp(2.5rem, 3.5vw, 3.25rem) !important; }",
-      ".sweed-reference-page #advertising-work .portfolio-service-action-row { display: flex; width: 100%; justify-content: center; margin-top: .65rem; }",
+      ".sweed-reference-page #advertising-work .wall-grid { grid-template-columns: minmax(0, 1.4fr) minmax(18rem, .9fr) !important; grid-template-rows: minmax(29rem, 1fr) !important; align-items: stretch !important; }",
+      ".sweed-reference-page #advertising-work .wall-grid > .w-item.big { min-height: 29rem; grid-row: auto !important; }",
+      ".sweed-reference-page #advertising-work .portfolio-wall-rail { min-width: 0; min-height: 29rem; overflow: hidden; border-radius: 1rem; }",
+      ".sweed-reference-page #advertising-work .portfolio-wall-track { display: flex; width: 100%; flex-direction: column; gap: .85rem; animation: sweed-wall-cards-up 34s linear infinite; will-change: transform; }",
+      ".sweed-reference-page #advertising-work .portfolio-wall-rail:hover .portfolio-wall-track { animation-play-state: paused; }",
+      ".sweed-reference-page #advertising-work .portfolio-wall-card { position: relative; width: 100%; min-height: 14.075rem !important; flex: 0 0 14.075rem; overflow: hidden; border-radius: 1rem; background-position: center; background-size: cover; }",
+      ".sweed-reference-page #advertising-work .portfolio-wall-card .meta { z-index: 1; }",
+      ".sweed-reference-page #advertising-work .portfolio-service-action-row { display: grid; width: min(100%, 38rem); grid-template-columns: 2.75rem minmax(0, 17.5rem) 2.75rem; align-items: center; justify-content: space-between; gap: 1rem; margin: .9rem auto 0; }",
       ".sweed-reference-page #advertising-work .portfolio-service-link { width: 17.5rem !important; min-width: 17.5rem !important; margin: 0 !important; overflow: hidden !important; }",
+      ".sweed-reference-page #advertising-work .portfolio-wall-arrow { display: inline-grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid rgba(38,27,62,.22); border-radius: .8rem; background: #fff; color: #261b3e; font-size: 1.2rem; cursor: pointer; transition: transform .22s ease, border-color .22s ease, background .22s ease; }",
+      ".sweed-reference-page #advertising-work .portfolio-wall-arrow:hover { border-color: #ed2062; background: rgba(237,32,98,.08); transform: translateY(-2px); }",
       ".sweed-reference-page #web-work .ux-notes .btn { margin: 1.2rem auto 0 !important; }",
       ".sweed-reference-page #web-work .web-grid { align-items: stretch !important; }",
       ".sweed-reference-page #web-work .ux-notes { display: grid !important; grid-template-rows: repeat(5, minmax(0, 1fr)) auto; align-content: stretch !important; gap: .55rem !important; }",
@@ -97,11 +132,12 @@ const portfolioExactRuntime = `
       ".sweed-reference-page .portfolio-system-dots { position: absolute; z-index: 3; right: 1.35rem; bottom: 1rem; display: flex; gap: .35rem; direction: ltr; }",
       ".sweed-reference-page .portfolio-system-dots i { width: .5rem; height: .5rem; border-radius: 50%; background: rgba(255,255,255,.45); transition: width .28s ease, background .28s ease; }",
       ".sweed-reference-page .portfolio-system-dots i.active { width: 1.35rem; border-radius: 999px; background: #ed2062; }",
-      ".sweed-reference-page #web-work .portfolio-system-slide { opacity: 0; transform: translateY(100%); transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1); }",
-      ".sweed-reference-page #web-work .portfolio-system-slide.is-active { opacity: 1; transform: translateY(0); }",
-      ".sweed-reference-page #web-work .portfolio-system-slide.is-leaving { opacity: 0; transform: translateY(-100%); }",
-      "@media (max-width: 48rem) { .sweed-reference-page #media-work .portfolio-film-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #media-work .film-tabs { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); } .sweed-reference-page #media-work .film-tab { width: 100%; } .sweed-reference-page #media-work .frames { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .sweed-reference-page #marketing-work .mkt-grid { grid-template-columns: 1fr !important; } .sweed-reference-page #marketing-work .mkt .phone { width: min(100%, 16rem); margin-inline: auto; } .sweed-reference-page #marketing-work .mkt-proj.show { height: auto; min-height: 0; padding-bottom: 1.25rem !important; } .sweed-reference-page #marketing-work .marketing-project-action-row { position: static; margin-top: 1rem !important; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { width: min(100%, 17.5rem) !important; min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
-      "@media (prefers-reduced-motion: reduce) { .sweed-reference-page .portfolio-system-slide { transition: none; } }"
+      ".sweed-reference-page #web-work .portfolio-system-slide { opacity: 0; transform: scale(1.035); transition: opacity .9s ease, transform 1.15s ease; }",
+      ".sweed-reference-page #web-work .portfolio-system-slide.is-active { opacity: 1; transform: scale(1); }",
+      ".sweed-reference-page #web-work .portfolio-system-slide.is-leaving { opacity: 0; transform: scale(1.055); }",
+      "@keyframes sweed-wall-cards-up { from { transform: translateY(0); } to { transform: translateY(calc(-50% - .425rem)); } }",
+      "@media (max-width: 48rem) { .sweed-reference-page #media-work .portfolio-film-lead { white-space: normal; font-size: .96rem !important; } .sweed-reference-page #media-work .film-tabs { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); } .sweed-reference-page #media-work .film-tab { width: 100%; } .sweed-reference-page #media-work .portfolio-film-action-row { align-items: stretch; flex-direction: column; text-align: center !important; text-align-last: center !important; } .sweed-reference-page #media-work .portfolio-film-action-row .btn { width: min(100%, 17.5rem) !important; margin-inline: auto; } .sweed-reference-page #advertising-work .wall-grid { grid-template-columns: 1fr !important; grid-template-rows: auto !important; } .sweed-reference-page #advertising-work .wall-grid > .w-item.big { min-height: 23rem; } .sweed-reference-page #advertising-work .portfolio-wall-rail { min-height: 22rem; } .sweed-reference-page #advertising-work .portfolio-wall-card { min-height: 10.575rem !important; flex-basis: 10.575rem; } .sweed-reference-page #advertising-work .portfolio-service-action-row { width: 100%; grid-template-columns: 2.75rem minmax(0, 1fr) 2.75rem; gap: .55rem; } .sweed-reference-page #marketing-work .mkt-grid { grid-template-columns: 1fr !important; } .sweed-reference-page #marketing-work .mkt .phone { width: min(100%, 16rem); margin-inline: auto; } .sweed-reference-page #marketing-work .mkt-proj.show { height: auto; min-height: 0; padding-bottom: 1.25rem !important; } .sweed-reference-page #marketing-work .marketing-project-action-row { position: static; margin-top: 1rem !important; } .sweed-reference-page #marketing-work .mkt-proj .btn, .sweed-reference-page .portfolio-service-link, .sweed-reference-page #web-work .ux-notes .btn { width: min(100%, 17.5rem) !important; min-width: min(100%, 17.5rem) !important; } .sweed-reference-page #web-work .browser, .sweed-reference-page .portfolio-system-slider { min-height: 20rem; } }",
+      "@media (prefers-reduced-motion: reduce) { .sweed-reference-page .portfolio-system-slide { transition: none; } .sweed-reference-page #advertising-work .portfolio-wall-track { animation: none; } }"
     ].join("\\n");
     document.head.appendChild(style);
   };
@@ -330,6 +366,8 @@ const portfolioExactRuntime = `
       icon.textContent = String(index + 1).padStart(2, "0");
       icon.setAttribute("aria-hidden", "true");
     });
+    section.querySelector(".frames")?.remove();
+    Array.from(section.querySelectorAll(":scope > .container > p")).find((item) => item.textContent?.includes("مش محتاج فيديو أطول"))?.classList.add("portfolio-film-action-row");
   };
 
   const prepareAdvertising = () => {
@@ -338,41 +376,51 @@ const portfolioExactRuntime = `
     if (!section || !grid || grid.dataset.sweedGallery === "true") return;
     grid.dataset.sweedGallery = "true";
     const sideItems = Array.from(grid.querySelectorAll(".w-item:not(.big)"));
-    const options = [
-      { title: "الكتالوج التعريفي", text: "رسالة واضحة تدعم العرض الورقي والرقمي.", image: images[0] },
-      { title: "تطبيقات هوية ميدانية", text: "واجهات ومطبوعات تظهر الهوية في مكانها الحقيقي.", image: images[1] },
-      { title: "لوحات الطرق", text: "رسالة سريعة ومقروءة حسب مكان الرؤية.", image: images[2] },
-      { title: "مواد البيع والعروض", text: "نماذج تساعد العميل على الفهم واتخاذ الخطوة.", image: images[3] }
-    ];
-    let index = 0;
-    const update = () => {
-      sideItems.forEach((item, offset) => {
-        const current = options[(index + offset) % options.length];
-        const title = item.querySelector(".meta b");
-        const text = item.querySelector(".meta small");
-        if (title) title.textContent = current.title;
-        if (text) text.textContent = current.text;
-        item.style.backgroundImage = 'linear-gradient(135deg, rgba(38,27,62,.68), rgba(38,27,62,.16)), url("' + current.image + '")';
-      });
-    };
-    const controls = document.createElement("div");
-    controls.className = "portfolio-wall-controls";
-    controls.innerHTML = '<button type="button" aria-label="المشروع السابق">→</button><button type="button" aria-label="المشروع التالي">←</button>';
-    controls.querySelectorAll("button")[0].addEventListener("click", () => { index = (index + options.length - 1) % options.length; update(); });
-    controls.querySelectorAll("button")[1].addEventListener("click", () => { index = (index + 1) % options.length; update(); });
-    grid.after(controls);
-    update();
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      window.setInterval(() => { index = (index + 1) % options.length; update(); }, 4800);
-    }
+    sideItems.forEach((item) => item.remove());
+
+    const big = grid.querySelector(".w-item.big");
+    if (big) big.style.backgroundImage = 'linear-gradient(135deg, rgba(38,27,62,.66), rgba(38,27,62,.2)), url("/images/articles/browser/ads.webp")';
+
+    const rail = document.createElement("div");
+    rail.className = "portfolio-wall-rail";
+    rail.setAttribute("aria-label", "نماذج الدعاية والإعلان");
+    const track = document.createElement("div");
+    track.className = "portfolio-wall-track";
+    [...advertisingVisuals, ...advertisingVisuals].forEach((item, index) => {
+      const card = document.createElement("article");
+      card.className = "w-item portfolio-wall-card";
+      if (index >= advertisingVisuals.length) card.setAttribute("aria-hidden", "true");
+      card.style.backgroundImage = 'linear-gradient(135deg, rgba(38,27,62,.72), rgba(38,27,62,.12)), url("' + item.image + '")';
+      card.innerHTML = '<div class="meta"><b>' + item.title + '</b><small>' + item.text + '</small></div>';
+      track.appendChild(card);
+    });
+    rail.appendChild(track);
+    grid.appendChild(rail);
+
     const actionRow = document.createElement("div");
     actionRow.className = "portfolio-service-action-row";
+    const previous = document.createElement("button");
+    previous.className = "portfolio-wall-arrow";
+    previous.type = "button";
+    previous.setAttribute("aria-label", "حرّك المشاريع لأعلى");
+    previous.textContent = "→";
     const service = document.createElement("a");
     service.className = "btn btn-primary portfolio-service-link";
     service.href = "/services/advertising";
     service.innerHTML = '<span aria-hidden="true" class="sweed-action-fill"></span><span aria-hidden="true" class="sweed-action-icon"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.75" viewBox="0 0 24 24" width="18"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg></span><span class="sweed-action-label">شوف خدمة الدعاية والإعلان</span>';
-    actionRow.appendChild(service);
-    controls.after(actionRow);
+    const next = document.createElement("button");
+    next.className = "portfolio-wall-arrow";
+    next.type = "button";
+    next.setAttribute("aria-label", "حرّك المشاريع لأسفل");
+    next.textContent = "←";
+    const setDirection = (direction) => {
+      track.style.animationDirection = direction;
+      track.style.animationPlayState = "running";
+    };
+    previous.addEventListener("click", () => setDirection("normal"));
+    next.addEventListener("click", () => setDirection("reverse"));
+    actionRow.append(previous, service, next);
+    grid.after(actionRow);
   };
 
   const prepareWeb = () => {
@@ -410,11 +458,11 @@ const portfolioExactRuntime = `
     if (browser && browser.dataset.sweedProjectSlider !== "true") {
       browser.dataset.sweedProjectSlider = "true";
       const slides = [
-        { title: "تجربة تتمحور حول العميل", copy: "واجهة تبدأ من احتياج الزائر وتقوده للمعلومة المناسبة.", image: "/images/hero/entrepreneur-laptop-office.jpg" },
-        { title: "مسار واضح للقرار", copy: "بنية منظمة توصل العميل للخطوة التالية بدون تشتيت.", image: "/images/hero/sweed-building.png" },
-        { title: "تحويل قابل للقياس", copy: "طلبات ونماذج ومؤشرات مترابطة في رحلة واحدة.", image: "/images/portfolio/blit-scroll-effect-demo-poster.png" },
-        { title: "سرعة وأداء مستقر", copy: "تجربة خفيفة تحافظ على تركيز العميل وسهولة الاستخدام.", image: "/images/hero/businessman-laptop-standing.jpg" },
-        { title: "متابعة وتطوير مستمر", copy: "حل رقمي مرن يتحدث ويتطور مع احتياجات المشروع.", image: "/images/hero/two-men-consultation.jpg" }
+        { title: "تجربة تتمحور حول العميل", copy: "واجهة تبدأ من احتياج الزائر وتقوده للمعلومة المناسبة.", image: webVisuals[0] },
+        { title: "مسار واضح للقرار", copy: "بنية منظمة توصل العميل للخطوة التالية بدون تشتيت.", image: webVisuals[1] },
+        { title: "تحويل قابل للقياس", copy: "طلبات ونماذج ومؤشرات مترابطة في رحلة واحدة.", image: webVisuals[2] },
+        { title: "سرعة وأداء مستقر", copy: "تجربة خفيفة تحافظ على تركيز العميل وسهولة الاستخدام.", image: webVisuals[3] },
+        { title: "متابعة وتطوير مستمر", copy: "حل رقمي مرن يتحدث ويتطور مع احتياجات المشروع.", image: webVisuals[4] }
       ];
       browser.innerHTML = '<div class="portfolio-system-slider" aria-label="نماذج مواقع وحلول رقمية">' + slides.map((item, index) => '<div class="portfolio-system-slide' + (index === 0 ? ' is-active' : '') + '" style="background-image:url(&quot;' + item.image + '&quot;)" aria-hidden="' + (index === 0 ? 'false' : 'true') + '"></div>').join("") + '<div class="portfolio-system-caption"><b></b><span></span></div><div class="portfolio-system-dots">' + slides.map(() => '<i></i>').join("") + '</div></div>';
       const slider = browser.querySelector(".portfolio-system-slider");
@@ -468,7 +516,7 @@ const portfolioExactRuntime = `
       Array.from(panel.childNodes).forEach((node) => content.appendChild(node));
       const visual = document.createElement("div");
       visual.className = "sector-visual";
-      visual.style.backgroundImage = 'linear-gradient(135deg, rgba(38,27,62,.1), rgba(237,32,98,.08)), url("' + images[index % images.length] + '")';
+      visual.style.backgroundImage = 'linear-gradient(135deg, rgba(38,27,62,.08), rgba(237,32,98,.06)), url("' + sectorVisuals[index % sectorVisuals.length] + '")';
       panel.append(visual, content);
     });
   };

@@ -711,6 +711,15 @@ const aboutExactPresentationOverride = `
     box-shadow: 0 14px 28px rgba(38, 27, 62, .18);
   }
 
+  .sweed-exact-reference-page .avatar img,
+  .sweed-exact-reference-page #team .member .photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
   /* الوعد: أقصر وأدفأ وأكثر حركة */
   .sweed-exact-reference-page .promise {
     position: relative;
@@ -858,6 +867,8 @@ const aboutExactPresentationOverride = `
   }
 
   .sweed-exact-reference-page .member .photo {
+    height: clamp(12.75rem, 17vw, 15.25rem);
+    aspect-ratio: auto !important;
     color: transparent;
     background:
       linear-gradient(180deg, rgba(38, 27, 62, 0), rgba(38, 27, 62, .32)),
@@ -874,6 +885,10 @@ const aboutExactPresentationOverride = `
     background:
       linear-gradient(180deg, rgba(38, 27, 62, 0), rgba(38, 27, 62, .3)),
       url("/images/hero/mohamed-sweed-portrait.jpeg") center / cover no-repeat;
+  }
+
+  .sweed-exact-reference-page #team .swiper-slide:first-child .member .photo img {
+    object-position: center 30%;
   }
 
   .sweed-exact-reference-page .member,
@@ -1031,6 +1046,13 @@ const aboutExactPresentationOverride = `
     margin-top: 2.7rem;
   }
 
+  .sweed-exact-reference-page #methodology #progressPath {
+    transform: scaleX(-1);
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: stroke-dashoffset .28s cubic-bezier(.22,1,.36,1);
+  }
+
   .sweed-exact-reference-page .steps {
     align-items: stretch;
     gap: .95rem;
@@ -1041,7 +1063,14 @@ const aboutExactPresentationOverride = `
     min-width: 0;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
     text-align: center;
+  }
+
+  .sweed-exact-reference-page .step:focus-visible {
+    outline: 2px solid var(--about-pink);
+    outline-offset: .45rem;
+    border-radius: .75rem;
   }
 
   .sweed-exact-reference-page .step > div:last-child {
@@ -1229,27 +1258,118 @@ const aboutExactPresentationOverride = `
     line-height: 1.65;
   }
 
-  /* شعارات العملاء: سطر واحد وستة شعارات متحركة */
+  /* نسخة قسم الشراكات من الصفحة الرئيسية، مباشرة أسفل الأرقام */
   .sweed-exact-reference-page #partners {
-    padding-block: clamp(3.45rem, 4.5vw, 4.1rem) !important;
+    overflow: hidden;
+    padding-block: clamp(2.75rem, 5vw, 4.75rem) !important;
+    background: #261b3e !important;
+    color: #ffffff;
+    direction: rtl;
   }
 
-  .sweed-exact-reference-page #partners .logo-cloud {
-    margin-top: 1.85rem !important;
+  .sweed-exact-reference-page #partners .container {
+    width: 100% !important;
+    max-width: none !important;
+    padding-inline: 0 !important;
+  }
+
+  .sweed-exact-reference-page #partners .sweed-home-clients-heading {
+    display: flex;
+    width: min(calc(100% - 3rem), 74rem);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    margin: 0 auto 1.8rem;
+    text-align: center;
+  }
+
+  .sweed-exact-reference-page #partners .sweed-home-clients-heading > span {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 2rem;
+    align-items: center;
+    gap: .48rem;
+    padding-inline: .75rem;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 999px;
+    color: #ff82ab;
+    font-size: .82rem;
+    font-weight: 850;
+  }
+
+  .sweed-exact-reference-page #partners .sweed-home-clients-heading > span::before {
+    width: .42rem;
+    height: .42rem;
+    border-radius: 50%;
+    background: #ff82ab;
+    box-shadow: 0 0 0 .25rem rgba(255,130,171,.12);
+    content: "";
+  }
+
+  .sweed-exact-reference-page #partners .sweed-home-clients-heading h2 {
+    margin: 0;
+    color: #ffffff !important;
+    font-size: clamp(1.45rem, 2.6vw, 2.25rem) !important;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center !important;
+    white-space: normal;
+  }
+
+  .sweed-exact-reference-page #partners .sweed-home-clients-heading h2::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .sweed-exact-reference-page #partners .logo-cloud.sweed-about-logo-marquee {
+    margin-top: 0 !important;
+    overflow: hidden;
+    direction: ltr;
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
   }
 
   .sweed-exact-reference-page #partners .sweed-about-logo-track {
-    gap: 1rem;
-    animation-duration: 25s;
+    gap: 0;
+    animation: sweedHomeClientsDrift 42s linear infinite reverse;
+  }
+
+  .sweed-exact-reference-page #partners .sweed-home-clients-group {
+    display: flex;
+    gap: .8rem;
+    padding-inline-end: .8rem;
   }
 
   .sweed-exact-reference-page #partners .plogo {
-    flex: 0 0 10.5rem;
-    height: 4.45rem;
-    padding: .75rem 1rem;
-    border-radius: 1rem;
-    background: #ffffff;
+    display: inline-flex;
+    min-width: 10.25rem;
+    min-height: 3.55rem;
+    flex: 0 0 10.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    padding-inline: 1.1rem;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 1.05rem 1.05rem .5rem;
+    background: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.88);
+    font-size: .88rem;
+    font-weight: 800;
     filter: none;
+    transition: background .22s ease, color .22s ease, transform .22s ease;
+  }
+
+  .sweed-exact-reference-page #partners .plogo i {
+    color: #ff82ab;
+    font-size: .64rem;
+    font-style: normal;
+    letter-spacing: .06em;
+  }
+
+  .sweed-exact-reference-page #partners .plogo:hover {
+    background: #ffffff;
+    color: #261b3e;
+    transform: translateY(-.2rem);
   }
 
   /* آراء عملاء أكثر، شريط متحرك خفيف */
@@ -1293,6 +1413,11 @@ const aboutExactPresentationOverride = `
   @keyframes sweedAboutMarquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+  }
+
+  @keyframes sweedHomeClientsDrift {
+    from { transform: translateX(0); }
+    to { transform: translateX(50%); }
   }
 
   @keyframes sweedAboutCompass {
@@ -2844,26 +2969,40 @@ const aboutLiveLayoutRuntime = `
   };
 
   const preparePartners = () => {
+    const section = document.querySelector("#partners");
     const cloud = document.querySelector("#partners .logo-cloud");
-    if (!cloud || cloud.dataset.sweedMarqueeReady === "true") return;
+    if (!section || !cloud || cloud.dataset.sweedMarqueeReady === "true") return;
 
-    const logos = Array.from(cloud.querySelectorAll(".plogo")).slice(0, 6);
-    if (!logos.length) return;
+    const eyebrow = section.querySelector(":scope .eyebrow");
+    const title = section.querySelector(":scope .sec-title");
+    if (eyebrow && title) {
+      eyebrow.textContent = "بعض من عملائنا";
+      title.textContent = "شراكات في اتجاه واحد";
+      const heading = document.createElement("div");
+      heading.className = "sweed-home-clients-heading";
+      eyebrow.parentElement?.insertBefore(heading, eyebrow);
+      heading.append(eyebrow, title);
+    }
 
-    const names = ["VISTA", "ORBIT", "MADA", "LINEA", "CIRCA", "NOVA"];
-    const accents = ["#ed2062", "#4f347d", "#ed2062", "#694d96", "#ed2062", "#4f347d"];
-    logos.forEach((logo, index) => decorateLogo(logo, names[index], accents[index], "#261b3e"));
+    const createLogo = (index) => {
+      const logo = document.createElement("span");
+      logo.className = "plogo";
+      logo.innerHTML = "<i aria-hidden='true'>" + String(index + 1).padStart(2, "0") + "</i><span>شعار " + String(index + 1).padStart(2, "0") + "</span>";
+      return logo;
+    };
 
     const track = document.createElement("div");
     track.className = "sweed-about-logo-track";
-    logos.forEach((logo) => track.appendChild(logo));
-    logos.forEach((logo) => {
-      const copy = logo.cloneNode(true);
-      copy.setAttribute("aria-hidden", "true");
-      track.appendChild(copy);
+    [0, 1].forEach((copy) => {
+      const group = document.createElement("div");
+      group.className = "sweed-home-clients-group";
+      if (copy === 1) group.setAttribute("aria-hidden", "true");
+      Array.from({ length: 16 }, (_, index) => createLogo(index)).forEach((logo) => group.appendChild(logo));
+      track.appendChild(group);
     });
 
     cloud.replaceChildren(track);
+    cloud.setAttribute("aria-label", "شعارات العملاء");
     cloud.classList.add("sweed-about-logo-marquee");
     cloud.dataset.sweedMarqueeReady = "true";
   };
@@ -2927,6 +3066,62 @@ const aboutLiveLayoutRuntime = `
     applyPortrait(document.querySelector("#team .swiper-slide:first-child .member .photo"), "محمد سويد — المؤسس والمدير التنفيذي");
   };
 
+  const prepareMethodologyProgress = () => {
+    const section = document.querySelector("#methodology");
+    const track = section?.querySelector(".method-track");
+    const path = section?.querySelector("#progressPath");
+    const steps = Array.from(section?.querySelectorAll("#steps .step") || []);
+    if (!section || !track || !path || steps.length !== 5 || section.dataset.sweedMethodReady === "true") return;
+
+    section.dataset.sweedMethodReady = "true";
+    window.gsap?.getTweensOf(path).forEach((tween) => tween.kill());
+    window.ScrollTrigger?.getAll().forEach((trigger) => {
+      if (trigger.trigger === section) trigger.kill();
+    });
+
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = String(length);
+
+    const setStage = (requestedIndex) => {
+      const index = Math.max(0, Math.min(steps.length - 1, requestedIndex));
+      const completion = (index + 1) / steps.length;
+      path.style.strokeDashoffset = String(length * (1 - completion));
+      steps.forEach((step, stepIndex) => {
+        const active = stepIndex <= index;
+        step.classList.toggle("lit", active);
+        if (stepIndex === index) step.setAttribute("aria-current", "step");
+        else step.removeAttribute("aria-current");
+      });
+      section.dataset.activeStep = String(index + 1);
+    };
+
+    const setStageFromViewport = () => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top >= window.innerHeight * .82 || rect.bottom <= window.innerHeight * .18) return;
+      const distance = Math.max(rect.height - window.innerHeight * .22, 1);
+      const progress = Math.max(0, Math.min(1, (window.innerHeight * .72 - rect.top) / distance));
+      setStage(Math.round(progress * (steps.length - 1)));
+    };
+
+    steps.forEach((step, index) => {
+      step.tabIndex = 0;
+      step.addEventListener("mouseenter", () => setStage(index));
+      step.addEventListener("focus", () => setStage(index));
+      step.addEventListener("click", () => setStage(index));
+    });
+
+    track.addEventListener("mousemove", (event) => {
+      if (!window.matchMedia("(hover: hover)").matches) return;
+      const rect = track.getBoundingClientRect();
+      const rtlProgress = Math.max(0, Math.min(1, (rect.right - event.clientX) / rect.width));
+      setStage(Math.round(rtlProgress * (steps.length - 1)));
+    });
+    track.addEventListener("mouseleave", setStageFromViewport);
+    window.addEventListener("scroll", setStageFromViewport, { passive: true });
+    window.addEventListener("resize", setStageFromViewport, { passive: true });
+    setStageFromViewport();
+  };
+
   const moveAboutSectionsIntoOrder = () => {
     const why = document.querySelector("#why");
     if (!why?.parentElement) return;
@@ -2934,10 +3129,16 @@ const aboutLiveLayoutRuntime = `
     ["#team", "#partners", "#alliances"].map((selector) => document.querySelector(selector)).forEach((section) => {
       if (section?.parentElement === parent) parent.insertBefore(section, why);
     });
+    const numbers = document.querySelector("#numbers");
+    const partners = document.querySelector("#partners");
+    if (numbers?.parentElement === parent && partners?.parentElement === parent) {
+      numbers.insertAdjacentElement("afterend", partners);
+    }
   };
 
   const run = () => {
     prepareFounderPortrait();
+    prepareMethodologyProgress();
     moveAboutSectionsIntoOrder();
     prepareAlliances();
     preparePartners();

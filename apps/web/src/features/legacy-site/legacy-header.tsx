@@ -220,23 +220,12 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
             href={catalogHref}
             target="_blank"
             rel="noreferrer"
-            aria-label="فتح كتالوج سويد"
+            aria-label="فتح بروفايل شركة سويد"
             onClick={(event) => handleNavigationClick(event, catalogHref)}
           >
-            <BrandActionButtonContent>حمل الكتالوج</BrandActionButtonContent>
+            <BrandActionButtonContent>بروفايل الشركة</BrandActionButtonContent>
           </Link>
         </div>
-
-        <Link
-          className={getBrandActionButtonClassName({ className: styles.desktopCta, size: "nav" })}
-          href={catalogHref}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="فتح كتالوج سويد"
-          onClick={(event) => handleNavigationClick(event, catalogHref)}
-        >
-          <BrandActionButtonContent>حمل الكتالوج</BrandActionButtonContent>
-        </Link>
 
         <button
           ref={menuButtonRef}

@@ -12,9 +12,9 @@ describe("header company profile CTA", () => {
     expect(headerSource.match(/بروفايل الشركة/g)).toHaveLength(2);
     expect(headerSource).not.toContain("حمل الكتالوج");
     expect(headerSource).toContain("className={getBrandActionButtonClassName({ className: styles.desktopCta");
-    expect(headerSource).toContain("className={getBrandActionButtonClassName({ className: styles.mobileCta");
-    expect(headerCss.match(/\.menuPanel > \.mobileCta/g)).toHaveLength(2);
-    expect(headerCss).not.toContain("\n.mobileCta {\n  display: none !important;");
+    expect(headerSource).toContain("<div className={styles.mobileCta}>");
+    expect(headerSource).not.toContain("className={getBrandActionButtonClassName({ className: styles.mobileCta");
+    expect(headerCss).toContain(".mobileCta {\n  display: none !important;");
     expect(headerSource).not.toContain("consultationHref");
   });
 

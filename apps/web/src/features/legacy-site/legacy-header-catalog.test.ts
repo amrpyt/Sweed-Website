@@ -4,6 +4,7 @@ import { describe, expect, test } from "bun:test";
 import { defaultNavItems, homeNavItems } from "./legacy-header.config";
 
 const headerSource = readFileSync(join(import.meta.dir, "legacy-header.tsx"), "utf8");
+const headerPartsSource = readFileSync(join(import.meta.dir, "legacy-header-parts.tsx"), "utf8");
 const headerCss = readFileSync(join(import.meta.dir, "legacy-header.module.css"), "utf8");
 
 describe("header company profile CTA", () => {
@@ -16,6 +17,12 @@ describe("header company profile CTA", () => {
     expect(headerSource).not.toContain("className={getBrandActionButtonClassName({ className: styles.mobileCta");
     expect(headerCss).toContain(".mobileCta {\n  display: none !important;");
     expect(headerSource).not.toContain("consultationHref");
+  });
+
+  test("uses the company profile label in the shared legacy header parts too", () => {
+    expect(headerPartsSource).toContain("بروفايل الشركة");
+    expect(headerPartsSource).not.toContain("حمل الكتالوج");
+    expect(headerPartsSource).not.toContain("فتح كتالوج سويد");
   });
 
   test("keeps the approved compact navbar geometry instead of the oversized pill variant", () => {

@@ -107,9 +107,9 @@ export function HeaderCta({ page: _page }: { page: LegacyPageKey }) {
         href="/sweed-company-catalog.pdf"
         target="_blank"
         rel="noreferrer"
-        aria-label="فتح كتالوج سويد"
+        aria-label="فتح بروفايل شركة سويد"
       >
-        <BrandActionButtonContent>حمل الكتالوج</BrandActionButtonContent>
+        <BrandActionButtonContent>بروفايل الشركة</BrandActionButtonContent>
       </Link>
     </div>
   );

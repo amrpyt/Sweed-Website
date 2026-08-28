@@ -7,14 +7,15 @@ const headerSource = readFileSync(join(import.meta.dir, "legacy-header.tsx"), "u
 const headerCss = readFileSync(join(import.meta.dir, "legacy-header.module.css"), "utf8");
 
 describe("header company profile CTA", () => {
-  test("removes the large desktop CTA and keeps the company profile action in mobile navigation", () => {
-    expect(headerSource.match(/handleNavigationClick\(event, catalogHref\)/g)).toHaveLength(1);
-    expect(headerSource).toContain("بروفايل الشركة");
+  test("keeps compact desktop and mobile profile actions without leaking the mobile CTA into desktop layout", () => {
+    expect(headerSource.match(/handleNavigationClick\(event, catalogHref\)/g)).toHaveLength(2);
+    expect(headerSource.match(/بروفايل الشركة/g)).toHaveLength(2);
     expect(headerSource).not.toContain("حمل الكتالوج");
-    expect(headerSource).not.toContain("className={getBrandActionButtonClassName({ className: styles.desktopCta");
+    expect(headerSource).toContain("className={getBrandActionButtonClassName({ className: styles.desktopCta");
+    expect(headerSource).toContain("className={getBrandActionButtonClassName({ className: styles.mobileCta");
+    expect(headerCss.match(/\.menuPanel > \.mobileCta/g)).toHaveLength(2);
+    expect(headerCss).not.toContain("\n.mobileCta {\n  display: none !important;");
     expect(headerSource).not.toContain("consultationHref");
-    expect(headerSource).toContain("getBrandActionButtonClassName");
-    expect(headerSource).toContain("BrandActionButtonContent");
   });
 
   test("keeps the approved compact navbar geometry instead of the oversized pill variant", () => {

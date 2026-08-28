@@ -215,17 +215,30 @@ export function LegacyHeader({ page }: { page: LegacyPageKey }) {
             </div>
           ) : null}
 
-          <Link
-            className={getBrandActionButtonClassName({ className: styles.mobileCta, size: "nav" })}
-            href={catalogHref}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="فتح بروفايل شركة سويد"
-            onClick={(event) => handleNavigationClick(event, catalogHref)}
-          >
-            <BrandActionButtonContent>بروفايل الشركة</BrandActionButtonContent>
-          </Link>
+          <div className={styles.mobileCta}>
+            <Link
+              className={getBrandActionButtonClassName({ size: "nav" })}
+              href={catalogHref}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="فتح بروفايل شركة سويد"
+              onClick={(event) => handleNavigationClick(event, catalogHref)}
+            >
+              <BrandActionButtonContent>بروفايل الشركة</BrandActionButtonContent>
+            </Link>
+          </div>
         </div>
+
+        <Link
+          className={getBrandActionButtonClassName({ className: styles.desktopCta, size: "nav" })}
+          href={catalogHref}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="فتح بروفايل شركة سويد"
+          onClick={(event) => handleNavigationClick(event, catalogHref)}
+        >
+          <BrandActionButtonContent>بروفايل الشركة</BrandActionButtonContent>
+        </Link>
 
         <button
           ref={menuButtonRef}
